@@ -1,6 +1,8 @@
 import math
 import sys
 
+import Vector as vec
+
 # NxN Matrix Class
 class Matrix(object):
     
@@ -101,6 +103,26 @@ def perspective(fov, aspect, znear, zfar):
                      [0.0, 0.0, 0.0, 1.0]]
 
     return Matrix(16, container)
+
+def lookAt(cam_loc, direction, head_pos):
+
+    atNew = direction - cam_loc
+    atNew.normalize()
+
+    headNew = head_pos
+
+    xaxis = vec.cross(atNew, headNew)
+    xaxis.normalize()
+
+    upNew = vec.cross(xaxis, atNew)
+
+    container = [[xaxis.vec[0], upNew.vec[0], atNew.vec[0], cam_loc.vec[0]],
+                 [xaxis.vec[1], upNew.vec[1], atNew.vec[1], cam_loc.vec[1]],
+                 [xaxis.vec[2], upNew.vec[2], atNew.vec[2], cam_loc.vec[2]],
+                 [         0.0,          0.0,          0.0,             1.0]]
+
+    return Matrix(16, container)
+    
 
 # Matrix Stack Class
 class MatrixStack(object):
