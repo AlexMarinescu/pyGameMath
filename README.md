@@ -23,7 +23,7 @@ Note
 ====
 * Vectors Cross Product is only for 3D and 7D vectors, but currently only the 3D version is implemented.
 * [Multivectors](http://en.wikipedia.org/wiki/Multivector) and [Bivector](http://en.wikipedia.org/wiki/Bivector) operations are not yet implemented.
-* The only matrix transformation that will be implemented for now are gonne be the ones up to 4x4 matrices.
+* The only matrix transformation that will be implemented for now are going to be the ones up to 4x4 matrices.
 * While the Vector and Matrix Stacks are not necessary and can be created on the go by anyone, they simplify and organize things a bit better.
-* Optimizations are gonna be done more indepth once the whole thing is finished and perhaps when I notice that a certain operations/transformation takes too long to execute.
+* Optimizations are going to be done more indepth once the whole thing is finished and perhaps when I notice that a certain operations/transformation takes too long to execute.
 * Also do report any bugs or speed related issues.
