@@ -16,8 +16,9 @@ Supported features
 
 Future features
 ===============
-* 3x3/2x2/4x4 Specific Matrix Transformation
-* 3D Specific Vector Operations
+* 3x3/2x2/4x4 Specific Matrix Transformation (Almost done)
+* Some more 3D Specific Vector Operations
+* Quaternions
 
 Note
 ====
