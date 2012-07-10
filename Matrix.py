@@ -1,6 +1,5 @@
 import math
 import sys
-
 import Vector as vec
 
 # NxN Matrix Class
@@ -59,6 +58,7 @@ class Matrix(object):
                                         
         return Matrix(self.fullsize, self.out)
 
+    # Common, identical functions
     def sub(self, array):
         self.mat = array
 
@@ -84,14 +84,41 @@ class Matrix(object):
         print "Matrix",self.row,"x",self.col,":"
         print self.mat
 
+# Matrix 2x2 specific functions
+def mat2x2ShearX(x):
+    container = [[1.0,  x],
+                 [0.0,1.0]]
+    return Matrix(4,container)
+
+def mat2x2ShearY(y):
+    container = [[1.0,  y],
+                 [  y,1.0]]
+    return Matrix(4,container)
+
+def mat2x2Rotate(angle, direction):
+    container = [[1.0, 0.0],
+                 [0.0, 1.0]]
+    if direction == "R":
+        container[0] = cos(angle)
+        container[1] = sin(angle)
+        container[2] =-sin(angle)
+        container[3] = cos(angle)
+    elif direction == "L":
+        container[0] = cos(angle)
+        container[1] =-sin(angle)
+        container[2] = sin(angle)
+        container[3] = cos(angle)
+    else:
+        print "Direction undefined."
+    return Matrix(4, container)
+
+    
 # Matrix 4x4 specific functions
 def perspective(fov, aspect, znear, zfar):
-
     y = tan(fov * (3.14159265358979323846 / 360))
     x = y * aspect
 
     if (x != 0) and (y != 0) and (zfar != znear):
-
         a = 1.0 / x
         b = 1.0 / y
         c = (zfar)/(znear-zfar)
@@ -101,11 +128,9 @@ def perspective(fov, aspect, znear, zfar):
                      [0.0,   b, 0.0, 0.0],
                      [0.0, 0.0,   c,   d],
                      [0.0, 0.0, 0.0, 1.0]]
-
     return Matrix(16, container)
 
 def lookAt(cam_loc, direction, head_pos):
-
     atNew = direction - cam_loc
     atNew.normalize()
 
@@ -120,10 +145,69 @@ def lookAt(cam_loc, direction, head_pos):
                  [xaxis.vec[1], upNew.vec[1], atNew.vec[1], cam_loc.vec[1]],
                  [xaxis.vec[2], upNew.vec[2], atNew.vec[2], cam_loc.vec[2]],
                  [         0.0,          0.0,          0.0,             1.0]]
-
     return Matrix(16, container)
-    
 
+# 3x3 and 4x4 Matrix functions
+def translate(vector, matType):
+    if matType == "4x4":
+        container = [[1.0,0.0,0.0,vector.vec[0]],
+                     [0.0,1.0,0.0,vector.vec[1]],
+                     [0.0,0.0,1.0,vector.vec[2]],
+                     [0.0,0.0,0.0,      1.0    ]]
+        return Matrix(16, container)
+    elif matType == "3x3":
+        container = [[1.0,0.0,vector.vec[0]]
+                     [0.0,1.0,vector.vec[1]]
+                     [0.0,0.0,vector.vec[2]]]
+        return Matrix(9, container)
+    else:
+        print "Not defined yet."
+
+def shearXY(x,y,matType):
+    if matType == "3x3":
+        container = [[1.0, 0.0,  x],
+                     [0.0, 1.0,  y],
+                     [0.0, 0.0, 1.0]]
+        return Matrix(9, container)
+    elif matType == "4x4":
+        container = [[1.0, 0.0, 0.0,   x],
+                     [0.0, 1.0, 0.0,   y],
+                     [0.0, 0.0, 1.0, 0.0],
+                     [0.0, 0.0, 0.0, 1.0]]
+        return Matrix(16, container)
+    else:
+        print "Not defined yet."
+
+def shearYZ(x,y,matType):
+    if matType == "3x3":
+        container = [[1.0, 0.0, 0.0],
+                     [  x, 1.0, 0.0],
+                     [  y, 0.0, 1.0]]
+        return Matrix(9, container)
+    elif matType == "4x4":
+        container = [[1.0, 0.0, 0.0, 0.0],
+                     [  x, 1.0, 0.0, 0.0],
+                     [  y, 0.0, 1.0, 0.0],
+                     [0.0, 0.0, 0.0, 1.0]]
+        return Matrix(16, container)
+    else:
+        print "Not defined yet."
+        
+def shearXZ(x,y,matType):
+    if matType == "3x3":
+        container = [[1.0,   x, 0.0],
+                     [0.0, 1.0, 0.0],
+                     [0.0,   y, 1.0]]
+        return Matrix(9, container)
+    elif matType == "4x4":
+        container = [[1.0,   x, 0.0, 0.0],
+                     [0.0, 1.0, 0.0, 0.0],
+                     [0.0,   y, 1.0, 0.0],
+                     [0.0, 0.0, 0.0, 1.0]]
+        return Matrix(16, container)
+    else:
+        print "Not defined yet."
+        
 # Matrix Stack Class
 class MatrixStack(object):
 
