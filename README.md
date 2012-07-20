@@ -13,13 +13,14 @@ Supported features:
 * N Dimensions Vectors
 * Vectors Dot Product
 * Vectors Cross Product
+* Vectors Refraction
+* Vectors Reflection
 * Matrix Stack
 * Vector Stack
 * Quaternions
 
 TO DO:
 ===============
-* Some more 3D Specific Vector Operations.
 * Matrix Normalizing and Finding the Determinant.
 * Tutorial on how to use everything.
 
