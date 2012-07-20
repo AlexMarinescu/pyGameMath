@@ -15,11 +15,11 @@ Supported features:
 * Vectors Cross Product
 * Matrix Stack
 * Vector Stack
+* Quaternions
 
 TO DO:
 ===============
-* Some more 3D Specific Vector Operations
-* Quaternions
+* Some more 3D Specific Vector Operations.
 * Matrix Normalizing and Finding the Determinant.
 * Tutorial on how to use everything.
 
