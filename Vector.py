@@ -28,6 +28,12 @@ class Vector (object):
         for x in xrange(self.len):
             self.vec[x] *= scalar
         return Vector(self.vec)
+        
+    # Overloading *
+    def __mul__(self, scalar):
+        for x in xrange(self.len):
+            self.vec[x] *= scalar
+        return Vector(self.vec)
     
     # Overloading /=
     def __itruediv__(self, scalar):
@@ -85,7 +91,11 @@ class Vector (object):
     def scale(self, value):
         for x in xrange(self.len):
             self.vec[x] *= value
-
+            
+    def zero(self):
+        for x in xrange(self.len):
+            self.vec[x] = 0.0
+            
     def invert(self):
         for x in xrange(self.len):
             self.vec[x] = -self.vec[x]
@@ -122,7 +132,26 @@ def cross(vectorA, vectorB):
         return vectorC
     else:
         print "Only 3D vectors."
-        
+
+# The formulas for the following two functions are from the GLSL specification.
+# Reflection
+def reflect(incidentVector, normal):
+    return incidentVector - (2.0 * dot(incidentVector, normal) * normal)
+    
+# Refraction
+def refract(indexofrefraction, incidentVector, normal):
+    # This is gonna be used in a few places and its quite long so just store the result once.
+    dotNI = dot(normal, incidentVector)
+    k = 1.0 - indexofrefraction * indexofrefraction * indexofrefraction * (1.0 - dotNI * dotNI)
+    if k < 0.0:
+        container = []
+        # The length can be the normal or incidentVectors because they will be the same length.
+        for x in xrange(normal.len):
+            container.append(0.0)
+        return Vector(container)
+    else:
+        return indexofrefraction * incidentVector - (indexofrefraction * dotNI + math.sqrt(k)) * normal
+    
 # Vector Stack Class
 class VectorStack(object):
 
