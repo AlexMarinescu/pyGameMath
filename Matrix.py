@@ -82,8 +82,8 @@ class Matrix(object):
             
     # This is an implementation of the Gauss Jordan Elimination to find a nxn matrix inverse.           
     def inverse(self):
-        # Create a backup of the original matrix because by the end the original will be converted to identity.
-        matrix_backup = self.mat
+        # Make a copy to use
+        matrix = self.mat
         # Create a dynamic container that can hold the inverse.
         # Basically create an augumented matrix. However, they are not in the same array.
         # The augumented matrix needs to be split at the end anyway so there is no point in joining them.
@@ -97,11 +97,11 @@ class Matrix(object):
             container[i][i] = 1.0
         # Find the inverse.
         for i in xrange(self.row):
-            diag_number = float(self.mat[i][i])
+            diag_number = float(matrix[i][i])
             for x in xrange(self.row):
                 # Divide row 1 by first number, row 2 by second number and so on... 
                 # The number happens to be on the diagonal when its incremented.
-                self.mat[i][x] /= diag_number
+                matrix[i][x] /= diag_number
                 container[i][x] /= diag_number
             # Each time a row division happens. The above stuff; the following operations needs to occur.
             for j in xrange(self.row):
@@ -111,15 +111,14 @@ class Matrix(object):
                     # However, this time make sure it is the updated one and it will no longer be on the diagonal, but on a column
                     # because its location is also given by the row number that is being calculated. 
                     # So its no longer [n][n] where n represents the number location on the diagonal, its [row number][n].
-                    number = float(self.mat[j][i])
+                    number = float(matrix[j][i])
                     for y in xrange(self.row):
                         # Here the number multiplied by the numbers of the divided row is substracted from the original matrix.
                         # Example row1[i] - forth number on the row1 * row4[i]
                         # Where row1 is the one being calculated, row4 was the divided one.
-                        self.mat[j][y] = self.mat[j][y] - number * self.mat[i][y]
+                        matrix[j][y] = matrix[j][y] - number * matrix[i][y]
                         container[j][y] = container[j][y] - number * container[i][y]
-        # Restore the original matrix.
-        self.mat = matrix_backup
+
         # Return a new matrix
         return Matrix(self.fullsize, container)
 
