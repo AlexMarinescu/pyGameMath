@@ -18,6 +18,10 @@ Supported features:
 * Matrix Stack
 * Vector Stack
 * Quaternions
+* Plane
+* Point
+* AABB (Not yet)
+* Ray (Almost there)
 
 TO DO:
 ===============
