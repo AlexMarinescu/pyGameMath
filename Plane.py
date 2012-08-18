@@ -49,6 +49,28 @@ class Plane(object):
         
         # Return the normalized plane
         return Plane(temp_vec.vec[0], temp_vec.vec[1], temp_vec.vec[2], new_D)
+		
+    def bestFitNormal(self, vecList):
+        output = Vector([0.0,0.0,0.0])
+        
+        for i,j in enumerate(vecList):
+            output.vec[0] += (vecList[i].vec[2] + vecList[i+1].vec[2]) * (vecList[i].vec[1] - vecList[i+1].vec[1])
+            output.vec[1] += (vecList[i].vec[0] + vecList[i+1].vec[0]) * (vecList[i].vec[2] - vecList[i+1].vec[2])
+            output.vec[3] += (vecList[i].vec[1] + vecList[i+1].vec[1]) * (vecList[i].vec[0] - vecList[i+1].vec[0])
+            
+        output.normalize()
+        return output
+        
+    def bestFitD(self, vecList, bestFitNormal):
+        val = 0.0
+        
+        for i,j in enumerate(vecList):
+            val = dot(j, bestFitNormal)
+        
+        return val / len(vecList)
+        
+    def distanceToPoint(thePoint):
+        return dot(thePoint, Vector([self.A, self.B, self.C])) - self.D
         
     def point_location(self, point):
         # If s > 0 then the point is on the same side as the normal. (front)
