@@ -6,6 +6,7 @@ It's still a work in progress. However, it will be finished soon.
 Supported features:
 ===================
 * NxN Matrices
+  * Test
 * 4x4 Perspective Projection Matrix
 * lookAt 4x4 Matrix
 * Translation and Rotation
