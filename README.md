@@ -40,9 +40,9 @@ Supported features:
   
 * Plane
   * Define using
-    * 3 Vectors
-    * Point and Normal
-    * Manual input
+     * 3 Vectors
+     * Point and Normal
+     * Manual input
   * Dot Product
   * Normalize
   * Best fit normal and D value
