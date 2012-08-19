@@ -47,7 +47,7 @@ Supported features:
   * Point location
   
 * Point
-    Basically this is a wrap around the vector class.
+  >Basically this is a wrap around the vector class.
     It adds a location parameter so you can classify the point.
     However, this could have been in the vector class itself but meh...
     This can change in the future. 
