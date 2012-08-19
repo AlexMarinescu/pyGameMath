@@ -1,6 +1,6 @@
 import math
 import sys
-import Vector as vec
+from Vector import*
 
 # NxN Matrix Class
 class Matrix(object):
@@ -50,15 +50,32 @@ class Matrix(object):
             for j in xrange(self.col):
                 self.out[i][j] = self.mat[i][j] - input.mat[i][j]
         
-    def __mul__(self, input):     
-        for i in xrange(self.row):
-            for j in xrange(self.col):
-                for k in xrange(self.row):
-                    self.out[j][i] = self.out[j][i] + self.mat[i][k] * input.mat[k][j]
+    def __mul__(self, input):
+        # Multiply by Vector
+        if isinstance(input, Vector):
+            vectorArray = []
+            for x in xrange(input.len):
+                vectorArray.append(0.0)   
+            outputVector = Vector(vectorArray)
+            for i in xrange(self.row):
+                for j in xrange(self.col):
+                    outputVector.vec[i] += input.vec[j] * self.mat[i][j]      
+            return outputVector
+        # Multiply by Matrix
+        elif isinstance(input, Matrix):
+            for i in xrange(self.row):
+                for j in xrange(self.col):
+                    for k in xrange(self.row):
+                        self.out[j][i] = self.out[j][i] + self.mat[i][k] * input.mat[k][j]
+            return Matrix(self.fullsize, self.out)
                                         
-        return Matrix(self.fullsize, self.out)
-
+        
+        
     # Common, identical functions
+    
+    def duplicate(self):
+        return Matrix(self.size, self.mat)
+        
     def sub(self, array):
         self.mat = array
 
@@ -178,10 +195,10 @@ def lookAt(cam_loc, direction, head_pos):
 
     headNew = head_pos
 
-    xaxis = vec.cross(atNew, headNew)
+    xaxis = cross(atNew, headNew)
     xaxis.normalize()
 
-    upNew = vec.cross(xaxis, atNew)
+    upNew = cross(xaxis, atNew)
 
     container = [[xaxis.vec[0], upNew.vec[0], atNew.vec[0], cam_loc.vec[0]],
                  [xaxis.vec[1], upNew.vec[1], atNew.vec[1], cam_loc.vec[1]],

@@ -8,6 +8,8 @@ Supported features:
 * NxN Matrices
   * Transpose
   * Scale
+  * NxN Matrix Multiplication
+  * NxN Matrix * N Dimensions Vector Multiplication
   * NxN Matrix Inverse Calculation (Gauss Jordan Elimination)
   * 4x4 Perspective Projection Matrix
   * lookAt 4x4 Matrix
@@ -33,7 +35,8 @@ Supported features:
   * Rotation
   * To Rotation Matrix (4x4)
   * Cross Product
-  * Vector3D and Quaternion multiplication
+  * Vector3D and Quaternion Multiplication
+  * Output
   
 * Plane
   * Define using
@@ -45,6 +48,7 @@ Supported features:
   * Best fit normal and D value
   * Distance from plane to a point
   * Point location
+  * Output
   
 * Point
   >Basically this is a wrap around the vector class. It adds a location parameter so you can classify the point. 
@@ -53,10 +57,16 @@ Supported features:
   >
   >This will probably change in the future.
   
+* Ray
+  * Rotate using Matrix
+  * Rotate using Quaternions
+  * Translate
+  * Output
+  
 TO DO:
 ===============
-* AABB/OBB/Sphere/Cylinder
-* Ray
+* AABB/OBB/Sphere/Cylinder (The intersections between a ray and each, will be inside the ray class)
+* Slerp (Quaternions
 * Matrix Normalizing and Finding the Determinant.
 * Tutorial on how to use everything.
 

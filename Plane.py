@@ -1,6 +1,7 @@
 import math
 from Vector import *
 from Point import *
+
 # I know that I'm missing some shit in this "plane" class but bleh, for now the current stuff will do. :3
 class Plane(object):
     # A, B, C make up the normal of the plane
@@ -29,6 +30,9 @@ class Plane(object):
             self.D = D
         else:
             print "FFFUUU.... Cannot define plane."
+            
+    def duplicate(self):
+        return Plane(self.A, self.B, self.C, self.D)
             
     # Dot product for the plane, same as vector 4D dot product.
     def dot(self, vector):
@@ -86,3 +90,6 @@ class Plane(object):
             point.location = "ON_PLANE"
         else
             print "No clue where the point is. :O"
+            
+    def output(self):
+        print "Plane: ", "A: ", self.A, " B: ", self.B, " C: ", self.C, " D: ", self.D

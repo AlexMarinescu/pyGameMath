@@ -1,4 +1,5 @@
 import math
+import sys
 
 # Vector N Dimensions Class
 class Vector (object):
@@ -8,7 +9,7 @@ class Vector (object):
         self.len = len(array)
 
     # Clone the vector.
-    def clone(self):
+    def duplicate(self):
         return Vector(self.vec)
 
     # Overloading +=
@@ -108,8 +109,7 @@ class Vector (object):
                 self.vec[x] /= length
 
     def output(self):
-        print "Vector ", self.len, "D"
-        print self.vec
+        print "Vector ", self.len, "D: ", self.vec
 
 # Dot Product (Multivectors not implemented).
 def dot(vectorA, vectorB):

@@ -7,6 +7,9 @@ class Quaternion(object):
     def __init__(self,array):
         self.quat = array
         
+    def duplicate(self):
+        return Quaternion(self.quat)
+        
     def identity(self):
         self.quat = [1.0, 0.0, 0.0, 0.0]
         self.len = len(self.quat)
@@ -72,29 +75,30 @@ class Quaternion(object):
                            [2.0 * (xz - wy), 2.0 * (yz + wx), 1.0 - 2.0 * (x2 + y2), 0.0],
                            [0.0, 0.0, 0.0, 1.0]]
     
-    # Cross Product
-    def __mul__(self, quat):
-        return Quaternion([self.quat[0] * quat.quat[1] + self.quat[1] * quat.quat[0] + self.quat[2] * quat.quat[3] - self.quat[3] * quat.quat[2],
-                           self.quat[0] * quat.quat[2] + self.quat[2] * quat.quat[0] + self.quat[3] * quat.quat[1] - self.quat[1] * quat.quat[3],
-                           self.quat[0] * quat.quat[3] + self.quat[3] * quat.quat[0] + self.quat[1] * quat.quat[2] - self.quat[2] * quat.quat[1],
-                           self.quat[0] * quat.quat[0] - self.quat[1] * quat.quat[1] - self.quat[2] * quat.quat[2] - self.quat[3] * quat.quat[3]])
-                           
-    # Vector 3D * Quaternion
-    def __mul__(self, vec):
-        vec.normalize()
-        vecQuat = Quaternion([1.0, 0.0, 0.0, 0.0])
-        resQuat = Quaternion([1.0, 0.0, 0.0, 0.0])
-        
-        vecQuat.quat[1] = vec.vec[0]
-        vecQuat.quat[2] = vec.vec[1]
-        vecQuat.quat[3] = vec.vec[2]
-        vecQuat.quat[0] = 0.0
-        
-        resQuat = vecQuat * self.conjugate()
-        resQuat = self * resQuat
-        
-        return Vector([resQuat.quat[1], resQuat.quat[2], resQuat.quat[3]])
-    
+    def __mul__(self, input):
+        # Cross Product
+        if isintance(input, Quaternion):
+            return Quaternion([self.quat[0] * input.quat[1] + self.quat[1] * input.quat[0] + self.quat[2] * input.quat[3] - self.quat[3] * input.quat[2],
+                               self.quat[0] * input.quat[2] + self.quat[2] * input.quat[0] + self.quat[3] * input.quat[1] - self.quat[1] * input.quat[3],
+                               self.quat[0] * input.quat[3] + self.quat[3] * input.quat[0] + self.quat[1] * input.quat[2] - self.quat[2] * input.quat[1],
+                               self.quat[0] * input.quat[0] - self.quat[1] * input.quat[1] - self.quat[2] * input.quat[2] - self.quat[3] * input.quat[3]])
+                               
+        # Vector 3D * Quaternion
+        elif isinstance(input, Vector):
+            input.normalize()
+            vecQuat = Quaternion([1.0, 0.0, 0.0, 0.0])
+            resQuat = Quaternion([1.0, 0.0, 0.0, 0.0])
+            
+            vecQuat.quat[1] = input.vec[0]
+            vecQuat.quat[2] = input.vec[1]
+            vecQuat.quat[3] = input.vec[2]
+            vecQuat.quat[0] = 0.0
+            
+            resQuat = vecQuat * self.conjugate()
+            resQuat = self * resQuat
+            
+            return Vector([resQuat.quat[1], resQuat.quat[2], resQuat.quat[3]])
+
     def __imul__(self, quat):
         return Quaternion([self.quat[0] * quat.quat[1] + self.quat[1] * quat.quat[0] + self.quat[2] * quat.quat[3] - self.quat[3] * quat.quat[2],
                            self.quat[0] * quat.quat[2] + self.quat[2] * quat.quat[0] + self.quat[3] * quat.quat[1] - self.quat[1] * quat.quat[3],
@@ -112,4 +116,7 @@ class Quaternion(object):
         
     def __isub__(self, quat):
         return Quaternion([self.quat[0] - quat.quat[0], self.quat[1] - quat.quat[1], self.quat[2] - quat.quat[2], self.quat[3] - quat.quat[3]])
+        
+    def output(self):
+        print "Quaternion: ", self.quat
         
