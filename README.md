@@ -6,26 +6,56 @@ It's still a work in progress. However, it will be finished soon.
 Supported features:
 ===================
 * NxN Matrices
-  * Test
-* 4x4 Perspective Projection Matrix
-* lookAt 4x4 Matrix
-* Translation and Rotation
-* NxN Matrix Inverse Calculation (Gauss Jordan Elimination)
+  * Transpose
+  * Scale
+  * NxN Matrix Inverse Calculation (Gauss Jordan Elimination)
+  * 4x4 Perspective Projection Matrix
+  * lookAt 4x4 Matrix
+  * Translation (3x3, 4x4)
+  * Rotation (2x2, 3x3, 4x4)
+  * Shear (2x2, 3x3, 4x4)
+  * Output
+  * Stack
+  
 * N Dimensions Vectors
-* Vectors Dot Product
-* Vectors Cross Product
-* Vectors Refraction
-* Vectors Reflection
-* Matrix Stack
-* Vector Stack
+  * Dot Product
+  * Cross Product (No 7D)
+  * Refraction
+  * Reflection
+  * Invert
+  * Normalize
+  * Output
+  * Stack
+  
 * Quaternions
+  * Normalize
+  * Dot Product
+  * Rotation
+  * To Rotation Matrix (4x4)
+  * Cross Product
+  * Vector3D and Quaternion multiplication
+  
 * Plane
+  * Define using
+    * 3 Vectors
+    * Point and Normal
+    * Manual input
+  * Dot Product
+  * Normalize
+  * Best fit normal and D value
+  * Distance from plane to a point
+  * Point location
+  
 * Point
-* AABB (Not yet)
-* Ray (Almost there)
-
+  Basically this is a wrap around the vector class.
+  It adds a location parameter so you can classify the point.
+  However, this could have been in the vector class itself but meh...
+  This can change in the future. 
+  
 TO DO:
 ===============
+* AABB/OBB/Sphere/Cylinder
+* Ray
 * Matrix Normalizing and Finding the Determinant.
 * Tutorial on how to use everything.
 
