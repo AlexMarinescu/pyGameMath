@@ -33,9 +33,20 @@ Supported features:
   * Normalize
   * Dot Product
   * Rotation
+  * Conjugate
+  * Inverse
+  * Negate
+  * Rotate X, Y, Z
+  * Arbitary Axis Rotation
   * To Rotation Matrix (4x4)
   * Cross Product
-  * Vector3D and Quaternion Multiplication
+  * Vector3D, Scalar Multiplication
+  * Logarithm
+  * Exponential
+  * Power
+  * Liner Interpolation (LERP)
+  * Spherical Interpolation (SLERP)
+  * Quaternion Splines (SQUAD)
   * Output
   
 * Plane
@@ -66,7 +77,6 @@ Supported features:
 TO DO:
 ===============
 * AABB/OBB/Sphere/Cylinder (The intersections between a ray and each, will be inside the ray class)
-* Slerp (Quaternions
 * Matrix Normalizing and Finding the Determinant.
 * Tutorial on how to use everything.
 

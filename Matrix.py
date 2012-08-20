@@ -44,8 +44,18 @@ class Matrix(object):
         for i in xrange(self.row):
             for j in xrange(self.col):
                 self.out[i][j] = self.mat[i][j] + input.mat[i][j]
+                
+    def __iadd__(self, input):
+        for i in xrange(self.row):
+            for j in xrange(self.col):
+                self.out[i][j] = self.mat[i][j] + input.mat[i][j]
 
     def __sub__(self, input):
+        for i in xrange(self.row):
+            for j in xrange(self.col):
+                self.out[i][j] = self.mat[i][j] - input.mat[i][j]
+                
+    def __isub__(self, input):
         for i in xrange(self.row):
             for j in xrange(self.col):
                 self.out[i][j] = self.mat[i][j] - input.mat[i][j]
@@ -69,7 +79,24 @@ class Matrix(object):
                         self.out[j][i] = self.out[j][i] + self.mat[i][k] * input.mat[k][j]
             return Matrix(self.fullsize, self.out)
                                         
-        
+    def __imul__(self, input):
+        # Multiply by Vector
+        if isinstance(input, Vector):
+            vectorArray = []
+            for x in xrange(input.len):
+                vectorArray.append(0.0)   
+            outputVector = Vector(vectorArray)
+            for i in xrange(self.row):
+                for j in xrange(self.col):
+                    outputVector.vec[i] += input.vec[j] * self.mat[i][j]      
+            return outputVector
+        # Multiply by Matrix
+        elif isinstance(input, Matrix):
+            for i in xrange(self.row):
+                for j in xrange(self.col):
+                    for k in xrange(self.row):
+                        self.out[j][i] = self.out[j][i] + self.mat[i][k] * input.mat[k][j]
+            return Matrix(self.fullsize, self.out)    
         
     # Common, identical functions
     

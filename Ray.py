@@ -7,7 +7,10 @@ class Ray(object):
     def __init__(self, startVector, dirVector):
         self.start = startVector
         self.dir = dirVector
+        self.distance = self.dir.magnitude()
         self.dir.normalize()
+        # The end is used when intersections are added so we can know where the ray stops.
+        self.end = Vector([0.0,0.0,0.0])
         
     def duplicate(self):
         return Ray(self.start, self.dir)
@@ -24,6 +27,7 @@ class Ray(object):
         
     def translate(self, matrix):
         self.dir = matrix * self.dir
+        self.distance = self.dir.magnitude()
         self.dir.normalize()
         
     def output(self):
