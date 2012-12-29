@@ -73,6 +73,18 @@ Supported features:
   * Rotate using Quaternions
   * Translate
   * Output
+
+* Legendre Polynomial
+  * For spherical harmonics
+  * (l - m)PML(x) = x(2l - 1)PML-1(x) - (l + m -1)PML-2(x)
+  * PMM(x) = (-1)^m * (2m - 1)!!(1 - x^2)^m/2
+  * PMM+1(x) = x(2m + 1)PMM(x)
+  
+* Spherical Harmonics (Not complete yet)
+  * Normalization Constant (K)
+  * Sample a Spherical Harmonic function Y(l, m)
+  * Sample
+  * Generate samples (Not complete yet)
   
 TO DO:
 ===============
