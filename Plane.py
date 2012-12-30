@@ -1,6 +1,6 @@
-import math
-from Vector import *
-from Point import *
+from Math import*
+from Vector import*
+from Point import*
 
 # I know that I'm missing some shit in this "plane" class but bleh, for now the current stuff will do. :3
 class Plane(object):

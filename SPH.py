@@ -1,7 +1,5 @@
-import math
-import sys
-from Legendre import*
 from Math import*
+from Legendre import*
 
 # n! where n >= 0
 def Factorial(n):
@@ -18,9 +16,8 @@ def Factorial(n):
 
 # Normalization constant for a Spherical Harmonic function
 def K(l, m):
-    m = math.fabs(m)
-    Ktemp = ((2.0 * l + 1.0) * Factorial(l - m)) / ((4.0 * PI) * Factorial(l + m))
-    return math.sqrt(Ktemp)
+    K = ((2.0 * l + 1.0) * Factorial(l - m)) / ((4.0 * PI) * Factorial(l + m))
+    return math.sqrt(K)
     
 # Sample a Spherical Harmonic function Y(l, m) at a point on the unit sphere
 def SPH(l, m, theta, phi):

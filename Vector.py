@@ -1,5 +1,4 @@
-import math
-import sys
+from Math import*
 
 # Vector N Dimensions Class
 class Vector (object):

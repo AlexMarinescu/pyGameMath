@@ -62,11 +62,7 @@ Supported features:
   * Output
   
 * Point
-  >Basically this is a wrap around the vector class. It adds a location parameter so you can classify the point. 
-  >
-  >However, the location param could have been in the vector class itself but meh.
-  >
-  >This will probably change in the future.
+  * Adds location to a vector :P
   
 * Ray
   * Rotate using Matrix
@@ -95,8 +91,6 @@ TO DO:
 Note:
 =====
 * Vectors Cross Product is only for 3D and 7D vectors, but currently only the 3D version is implemented.
-* [Multivectors](http://en.wikipedia.org/wiki/Multivector) and [Bivector](http://en.wikipedia.org/wiki/Bivector) operations are not yet implemented.
-* The only matrix transformation that will be implemented for now are going to be the ones up to 4x4 matrices.
 * While the Vector and Matrix Stacks are not necessary and can be created on the go by anyone, they simplify and organize things a bit better.
 * Optimizations are going to be done more indepth once the whole thing is finished and perhaps when I notice that a certain operations/transformation takes too long to execute.
 * Also do report any bugs or speed related issues because some functions did not get a chance to be tested.

@@ -1,6 +1,6 @@
-import math
-import sys
+from Math import*
 
+# Legendre Polynomial Class
 class Legendre (object):
  
     def __init__(self, l, m, x):

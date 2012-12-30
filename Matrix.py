@@ -1,5 +1,4 @@
-import math
-import sys
+from Math import*
 from Vector import*
 
 # NxN Matrix Class

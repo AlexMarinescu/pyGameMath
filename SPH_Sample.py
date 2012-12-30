@@ -1,10 +1,8 @@
-import math
-import sys
-import random
-from Vector import*
 from Math import*
+from Vector import*
 from SPH import*
 
+# Spherical Harmonics Sample Class
 class SPHSample (object):
     
     def __init__(self, theta, phi, dir, sampleNumber):
@@ -41,7 +39,7 @@ def GenerateSamples(sqrtNumSamples, numBands):
     for x in xrange(numSamples):
         samples.append(SPHSample(0.0, 0.0, Vector([0.0, 0.0, 0.0]), numFunctions))
 
-    print "Running..."
+    print "Generating Samples..."
     # Loop through a grid of numSamples X numSamples
     for i in xrange(sqrtNumSamples):
         for j in xrange(sqrtNumSamples):
@@ -68,15 +66,4 @@ def GenerateSamples(sqrtNumSamples, numBands):
                         
         
     # Return the samples array
-    print "Done..."
     return samples
-
-# Simple Test
-waffle = GenerateSamples(10, 4)
-
-print "Spherical Coefficients:"
-print waffle[0].values
-print "Theta and Phi:"
-print waffle[0].theta
-print waffle[0].phi
-waffle[0].dir.output()

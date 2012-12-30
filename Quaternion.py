@@ -1,4 +1,4 @@
-import math
+from Math import*
 from Matrix import*
 from Vector import*
 
