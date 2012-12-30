@@ -1,38 +1,82 @@
 import math
 import sys
+import random
 from Vector import*
+from Math import*
+from SPH import*
 
 class SPHSample (object):
     
-    def __init__(self, theta, phi, dir, val):
-        
+    def __init__(self, theta, phi, dir, sampleNumber):
         # Spherical coordinates
         self.theta = theta
         self.phi = phi
-        
-        # Value of SH function at this point
-        self.val = val
-        
+           
+        # Values of SH function at this point
+        self.values = []
+        for x in xrange(sampleNumber):
+            self.values.append(0.0)
+            
+        # Direction (Vector3D)
         if isinstance(dir, Vector):
-            # Direction (Vector3D)
             self.dir = dir
         else:
             self.dir = Vector([0.0, 0.0, 0.0])
             
-    # Generate the samples
-    def GenerateSamples(self, sqrtNumSamples, numBands):
+# Generate the samples
+def GenerateSamples(sqrtNumSamples, numBands):
+    x = 0
+    y = 0
+    theta = 0
+    phi = 0
+    ii = 0
+    index = 0
     
-        numSamples = sqrtNumSamples * sqrtNumSamples
-        numFunctions = numBands * numBands
+    numSamples = sqrtNumSamples * sqrtNumSamples
+    numFunctions = numBands * numBands
+    invertedNumSamples = 1.0 / sqrtNumSamples
         
-        # Create the array to hold the samples
-        samples = []
-        for x in xrange(numSamples):
-            samples[x].append(SPHSample(0.0, 0.0, Vector([0.0, 0.0, 0.0]), 0.0))
-            
-        for i in xrange(sqrtNumSamples):
-            for j in xrange(sqrtNumSamples):
-                # The code 
+    # Create the array to hold the samples
+    samples = []
+    for x in xrange(numSamples):
+        samples.append(SPHSample(0.0, 0.0, Vector([0.0, 0.0, 0.0]), numFunctions))
+
+    print "Running..."
+    # Loop through a grid of numSamples X numSamples
+    for i in xrange(sqrtNumSamples):
+        for j in xrange(sqrtNumSamples):
+            x = (i + random.random()) * invertedNumSamples
+            y = (j + random.random()) * invertedNumSamples
+                
+            # Spherical Angles
+            theta = 2.0 * math.acos(math.sqrt(1.0 - x))
+            phi = 2.0 * PI * y
+                
+            samples[ii].theta = theta
+            samples[ii].phi = phi
+                
+            samples[ii].dir = Vector([math.sin(theta) * math.cos(phi),
+                                      math.sin(theta) * math.sin(phi),
+                                      math.cos(theta)])
+                
+            # Calculate SH coefficients of current sample
+            for l in xrange(numBands):
+                for m in range(-l, l + 1):
+                    index = l * (l + 1) + m
+                    samples[ii].values[index] = SPH(l, m, theta, phi)
+            ii += 1
+                        
         
-        # Return the samples array
-        return samples
+    # Return the samples array
+    print "Done..."
+    return samples
+
+# Simple Test
+waffle = GenerateSamples(10, 4)
+
+print "Spherical Coefficients:"
+print waffle[0].values
+print "Theta and Phi:"
+print waffle[0].theta
+print waffle[0].phi
+waffle[0].dir.output()

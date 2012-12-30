@@ -84,7 +84,7 @@ Supported features:
   * Normalization Constant (K)
   * Sample a Spherical Harmonic function Y(l, m)
   * Sample
-  * Generate samples (Not complete yet)
+  * Generate samples
   
 TO DO:
 ===============

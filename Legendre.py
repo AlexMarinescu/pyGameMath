@@ -44,4 +44,3 @@ class Legendre (object):
                 self.P = self.PM1
                 self.PM1 = self.PML
             return self.PML
-        
