@@ -5,82 +5,91 @@ It's still a work in progress. However, it will be finished soon.
 
 Supported features:
 ===================
-* NxN Matrices
-  * Transpose
-  * Scale
-  * NxN Matrix Multiplication
-  * NxN Matrix * N Dimensions Vector Multiplication
-  * NxN Matrix Inverse Calculation (Gauss Jordan Elimination)
-  * 4x4 Perspective Projection Matrix
-  * lookAt 4x4 Matrix
-  * Translation (3x3, 4x4)
-  * Rotation (2x2, 3x3, 4x4)
-  * Shear (2x2, 3x3, 4x4)
-  * Output
-  * Stack
+NxN Matrices
+===============
+* Transpose
+* Scale
+* NxN Matrix Multiplication
+* NxN Matrix * N Dimensions Vector Multiplication
+* NxN Matrix Inverse Calculation (Gauss Jordan Elimination)
+* 4x4 Perspective Projection Matrix
+* lookAt 4x4 Matrix
+* Translation (3x3, 4x4)
+* Rotation (2x2, 3x3, 4x4)
+* Shear (2x2, 3x3, 4x4)
+* Output
+* Stack
   
-* N Dimensions Vectors
-  * Dot Product
-  * Cross Product (No 7D)
-  * Refraction
-  * Reflection
-  * Invert
-  * Normalize
-  * Output
-  * Stack
+N Dimensions Vectors
+===============
+* Dot Product
+* Cross Product (No 7D)
+* Refraction
+* Reflection
+* Invert
+* Normalize
+* Output
+* Stack
   
-* Quaternions
-  * Normalize
-  * Dot Product
-  * Rotation
-  * Conjugate
-  * Inverse
-  * Negate
-  * Rotate X, Y, Z
-  * Arbitary Axis Rotation
-  * To Rotation Matrix (4x4)
-  * Cross Product
-  * Vector3D, Scalar Multiplication
-  * Logarithm
-  * Exponential
-  * Power
-  * Liner Interpolation (LERP)
-  * Spherical Interpolation (SLERP)
-  * Quaternion Splines (SQUAD)
-  * Output
+Quaternions
+===============
+* Normalize
+* Dot Product
+* Rotation
+* Conjugate
+* Inverse
+* Negate
+* Rotate X, Y, Z
+* Arbitary Axis Rotation
+* To Rotation Matrix (4x4)
+* Cross Product
+* Vector3D, Scalar Multiplication
+* Logarithm
+* Exponential
+* Power
+* Liner Interpolation (LERP)
+* Spherical Interpolation (SLERP)
+* Quaternion Splines (SQUAD)
+* Output
   
-* Plane
-  * Define using
-     * 3 Vectors
-     * Point and Normal
-     * Manual input
-  * Dot Product
-  * Normalize
-  * Best fit normal and D value
-  * Distance from plane to a point
-  * Point location
-  * Output
+Plane
+===============
+* Define using
+    * 3 Vectors
+    * Point and Normal
+    * Manual input
+* Dot Product
+* Normalize
+* Best fit normal and D value
+* Distance from plane to a point
+* Point location
+* Output
   
-* Point
-  * Adds location to a vector :P
+Point
+===============
+* Adds location to a vector :P
   
-* Ray
-  * Rotate using Matrix
-  * Rotate using Quaternions
-  * Translate
-  * Output
+Ray
+===============
+* Rotate using Matrix
+* Rotate using Quaternions
+* Translate
+* Output
 
-* Legendre Polynomial
-  * For spherical harmonics
-  * (l - m)PML(x) = x(2l - 1)PML-1(x) - (l + m -1)PML-2(x)
-  * PMM(x) = (-1)^m * (2m - 1)!!(1 - x^2)^m/2
-  * PMM+1(x) = x(2m + 1)PMM(x)
-  
-* Spherical Harmonics (Not complete yet)
-  * Normalization Constant (K)
-  * Sample a Spherical Harmonic function Y(l, m)
-  * Sample
-  * Generate samples
+Legendre Polynomial
+===============
+* For spherical harmonics
+* (l - m)PML(x) = x(2l - 1)PML-1(x) - (l + m -1)PML-2(x)
+* PMM(x) = (-1)^m * (2m - 1)!!(1 - x^2)^m/2
+* PMM+1(x) = x(2m + 1)PMM(x)
+
+Spherical Harmonics (Not complete yet)
+===============
+* Normalization Constant (K)
+* Sample a Spherical Harmonic function Y(l, m)
+* Sample
+* Generate samples
+* Coefficients from Irradiance map
   
 TO DO:
 ===============
