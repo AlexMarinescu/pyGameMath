@@ -3,10 +3,9 @@ pyGameMath
 This is a math library written in python for 2D/3D game development which is also compatible with pypy. I made it while I was learning more about the math used in graphics development and for personal use in OpenGL related projects.
 It's still a work in progress. However, it will be finished soon.
 
-Supported features:
-===================
-NxN Matrices
-===============
+##Supported features:##
+
+###NxN Matrices###
 * Transpose
 * Scale
 * NxN Matrix Multiplication
@@ -20,8 +19,7 @@ NxN Matrices
 * Output
 * Stack
   
-N Dimensions Vectors
-===============
+###N Dimensions Vectors###
 * Dot Product
 * Cross Product (No 7D)
 * Refraction
@@ -31,8 +29,7 @@ N Dimensions Vectors
 * Output
 * Stack
   
-Quaternions
-===============
+###Quaternions###
 * Normalize
 * Dot Product
 * Rotation
@@ -52,8 +49,7 @@ Quaternions
 * Quaternion Splines (SQUAD)
 * Output
   
-Plane
-===============
+###Plane###
 * Define using
     * 3 Vectors
     * Point and Normal
@@ -65,40 +61,34 @@ Plane
 * Point location
 * Output
   
-Point
-===============
+###Point###
 * Adds location to a vector :P
   
-Ray
-===============
+###Ray###
 * Rotate using Matrix
 * Rotate using Quaternions
 * Translate
 * Output
 
-Legendre Polynomial
-===============
+###Legendre Polynomial###
 * For spherical harmonics
 * (l - m)PML(x) = x(2l - 1)PML-1(x) - (l + m -1)PML-2(x)
 * PMM(x) = (-1)^m * (2m - 1)!!(1 - x^2)^m/2
 * PMM+1(x) = x(2m + 1)PMM(x)
 
-Spherical Harmonics (Not complete yet)
-===============
+###Spherical Harmonics (Not complete yet)###
 * Normalization Constant (K)
 * Sample a Spherical Harmonic function Y(l, m)
 * Sample
 * Generate samples
 * Coefficients from Irradiance map
   
-TO DO:
-===============
+###TO DO:###
 * AABB/OBB/Sphere/Cylinder (The intersections between a ray and each, will be inside the ray class)
 * Matrix Normalizing and Finding the Determinant.
 * Tutorial on how to use everything.
 
-Note:
-=====
+###Note:###
 * Vectors Cross Product is only for 3D and 7D vectors, but currently only the 3D version is implemented.
 * While the Vector and Matrix Stacks are not necessary and can be created on the go by anyone, they simplify and organize things a bit better.
 * Optimizations are going to be done more indepth once the whole thing is finished and perhaps when I notice that a certain operations/transformation takes too long to execute.
