@@ -53,9 +53,10 @@ def GenerateSamples(sqrtNumSamples, numBands):
             samples[ii].theta = theta
             samples[ii].phi = phi
                 
-            samples[ii].dir = Vector([math.sin(theta) * math.cos(phi),
-                                      math.sin(theta) * math.sin(phi),
-                                      math.cos(theta)])
+            # Vec is an array and dir is a vector
+            samples[ii].dir.vec = [math.sin(theta) * math.cos(phi),
+                                   math.sin(theta) * math.sin(phi),
+                                   math.cos(theta)]
                 
             # Calculate SH coefficients of current sample
             for l in xrange(numBands):
@@ -67,3 +68,5 @@ def GenerateSamples(sqrtNumSamples, numBands):
         
     # Return the samples array
     return samples
+    
+    
