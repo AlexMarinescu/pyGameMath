@@ -12,3 +12,7 @@ def sinc(x):
         return 1.0
     else:
         return math.sin(x) / x
+
+# Scalar lerp
+def scalarLerp(a,b,time):
+    return a + time*(b-a)

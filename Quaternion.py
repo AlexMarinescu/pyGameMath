@@ -63,21 +63,21 @@ class Quaternion(object):
         
     def rotateX(self, theta):
         thetaOver2 = theta * 0.5
-        return Quaternion([cos(thetaOver2),sin(thetaOver2),0.0,0.0])
+        return Quaternion([math.cos(thetaOver2),math.sin(thetaOver2),0.0,0.0])
     
     def rotateY(self, theta):
         thetaOver2 = theta * 0.5
-        return Quaternion([cos(thetaOver2),0.0,sin(thetaOver2),0.0])
+        return Quaternion([math.cos(thetaOver2),0.0,math.sin(thetaOver2),0.0])
         
     def rotateZ(self, theta):
         thetaOver2 = theta * 0.5
-        return Quaternion([cos(thetaOver2),0.0,0.0,sin(thetaOver2)])
+        return Quaternion([math.cos(thetaOver2),0.0,0.0,math.sin(thetaOver2)])
         
     def rotate(self, axis, theta):
         thetaOver2 = theta * 0.5
-        sinThetaOver2 = sin(thetaOver2)
+        sinThetaOver2 = math.sin(thetaOver2)
         axis.normalize()
-        return Quaternion([cos(thetaOver2), axis.vec[1] * sinThetaOver2,
+        return Quaternion([math.cos(thetaOver2), axis.vec[1] * sinThetaOver2,
                            axis.vec[2] * sinThetaOver2, axis.vec[3] * sinThetaOver2])
     
     # Convert to a 4x4 matrix

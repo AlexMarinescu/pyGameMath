@@ -184,15 +184,15 @@ def mat2x2Rotate(angle, direction):
     container = [[1.0, 0.0],
                  [0.0, 1.0]]
     if direction == "R":
-        container[0] = cos(angle)
-        container[1] = sin(angle)
-        container[2] =-sin(angle)
-        container[3] = cos(angle)
+        container[0] = math.cos(angle)
+        container[1] = math.sin(angle)
+        container[2] =-math.sin(angle)
+        container[3] = math.cos(angle)
     elif direction == "L":
-        container[0] = cos(angle)
-        container[1] =-sin(angle)
-        container[2] = sin(angle)
-        container[3] = cos(angle)
+        container[0] = math.cos(angle)
+        container[1] =-math.sin(angle)
+        container[2] = math.sin(angle)
+        container[3] = math.cos(angle)
     else:
         print "Direction undefined."
     return Matrix(4, container)
@@ -200,7 +200,7 @@ def mat2x2Rotate(angle, direction):
     
 # Matrix 4x4 specific functions
 def perspective(fov, aspect, znear, zfar):
-    y = tan(fov * (3.14159265358979323846 / 360))
+    y = math.tan(fov * (3.14159265358979323846 / 360))
     x = y * aspect
 
     if (x != 0) and (y != 0) and (zfar != znear):
@@ -248,9 +248,9 @@ def translate(vector, matType):
     else:
         print "Not defined yet."
         
-def roateX(theta, matType):
-    c = cos(theta)
-    s = sin(theta)   
+def rotateX(theta, matType):
+    c = math.cos(theta)
+    s = math.sin(theta)   
     if matType == "4x4":
         container = [[1.0, 0.0, 0.0, 0.0],
                      [0.0,   c,  -s, 0.0],
@@ -265,9 +265,9 @@ def roateX(theta, matType):
     else:
         print "Not defined yet."
         
-def roateY(theta, matType):
-    c = cos(theta)
-    s = sin(theta)   
+def rotateY(theta, matType):
+    c = math.cos(theta)
+    s = math.sin(theta)   
     if matType == "4x4":
         container = [[  c, 0.0,   s, 0.0],
                      [0.0, 1.0, 0.0, 0.0],
@@ -282,9 +282,9 @@ def roateY(theta, matType):
     else:
         print "Not defined yet."
         
-def roateZ(theta, matType):
-    c = cos(theta)
-    s = sin(theta)   
+def rotateZ(theta, matType):
+    c = math.cos(theta)
+    s = math.sin(theta)   
     if matType == "4x4":
         container = [[  c,  -s, 0.0, 0.0],
                      [  s,   c, 0.0, 0.0],
@@ -301,8 +301,8 @@ def roateZ(theta, matType):
 
 # Roate around an arbitary axis.
 def rotate(axis, theta, matType):
-    c = cos(theta)
-    s = sin(theta)
+    c = math.cos(theta)
+    s = math.sin(theta)
  
     OneMinusCos = (1.0 - c)
     axis.normalize()

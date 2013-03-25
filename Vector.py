@@ -43,21 +43,21 @@ class Vector (object):
     
     # Overloading +
     def __add__(self, vectorB):
-        vectorA = clone()
+        vectorA = self.duplicate()
         for x in xrange(self.len):
             vectorA.vec[x] += vectorB.vec[x]
         return vectorA
 
     # Overloading -
     def __sub__(self, vectorB):
-        vectorA = clone()
+        vectorA = self.duplicate()
         for x in xrange(self.len):
             vectorA.vec[x] -= vectorB.vec[x]
         return vectorA
 
     # Overloading -(a)
     def __neg__(self):
-        vectorA = clone()
+        vectorA = self.duplicate()
         for x in xrange(self.len):
             vectorA.vec[x] = -vectorA.vec[x]
         return vectorA
@@ -99,6 +99,9 @@ class Vector (object):
     def invert(self):
         for x in xrange(self.len):
             self.vec[x] = -self.vec[x]
+
+    def lerp(self, A, B, time):
+        return A * t + B * (1 - t)
 
     def normalize(self):
         length = self.magnitude()
