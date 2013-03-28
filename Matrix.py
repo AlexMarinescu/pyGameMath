@@ -3,33 +3,28 @@ from Vector import*
 
 # NxN Matrix Class
 class Matrix(object):
-    
-    def __init__(self, size, array):
+    '''Clss for NxN Matrices'''
+    def __init__(self, array):
         # This will be needed when returning a same type array.
-        self.fullsize = size
-
+        self.size = len(array)
         # Calculate once to use in loops.
-        square_of_size = int(math.sqrt(size))
+        self.sizeSquared = self.size * self.size
 
         # Setup the most often used variables.
-        self.row = square_of_size
-        self.col = square_of_size
+        self.row = self.size    # Row of the matrix
+        self.col = self.size    # Column of the matrix
+        self.inr = self.size    # Inner of the matrix
         self.mat = array
 
-        # Calculate the array length once, it might be needed in certain places.
-        self.array_len = len(array)
-
         # Check to see if the array is the same as the size specified.
-        if self.array_len != square_of_size:
-            print "The array doesn't match the size specified."
+        if (self.size * self.size) == (self.size * len(self.mat[0])):
+            pass
+        else:
+            print "Error: The matrix is not a square matrix."
             sys.exit(0)
-
+            
         # Create an output array on init to save time(dynamic).
-        self.out = []
-        for x in xrange(self.row):
-            self.out.append([])
-            for y in xrange(self.col):
-                self.out[x].append(0.0)
+        self.out = [[0.0 for i in xrange(self.row)] for j in xrange(self.col)]
 
     # Slow; use the class.mat4x4[i][j] way.
     def __getitem__(self, key):
@@ -74,9 +69,9 @@ class Matrix(object):
         elif isinstance(input, Matrix):
             for i in xrange(self.row):
                 for j in xrange(self.col):
-                    for k in xrange(self.row):
-                        self.out[j][i] = self.out[j][i] + self.mat[i][k] * input.mat[k][j]
-            return Matrix(self.fullsize, self.out)
+                    for k in xrange(self.inr):
+                        self.out[j][i] +=  self.mat[i][k] * input.mat[k][j]
+            return Matrix(self.out)
                                         
     def __imul__(self, input):
         # Multiply by Vector
@@ -93,50 +88,50 @@ class Matrix(object):
         elif isinstance(input, Matrix):
             for i in xrange(self.row):
                 for j in xrange(self.col):
-                    for k in xrange(self.row):
-                        self.out[j][i] = self.out[j][i] + self.mat[i][k] * input.mat[k][j]
-            return Matrix(self.fullsize, self.out)    
+                    for k in xrange(self.inr):
+                        self.out[j][i] += self.mat[i][k] * input.mat[k][j]
+            return Matrix(self.out)    
         
     # Common, identical functions
-    
     def duplicate(self):
+        '''Returns a duplicate of itself.'''
         return Matrix(self.size, self.mat)
         
-    def sub(self, array):
+    def substitue(self, array):
+        '''Replace the matrix array with a different one.'''
         self.mat = array
 
     def identity(self):
+        '''Set the matrix to be an identity.'''
         for i in xrange(self.row):
             self.mat[i][i] = 1.0
 
     def zero(self):
+        '''Zero the matrix.'''
         for i in xrange(self.row):
             for j in xrange(self.row):
                 self.mat[i][j] = 0.0
                 
     def transpose(self):
+        '''Transpose the matrix.'''
         for i in xrange(self.row):
             for j in xrange(i+1,self.col):
                 self.mat[i][j] = self.mat[j][i]
 
     def scale(self, vector):
-        for i,j in enumerate(vector):
+        '''Scale the matrix.'''
+        for i,j in enumerate(vector.vec):
             self.mat[i][i] = j
-            
-    # This is an implementation of the Gauss Jordan Elimination to find a nxn matrix inverse.           
+                   
     def inverse(self):
-        # Make a copy to use
-        matrix = self.mat
+        '''Gauss Jordan Elimination for NxN Matrix inverse.'''
+        matrix = self.mat # Make a copy of itself
         # Create a dynamic container that can hold the inverse.
         # Basically create an augumented matrix. However, they are not in the same array.
         # The augumented matrix needs to be split at the end anyway so there is no point in joining them.
-        container = []
-        for x in xrange(self.row):
-            container.append([])
-            for y in xrange(self.row):
-                container[x].append(0.0)
+        container = [[0.0 for i in xrange(self.row)] for j in xrange(self.col)]       
         # Identity matrix.
-        for i in xrange(self.row):
+        for i in xrange(self.size):
             container[i][i] = 1.0
         # Find the inverse.
         for i in xrange(self.row):
@@ -163,43 +158,129 @@ class Matrix(object):
                         container[j][y] = container[j][y] - number * container[i][y]
 
         # Return a new matrix
-        return Matrix(self.fullsize, container)
+        return Matrix(container)
+    
+    def pivot(M):
+        '''Pivot the matrix'''
+        size = M.row
+        
+        # Create identity matrix.
+        identity = [[0.0 for i in xrange(size)] for j in xrange(size)]   
+        
+        # Identity matrix.
+        for i in xrange(size):
+            identity[i][i] = 1.0
+        
+        for j in xrange(size):
+            row = max(xrange(j, size), key=lambda i: M.mat[i][j])
+            
+            if j != row:
+                identity[j], identity[row] = identity[row], identity[j]
+        
+        return Matrix(identity)   
+    
+    def LUdecomposition(A):
+        '''LU matrix decomposition for NxN Matrix. Returns matU, matL.'''
+        size = A.row
+        
+        # Create L and U matrix        
+        U = [[0.0 for i in xrange(size)] for j in xrange(size)]  
+        L = [[0.0 for i in xrange(size)] for j in xrange(size)]  
+        
+        # Identity for L matrix
+        for i in xrange(size):
+            L[i][i] = 1.0
+            
+        # Pivot the matrix
+        P = Matrix.pivot(A)
+        
+        A2 = P * A
+ 
+        for j in xrange(size):
+            for i in xrange(j + 1):
+                s1 = sum(U[k][j] * L[i][k] for k in xrange(i))
+                U[i][j] = A2.mat[i][j] - s1
+                    
+            for i in xrange(j, size):
+                s2 = sum(U[k][j] * L[i][k] for k in xrange(j))
+                L[i][j] = (A2.mat[i][j] - s2) / U[j][j]
+        
+        matU = Matrix(U)
+        matL = Matrix(L)
+        
+        return matU, matL
+        
+    def determinant(self):
+        '''NxN Matrix determinant.'''
+        matrix = self.duplicate()
+        
+        matU, matL = Matrix.LUdecomposition(matrix)
+        
+        det = 1.0
+        
+        # Multiply the diagonal
+        for i in xrange(self.row):
+                det *= matU.mat[i][i]
+                
+        return det * -1.0
+        
+    def normalize(self):
+        '''NxN Matrix normalization.'''
+        matrix = Matrix(self.mat)
+        matdet = matrix.determinant()
+        
+        if matdet == 0:
+            matdet = 1.0
+        
+        row, col = matrix.row
+        
+        normalized = [[0.0 for i in xrange(row)] for j in xrange(col)]
+        
+        for x in xrange(row):
+            for y in xrange(col):
+                noramlized[x][y] = matrix.mat[x][y] / matdet
+                
+        return Matrix(normalized)
 
     def output(self):
+        '''General matrix console output.'''
         print "Matrix",self.row,"x",self.col,":"
-        print self.mat
+        
+        for i in xrange(size):
+            print self.mat[i]
 
-# Matrix 2x2 specific functions
 def mat2x2ShearX(x):
+    '''Matrix 2x2 Shear on X.'''
     container = [[1.0,  x],
                  [0.0,1.0]]
-    return Matrix(4,container)
+    return Matrix(container)
 
 def mat2x2ShearY(y):
+    '''Matrix 2x2 Shear on Y.'''
     container = [[1.0,  y],
                  [  y,1.0]]
-    return Matrix(4,container)
+    return Matrix(container)
 
 def mat2x2Rotate(angle, direction):
+    '''Matrix 2x2 Roate. Direction "R" or "L".'''
     container = [[1.0, 0.0],
                  [0.0, 1.0]]
     if direction == "R":
-        container[0] = math.cos(angle)
-        container[1] = math.sin(angle)
-        container[2] =-math.sin(angle)
-        container[3] = math.cos(angle)
+        container[0] = cos(angle)
+        container[1] = sin(angle)
+        container[2] =-sin(angle)
+        container[3] = cos(angle)
     elif direction == "L":
-        container[0] = math.cos(angle)
-        container[1] =-math.sin(angle)
-        container[2] = math.sin(angle)
-        container[3] = math.cos(angle)
+        container[0] = cos(angle)
+        container[1] =-sin(angle)
+        container[2] = sin(angle)
+        container[3] = cos(angle)
     else:
         print "Direction undefined."
-    return Matrix(4, container)
+    return Matrix(container)
 
-    
-# Matrix 4x4 specific functions
 def perspective(fov, aspect, znear, zfar):
+    '''Matrix 4x4 Perspective Projection.'''
     y = math.tan(fov * (3.14159265358979323846 / 360))
     x = y * aspect
 
@@ -213,9 +294,10 @@ def perspective(fov, aspect, znear, zfar):
                      [0.0,   b, 0.0, 0.0],
                      [0.0, 0.0,   c,   d],
                      [0.0, 0.0, 0.0, 1.0]]
-    return Matrix(16, container)
+    return Matrix(container)
 
 def lookAt(cam_loc, direction, head_pos):
+    '''Matrix 4x4 lookAt function.'''
     atNew = direction - cam_loc
     atNew.normalize()
 
@@ -230,25 +312,26 @@ def lookAt(cam_loc, direction, head_pos):
                  [xaxis.vec[1], upNew.vec[1], atNew.vec[1], cam_loc.vec[1]],
                  [xaxis.vec[2], upNew.vec[2], atNew.vec[2], cam_loc.vec[2]],
                  [         0.0,          0.0,          0.0,             1.0]]
-    return Matrix(16, container)
+    return Matrix(container)
 
-# 3x3 and 4x4 Matrix functions
 def translate(vector, matType):
+    '''Translate by a vector. "4x4" or "3x3" matrix.'''
     if matType == "4x4":
         container = [[1.0,0.0,0.0,vector.vec[0]],
                      [0.0,1.0,0.0,vector.vec[1]],
                      [0.0,0.0,1.0,vector.vec[2]],
                      [0.0,0.0,0.0,      1.0    ]]
-        return Matrix(16, container)
+        return Matrix(container)
     elif matType == "3x3":
         container = [[1.0,0.0,vector.vec[0]]
                      [0.0,1.0,vector.vec[1]]
                      [0.0,0.0,vector.vec[2]]]
-        return Matrix(9, container)
+        return Matrix(container)
     else:
         print "Not defined yet."
         
 def rotateX(theta, matType):
+    '''Rotate on X-axis. "4x4" or "3x3" matrix.'''
     c = math.cos(theta)
     s = math.sin(theta)   
     if matType == "4x4":
@@ -256,16 +339,17 @@ def rotateX(theta, matType):
                      [0.0,   c,  -s, 0.0],
                      [0.0,   s,   c, 0.0],
                      [0.0, 0.0, 0.0, 1.0]]
-        return Matrix(16, container)
+        return Matrix(container)
     elif matType == "3x3":
         container = [[1.0, 0.0, 0.0],
                      [0.0,   c,  -s],
                      [0.0,   s,   c]]
-        return Matrix(9, container)
+        return Matrix(container)
     else:
         print "Not defined yet."
         
 def rotateY(theta, matType):
+    '''Rotate on Y-axis. "4x4" or "3x3" matrix.'''
     c = math.cos(theta)
     s = math.sin(theta)   
     if matType == "4x4":
@@ -273,16 +357,17 @@ def rotateY(theta, matType):
                      [0.0, 1.0, 0.0, 0.0],
                      [ -s, 0.0,   c, 0.0],
                      [0.0, 0.0, 0.0, 1.0]]
-        return Matrix(16, container)
+        return Matrix(container)
     elif matType == "3x3":
         container = [[  c, 0.0,   s],
                      [0.0, 1.0, 0.0],
                      [ -s, 0.0,   c]]
-        return Matrix(9, container)
+        return Matrix(container)
     else:
         print "Not defined yet."
         
 def rotateZ(theta, matType):
+    '''Rotate on Z-axis. "4x4" or "3x3" matrix.'''
     c = math.cos(theta)
     s = math.sin(theta)   
     if matType == "4x4":
@@ -290,17 +375,17 @@ def rotateZ(theta, matType):
                      [  s,   c, 0.0, 0.0],
                      [0.0, 0.0, 1.0, 0.0],
                      [0.0, 0.0, 0.0, 1.0]]
-        return Matrix(16, container)
+        return Matrix(container)
     elif matType == "3x3":
         container = [[  c,  -s, 0.0],
                      [  s,   c, 0.0],
                      [0.0, 0.0, 1.0]]
-        return Matrix(9, container)
+        return Matrix(container)
     else:
         print "Not defined yet."
 
-# Roate around an arbitary axis.
 def rotate(axis, theta, matType):
+    '''Rotate on arbitrary axis. "4x4" or "3x3" matrix.'''
     c = math.cos(theta)
     s = math.sin(theta)
  
@@ -312,63 +397,66 @@ def rotate(axis, theta, matType):
                      [((axis.vec[0] * axis.vec[1]) * OneMinusCos) + (axis.vec[2] * s), ((axis.vec[1] * axis.vec[1]) * OneMinusCos) + c,                 ((axis.vec[1] * axis.vec[2]) * OneMinusCos) - (axis.vec[0] * s), 0.0],
                      [((axis.vec[0] * axis.vec[2]) * OneMinusCos) - (axis.vec[2] * s), ((axis.vec[1] * axis.vec[2]) * OneMinusCos) + (axis.vec[0] * s), ((axis.vec[2] * axis.vec[2]) * OneMinusCos) + c, 0.0],
                      [0.0, 0.0, 0.0, 1.0]]
-        return Matrix(16, container)
+        return Matrix(container)
     elif matType == "3x3":
         container = [[((axis.vec[0] * axis.vec[0]) * OneMinusCos) + c,                 ((axis.vec[0] * axis.vec[1]) * OneMinusCos) - (axis.vec[2] * s), ((axis.vec[0] * axis.vec[2]) * OneMinusCos) + (axis.vec[1] * s)],
                      [((axis.vec[0] * axis.vec[1]) * OneMinusCos) + (axis.vec[2] * s), ((axis.vec[1] * axis.vec[1]) * OneMinusCos) + c,                 ((axis.vec[1] * axis.vec[2]) * OneMinusCos) - (axis.vec[0] * s)],
                      [((axis.vec[0] * axis.vec[2]) * OneMinusCos) - (axis.vec[2] * s), ((axis.vec[1] * axis.vec[2]) * OneMinusCos) + (axis.vec[0] * s), ((axis.vec[2] * axis.vec[2]) * OneMinusCos) + c]]
-        return Matrix(9, container)
+        return Matrix(container)
     else:
         print "Not defined yet."
 
 def shearXY(x,y,matType):
+    '''Shear on XY. "4x4" or "3x3" matrix.'''
     if matType == "3x3":
         container = [[1.0, 0.0,  x],
                      [0.0, 1.0,  y],
                      [0.0, 0.0, 1.0]]
-        return Matrix(9, container)
+        return Matrix(container)
     elif matType == "4x4":
         container = [[1.0, 0.0, 0.0,   x],
                      [0.0, 1.0, 0.0,   y],
                      [0.0, 0.0, 1.0, 0.0],
                      [0.0, 0.0, 0.0, 1.0]]
-        return Matrix(16, container)
+        return Matrix(container)
     else:
         print "Not defined yet."
 
 def shearYZ(x,y,matType):
+    '''Shear on YZ. "4x4" or "3x3" matrix.'''
     if matType == "3x3":
         container = [[1.0, 0.0, 0.0],
                      [  x, 1.0, 0.0],
                      [  y, 0.0, 1.0]]
-        return Matrix(9, container)
+        return Matrix(container)
     elif matType == "4x4":
         container = [[1.0, 0.0, 0.0, 0.0],
                      [  x, 1.0, 0.0, 0.0],
                      [  y, 0.0, 1.0, 0.0],
                      [0.0, 0.0, 0.0, 1.0]]
-        return Matrix(16, container)
+        return Matrix(container)
     else:
         print "Not defined yet."
         
 def shearXZ(x,y,matType):
+    '''Shear on XZ. "4x4" or "3x3" matrix.'''
     if matType == "3x3":
         container = [[1.0,   x, 0.0],
                      [0.0, 1.0, 0.0],
                      [0.0,   y, 1.0]]
-        return Matrix(9, container)
+        return Matrix(container)
     elif matType == "4x4":
         container = [[1.0,   x, 0.0, 0.0],
                      [0.0, 1.0, 0.0, 0.0],
                      [0.0,   y, 1.0, 0.0],
                      [0.0, 0.0, 0.0, 1.0]]
-        return Matrix(16, container)
+        return Matrix(container)
     else:
         print "Not defined yet."
         
 # Matrix Stack Class
 class MatrixStack(object):
-
+    '''A matrix strack class.'''
     def __init__(self,matrix_list):
         self.stack = matrix_list
 

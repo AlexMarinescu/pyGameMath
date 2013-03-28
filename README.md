@@ -13,6 +13,9 @@ It's still a work in progress. However, it will be finished soon.
 * NxN Matrix Multiplication
 * NxN Matrix * N Dimensions Vector Multiplication
 * NxN Matrix Inverse Calculation (Gauss Jordan Elimination)
+* LU Decomposition
+* NxN Matrix Determinant
+* NxN Matrix Normalization
 * 4x4 Perspective Projection Matrix
 * lookAt 4x4 Matrix
 * Translation (3x3, 4x4)
@@ -86,8 +89,8 @@ It's still a work in progress. However, it will be finished soon.
 * Coefficients from Irradiance map
   
 ###TO DO:###
-* AABB/OBB/Sphere/Cylinder (The intersections between a ray and each, will be inside the ray class)
-* Matrix Normalizing and Finding the Determinant.
+* AABB/OBB/Sphere/Cylinder (The intersections between a ray and each, will be inside the ray class).
+* Spherical Harmonics.
 * Tutorial on how to use everything.
 
 ###Note:###
