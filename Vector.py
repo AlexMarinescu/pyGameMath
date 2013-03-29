@@ -1,4 +1,8 @@
-from Math import*
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+import math
+
 
 # Vector N Dimensions Class
 class Vector (object):
@@ -16,31 +20,31 @@ class Vector (object):
         for x in xrange(self.len):
             self.vec[x] += vector.vec[x]
         return Vector(self.vec)
-    
+
     # Overloading -=
     def __isub__(self, vector):
         for x in xrange(self.len):
             self.vec[x] -= vector.vec[x]
         return Vector(self.vec)
-    
+
     # Overloading *=
     def __imul__(self, scalar):
         for x in xrange(self.len):
             self.vec[x] *= scalar
         return Vector(self.vec)
-        
+
     # Overloading *
     def __mul__(self, scalar):
         for x in xrange(self.len):
             self.vec[x] *= scalar
         return Vector(self.vec)
-    
+
     # Overloading /=
     def __itruediv__(self, scalar):
         for x in xrange(self.len):
             self.vec[x] /= scalar
         return Vector(self.vec)
-    
+
     # Overloading +
     def __add__(self, vectorB):
         vectorA = self.duplicate()
@@ -69,7 +73,7 @@ class Vector (object):
             if (self.vec[x] == vector.vec[x]):
                 true_or_false = True
             else:
-                true_of_false = False
+                true_or_false = False
         return true_or_false
 
     # Overloading ==
@@ -79,7 +83,7 @@ class Vector (object):
             if (self.vec[x] == vector.vec[x]):
                 true_or_false = True
             else:
-                true_of_false = False
+                true_or_false = False
         return true_or_false
 
     def magnitude(self):
@@ -91,17 +95,17 @@ class Vector (object):
     def scale(self, value):
         for x in xrange(self.len):
             self.vec[x] *= value
-            
+
     def zero(self):
         for x in xrange(self.len):
             self.vec[x] = 0.0
-            
+
     def invert(self):
         for x in xrange(self.len):
             self.vec[x] = -self.vec[x]
 
     def lerp(self, A, B, time):
-        return A * t + B * (1 - t)
+        return A * time + B * (1 - time)
 
     def normalize(self):
         length = self.magnitude()
@@ -113,6 +117,7 @@ class Vector (object):
     def output(self):
         print "Vector ", self.len, "D: ", self.vec
 
+
 # Dot Product (Multivectors not implemented).
 def dot(vectorA, vectorB):
     if vectorA.len == vectorB.len:
@@ -123,10 +128,11 @@ def dot(vectorA, vectorB):
     else:
         print "Blah multivectors... Don't feel like it."
 
+
 # Cross Product (only 3D and 7D)
 # Though the 7D one won't be implemented yet, maybe later.
 def cross(vectorA, vectorB):
-    vectorC = Vector([0.0,0.0,0.0])
+    vectorC = Vector([0.0, 0.0, 0.0])
     if vectorA.len == 3 and vectorB.len == 3:
         vectorC.vec[0] = vectorA.vec[1] * vectorB.vec[2] - vectorA.vec[2] * vectorB.vec[1]
         vectorC.vec[1] = vectorA.vec[2] * vectorB.vec[0] - vectorA.vec[0] * vectorB.vec[2]
@@ -135,25 +141,29 @@ def cross(vectorA, vectorB):
     else:
         print "Only 3D vectors."
 
+
 # The formulas for the following two functions are from the GLSL specification.
 # Reflection
 def reflect(incidentVector, normal):
     return incidentVector - (2.0 * dot(incidentVector, normal) * normal)
-    
+
+
 # Refraction
 def refract(indexofrefraction, incidentVector, normal):
-    # This is gonna be used in a few places and its quite long so just store the result once.
+    # This is gonna be used in a few places and its quite long
+    # so just store the result once.
     dotNI = dot(normal, incidentVector)
     k = 1.0 - indexofrefraction * indexofrefraction * indexofrefraction * (1.0 - dotNI * dotNI)
     if k < 0.0:
         container = []
-        # The length can be the normal or incidentVectors because they will be the same length.
+        # The length can be the normal or incidentVectors
+        # because they will be the same length.
         for x in xrange(normal.len):
             container.append(0.0)
         return Vector(container)
     else:
         return indexofrefraction * incidentVector - (indexofrefraction * dotNI + math.sqrt(k)) * normal
-    
+
 # Vector Stack Class
 class VectorStack(object):
 

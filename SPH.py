@@ -1,24 +1,32 @@
-from Math import*
-from Legendre import*
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+import math
+
+from src.engine.math.constants import PI
+from src.engine.math.legendre import Legendre
+
 
 # n! where n >= 0
 def Factorial(n):
     if n <= 1:
         return 1
-    
+
     result = n
-    
+
     while n > 1:
         n -= 1
         result *= n
-    
+
     return result
+
 
 # Normalization constant for a Spherical Harmonic function
 def K(l, m):
     K = ((2.0 * l + 1.0) * Factorial(l - m)) / ((4.0 * PI) * Factorial(l + m))
     return math.sqrt(K)
-    
+
+
 # Sample a Spherical Harmonic function Y(l, m) at a point on the unit sphere
 def SPH(l, m, theta, phi):
     root2 = math.sqrt(2.0)
