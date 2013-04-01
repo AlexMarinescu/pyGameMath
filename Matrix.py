@@ -5,7 +5,8 @@ import math
 import sys
 
 from src.engine.math.constants import MAT3x3, MAT4x4
-from src.engine.math.vector import Vector, cross
+from src.engine.math.vector import Vector, cross, dot
+from src.engine.math.constants import PI
 
 
 # NxN Matrix Class
@@ -77,7 +78,7 @@ class Matrix(object):
             for i in xrange(self.row):
                 for j in xrange(self.col):
                     for k in xrange(self.inr):
-                        self.out[j][i] += self.mat[i][k] * input.mat[k][j]
+                        self.out[i][j] += self.mat[i][k] * input.mat[k][j]
             return Matrix(self.out)
 
     def __imul__(self, input):
@@ -96,7 +97,7 @@ class Matrix(object):
             for i in xrange(self.row):
                 for j in xrange(self.col):
                     for k in xrange(self.inr):
-                        self.out[j][i] += self.mat[i][k] * input.mat[k][j]
+                        self.out[i][j] += self.mat[i][k] * input.mat[k][j]
             return Matrix(self.out)
 
     # Common, identical functions
@@ -121,9 +122,13 @@ class Matrix(object):
 
     def transpose(self):
         '''Transpose the matrix.'''
+        temp = [[0.0 for i in xrange(self.row)] for j in xrange(self.col)]
+        
         for i in xrange(self.row):
-            for j in xrange(i + 1, self.col):
-                self.mat[i][j] = self.mat[j][i]
+            for j in xrange(self.col):
+                temp[i][j] = self.mat[j][i]
+                
+        return Matrix(temp)
 
     def scale(self, vector):
         '''Scale the matrix.'''
@@ -197,19 +202,22 @@ class Matrix(object):
         # Identity for L matrix
         for i in xrange(size):
             L[i][i] = 1.0
+            U[i][i] = 1.0
 
         # Pivot the matrix
         P = Matrix.pivot(A)
 
         A2 = P * A
-
+        
         for j in xrange(size):
             for i in xrange(j + 1):
                 s1 = sum(U[k][j] * L[i][k] for k in xrange(i))
                 U[i][j] = A2.mat[i][j] - s1
-
             for i in xrange(j, size):
                 s2 = sum(U[k][j] * L[i][k] for k in xrange(j))
+                if U[j][j] == 0.0:
+                    U[j][j] = 1.0
+                    
                 L[i][j] = (A2.mat[i][j] - s2) / U[j][j]
 
         matU = Matrix(U)
@@ -219,7 +227,7 @@ class Matrix(object):
 
     def determinant(self):
         '''NxN Matrix determinant.'''
-        matrix = self.duplicate()
+        matrix = Matrix(self.mat)
 
         matU, matL = Matrix.LUdecomposition(matrix)
 
@@ -236,10 +244,10 @@ class Matrix(object):
         matrix = Matrix(self.mat)
         matdet = matrix.determinant()
 
-        if matdet == 0:
+        if matdet == 0.0:
             matdet = 1.0
 
-        row, col = matrix.row
+        row, col = matrix.row, matrix.col
 
         normalized = [[0.0 for i in xrange(row)] for j in xrange(col)]
 
@@ -295,42 +303,84 @@ def mat2x2Rotate(angle, direction):
 
 
 def perspective(fov, aspect, znear, zfar):
-    '''Perspective projection matrix 4x4.'''
-    y = math.tan(fov * (3.14159265358979323846 / 360))
-    x = y * aspect
+    '''Perspective projection matrix 4x4. FOVY'''
+    f = znear * math.tan((fov * (PI / 180.0))/2.0)
+     
+    # Flip signs to change dir :P
+    left = f * aspect
+    right = -f * aspect
+    
+    bottom = -f
+    top = f
+    
+    a = (2.0 * znear) / (right - left)
+    
+    b = (2.0 * znear) / (top - bottom)
+    
+    c = (zfar + znear) / (znear - zfar)
+    
+    d =  (2.0 * zfar * znear) / (znear - zfar)
 
-    if (x != 0) and (y != 0) and (zfar != znear):
-        a = 1.0 / x
-        b = 1.0 / y
-        c = (zfar) / (znear - zfar)
-        d = (zfar * znear) / (znear - zfar)
+    container = [[  a, 0.0, 0.0, 0.0],
+                 [0.0,   b, 0.0, 0.0],
+                 [0.0, 0.0,   c,-1.0],
+                 [0.0, 0.0,   d, 0.0]]
 
-        container = [[a, 0.0, 0.0, 0.0],
-                     [0.0, b, 0.0, 0.0],
-                     [0.0, 0.0, c, d],
-                     [0.0, 0.0, 0.0, 1.0]]
     return Matrix(container)
+    
+def perspectiveX(fov, aspect, znear, zfar):
+    '''Perspective projection matrix 4x4. FOVX'''
+    f = znear * math.tan((fov * (PI / 180.0))/2.0)
 
+    xmax = f
+    xmin = -f
+    
+    ymin = xmin / aspect
+    ymax = xmax / aspect
+    
+    a = (2.0 * znear) / (xmax - xmin)
+    
+    b = (2.0 * znear) / (ymax - ymin)
+    
+    c = -(zfar + znear) / (zfar - znear)
+    
+    d = -(2.0 * zfar * znear) / (zfar - znear)
 
-def lookAt(cam_loc, direction, head_pos):
+    e = (xmax + xmin) / (xmax - xmin)
+    f = (ymax + ymin) / (ymax - ymin)
+    
+    
+    container = [[  a, 0.0,   e, 0.0],
+                 [0.0,   b,   f, 0.0],
+                 [0.0, 0.0,   c,   d],
+                 [0.0, 0.0,-1.0, 0.0]]
+    
+    M = Matrix(container)
+    M = M.transpose()
+    
+    return M
+    
+def lookAt(eye, center, up):
     '''Matrix 4x4 lookAt function.'''
-    atNew = direction - cam_loc
-    atNew.normalize()
-
-    headNew = head_pos
-
-    xaxis = cross(atNew, headNew)
+    zaxis = center - eye
+    zaxis.normalize()
+    up.normalize()
+    xaxis = cross(up, zaxis)
     xaxis.normalize()
-
-    upNew = cross(xaxis, atNew)
-
-    container = [[xaxis.vec[0], upNew.vec[0], atNew.vec[0], cam_loc.vec[0]],
-                 [xaxis.vec[1], upNew.vec[1], atNew.vec[1], cam_loc.vec[1]],
-                 [xaxis.vec[2], upNew.vec[2], atNew.vec[2], cam_loc.vec[2]],
+    yaxis = cross(zaxis, xaxis)
+    yaxis.normalize()
+           
+    container = [[ xaxis.vec[0],  xaxis.vec[1],  xaxis.vec[2], dot(xaxis, -eye)],
+                 [ yaxis.vec[0],  yaxis.vec[1],  yaxis.vec[2], dot(yaxis, -eye)],
+                 [-zaxis.vec[0], -zaxis.vec[1], -zaxis.vec[2], dot(zaxis, eye)],
                  [0.0, 0.0, 0.0, 1.0]]
-    return Matrix(container)
-
-
+                 
+    M = Matrix(container)
+    
+    M.output()
+    M = M.transpose()
+    return M
+    
 def translate(vector, matType):
     '''Translate by a vector. Second input: MAT4x4 or MAT3x3.'''
     if matType == MAT4x4:
@@ -350,8 +400,8 @@ def translate(vector, matType):
 
 def rotateX(theta, matType):
     '''Rotate on X-axis. Second input: MAT4x4 or MAT3x3.'''
-    c = math.cos(theta)
-    s = math.sin(theta)
+    c = math.cos(theta * (PI/180))
+    s = math.sin(theta * (PI/180))
     if matType == MAT4x4:
         container = [[1.0, 0.0, 0.0, 0.0],
                      [0.0, c, -s, 0.0],
@@ -369,8 +419,8 @@ def rotateX(theta, matType):
 
 def rotateY(theta, matType):
     '''Rotate on Y-axis. Second input: MAT4x4 or MAT3x3.'''
-    c = math.cos(theta)
-    s = math.sin(theta)
+    c = math.cos(theta * (PI/180))
+    s = math.sin(theta * (PI/180))
     if matType == MAT4x4:
         container = [[c, 0.0, s, 0.0],
                      [0.0, 1.0, 0.0, 0.0],
@@ -388,8 +438,8 @@ def rotateY(theta, matType):
 
 def rotateZ(theta, matType):
     '''Rotate on Z-axis. Second input: MAT4x4 or MAT3x3.'''
-    c = math.cos(theta)
-    s = math.sin(theta)
+    c = math.cos(theta * (PI/180))
+    s = math.sin(theta * (PI/180))
     if matType == MAT4x4:
         container = [[c, -s, 0.0, 0.0],
                      [s, c, 0.0, 0.0],
@@ -407,8 +457,8 @@ def rotateZ(theta, matType):
 
 def rotate(axis, theta, matType):
     '''Rotate on arbitrary axis. Second input: MAT4x4 or MAT3x3.'''
-    c = math.cos(theta)
-    s = math.sin(theta)
+    c = math.cos(theta * (PI/180))
+    s = math.sin(theta * (PI/180))
 
     OneMinusCos = (1.0 - c)
     axis.normalize()

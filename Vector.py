@@ -164,6 +164,7 @@ def refract(indexofrefraction, incidentVector, normal):
     else:
         return indexofrefraction * incidentVector - (indexofrefraction * dotNI + math.sqrt(k)) * normal
 
+
 # Vector Stack Class
 class VectorStack(object):
 
@@ -182,7 +183,7 @@ class VectorStack(object):
     def assign(self, location, vector):
         self.stack[location] = vector
 
-    def pop(self,*args):
+    def pop(self, *args):
         self.stack.pop(args[0])
 
     def output(self):
