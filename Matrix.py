@@ -11,7 +11,7 @@ from src.engine.math.constants import PI
 
 # NxN Matrix Class
 class Matrix(object):
-    '''Clss for NxN Matrices'''
+    '''Class for NxN Matrices'''
     def __init__(self, array):
         # This will be needed when returning a same type array.
         self.size = len(array)
@@ -42,26 +42,31 @@ class Matrix(object):
     def __setitem__(self, key, val):
         self.mat[key[0]][key[1]] = val
 
+    # Overloading +
     def __add__(self, input):
         for i in xrange(self.row):
             for j in xrange(self.col):
                 self.out[i][j] = self.mat[i][j] + input.mat[i][j]
 
+    # Overloading +=
     def __iadd__(self, input):
         for i in xrange(self.row):
             for j in xrange(self.col):
                 self.out[i][j] = self.mat[i][j] + input.mat[i][j]
 
+    # Overloading -
     def __sub__(self, input):
         for i in xrange(self.row):
             for j in xrange(self.col):
                 self.out[i][j] = self.mat[i][j] - input.mat[i][j]
 
+    # Overloading -=
     def __isub__(self, input):
         for i in xrange(self.row):
             for j in xrange(self.col):
                 self.out[i][j] = self.mat[i][j] - input.mat[i][j]
 
+    # Overloading *
     def __mul__(self, input):
         # Multiply by Vector
         if isinstance(input, Vector):
@@ -81,6 +86,7 @@ class Matrix(object):
                         self.out[i][j] += self.mat[i][k] * input.mat[k][j]
             return Matrix(self.out)
 
+    # Overloading *=
     def __imul__(self, input):
         # Multiply by Vector
         if isinstance(input, Vector):
@@ -99,6 +105,22 @@ class Matrix(object):
                     for k in xrange(self.inr):
                         self.out[i][j] += self.mat[i][k] * input.mat[k][j]
             return Matrix(self.out)
+
+    # Overloading !=
+    def __ne__(self, matrix):
+        for x in xrange(self.row):
+            for y in xrange(self.col):
+                if self.mat[x][y] != matrix.mat[x][y]:
+                    return False
+        return True
+
+    # Overloading ==
+    def __eq__(self, matrix):
+        for x in xrange(self.row):
+            for y in xrange(self.col):
+                if self.mat[x][y] != matrix.mat[x][y]:
+                    return False
+        return True
 
     # Common, identical functions
     def duplicate(self):
@@ -479,8 +501,6 @@ def rotate(axis, theta, matType):
                      [((axis.vec[0] * axis.vec[1]) * OneMinusCos) - (axis.vec[2] * s), c + y2 * OneMinusCos, ((axis.vec[2] * axis.vec[1]) * OneMinusCos) + (axis.vec[0] * s)],
                      [((axis.vec[0] * axis.vec[2]) * OneMinusCos) + (axis.vec[1] * s), ((axis.vec[1] * axis.vec[2]) * OneMinusCos) - (axis.vec[0] * s), c + z2 * OneMinusCos]]
         return Matrix(container)
-    else:
-        return "Matrix type undefined."
 
 
 def shearXY(x,y,matType):

@@ -5,10 +5,10 @@ from src.engine.math.vector import Vector
 
 
 # A basic wrapper around the vector class to be able to classify the point.
-# This bullshit can be made part of the vector class and completly remove the point class
-# since there is no point to it. LOLOL, but I thought it would be nice to keep shit organized.
-# A point though does not have any size (eg. magnitude) only a location, but whatever. :P
+# This can be made part of the vector class but it more organized this way.
+# A point though does not have any size (eg. magnitude) only a location. :P
 class Point(object):
+    '''Class for a point'''
     # Takes in a vector to define the point.
     # The location is secondary type input (not necessary).
     # The location is used to determine where a point is located relative to a plane.

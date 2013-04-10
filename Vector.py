@@ -2,18 +2,23 @@
 from __future__ import unicode_literals
 
 import math
+import sys
 
 
 # Vector N Dimensions Class
 class Vector (object):
-
+    '''Class for N Dimensions Vectors'''
     def __init__(self, array):
         self.vec = array
         self.len = len(array)
 
-    # Clone the vector.
-    def duplicate(self):
-        return Vector(self.vec)
+    # Slow; use the class.vec[i] way.
+    def __getitem__(self, key):
+        return self.vec[key]
+
+    # Slow; use the class.vec[i] way.
+    def __setitem__(self, key, val):
+        self.vec[key] = val
 
     # Overloading +=
     def __iadd__(self, vector):
@@ -68,58 +73,68 @@ class Vector (object):
 
     # Overloading !=
     def __ne__(self, vector):
-        true_or_false = False
         for x in xrange(self.len):
-            if (self.vec[x] == vector.vec[x]):
-                true_or_false = True
-            else:
-                true_or_false = False
-        return true_or_false
-
+            if (self.vec[x] != vector.vec[x]):
+                return False
+        return True
+        
     # Overloading ==
     def __eq__(self, vector):
-        true_or_false = False
         for x in xrange(self.len):
-            if (self.vec[x] == vector.vec[x]):
-                true_or_false = True
-            else:
-                true_or_false = False
-        return true_or_false
+            if (self.vec[x] != vector.vec[x]):
+                return False
+        return True
+
+    # Clone the vector.
+    def duplicate(self):
+        '''Returns a copy of the vector.'''
+        return Vector(self.vec)
 
     def magnitude(self):
+        '''Returns the magnitude of a vector.'''
         result = 0
         for x in xrange(self.len):
             result += self.vec[x] * self.vec[x]
         return math.sqrt(result)
 
     def scale(self, value):
+        '''Scales a vector by a specific value.'''
         for x in xrange(self.len):
             self.vec[x] *= value
 
     def zero(self):
+        '''Zeroes the vector.'''
         for x in xrange(self.len):
             self.vec[x] = 0.0
 
     def invert(self):
+        '''Inverts the vector.'''
         for x in xrange(self.len):
             self.vec[x] = -self.vec[x]
 
     def lerp(self, A, B, time):
+        '''Linear interpolation between two vectors.'''
         return A * time + B * (1 - time)
 
     def normalize(self):
+        '''Normalize a vector.'''
         length = self.magnitude()
 
         if(length != 0):
             for x in xrange(self.len):
                 self.vec[x] /= length
+        else:
+            print "Vector: Division by zero."
+            sys.exit(0)
 
     def output(self):
+        '''Print the contents of a vector.'''
         print "Vector ", self.len, "D: ", self.vec
 
 
 # Dot Product (Multivectors not implemented).
 def dot(vectorA, vectorB):
+    '''Dot product between two vectors.'''
     if vectorA.len == vectorB.len:
         result = 0
         for x in xrange(vectorA.len):
@@ -132,6 +147,7 @@ def dot(vectorA, vectorB):
 # Cross Product (only 3D and 7D)
 # Though the 7D one won't be implemented yet, maybe later.
 def cross(vectorA, vectorB):
+    '''Cross product between 3D vectors.'''
     vectorC = Vector([0.0, 0.0, 0.0])
     if vectorA.len == 3 and vectorB.len == 3:
         vectorC.vec[0] = vectorA.vec[1] * vectorB.vec[2] - vectorA.vec[2] * vectorB.vec[1]
@@ -145,11 +161,13 @@ def cross(vectorA, vectorB):
 # The formulas for the following two functions are from the GLSL specification.
 # Reflection
 def reflect(incidentVector, normal):
+    '''Reflects a vector.'''
     return incidentVector - (2.0 * dot(incidentVector, normal) * normal)
 
 
 # Refraction
 def refract(indexofrefraction, incidentVector, normal):
+    '''Refracts a vector.'''
     # This is gonna be used in a few places and its quite long
     # so just store the result once.
     dotNI = dot(normal, incidentVector)

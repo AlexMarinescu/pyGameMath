@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 import math
+import sys
 
 from src.engine.math.matrix import Matrix
 from src.engine.math.vector import Vector
@@ -13,30 +14,43 @@ from src.engine.math.vector import Vector
 # y = [2]
 # z = [3]
 class Quaternion(object):
+    '''Class for Quaternions'''
     def __init__(self, array):
         self.quat = array
         self.len = len(array)
 
+        # Make sure that it will not accept more than 4 values
+        if self.len > 4:
+            print "Quaternion: Wrong number of values."
+            sys.exit(0)
+
     def duplicate(self):
+        '''Returns a copy of itself'''
         return Quaternion(self.quat)
 
     def identity(self):
-        self.quat = [1.0, 0.0, 0.0, 0.0]
-        self.len = len(self.quat)
+        '''Returns a identity quaternion'''
+        return Quaternion([1.0, 0.0, 0.0, 0.0])
 
     def magnitude(self):
+        '''Returns the magnitude of a quaternion'''
         result = 0
         for x in xrange(self.len):
             result += self.quat[x] * self.quat[x]
         return math.sqrt(result)
 
     def normalize(self):
+        '''Normalizes a quaternion'''
         length = self.magnitude()
         if(length != 0):
             for x in xrange(self.len):
                 self.quat[x] /= length
+        else:
+            print "Quaternion: Division by zero."
+            sys.exit(0)
 
     def conjugate(self):
+        '''Returns the conjugate'''
         new_quat = self.quat
         for x in xrange(self.len):
             new_quat[x] = -new_quat[x]
@@ -44,6 +58,7 @@ class Quaternion(object):
         return Quaternion(new_quat)
 
     def inverse(self):
+        '''Returns the inverse of a quaternion'''
         lengthSquared = self.quat[0] * self.quat[0] + self.quat[1] * self.quat[1] + self.quat[2] * self.quat[2] + self.quat[3] * self.quat[3]
 
         return Quaternion([self.quat[0] / lengthSquared,
@@ -52,30 +67,36 @@ class Quaternion(object):
                            self.quat[3] / lengthSquared])
 
     def negate(self):
+        '''Negate a quaternion'''
         self.quat[0] = -self.quat[0]
         self.quat[1] = -self.quat[1]
         self.quat[2] = -self.quat[2]
         self.quat[3] = -self.quat[3]
 
     def dot(self, quatA):
+        '''Dot quaternions'''
         result = 0
         for x in xrange(self.len):
             result += self.quat[x] * quatA.quat[x]
         return result
 
     def rotateX(self, theta):
+        '''Rotate around X with quaternion'''
         thetaOver2 = theta * 0.5
         return Quaternion([math.cos(thetaOver2),math.sin(thetaOver2),0.0,0.0])
 
     def rotateY(self, theta):
+        '''Rotate around Y with quaternion'''
         thetaOver2 = theta * 0.5
         return Quaternion([math.cos(thetaOver2),0.0,math.sin(thetaOver2),0.0])
 
     def rotateZ(self, theta):
+        '''Rotate around Z with quaternion'''
         thetaOver2 = theta * 0.5
         return Quaternion([math.cos(thetaOver2),0.0,0.0,math.sin(thetaOver2)])
 
     def rotate(self, axis, theta):
+        '''Rotate around an axis with quaternion'''
         thetaOver2 = theta * 0.5
         sinThetaOver2 = math.sin(thetaOver2)
         axis.normalize()
@@ -84,6 +105,7 @@ class Quaternion(object):
 
     # Convert to a 4x4 matrix
     def toMatrix(self):
+        '''Convert quaternion to a matrix.'''
         x2 = self.quat[1] * self.quat[1]
         y2 = self.quat[2] * self.quat[2]
         z2 = self.quat[3] * self.quat[3]
@@ -101,6 +123,7 @@ class Quaternion(object):
 
     # The log of a quaternion
     def log(self):
+        '''Returns the log of a quaternion'''
         alpha = math.acos(self.quat[0])
         sinAlpha = math.sin(alpha)
 
@@ -117,7 +140,9 @@ class Quaternion(object):
 
         return output
 
+    # The exp of a quaternion
     def exp(self):
+        '''Returns exp of a quaternion'''
         alpha = 0
         for x in xrange(self.len):
             alpha += self.quat[x] * self.quat[x]
@@ -143,6 +168,7 @@ class Quaternion(object):
     # Rise a quaternion to a power
     # Usefull to extract a fraction of an angular displacement.
     def pow(self, exponent):
+        '''Rise a quaternion to a power'''
         if self.quat[0] != 0.0:
             # Extract the half angle
             angle = math.acos(self.quat[0])
@@ -157,6 +183,7 @@ class Quaternion(object):
 
     # Linear Interpolation
     def lerp(self, quat0, quat1, t):
+        '''Quaternion linear interpolation'''
         k0 = 1.0 - t
         k1 = t
 
@@ -175,6 +202,7 @@ class Quaternion(object):
     # The third input is the interpolation parameter.
     # slerp(q0,q1,t) = q0(q0^-1 * q1)^t
     def slerp(self, quat0, quat1, t):
+        '''Quaternion  spherical interpolation'''
         output = Quaternion([1.0,0.0,0.0,0.0])
 
         # Compute the cosine of the angle
@@ -214,15 +242,33 @@ class Quaternion(object):
 
     # SQUAD (Quaternion Splines)
     def squad(self, quat1, q0, q1, q2, t):
+        '''Quaternion splines'''
         return self.slerp(self.slerp(quat1, q2, t), self.slerp(q0, q1, t), 2*t*(1-t))
 
 
+    # Overload !=
+    def __ne__(self, quat):
+        for i in xrange(len(self.quat)):
+            if self.quat[i] != quat.quat[i]:
+                return False
+        return True
+
+    # Overload ==
+    def __eq__(self, quat):
+        for i in xrange(len(self.quat)):
+            if self.quat[i] != quat.quat[i]:
+                return False
+        return True
+
+    # Overload /
     def __div__(self, input):
         return Quaternion([self.quat[0] / input, self.quat[1] / input, self.quat[2] /input, self.quat[3] / input])
-
+    
+    # Overload /=
     def __idiv__(self, input):
         return Quaternion([self.quat[0] / input, self.quat[1] / input, self.quat[2] /input, self.quat[3] / input])
 
+    # Overload *
     def __mul__(self, input):
         # Cross Product
         if isinstance(input, Quaternion):
@@ -251,6 +297,7 @@ class Quaternion(object):
         elif isinstance(input, float):
             return Quaternion([self.quat[0] * input, self.quat[1] * input, self.quat[2] * input, self.quat[3] * input])
 
+    # Overload *=
     def __imul__(self, input):
         # Cross Product
         if isinstance(input, Quaternion):
@@ -279,18 +326,23 @@ class Quaternion(object):
         elif isinstance(input, float):
             return Quaternion([self.quat[0] * input, self.quat[1] * input, self.quat[2] * input, self.quat[3] * input])
 
+    # Overload +
     def __add__(self, quat):
         return Quaternion([self.quat[0] + quat.quat[0], self.quat[1] + quat.quat[1], self.quat[2] + quat.quat[2], self.quat[3] + quat.quat[3]])
 
+    # Overload +=
     def __iadd__(self, quat):
         return Quaternion([self.quat[0] + quat.quat[0], self.quat[1] + quat.quat[1], self.quat[2] + quat.quat[2], self.quat[3] + quat.quat[3]])
 
+    # Overload -
     def __sub__(self, quat):
         return Quaternion([self.quat[0] - quat.quat[0], self.quat[1] - quat.quat[1], self.quat[2] - quat.quat[2], self.quat[3] - quat.quat[3]])
 
+    # Overload -=
     def __isub__(self, quat):
         return Quaternion([self.quat[0] - quat.quat[0], self.quat[1] - quat.quat[1], self.quat[2] - quat.quat[2], self.quat[3] - quat.quat[3]])
 
     def output(self):
+        '''Prints a quaternion to screen'''
         print "Quaternion: ", self.quat
 

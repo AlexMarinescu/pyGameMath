@@ -5,9 +5,8 @@ from src.engine.math.vector import Vector, dot, cross
 from src.engine.math.point import Point
 
 
-# I know that I'm missing some shit in this "plane" class but bleh, for now the
-# current stuff will do. :3
 class Plane(object):
+    '''Class for plane'''
     # A, B, C make up the normal of the plane
     def __init__(self, *args):
         # Define using 3 vectors.
