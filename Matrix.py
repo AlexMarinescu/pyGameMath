@@ -461,21 +461,26 @@ def rotate(axis, theta, matType):
     s = math.sin(theta * (PI/180))
 
     OneMinusCos = (1.0 - c)
+
     axis.normalize()
 
+    x2 = axis.vec[0] * axis.vec[0]
+    y2 = axis.vec[1] * axis.vec[1]
+    z2 = axis.vec[2] * axis.vec[2]
+
     if matType == MAT4x4:
-        container = [[((axis.vec[0] * axis.vec[0]) * OneMinusCos) + c,                 ((axis.vec[0] * axis.vec[1]) * OneMinusCos) - (axis.vec[2] * s), ((axis.vec[0] * axis.vec[2]) * OneMinusCos) + (axis.vec[1] * s), 0.0],
-                     [((axis.vec[0] * axis.vec[1]) * OneMinusCos) + (axis.vec[2] * s), ((axis.vec[1] * axis.vec[1]) * OneMinusCos) + c,                 ((axis.vec[1] * axis.vec[2]) * OneMinusCos) - (axis.vec[0] * s), 0.0],
-                     [((axis.vec[0] * axis.vec[2]) * OneMinusCos) - (axis.vec[2] * s), ((axis.vec[1] * axis.vec[2]) * OneMinusCos) + (axis.vec[0] * s), ((axis.vec[2] * axis.vec[2]) * OneMinusCos) + c, 0.0],
+        container = [[c + x2 * OneMinusCos, ((axis.vec[1] * axis.vec[0]) * OneMinusCos) + (axis.vec[2] * s), ((axis.vec[2] * axis.vec[0]) * OneMinusCos) - (axis.vec[1] * s), 0.0],
+                     [((axis.vec[0] * axis.vec[1]) * OneMinusCos) - (axis.vec[2] * s), c + y2 * OneMinusCos, ((axis.vec[2] * axis.vec[1]) * OneMinusCos) + (axis.vec[0] * s), 0.0],
+                     [((axis.vec[0] * axis.vec[2]) * OneMinusCos) + (axis.vec[1] * s), ((axis.vec[1] * axis.vec[2]) * OneMinusCos) - (axis.vec[0] * s), c + z2 * OneMinusCos, 0.0],
                      [0.0, 0.0, 0.0, 1.0]]
         return Matrix(container)
     elif matType == MAT3x3:
-        container = [[((axis.vec[0] * axis.vec[0]) * OneMinusCos) + c,                 ((axis.vec[0] * axis.vec[1]) * OneMinusCos) - (axis.vec[2] * s), ((axis.vec[0] * axis.vec[2]) * OneMinusCos) + (axis.vec[1] * s)],
-                     [((axis.vec[0] * axis.vec[1]) * OneMinusCos) + (axis.vec[2] * s), ((axis.vec[1] * axis.vec[1]) * OneMinusCos) + c,                 ((axis.vec[1] * axis.vec[2]) * OneMinusCos) - (axis.vec[0] * s)],
-                     [((axis.vec[0] * axis.vec[2]) * OneMinusCos) - (axis.vec[2] * s), ((axis.vec[1] * axis.vec[2]) * OneMinusCos) + (axis.vec[0] * s), ((axis.vec[2] * axis.vec[2]) * OneMinusCos) + c]]
+        container = [[c + x2 * OneMinusCos, ((axis.vec[1] * axis.vec[0]) * OneMinusCos) + (axis.vec[2] * s), ((axis.vec[2] * axis.vec[0]) * OneMinusCos) - (axis.vec[1] * s)],
+                     [((axis.vec[0] * axis.vec[1]) * OneMinusCos) - (axis.vec[2] * s), c + y2 * OneMinusCos, ((axis.vec[2] * axis.vec[1]) * OneMinusCos) + (axis.vec[0] * s)],
+                     [((axis.vec[0] * axis.vec[2]) * OneMinusCos) + (axis.vec[1] * s), ((axis.vec[1] * axis.vec[2]) * OneMinusCos) - (axis.vec[0] * s), c + z2 * OneMinusCos]]
         return Matrix(container)
     else:
-        print "Not defined yet."
+        return "Matrix type undefined."
 
 
 def shearXY(x,y,matType):
