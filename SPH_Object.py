@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from src.engine.math.constants import PI
-
-from src.engine.math.vector import dot
-from src.engine.math.sph_sample import *
+from constants import PI
+from vector import dot
+from sph_sample import *
 
 
 # Spherical Harmonics Vertex

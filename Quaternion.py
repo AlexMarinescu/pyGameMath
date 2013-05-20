@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 import math
 import sys
 
-from src.engine.math.matrix import Matrix
-from src.engine.math.vector import Vector
+from matrix import Matrix
+from vector import Vector
 
 
 # Quaternion class

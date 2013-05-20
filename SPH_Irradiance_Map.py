@@ -5,9 +5,9 @@ import pprint
 import math
 import struct
 
-from src.engine.math.constants import PI
-from src.engine.math.common import sinc
-
+from constants import PI
+from common import sinc
+from vector import *
 
 # Calculate Spherical Harmonics coefficients using irradiance maps
 class SPH_IrradianceMapCoeff(object):
@@ -37,7 +37,7 @@ class SPH_IrradianceMapCoeff(object):
 
         # Calculate coefficients
         self.calculateCoefficients()
-
+        
     def calculateCoefficients(self):
         for i in xrange(self.width):
             for j in xrange(self.height):
@@ -53,12 +53,13 @@ class SPH_IrradianceMapCoeff(object):
                     y = math.sin(theta) * math.sin(phi)
                     z = math.cos(theta)
 
-                    domega = (2 * PI / self.width) * (2.0 * PI / self.width) * sinc(theta)
+                    domega = (2.0 * PI / self.width) * (2.0 * PI / self.width) * sinc(theta)
 
                     self.updateCoefficients(self.hdr[i][j], domega, x, y, z)
 
     def updateCoefficients(self, hdr, domega, x, y, z):
         for col in xrange(3):
+            c = 0
 
             c = 0.282095
             self.coeffs[0][col] += hdr[col] * c * domega
@@ -80,8 +81,26 @@ class SPH_IrradianceMapCoeff(object):
             self.coeffs[8][col] += hdr[col] * (c * (x * x - y * y)) * domega
 
     def output(self):
-        pprint.pprint(self.coeffs)
+        A = Vector(self.coeffs[0]) / 10
+        B = Vector(self.coeffs[1]) / 10
+        C = Vector(self.coeffs[2]) / 10
+        D = Vector(self.coeffs[3]) / 10
+        E = Vector(self.coeffs[4]) / 10
+        F = Vector(self.coeffs[5]) / 10
+        G = Vector(self.coeffs[6]) / 10
+        H = Vector(self.coeffs[7]) / 10
+        J = Vector(self.coeffs[8]) / 10
+        A.output()
+        B.output()
+        C.output()
+        D.output()
+        E.output()
+        F.output()
+        G.output()
+        H.output()
+        J.output()
+        #pprint.pprint(self.coeffs)
 
 # Example
-#test_irradiance_map = SPH_IrradianceMapCoeff("uffizi_probe.float", 1500, 1500)
-#test_irradiance_map.output()
+test_irradiance_map = SPH_IrradianceMapCoeff("grace_probe.float", 1000, 1000)
+test_irradiance_map.output()

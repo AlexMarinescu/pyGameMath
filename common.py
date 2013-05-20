@@ -5,7 +5,7 @@ import math
 
 # Sinc function
 def sinc(x):
-    if math.fabs(x) < 1.0e-4:
+    if math.fabs(x) < 0.0001:
         return 1.0
     else:
         return math.sin(x) / x

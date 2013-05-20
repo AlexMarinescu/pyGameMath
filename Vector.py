@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 import math
 import sys
 
-
 # Vector N Dimensions Class
 class Vector (object):
     '''Class for N Dimensions Vectors'''
@@ -42,6 +41,12 @@ class Vector (object):
     def __mul__(self, scalar):
         for x in xrange(self.len):
             self.vec[x] *= scalar
+        return Vector(self.vec)
+
+    # Overloading /
+    def __div__(self, scalar):
+        for x in xrange(self.len):
+            self.vec[x] /= scalar
         return Vector(self.vec)
 
     # Overloading /=

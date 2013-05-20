@@ -1,4 +1,4 @@
-![ScreenShot](https://raw.github.com/AlexMarinescu/pyGameMath/master/pyGameMathLogo.png)
+![ScreenShot](https://raw.github.com/AlexMarinescu/pyGameMath/master/data/pyGameMathLogo.png)
 
 pyGameMath
 ==========

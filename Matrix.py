@@ -4,10 +4,17 @@ from __future__ import unicode_literals
 import math
 import sys
 
-from src.engine.math.constants import MAT3x3, MAT4x4
-from src.engine.math.vector import Vector, cross, dot
-from src.engine.math.constants import PI
+from Vector import*
 
+
+# Numerical Constants
+PI = 3.14159265358979323846
+E = 2.71828182845904523536
+
+# Matrix Type Constants
+MAT2x2 = 0x01
+MAT3x3 = 0x02
+MAT4x4 = 0x03
 
 # NxN Matrix Class
 class Matrix(object):

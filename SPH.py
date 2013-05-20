@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 
 import math
 
-from src.engine.math.constants import PI
-from src.engine.math.legendre import Legendre
+from constants import PI
+from legendre import Legendre
 
 
 # n! where n >= 0

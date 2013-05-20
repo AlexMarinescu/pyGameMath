@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from src.engine.math.vector import Vector, dot, cross
-from src.engine.math.point import Point
+from vector import Vector, dot, cross
+from point import Point
 
 
 class Plane(object):

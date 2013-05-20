@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from src.engine.math.vector import Vector
+from vector import Vector
 
 
 # A basic wrapper around the vector class to be able to classify the point.
