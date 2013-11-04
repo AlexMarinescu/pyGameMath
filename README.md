@@ -5,6 +5,12 @@ pyGameMath
 This is a math library written in python for 2D/3D game development which is also compatible with pypy. I made it while I was learning more about the math used in graphics development and for personal use in OpenGL related projects.
 It's still a work in progress. However, it will be finished soon.
 
+####Update 1:####
+* The old version which is fully OOP is inside the folder "oop math lib", some bugs are still present.
+* The new version has most of the features functional based for performance, it is inside the folder "src" and all the bugs from the previous have been nuked.
+* There is a new folder called "experimental" inside the "src" that stores the features that are unfinished.
+* Spherical harmonics were moved under "experimental".
+
 ##Supported features:##
 
 ###NxN Matrices###
@@ -66,7 +72,7 @@ It's still a work in progress. However, it will be finished soon.
 * Point location
 * Output
   
-###Point###
+###Point (Only in the OOP version)###
 * Adds location to a vector :P
   
 ###Ray###
@@ -75,13 +81,13 @@ It's still a work in progress. However, it will be finished soon.
 * Translate
 * Output
 
-###Legendre Polynomial###
+###Legendre Polynomial (Experimental)###
 * For spherical harmonics
 * (l - m)PML(x) = x(2l - 1)PML-1(x) - (l + m -1)PML-2(x)
 * PMM(x) = (-1)^m * (2m - 1)!!(1 - x^2)^m/2
 * PMM+1(x) = x(2m + 1)PMM(x)
 
-###Spherical Harmonics (Not complete yet)###
+###Spherical Harmonics (Experimental)###
 * Normalization Constant (K)
 * Sample a Spherical Harmonic function Y(l, m)
 * Sample
