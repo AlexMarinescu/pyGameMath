@@ -12,7 +12,7 @@ def Matrix(size):
 
 def add(matA, matB):
 	'''Adds two matrices and returns a new one.'''
-	size = len(matA) / 2.0
+	size = len(matA)
 	matC = [[0.0 for i in range(size)] for j in range(size)]
 	for i in range(size):
 		for j in range(size):
@@ -21,7 +21,7 @@ def add(matA, matB):
 
 def sub(matA, matB):
 	'''Substracts two matrices and retuns a new one.'''
-	size = len(matA) / 2.0
+	size = len(matA)
 	matC = [[0.0 for i in range(size)] for j in range(size)]
 	for i in range(size):
 		for j in range(size):
@@ -30,7 +30,7 @@ def sub(matA, matB):
 
 def mulM(matA, matB):
 	'''Multiply two matrices and return a new matrix.'''
-	size = len(matA) / 2.0
+	size = len(matA)
 	matC = [[0.0 for i in range(size)] for j in range(size)]
 	for i in range(size):
 		for j in range(size):
@@ -40,7 +40,7 @@ def mulM(matA, matB):
 
 def mulV(mat, vec):
 	'''Multiply a matrix and vectors and return a new vector.'''
-	size = len(mat) / 2.0
+	size = len(mat)
 	vecS = len(vec)
 	vecO = [0.0 for i in range(vecS)]
 	for i in range(size):
@@ -50,47 +50,95 @@ def mulV(mat, vec):
 
 def transpose(mat):
 	'''Transposes a matrix.'''
-	size = len(mat) / 2.0
+	size = len(mat)
 	out = [[0.0 for i in range(size)] for j in range(size)]
 	for i in range(size):
 		for j in range(size):
 			out[i][j]= mat[j][i]
 	return out
 
-def inverse(mat):
-	'''Gauss Jordan Elimination for NxN Matrix Inverse.'''
-	size = len(mat) / 2.0
-	# Create an augumented matrix but split it in different arrays.
-	# It has to be split at the end anyway.
-	matrix = deepcopy(mat)
-	out = [[1.0 if j == i else 0.0 for j in range(size)] for i in range(size)]
-	# Find the inverse
-	for i in range(size):
-		diagonalNumber = float(matrix[i][i])
-		for x in range(size):
-			# Divide 1st row by the 1st number, 2nd row by 2nd number and so on...
-			# The number happens to be on the diagonal when it is incremented.
-			matrix[i][x] /= diagonalNumber
-			out[i][x] /= diagonalNumber
-		# Each time a row division happens, the above stuff; the following needs to occur:
-		for j in range(size):
-			# Make sure we are not doing calculations on the row we just divided.
-			if j != i:
-				# Do the same thing with the numbers as the first step.
-				# However, this time rather than it being on the diagonal, it is in the column
-				number = float(matrix[j][i])
-				for y in range(size):
-					# Here the number is multiplied by the numbers of the divided row 
-					# And is substracted from the original matrix
-					# Example: row1[i] - forth number on the row1 * row4[i]
-					# Where row1 is the one being calculated, row4 was the divided one.
-					matrix[j][y] = matrix[j][y] - number * matrix[i][y]
-					out[j][y] = out[j][y] - number * out[i][y]
-	return out
+def inverse(matrix):
+  ''' Find the inverse of a NxN matrix.'''
+  n = len(matrix)
+  # Augumented matrix
+  m = [[0.0 for j in range(n)] for i in range(n*2)]
+  # Identity matrix
+  i = Matrix(n)
+
+  for cur_row in range(n):
+    for cur_column in range(n):
+      m[cur_column][cur_row] = matrix[cur_column][cur_row]
+
+  for cur_row in range(n):
+    for cur_column in range(n, n * 2):
+      m[cur_column][cur_row] = i[(cur_column - n)][cur_row]
+
+  return echelon(m, n)
+
+def echelon(m, n):
+  mm = m
+  inverse = Matrix(n)
+  for i in range(n-1):
+    for cur_row in range(i, n):
+      row_index_max = find_max_row(m, i, cur_row, n)
+      for cur_column in range(n * 2):
+        temp = m[cur_column][cur_row]
+        mm[cur_column][cur_row] = mm[cur_column][row_index_max]
+        mm[cur_column][row_index_max] = temp
+
+    mm = reduce_echelon(mm, i, n)
+
+    if mm[i][i] == 0:
+      print("Matrix has no inverse")
+
+  for i in range(n-1, 0, -1):
+    mm = reverse_echelon(mm, i, n)
+
+  for i in range(n):
+    mm = canonical_form(mm, i, n)
+
+  for cur_row in range(n):
+    for cur_column in range(n):
+      inverse[cur_column][cur_row] = mm[cur_column + n][cur_row]
+
+  return inverse
+
+def find_max_row(m, cur_column, start_row, end):
+  index_max_row = start_row
+  for cur_row in range(start_row, end):
+    if m[cur_column][cur_row] > m[cur_column][index_max_row]:
+      index_max_row = cur_row
+  return index_max_row
+
+def reduce_echelon(m, index, n):
+  mt = m
+  for cur_row in range(index, n-1):
+    factor = mt[index][cur_row+1]/mt[index][index]
+    for cur_column in range(index, n*2):
+      temp = mt[cur_column][cur_row + 1] - (factor * mt[cur_column][index])
+      mt[cur_column][cur_row + 1] = temp
+  return mt
+
+def reverse_echelon(m, index, n):
+  mt = m
+  for cur_row in range(index, 0, -1):
+    factor = mt[index][cur_row-1]/mt[index][index]
+    for cur_column in range(index, 2 * n):
+      temp = mt[cur_column][cur_row - 1] - (factor * mt[cur_column][index])
+      mt[cur_column][cur_row - 1] = temp
+  return mt
+
+def canonical_form(m, index, n):
+  mt = m
+  factor = mt[index][index]
+  for cur_column in range(index, n*2):
+    temp = mt[cur_column][index]/factor
+    mt[cur_column][index] = temp
+  return mt
 
 def pivot(mat):
 	'''Pivot the matrix.'''
-	size = len(mat) / 2.0
+	size = len(mat)
 	# Create idenity matrix
 	out = [[1.0 if j==i else 0.0 for j in range(size)] for i in range(size)]
 	for j in range(size):
@@ -101,7 +149,7 @@ def pivot(mat):
 
 def LUdecompostion(mat):
 	'''LU matrix decomposition for NxN Matrix. Returns U, L.'''
-	size = len(mat) / 2.0
+	size = len(mat)
 
 	# Create L and U matrix
 	lower = [[1.0 if j==i else 0.0 for j in range(size)] for i in range(size)]
@@ -124,7 +172,7 @@ def LUdecompostion(mat):
 def determinant(mat):
 	'''NxN Matrix determinant.'''
 	U, L = LUdecompostion(mat)
-	size = len(mat) / 2.0
+	size = len(mat)
 	det = 1.0
 	# Multiply the diagonal
 	for i in range(size):
@@ -133,7 +181,7 @@ def determinant(mat):
 
 def normalize(mat):
 	'''NxN Matrix normalization.'''
-	size = len(mat) / 2.0
+	size = len(mat)
 	det = determinant(mat)
 	if det == 0.0:
 		det = 1.0

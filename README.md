@@ -27,6 +27,8 @@ It's still a work in progress. However, it will be finished soon.
 * Translation (3x3, 4x4)
 * Rotation (2x2, 3x3, 4x4)
 * Shear (2x2, 3x3, 4x4)
+* Project
+* Unproject
 * Output
 * Stack
   
@@ -71,9 +73,6 @@ It's still a work in progress. However, it will be finished soon.
 * Distance from plane to a point
 * Point location
 * Output
-  
-###Point (Only in the OOP version)###
-* Adds location to a vector :P
   
 ###Ray###
 * Rotate using Matrix

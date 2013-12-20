@@ -1,5 +1,5 @@
-Copyright (c) 2012, Alex Marinescu
-              2012, Matthew Sitton
+Copyright (c) 2014, Alex Marinescu
+
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

@@ -1,5 +1,7 @@
 import math
 import src.library.math.matrix as m
+from src.library.math.vector import normalize, cross, dot, sub, neg
+from src.library.math.constants import PI
 
 def orthographic(left, right, bottom, top, near, far):
 	''' Orthographic projection matrix.'''
@@ -62,23 +64,27 @@ def perspectiveX(fov, aspect, znear, zfar):
            [0.0, 0.0,   d, 0.0]]
     return out
 
-def lookAt(eye, center, up):
-    ''' Matrix 4x4 lookAt function.'''
-    zaxis = normalize(center - eye)
-    xaxis = normalize(cross(up, zaxis))
-    yaxis = cross(zaxis, xaxis)
-           
-    out = [[ xaxis[0],  yaxis[0], -zaxis[0], 0.0],
-           [ xaxis[1],  yaxis[1], -zaxis[1], 0.0],
-           [ xaxis[2],  yaxis[2], -zaxis[2], 0.0],
-           [-dot(xaxis, eye), -dot(yaxis, eye), -dot(zaxis, eye), 1.0]]     
-    return out
+def lookAt(eye, center, upV):
+  ''' Matrix 4x4 lookAt function.'''
+  forward = normalize(sub(center, eye))
+  side = normalize(cross(upV, forward))
+  up = normalize(upV)
+
+  rotout = [[ side[0], up[0], -forward[0], 0.0],
+            [ side[1], up[1], -forward[1], 0.0],
+            [ side[2], up[2], -forward[2], 0.0],
+            [ 0.0, 0.0, 0.0, 1.0]]
+
+  transout = translate(neg(eye))
+
+  out = m.mulM(transout, rotout)
+  return out
 
 def scale(val):
 	''' Scale the matrix by a value.'''
-	scale = [[val, 0.0, 0.0, 0.0],
-			    [0.0, val, 0.0, 0.0],
-			    [0.0, 0.0, val, 0.0],
+	scale = [[val[0], 0.0, 0.0, 0.0],
+			    [0.0, val[1], 0.0, 0.0],
+			    [0.0, 0.0, val[2], 0.0],
 			    [0.0, 0.0, 0.0, 1.0]]
 	return scale
 
@@ -103,7 +109,7 @@ def rotate(axis, theta):
   y2 = nAxis[1] * nAxis[1]
   z2 = nAxis[2] * nAxis[2]
 
-  container = [[c + x2 * OneMinusCos, ((axis.vec[1] * nAxis[0]) * OneMinusCos) + (nAxis[2] * s), ((nAxis[2] * nAxis[0]) * OneMinusCos) - (nAxis[1] * s), 0.0],
+  container = [[c + x2 * OneMinusCos, ((nAxis[1] * nAxis[0]) * OneMinusCos) + (nAxis[2] * s), ((nAxis[2] * nAxis[0]) * OneMinusCos) - (nAxis[1] * s), 0.0],
                [((nAxis[0] * nAxis[1]) * OneMinusCos) - (nAxis[2] * s), c + y2 * OneMinusCos, ((nAxis[2] * nAxis[1]) * OneMinusCos) + (nAxis[0] * s), 0.0],
                [((nAxis[0] * nAxis[2]) * OneMinusCos) + (nAxis[1] * s), ((nAxis[1] * nAxis[2]) * OneMinusCos) - (nAxis[0] * s), c + z2 * OneMinusCos, 0.0],
                [0.0, 0.0, 0.0, 1.0]]

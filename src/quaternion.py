@@ -127,10 +127,54 @@ def toMatrix(quat):
     wy = quat[0] * quat[2]
     wz = quat[0] * quat[3]
 
-    return [[1.0 - 2.0 * (y2 - z2), 2.0 * (xy - wz), 2.0 * (xz + wy), 0.0],
-            [2.0 * (xy + wz), 1.0 - 2.0 * (x2 - z2), 2.0 * (yz - wz), 0.0],
-            [2.0 * (xz - wy), 2.0 * (yz + wx), 1.0 - 2.0 * (x2 - y2), 0.0],
+    return [[1.0 - 2.0 * (y2 + z2), 2.0 * (xy + wz), 2.0 * (xz - wy), 0.0],
+            [2.0 * (xy - wz), 1.0 - 2.0 * (x2 + z2), 2.0 * (yz + wz), 0.0],
+            [2.0 * (xz + wy), 2.0 * (yz - wx), 1.0 - 2.0 * (x2 + y2), 0.0],
             [0.0, 0.0, 0.0, 1.0]]
+
+def fromMatrix(m):
+
+    s = 0.0
+
+    q = Quaternion()
+
+    trace = m[0][0] + m[1][1] + m[2][2]
+
+    if trace > 0.0:
+
+        s = math.sqrt(trace + 1.0)
+
+        q[3] = s * 0.5
+
+        s = 0.5 / s
+
+        q[0] = (m[1][2] - m[2][1]) * s
+        q[1] = (m[2][0] - m[0][2]) * s 
+        q[3] = (m[0][1] - m[1][0]) * s 
+    else:
+        nxt = [1, 2, 0]
+
+        i = 0
+        j = 0
+        k = 0
+
+        if (m[1][1] > m[0][0]):
+            i = 1
+
+        if (m[2][2] > m[i][i]):
+            i = 2
+
+        j = nxt[i]
+        k = nxt[j]
+        s = math.sqrt((m[i][i] - (m[j][j] + m[k][k])) + 1.0)
+
+        q[i] = s * 0.5
+        s = 0.5 / s
+        q[3] = (m[j][k] - m[k][j]) * s
+        q[j] = (m[i][j] + m[j][i]) * s 
+        q[k] = (m[i][k] + m[k][i]) * s 
+
+    return q
 
 def log(quat):
     ''' Return the logarithm of a quaternion. '''
