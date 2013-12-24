@@ -1,6 +1,6 @@
 import math
 import src.library.math.matrix as m
-from src.library.math.vector import normalize, cross, dot, sub, neg
+from src.library.math.vector import normalize, cross, dot, sub, neg, div
 from src.library.math.constants import PI
 
 def orthographic(left, right, bottom, top, near, far):
@@ -13,37 +13,39 @@ def orthographic(left, right, bottom, top, near, far):
 	ty = -(top + bottom) / (top - bottom)
 	tz = -(far + near) / (far - near)
 
-	out = [[a, 0.0, 0.0, tx],
-		   [0.0, b, 0.0, ty],
-		   [0.0, 0.0, c, tz],
-		   [0.0, 0.0, 0.0, 1.0]]
+	out = [[a, 0.0, 0.0, 0.0],
+		     [0.0, b, 0.0, 0.0],
+		     [0.0, 0.0, c, 0.0],
+		     [tx, ty, tz, 1.0]]
 	return out
 
 def perspective(fov, aspect, znear, zfar):
     ''' Perspective projection matrix 4x4. FOVY'''
-    f = znear * math.tan((fov * (PI / 180.0))/2.0)
+    f = znear * math.tan((fov * PI / 360.0))
      
     # Flip signs to change dir :P
-    left = f * aspect
-    right = -f * aspect
+    left = -f * aspect
+    right = f * aspect
     
     bottom = -f
     top = f
     
     a = (2.0 * znear) / (right - left)
     b = (2.0 * znear) / (top - bottom)
-    c = (zfar + znear) / (znear - zfar)
-    d =  (2.0 * zfar * znear) / (znear - zfar)
+    c = -(-zfar - znear) / (znear - zfar)
+    d = -(-(2.0 * zfar) * znear) / (znear - zfar)
+    f = (right + left) / (right - left)
+    g = (top + bottom) / (top - bottom)
 
     out = [[  a, 0.0, 0.0, 0.0],
            [0.0,   b, 0.0, 0.0],
-           [0.0, 0.0,   c,-1.0],
+           [  f,   g,   c,-1.0],
            [0.0, 0.0,   d, 0.0]]
     return out
 
 def perspectiveX(fov, aspect, znear, zfar):
     ''' Perspective projection matrix 4x4. FOVX'''
-    f = znear * math.tan((fov * (PI / 180.0))/2.0)
+    f = znear * math.tan((fov * PI / 360.0))
 
     xmax = f
     xmin = -f
@@ -64,21 +66,19 @@ def perspectiveX(fov, aspect, znear, zfar):
            [0.0, 0.0,   d, 0.0]]
     return out
 
-def lookAt(eye, center, upV):
+def lookAt(eye, center, up):
   ''' Matrix 4x4 lookAt function.'''
-  forward = normalize(sub(center, eye))
-  side = normalize(cross(upV, forward))
-  up = normalize(upV)
+  f = normalize(sub(center, eye))
+  u = normalize(up)
+  s = normalize(cross(f, u))
+  u = cross(s, f)
 
-  rotout = [[ side[0], up[0], -forward[0], 0.0],
-            [ side[1], up[1], -forward[1], 0.0],
-            [ side[2], up[2], -forward[2], 0.0],
-            [ 0.0, 0.0, 0.0, 1.0]]
+  output = [[s[0], u[0], -f[0], 0.0],
+            [s[1], u[1], -f[1], 0.0],
+            [s[2], u[2], -f[2], 0.0],
+            [-dot(s, eye), -dot(u, eye), dot(f, eye), 1.0]]
 
-  transout = translate(neg(eye))
-
-  out = m.mulM(transout, rotout)
-  return out
+  return output
 
 def scale(val):
 	''' Scale the matrix by a value.'''
@@ -115,35 +115,21 @@ def rotate(axis, theta):
                [0.0, 0.0, 0.0, 1.0]]
   return container
 
-def project(x, y, z, modelview, projection, viewport):
-  ''' Project a point onto screen and return the coordinates. '''
-  temp = [0.0 for j in range(8)]
-  windowCoords = [0.0, 0.0, 0.0]
+def project(obj, model, proj, view):
+  ''' The most hacked together project code in the world. :| '''
+  matrix = m.mulM(model, proj)
+  vector = m.mulV(matrix, [obj[0], obj[1], obj[2], 1.0])
 
-  temp[0] = modelview[0][0] * x + modelview[1][0] * y + modelview[2][0] * z + modelview[3][0]
-  temp[1] = modelview[0][1] * x + modelview[1][1] * y + modelview[2][1] * z + modelview[3][1]
-  temp[2] = modelview[0][2] * x + modelview[1][2] * y + modelview[2][2] * z + modelview[3][2]
-  temp[3] = modelview[0][3] * x + modelview[1][3] * y + modelview[2][3] * z + modelview[3][3]
-  
-  temp[4] = projection[0][0] * temp[0] + projection[1][0] * temp[1] + projection[2][0] * temp[2] + projection[3][0] * temp[3]
-  temp[5] = projection[0][1] * temp[0] + projection[1][1] * temp[1] + projection[2][1] * temp[2] + projection[3][1] * temp[3]
-  temp[6] = projection[0][2] * temp[0] + projection[1][2] * temp[1] + projection[2][2] * temp[2] + projection[3][2] * temp[3]
-  temp[7] = -temp[2]
-  # The results normalizes between -1 and 1
-  if (temp[7] == 0.0):
-    return [0.0, 0.0, 0.0]
-  temp[7] = 1.0 / temp[7]
+  a = (obj[0] * matrix[0][3]) + (obj[1] * matrix[1][3]) + (obj[2] * matrix[2][3]) + matrix[3][3]
 
-  # Perspective transformation
-  temp[4] *= temp[7]
-  temp[5] *= temp[7]
-  temp[6] *= temp[7]
+  if a == 0.0:
+    vector = vector
+  else:
+    vector = div(a, vector)
 
-  # Window coordinates
-  windowCoords[0] = (temp[4] * 0.5 + 0.5) * viewport[2] + viewport[0]
-  windowCoords[1] = (temp[5] * 0.5 + 0.5) * viewport[3] + viewport[1]
-  windowCoords[2] = (1.0 + temp[6]) * 0.5
-  return windowCoords
+  vector[0] = (vector[0] + 1) * 0.5 * view[2] + view[0]
+  vector[1] = (vector[1] + 1) * 0.5 * view[3] + view[1]
+  return vector
 
 def unproject(winx, winy, winz, modelview, projection, viewport):
   ''' Unproject a point from the screen and return the object coordinates. '''

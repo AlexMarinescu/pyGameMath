@@ -11,36 +11,41 @@ def Vector(n):
 
 def add(vecA, vecB):
 	''' Add two vectors. '''
-	out = Vector(len(vecA))
-	for i in range(len(out)):
+	outL = len(vecA)
+	out = Vector(outL)
+	for i in range(outL):
 		out[i] = vecA[i] + vecB[i]
 	return out
 
 def sub(vecA, vecB):
 	''' Substract two vectors. '''
-	out = Vector(len(vecA))
-	for i in range(len(out)):
+	outL = len(vecA)
+	out = Vector(outL)
+	for i in range(outL):
 		out[i] = vecA[i] - vecB[i]
 	return out
 
 def mul(scalar, vecA):
 	''' Multiply a vector and a scalar. Same as scaling. '''
-	out = Vector(len(vecA))
-	for i in range(len(out)):
+	outL = len(vecA)
+	out = Vector(outL)
+	for i in range(outL):
 		out[i] = vecA[i] * scalar
 	return out
 
 def div(scalar, vecA):
 	''' Divide a vector by a scalar. Same as scaling. '''
-	out = Vector(len(vecA))
-	for i in range(out):
+	outL = len(vecA)
+	out = Vector(outL)
+	for i in range(outL):
 		out[i] = vecA[i] / scalar
 	return out
 
 def neg(vec):
 	''' Negate the vector and return it. '''
-	out = Vector(len(vec))
-	for i in range(len(vec)):
+	outL = len(vecA)
+	out = Vector(outL)
+	for i in range(outL):
 		out[i] = -vec[i]
 	return out
 
