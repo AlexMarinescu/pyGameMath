@@ -1,61 +1,71 @@
+import math
 from copy import deepcopy
 from src.library.math.constants import PI
 
 try:
-	range = xrange
+    range = xrange
 except:
-	pass
+    pass
 
 def Matrix(size):
-	'''Returns a 2D array/identity matrix of a specific size. Zero matrix.'''
-	return [[1.0 if j == i else 0.0 for j in range(size)] for i in range(size)]
+    '''Returns a 2D array/identity matrix of a specific size. Zero matrix.'''
+    return [[1.0 if j == i else 0.0 for j in range(size)] for i in range(size)]
 
 def add(matA, matB):
-	'''Adds two matrices and returns a new one.'''
-	size = len(matA)
-	matC = [[0.0 for i in range(size)] for j in range(size)]
-	for i in range(size):
-		for j in range(size):
-			matC[i][j] = matA[i][j] + matB[i][j]
-	return matC
+    '''Adds two matrices and returns a new one.'''
+    size = len(matA)
+    matC = [[0.0 for i in range(size)] for j in range(size)]
+    for i in range(size):
+        for j in range(size):
+            matC[i][j] = matA[i][j] + matB[i][j]
+    return matC
 
 def sub(matA, matB):
-	'''Substracts two matrices and retuns a new one.'''
-	size = len(matA)
-	matC = [[0.0 for i in range(size)] for j in range(size)]
-	for i in range(size):
-		for j in range(size):
-			matC[i][j] = matA[i][j] - matB[i][j]
-	return matC
+    '''Substracts two matrices and retuns a new one.'''
+    size = len(matA)
+    matC = [[0.0 for i in range(size)] for j in range(size)]
+    for i in range(size):
+        for j in range(size):
+            matC[i][j] = matA[i][j] - matB[i][j]
+    return matC
 
 def mulM(matA, matB):
-	'''Multiply two matrices and return a new matrix.'''
-	size = len(matA)
-	matC = [[0.0 for i in range(size)] for j in range(size)]
-	for i in range(size):
-		for j in range(size):
-			for k in range(size):
-				matC[i][j] += matA[i][k] * matB[k][j]
-	return matC
+    '''Multiply two matrices and return a new matrix.'''
+    size = len(matA)
+    matC = [[0.0 for i in range(size)] for j in range(size)]
+    for i in range(size):
+        for j in range(size):
+            for k in range(size):
+                matC[i][j] += matA[i][k] * matB[k][j]
+    return matC
 
 def mulV(mat, vec):
-	'''Multiply a matrix and vectors and return a new vector.'''
-	size = len(mat)
-	vecS = len(vec)
-	vecO = [0.0 for i in range(vecS)]
-	for i in range(size):
-		for j in range(size):
-			vecO[i] += vec[j] * mat[i][j]
-	return vecO
+    '''Multiply a matrix and vectors and return a new vector.'''
+    size = len(mat)
+    vecS = len(vec)
+    vecO = [0.0 for i in range(vecS)]
+    for i in range(size):
+        for j in range(size):
+            vecO[i] += vec[j] * mat[i][j]
+    return vecO
+
+def div(mat, scalar):
+    ''' Divide a matrix by a scalar. '''
+    size = len(mat)
+    matC = [[0.0 for i in range(size)] for j in range(size)]
+    for i in range(size):
+        for j in range(size):
+            matC[i][j] = mat[i][j] / scalar
+    return matC
 
 def transpose(mat):
-	'''Transposes a matrix.'''
-	size = len(mat)
-	out = [[0.0 for i in range(size)] for j in range(size)]
-	for i in range(size):
-		for j in range(size):
-			out[i][j]= mat[j][i]
-	return out
+    '''Transposes a matrix.'''
+    size = len(mat)
+    out = [[0.0 for i in range(size)] for j in range(size)]
+    for i in range(size):
+        for j in range(size):
+            out[i][j]= mat[j][i]
+    return out
 
 def inverse(matrix):
   ''' Find the inverse of a NxN matrix.'''
@@ -137,56 +147,52 @@ def canonical_form(m, index, n):
   return mt
 
 def pivot(mat):
-	'''Pivot the matrix.'''
-	size = len(mat)
-	# Create idenity matrix
-	out = [[1.0 if j==i else 0.0 for j in range(size)] for i in range(size)]
-	for j in range(size):
-		row = max(range(j, size), key=lambda i: mat[i][j])
-		if j != row:
-			out[j], j[row] = out[row], out[j]
-	return out
+    '''Pivot the matrix.'''
+    size = len(mat)
+    # Create idenity matrix
+    out = Matrix(size)
+    for j in range(size):
+        row = max(range(j, size), key=lambda i: mat[i][j])
+        if j != row:
+            out[j], out[row] = out[row], out[j]
+    return out
 
 def LUdecompostion(mat):
-	'''LU matrix decomposition for NxN Matrix. Returns U, L.'''
-	size = len(mat)
-
-	# Create L and U matrix
-	lower = [[1.0 if j==i else 0.0 for j in range(size)] for i in range(size)]
-	upper = [[1.0 if j==i else 0.0 for j in range(size)] for i in range(size)]
-
-	# Pivot the matrix
-	pivotM = pivot(mat)
-	a2 = mulM(pivot, mat)
-	for j in range(size):
-		for i in range(j + 1):
-			itemSum = sum(upper[k][j] * lower[i][k] for k in range(i))
-			upper[i][j] = mat[i][j] - itemSum
-		for i in range(j, size):
-			itemSum = sum(upper[k][j] * lower[i][k] for k in range(j))
-			if upper[j][i] == 0.0:
-				upper[j][j] = 1.0
-			lower[i][j] = (mat[i][j] - itemSum) / upper[j][j]
-	return upper, lower
+    '''LU matrix decomposition for NxN Matrix. Returns U, L.'''
+    size = len(mat)
+    # Create L and U matrix
+    lower = Matrix(size)
+    upper = Matrix(size)
+    # Pivot the matrix
+    pivotM = pivot(mat)
+    a2 = mulM(mat, pivotM)
+    for j in range(size):
+        for i in range(j + 1):
+            itemSum1 = sum(upper[k][j] * lower[i][k] for k in range(i))
+            upper[i][j] = a2[i][j] - itemSum1
+        for i in range(j, size):
+            itemSum2 = sum(upper[k][j] * lower[i][k] for k in range(j))
+            lower[i][j] = (a2[i][j] - itemSum2) / upper[j][j]
+    return upper, lower
 
 def determinant(mat):
-	'''NxN Matrix determinant.'''
-	U, L = LUdecompostion(mat)
-	size = len(mat)
-	det = 1.0
-	# Multiply the diagonal
-	for i in range(size):
-		det *= U[i][i]
-	return det * -1.0
+    '''NxN Matrix determinant.'''
+    U, L = LUdecompostion(mat)
+    size = len(mat)
+    det = 1.0
+    # Multiply the diagonal
+    for i in range(size):
+        det *= U[i][i]
+    return det * -1.0
 
 def normalize(mat):
-	'''NxN Matrix normalization.'''
-	size = len(mat)
-	det = determinant(mat)
-	if det == 0.0:
-		det = 1.0
-	out = [[0.0 for i in range(size)] for j in range(size)]
-	for x in range(size):
-		for y in range(size):
-			out[x][y] = mat[x][y] / det
-	return out
+    '''NxN Matrix normalization.'''
+    size = len(mat)
+    det = determinant(mat)
+    if det == 0.0:
+        det = 1.0
+    out = [[0.0 for i in range(size)] for j in range(size)]
+    for x in range(size):
+        for y in range(size):
+            out[x][y] = mat[x][y] / det
+    return out

@@ -43,7 +43,7 @@ def div(scalar, vecA):
 
 def neg(vec):
 	''' Negate the vector and return it. '''
-	outL = len(vecA)
+	outL = len(vec)
 	out = Vector(outL)
 	for i in range(outL):
 		out[i] = -vec[i]

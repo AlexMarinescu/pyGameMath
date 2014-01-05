@@ -1,5 +1,7 @@
 import math
 import src.library.math.vector as vec
+import src.library.math.matrix as mat
+import src.library.math.common as com
 
 try:
     range = xrange
@@ -8,7 +10,7 @@ except:
 
 def Quaternion():
     ''' Easier to create a quaternion. '''
-    return [0.0 for i in range(4)]
+    return [1.0, 0.0, 0.0, 0.0]
 
 def add(quat, quat1):
     ''' Add two quaternions. '''
@@ -23,27 +25,20 @@ def div(quat, nr):
     return [quat[0] / nr, quat[1] / nr, quat[2] / nr, quat[3] / nr]
 
 def mulQ(quat, quat1):
-    ''' Multiply two quaternion and return a new one. '''
-    return [quat[0] * quat1[1] + quat[1] * quat1[0] + quat[2] * quat1[3] - quat[3] * quat1[2],
-            quat[0] * quat1[2] + quat[2] * quat1[0] + quat[3] * quat1[1] - quat[1] * quat1[3],
-            quat[0] * quat1[3] + quat[3] * quat1[0] + quat[1] * quat1[2] - quat[2] * quat1[1],
-            quat[0] * quat1[0] - quat[1] * quat1[1] - quat[2] * quat1[2] - quat[3] * quat1[3]]
+    ''' Multiply two quaternions and return a new one. '''
+    w = quat[0] * quat1[0] - quat[1] * quat1[1] - quat[2] * quat1[2] - quat[3] * quat1[3]
+    x = quat[0] * quat1[1] + quat[1] * quat1[0] + quat[2] * quat1[3] - quat[3] * quat1[2]
+    y = quat[0] * quat1[2] + quat[2] * quat1[0] + quat[3] * quat1[1] - quat[1] * quat1[3]
+    z = quat[0] * quat1[3] + quat[3] * quat1[0] + quat[1] * quat1[2] - quat[2] * quat1[1]
+    return [w, x, y, z]
 
-def mulV(quat, vec):
+def mulV(quat, vect):
     ''' Multiply a quaternion by a vector. Returns a 3D vector. '''
-    vecN = vec.normalize(vec)
-
-    vecQuat = Quaternion()
-    resQuat = Quaternion()
-
-    vecQuat[1] = vecN[0]
-    vecQuat[2] = vecN[1]
-    vecQuat[3] = vecN[2]
-
-    resQuat = mulQ(vecQuat, conjugate(quat))
-    resQuat = mulQ(resQuat, quat)
-
-    return [resQuat[1], resQuat[2], resQuat[3]]
+    w = -quat[1] * vect[0] - quat[2] * vect[1] - quat[3] * vect[2]
+    x =  quat[0] * vect[0] + quat[2] * vect[2] - quat[3] * vect[1]
+    y =  quat[0] * vect[1] + quat[3] * vect[0] - quat[1] * vect[2]
+    z =  quat[0] * vect[2] + quat[1] * vect[1] - quat[2] * vect[0]
+    return [w, x, y, z]
 
 def mulS(quat, nr):
     ''' Multiply a quaternion by a number. '''
@@ -108,12 +103,31 @@ def rotateZ(theta):
     thetaOver2 = theta * 0.5
     return [math.cos(thetaOver2), 0.0, 0.0, math.sin(thetaOver2)]
 
-def rotate(axis, theta):
+def angleAxis(theta, axis):
+    ''' Returns a quaternion from angle and axis. '''
+    halfAngle = theta * 0.5
+    sHAngle = math.sin(halfAngle)
+    cHAngle = math.cos(halfAngle)
+    nAxis = vec.normalize(axis)
+    return [cHAngle, nAxis[0] * sHAngle, nAxis[1] * sHAngle, nAxis[2] * sHAngle]
+
+def rotate(origin, axis, theta):
     ''' Returns a quaternion that rotates around a axis. '''
     thetaOver2 = theta * 0.5
-    sinThetaOver2 = math.sin(thetaOver2)
-    axisN = vec.normalize(axis)
-    return [math.cos(thetaOver2), axis[0] * sinThetaOver2, axis[1] * sinThetaOver2, axis[2] * sinThetaOver2]
+    sinThetaOver2 = math.sin(math.radians(thetaOver2))
+    cosThetaOver2 = math.cos(math.radians(thetaOver2))
+    Q1 = [cosThetaOver2, axis[0] * sinThetaOver2, axis[1] * sinThetaOver2, axis[2] * sinThetaOver2]
+    rotation = mulQ(mulV(Q1, origin), conjugate(Q1))
+    return [rotation[1], rotation[2], rotation[3]]
+
+def rotateQ(quat, axis):
+    ''' Rotates a vector by a quaternion. '''
+    l = len(axis)
+    if l == 4:
+        return mulQ(mulQ(quat, axis), conjugate(quat))
+    else:
+        final = mulQ(mulV(quat, axis), conjugate(quat))
+        return [final[1], final[2], final[3]]
 
 def toMatrix(quat):
     ''' Converts a quaternion to a rotational 4x4 matrix. '''
@@ -127,54 +141,80 @@ def toMatrix(quat):
     wy = quat[0] * quat[2]
     wz = quat[0] * quat[3]
 
-    return [[1.0 - 2.0 * (y2 + z2), 2.0 * (xy + wz), 2.0 * (xz - wy), 0.0],
-            [2.0 * (xy - wz), 1.0 - 2.0 * (x2 + z2), 2.0 * (yz + wz), 0.0],
-            [2.0 * (xz + wy), 2.0 * (yz - wx), 1.0 - 2.0 * (x2 + y2), 0.0],
-            [0.0, 0.0, 0.0, 1.0]]
+    result = mat.Matrix(4)
+
+    result[0][0] = 1.0 - 2.0 * y2 - 2.0 * z2
+    result[0][1] = 2.0 * xy + 2.0 * wz
+    result[0][2] = 2.0 * xz - 2.0 * wy
+    result[0][3] = 0.0
+
+    result[1][0] = 2.0 * xy - 2.0 * wz
+    result[1][1] = 1.0 - 2.0 * x2 - 2.0 * z2
+    result[1][2] = 2.0 * yz + 2.0 * wx
+    result[1][3] = 0.0
+
+    result[2][0] = 2.0 * xz + 2.0 * wy
+    result[2][1] = 2.0 * yz - 2.0 * wx
+    result[2][2] = 1.0 - 2.0 * x2  - 2.0 * y2
+    result[2][3] = 0.0
+
+    result[3][0] = 0.0
+    result[3][1] = 0.0
+    result[3][2] = 0.0
+    result[3][3] = 1.0
+
+    return result
 
 def fromMatrix(m):
+    ''' Converts a matrix to a quaternion. '''
+    fourXSquaredMinus1 = m[0][0] - m[1][1] - m[2][2]
+    fourYSquaredMinus1 = m[1][1] - m[0][0] - m[2][2]
+    fourZSquaredMinus1 = m[2][2] - m[0][0] - m[1][1]
+    fourWSquaredMinus1 = m[0][0] + m[1][1] + m[2][2]
 
-    s = 0.0
+    biggestIndex = 0
 
-    q = Quaternion()
+    fourBiggestSquaredMinus1 = fourWSquaredMinus1
 
-    trace = m[0][0] + m[1][1] + m[2][2]
+    if(fourXSquaredMinus1 > fourBiggestSquaredMinus1):
+        biggestIndex = 1
+    elif(fourYSquaredMinus1 > fourBiggestSquaredMinus1):
+        biggestIndex = 2
+    elif(fourZSquaredMinus1 > fourBiggestSquaredMinus1):
+        biggestIndex = 3
 
-    if trace > 0.0:
+    biggestVal = math.sqrt(fourBiggestSquaredMinus1 + 1) * 0.5
+    mult = 0.25 / biggestVal
 
-        s = math.sqrt(trace + 1.0)
+    result = Quaternion()
 
-        q[3] = s * 0.5
+    if biggestIndex == 0:
+        result[0] = biggestVal
+        result[1] = (m[1][2] - m[2][1]) * mult
+        result[2] = (m[2][0] - m[0][2]) * mult
+        result[3] = (m[0][1] - m[1][0]) * mult
+        return result
 
-        s = 0.5 / s
+    if biggestIndex == 1:
+        result[0] = (m[1][2] - m[2][1]) * mult
+        result[1] = biggestVal
+        result[2] = (m[0][1] + m[1][0]) * mult
+        result[3] = (m[2][0] + m[0][2]) * mult
+        return result
 
-        q[0] = (m[1][2] - m[2][1]) * s
-        q[1] = (m[2][0] - m[0][2]) * s 
-        q[3] = (m[0][1] - m[1][0]) * s 
-    else:
-        nxt = [1, 2, 0]
+    if biggestIndex == 2:
+        result[0] = (m[2][0] - m[0][2]) * mult
+        result[1] = (m[0][1] + m[1][0]) * mult
+        result[2] = biggestVal
+        result[3] = (m[1][2] + m[2][1]) * mult
+        return result
 
-        i = 0
-        j = 0
-        k = 0
-
-        if (m[1][1] > m[0][0]):
-            i = 1
-
-        if (m[2][2] > m[i][i]):
-            i = 2
-
-        j = nxt[i]
-        k = nxt[j]
-        s = math.sqrt((m[i][i] - (m[j][j] + m[k][k])) + 1.0)
-
-        q[i] = s * 0.5
-        s = 0.5 / s
-        q[3] = (m[j][k] - m[k][j]) * s
-        q[j] = (m[i][j] + m[j][i]) * s 
-        q[k] = (m[i][k] + m[k][i]) * s 
-
-    return q
+    if biggestIndex == 3:
+        result[0] = (m[0][1] - m[1][0]) * mult
+        result[1] = (m[2][0] + m[0][2]) * mult
+        result[2] = (m[1][2] + m[2][1]) * mult
+        result[3] = biggestVal
+        return result
 
 def log(quat):
     ''' Return the logarithm of a quaternion. '''
