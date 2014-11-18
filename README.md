@@ -11,6 +11,17 @@ It's still a work in progress. However, it will be finished soon.
 * There is a new folder called "experimental" inside the "src" that stores the features that are unfinished.
 * Spherical harmonics were moved under "experimental".
 
+####Update 2:####
+* Updated the matrix and vector, fixed a lot of bugs, still dynamic class that allows Nth dimensions
+* A lot of the specific 2D, 3D, 4D functions are outside the dynamic class
+* Now it allows in-place transformations
+* Some math operations do not support Nth dimensions and will return exceptions
+* Removed LU decomposition
+* Temporary Removed NxN Matrix Normalization
+* Temporary Removed NxN Matrix Determinant
+* Temporary Removed NxN Matrix Inverse Calculation
+* Quaternion and the rest need to be updated to match the new style.
+
 ##Supported features:##
 
 ###NxN Matrices###
@@ -18,10 +29,6 @@ It's still a work in progress. However, it will be finished soon.
 * Scale
 * NxN Matrix Multiplication
 * NxN Matrix * N Dimensions Vector Multiplication
-* NxN Matrix Inverse Calculation (Gauss Jordan Elimination)
-* LU Decomposition
-* NxN Matrix Determinant
-* NxN Matrix Normalization
 * 4x4 Perspective Projection Matrix
 * lookAt 4x4 Matrix
 * Translation (3x3, 4x4)
@@ -29,8 +36,6 @@ It's still a work in progress. However, it will be finished soon.
 * Shear (2x2, 3x3, 4x4)
 * Project
 * Unproject
-* Output
-* Stack
   
 ###N Dimensions Vectors###
 * Dot Product
@@ -39,8 +44,6 @@ It's still a work in progress. However, it will be finished soon.
 * Reflection
 * Invert
 * Normalize
-* Output
-* Stack
   
 ###Quaternions###
 * Normalize
@@ -94,7 +97,9 @@ It's still a work in progress. However, it will be finished soon.
 * Coefficients from Irradiance map
   
 ###TO DO:###
-* AABB/OBB/Sphere/Cylinder (The intersections between a ray and each, will be inside the ray class).
+* AABB/Sphere/Cylinder  (Everything is done, just needs to be cleaned up before pushed.)
+* GJK (Done, needs to be tested)
+* Primitives/Supports for GJK (Basic ones are done, needs to be updated)
 * Spherical Harmonics.
 * Tutorial on how to use everything.
 
