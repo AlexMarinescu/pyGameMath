@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/AlexMarinescu/pyGameMath.svg?branch=master)](https://travis-ci.org/AlexMarinescu/pyGameMath)
+
 ![ScreenShot](https://raw.github.com/AlexMarinescu/pyGameMath/master/data/pyGameMathLogo.png)
 
 pyGameMath

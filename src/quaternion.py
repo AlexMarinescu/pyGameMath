@@ -1,12 +1,8 @@
 import math
-import src.library.math.vector as vec
-import src.library.math.matrix as mat
-import src.library.math.common as com
-
-try:
-    range = xrange
-except:
-    pass
+from src.pycompat import *
+import src.vector as vec
+import src.matrix as mat
+import src.common as com
 
 def Quaternion():
     ''' Easier to create a quaternion. '''

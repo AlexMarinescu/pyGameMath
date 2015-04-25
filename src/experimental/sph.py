@@ -1,7 +1,7 @@
 import math
 
-from src.library.math.constants import PI
-from src.library.math.legendre import Legendre
+from src.constants import PI
+from src.experimental.legendre import Legendre
 
 
 # n! where n >= 0

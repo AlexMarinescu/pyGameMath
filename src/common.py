@@ -1,5 +1,6 @@
-import src.library.math.vector as vec
 import math
+from src.pycompat import *
+import src.vector as vec
 
 # Convert 1D to multidimensional array
 def convertArr(l, n):

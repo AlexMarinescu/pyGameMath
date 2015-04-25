@@ -1,6 +1,6 @@
-from src.library.math.constants import PI
-from src.library.math.vector import dot
-from src.library.math.sph_sample import *
+from src.constants import PI
+from src.vector import dot
+from src.experimental.sph_sample import *
 
 
 # Spherical Harmonics Vertex

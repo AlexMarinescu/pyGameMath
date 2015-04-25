@@ -1,6 +1,7 @@
-import src.library.math.vector as vec
-import src.library.math.matrix as mat
-import src.library.math.quaternion as quat
+from src.pycompat import *
+import src.vector as vec
+import src.matrix as mat
+import src.quaternion as quat
 
 
 # Ray Class

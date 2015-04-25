@@ -1,11 +1,8 @@
 import math
-from src.library.math import vector
-from src.library.math.constants import PI
-
-try:
-    range = xrange
-except:
-    pass
+from src.pycompat import *
+from src.common import convert2Dto1D
+from src import vector
+from src.constants import PI
 
 def zero_matrix(size):
     ''' Return zero filled matrix list of the requested size'''
@@ -352,7 +349,7 @@ class Matrix(object):
         else:
             self.matrix = data
 
-        self.c_matrix = typeutils.conv_list_2d(self.matrix, gl.GLfloat)
+        self.c_matrix = convert2Dto1D(self.matrix)
 
 
     def __mul__(self, other):

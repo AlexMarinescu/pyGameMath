@@ -1,5 +1,5 @@
-from vector import Vector
-from sph import *
+from src.vector import vector
+from src.experimental.sph import *
 
 
 # Spherical Harmonics Sample Class

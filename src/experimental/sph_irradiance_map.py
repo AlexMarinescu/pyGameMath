@@ -2,8 +2,8 @@ import pprint
 import math
 import struct
 
-from src.library.math.constants import PI
-from src.library.math.common import sinc
+from src.constants import PI
+from src.common import sinc
 
 
 # Calculate Spherical Harmonics coefficients using irradiance maps

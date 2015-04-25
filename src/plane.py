@@ -1,4 +1,5 @@
-import src.library.math.vector as vector
+from src.pycompat import *
+import src.vector as vector
 
 def Plane(*args):
 	''' Define a plane using 3 vectors, return a 4 item 1D array. '''

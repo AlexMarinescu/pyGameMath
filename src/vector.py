@@ -1,9 +1,5 @@
 import math
-
-try:
-	range = xrange
-except:
-	pass
+from src.pycompat import *
 
 def zero_vector(size):
     ''' Return a zero filled vector list of the requested size '''
