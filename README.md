@@ -1,19 +1,17 @@
-[![Build Status](https://travis-ci.org/AlexMarinescu/pyGameMath.svg?branch=master)](https://travis-ci.org/AlexMarinescu/pyGameMath)
-
 ![ScreenShot](https://raw.github.com/AlexMarinescu/pyGameMath/master/data/pyGameMathLogo.png)
 
-pyGameMath
+pyGameMath [![Build Status](https://travis-ci.org/AlexMarinescu/pyGameMath.svg?branch=master)](https://travis-ci.org/AlexMarinescu/pyGameMath)
 ==========
 This is a math library written in python for 2D/3D game development which is also compatible with pypy. I made it while I was learning more about the math used in graphics development and for personal use in OpenGL related projects.
 It's still a work in progress. However, it will be finished soon.
 
-####Update 1:####
+#####Update 1:#####
 * The old version which is fully OOP is inside the folder "oop math lib", some bugs are still present.
 * The new version has most of the features functional based for performance, it is inside the folder "src" and all the bugs from the previous have been nuked.
 * There is a new folder called "experimental" inside the "src" that stores the features that are unfinished.
 * Spherical harmonics were moved under "experimental".
 
-####Update 2:####
+#####Update 2:#####
 * Updated the matrix and vector, fixed a lot of bugs, still dynamic class that allows Nth dimensions
 * A lot of the specific 2D, 3D, 4D functions are outside the dynamic class
 * Now it allows in-place transformations
@@ -24,9 +22,9 @@ It's still a work in progress. However, it will be finished soon.
 * Temporary Removed NxN Matrix Inverse Calculation
 * Quaternion and the rest need to be updated to match the new style.
 
-##Supported features:##
+###Supported features:###
 
-###NxN Matrices###
+#####NxN Matrices:#####
 * Transpose
 * Scale
 * NxN Matrix Multiplication
@@ -39,7 +37,7 @@ It's still a work in progress. However, it will be finished soon.
 * Project
 * Unproject
   
-###N Dimensions Vectors###
+#####N Dimensions Vectors:#####
 * Dot Product
 * Cross Product (No 7D)
 * Refraction
@@ -47,7 +45,7 @@ It's still a work in progress. However, it will be finished soon.
 * Invert
 * Normalize
   
-###Quaternions###
+#####Quaternions:#####
 * Normalize
 * Dot Product
 * Rotation
@@ -67,7 +65,7 @@ It's still a work in progress. However, it will be finished soon.
 * Quaternion Splines (SQUAD)
 * Output
   
-###Plane###
+#####Plane:#####
 * Define using
     * 3 Vectors
     * Point and Normal
@@ -79,33 +77,33 @@ It's still a work in progress. However, it will be finished soon.
 * Point location
 * Output
   
-###Ray###
+#####Ray:#####
 * Rotate using Matrix
 * Rotate using Quaternions
 * Translate
 * Output
 
-###Legendre Polynomial (Experimental)###
+#####Legendre Polynomial (Experimental):#####
 * For spherical harmonics
 * (l - m)PML(x) = x(2l - 1)PML-1(x) - (l + m -1)PML-2(x)
 * PMM(x) = (-1)^m * (2m - 1)!!(1 - x^2)^m/2
 * PMM+1(x) = x(2m + 1)PMM(x)
 
-###Spherical Harmonics (Experimental)###
+#####Spherical Harmonics (Experimental):#####
 * Normalization Constant (K)
 * Sample a Spherical Harmonic function Y(l, m)
 * Sample
 * Generate samples
 * Coefficients from Irradiance map
   
-###TO DO:###
+#####To do:#####
 * AABB/Sphere/Cylinder  (Everything is done, just needs to be cleaned up before pushed.)
 * GJK (Done, needs to be tested)
 * Primitives/Supports for GJK (Basic ones are done, needs to be updated)
 * Spherical Harmonics.
 * Tutorial on how to use everything.
 
-###Note:###
+#####Note:#####
 * Vectors Cross Product is only for 3D and 7D vectors, but currently only the 3D version is implemented.
 * While the Vector and Matrix Stacks are not necessary and can be created on the go by anyone, they simplify and organize things a bit better.
 * Optimizations are going to be done more indepth once the whole thing is finished and perhaps when I notice that a certain operations/transformation takes too long to execute.
