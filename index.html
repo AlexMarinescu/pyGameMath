@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>pyGameMath by explosiveduck</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>pyGameMath</h1>
+        <h2>Math library for game programming in python.</h2>
+        <a href="https://github.com/explosiveduck/pyGameMath" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <p><img src="https://raw.github.com/AlexMarinescu/pyGameMath/master/data/pyGameMathLogo.png" alt="ScreenShot"></p>
+
+<h1>
+<a id="pygamemath-" class="anchor" href="#pygamemath-" aria-hidden="true"><span class="octicon octicon-link"></span></a>pyGameMath <a href="https://travis-ci.org/AlexMarinescu/pyGameMath"><img src="https://travis-ci.org/AlexMarinescu/pyGameMath.svg?branch=master" alt="Build Status"></a>
+</h1>
+
+<p>This is a math library written in python for 2D/3D game development which is also compatible with pypy. I made it while I was learning more about the math used in graphics development and for personal use in OpenGL related projects.
+It's still a work in progress. However, it will be finished soon.</p>
+
+<h5>
+<a id="update-1" class="anchor" href="#update-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Update 1:</h5>
+
+<ul>
+<li>The old version which is fully OOP is inside the folder "oop math lib", some bugs are still present.</li>
+<li>The new version has most of the features functional based for performance, it is inside the folder "src" and all the bugs from the previous have been nuked.</li>
+<li>There is a new folder called "experimental" inside the "src" that stores the features that are unfinished.</li>
+<li>Spherical harmonics were moved under "experimental".</li>
+</ul>
+
+<h5>
+<a id="update-2" class="anchor" href="#update-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Update 2:</h5>
+
+<ul>
+<li>Updated the matrix and vector, fixed a lot of bugs, still dynamic class that allows Nth dimensions</li>
+<li>A lot of the specific 2D, 3D, 4D functions are outside the dynamic class</li>
+<li>Now it allows in-place transformations</li>
+<li>Some math operations do not support Nth dimensions and will return exceptions</li>
+<li>Removed LU decomposition</li>
+<li>Temporary Removed NxN Matrix Normalization</li>
+<li>Temporary Removed NxN Matrix Determinant</li>
+<li>Temporary Removed NxN Matrix Inverse Calculation</li>
+<li>Quaternion and the rest need to be updated to match the new style.</li>
+</ul>
+
+<h3>
+<a id="supported-features" class="anchor" href="#supported-features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Supported features:</h3>
+
+<h5>
+<a id="nxn-matrices" class="anchor" href="#nxn-matrices" aria-hidden="true"><span class="octicon octicon-link"></span></a>NxN Matrices:</h5>
+
+<ul>
+<li>Transpose</li>
+<li>Scale</li>
+<li>NxN Matrix Multiplication</li>
+<li>NxN Matrix * N Dimensions Vector Multiplication</li>
+<li>4x4 Perspective Projection Matrix</li>
+<li>lookAt 4x4 Matrix</li>
+<li>Translation (3x3, 4x4)</li>
+<li>Rotation (2x2, 3x3, 4x4)</li>
+<li>Shear (2x2, 3x3, 4x4)</li>
+<li>Project</li>
+<li>Unproject</li>
+</ul>
+
+<h5>
+<a id="n-dimensions-vectors" class="anchor" href="#n-dimensions-vectors" aria-hidden="true"><span class="octicon octicon-link"></span></a>N Dimensions Vectors:</h5>
+
+<ul>
+<li>Dot Product</li>
+<li>Cross Product (No 7D)</li>
+<li>Refraction</li>
+<li>Reflection</li>
+<li>Invert</li>
+<li>Normalize</li>
+</ul>
+
+<h5>
+<a id="quaternions" class="anchor" href="#quaternions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quaternions:</h5>
+
+<ul>
+<li>Normalize</li>
+<li>Dot Product</li>
+<li>Rotation</li>
+<li>Conjugate</li>
+<li>Inverse</li>
+<li>Negate</li>
+<li>Rotate X, Y, Z</li>
+<li>Arbitary Axis Rotation</li>
+<li>To Rotation Matrix (4x4)</li>
+<li>Cross Product</li>
+<li>Vector3D, Scalar Multiplication</li>
+<li>Logarithm</li>
+<li>Exponential</li>
+<li>Power</li>
+<li>Liner Interpolation (LERP)</li>
+<li>Spherical Interpolation (SLERP)</li>
+<li>Quaternion Splines (SQUAD)</li>
+<li>Output</li>
+</ul>
+
+<h5>
+<a id="plane" class="anchor" href="#plane" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plane:</h5>
+
+<ul>
+<li>Define using
+
+<ul>
+<li>3 Vectors</li>
+<li>Point and Normal</li>
+<li>Manual input</li>
+</ul>
+</li>
+<li>Dot Product</li>
+<li>Normalize</li>
+<li>Best fit normal and D value</li>
+<li>Distance from plane to a point</li>
+<li>Point location</li>
+<li>Output</li>
+</ul>
+
+<h5>
+<a id="ray" class="anchor" href="#ray" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ray:</h5>
+
+<ul>
+<li>Rotate using Matrix</li>
+<li>Rotate using Quaternions</li>
+<li>Translate</li>
+<li>Output</li>
+</ul>
+
+<h5>
+<a id="legendre-polynomial-experimental" class="anchor" href="#legendre-polynomial-experimental" aria-hidden="true"><span class="octicon octicon-link"></span></a>Legendre Polynomial (Experimental):</h5>
+
+<ul>
+<li>For spherical harmonics</li>
+<li>(l - m)PML(x) = x(2l - 1)PML-1(x) - (l + m -1)PML-2(x)</li>
+<li>PMM(x) = (-1)^m * (2m - 1)!!(1 - x^2)^m/2</li>
+<li>PMM+1(x) = x(2m + 1)PMM(x)</li>
+</ul>
+
+<h5>
+<a id="spherical-harmonics-experimental" class="anchor" href="#spherical-harmonics-experimental" aria-hidden="true"><span class="octicon octicon-link"></span></a>Spherical Harmonics (Experimental):</h5>
+
+<ul>
+<li>Normalization Constant (K)</li>
+<li>Sample a Spherical Harmonic function Y(l, m)</li>
+<li>Sample</li>
+<li>Generate samples</li>
+<li>Coefficients from Irradiance map</li>
+</ul>
+
+<h5>
+<a id="to-do" class="anchor" href="#to-do" aria-hidden="true"><span class="octicon octicon-link"></span></a>To do:</h5>
+
+<ul>
+<li>AABB/Sphere/Cylinder  (Everything is done, just needs to be cleaned up before pushed.)</li>
+<li>GJK (Done, needs to be tested)</li>
+<li>Primitives/Supports for GJK (Basic ones are done, needs to be updated)</li>
+<li>Spherical Harmonics.</li>
+<li>Tutorial on how to use everything.</li>
+</ul>
+
+<h5>
+<a id="note" class="anchor" href="#note" aria-hidden="true"><span class="octicon octicon-link"></span></a>Note:</h5>
+
+<ul>
+<li>Vectors Cross Product is only for 3D and 7D vectors, but currently only the 3D version is implemented.</li>
+<li>While the Vector and Matrix Stacks are not necessary and can be created on the go by anyone, they simplify and organize things a bit better.</li>
+<li>Optimizations are going to be done more indepth once the whole thing is finished and perhaps when I notice that a certain operations/transformation takes too long to execute.</li>
+<li>Also do report any bugs or speed related issues because some functions did not get a chance to be tested.</li>
+</ul>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/explosiveduck/pyGameMath/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/explosiveduck/pyGameMath/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/explosiveduck/pyGameMath"></a> is maintained by <a href="https://github.com/explosiveduck">explosiveduck</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
