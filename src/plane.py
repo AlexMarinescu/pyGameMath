@@ -18,16 +18,16 @@ class Plane(object):
     def __init__(self, *args):
         ''' Define a plane using 3 vectors, return a 4 item 1D array. '''
         if isinstance(args[0], list):
-            data = args[0]
-        if isinstance(args[0], vector.Vector):
+            self.data = args[0]
+        elif isinstance(args[0], vector.Vector):
             # Define using 3 vectors
             v1 = args[1] - args[0]
             v2 = args[2] - args[0]
             n = v1.cross(v2)
             n.i_normalize()
-            data = [n.vector[0], n.vector[1], n.vector[2], (n * -1.0).dot(args[0])]
+            self.data = [n.vector[0], n.vector[1], n.vector[2], (n * -1.0).dot(args[0])]
         else:
-            return NotImplemented
+            self.data = [0.0, 0.0, 0.0, 0.0]
 
     def dot(self, vec):
         ''' Return the dot product between a plane and 4D vector. '''
