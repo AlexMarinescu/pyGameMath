@@ -1,10 +1,11 @@
-from src.vector import vector
-from src.experimental.sph import *
+import random
+from src import vector
+from src.experimental import sph
 
 
 # Spherical Harmonics Sample Class
 class SPHSample (object):
-    def __init__(self, theta, phi, dir, sampleNumber):
+    def __init__(self, theta, phi, dirc, sampleNumber):
         # Spherical coordinates
         self.theta = theta
         self.phi = phi
@@ -15,10 +16,10 @@ class SPHSample (object):
             self.values.append(0.0)
 
         # Direction (Vector3D)
-        if isinstance(dir, Vector):
-            self.dir = dir
+        if isinstance(dirc, vector.Vector):
+            self.dir = dirc
         else:
-            self.dir = Vector([0.0, 0.0, 0.0])
+            self.dir = vector.Vector(3, data=[0.0, 0.0, 0.0])
 
 
 # Generate the samples
@@ -37,7 +38,7 @@ def GenerateSamples(sqrtNumSamples, numBands):
     # Create the array to hold the samples
     samples = []
     for x in range(numSamples):
-        samples.append(SPHSample(0.0, 0.0, Vector([0.0, 0.0, 0.0]), numFunctions))
+        samples.append(SPHSample(0.0, 0.0, vector.Vector(3, data=[0.0, 0.0, 0.0]), numFunctions))
 
     print ("Generating Samples...")
     # Loop through a grid of numSamples X numSamples
