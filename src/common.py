@@ -11,8 +11,8 @@ def convertArr(l, n):
 
 # Multiply each element in the 4 length arrays eg. [a, b, c, d] x [e, f, g, h] = [axe, bxf, cxg, dxh]
 def mulV4(v1, v2):
-  ''' Multiply two 1D 4 Length Arrays.'''
-  return [v1[0] * v2[0], v1[1] * v2[1], v1[2] * v2[2], v1[3] * v2[3]]
+    ''' Multiply two 1D 4 Length Arrays.'''
+    return [v1[0] * v2[0], v1[1] * v2[1], v1[2] * v2[2], v1[3] * v2[3]]
 
 def conv_list(listIn, cType):
     ''' Convert a python list into a ctypes array '''
