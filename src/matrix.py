@@ -1,8 +1,7 @@
 import math
-
-from ed2d.glmath import vector
-from ed2d.opengl import gl
-from ed2d import typeutils
+from src.pycompat import *
+from src import vector
+from src import common
 
 def zero_matrix(size):
     ''' Return zero filled matrix list of the requested size'''
@@ -351,7 +350,7 @@ class Matrix(object):
         else:
             self.matrix = data
 
-        self.c_matrix = typeutils.conv_list_2d(self.matrix, gl.GLfloat)
+        self.c_matrix = common.conv_list_2d(self.matrix, common.GLfloat)
 
 
     def __mul__(self, other):
@@ -377,7 +376,7 @@ class Matrix(object):
                 raise ValueError(errText)
             else:
                 self.matrix = matrix_multiply(self.matrix, other.matrix)
-                self.c_matrix = typeutils.conv_list_2d(self.matrix, gl.GLfloat)
+                self.c_matrix = common.conv_list_2d(self.matrix, common.GLfloat)
                 return self
         else:
             return NotImplemented
@@ -426,7 +425,7 @@ class Matrix(object):
         else:
             raise NotImplementedError('Matrix inverse of size {} not implemented.'.format(self.size))
 
-        self.c_matrix = typeutils.conv_list_2d(self.matrix, gl.GLfloat)
+        self.c_matrix = common.conv_list_2d(self.matrix, common.GLfloat)
         return self
 
     def inverse(self):
@@ -507,7 +506,7 @@ class Matrix(object):
         ''' Transpose Matrix instance in-place. '''
         self.matrix = transpose(self.matrix)
 
-        self.c_matrix = typeutils.conv_list_2d(self.matrix, gl.GLfloat)
+        self.c_matrix = common.conv_list_2d(self.matrix, common.GLfloat)
         return self
 
     def transpose(self):
@@ -647,8 +646,8 @@ def lookAt(eye, center, up):
 
 def project(obj, model, proj, viewport):
     ''' The most hacked together project code in the world. :| It works tho. :3 '''
-    projM = typeutils.list_2d_to_1d(proj)
-    modelM = typeutils.list_2d_to_1d(model)
+    projM = common.list_2d_to_1d(proj)
+    modelM = common.list_2d_to_1d(model)
 
     T = Matrix(4)
     for r in range(4):
