@@ -34,7 +34,7 @@ class Ray(object):
 
     def translate(self, matrix):
         ''' Translate the ray using a matrix. '''
-        self.dir = matrix, * self.dir
+        self.dir = matrix * self.dir
         self.distance = self.dir.magnitude()
         self.dir.i_normalize()
 
