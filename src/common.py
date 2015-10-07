@@ -1,7 +1,10 @@
 import math
+import ctypes as ct
 from src.pycompat import *
 
-# Convert 1D to multidimensional array
+#OpenGL Types, this is needed because Matrix class is supported by OpenGL
+GLfloat = ct.c_float
+
 def convertArr(l, n):
     ''' Convert a 1D array to 2D array. '''
     return [l[i:i+n] for i in range(0, len(l), n)]
@@ -11,18 +14,36 @@ def mulV4(v1, v2):
   ''' Multiply two 1D 4 Length Arrays.'''
   return [v1[0] * v2[0], v1[1] * v2[1], v1[2] * v2[2], v1[3] * v2[3]]
 
-# Converts a multidimensional array, in this case 2D, to a regular array, 1D
-def convert2Dto1D(mat):
-    ''' Convert a 2D array to 1D array. '''
-    size = len(mat)
-    output = [0.0 for i in range(size * size)]
+def conv_list(listIn, cType):
+    ''' Convert a python list into a ctypes array '''
+    return (cType * len(listIn))(*listIn)
 
-    for i in range(size):
-        for j in range(size):
-            output[i * size + j] = mat[i][j]
-    return output
+def conv_list_2d(listIn, cType):
+    ''' Convert a python 2d list into a ctypes 2d array '''
+    xlength = len(listIn)
+    ylength = len(listIn[0])
 
-# Conver matrix 4x4 to 3x3
+    arrayOut = (cType * ylength * xlength)()
+
+    for x in range(xlength):
+        for y in range(ylength):
+            arrayOut[x][y] = listIn[x][y]
+
+    return arrayOut
+
+def list_2d_to_1d(inlist):
+    ''' Convert a python 2D list to python 1D list. '''
+    sizeX = len(inlist[0])
+    sizeY = len(inlist)
+
+    rtnList = [None for x in range(sizeY*sizeX)]
+
+    for x in range(sizeY):
+        for y in range(sizeX):
+            rtnList[y + x * sizeX] = inlist[x][y]
+
+    return rtnList
+
 def convertM4to3(matrix):
     ''' Convert a 4x4 Matrix to 3x3. '''
     temp = [[0.0, 0.0, 0.0],
