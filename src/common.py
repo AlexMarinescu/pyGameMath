@@ -70,7 +70,7 @@ def scalarLerp(a, b, time):
 # Returns the view port coordinates
 def getViewPort(coords, width, height):
     ''' A version of glViewPort except it returns the coords. '''
-    coordsN = vec.normalize(coords)
+    coordsN = cords.normalize()
     x = (coordsN[0] + 1) * (width / 2) + coords[0]
     y = (coordsN[1] + 1) * (height / 2) + coords[1]
     return [x,y,width,height]
