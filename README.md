@@ -1,6 +1,6 @@
 ![ScreenShot](https://raw.github.com/AlexMarinescu/pyGameMath/master/data/pyGameMathLogo.png)
 
-pyGameMath [![Build Status](https://travis-ci.org/explosiveduck/pyGameMath.svg?branch=master)](https://travis-ci.org/explosiveduck/pyGameMath) [![Code Health](https://landscape.io/github/explosiveduck/pyGameMath/master/landscape.svg?style=flat)](https://landscape.io/github/explosiveduck/pyGameMath/master)
+pyGameMath [![Build Status](https://travis-ci.org/explosiveduck/pyGameMath.svg?branch=master)](https://travis-ci.org/explosiveduck/pyGameMath) [![Code Health](https://landscape.io/github/explosiveduck/pyGameMath/master/landscape.svg?style=flat)](https://landscape.io/github/explosiveduck/pyGameMath/master) [![Codacy Badge](https://api.codacy.com/project/badge/907e4230379f40a8bedcfc0a9a0ed43c)](https://www.codacy.com)
 ==========
 This is a math library written in python for 2D/3D game development which is also compatible with pypy. I made it while I was learning more about the math used in graphics development and for personal use in OpenGL related projects.
 It's still a work in progress. However, it will be finished soon.
