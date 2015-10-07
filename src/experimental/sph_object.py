@@ -1,6 +1,6 @@
 from src.constants import PI
 from src.vector import dot
-from src.experimental.sph_sample import *
+from src.experimental import sph_sample
 
 
 # Spherical Harmonics Vertex
@@ -11,6 +11,7 @@ class SPHVertex(object):
         self.position = position
 
         # calc normal from position self.normal
+        self.normal = normal
         # or can be specified from outside of function (from file parser)
 
         # Arrays; length: undefined
@@ -41,7 +42,7 @@ def GenereateCoeffs(numSamples, numBands, samples, objects):
 
         currentObject = objects[i]
 
-        numVertices = len(currentObjects.vertices)
+        numVertices = len(currentObject.vertices)
 
         for j in range(numVertices):
 
@@ -65,7 +66,7 @@ def GenereateCoeffs(numSamples, numBands, samples, objects):
                 currentVertex.shadowedCoeffs[k] = 0.0
 
             for k in range(numSamples):
-                dotProduct = dot(samples[k].dir, currentVertex.normal)
+                dotProduct = samples[k].dir.dot(currentVertex.normal)
 
                 # Clamp to [0,1]
                 if dotProduct > 0.0:
@@ -77,9 +78,8 @@ def GenereateCoeffs(numSamples, numBands, samples, objects):
                     for l in range(numFunctions):
                         contribution = dotProduct * samples[k].values[l]
                         currentVertex.unshadowedCoeffs[l] += contribution
-
-                        if not rayBlocked:
-                            currentVertex.shadowedCoeffs[l] += contribution
+                        #if not rayBlocked:
+                        #    currentVertex.shadowedCoeffs[l] += contribution
 
         # Rescale the coefficients
         for k in range(numFunctions):
