@@ -1,4 +1,5 @@
 import random
+import math
 from src import vector
 from src.experimental import sph
 
@@ -49,7 +50,7 @@ def GenerateSamples(sqrtNumSamples, numBands):
 
             # Spherical Angles
             theta = 2.0 * math.acos(math.sqrt(1.0 - x))
-            phi = 2.0 * PI * y
+            phi = 2.0 * math.PI * y
 
             samples[ii].theta = theta
             samples[ii].phi = phi
@@ -63,7 +64,7 @@ def GenerateSamples(sqrtNumSamples, numBands):
             for l in range(numBands):
                 for m in range(-l, l + 1):
                     index = l * (l + 1) + m
-                    samples[ii].values[index] = SPH(l, m, theta, phi)
+                    samples[ii].values[index] = sph.SPH(l, m, theta, phi)
             ii += 1
 
     # Return the samples array
