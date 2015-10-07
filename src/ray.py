@@ -1,8 +1,5 @@
 from src.pycompat import *
 import src.vector as vec
-import src.matrix as mat
-import src.quaternion as quat
-
 
 # Ray Class
 class Ray(object):
