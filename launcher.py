@@ -1,5 +1,4 @@
-from src.common import *
-from src.constants import *
+from src.pycompat import *
 from src import matrix
 from src import vector
 
