@@ -1,4 +1,5 @@
 import math
+from src.pycompat import *
 
 REFRENCE_VECTOR_2 = [0.0 for x in range(2)]
 REFRENCE_VECTOR_3 = [0.0 for x in range(3)]
