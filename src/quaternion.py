@@ -1,6 +1,7 @@
 import math
-from ed2d.glmath import vector
-from ed2d.glmath import matrix
+from src.pycompat import *
+from src import vector
+from src import matrix
 
 def quat_identity():
     ''' Returns the quaternion identity. '''
