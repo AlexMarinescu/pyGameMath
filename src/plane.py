@@ -1,6 +1,15 @@
 from src.pycompat import *
 from src import vector
 
+def flip(plane):
+    ''' Flips the plane.'''
+    fA = -plane.a
+    fB = -plane.b
+    fC = -plane.c
+    fD = -plane.D
+    fNormal = -plane.normal
+    return [fA, fB, fC, fD, fNormal]
+
 def normalize(pdata):
     ''' Return the normalized plane.'''
     vec = vector.Vector(3, data=[pdata[0], pdata[1], pdata[2]])
@@ -28,6 +37,22 @@ class Plane(object):
             self.data = [n.vector[0], n.vector[1], n.vector[2], (n * -1.0).dot(args[0])]
         else:
             self.data = [0.0, 0.0, 0.0, 0.0]
+
+        self.normal = vector.Vector(3, data=[0.0, 0.0, 0.0])
+
+    def i_flip(self):
+        ''' Flip the plane in its plane. '''
+        data = flip(self)
+        self.a = data[0]
+        self.b = data[1]
+        self.c = data[2]
+        self.d = data[3]
+        self.normal = data[4]
+        return self
+
+    def flip(self):
+        ''' Return a flipped plane. '''
+        return Plane(flip(self))
 
     def dot(self, vec):
         ''' Return the dot product between a plane and 4D vector. '''
