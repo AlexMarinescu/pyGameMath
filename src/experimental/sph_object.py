@@ -1,7 +1,4 @@
-from src.constants import PI
-from src.vector import dot
-from src.experimental import sph_sample
-
+import math
 
 # Spherical Harmonics Vertex
 class SPHVertex(object):
@@ -83,5 +80,5 @@ def GenereateCoeffs(numSamples, numBands, samples, objects):
 
         # Rescale the coefficients
         for k in range(numFunctions):
-            currentVertex.unshadowedCoeffs[k] *= 4 * PI / numSamples
-            currentVertex.shadowedCoeffs[k] += 4 * PI / numSamples
+            currentVertex.unshadowedCoeffs[k] *= 4 * math.pi / numSamples
+            currentVertex.shadowedCoeffs[k] += 4 * math.pi / numSamples
