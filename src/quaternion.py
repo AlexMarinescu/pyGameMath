@@ -94,7 +94,7 @@ def quat_from_axis_angle(axis, theta):
         axis.i_normalize()
         quat1List = [cto2, axis.vector[0] * sto2, axis.vector[1] * sto2, axis.vector[2] * sto2]
     elif isinstance(axis, list):
-        naxis = vector.normalize(axis)
+        naxis = axis.normalize()
         quat1List = (cto2, naxis[0] * sto2, naxis[1] * sto2, naxis[2] * sto2)
     else:
         return NotImplemented
@@ -142,7 +142,7 @@ def quat_roate_from_axis_angle(axis, theta):
         axis.i_normalize()
         quat1List = [cto2, axis.vector[0] * sto2, axis.vector[1] * sto2, axis.vector[2] * sto2]
     elif isinstance(axis, list):
-        naxis = vector.normalize(axis)
+        naxis = axis.normalize()
         quat1List = (cto2, naxis[0] * sto2, naxis[1] * sto2, naxis[2] * sto2)
     else:
         return NotImplemented
