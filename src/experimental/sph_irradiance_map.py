@@ -9,9 +9,9 @@ from src.common import sinc
 # Calculate Spherical Harmonics coefficients using irradiance maps
 class SPH_IrradianceMapCoeff(object):
 
-    def __init__(self, file, width, height):
+    def __init__(self, fileU, width, height):
         # File details
-        self.file = file
+        self.file = fileU
         self.width = width
         self.height = height
         # Alocate space for the image
