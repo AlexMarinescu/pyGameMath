@@ -41,7 +41,7 @@ class Plane(object):
         self.normal = vector.Vector(3, data=[0.0, 0.0, 0.0])
 
     def i_flip(self):
-        ''' Flip the plane in its plane. '''
+        ''' Flip the plane in its place. '''
         data = flip(self)
         self.a = data[0]
         self.b = data[1]
