@@ -15,7 +15,7 @@ def zero_vector(size):
     if size == 4:
         return REFRENCE_VECTOR_4[:]
     else:
-        return [0.0 for x in sm.range(size)]
+        return [0.0 for _ in sm.range(size)]
 
 IREFRENCE_VECTOR_2 = [1.0 for x in sm.range(2)]
 IREFRENCE_VECTOR_3 = [1.0 for x in sm.range(3)]
@@ -31,7 +31,7 @@ def one_vector(size):
     if size == 4:
         return IREFRENCE_VECTOR_4[:]
     else:
-        return [1.0 for x in sm.range(size)]
+        return [1.0 for _ in sm.range(size)]
 
 # Vector Functions
 def lerp(vecA, vecB, time):
