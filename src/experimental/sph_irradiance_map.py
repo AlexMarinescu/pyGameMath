@@ -15,7 +15,7 @@ class SPH_IrradianceMapCoeff(object):
         self.width = width
         self.height = height
         # Alocate space for the image
-        self.hdr = [[[0 for k in sm.range(3)] for j in sm.range(self.width)] for i in sm.range(self.height)]
+        self.hdr = [[[0 for _ in sm.range(3)] for j in sm.range(self.width)] for i in sm.range(self.height)]
         # Alocate space for the coefficients
         self.coeffs = [[0 for i in sm.range(3)] for j in sm.range(9)]
         # Load the image
