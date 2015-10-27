@@ -14,7 +14,7 @@ class SPHSample (object):
 
         # Values of SH function at this point
         self.values = []
-        for x in sm.range(sampleNumber):
+        for _ in sm.range(sampleNumber):
             self.values.append(0.0)
 
         # Direction (Vector3D)
