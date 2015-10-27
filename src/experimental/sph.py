@@ -1,6 +1,5 @@
 import math
 
-from src.constants import PI
 from src.experimental.legendre import Legendre
 
 
@@ -19,7 +18,7 @@ def Factorial(n):
 
 # Normalization constant for a Spherical Harmonic function
 def K(l, m):
-    K = ((2.0 * l + 1.0) * Factorial(l - m)) / ((4.0 * PI) * Factorial(l + m))
+    K = ((2.0 * l + 1.0) * Factorial(l - m)) / ((4.0 * math.pi) * Factorial(l + m))
     return math.sqrt(K)
 
 
