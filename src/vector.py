@@ -1,9 +1,9 @@
 import math
-from src.pycompat import *
+import six
 
-REFRENCE_VECTOR_2 = [0.0 for x in range(2)]
-REFRENCE_VECTOR_3 = [0.0 for x in range(3)]
-REFRENCE_VECTOR_4 = [0.0 for x in range(4)]
+REFRENCE_VECTOR_2 = [0.0 for x in six.range(2)]
+REFRENCE_VECTOR_3 = [0.0 for x in six.range(3)]
+REFRENCE_VECTOR_4 = [0.0 for x in six.range(4)]
 
 def zero_vector(size):
     ''' Return a zero filled vector list of the requested size '''
@@ -15,11 +15,11 @@ def zero_vector(size):
     if size == 4:
         return REFRENCE_VECTOR_4[:]
     else:
-        return [0.0 for x in range(size)]
+        return [0.0 for x in six.range(size)]
 
-IREFRENCE_VECTOR_2 = [1.0 for x in range(2)]
-IREFRENCE_VECTOR_3 = [1.0 for x in range(3)]
-IREFRENCE_VECTOR_4 = [1.0 for x in range(4)]
+IREFRENCE_VECTOR_2 = [1.0 for x in six.range(2)]
+IREFRENCE_VECTOR_3 = [1.0 for x in six.range(3)]
+IREFRENCE_VECTOR_4 = [1.0 for x in six.range(4)]
 
 def one_vector(size):
     ''' Return a one filled vector list of the requested size '''
@@ -31,7 +31,7 @@ def one_vector(size):
     if size == 4:
         return IREFRENCE_VECTOR_4[:]
     else:
-        return [1.0 for x in range(size)]
+        return [1.0 for x in six.range(size)]
 
 # Vector Functions
 def lerp(vecA, vecB, time):
@@ -76,35 +76,35 @@ def rperp(vector):
     return Vector(2, data = [vector[1], -vector[0]])
 
 def vec_add(size, vecA, vecB):
-    return [(vecA[i] + vecB[i]) for i in range(size)]
+    return [(vecA[i] + vecB[i]) for i in six.range(size)]
 
 def s_vec_add(size, vecA, scalar):
-    return [(vecA[i] + scalar) for i in range(size)]
+    return [(vecA[i] + scalar) for i in six.range(size)]
 
 def vec_sub(size, vecA, vecB):
-    return [(vecA[i] - vecB[i]) for i in range(size)]
+    return [(vecA[i] - vecB[i]) for i in six.range(size)]
 
 def s_vec_sub(size, vecA, scalar):
-    return [(vecA[i] - scalar) for i in range(size)]
+    return [(vecA[i] - scalar) for i in six.range(size)]
 
 def vec_mul(size, vecA, scalar):
-    return [(vecA[i] * scalar) for i in range(size)]
+    return [(vecA[i] * scalar) for i in six.range(size)]
 
 def vec_div(size, vecA, scalar):
-    return [(vecA[i] / scalar) for i in range(size)]
+    return [(vecA[i] / scalar) for i in six.range(size)]
 
 def vec_neg(size, vecA):
-    return [(-vecA[i]) for i in range(size)]
+    return [(-vecA[i]) for i in six.range(size)]
 
 def dot(size, vecA, vecB):
     dp = 0
-    for i in range(size):
+    for i in six.range(size):
         dp +=  vecA[i] * vecB[i]
     return dp
 
 def magnitude(size, vecA):
     mg = 0
-    for i in range(size):
+    for i in six.range(size):
         mg += vecA[i] * vecA[i]
     return math.sqrt(mg)
 
@@ -112,33 +112,33 @@ def normalize(size, vecA):
     length = magnitude(size, vecA)
     temp = zero_vector(size)
     if length is not 0:
-        for i in range(size):
+        for i in six.range(size):
             temp[i] = vecA[i] / length
     return temp
 
 def maxV(size, vecA, vecB):
-    return [vecA[i] if vecA[i] > vecB[i] else vecB[i] for i in range(size)]
+    return [vecA[i] if vecA[i] > vecB[i] else vecB[i] for i in six.range(size)]
 
 def minV(size, vecA, vecB):
-    return [vecA[i] if vecA[i] < vecB[i] else vecB[i] for i in range(size)]
+    return [vecA[i] if vecA[i] < vecB[i] else vecB[i] for i in six.range(size)]
 
 def maxS(size, vecA):
     mScalar = vecA[0]
-    for i in range(size):
+    for i in six.range(size):
         if vecA[i] > mScalar:
             mScalar = vecA[i]
     return mScalar
 
 def minS(size, vecA):
     mScalar = vecA[0]
-    for i in range(size):
+    for i in six.range(size):
         if vecA[i] < mScalar:
             mScalar = vecA[i]
     return mScalar
 
 def clamp(size, value, minS, maxS):
     output = value
-    for i in range(size):
+    for i in six.range(size):
         # Check to see if greater than max
         output[i] = maxS[i] if output[i] > maxS[i] else output[i]
         #output[i] = (output[i] > max[i]) ? max[i] : output[i]
@@ -149,8 +149,8 @@ def clamp(size, value, minS, maxS):
 
 def transform(size, position, matrix):
     output = zero_vector(size)
-    for i in range(size):
-        for j in range(size):
+    for i in six.range(size):
+        for j in six.range(size):
             output[i] += position[j] * matrix[i][j]
         output[i] += matrix[size-1][i]
 
@@ -239,7 +239,7 @@ class Vector(object):
     def __eq__(self, vecB):
         if isinstance(vecB, Vector):
             tempBool = False
-            for i in range(self.size):
+            for i in six.range(self.size):
                 if self.vector[i] == vecB.vector[i]:
                     tempBool = True
                 else:

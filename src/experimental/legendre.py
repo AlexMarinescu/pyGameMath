@@ -1,5 +1,5 @@
 import math
-
+import six
 
 # Legendre Polynomial Class
 class Legendre (object):
@@ -16,7 +16,7 @@ class Legendre (object):
         if self.m > 0:
             sqrtOneMinusXSquared = math.sqrt((1.0 - self.x) * (1.0 + self.x))
             f = 1.0
-            for i in range(1, self.m + 1):
+            for i in six.range(1, self.m + 1):
                 self.P *= (-f) * sqrtOneMinusXSquared
                 f += 2.0
         else:
@@ -40,7 +40,7 @@ class Legendre (object):
             return self.PM1
 
         else:
-            for i in range(self.m + 2, self.l + 1):
+            for i in six.range(self.m + 2, self.l + 1):
                 self.calculatePML(i)
                 self.P = self.PM1
                 self.PM1 = self.PML

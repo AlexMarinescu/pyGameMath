@@ -1,4 +1,4 @@
-from src.pycompat import *
+import six
 from src import vector
 
 def flip(plane):
@@ -70,7 +70,7 @@ class Plane(object):
     def bestFitNormal(self, vecList):
         ''' Pass in a list of vectors to find the best fit normal. '''
         output = vector.Vector(3).zero()
-        for i in range(len(vecList)):
+        for i in six.range(len(vecList)):
             output.vector[0] += (vecList[i].vector[2] + vecList[i + 1].vector[2]) * (vecList[i].vector[1] - vecList[i + 1].vector[1])
             output.vector[1] += (vecList[i].vector[0] + vecList[i + 1].vector[0]) * (vecList[i].vector[2] - vecList[i + 1].vector[2])
             output.vector[2] += (vecList[i].vector[1] + vecList[i + 1].vector[1]) * (vecList[i].vector[0] - vecList[i + 1].vector[0])

@@ -1,4 +1,3 @@
-from src.pycompat import *
 import src.vector as vec
 
 # Ray Class

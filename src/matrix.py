@@ -1,24 +1,24 @@
 import math
-from src.pycompat import *
+import six
 from src import vector
 from src import common
 
 def zero_matrix(size):
     ''' Return zero filled matrix list of the requested size'''
-    return [[0.0] * size for x in range(size)]
+    return [[0.0] * size for x in six.range(size)]
 
 def identity(size):
     ''' Return an identity matrix list of the requested size '''
-    return [[1.0 if x==y else 0.0 for y in range(size)] for x in range(size)]
+    return [[1.0 if x==y else 0.0 for y in six.range(size)] for x in six.range(size)]
 
 def scale(size, value):
-    return [[(value[x] if x < 3 else 1.0) if x==y else 0.0 for y in range(size)] for x in range(size)]
+    return [[(value[x] if x < 3 else 1.0) if x==y else 0.0 for y in six.range(size)] for x in six.range(size)]
 
 def matrix_multiply(matrixA, matrixB):
     ''' Multiply matrixA with matrixB '''
     sizeA = len(matrixA)
     matOut = zero_matrix(sizeA)
-    crange = list(range(sizeA))
+    crange = list(six.range(sizeA))
     for i in crange:
         for k in crange:
             for j in crange:
@@ -30,7 +30,7 @@ def matrix_vector_multiply(matrix, vec):
     matSize = len(matrix)
     vecSize = vec.size
     vecOut = vector.Vector(vecSize)
-    crange = list(range(matSize))
+    crange = list(six.range(matSize))
     for i in crange:
         for j in crange:
             vecOut.vector[i] += vec.vector[j] * matrix[i][j]
@@ -40,7 +40,7 @@ def matrix_div(mat, scalar):
     ''' Divide a matrix by a scalar. '''
     size = len(mat)
     matOut = zero_matrix(size)
-    crange = list(range(size))
+    crange = list(six.range(size))
     for i in crange:
         for j in crange:
             matOut[i][j] = mat[j][i] / scalar
@@ -50,7 +50,7 @@ def transpose(mat):
     '''Transposes a NxN matrix.'''
     size = len(mat)
     out = zero_matrix(size)
-    crange = list(range(size))
+    crange = list(six.range(size))
     for i in crange:
         for j in crange:
             out[i][j]= mat[j][i]
@@ -650,15 +650,15 @@ def project(obj, model, proj, viewport):
     modelM = common.list_2d_to_1d(model)
 
     T = Matrix(4)
-    for r in range(4):
-        for c in range(4):
+    for r in six.range(4):
+        for c in six.range(4):
             T[r][c] = 0.0
-            for i in range(4):
+            for i in six.range(4):
                 T[r][c] += projM[r + i * 4] * modelM[i + c *4]
 
     result = vector.Vector(4)
 
-    for r in range(4):
+    for r in six.range(4):
         result.vector[r] = vector.Vector(4, data=T[r]).dot(obj)
 
     rhw = 1.0 / result.vector[3]

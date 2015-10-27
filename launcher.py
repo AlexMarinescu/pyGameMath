@@ -1,4 +1,4 @@
-from src.pycompat import *
+import six
 from src import matrix
 from src import vector
 
@@ -19,6 +19,6 @@ matrixB = matrix.Matrix(4, data=[[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [1
 matrixC = matrixA * matrixB
 
 print("Matrix C output:")
-for i in range(matrixC.size):
+for i in six.range(matrixC.size):
 	print(matrixC.matrix[i])
 print("End of Matrix C output")

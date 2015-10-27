@@ -1,4 +1,5 @@
 import random
+import six
 import math
 from src import vector
 from src.experimental import sph
@@ -13,7 +14,7 @@ class SPHSample (object):
 
         # Values of SH function at this point
         self.values = []
-        for x in range(sampleNumber):
+        for x in six.range(sampleNumber):
             self.values.append(0.0)
 
         # Direction (Vector3D)
@@ -38,13 +39,13 @@ def GenerateSamples(sqrtNumSamples, numBands):
 
     # Create the array to hold the samples
     samples = []
-    for x in range(numSamples):
+    for x in six.range(numSamples):
         samples.append(SPHSample(0.0, 0.0, vector.Vector(3, data=[0.0, 0.0, 0.0]), numFunctions))
 
     print ("Generating Samples...")
     # Loop through a grid of numSamples X numSamples
-    for i in range(sqrtNumSamples):
-        for j in range(sqrtNumSamples):
+    for i in six.range(sqrtNumSamples):
+        for j in six.range(sqrtNumSamples):
             x = (i + random.random()) * invertedNumSamples
             y = (j + random.random()) * invertedNumSamples
 
@@ -61,8 +62,8 @@ def GenerateSamples(sqrtNumSamples, numBands):
                                    math.cos(theta)]
 
             # Calculate SH coefficients of current sample
-            for l in range(numBands):
-                for m in range(-l, l + 1):
+            for l in six.range(numBands):
+                for m in six.range(-l, l + 1):
                     index = l * (l + 1) + m
                     samples[ii].values[index] = sph.SPH(l, m, theta, phi)
             ii += 1

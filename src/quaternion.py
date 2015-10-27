@@ -1,5 +1,5 @@
 import math
-from src.pycompat import *
+import six
 from src import vector
 from src import matrix
 
@@ -46,14 +46,14 @@ def quat_neg(quat):
 def quat_dot(quat1, quat2):
     ''' Dot product between two quaternions. Returns a scalar. '''
     rdp= 0
-    for i in range(4):
+    for i in six.range(4):
         rdp += quat1[i] * quat2[i]
     return rdp
 
 def quat_magnitude(quat):
     ''' Compute magnitude of a quaternion. Returns a scalar. '''
     rmg = 0
-    for i in range(4):
+    for i in six.range(4):
         rmg += quat[i] * quat[i]
     return math.sqrt(rmg)
 
@@ -62,14 +62,14 @@ def quat_normalize(quat):
     length = quat_magnitude(quat)
     oquat = quat_identity()
     if length is not 0:
-        for i in range(4):
+        for i in six.range(4):
             oquat[i] = quat[i] / length
     return oquat
 
 def quat_conjugate(quat):
     ''' Returns the conjugate of a quaternion. '''
     idquat = quat_identity()
-    for i in range(4):
+    for i in six.range(4):
         idquat[i] = -quat[i]
     idquat[0] = -idquat[0]
     return idquat

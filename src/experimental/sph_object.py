@@ -1,4 +1,5 @@
 import math
+import six
 
 # Spherical Harmonics Vertex
 class SPHVertex(object):
@@ -35,34 +36,34 @@ def GenereateCoeffs(numSamples, numBands, samples, objects):
     numObjects = len(objects)
 
     # Create space for the SH coefficients in each vertex
-    for i in range(numObjects):
+    for i in six.range(numObjects):
 
         currentObject = objects[i]
 
         numVertices = len(currentObject.vertices)
 
-        for j in range(numVertices):
+        for j in six.range(numVertices):
 
             currentVertex = currentObject.vertices[j]
 
             # Create new unshadowedCoeffs array
             # Create new shadowedCoeffs array
 
-    for i in range(numObjects):
+    for i in six.range(numObjects):
 
         currentObject = object[i]
 
         numVertices = len(currentObject.vertices)
 
-        for j in range(numVertices):
+        for j in six.range(numVertices):
 
             currentVertex = currentObject.vertices[j]
 
-            for k in range(numFunctions):
+            for k in six.range(numFunctions):
                 currentVertex.unshadowedCoeffs[k] = 0.0
                 currentVertex.shadowedCoeffs[k] = 0.0
 
-            for k in range(numSamples):
+            for k in six.range(numSamples):
                 dotProduct = samples[k].dir.dot(currentVertex.normal)
 
                 # Clamp to [0,1]
@@ -72,13 +73,13 @@ def GenereateCoeffs(numSamples, numBands, samples, objects):
 
                     # Collision check
 
-                    for l in range(numFunctions):
+                    for l in six.range(numFunctions):
                         contribution = dotProduct * samples[k].values[l]
                         currentVertex.unshadowedCoeffs[l] += contribution
                         #if not rayBlocked:
                         #    currentVertex.shadowedCoeffs[l] += contribution
 
         # Rescale the coefficients
-        for k in range(numFunctions):
+        for k in six.range(numFunctions):
             currentVertex.unshadowedCoeffs[k] *= 4 * math.pi / numSamples
             currentVertex.shadowedCoeffs[k] += 4 * math.pi / numSamples
