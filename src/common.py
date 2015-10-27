@@ -1,5 +1,5 @@
 import math
-import six
+import six.moves as sm
 import ctypes as ct
 
 #OpenGL Types, this is needed because Matrix class is supported by OpenGL
@@ -7,7 +7,7 @@ GLfloat = ct.c_float
 
 def convertArr(l, n):
     ''' Convert a 1D array to 2D array. '''
-    return [l[i:i+n] for i in six.range(0, len(l), n)]
+    return [l[i:i+n] for i in sm.range(0, len(l), n)]
 
 # Multiply each element in the 4 length arrays eg. [a, b, c, d] x [e, f, g, h] = [axe, bxf, cxg, dxh]
 def mulV4(v1, v2):
@@ -25,8 +25,8 @@ def conv_list_2d(listIn, cType):
 
     arrayOut = (cType * ylength * xlength)()
 
-    for x in six.range(xlength):
-        for y in six.range(ylength):
+    for x in sm.range(xlength):
+        for y in sm.range(ylength):
             arrayOut[x][y] = listIn[x][y]
 
     return arrayOut
@@ -36,10 +36,10 @@ def list_2d_to_1d(inlist):
     sizeX = len(inlist[0])
     sizeY = len(inlist)
 
-    rtnList = [None for x in six.range(sizeY*sizeX)]
+    rtnList = [None for x in sm.range(sizeY*sizeX)]
 
-    for x in six.range(sizeY):
-        for y in six.range(sizeX):
+    for x in sm.range(sizeY):
+        for y in sm.range(sizeX):
             rtnList[y + x * sizeX] = inlist[x][y]
 
     return rtnList
@@ -50,8 +50,8 @@ def convertM4to3(matrix):
             [0.0, 0.0, 0.0],
             [0.0, 0.0, 0.0]]
             
-    for i in six.range(3):
-        for j in six.range(3):
+    for i in sm.range(3):
+        for j in sm.range(3):
             temp[i][j] = matrix[i][j]
     return temp
 

@@ -1,9 +1,8 @@
 import pprint
 import math
 import struct
-import six
+import six.moves as sm
 
-from src.constants import PI
 from src.common import sinc
 
 
@@ -16,19 +15,19 @@ class SPH_IrradianceMapCoeff(object):
         self.width = width
         self.height = height
         # Alocate space for the image
-        self.hdr = [[[0 for k in six.range(3)] for j in six.range(self.width)] for i in six.range(self.height)]
+        self.hdr = [[[0 for k in sm.range(3)] for j in sm.range(self.width)] for i in sm.range(self.height)]
         # Alocate space for the coefficients
-        self.coeffs = [[0 for i in six.range(3)] for j in six.range(9)]
+        self.coeffs = [[0 for i in sm.range(3)] for j in sm.range(9)]
         # Load the image
         self.load()
 
     # Load the file
     def load(self):
         with open(self.file, 'rb') as f:
-            for i in six.range(self.width):
-                for j in six.range(self.height):
+            for i in sm.range(self.width):
+                for j in sm.range(self.height):
                     # The depth is 3 (R,G,B)
-                    for k in six.range(3):
+                    for k in sm.range(3):
                         # Decode the 32 bit binary into float point number
                         # 4 bytes
                         self.hdr[i][j][k] = struct.unpack('f', f.read(4))[0]
@@ -37,8 +36,8 @@ class SPH_IrradianceMapCoeff(object):
         self.calculateCoefficients()
 
     def calculateCoefficients(self):
-        for i in six.range(self.width):
-            for j in six.range(self.height):
+        for i in sm.range(self.width):
+            for j in sm.range(self.height):
                 v = (self.width / 2.0 - i) / (self.width / 2.0)
                 u = (j - self.width / 2.0) / (self.width / 2.0)
                 r = math.sqrt(u * u + v * v)
@@ -51,12 +50,12 @@ class SPH_IrradianceMapCoeff(object):
                     y = math.sin(theta) * math.sin(phi)
                     z = math.cos(theta)
 
-                    domega = (2 * PI / self.width) * (2.0 * PI / self.width) * sinc(theta)
+                    domega = (2 * math.pi / self.width) * (2.0 * math.pi / self.width) * sinc(theta)
 
                     self.updateCoefficients(self.hdr[i][j], domega, x, y, z)
 
     def updateCoefficients(self, hdr, domega, x, y, z):
-        for col in six.range(3):
+        for col in sm.range(3):
 
             c = 0.282095
             self.coeffs[0][col] += hdr[col] * c * domega
