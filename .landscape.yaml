@@ -7,3 +7,7 @@ pylint:
   disable:
     - too-many-arguments
     - too-many-locals
+
+pep8:
+  disable:
+    - W503
