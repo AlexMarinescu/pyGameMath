@@ -43,7 +43,7 @@ class SPH_IrradianceMapCoeff(object):
                 r = math.sqrt(u * u + v * v)
                 # Only withn a unit circle
                 if r <= 1.0:
-                    theta = PI * r
+                    theta = math.pi * r
                     phi = math.atan2(v, u)
 
                     x = math.sin(theta) * math.cos(phi)
