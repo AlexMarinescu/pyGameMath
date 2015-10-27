@@ -5,7 +5,7 @@ from src import common
 
 def zero_matrix(size):
     ''' Return zero filled matrix list of the requested size'''
-    return [[0.0] * size for x in sm.range(size)]
+    return [[0.0] * size for _ in sm.range(size)]
 
 def identity(size):
     ''' Return an identity matrix list of the requested size '''
