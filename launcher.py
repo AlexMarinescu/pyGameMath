@@ -1,6 +1,6 @@
 import six.moves as sm
-from src import matrix
-from src import vector
+from pgm import matrix
+from pgm import vector
 
 # Some vector operations examples
 vectorA = vector.Vector(3, data=[1, 2, 3])
