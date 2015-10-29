@@ -1,4 +1,4 @@
-import src.vector as vec
+import gem.vector as vec
 
 # Ray Class
 class Ray(object):

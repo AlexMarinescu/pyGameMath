@@ -1,7 +1,7 @@
 import math
 import six.moves as sm
-from src import vector
-from src import matrix
+from gem import vector
+from gem import matrix
 
 def quat_identity():
     ''' Returns the quaternion identity. '''

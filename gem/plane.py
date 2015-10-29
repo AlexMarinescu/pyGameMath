@@ -1,5 +1,5 @@
 import six.moves as sm
-from src import vector
+from gem import vector
 
 def flip(plane):
     ''' Flips the plane.'''

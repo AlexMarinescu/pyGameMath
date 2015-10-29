@@ -1,7 +1,7 @@
 import math
 import six.moves as sm
-from src import vector
-from src import common
+from gem import vector
+from gem import common
 
 def zero_matrix(size):
     ''' Return zero filled matrix list of the requested size'''
