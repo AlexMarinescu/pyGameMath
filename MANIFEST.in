@@ -1,0 +1,3 @@
+include README.md LICENSE .travis.yml .landscape.yaml setup.cfg setup.py
+recursive-include gem/experimental *
+prune gem/gem.egg-info
