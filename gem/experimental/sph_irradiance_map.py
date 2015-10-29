@@ -3,7 +3,7 @@ import math
 import struct
 import six.moves as sm
 
-from src.common import sinc
+from gem.common import sinc
 
 
 # Calculate Spherical Harmonics coefficients using irradiance maps

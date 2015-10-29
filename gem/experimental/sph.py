@@ -1,6 +1,6 @@
 import math
 
-from src.experimental.legendre import Legendre
+from gem.experimental.legendre import Legendre
 
 
 # n! where n >= 0

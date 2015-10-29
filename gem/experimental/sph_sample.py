@@ -1,8 +1,8 @@
 import random
 import six.moves as sm
 import math
-from src import vector
-from src.experimental import sph
+from gem import vector
+from gem.experimental import sph
 
 
 # Spherical Harmonics Sample Class
