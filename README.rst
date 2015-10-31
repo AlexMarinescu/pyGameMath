@@ -17,8 +17,9 @@ Install:
 --------
 To install the library just do
 
-::
-   pip install gem
+.. code-block:: python
+
+    pip install gem
 
 It will install the dependicies automatically.
 
