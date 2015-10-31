@@ -7,35 +7,7 @@ pyGameMath |Build Status| |Code Health| |Codacy Badge|
   which is also compatible with pypy. I made it while I was learning
   more about the math used in graphics development and for personal use
   in OpenGL related projects.
-| It’s still a work in progress. However, it will be finished soon.
-
-Update 1:
-'''''''''
-
--  The old version which is fully OOP is inside the folder “oop math
-   lib”, some bugs are still present.
--  The new version has most of the features functional based for
-   performance, it is inside the folder “src” and all the bugs from the
-   previous have been nuked.
--  There is a new folder called “experimental” inside the “src” that
-   stores the features that are unfinished.
--  Spherical harmonics were moved under “experimental”.
-
-Update 2:
-'''''''''
-
--  Updated the matrix and vector, fixed a lot of bugs, still dynamic
-   class that allows Nth dimensions
--  A lot of the specific 2D, 3D, 4D functions are outside the dynamic
-   class
--  Now it allows in-place transformations
--  Some math operations do not support Nth dimensions and will return
-   exceptions
--  Removed LU decomposition
--  Temporary Removed NxN Matrix Normalization
--  Temporary Removed NxN Matrix Determinant
--  Temporary Removed NxN Matrix Inverse Calculation
--  Quaternion and the rest need to be updated to match the new style.
+| It’s still a work in progress.
 
 Supported features:
 ~~~~~~~~~~~~~~~~~~~
@@ -54,16 +26,34 @@ NxN Matrices:
 -  Shear (2x2, 3x3, 4x4)
 -  Project
 -  Unproject
+-  Orthographic Projection
+-  Perspective Projection
+-  lookAt 4x4 matrix
+-  Determinant 2x2, 3x3, 4x4
+-  Inverse 2x2, 3x3, 4x4
 
 N Dimensions Vectors:
 '''''''''''''''''''''
 
 -  Dot Product
--  Cross Product (No 7D)
+-  Cross Product (3D, No 7D as of now)
+-  2D get angle of vector
+-  2D -90 degree rotation
+-  2D +90 degree rotation
 -  Refraction
 -  Reflection
--  Invert
+-  Negate
 -  Normalize
+-  Linear Interpolation
+-  Max Vector/Scalar
+-  Min Vector/Scalar
+-  Clamp
+-  Transform 
+-  Barycentric 
+-  isInSameDirection test
+-  isInOppositeDirection test
+-  3D Vector swizzling, similar to GLSL
+-  3D Vector idenitities
 
 Quaternions:
 ''''''''''''
@@ -76,7 +66,9 @@ Quaternions:
 -  Negate
 -  Rotate X, Y, Z
 -  Arbitary Axis Rotation
+-  From angle Rotation
 -  To Rotation Matrix (4x4)
+-  From Rotation Matrix (4x4)
 -  Cross Product
 -  Vector3D, Scalar Multiplication
 -  Logarithm
@@ -84,8 +76,8 @@ Quaternions:
 -  Power
 -  Liner Interpolation (LERP)
 -  Spherical Interpolation (SLERP)
+-  Spherical Interpoliaton No Invert
 -  Quaternion Splines (SQUAD)
--  Output
 
 Plane:
 ''''''
@@ -102,6 +94,7 @@ Plane:
 -  Distance from plane to a point
 -  Point location
 -  Output
+-  Flip
 
 Ray:
 ''''
@@ -111,11 +104,12 @@ Ray:
 -  Translate
 -  Output
 
-Legendre Polynomial (Experimental):
+Legendre Polynomial (Experimental, not complete):
 '''''''''''''''''''''''''''''''''''
 
 -  For spherical harmonics
 -  (l - m)PML(x) = x(2l - 1)PML-1(x
+-  Irradiance maps
 
 .. |ScreenShot| image:: https://raw.github.com/AlexMarinescu/pyGameMath/master/data/pyGameMathLogo.png
 .. |Build Status| image:: https://travis-ci.org/explosiveduck/pyGameMath.svg?branch=master
