@@ -9,6 +9,19 @@ pyGameMath |Build Status| |Code Health| |Codacy Badge|
   in OpenGL related projects.
 | It’s still a work in progress.
 
+Dependencies:
+-------------
+It uses six to allow support between python2.x and python3.x.
+
+Install:
+--------
+To install the library just do
+
+.. code-block:: python
+   pip install gem
+
+It will install the dependicies automatically.
+
 Supported features:
 ~~~~~~~~~~~~~~~~~~~
 
