@@ -381,6 +381,20 @@ class Matrix(object):
         else:
             return NotImplemented
 
+    def __div__(self, other):
+        if isinstance(other, float):
+            result = matrix_div(self.matrix, other)
+            return Matrix(self.size, data=result)
+        else:
+            return NotImplemented
+
+    def __idiv__(self, other):
+        if isinstance(other, float):
+            self.matrix = matrix_div(self.matrix, other)
+            return self
+        else:
+            return NotImplemented        
+
     def i_scale(self, value):
         ''' Scale matrix instance in-place by Vector. '''
         if not isinstance(value, vector.Vector):
@@ -663,9 +677,9 @@ def project(obj, model, proj, viewport):
 
     rhw = 1.0 / result.vector[3]
 
-    return [(1 + result.vector[0] * rhw) * viewport[2] / 2.0 + viewport[0],
+    return vector.Vector(3, data=[(1 + result.vector[0] * rhw) * viewport[2] / 2.0 + viewport[0],
             (1 + result.vector[1] * rhw) * viewport[3] / 2.0 + viewport[1],
-            (result.vector[2] * rhw) * (1 - 0) + 0, rhw]
+            (result.vector[2] * rhw) * (1 - 0) + 0, rhw])
 
 def unproject(winx, winy, winz, modelview, projection, viewport):
     ''' Unproject a point from the screen and return the object coordinates. '''
