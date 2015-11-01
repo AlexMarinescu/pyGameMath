@@ -17,7 +17,7 @@ Install:
 --------
 To install the library just do
 
-.. code-block:: python
+.. code:: Python
 
     pip install gem
 
@@ -119,7 +119,7 @@ Ray:
 -  Output
 
 Legendre Polynomial (Experimental, not complete):
-'''''''''''''''''''''''''''''''''''
+'''''''''''''''''''''''''''''''''''''''''''''''''
 
 -  For spherical harmonics
 -  (l - m)PML(x) = x(2l - 1)PML-1(x
@@ -127,8 +127,5 @@ Legendre Polynomial (Experimental, not complete):
 
 .. |ScreenShot| image:: https://raw.github.com/AlexMarinescu/pyGameMath/master/data/pyGameMathLogo.png
 .. |Build Status| image:: https://travis-ci.org/explosiveduck/pyGameMath.svg?branch=master
-   :target: https://travis-ci.org/explosiveduck/pyGameMath
 .. |Code Health| image:: https://landscape.io/github/explosiveduck/pyGameMath/master/landscape.svg?style=flat
-   :target: https://landscape.io/github/explosiveduck/pyGameMath/master
 .. |Codacy Badge| image:: https://api.codacy.com/project/badge/907e4230379f40a8bedcfc0a9a0ed43c
-   :target: https://www.codacy.com
