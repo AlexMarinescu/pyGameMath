@@ -2,9 +2,8 @@ import os
 from setuptools import setup, find_packages
 setup(
   name = 'gem',
-  packages = find_packages(where="gem"),
-  package_dir = {'':'gem'},
-  version = 'v0.1.6',
+  packages =['gem'],
+  version = 'v0.1.8',
   description = 'Math library for game programming in python. ',
   author = 'Alex Marinescu',
   author_email = 'ale632007@gmail.com',
