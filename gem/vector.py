@@ -48,9 +48,9 @@ def cross(vecA, vecB):
     vecC.vector[2] = vecA.vector[0] * vecB.vector[1] - vecA.vector[1] * vecB.vector[0]
     return vecC
 
-def reflect(incidentVec, norm):
+def reflect(incidentVec, normal):
     '''Reflect a vector'''
-    return incidentVec - (norm * (2.0 * incidentVec.dot(norm)))
+    return incidentVec - (normal * (2.0 * incidentVec.dot(normal)))
 
 def refract(IOR, incidentVec, normal):
     ''' Refract a vector. '''
@@ -390,19 +390,19 @@ class Vector(object):
 
     # 3D vector identities
     def right(self):
-        return Vector(3, data=[ 1.0, 0.0, 0.0, 1.0])
+        return Vector(3, data=[ 1.0, 0.0, 0.0])
 
     def left(self):
-        return Vector(3, data=[-1.0, 0.0, 0.0, 1.0])
+        return Vector(3, data=[-1.0, 0.0, 0.0])
 
     def front(self):
-        return Vector(3, data=[0.0, 0.0, -1.0, 1.0])
+        return Vector(3, data=[0.0, 0.0, -1.0])
 
     def back(self):
-        return Vector(3, data=[ 0.0, 0.0, 1.0, 1.0])
+        return Vector(3, data=[ 0.0, 0.0, 1.0])
 
     def up(self):
-        return Vector(3, data=[ 0.0, 1.0, 0.0, 1.0])
+        return Vector(3, data=[ 0.0, 1.0, 0.0])
 
     def down(self):
-        return Vector(3, data=[0.0, -1.0, 0.0, 1.0])
+        return Vector(3, data=[0.0, -1.0, 0.0])
