@@ -7,3 +7,4 @@ gem/gem.egg-info
 build/
 
 .pypirc
+setup.sh
