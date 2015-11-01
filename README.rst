@@ -23,6 +23,12 @@ To install the library just do
 
 It will install the dependicies automatically.
 
+Documentation and Examples:
+---------------------------
+The examples on how to use the library and more info are maintained on the github wiki:
+
+`Wiki Link <https://github.com/explosiveduck/pyGameMath/wiki>`_
+
 Supported features:
 ~~~~~~~~~~~~~~~~~~~
 
