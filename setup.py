@@ -4,7 +4,7 @@ setup(
   name = 'gem',
   packages = find_packages(where="gem"),
   package_dir = {'':'gem'},
-  version = 'v0.1.3',
+  version = 'v0.1.4',
   description = 'Math library for game programming in python. ',
   author = 'Alex Marinescu',
   author_email = 'ale632007@gmail.com',
