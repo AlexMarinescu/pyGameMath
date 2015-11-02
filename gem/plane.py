@@ -60,7 +60,7 @@ class Plane(object):
 
     def i_flip(self):
         ''' Flip the plane in its place. '''
-        self.data = flip(self)
+        data = flip([self.a, self.b, self.c, self.d, self.normal])
         self.a = data[0]
         self.b = data[1]
         self.c = data[2]
@@ -71,7 +71,7 @@ class Plane(object):
     def flip(self):
         ''' Return a flipped plane. '''
         nPlane = Plane()
-        data = flip(self)
+        data = flip([self.a, self.b, self.c, self.d, self.normal])
         nPlane.a = data[0]
         nPlane.b = data[1]
         nPlane.c = data[2]
