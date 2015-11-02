@@ -3,11 +3,11 @@ from gem import vector
 
 def flip(plane):
     ''' Flips the plane.'''
-    fA = -plane.a
-    fB = -plane.b
-    fC = -plane.c
-    fD = -plane.D
-    fNormal = -plane.normal
+    fA = -plane[0]
+    fB = -plane[1]
+    fC = -plane[2]
+    fD = -plane[3]
+    fNormal = -plane[4]
     return [fA, fB, fC, fD, fNormal]
 
 def normalize(pdata):
