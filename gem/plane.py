@@ -39,7 +39,7 @@ class Plane(object):
         nPlane.a = self.a
         nPlane.b = self.b
         nPlane.c = self.c
-        nPLane.d = self.d
+        nPlane.d = self.d
         return nPlane
 
     def fromCoeffs(self, a, b, c, d):
