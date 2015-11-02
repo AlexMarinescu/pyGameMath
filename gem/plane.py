@@ -12,37 +12,55 @@ def flip(plane):
 
 def normalize(pdata):
     ''' Return the normalized plane.'''
-    vec = vector.Vector(3, data=[pdata[0], pdata[1], pdata[2]])
+    vec = vector.Vector(3, data=pdata)
     vecN = vec.normalize()
 
     length = vecN.magnitude()
 
     if length is not 0:
-        return [vecN.vector[0], vecN.vector[1], vecN.vector[2], pdata[3] / length]
+        return vecN.vector[0], vecN.vector[1], vecN.vector[2], pdata[3] / length
     else:
         print("Plane fail to normalize due to zero division.")
-        return [0.0, 0.0, 0.0, 0.0]
+        return 0.0, 0.0, 0.0, 0.0
 
 class Plane(object):
-    def __init__(self, *args):
-        ''' Define a plane using 3 vectors, return a 4 item 1D array. '''
-        if isinstance(args[0], list):
-            self.data = args[0]
-        elif isinstance(args[0], vector.Vector):
-            # Define using 3 vectors
-            v1 = args[1] - args[0]
-            v2 = args[2] - args[0]
-            n = v1.cross(v2)
-            n.i_normalize()
-            self.data = [n.vector[0], n.vector[1], n.vector[2], (n * -1.0).dot(args[0])]
-        else:
-            self.data = [0.0, 0.0, 0.0, 0.0]
-
+    def __init__(self):
+        ''' Plane class constructor. '''
         self.normal = vector.Vector(3, data=[0.0, 0.0, 0.0])
+        self.a = 0
+        self.b = 0
+        self.c = 0
+        self.d = 0
+
+    def clone(self):
+        '''Create a new Plane with similar propertise.'''
+        nPlane = Plane()
+        nPlane.normal = self.normal.clone()
+        nPlane.a = self.a
+        nPlane.b = self.b
+        nPlane.c = self.c
+        nPLane.d = self.d
+        return nPlane
+
+    def fromCoeffs(self, a, b, c, d):
+        ''' Create the plane from A,B,C,D. '''
+        self.a = a
+        self.b = b
+        self.c = c
+        self.d = d
+        self.normal = vector.cross(b - a, c - a).normalize()
+
+    def fromPoints(self, a, b, c):
+        '''Calculate the plane from A,B,C.'''
+        self.a = a
+        self.b = b
+        self.c = c
+        self.normal = vector.cross(b - a, c - a).normalize()
+        self.d = self.normal.dot(self.a)
 
     def i_flip(self):
         ''' Flip the plane in its place. '''
-        data = flip(self)
+        self.data = flip(self)
         self.a = data[0]
         self.b = data[1]
         self.c = data[2]
@@ -52,20 +70,31 @@ class Plane(object):
 
     def flip(self):
         ''' Return a flipped plane. '''
-        return Plane(flip(self))
+        nPlane = Plane()
+        data = flip(self)
+        nPlane.a = data[0]
+        nPlane.b = data[1]
+        nPlane.c = data[2]
+        nPlane.d = data[3]
+        nPlane.normal = data[4]
+        return nPlane
 
     def dot(self, vec):
         ''' Return the dot product between a plane and 4D vector. '''
-        return self.data[0] * vec.vector[0] + self.data[1] * vec.vector[1] + self.data[2] * vec.vector[2] + self.data[3] * vec.vector[3]
+        return self.a * vec.vector[0] + self.b * vec.vector[1] + self.c * vec.vector[2] + self.d * vec.vector[3]
 
     def i_normalize(self):
         ''' Normalize the vector in place. '''
-        self.data = normalize(self.data)
+        pdata = [self.a, self.b, self.c, self.d]
+        self.a, self.b, self.c, self.d = normalize(pdata)
         return self
 
     def normalize(self):
         ''' Return the normalized plane.'''
-        return Plane(normalize(self.data))
+        nPlane = Plane().clone()
+        pdata = [self.a, self.b, self.c, self.d]
+        nPlane.a, nPlane.b, nPlane.c, nPlane.d = normalize(pdata)
+        return nPlane
 
     def bestFitNormal(self, vecList):
         ''' Pass in a list of vectors to find the best fit normal. '''
@@ -84,11 +113,11 @@ class Plane(object):
         return val / len(vecList)
 
     def point_location(self, plane, point):
-        ''' Returns the location of the point. '''
+        ''' Returns the location of the point. Point is a tuple. '''
         # If s > 0 then the point is on the same side as the normal. (front)
         # If s < 0 then the point is on the opposide side of the normal. (back)
         # If s = 0 then the point lies on the plane.
-        s = plane.data[0] * point[0] + plane.data[1] * point[1] + plane.data[2] * point[2] + plane.data[3]
+        s = plane.a * point[0] + plane.b * point[1] + plane.c * point[2] + plane.d
 
         if s > 0:
             return 1
