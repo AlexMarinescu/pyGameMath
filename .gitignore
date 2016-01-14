@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 
 dist/
-gem/gem.egg-info
+gem.egg-info/
 build/
 
 .pypirc
