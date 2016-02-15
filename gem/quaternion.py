@@ -213,7 +213,7 @@ def quat_slerp(quat0, quat1, t):
 
     if cosTheta > 0.999:
         k0 = 1.0 - t
-        k1 = t 
+        k1 = t
     else:
         theta = math.acos(cosTheta)
         oneOverSinTheta = 1.0 / math.sin(theta)
@@ -315,7 +315,7 @@ class Quaternion(object):
         if isinstance(other, Quaternion):
             return Quaternion(quat_mul_quat(self.data, other.data))
         elif isinstance(other, vector.Vector):
-            return Quaternion(quat_mul_vect(self.data, other.data))
+            return Quaternion(quat_mul_vect(self.data, other.vector))
         elif isinstance(other, float):
             return Quaternion(quat_mul_float(self.data, other))
         else:
