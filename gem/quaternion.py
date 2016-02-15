@@ -110,28 +110,28 @@ def quat_rotate(origin, axis, theta):
     rotation = (quat * origin) * quat.conjugate()
     return vector.Vector(3, data=[rotation.data[1], rotation.data[2], rotation.data[3]])
 
-def quat_roate_x_from_angle(theta):
+def quat_rotate_x_from_angle(theta):
     ''' Creates a quaternion that rotates around X axis given an angle. '''
     thetaOver2 = theta * 0.5
     cto2 = math.cos(thetaOver2)
     sto2 = math.sin(thetaOver2)
     return [cto2, sto2, 0.0, 0.0]
 
-def quat_roate_y_from_angle(theta):
+def quat_rotate_y_from_angle(theta):
     ''' Creates a quaternion that rotates around Y axis given an angle. '''
     thetaOver2 = theta * 0.5
     cto2 = math.cos(thetaOver2)
     sto2 = math.sin(thetaOver2)
     return [cto2, 0.0, sto2, 0.0]
 
-def quat_roate_z_from_angle(theta):
+def quat_rotate_z_from_angle(theta):
     ''' Creates a quaternion that rotates around Z axis given an angle. '''
     thetaOver2 = theta * 0.5
     cto2 = math.cos(thetaOver2)
     sto2 = math.sin(thetaOver2)
     return [cto2, 0.0, 0.0, sto2]
 
-def quat_roate_from_axis_angle(axis, theta):
+def quat_rotate_from_axis_angle(axis, theta):
     ''' Creates a quaternion that rotates around an arbitary axis given an angle. '''
     thetaOver2 = theta * 0.5
     sto2 = math.sin(math.radians(thetaOver2))
