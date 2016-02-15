@@ -148,7 +148,7 @@ def rotate3(axis, theta):
 
     oneMinusCos = (1.0 - c)
 
-    nAxis = axis.normalize()
+    nAxis = vector.normalize(3, axis)
 
     x2 = nAxis[0] * nAxis[0]
     y2 = nAxis[1] * nAxis[1]
@@ -166,7 +166,7 @@ def rotate4(axis, theta):
 
     oneMinusCos = (1.0 - c)
 
-    nAxis = axis.normalize()
+    nAxis = vector.normalize(3, axis)
 
     x2 = nAxis[0] * nAxis[0]
     y2 = nAxis[1] * nAxis[1]
@@ -393,7 +393,7 @@ class Matrix(object):
             self.matrix = matrix_div(self.matrix, other)
             return self
         else:
-            return NotImplemented        
+            return NotImplemented
 
     def i_scale(self, value):
         ''' Scale matrix instance in-place by Vector. '''
