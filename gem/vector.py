@@ -255,20 +255,20 @@ class Vector(object):
             for i in range(self.size):
                 if self.vector[i] != vecB.vector[i]:
                     return False
-            else:
-                return True
+                else:
+                    return True
         else:
             return NotImplemented
 
     def __ne__(self, vecB):
-            if isinstance(vecB, Vector):
-                for i in range(self.size):
-                    if self.vector[i] != vecB.vector[i]:
-                        return True
+        if isinstance(vecB, Vector):
+            for i in range(self.size):
+                if self.vector[i] != vecB.vector[i]:
+                    return True
                 else:
                     return False
-            else:
-                return NotImplemented
+        else:
+            return NotImplemented
 
     def __neg__(self):
         vecList = vec_neg(self.size, self.vector)
