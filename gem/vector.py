@@ -229,7 +229,21 @@ class Vector(object):
         else:
             return NotImplemented
 
+    def __truediv__(self, scalar):
+        if isinstance(scalar, int) or isinstance(scalar, float):
+            vecList = vec_div(self.size, self.vector, scalar)
+            return Vector(self.size, data=vecList)
+        else:
+            return NotImplemented
+
     def __idiv__(self, scalar):
+        if isinstance(scalar, int) or isinstance(scalar, float):
+            self.vector = vec_div(self.size, self.vector, scalar)
+            return self
+        else:
+            return NotImplemented
+
+    def __itruediv__(self, scalar):
         if isinstance(scalar, int) or isinstance(scalar, float):
             self.vector = vec_div(self.size, self.vector, scalar)
             return self
@@ -238,22 +252,30 @@ class Vector(object):
 
     def __eq__(self, vecB):
         if isinstance(vecB, Vector):
-            tempBool = False
-            for i in sm.range(self.size):
-                if self.vector[i] == vecB.vector[i]:
-                    tempBool = True
-                else:
-                    tempBool = False
-            return tempBool
+            for i in range(self.size):
+                if self.vector[i] != vecB.vector[i]:
+                    return False
+            else:
+                return True
         else:
             return NotImplemented
+
+    def __ne__(self, vecB):
+            if isinstance(vecB, Vector):
+                for i in range(self.size):
+                    if self.vector[i] != vecB.vector[i]:
+                        return True
+                else:
+                    return False
+            else:
+                return NotImplemented
 
     def __neg__(self):
         vecList = vec_neg(self.size, self.vector)
         return Vector(self.size, data=vecList)
 
     def clone(self):
-        return Vector(self.size, data=self.vector)
+        return Vector(self.size, data=self.vector[:])
 
     def one(self):
         self.vector = one_vector(self.size)
