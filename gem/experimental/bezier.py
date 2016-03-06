@@ -1,5 +1,4 @@
 import math
-from gem import vector
 import six.moves as sm
 
 
