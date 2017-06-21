@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
   name = 'gem',
   packages =['gem'],
-  version = 'v0.1.10',
+  version = 'v0.1.12',
   description = 'Math library for game programming in python. ',
   author = 'Alex Marinescu',
   author_email = 'ale632007@gmail.com',

@@ -8,3 +8,4 @@ build/
 
 .pypirc
 setup.sh
+setup.bat

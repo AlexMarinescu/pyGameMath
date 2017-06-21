@@ -33,7 +33,7 @@ def matrix_vector_multiply(matrix, vec):
     crange = list(sm.range(matSize))
     for i in crange:
         for j in crange:
-            vecOut.vector[i] += vec.vector[j] * matrix[i][j]
+            vecOut.vector[j] += vec.vector[i] * matrix[i][j]
     return vecOut
 
 def matrix_div(mat, scalar):
@@ -491,11 +491,17 @@ class Matrix(object):
             raise TypeError('Expected Vector, got {}.'.format(type(vecA)))
 
         if self.size == 2:
-            transMatList = translate2(vecA.vector)
+            raise NotImplementedError('Matrix translate of size {} not available.'.format(self.size))
         elif self.size == 3:
-            transMatList = translate3(vecA.vector)
+            if vecA.size == 3:
+                transMatList = translate3(vecA.vector)
+            elif vecA.size == 2:
+                transMatList = translate2(vecA.vector)
         elif self.size == 4:
-            transMatList = translate4(vecA.vector)
+            if vecA.size == 3:
+                transMatList = translate3(vecA.vector)
+            elif vecA.size == 4:
+                transMatList = translate4(vecA.vector)
         else:
             raise NotImplementedError('Matrix translate of size {} not implemented.'.format(self.size))
         self *= Matrix(self.size, data=transMatList)
@@ -507,9 +513,12 @@ class Matrix(object):
             raise TypeError('Expected Vector, got {}.'.format(type(vecA)))
 
         if self.size == 2:
-            transMatList = translate2(vecA.vector)
+           raise NotImplementedError('Matrix translate of size {} not available.'.format(self.size))
         elif self.size == 3:
-            transMatList = translate3(vecA.vector)
+            if vecA.size == 3:
+                transMatList = translate3(vecA.vector)
+            elif vecA.size == 2:
+                transMatList = translate2(vecA.vector)
         elif self.size == 4:
             transMatList = translate4(vecA.vector)
         else:
