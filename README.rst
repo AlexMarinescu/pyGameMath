@@ -1,13 +1,13 @@
 |ScreenShot|
 
 pyGameMath |Build Status| |Code Health| |Codacy Badge|
-======================================================
+====================================================
 
 | This is a math library written in python for 2D/3D game development
   which is also compatible with pypy. I made it while I was learning
   more about the math used in graphics development and for personal use
   in OpenGL related projects.
-| It’s still a work in progress.
+| It’s still a work in progress. Test cases edit.
 
 Dependencies:
 -------------
