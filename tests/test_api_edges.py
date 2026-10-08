@@ -92,7 +92,6 @@ def test_current_boundary_errors():
     assert (V(1,2) == object()) is False
 
 
-@pytest.mark.defect('R01')
 def test_duplicate_aliases():
     r = ray.Ray(V(1,2,3),V(0,0,5))
     copy = r.duplicate()

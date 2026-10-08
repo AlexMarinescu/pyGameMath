@@ -247,3 +247,30 @@ their established scopes. Zero normalization and extreme norms remain
 N01/N02 numerical work; malformed/nonfinite validation, general nonunit
 rotation/power/log domains and no-invert antipodal policy remain separate.
 There is no quaternion cross-product, exponential or control-generation API.
+
+## Ray copying and rigid transforms
+
+Ray construction retains caller start/direction Vector references and
+normalizes direction in place, storing its original magnitude as distance.
+`duplicate()` clones all three stored Vectors (start, dir, end) and copies
+distance exactly without construction or normalization.
+
+Unit-quaternion rotation uses the Hamilton conjugate sandwich on start and
+direction about the coordinate origin, with Vector results and direction
+normalization. Distance and quaternion inputs are preserved. The existing
+`roateUsingMatrix` spelling, Matrix3 rotation algorithm, origin pivot and
+None return are unchanged. Transforms replace start/direction fields without
+mutating previously referenced input Vectors.
+
+Pure Matrix4 translation locally supplies w=1 for Vector3 positions and
+w=0 for directions, returning spatial Vector3 fields without perspective
+division. Origin moves, direction and distance are preserved. General
+Matrix*Vector still requires matching dimensions. Scale/shear/projective
+semantics and wider invalid-input policies are not defined here.
+
+`.end` remains historical intersection placeholder/state, initially zero.
+Duplication copies it; transforms leave its object, storage and values
+unchanged. Zero is indistinguishable from an actual hit at the origin; no
+nonzero-hit inference is made. Intersection validity and transformation
+policy remain a separate API decision. `start+dir*distance` is derived
+geometry, not the meaning of `.end`. See the [ray guide](../docs/RAYS.md).
