@@ -223,3 +223,12 @@ limits. Latitude-longitude maps, mirrored-ball decoding and unfinished shadow
 transport are outside this API. Analytical active rotation through L2 is
 available as ``rotate_coefficients(coefficients, orientation)`` for canonical
 scalar/RGB coefficients and unit Quaternion orientations.
+
+Headless HDR-to-SH reference
+---------------------------
+
+Run ``python -m examples.hdr_sh.regenerate`` to generate numeric shader
+references and CPU diffuse-sphere PNGs before/after active 90-degree lighting
+rotation. No GPU or image dependency is required. See
+``examples/hdr_sh/README.md`` for raw angular/Radiance RGBE inputs,
+latitude-longitude mapping, GLSL coefficients and reproducibility hashes.

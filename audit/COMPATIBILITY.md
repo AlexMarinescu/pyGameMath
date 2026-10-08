@@ -315,3 +315,13 @@ A temporary quaternion copy removes norm drift <=1e-12; larger deviations and
 invalid arrays raise ValueError. This boundary does not change existing gem
 rotation/normalization APIs. Historical coefficients require explicit
 conversion; Matrix orientations and higher bands are not supported.
+
+## HDR-to-SH reference examples
+
+Phase 2F-5D adds only non-core examples, fixtures, shader code and reference
+outputs. Core SH APIs, historical angular-probe conventions and runtime
+dependencies are unchanged. The example latitude-longitude mapping is explicit
+and separate from angular disks. Standard-library RGBE support is limited to
+specified formats/scan orders; no image format or color profile is implicitly
+converted. Radiance, irradiance and reflected/display output remain separate.
+See [reproducible workflow](../examples/hdr_sh/README.md).
