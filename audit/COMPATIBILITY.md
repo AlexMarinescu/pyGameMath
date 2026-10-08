@@ -254,3 +254,15 @@ a local ordinary-scale benchmark. This is a measured correctness trade-off,
 not an application performance promise. Cofactor conditioning limitations
 remain; no Gaussian-elimination replacement or arbitrary cutoff is added.
 See [measurements and evidence](PHASE2F2.md).
+
+## Bezier core migration
+
+`gem.bezier` is the supported quadratic/cubic evaluation import. E01 changes
+incorrect cubic results, E02 enables Vector controls through local operand
+ordering, and E03 restores integer segment counts. Signatures, unclamped
+parameters and control-list ownership are preserved. Experimental evaluator
+imports reexport the core functions; the experimental path class extends the
+core evaluation class with unresolved legacy sampling methods. Applications
+using those methods must retain the experimental class until E04 is repaired.
+The transitional package is included in wheels; no new dependency is added.
+See [migration examples and verification](PHASE2F3A.md).

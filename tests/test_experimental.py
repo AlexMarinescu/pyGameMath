@@ -10,30 +10,6 @@ def V(*xs):
     return vector.Vector(len(xs),list(xs))
 
 
-@pytest.mark.parametrize('t',[0,0.25,0.5,0.75,1])
-def test_quadratic_bezier_scalar(t):
-    assert bezier.quadraticBezierPoint(t,0,1,2) == pytest.approx(2*t)
-
-
-@pytest.mark.parametrize('t',[0,0.25,0.5,0.75,1])
-@pytest.mark.defect('E01')
-def test_cubic_bezier_scalar(t):
-    assert bezier.cubicBezierPoint(t,0,1,2,3) == pytest.approx(3*t)
-
-
-@pytest.mark.defect('E02')
-def test_bezier_vectors():
-    assert bezier.quadraticBezierPoint(0.5,V(0,0),V(1,1),V(2,0)).vector == [1,0.5]
-
-
-@pytest.mark.defect('E03')
-def test_bezier_path_count_python3():
-    path = bezier.BezierPath()
-    path.setControlPoints([0,1,2,3])
-    assert isinstance(path.curveCount,int)
-    assert path.getDrawingPoints()
-
-
 @pytest.mark.defect('E04')
 def test_bezier_recursive_sampling():
     path = bezier.BezierPath()

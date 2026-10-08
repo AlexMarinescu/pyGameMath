@@ -133,3 +133,13 @@ See [numerical conventions](CONVENTIONS.md#numerical-robustness).
 9. **Only after correctness is established:** propose Phase 3 packaging, supported Python versions, CI, documentation/typing, and performance changes. Existing benchmarks stay as baseline; no PyPI publication or merge is included.
 
 Each later review unit must show the pre-fix failure, retain unrelated xfails/questions, remove only the relevant strict defect markers, and include a compatibility note. Wiki examples with mistakes should receive documentation-only corrections separately from mathematical corrections. Existing API/import names and pure-Python design remain constraints throughout.
+
+## Experimental retirement roadmap
+
+Validated Bezier evaluation is supported under `gem.bezier`; experimental
+imports retain compatibility reexports and legacy sampling extensions.
+E04 remains separate from E01–E03. Later validated Legendre, spherical
+harmonics sampling and irradiance work will migrate to coherent core modules.
+Incomplete shadow transport is reviewed separately. Final removal of the
+experimental directory requires a dedicated cleanup after all migrations and
+compatibility decisions; no unrelated modules move in Phase 2F-3A.

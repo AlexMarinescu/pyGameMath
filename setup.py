@@ -2,7 +2,7 @@ import os
 from setuptools import setup, find_packages
 setup(
   name = 'gem',
-  packages =['gem'],
+  packages =['gem', 'gem.experimental'],
   version = 'v0.1.12',
   description = 'Math library for game programming in python. ',
   author = 'Alex Marinescu',
