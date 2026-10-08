@@ -74,3 +74,20 @@ The user explicitly approved the following refraction contract for Phase 2C; it 
 For air-to-glass with illustrative indices 1.0 and 1.5, pass `IOR=1.0/1.5` and a normal pointing into air. For glass-to-air, pass `IOR=1.5/1.0` and a normal pointing into glass. When reversing travel across the same interface, reverse the normal and exchange the indices. Always pass the ratio rather than the transmitted medium's index alone.
 
 With `d=normal.dot(incidentVec)` and `k=1-IOR*IOR*(1-d*d)`, the transmitted direction is `IOR*incidentVec-(IOR*d+sqrt(k))*normal`. This obeys Snell's law `n1*sin(theta1)=n2*sin(theta2)` for unit inputs. If `k<0`, preserve the historical **fresh zero Vector** result with the input dimension for total internal reflection; this is a sentinel, not a reflected direction. If `k=0`, the transmitted direction is tangent to the interface. Neither input is mutated. The existing floating-point `k<0` comparison is retained, without a new near-critical clamping tolerance or unsupported-input policy.
+
+## Plane representation
+
+Planes use scalar coefficients in `a*x+b*y+c*z+d=0`. `.normal` contains `[a,b,c]` at the same scale as the coefficients. `fromCoeffs` preserves supplied values; `fromPoints` uses the unit cross product `(b-a) cross (c-a)` and sets `d=-normal.dot(a)`. Reversing point order reverses orientation. Normalization divides all four coefficients by the original normal magnitude and refreshes `.normal`. For a unit-normal plane, evaluating the equation gives signed perpendicular distance; positive values lie on the normal side.
+
+`bestFitNormal` computes a unit Newell normal from ordered polygon vertices, wrapping the final edge to the first vertex. Open lists and lists with a repeated first vertex are supported. `bestFitD` retains `D=average(normal.dot(point))`, representing `normal.dot(point)=D`; D can be negative. Construct a coefficient plane using `d=-D`:
+
+```python
+p = plane.Plane()
+n = p.bestFitNormal(vertices)
+D = p.bestFitD(vertices, n)
+p.fromCoeffs(n.vector[0], n.vector[1], n.vector[2], -D)
+```
+
+For planar polygons this plane contains every vertex. For nonplanar input, the Newell normal and mean offset describe an approximation, not a least-squares fit. Each supplied vertex contributes to the mean, including a repeated endpoint. Constructors retain their None returns; helpers do not mutate the receiver or input vertices. Public fields remain mutable snapshots: changing coefficients or `.normal` directly does not automatically synchronize the other representation.
+
+The historical plane wiki contains only “Coming soon.” These conventions resolve the representation inconsistencies identified in G01–G04. Zero-normal normalization, collinear three-point construction, and empty best-fit helpers retain their existing ZeroDivisionError behavior. Validation and exception policy for malformed, degenerate, nonfinite, or extreme-scale inputs remain unresolved under QD05/QD07.
