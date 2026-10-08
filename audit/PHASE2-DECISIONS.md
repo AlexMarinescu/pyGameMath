@@ -33,6 +33,10 @@ QD05's representation is settled: scalar `a,b,c,d` satisfy `n·p+d=0`, and `.nor
 
 QD09's transform portion is settled: same-size inputs use row-vector multiplication; an N-component position with an (N+1)×(N+1) matrix receives local w=1 promotion and returns N components. Explicit homogeneous inputs compute every output component normally, including w; no perspective divide is performed. Implicit promotion is intended for affine positions. Raw position and nested matrix lists, returning versus receiver mutation, and the general multiplication operator's matching-dimension requirement are preserved. See [transformation conventions](CONVENTIONS.md#vector-transformations). Pivot rotation, shear mapping, projection/unprojection, and unsupported-shape error policy remain separate questions.
 
+### Projection and unprojection decision
+
+QD03 is settled for ordinary valid inputs: both functions accept Matrix4 wrappers or raw 4×4 nested lists, including mixed forms; project requires explicit Vector4 input. The viewport uses `[x,y,width,height]`, lower-left origin, and upward Y. Window depth is `(ndc.z+1)/2` without clamping. Both functions return fresh Vector3 values and preserve inputs. Row-vector composition is modelview*projection, with homogeneous division after forward or inverse transformation. Project raises ZeroDivisionError for zero clip W; unproject preserves its zero-Vector3 output-W sentinel and singular-inverse ZeroDivisionError. Projection does not require invertibility. See [projection conventions](CONVENTIONS.md#projection-and-unprojection). Unsupported-shape validation, invalid viewports, near-zero thresholds, and broader numerical policies remain separate questions.
+
 ## Recommended implementation order after review
 
 1. **Small ordinary-math fixes with clear contracts:** equal-size equality/inequality (V01 component cases), inverse2 (M01), quaternion inverse (Q01). Preserve exact comparisons, return types, and component order; defer unsupported-dimension policy changes.
