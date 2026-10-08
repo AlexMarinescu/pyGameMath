@@ -1,5 +1,7 @@
 # Reproduce the Phase 1 audit
 
+> This section records the original Phase 1 baseline. On `audit/phase1b-wiki`, use the updated counts and commands in the Phase 1B section below. Original raw Phase 1 results and benchmarks are retained.
+
 Run from the existing `/workspace/pyGameMath` checkout. Keep its separate audit branch; no extra worktree is required. A fresh installation can use any chosen environment directory outside the source tree:
 
 ```bash
@@ -71,3 +73,13 @@ The wheel build succeeded, but inspecting its ZIP entries found no `gem/experime
 - [Prepared draft PR descriptions](PULL_REQUESTS.md)
 
 Reports refer to the unchanged library source at commit `5257291431bb45db0274dc48edf24694ecfe2e2d`. Regeneration of reports, future correctness fixes, broader interpreter testing, and remote PR creation must be recorded separately from these baseline observations.
+
+## Phase 1B wiki validation
+
+See [complete wiki/source report](PHASE1B-WIKI.md), [frozen seven-page wiki](wiki-snapshot/manifest.json), [API decision list and implementation order](PHASE2-DECISIONS.md), and [updated machine-readable results](phase1b-test-results.json). The library and benchmark baseline are unchanged.
+
+Run the same pytest commands above from the Phase 1B branch. Current expected outcomes are 254 passed and 94 strict xfailed (86 confirmed-defect cases plus 8 contract questions). With `--runxfail`, expect 94 failed and 254 passed, exit 1. There are no skips. Use `python -m pytest tests/test_wiki_contracts.py -q -p no:cacheprovider -o junit_family=legacy` to run only the historical-documentation additions: 75 passed, 2 xfailed.
+
+The marker registry and JUnit properties distinguish `defect(id)` from `contract_question(id)`; the latter are proposed policies awaiting review, not approved implementation requirements. Both kinds execute assertions. Questions should not be promoted to confirmed defect requirements merely because a normal run marks them xfailed.
+
+For a fresh Phase 1B coverage run, use a separate path such as `COVERAGE_FILE=/tmp/pygamemath-phase1b.coverage`; do not overwrite retained baseline result files. Measured Phase 1B statement coverage is 83.80%, branch coverage 64.71% on Python 3.12.14.

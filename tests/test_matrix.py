@@ -109,7 +109,7 @@ def test_orthographic_and_lookat():
 
 
 @pytest.mark.parametrize('use_objects', [False,True])
-@pytest.mark.defect('P01')
+@pytest.mark.contract_question('P01-input-and-depth-policy')
 def test_project_center(use_objects):
     m = matrix.Matrix(4)
     arg = m if use_objects else m.matrix

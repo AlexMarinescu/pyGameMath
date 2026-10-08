@@ -107,7 +107,7 @@ def test_slerp_known_answer(t):
     assert a.slerp(b.negate(),t).data == pytest.approx(a.slerp(b,t).data)
 
 
-@pytest.mark.defect('Q10')
+@pytest.mark.contract_question('Q10-unit-accuracy')
 def test_slerp_nearby_unit_length():
     a,b = q.Quaternion(),q.quat_from_axis_angle(V(0,0,1),1)
     assert a.slerp(b,0.5).magnitude() == pytest.approx(1,abs=1e-12)

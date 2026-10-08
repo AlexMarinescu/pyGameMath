@@ -1,0 +1,51 @@
+{
+  "remote": "https://github.com/AlexMarinescu/pyGameMath.wiki.git",
+  "wiki_commit": "715e5039c75e080814a12e957f5148c35cdf8bda",
+  "retrieved_on": "2026-10-08",
+  "source_commit": "5257291431bb45db0274dc48edf24694ecfe2e2d",
+  "audit_parent": "974a01c7db4d00065f90896ae41be41e59ffcb6a",
+  "pages": [
+    {
+      "file": "Common-Functions.md",
+      "bytes": 12,
+      "sha256": "9e3090de747039e678f865f7018fd61b508aeed7fb9d7c684f5aef44e74baaff",
+      "placeholder": true
+    },
+    {
+      "file": "Home.md",
+      "bytes": 482,
+      "sha256": "b79b80ce0ca16dff8dea741462e417eb8d2cf74694934a2af8eac60fd8cd92c8",
+      "placeholder": false
+    },
+    {
+      "file": "Matrix-Class.md",
+      "bytes": 4284,
+      "sha256": "f830ddb37d380a17b39aa73f8d889d53fc7f081c59e4f68b910d93bf8ec16648",
+      "placeholder": false
+    },
+    {
+      "file": "Plane-Class.md",
+      "bytes": 12,
+      "sha256": "9e3090de747039e678f865f7018fd61b508aeed7fb9d7c684f5aef44e74baaff",
+      "placeholder": true
+    },
+    {
+      "file": "Quaternion-Class.md",
+      "bytes": 12,
+      "sha256": "9e3090de747039e678f865f7018fd61b508aeed7fb9d7c684f5aef44e74baaff",
+      "placeholder": true
+    },
+    {
+      "file": "Ray-Class.md",
+      "bytes": 12,
+      "sha256": "9e3090de747039e678f865f7018fd61b508aeed7fb9d7c684f5aef44e74baaff",
+      "placeholder": true
+    },
+    {
+      "file": "Vector-Class.md",
+      "bytes": 4264,
+      "sha256": "8490427ee318d00dc950ec4596f7188b366edeb0a1a002ef1d5712e46e45cc5e",
+      "placeholder": false
+    }
+  ]
+}

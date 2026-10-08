@@ -23,3 +23,9 @@ Review scope: `audit/`, `benchmarks/`. Stack after Draft 1 because test-results 
 ## Future review sequence (not implemented)
 
 After Phase 1 findings are accepted, prioritize separate small correctness PRs: equality; inverse2; quaternion inverse; paired division/inverse4 correction; angle helpers; refraction; plane representation/normalization; projection/transform composition; remaining quaternion/ray defects; then usable experimental algorithms. Contract-dependent changes need explicit decisions. Propose packaging/CI/documentation/typing/performance modernization only after the correctness phase is established.
+
+## Phase 1B status
+
+The user reports Phase 1 is now pushed and under draft PR #9. The earlier GitHub API blocker above is historical; no new API access claim is made in Phase 1B. Native HTTPS Git successfully retrieved the complete wiki and verified the remote Phase 1 branch.
+
+Additional review is isolated on `audit/phase1b-wiki`, based on the unchanged original audit tip. Scope is wiki snapshots/provenance, all-44 reconciliation, convention/compatibility updates, decision questions, and documentation-backed tests. Neither PR #9 nor production source is modified. Phase 2 has not begun.

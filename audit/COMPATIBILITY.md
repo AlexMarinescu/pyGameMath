@@ -30,3 +30,11 @@ Known failures are explicit strict xfails, not disabled assertions. `--runxfail`
 No switch to column vectors, quaternion `[x,y,z,w]`, one universal angle unit, NumPy-backed storage, compiled mandatory acceleration, renamed distribution/import namespace, automatic approximate equality, or altered default coordinate axes. No library changes were made and no later-phase corrections have been started. Publication, default-branch merge, and breaking API changes require explicit approval.
 
 Every later PR should identify which findings it addresses, show the pre-fix failure, remove only the corresponding strict-xfail annotations, and report newly passing tests alongside all remaining known failures. Source-review-only downstream experimental issues require new focused reproductions before their corrections.
+
+## Phase 1B historical validation update
+
+The [full wiki reconciliation](PHASE1B-WIKI.md) supersedes the implication that every failing Phase 1 expectation is an approved correction. The two substantive wiki pages require matched operand dimensions and distinguish new results from receiver mutation; four other pages are placeholders. No storage/order, unit, or public signature change is authorized.
+
+V04, Q10, Q11, and the implicit-promotion portion of R03 are now explicitly unresolved contract groups. V01 mixed/empty inputs and P01 input/depth subcases are also questions. G01's normal expectation is narrowed to coefficient-aligned direction without choosing raw versus unit normal length. These tests still execute under strict contract-question xfails, separately recorded from confirmed-defect xfails. The original Phase 1 commits/results are preserved.
+
+Matrix default identity and i-method self returns remain compatible with established source. Wiki typos and contradictory example outputs are documentation errors, not approval for behavior changes. Pure-Python runtime requirements, existing gem imports, and PR #9 remain unchanged.
