@@ -121,3 +121,21 @@ OpenGL NDC depth [-1,1] becomes window depth [0,1]; near/far map to 0/1 for the 
 `unproject(winx, winy, winz, modelview, projection, viewport)` reverses the viewport mapping, uses NDC `[x,y,2*winz-1,1]`, and applies `(modelview * projection).inverse()` in row-vector mathematics. Divide the resulting X/Y/Z by the computed homogeneous W to obtain object Cartesian coordinates. This composition is essential for noncommuting modelview and projection matrices.
 
 Zero clip W in `project` raises ZeroDivisionError. Zero homogeneous output W in `unproject` retains the historical fresh zero-Vector3 sentinel, which cannot distinguish an invalid finite inverse image from a genuine object origin. Singular combined matrices retain the inverse routine's ZeroDivisionError. Projection requires no inverse and can map through a singular matrix when clip W is nonzero. No near-zero-W tolerance, singularity threshold, invalid-viewport validation, or nonfinite/extreme-scale policy is introduced; broader numerical and error policies remain under QD07.
+
+## Pivot rotation and shear
+
+`rotate2(point, theta)` takes raw pivot coordinates and an angle in degrees, positive counterclockwise. It returns a fresh 3×3 nested matrix for homogeneous row-vector positions `[X,Y,1]`. With `c=cos(theta)` and `s=sin(theta)`, its final row is `[px*(1-c)+py*s, py*(1-c)-px*s, 1]`. Thus `p' = pivot + (p-pivot)R`, or equivalently `T(-pivot)*R*T(pivot)` in row-vector composition order. The pivot stays stationary; directions `[X,Y,0]` receive rotation without pivot translation. The input pivot is preserved.
+
+Use `Matrix(3, data=rotate2([px,py], theta))` for this 2D affine transform. Matrix2 `rotate`/`i_rotate` retain origin-only rotation and their historical Vector argument, whose pivot components do not affect the result. A 2×2 matrix cannot represent translation about an arbitrary pivot. Matrix3/Matrix4 rotation methods retain their axis-angle dispatch; no pivot overload or new method is introduced.
+
+The shear argument names identify the coordinates that supply displacement to the remaining coordinate:
+
+| API | Row-vector mapping |
+| --- | --- |
+| `shearXY(x,y)` | `Z' = Z + x*X + y*Y`; X/Y unchanged |
+| `shearYZ(y,z)` | `X' = X + y*Y + z*Z`; Y/Z unchanged |
+| `shearXZ(x,z)` | `Y' = Y + x*X + z*Z`; X/Z unchanged |
+
+The size-3 helpers operate on XYZ vectors, not homogeneous 2D positions. The size-4 helpers apply the same linear mapping to XYZ and preserve the supplied W, including zero and nonunit values. Each simple shear has determinant 1 and inverse given by negating both factors. Named shears generally do not commute with other shear planes or translations.
+
+Returning Matrix methods postmultiply the receiver by the shear matrix and return a fresh Matrix; in-place methods postmultiply, replace receiver storage, return self, and refresh `c_matrix` through existing multiplication. This leaves separately supplied rows and vector inputs unchanged. Matrix2 shear remains unsupported. Malformed inputs, nonfinite factors, extreme-scale accuracy, and general exception policies remain outside this ordinary-input contract.

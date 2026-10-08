@@ -104,3 +104,13 @@ Unprojection now inverts modelview*projection rather than projection*modelview. 
 Zero clip W raises ZeroDivisionError in project. Unproject preserves its fresh zero-Vector3 sentinel for zero homogeneous output W and the existing singular-inverse ZeroDivisionError. Project does not require an invertible combined matrix. Inputs and public ctypes snapshots are preserved. Numerical conditioning, near-zero-W tolerances, malformed shapes, and invalid viewport policies are not expanded.
 
 Only P01/P02 defect markers and the two now-resolved P01 input/depth question cases are converted. All unrelated expected failures and questions remain. [CONVENTIONS.md](CONVENTIONS.md#projection-and-unprojection) defines the contract; [PHASE2D3.md](PHASE2D3.md) records verification and changed files.
+
+## Pivot rotation and shear
+
+`rotate2(point,theta)` now computes the affine offset needed to keep the pivot fixed. Rotating `(2,3)` about itself by 90 degrees changes from the incorrect `(4,6)` to `(2,3)`; `(3,3)` rotates to `(2,4)`. Zero-angle rotation is now identity for nonzero pivots. The raw point argument, degree units, returned 3×3 nested matrix, and row-vector order are preserved. Code that compensated for the old offset should remove that compensation. Wrap the helper in Matrix3 for homogeneous 2D application; Matrix2 remains origin-only, and Matrix3/Matrix4 rotation methods remain axis-angle operations.
+
+XY3 now writes the Z column instead of raising IndexError. XY4 likewise shears Z instead of modifying homogeneous W. With factors `(1,2)`, `[2,3,4,1]` now becomes `[2,3,12,1]` rather than `[2,3,4,9]`. This changes numerical behavior for callers using XY4 as a projective W modification; it now represents the same geometric shear as XY3. No replacement projective API is introduced. Zero factors retain identity, and supplied W is preserved for positions and directions.
+
+YZ/XZ retain their existing mappings and numerical algorithms. All three size-3 forms are XYZ linear transforms, not 2D homogeneous shears. Returning and in-place methods retain postmultiplication, signatures, input ownership, and float32 ctypes refresh behavior. Only XY3, XY4, and rotate2 change mathematical code in `gem/matrix.py`; the remaining shear helpers receive explanatory docstrings. Runtime dependencies, public imports, and unrelated algorithms remain unchanged.
+
+Only M05/M06 markers are removed. [CONVENTIONS.md](CONVENTIONS.md#pivot-rotation-and-shear) records the mappings and rotation dispatch; [PHASE2D4.md](PHASE2D4.md) records verification and changed files.

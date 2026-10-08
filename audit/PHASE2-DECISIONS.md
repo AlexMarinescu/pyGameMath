@@ -37,6 +37,10 @@ QD09's transform portion is settled: same-size inputs use row-vector multiplicat
 
 QD03 is settled for ordinary valid inputs: both functions accept Matrix4 wrappers or raw 4×4 nested lists, including mixed forms; project requires explicit Vector4 input. The viewport uses `[x,y,width,height]`, lower-left origin, and upward Y. Window depth is `(ndc.z+1)/2` without clamping. Both functions return fresh Vector3 values and preserve inputs. Row-vector composition is modelview*projection, with homogeneous division after forward or inverse transformation. Project raises ZeroDivisionError for zero clip W; unproject preserves its zero-Vector3 output-W sentinel and singular-inverse ZeroDivisionError. Projection does not require invertibility. See [projection conventions](CONVENTIONS.md#projection-and-unprojection). Unsupported-shape validation, invalid viewports, near-zero thresholds, and broader numerical policies remain separate questions.
 
+### Pivot rotation and shear decision
+
+QD09's remaining mathematical mappings are settled. `rotate2(point,theta)` uses a 2D pivot, degrees, and positive counterclockwise row-vector rotation; its 3×3 homogeneous matrix implements `pivot+(p-pivot)R`. Matrix2 origin-only rotation and Matrix3/Matrix4 axis-angle dispatch are preserved. Shear XY adds x*X+y*Y to Z; YZ adds y*Y+z*Z to X; XZ adds x*X+z*Z to Y. Size-3 forms operate on XYZ, and size-4 forms preserve W. Existing YZ/XZ mappings, signatures, argument order, postmultiplication, and ctypes synchronization are preserved. See [pivot/shear conventions](CONVENTIONS.md#pivot-rotation-and-shear). Broader unsupported-input and numerical policies remain separate questions.
+
 ## Recommended implementation order after review
 
 1. **Small ordinary-math fixes with clear contracts:** equal-size equality/inequality (V01 component cases), inverse2 (M01), quaternion inverse (Q01). Preserve exact comparisons, return types, and component order; defer unsupported-dimension policy changes.

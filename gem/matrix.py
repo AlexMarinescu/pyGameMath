@@ -58,42 +58,42 @@ def transpose(mat):
 
 ###### Shear functions ####
 def shearXY3(x, y):
-    ''' Shear on XY. '''
+    ''' Shear XYZ coordinates: Z += x*X + y*Y. '''
     out = identity(3)
-    out[0][3] = x
-    out[1][3] = y
+    out[0][2] = x
+    out[1][2] = y
     return out
 
 def shearYZ3(y, z):
-    ''' Shear on YZ. '''
+    ''' Shear XYZ coordinates: X += y*Y + z*Z. '''
     out = identity(3)
     out[1][0] = y
     out[2][0] = z
     return out
 
 def shearXZ3(x, z):
-    ''' Shear on XZ. '''
+    ''' Shear XYZ coordinates: Y += x*X + z*Z. '''
     out = identity(3)
     out[0][1] = x
     out[2][1] = z
     return out
 
 def shearXY4(x, y):
-    ''' Shear on XY. '''
+    ''' Shear Z += x*X + y*Y, preserving homogeneous W. '''
     out = identity(4)
-    out[0][3] = x
-    out[1][3] = y
+    out[0][2] = x
+    out[1][2] = y
     return out
 
 def shearYZ4(y, z):
-    ''' Shear on YZ. '''
+    ''' Shear X += y*Y + z*Z, preserving homogeneous W. '''
     out = identity(4)
     out[1][0] = y
     out[2][0] = z
     return out
 
 def shearXZ4(x, z):
-    ''' Shear on XZ. '''
+    ''' Shear Y += x*X + z*Z, preserving homogeneous W. '''
     out = identity(4)
     out[0][1] = x
     out[2][1] = z
@@ -128,12 +128,17 @@ def translate4(vector):
 ###### Rotate functions #####
 
 def rotate2(point, theta):
-    ''' Rotate around an axis.'''
+    ''' Return a row-vector 3x3 rotation about a 2D pivot.
+
+    point supplies the pivot coordinates; theta is in degrees, positive
+    counterclockwise. Homogeneous positions rotate around point, while
+    directions (W=0) rotate around the origin. The pivot is not mutated.
+    '''
     c = math.cos(math.radians(theta))
     s = math.sin(math.radians(theta))
 
-    x1 = (point[0] - c) * (point[0]) - (-s * point[1])
-    y1 = (point[1] - s) * (point[0]) - ( c * point[1])
+    x1 = point[0] * (1.0 - c) + point[1] * s
+    y1 = point[1] * (1.0 - c) - point[0] * s
 
     container = [[c, s, 0.0],
                  [-s, c, 0.0],
