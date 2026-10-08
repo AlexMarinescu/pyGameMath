@@ -139,3 +139,23 @@ Legendre Polynomial (Experimental, not complete):
    :target: https://landscape.io/github/explosiveduck/pyGameMath/master
 .. |Codacy Badge| image:: https://api.codacy.com/project/badge/907e4230379f40a8bedcfc0a9a0ed43c
    :target: https://www.codacy.com
+Bezier evaluation
+-----------------
+
+Use ``gem.bezier`` for supported scalar and Vector Bezier evaluation::
+
+    from gem.bezier import cubicBezierPoint, BezierPath
+    from gem.vector import Vector
+
+    midpoint = cubicBezierPoint(0.5, Vector(2, [0, 0]),
+                                Vector(2, [1, 2]), Vector(2, [2, 2]),
+                                Vector(2, [3, 0]))  # [1.5, 1.5]
+    path = BezierPath()
+    path.setControlPoints([0, 1, 2, 3])
+    midpoint = path.calculateBezerPoint(0, 0.5)  # 1.5
+
+Quadratic evaluation is available as ``quadraticBezierPoint(t, p0, p1, p2)``.
+Controls are preserved and parameters are not clamped. Cubic paths use
+``3*k+1`` controls for ``k`` segments. Experimental evaluator imports remain
+compatible; adaptive-sampling methods remain experimental. See
+``audit/PHASE2F3A.md`` for migration and compatibility details.
