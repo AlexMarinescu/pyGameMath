@@ -180,3 +180,52 @@ ValueError. Exactly zero imaginary parts are handled separately. Stable
 hypotenuse calculations preserve tiny nonzero imaginary directions without
 an arbitrary cutoff. Very large exponents remain subject to floating-point
 angle-reduction accuracy; exponent reduction avoids intermediate overflow.
+
+## Quaternion interpolation
+
+`Quaternion.slerp(other,t)` / `quat_slerp(q0,q1,t)` perform accurate
+shortest-path spherical interpolation of unit quaternions. Inputs are not
+normalized and t is not clamped. For t in [0,1], unit norm and known-axis
+components are checked within 1e-12, subject to ordinary floating-point
+limitations. Difference/sum norms compute the spherical angle stably, even
+when dot rounds to one. Equal orientations return a fresh copy.
+
+Negative endpoint dot selects the sign-equivalent shortest path. At exactly
+zero dot (a spatial half-turn), both paths are equally short; supplied signs
+retain the existing tie branch. There is no global sign canonicalization.
+Accuracy requirements do not extend to arbitrary extrapolation or nonunit
+inputs. Quaternion LERP and slerp_no_invert retain their historical policies.
+
+Legacy `Quaternion.squad(q1,q2,t)` / `quat_squad(q0,q1,q2,t)` use q0 as
+start, q2 as end and q1 as an additional blend control:
+`N(N(q0,q2,t),N(q0,q1,t),2*t*(1-t))`, where N is slerp_no_invert.
+That helper uses spherical interpolation for -0.95 < dot < 0.95 and
+unnormalized LERP otherwise. The legacy blend is sign-sensitive, may be
+nonunit, and may degenerate to zero for antipodal inputs. Independently
+negating controls can change the path; negating all controls preserves
+represented rotations. No new antipodal-axis policy is introduced.
+
+`gem.quaternion.squad4(q0,q1,s0,s1,t)` is separate conventional SQUAD.
+q0/q1 are endpoint unit quaternions; s0/s1 are intermediate unit SQUAD
+controls, not simply neighbouring animation keyframes. It computes
+`S(S(q0,q1,t),S(s0,s1,t),2*t*(1-t))` using accurate shortest-path SLERP S.
+It returns fresh Quaternion storage and preserves every input. Endpoints
+match q0/q1 as rotations, with unit norm within 1e-12 over [0,1]. Sign
+equivalence follows SLERP, including half-turn ties. Control generation and
+an exponential helper are not part of this API.
+
+### Examples
+
+```python
+from gem.quaternion import Quaternion, quat_from_axis_angle, squad4
+
+start = Quaternion()
+end = quat_from_axis_angle([0, 0, 1], 90)
+legacy_control = quat_from_axis_angle([0, 0, 1], 180)
+legacy = start.squad(legacy_control, end, 0.5)  # 67.5 degrees about Z
+
+# Explicit SQUAD controls for this example, not neighbouring keyframes.
+s0 = quat_from_axis_angle([0, 0, 1], 30)
+s1 = quat_from_axis_angle([0, 0, 1], 120)
+curve = squad4(start, end, s0, s1, 0.5)        # 60 degrees about Z
+```

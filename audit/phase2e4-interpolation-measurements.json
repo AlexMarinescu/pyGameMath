@@ -1,0 +1,75 @@
+{
+  "base_commit": "4eafc86731aac609a6bc81113207c0e5b9444308",
+  "samples_per_separation": 1001,
+  "measurements": [
+    {
+      "spatial_separation_degrees": 0.001,
+      "baseline": {
+        "max_norm_error": 9.519274257741017e-12,
+        "max_spatial_angle_error_radians": 2.131981928239074e-17,
+        "max_component_error": 9.519274257741017e-12
+      },
+      "corrected": {
+        "max_norm_error": 3.3306690738754696e-16,
+        "max_spatial_angle_error_radians": 6.776263578034403e-21,
+        "max_component_error": 3.3306690738754696e-16
+      }
+    },
+    {
+      "spatial_separation_degrees": 0.1,
+      "baseline": {
+        "max_norm_error": 9.519294219551e-08,
+        "max_spatial_angle_error_radians": 2.1316120960360174e-11,
+        "max_component_error": 9.51929330916812e-08
+      },
+      "corrected": {
+        "max_norm_error": 3.3306690738754696e-16,
+        "max_spatial_angle_error_radians": 4.336808689942018e-19,
+        "max_component_error": 3.3306690738754696e-16
+      }
+    },
+    {
+      "spatial_separation_degrees": 1,
+      "baseline": {
+        "max_norm_error": 9.519279265512992e-06,
+        "max_spatial_angle_error_radians": 2.131620105818091e-08,
+        "max_component_error": 9.519188648887678e-06
+      },
+      "corrected": {
+        "max_norm_error": 2.220446049250313e-16,
+        "max_spatial_angle_error_radians": 3.469446951953614e-18,
+        "max_component_error": 2.220446049250313e-16
+      }
+    },
+    {
+      "spatial_separation_degrees": 3,
+      "baseline": {
+        "max_norm_error": 8.567242599299973e-05,
+        "max_spatial_angle_error_radians": 5.75554921215804e-07,
+        "max_component_error": 8.566508622842584e-05
+      },
+      "corrected": {
+        "max_norm_error": 2.220446049250313e-16,
+        "max_spatial_angle_error_radians": 1.3877787807814457e-17,
+        "max_component_error": 3.3306690738754696e-16
+      }
+    },
+    {
+      "spatial_separation_degrees": 5.1251174562462785,
+      "baseline": {
+        "max_norm_error": 0.0002500312568393115,
+        "max_spatial_angle_error_radians": 2.8698748968311594e-06,
+        "max_component_error": 0.00024996874120986057
+      },
+      "corrected": {
+        "max_norm_error": 2.220446049250313e-16,
+        "max_spatial_angle_error_radians": 1.3877787807814457e-17,
+        "max_component_error": 2.220446049250313e-16
+      }
+    }
+  ],
+  "microseconds_per_call_median_7x50000": {
+    "baseline": 2.6102401799653308,
+    "corrected": 3.948976239989861
+  }
+}

@@ -152,3 +152,31 @@ ordering, and caller ownership are preserved. Unit input is a prerequisite;
 there is no implicit normalization, new norm tolerance, general nonunit
 support, sign canonicalization, or exponential API. Broader accuracy and
 invalid-input policies remain separate decisions.
+
+## Phase 2E-4: quaternion interpolation
+
+Q05 fixes the callable-parameter expression while retaining the legacy
+three-control blend, signatures, sign-sensitive no-invert branches and
+caller ownership. It is not reinterpreted as four-control SQUAD. Its linear
+branches still produce nonunit results and retain antipodal degeneracy.
+
+Q10 replaces the dot>0.999 unnormalized approximation with accurate
+spherical interpolation. Near-angle output components and norm change;
+there is no implicit input normalization. Stable difference/sum angle
+calculation preserves tiny rotations; identical endpoints return fresh
+storage. Shortest-path sign correction, half-turn tie behavior, unclamped
+parameters and ordinary Quaternion results are preserved. Accuracy is
+specified for unit inputs over [0,1]; LERP/no-invert semantics are unchanged.
+
+`squad4(q0,q1,s0,s1,t)` adds a separate public function in gem.quaternion.
+All arguments are unit quaternions except t; s0/s1 are explicit SQUAD
+controls. It uses accurate shortest-path SLERP, returns fresh storage, and
+preserves inputs. No method overload, control-generation or exponential API
+is added. See [API examples](CONVENTIONS.md#quaternion-interpolation).
+
+At the old near-angle cutoff, measured norm error falls from about 2.50e-4
+to 2.22e-16. The final stable-angle implementation costs about 51% more in
+a local one-degree microbenchmark (3.949 versus 2.610 microseconds/call);
+this replaces the approximate prototype estimate and is not an application
+performance guarantee. Full measurements and reproduction are in
+[Phase 2E-4](PHASE2E4.md).

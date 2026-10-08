@@ -219,32 +219,24 @@ def quat_lerp(quat0, quat1, t):
     return output
 
 def quat_slerp(quat0, quat1, t):
-    ''' Spherical interpolation between two quaternions. '''
-    k0 = 0.0
-    k1 = 0.0
+    """Return fresh shortest-path spherical interpolation of unit inputs.
 
-    output = Quaternion()
-    quat1Neg = Quaternion()
-    cosTheta = quat0.dot(quat1)
-
-    if cosTheta < 0.0:
-        quat1Neg = quat1.negate()
-        cosTheta = -cosTheta
-    else:
-        quat1Neg = quat1
-
-    if cosTheta > 0.999:
-        k0 = 1.0 - t
-        k1 = t
-    else:
-        theta = math.acos(cosTheta)
-        oneOverSinTheta = 1.0 / math.sin(theta)
-        k0 = math.sin((1.0 - t) * theta) * oneOverSinTheta
-        k1 = math.sin(t * theta) * oneOverSinTheta
-
-    output = (quat0 * k0) + (quat1Neg * k1)
-
-    return output
+    No input normalization or parameter clamping is performed. Equal
+    orientations use the continuous limit; signs follow the first input.
+    """
+    end = quat1.negate() if quat0.dot(quat1) < 0.0 else quat1
+    # Difference/sum norms retain angles too small for acos(dot) to resolve.
+    difference = [a - b for a, b in zip(quat0.data, end.data)]
+    total = [a + b for a, b in zip(quat0.data, end.data)]
+    difference_norm = math.hypot(math.hypot(*difference[:2]), math.hypot(*difference[2:]))
+    total_norm = math.hypot(math.hypot(*total[:2]), math.hypot(*total[2:]))
+    theta = 2.0 * math.atan2(difference_norm, total_norm)
+    if theta == 0.0:
+        return Quaternion(data=list(quat0.data))
+    denominator = math.sin(theta)
+    k0 = math.sin((1.0 - t) * theta) / denominator
+    k1 = math.sin(t * theta) / denominator
+    return (quat0 * k0) + (end * k1)
 
 def quat_slerp_no_invert(quat0, quat1, t):
     ''' Spherical interpolation between two quaternions, it does not check for theta > 90. Used by SQUAD. '''
@@ -264,8 +256,25 @@ def quat_slerp_no_invert(quat0, quat1, t):
     return output
 
 def quat_squad(quat0, quat1, quat2, t):
-    ''' Quaternion splines. '''
-    return quat_slerp_no_invert(quat_slerp_no_invert(quat0, quat2, t), quat_slerp_no_invert(quat0, quat1, t), 2 * t(1 - t))
+    """Legacy three-control blend: quat0=start, quat2=end, quat1=control.
+
+    Uses sign-sensitive slerp_no_invert, including its linear approximations;
+    unit length is not guaranteed. See squad4 for conventional SQUAD.
+    """
+    a = quat_slerp_no_invert(quat0, quat2, t)
+    b = quat_slerp_no_invert(quat0, quat1, t)
+    return quat_slerp_no_invert(a, b, 2 * t * (1 - t))
+
+def squad4(q0, q1, s0, s1, t):
+    """Return conventional four-control SQUAD for unit quaternions.
+
+    q0/q1 are endpoints; s0/s1 are SQUAD controls, not neighbouring
+    keyframes. Uses accurate shortest-path SLERP; t is ordinarily in [0,1].
+    Inputs and their storage are preserved; the result is a fresh Quaternion.
+    """
+    a = quat_slerp(q0, q1, t)
+    b = quat_slerp(s0, s1, t)
+    return quat_slerp(a, b, 2 * t * (1 - t))
 
 def quat_to_matrix(quat):
     ''' Return a row-vector Matrix4 for a unit [w,x,y,z] quaternion.
