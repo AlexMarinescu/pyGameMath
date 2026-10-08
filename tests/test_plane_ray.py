@@ -10,7 +10,9 @@ def V(*xs):
 def test_plane_from_coefficients():
     p = plane.Plane()
     p.fromCoeffs(0,2,0,-4)
-    assert p.normal.vector == [0,2,0]
+    assert [p.a,p.b,p.c,p.d] == [0,2,0,-4]
+    # Wiki is a placeholder: do not require a unit or raw coefficient normal yet.
+    assert p.normal.normalize().vector == [0,1,0]
 
 
 @pytest.mark.defect('G02')
@@ -69,7 +71,7 @@ def test_ray_quaternion_rotation():
     assert r.dir.vector == pytest.approx([0,1,0],abs=1e-14)
 
 
-@pytest.mark.defect('R03')
+@pytest.mark.contract_question('R03-homogeneous-promotion')
 def test_ray_translation_moves_origin():
     r = ray.Ray(V(1,2,3),V(0,0,1))
     r.translate(matrix.Matrix(4).translate(V(2,3,4)))

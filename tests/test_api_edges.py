@@ -122,7 +122,7 @@ def test_angle_units_characterization():
     assert q.quat_rotate(V(1,0,0),[0,0,1],90).vector == pytest.approx([0,1,0],abs=1e-14)
 
 
-@pytest.mark.defect('Q11')
+@pytest.mark.contract_question('Q11-return-semantics')
 def test_arbitrary_axis_helper_returns_rotation_quaternion():
     rotation = q.quat_rotate_from_axis_angle(V(0,0,1),90)
     expected = q.quat_from_axis_angle(V(0,0,1),90)
