@@ -41,6 +41,10 @@ QD03 is settled for ordinary valid inputs: both functions accept Matrix4 wrapper
 
 QD09's remaining mathematical mappings are settled. `rotate2(point,theta)` uses a 2D pivot, degrees, and positive counterclockwise row-vector rotation; its 3×3 homogeneous matrix implements `pivot+(p-pivot)R`. Matrix2 origin-only rotation and Matrix3/Matrix4 axis-angle dispatch are preserved. Shear XY adds x*X+y*Y to Z; YZ adds y*Y+z*Z to X; XZ adds x*X+z*Z to Y. Size-3 forms operate on XYZ, and size-4 forms preserve W. Existing YZ/XZ mappings, signatures, argument order, postmultiplication, and ctypes synchronization are preserved. See [pivot/shear conventions](CONVENTIONS.md#pivot-rotation-and-shear). Broader unsupported-input and numerical policies remain separate questions.
 
+### Quaternion/matrix conversion scope
+
+Q02/Q07 are corrected within the established unit-rotation domain: [w,x,y,z], proper row-vector rotation matrices, sign-equivalent q/-q orientations, and synchronized Matrix4 exports. No implicit normalization, orthogonalization, canonical-sign requirement, or new input representation is introduced. Existing zero/nonunit quaternion-to-matrix arithmetic is preserved. Other quaternion-domain, return, validation, and numerical questions in QD06/QD07 remain unresolved. See [conversion conventions](CONVENTIONS.md#quaternionmatrix-conversions).
+
 ## Recommended implementation order after review
 
 1. **Small ordinary-math fixes with clear contracts:** equal-size equality/inequality (V01 component cases), inverse2 (M01), quaternion inverse (Q01). Preserve exact comparisons, return types, and component order; defer unsupported-dimension policy changes.

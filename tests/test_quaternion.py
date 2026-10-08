@@ -62,7 +62,6 @@ def test_matrix_rotation_agreement(axis,angle):
 
 
 @pytest.mark.parametrize('axis', [[1,0,0],[0,1,0],[0,0,1],[1,2,3]])
-@pytest.mark.defect('Q02')
 def test_half_turn_matrix_roundtrip(axis):
     rot = q.quat_from_axis_angle(V(*axis),180)
     recovered = q.quat_from_matrix(rot.toMatrix())
@@ -103,7 +102,6 @@ def test_list_axis(function):
     assert isinstance(function([0,0,1],90),q.Quaternion)
 
 
-@pytest.mark.defect('Q07')
 def test_rotation_matrix_ctypes_snapshot():
     m = q.quat_from_axis_angle(V(0,0,1),90).toMatrix()
     assert_matrix([list(row) for row in m.c_matrix],m.matrix,abs=1e-6)

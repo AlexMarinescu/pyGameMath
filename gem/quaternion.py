@@ -2,6 +2,7 @@ import math
 import six.moves as sm
 from gem import vector
 from gem import matrix
+from gem import common
 
 def quat_identity():
     ''' Returns the quaternion identity. '''
@@ -246,7 +247,11 @@ def quat_squad(quat0, quat1, quat2, t):
     return quat_slerp_no_invert(quat_slerp_no_invert(quat0, quat2, t), quat_slerp_no_invert(quat0, quat1, t), 2 * t(1 - t))
 
 def quat_to_matrix(quat):
-    ''' Converts a quaternion to a rotational 4x4 matrix. '''
+    ''' Return a row-vector Matrix4 for a unit [w,x,y,z] quaternion.
+
+    No implicit normalization is performed. The quaternion is preserved,
+    and the returned float32 ctypes snapshot matches its matrix rows.
+    '''
     x2 = quat.data[1] * quat.data[1]
     y2 = quat.data[2] * quat.data[2]
     z2 = quat.data[3] * quat.data[3]
@@ -274,6 +279,7 @@ def quat_to_matrix(quat):
     outputMatrix.matrix[2][2] = 1.0 - 2.0 * x2 - 2.0 * y2
     outputMatrix.matrix[2][3] = 0.0
 
+    outputMatrix.c_matrix = common.conv_list_2d(outputMatrix.matrix, common.GLfloat)
     return outputMatrix
 
 class Quaternion(object):
@@ -440,7 +446,11 @@ class Quaternion(object):
         return quat_rotate_vector(self, vector.Vector(3, data=[0.0, -1.0, 0.0]))
 
 def quat_from_matrix(matrix):
-    ''' Converts a 4x4 rotational matrix to quaternion. '''
+    ''' Return a [w,x,y,z] Quaternion from a proper row-vector rotation.
+
+    Uses the input Matrix's upper-left 3x3 block without mutating it.
+    Quaternion sign is not unique; no normalization or validation is added.
+    '''
     fourXSquaredMinus1 = matrix.matrix[0][0] - matrix.matrix[1][1] - matrix.matrix[2][2]
     fourYSquaredMinus1 = matrix.matrix[1][1] - matrix.matrix[0][0] - matrix.matrix[2][2]
     fourZSquaredMinus1 = matrix.matrix[2][2] - matrix.matrix[0][0] - matrix.matrix[1][1]
@@ -452,38 +462,41 @@ def quat_from_matrix(matrix):
 
     if (fourXSquaredMinus1 > fourBiggestSquaredMinus1):
         biggestIndex = 1
-    elif(fourYSquaredMinus1 > fourBiggestSquaredMinus1):
+        fourBiggestSquaredMinus1 = fourXSquaredMinus1
+    if (fourYSquaredMinus1 > fourBiggestSquaredMinus1):
         biggestIndex = 2
-    elif(fourZSquaredMinus1 > fourBiggestSquaredMinus1):
+        fourBiggestSquaredMinus1 = fourYSquaredMinus1
+    if (fourZSquaredMinus1 > fourBiggestSquaredMinus1):
         biggestIndex = 3
+        fourBiggestSquaredMinus1 = fourZSquaredMinus1
 
     biggestVal = math.sqrt(fourBiggestSquaredMinus1 + 1) * 0.5
     mult = 0.25 / biggestVal
 
     rquat = Quaternion()
 
-    if biggestIndex is 0:
+    if biggestIndex == 0:
         rquat.data[0] = biggestVal
         rquat.data[1] = (matrix.matrix[1][2] - matrix.matrix[2][1]) * mult
         rquat.data[2] = (matrix.matrix[2][0] - matrix.matrix[0][2]) * mult
         rquat.data[3] = (matrix.matrix[0][1] - matrix.matrix[1][0]) * mult
         return rquat
 
-    if biggestIndex is 1:
+    if biggestIndex == 1:
         rquat.data[0] = (matrix.matrix[1][2] - matrix.matrix[2][1]) * mult
         rquat.data[1] = biggestVal
         rquat.data[2] = (matrix.matrix[0][1] + matrix.matrix[1][0]) * mult
         rquat.data[3] = (matrix.matrix[2][0] + matrix.matrix[0][2]) * mult
         return rquat
 
-    if biggestIndex is 2:
+    if biggestIndex == 2:
         rquat.data[0] = (matrix.matrix[2][0] - matrix.matrix[0][2]) * mult
         rquat.data[1] = (matrix.matrix[0][1] + matrix.matrix[1][0]) * mult
         rquat.data[2] = biggestVal
         rquat.data[3] = (matrix.matrix[1][2] + matrix.matrix[2][1]) * mult
         return rquat
 
-    if biggestIndex is 3:
+    if biggestIndex == 3:
         rquat.data[0] = (matrix.matrix[0][1] - matrix.matrix[1][0]) * mult
         rquat.data[1] = (matrix.matrix[2][0] + matrix.matrix[0][2]) * mult
         rquat.data[2] = (matrix.matrix[1][2] + matrix.matrix[2][1]) * mult

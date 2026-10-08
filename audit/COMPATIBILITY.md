@@ -114,3 +114,13 @@ XY3 now writes the Z column instead of raising IndexError. XY4 likewise shears Z
 YZ/XZ retain their existing mappings and numerical algorithms. All three size-3 forms are XYZ linear transforms, not 2D homogeneous shears. Returning and in-place methods retain postmultiplication, signatures, input ownership, and float32 ctypes refresh behavior. Only XY3, XY4, and rotate2 change mathematical code in `gem/matrix.py`; the remaining shear helpers receive explanatory docstrings. Runtime dependencies, public imports, and unrelated algorithms remain unchanged.
 
 Only M05/M06 markers are removed. [CONVENTIONS.md](CONVENTIONS.md#pivot-rotation-and-shear) records the mappings and rotation dispatch; [PHASE2D4.md](PHASE2D4.md) records verification and changed files.
+
+## Quaternion/matrix conversions
+
+Matrix-to-quaternion conversion now tracks the largest squared-component candidate and uses its value when reconstructing the quaternion. This corrects both the missing candidate update and the early mutually exclusive selection. Legitimate half-turns about basis or mixed axes return rotations instead of ZeroDivisionError/ValueError. Other inputs with an axis component larger than W now recover the correct unit orientation. Quaternion order [w,x,y,z], row-vector signs, Matrix wrapper input, and Quaternion return type are preserved.
+
+Recovered components can differ by an overall sign from an original quaternion. Compare rotations modulo q/-q equivalence, rather than requiring exact components or positive W. No canonical sign, normalization, or input-validation contract is introduced. Only the upper-left 3×3 block is read, preserving existing Matrix3/Matrix4 behavior and ignoring other entries. Input rows and exports are not modified.
+
+Quaternion-to-matrix conversion now refreshes the returned float32 `c_matrix` after populating the rotation rows. A +Z quarter-turn exports its actual rotation instead of identity. The Python matrix formula and numerical values are unchanged, including existing nonunit and zero-quaternion arithmetic. Each call returns a fresh Matrix4 with independent rows and export storage and preserves the quaternion component list. Direct caller edits still leave snapshots stale until an existing refresh operation runs.
+
+Changes are confined to `gem/quaternion.py`, Q02/Q07 tests, and documentation. Forward axes, handedness, other quaternion algorithms, public signatures, gem imports, and runtime dependencies are unchanged. Proper rotations remain the conversion domain; policies for invalid matrices, nonfinite values, normalization, and other quaternion domains stay separate. See [conversion conventions](CONVENTIONS.md#quaternionmatrix-conversions) and [Phase 2E-1 verification](PHASE2E1.md).
