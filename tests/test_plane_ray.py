@@ -6,21 +6,17 @@ def V(*xs):
     return vector.Vector(len(xs),list(xs))
 
 
-@pytest.mark.defect('G01')
 def test_plane_from_coefficients():
     p = plane.Plane()
     p.fromCoeffs(0,2,0,-4)
     assert [p.a,p.b,p.c,p.d] == [0,2,0,-4]
-    # Wiki is a placeholder: do not require a unit or raw coefficient normal yet.
-    assert p.normal.normalize().vector == [0,1,0]
+    assert p.normal.vector == [0,2,0]
 
 
-@pytest.mark.defect('G02')
 def test_plane_normalization_offset():
     assert plane.normalize([0,2,0,-4]) == pytest.approx([0,1,0,-2])
 
 
-@pytest.mark.defect('G02')
 def test_plane_normalization_normal_field():
     p = plane.Plane()
     p.a,p.b,p.c,p.d = 0,2,0,-4
@@ -28,14 +24,12 @@ def test_plane_normalization_normal_field():
     assert p.normalize().normal.vector == [0,1,0]
 
 
-@pytest.mark.defect('G03')
 def test_plane_from_points_incidence():
     p = plane.Plane()
     p.fromPoints(V(0,2,0),V(0,2,1),V(1,2,0))
     assert p.dot(V(0,2,0,1)) == pytest.approx(0)
 
 
-@pytest.mark.defect('G04')
 def test_best_fit_normal_closed_polygon():
     vertices = [V(0,0,0),V(1,0,0),V(1,1,0),V(0,1,0)]
     assert abs(plane.Plane().bestFitNormal(vertices).vector[2]) == 1

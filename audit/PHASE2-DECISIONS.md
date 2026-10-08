@@ -25,6 +25,10 @@ The default Matrix identity is **not** a proposal to change behavior: it is pres
 
 The user explicitly approved the refraction portion of QD10 before V02 implementation: IOR=n1/n2 (incident/transmitted indices), normalized incident and normal vectors with matching dimensions, normal opposing incidence and pointing into the incident medium, and preservation of the historical zero-Vector result for total internal reflection. No automatic normalization or normal flipping is added. See [current conventions](CONVENTIONS.md#phase-2c-current-angle-and-refraction-conventions). The viewport portion of QD10 and all other unresolved questions remain pending; approval of refraction does not resolve them.
 
+### Plane representation decision
+
+QD05's representation is settled: scalar `a,b,c,d` satisfy `n·p+d=0`, and `.normal` stores `[a,b,c]` at coefficient scale. Three-point construction produces unit coefficients and a negative dot-product offset; normalization scales all four coefficients and synchronizes `.normal`. Polygon normals wrap edges and support repeated-first closure. `bestFitD` retains signed geometric D, with coefficient `d=-D`. See [plane conventions](CONVENTIONS.md#plane-representation). Broader degeneracy, validation, and numerical error policies remain unresolved.
+
 ## Recommended implementation order after review
 
 1. **Small ordinary-math fixes with clear contracts:** equal-size equality/inequality (V01 component cases), inverse2 (M01), quaternion inverse (Q01). Preserve exact comparisons, return types, and component order; defer unsupported-dimension policy changes.

@@ -11,19 +11,13 @@ def flip(plane):
     return [fA, fB, fC, fD, fNormal]
 
 def normalize(pdata):
-    ''' Return the normalized plane.'''
+    ''' Divide all four coefficients by the magnitude of (a, b, c). '''
     vec = vector.Vector(3, data=pdata)
-    vecN = vec.normalize()
-
-    length = vecN.magnitude()
-
-    if length is not 0:
-        return vecN.vector[0], vecN.vector[1], vecN.vector[2], pdata[3] / length
-    else:
-        print("Plane fail to normalize due to zero division.")
-        return 0.0, 0.0, 0.0, 0.0
+    length = vec.magnitude()
+    return pdata[0] / length, pdata[1] / length, pdata[2] / length, pdata[3] / length
 
 class Plane(object):
+    ''' Plane a*x + b*y + c*z + d = 0, with normal = Vector([a, b, c]). '''
     def __init__(self):
         ''' Plane class constructor. '''
         self.normal = vector.Vector(3, data=[0.0, 0.0, 0.0])
@@ -43,20 +37,18 @@ class Plane(object):
         return nPlane
 
     def fromCoeffs(self, a, b, c, d):
-        ''' Create the plane from A,B,C,D. '''
+        ''' Set scalar coefficients, preserving their scale and orientation. '''
         self.a = a
         self.b = b
         self.c = c
         self.d = d
-        self.normal = vector.cross(b - a, c - a).normalize()
+        self.normal = vector.Vector(3, data=[a, b, c])
 
     def fromPoints(self, a, b, c):
-        '''Calculate the plane from A,B,C.'''
-        self.a = a
-        self.b = b
-        self.c = c
+        ''' Set a unit-normal plane through three noncollinear 3D Vectors. '''
         self.normal = vector.cross(b - a, c - a).normalize()
-        self.d = self.normal.dot(self.a)
+        self.a, self.b, self.c = self.normal.vector
+        self.d = -self.normal.dot(a)
 
     def i_flip(self):
         ''' Flip the plane in its place. '''
@@ -84,29 +76,41 @@ class Plane(object):
         return self.a * vec.vector[0] + self.b * vec.vector[1] + self.c * vec.vector[2] + self.d * vec.vector[3]
 
     def i_normalize(self):
-        ''' Normalize the vector in place. '''
+        ''' Normalize all coefficients and synchronize the normal in place. '''
         pdata = [self.a, self.b, self.c, self.d]
         self.a, self.b, self.c, self.d = normalize(pdata)
+        self.normal = vector.Vector(3, data=[self.a, self.b, self.c])
         return self
 
     def normalize(self):
         ''' Return the normalized plane.'''
-        nPlane = Plane().clone()
+        nPlane = Plane()
         pdata = [self.a, self.b, self.c, self.d]
         nPlane.a, nPlane.b, nPlane.c, nPlane.d = normalize(pdata)
+        nPlane.normal = vector.Vector(3, data=[nPlane.a, nPlane.b, nPlane.c])
         return nPlane
 
     def bestFitNormal(self, vecList):
-        ''' Pass in a list of vectors to find the best fit normal. '''
+        ''' Return a unit Newell normal for an ordered polygon of 3D Vectors.
+
+        The last vertex wraps to the first; a repeated first vertex is allowed.
+        Reversing vertex order reverses the normal.
+        '''
         output = vector.Vector(3).zero()
         for i in sm.range(len(vecList)):
-            output.vector[0] += (vecList[i].vector[2] + vecList[i + 1].vector[2]) * (vecList[i].vector[1] - vecList[i + 1].vector[1])
-            output.vector[1] += (vecList[i].vector[0] + vecList[i + 1].vector[0]) * (vecList[i].vector[2] - vecList[i + 1].vector[2])
-            output.vector[2] += (vecList[i].vector[1] + vecList[i + 1].vector[1]) * (vecList[i].vector[0] - vecList[i + 1].vector[0])
+            current = vecList[i].vector
+            following = vecList[(i + 1) % len(vecList)].vector
+            output.vector[0] += (current[2] + following[2]) * (current[1] - following[1])
+            output.vector[1] += (current[0] + following[0]) * (current[2] - following[2])
+            output.vector[2] += (current[1] + following[1]) * (current[0] - following[0])
         return output.normalize()
 
     def bestFitD(self, vecList, bestFitNormal):
-        ''' Returns the best fit D from a list of vectors using the best fit normal. '''
+        ''' Return signed D = average(normal.dot(point)); use d = -D.
+
+        For a unit normal, D is the geometric offset in normal.dot(point) = D.
+        It is not forced nonnegative. Each supplied vertex contributes once.
+        '''
         val = 0.0
         for vec in vecList:
             val += vec.dot(bestFitNormal)
