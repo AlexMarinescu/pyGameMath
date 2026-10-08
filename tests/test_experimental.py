@@ -3,31 +3,11 @@ import random
 import struct
 import pytest
 from gem import vector
-from gem.experimental import bezier, legendre, sph, sph_sample, sph_object, sph_irradiance_map
+from gem.experimental import sph, sph_sample, sph_object, sph_irradiance_map
 
 
 def V(*xs):
     return vector.Vector(len(xs),list(xs))
-
-
-@pytest.mark.parametrize('l,m,x,expected',[(0,0,0.2,1),(1,0,0.2,0.2),(1,1,0,-1),(2,0,0.5,-0.125),(2,1,0.5,-1.5*math.sqrt(0.75)),(2,2,0.5,2.25)])
-def test_legendre_low_orders(l,m,x,expected):
-    assert legendre.Legendre(l,m,x).run() == pytest.approx(expected)
-
-
-@pytest.mark.parametrize('l,x',[(3,0.2),(4,0.5),(5,-0.4)])
-@pytest.mark.defect('E05')
-def test_legendre_recurrence(l,x):
-    a,b = 1.0,x
-    for n in range(2,l+1):
-        a,b = b,((2*n-1)*x*b-(n-1)*a)/n
-    assert legendre.Legendre(l,0,x).run() == pytest.approx(b)
-
-
-@pytest.mark.defect('E05')
-def test_legendre_repeatability():
-    p = legendre.Legendre(2,2,0.5)
-    assert p.run() == p.run()
 
 
 @pytest.mark.parametrize('n',range(8))
@@ -84,7 +64,7 @@ def test_irradiance_coefficient_known_answer(tmp_path):
     assert result.coeffs[8] == [0,0,0]
 
 
-@pytest.mark.parametrize('l', [0,1,2,pytest.param(3,marks=pytest.mark.defect('E05')),pytest.param(4,marks=pytest.mark.defect('E05'))])
+@pytest.mark.parametrize('l', [0,1,2,3,4])
 def test_spherical_harmonics_addition_theorem(l):
     # Real orthonormal harmonics: sum_m Y_lm(theta,phi)^2 = (2l+1)/(4*pi).
     theta,phi = 0.73,1.27

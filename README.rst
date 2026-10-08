@@ -182,3 +182,19 @@ separate squared-distance thinning heuristics and rebuilds its generated path.
 ``interpolate(segmentPoints, scale)`` retains append-only behavior. Both
 builders return None and preserve source storage. See ``audit/PHASE2F3B.md``
 for limits, validation and compatibility details.
+
+Legendre functions
+------------------
+
+Use the core module for unnormalized Legendre and associated Legendre values::
+
+    from gem.legendre import Legendre
+
+    value = Legendre(3, 0, 0.2).run()  # -0.28
+    associated = Legendre(2, 2, 0.5).run()  # 2.25
+
+Associated inputs use integer ``0 <= m <= l`` and ``-1 <= x <= 1``, with the
+Condon–Shortley phase. ``run()`` preserves internal scratch state and is
+repeatable. The experimental import remains a compatibility alias.
+Spherical-harmonics normalization is separate. See ``audit/PHASE2F4.md`` for
+numerical-domain and compatibility details.

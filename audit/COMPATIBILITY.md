@@ -279,3 +279,14 @@ avoid extending a caller-owned control list. Generated Vectors have fresh
 storage. Malformed nonempty sampling layouts are rejected with ValueError.
 Depth-limited output may miss tolerance; thinning thresholds cannot guarantee
 maximum gaps. See [compatibility and sampling contract](PHASE2F3B.md).
+
+## Legendre core promotion
+
+`gem.legendre.Legendre` is canonical; the experimental path reexports the same
+class. Correct recurrence and deterministic initialization change erroneous
+higher-degree and repeated nonzero-order results. Condon–Shortley phase and
+unnormalized polynomial values are preserved; SPH still supplies normalization.
+`run()` leaves scratch fields untouched; explicit helpers retain their mutable
+field updates and None returns. No new invalid-input or extreme-order policy
+is established. Existing packaging includes both imports without new mandatory
+dependencies. See [domains, state and measurements](PHASE2F4.md).
