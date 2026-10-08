@@ -221,3 +221,36 @@ API. Callers must continue managing actual hit state explicitly until its
 contract is defined. See [ray API documentation](../docs/RAYS.md) and
 [verification](PHASE2F1.md). Unrelated numerical and experimental behavior
 remains unchanged.
+
+## Phase 2F-2: numerical robustness
+
+N01 restores historical direct zero-vector and identity-quaternion
+normalization fallbacks. Exact-zero guards preserve prior geometric
+ZeroDivisionError behavior in core callers, including ray and plane paths.
+Experimental modules are unchanged, but their zero-normalization calls now
+receive the direct fallback. No epsilon, broad invalid-input policy or
+implicit normalization is introduced.
+
+N02 uses scaled hypot norms/normalization for finite components, fixing
+squared overflow/underflow and loss of subnormal direction. Ordinary
+results may differ by normal rounding. Overflowing finite norms may be
+infinity; normalized finite directions remain computable. NaN/Inf input
+paths retain legacy arithmetic. General quaternion inverse and other
+algorithms do not inherit a new normalization policy.
+
+N03 scales existing 3x3/4x4 cofactor inputs by exact binary powers and
+rescales inverse columns. Exact represented-coefficient singularity checks
+preserve ZeroDivisionError without a near-singular threshold. Genuine
+unrepresentable inverse coefficients become signed infinity on rescaling.
+2x2 inversion, public determinants, storage, multiplication conventions,
+signatures and ctypes export protocols are preserved. Float32 exports may
+still overflow or underflow independently of finite Python matrix values.
+The original N03 regressions now specify 1e-14 relative comparison rather
+than unintended bit equality from abs=0 alone.
+
+The stability and exact singularity check cost more: raw 3x3/4x4 inverses
+measure about 6.8x/3.7x baseline CPU time, with wrappers about 3.6x/2.9x in
+a local ordinary-scale benchmark. This is a measured correctness trade-off,
+not an application performance promise. Cofactor conditioning limitations
+remain; no Gaussian-elimination replacement or arbitrary cutoff is added.
+See [measurements and evidence](PHASE2F2.md).

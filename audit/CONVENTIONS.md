@@ -274,3 +274,32 @@ unchanged. Zero is indistinguishable from an actual hit at the origin; no
 nonzero-hit inference is made. Intersection validity and transformation
 policy remain a separate API decision. `start+dir*distance` is derived
 geometry, not the meaning of `.end`. See the [ray guide](../docs/RAYS.md).
+
+## Numerical robustness
+
+Direct Vector normalization returns zeros for an exactly zero input;
+Quaternion normalization returns identity. Returning results have fresh
+storage; in-place forms replace storage, retain receiver identity and return
+self. No epsilon is used. Exact-zero guards retain ZeroDivisionError for
+geometric axes/directions, plane construction, ray operations, lookAt and
+viewport callers. Experimental code is untouched; its dependent zero
+normalizations now receive the direct fallback without a new algorithm.
+
+Finite norms use scaled hypot calculations, and normalization scales by the
+largest component before computing a unit direction. This avoids squared
+intermediate overflow/underflow and repeated subnormal norm rounding.
+Finite norms outside binary64 range may be infinity; a finite direction
+can still normalize stably. Components below representable range can round
+to zero. Legacy NaN/Inf input arithmetic is retained, not redefined.
+
+3x3/4x4 inversion retains the cofactor kernels, with exact power-of-two row
+scaling and inverse-column exponent rescaling. Exact integer determinants
+of the represented binary64 coefficients detect genuine singularity without
+an epsilon. Singular matrices retain ZeroDivisionError. Rescaling overflow
+of unrepresentable inverse coefficients yields signed infinity. Finite
+well-conditioned representable results are the accuracy domain; severe
+conditioning, extreme relative dynamic range and unrepresentable results
+are not guaranteed. Floating cofactor cancellation/underflow can still
+limit inversion outside that domain. 2x2 inverse and public determinant
+algorithms are unchanged. Float32 ctypes exports retain their own narrower
+range and precision. See [verification](PHASE2F2.md).

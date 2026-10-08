@@ -106,6 +106,20 @@ question. No geometric endpoint is assigned automatically. Scale/shear,
 projective and wider invalid-input policies remain separate. See the
 [ray guide](../docs/RAYS.md).
 
+### Finite numerical robustness
+
+QD07 is settled for N01-N03: direct zero Vector/Quaternion normalization
+returns zero/identity; narrow exact-zero core-caller guards preserve geometric
+ZeroDivisionError; finite norms/normalizations use scaled hypot; overflowing
+norms may be infinity. 3x3/4x4 cofactor inverses use power-of-two scaling,
+exact binary64 singularity checks and signed infinity for exponent-rescaling
+overflow. No epsilon/condition cutoff is introduced. Legacy NaN/Inf input
+paths, 2x2 inversion, public determinants and experimental algorithms remain
+unchanged. Severe conditioning, unrepresentable results and broader invalid
+input policies remain outside the accuracy guarantee. Experimental zero
+normalization inherits the direct fallback without new caller semantics.
+See [numerical conventions](CONVENTIONS.md#numerical-robustness).
+
 ## Recommended implementation order after review
 
 1. **Small ordinary-math fixes with clear contracts:** equal-size equality/inequality (V01 component cases), inverse2 (M01), quaternion inverse (Q01). Preserve exact comparisons, return types, and component order; defer unsupported-dimension policy changes.

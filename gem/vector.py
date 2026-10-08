@@ -110,18 +110,36 @@ def dot(size, vecA, vecB):
     return dp
 
 def magnitude(size, vecA):
-    mg = 0
+    # Retain legacy arithmetic for nonfinite inputs; no new NaN/Inf policy.
+    if any(math.isnan(vecA[i]) or math.isinf(vecA[i]) for i in sm.range(size)):
+        return math.sqrt(sum(vecA[i] * vecA[i] for i in sm.range(size)))
+    scale = max([abs(vecA[i]) for i in sm.range(size)] or [0.0])
+    if scale == 0.0:
+        return 0.0
+    length = 0.0
     for i in sm.range(size):
-        mg += vecA[i] * vecA[i]
-    return math.sqrt(mg)
+        length = math.hypot(length, vecA[i] / scale)
+    return length * scale
 
 def normalize(size, vecA):
-    length = magnitude(size, vecA)
+    """Normalize finite components stably; an exact zero returns zeros."""
     temp = zero_vector(size)
-    if length is not 0:
-        for i in sm.range(size):
-            temp[i] = vecA[i] / length
+    if any(math.isnan(vecA[i]) or math.isinf(vecA[i]) for i in sm.range(size)):
+        length = magnitude(size, vecA)
+        if length != 0.0:
+            return [vecA[i] / length for i in sm.range(size)]
+        return temp
+    scale = max([abs(vecA[i]) for i in sm.range(size)] or [0.0])
+    if scale != 0.0:
+        scaled = [vecA[i] / scale for i in sm.range(size)]
+        length = magnitude(size, scaled)
+        temp = [value / length for value in scaled]
     return temp
+
+def _require_nonzero(size, values):
+    """Retain geometric callers' exact-zero normalization error."""
+    if size != 0 and all(values[i] == 0.0 for i in sm.range(size)):
+        raise ZeroDivisionError("Cannot normalize a zero geometric direction")
 
 def maxV(size, vecA, vecB):
     return [vecA[i] if vecA[i] > vecB[i] else vecB[i] for i in sm.range(size)]

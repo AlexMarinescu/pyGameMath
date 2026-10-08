@@ -80,9 +80,13 @@ the quaternion's squared magnitude. Nonunit/zero matrix conversion retains
 historical arithmetic, which is not a general rotation guarantee.
 
 Inverse supports ordinary nonzero general quaternions as conjugate divided
-by squared norm. Zero inverse raises ZeroDivisionError. Zero normalization
-also currently raises ZeroDivisionError; its policy and extreme-scale norms
-remain numerical-robustness work, not new behavior in this API review.
+by squared norm. Zero inverse raises ZeroDivisionError. Direct zero-quaternion normalization returns a fresh identity Quaternion;
+in-place normalization preserves receiver identity. Finite norms and
+normalization use stable scaled hypot calculations. A finite input norm
+beyond binary64 range may be infinity, while scaled normalization still
+produces a finite unit direction. Geometric zero-axis callers retain
+ZeroDivisionError through exact-zero guards. NaN/Inf input arithmetic
+retains its historical path, without a new policy.
 Unsupported axis representations in the two axis-angle helpers return
 NotImplemented; zero-axis normalization raises ZeroDivisionError. Shape,
 nonfinite, near-degenerate and extreme-scale validation policies remain

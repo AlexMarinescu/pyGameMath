@@ -52,20 +52,14 @@ def quat_dot(quat1, quat2):
     return rdp
 
 def quat_magnitude(quat):
-    ''' Compute magnitude of a quaternion. Returns a scalar. '''
-    rmg = 0
-    for i in sm.range(4):
-        rmg += quat[i] * quat[i]
-    return math.sqrt(rmg)
+    """Compute a stable norm, retaining legacy nonfinite-input arithmetic."""
+    return vector.magnitude(4, quat)
 
 def quat_normalize(quat):
-    ''' Returns a normalized quaternion. '''
-    length = quat_magnitude(quat)
-    oquat = quat_identity()
-    if length is not 0:
-        for i in sm.range(4):
-            oquat[i] = quat[i] / length
-    return oquat
+    """Normalize stably; the exact zero quaternion maps to identity."""
+    if all(quat[i] == 0.0 for i in sm.range(4)):
+        return quat_identity()
+    return vector.normalize(4, quat)
 
 def quat_conjugate(quat):
     ''' Returns the conjugate of a quaternion. '''
@@ -94,8 +88,10 @@ def quat_from_axis_angle(axis, theta):
     cto2 = math.cos(math.radians(thetaOver2))
 
     if isinstance(axis, vector.Vector):
+        vector._require_nonzero(axis.size, axis.vector)
         naxis = axis.normalize()
     elif isinstance(axis, list):
+        vector._require_nonzero(3, axis)
         naxis = vector.Vector(3, data=axis).normalize()
     else:
         return NotImplemented
@@ -146,8 +142,10 @@ def quat_rotate_from_axis_angle(axis, theta):
     cto2 = math.cos(math.radians(thetaOver2))
 
     if isinstance(axis, vector.Vector):
+        vector._require_nonzero(axis.size, axis.vector)
         naxis = axis.normalize()
     elif isinstance(axis, list):
+        vector._require_nonzero(3, axis)
         naxis = vector.Vector(3, data=axis).normalize()
     else:
         return NotImplemented

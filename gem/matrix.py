@@ -153,6 +153,7 @@ def rotate3(axis, theta):
 
     oneMinusCos = (1.0 - c)
 
+    vector._require_nonzero(3, axis)
     nAxis = vector.normalize(3, axis)
 
     x2 = nAxis[0] * nAxis[0]
@@ -171,6 +172,7 @@ def rotate4(axis, theta):
 
     oneMinusCos = (1.0 - c)
 
+    vector._require_nonzero(3, axis)
     nAxis = vector.normalize(3, axis)
 
     x2 = nAxis[0] * nAxis[0]
@@ -266,7 +268,7 @@ def inverse2(mat):
 
     return inverse
 
-def inverse3(mat):
+def _inverse3_cofactor(mat):
     ''' Inverse of a 3x3 matrix.'''
     det = ( mat[0][0] * (mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2]) -
             mat[0][1] * (mat[1][0] * mat[2][2] - mat[1][2] * mat[2][0]) +
@@ -288,7 +290,7 @@ def inverse3(mat):
 
     return temp
 
-def inverse4(mat):
+def _inverse4_cofactor(mat):
     ''' Inverse of a 4x4 matrix '''
 
     sf00 = mat[2][2] * mat[3][3] - mat[3][2] * mat[2][3]
@@ -341,6 +343,49 @@ def inverse4(mat):
     inverse = matrix_div(transpose(inverse), det)
 
     return inverse
+
+def _scaled_cofactor_inverse(mat, size, kernel):
+    """Use exact binary row scaling without a near-singular cutoff."""
+    if any(math.isnan(mat[i][j]) or math.isinf(mat[i][j])
+           for i in sm.range(size) for j in sm.range(size)):
+        return kernel(mat)
+    # Clear binary denominators row by row to detect genuine singularity
+    # exactly, without rejecting a small nonzero floating determinant.
+    integer_rows = []
+    for row in mat[:size]:
+        ratios = [float(value).as_integer_ratio() for value in row[:size]]
+        denominator = max(pair[1] for pair in ratios)
+        integer_rows.append([numerator * (denominator // divisor)
+                             for numerator, divisor in ratios])
+    determinant = det3(integer_rows) if size == 3 else det4(integer_rows)
+    if determinant == 0:
+        raise ZeroDivisionError("Singular matrix")
+    exponents = []
+    scaled = []
+    for row in mat[:size]:
+        largest = max(abs(value) for value in row[:size])
+        if largest == 0.0:
+            raise ZeroDivisionError("Singular matrix")
+        exponent = math.frexp(largest)[1]
+        exponents.append(exponent)
+        scaled.append([math.ldexp(value, -exponent) for value in row[:size]])
+    inverse = kernel(scaled)
+    for i in sm.range(size):
+        for j in sm.range(size):
+            value = inverse[i][j]
+            try:
+                inverse[i][j] = math.ldexp(value, -exponents[j])
+            except OverflowError:
+                inverse[i][j] = math.copysign(float('inf'), value)
+    return inverse
+
+def inverse3(mat):
+    """Invert a finite 3x3 matrix using power-of-two scaled cofactors."""
+    return _scaled_cofactor_inverse(mat, 3, _inverse3_cofactor)
+
+def inverse4(mat):
+    """Invert a finite 4x4 matrix using power-of-two scaled cofactors."""
+    return _scaled_cofactor_inverse(mat, 4, _inverse4_cofactor)
 
 class Matrix(object):
     '''
@@ -666,9 +711,14 @@ def perspectiveX(fov, aspect, znear, zfar):
 
 def lookAt(eye, center, up):
     ''' Matrix 4x4 lookAt function.'''
-    f = (center - eye).normalize()
+    forward = center - eye
+    vector._require_nonzero(forward.size, forward.vector)
+    vector._require_nonzero(up.size, up.vector)
+    f = forward.normalize()
     u = up.normalize()
-    s = vector.cross(f, u).normalize()
+    side = vector.cross(f, u)
+    vector._require_nonzero(side.size, side.vector)
+    s = side.normalize()
     u = vector.cross(s, f)
 
     output = [[s.vector[0], u.vector[0], -f.vector[0], 0.0],
