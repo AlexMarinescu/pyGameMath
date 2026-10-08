@@ -1,0 +1,7 @@
+{
+  "format": "synthetic-linear-latlong",
+  "width": 64,
+  "height": 32,
+  "constant": [2.0, 3.0, 4.0],
+  "linear_xyz": [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
+}
