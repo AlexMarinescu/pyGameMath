@@ -1,0 +1,109 @@
+{
+  "base_commit": "c05e9cc973eee1614c9d0537ca75a99e0aad52cf",
+  "branch": "fix/phase2b-matrix-division",
+  "python": "3.12.14",
+  "pytest": "9.1.1",
+  "six": "1.17.0",
+  "summary": {
+    "total": 421,
+    "passed": 356,
+    "defect_xfailed": 57,
+    "contract_question_xfailed": 8,
+    "failed": 0,
+    "xpassed": 0,
+    "skipped": 0,
+    "exit_code": 0
+  },
+  "runxfail": {
+    "passed": 356,
+    "failed": 65,
+    "exit_code": 1,
+    "failures_match_remaining_markers": true
+  },
+  "converted_xfails": {
+    "M02": 1,
+    "M03": 2,
+    "M07": 1
+  },
+  "additional_cases": 40,
+  "unrelated_expected_failure_set_preserved": true,
+  "outcomes_by_module": {
+    "tests.test_api_edges": {
+      "passed": 17,
+      "xfailed": 2
+    },
+    "tests.test_experimental": {
+      "passed": 25,
+      "xfailed": 18
+    },
+    "tests.test_matrix": {
+      "passed": 87,
+      "xfailed": 8
+    },
+    "tests.test_matrix_division": {
+      "passed": 40,
+      "xfailed": 0
+    },
+    "tests.test_plane_ray": {
+      "passed": 2,
+      "xfailed": 8
+    },
+    "tests.test_quaternion": {
+      "passed": 73,
+      "xfailed": 15
+    },
+    "tests.test_vector_common": {
+      "passed": 36,
+      "xfailed": 13
+    },
+    "tests.test_wiki_contracts": {
+      "passed": 76,
+      "xfailed": 1
+    }
+  },
+  "remaining_defect_cases_by_id": {
+    "C01": 2,
+    "C02": 1,
+    "E01": 5,
+    "E02": 1,
+    "E03": 1,
+    "E04": 2,
+    "E05": 6,
+    "E06": 1,
+    "E07": 1,
+    "E08": 1,
+    "G01": 1,
+    "G02": 2,
+    "G03": 1,
+    "G04": 1,
+    "M04": 1,
+    "M05": 1,
+    "M06": 1,
+    "N01": 2,
+    "N02": 3,
+    "N03": 2,
+    "P01": 1,
+    "P02": 1,
+    "Q02": 4,
+    "Q03": 2,
+    "Q04": 1,
+    "Q05": 1,
+    "Q06": 2,
+    "Q07": 1,
+    "Q08": 1,
+    "Q09": 1,
+    "R01": 2,
+    "R02": 1,
+    "V02": 2,
+    "V03": 1
+  },
+  "remaining_contract_cases_by_id": {
+    "P01-input-and-depth-policy": 2,
+    "Q10-unit-accuracy": 1,
+    "Q11-return-semantics": 1,
+    "R03-homogeneous-promotion": 1,
+    "V01-dimension-policy": 1,
+    "V01-empty-policy": 1,
+    "V04-value-list-ownership": 1
+  }
+}

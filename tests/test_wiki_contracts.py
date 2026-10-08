@@ -147,7 +147,6 @@ def test_wiki_matrix_scaling_example_corrected():
     assert a.det()==24
 
 
-@pytest.mark.defect('M03')
 def test_wiki_python3_matrix_division_example():
     a=matrix.Matrix(4,data=matrix.identity(4))  # fix `indetity` typo only
     result=a/2.0
