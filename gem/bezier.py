@@ -1,9 +1,12 @@
 """Quadratic and cubic Bezier evaluation for scalars and gem Vectors.
 
 Parameters are not clamped. BezierPath evaluates cubic segments with a
-shared endpoint layout of 3*k+1 control points; adaptive sampling is not
-part of this supported module.
+shared endpoint layout of 3*k+1 control points. Adaptive sampling uses
+squared coordinate-distance tolerance and a maximum subdivision depth of 16.
 """
+
+import math
+from gem.vector import Vector
 
 
 def cubicBezierPoint(t, p0, p1, p2, p3):
@@ -20,7 +23,7 @@ def quadraticBezierPoint(t, p0, p1, p2):
 
 
 class BezierPath(object):
-    """Evaluate cubic segments; control-point storage remains caller-owned.
+    """Evaluate and sample cubic segments; explicit control lists remain caller-owned.
 
     Use setControlPoints with 3*k+1 points for k complete cubic segments.
     The historical calculateBezerPoint spelling is preserved.
@@ -45,3 +48,183 @@ class BezierPath(object):
                                 self.controlPoints[nodeIndex + 1],
                                 self.controlPoints[nodeIndex + 2],
                                 self.controlPoints[nodeIndex + 3])
+
+    def interpolate(self, segmentPoints, scale):
+        """Append cubic controls using the historical tangent construction.
+
+        Existing controls are retained; this is not a path replacement API.
+        Generated points are fresh and caller-owned lists are not extended.
+        Fewer than two source points leave the path unchanged.
+        """
+        if len(segmentPoints) < 2:
+            return
+        coords, dimension = _coordinates(segmentPoints)
+        if not math.isfinite(scale):
+            raise ValueError("scale must be finite")
+        generated = []
+        for index, point in enumerate(coords):
+            if index == 0:
+                tangent = tuple(b-a for a,b in zip(point,coords[1]))
+                generated.extend([point, tuple(a+scale*b for a,b in zip(point,tangent))])
+            elif index == len(coords)-1:
+                tangent = tuple(b-a for a,b in zip(coords[index-1],point))
+                generated.extend([tuple(a-scale*b for a,b in zip(point,tangent)),point])
+            else:
+                previous, following = coords[index-1], coords[index+1]
+                tangent = tuple(b-a for a,b in zip(previous,following))
+                magnitude = math.hypot(*tangent)
+                tangent = tuple(a/magnitude for a in tangent) if magnitude else tuple(0 for a in tangent)
+                before = math.hypot(*(a-b for a,b in zip(point,previous)))
+                after = math.hypot(*(a-b for a,b in zip(following,point)))
+                generated.extend([tuple(a-scale*before*b for a,b in zip(point,tangent)),
+                                  point, tuple(a+scale*after*b for a,b in zip(point,tangent))])
+        self.controlPoints = list(self.controlPoints) + [_point(p,dimension) for p in generated]
+        self.curveCount = (len(self.controlPoints)-1)//3
+
+    def samplePoints(self, sourcePoints, minSqrDistance, maxSqrDistance, scale):
+        """Thin ordered source vertices and replace the generated cubic path.
+
+        Thresholds are squared coordinate distances, not spacing or error
+        guarantees. Retain endpoints. Fewer than two points are a no-op.
+        """
+        if len(sourcePoints) < 2:
+            return
+        coords, _ = _coordinates(sourcePoints)
+        if not (math.isfinite(minSqrDistance) and math.isfinite(maxSqrDistance)
+                and 0 <= minSqrDistance <= maxSqrDistance and maxSqrDistance > 0):
+            raise ValueError("require finite 0 <= minSqrDistance <= maxSqrDistance and max > 0")
+        retained = [0]
+        for index in range(1,len(coords)-1):
+            last = coords[retained[-1]]
+            distance_squared = sum((a-b)*(a-b) for a,b in zip(coords[index],last))
+            next_squared = sum((a-b)*(a-b) for a,b in zip(coords[index+1],last))
+            if distance_squared >= minSqrDistance or next_squared > maxSqrDistance:
+                retained.append(index)
+        retained.append(len(coords)-1)
+        generated = BezierPath()
+        generated.interpolate([sourcePoints[i] for i in retained], scale)
+        self.controlPoints = generated.controlPoints
+        self.curveCount = generated.curveCount
+
+    def getDrawingPoints(self):
+        """Return per-curve lists, omitting repeated shared boundary samples."""
+        if not self.controlPoints:
+            return []
+        self._sampling_controls(0)
+        result = []
+        for index in range(self.curveCount):
+            points = self.findDrawingPoints(index)
+            result.append(points if index == 0 else points[1:])
+        return result
+
+    def findDrawingPoints(self, curveIndex):
+        """Sample a cubic in increasing parameter order, including endpoints.
+
+        minimum_sqr_distance is a positive finite squared distance. The
+        control-to-chord segment criterion is conservative before the depth
+        cap; depth-limited output may exceed tolerance. No absolute numerical
+        error guarantee is made.
+        """
+        controls, dimension = self._sampling_controls(curveIndex)
+        samples = _subdivide(controls, self._sampling_tolerance())
+        return [_point(coords, dimension) for coords in samples]
+
+    def findDrawingPointsAdded(self, curveIndex, t0, t1, pointList, insertionIndex):
+        """Insert ordered interior samples for [t0,t1]; return their count.
+
+        pointList already contains interval endpoints. Existing list elements
+        are retained; only freshly allocated interior points are inserted.
+        """
+        controls, dimension = self._sampling_controls(curveIndex)
+        if not (0 <= t0 <= t1 <= 1):
+            raise ValueError("sampling interval must satisfy 0 <= t0 <= t1 <= 1")
+        if not 0 <= insertionIndex <= len(pointList):
+            raise IndexError("sampling insertion index out of range")
+        # Restrict the Bernstein polynomial to the requested interval.
+        if t1 < 1:
+            controls, _ = _split(controls, t1)
+        if t0 > 0 and t1 > 0:
+            _, controls = _split(controls, t0 / t1)
+        samples = _subdivide(controls, self._sampling_tolerance())[1:-1]
+        points = [_point(coords, dimension) for coords in samples]
+        pointList[insertionIndex:insertionIndex] = points
+        return len(points)
+
+    def _sampling_tolerance(self):
+        value = self.minimum_sqr_distance
+        if not math.isfinite(value) or value <= 0:
+            raise ValueError("minimum_sqr_distance must be positive and finite")
+        return math.sqrt(value)
+
+    def _sampling_controls(self, curveIndex):
+        count = len(self.controlPoints)
+        if count < 4 or (count - 1) % 3:
+            raise ValueError("cubic paths require 3*k+1 controls")
+        if not isinstance(curveIndex, int) or not 0 <= curveIndex < (count-1)//3:
+            raise IndexError("curve index out of range")
+        coordinates, dimension = _coordinates(self.controlPoints)
+        index = curveIndex * 3
+        return coordinates[index:index+4], dimension
+
+
+def _coordinates(points):
+    """Validate sampling representations without changing evaluation APIs."""
+    dimension = points[0].size if isinstance(points[0], Vector) else None
+    if dimension is not None and dimension not in (2, 3):
+        raise ValueError("sampling requires Vector2 or Vector3 controls")
+    result = []
+    for point in points:
+        if dimension is None:
+            if not isinstance(point, (int, float)):
+                raise ValueError("sampling controls must share a representation")
+            coords = (point,)
+        else:
+            if not isinstance(point, Vector) or point.size != dimension:
+                raise ValueError("sampling controls must share a dimension")
+            coords = tuple(point.vector)
+        if not all(math.isfinite(value) for value in coords):
+            raise ValueError("sampling controls must be finite")
+        result.append(coords)
+    return result, dimension
+
+
+def _point(coords, dimension):
+    return coords[0] if dimension is None else Vector(dimension, list(coords))
+
+
+def _split(controls, t=0.5):
+    levels = [controls]
+    while len(levels[-1]) > 1:
+        level = levels[-1]
+        levels.append([tuple((1-t)*a+t*b for a,b in zip(left,right))
+                       for left,right in zip(level,level[1:])])
+    return ([level[0] for level in levels],
+            [level[-1] for level in reversed(levels)])
+
+
+def _chord_distance(point, start, end):
+    chord = tuple(b-a for a,b in zip(start,end))
+    length = math.hypot(*chord)
+    offset = tuple(p-a for p,a in zip(point,start))
+    if length == 0:
+        return math.hypot(*offset)
+    unit = tuple(value/length for value in chord)
+    projection = max(0, min(length, sum(a*b for a,b in zip(offset,unit))))
+    return math.hypot(*(a-projection*b for a,b in zip(offset,unit)))
+
+
+def _subdivide(controls, tolerance):
+    # Stack order emits left intervals first; bounded without Python recursion.
+    stack = [(controls, 0)]
+    result = [controls[0]]
+    while stack:
+        polygon, depth = stack.pop()
+        flatness = max(_chord_distance(p, polygon[0], polygon[-1])
+                       for p in polygon[1:-1])
+        if flatness <= tolerance or depth == 16:
+            result.append(polygon[-1])
+        else:
+            left, right = _split(polygon)
+            stack.append((right, depth+1))
+            stack.append((left, depth+1))
+    return result

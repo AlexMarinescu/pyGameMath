@@ -83,7 +83,7 @@ def test_legacy_compatibility_and_integer_iteration(monkeypatch):
     assert issubclass(legacy.BezierPath, bezier.BezierPath)
     path = legacy.BezierPath()
     path.setControlPoints(list(range(7)))
-    # Isolate Python 3 iteration from unresolved adaptive sampling (E04).
+    # Isolate the historical nested-list and integer-iteration contract.
     monkeypatch.setattr(path, 'findDrawingPoints', lambda i: [3*i, 3*i+3])
     assert path.getDrawingPoints() == [[0,3], [6]]
     assert path.calculateBezerPoint(1,0.5) == pytest.approx(4.5)
@@ -91,3 +91,14 @@ def test_legacy_compatibility_and_integer_iteration(monkeypatch):
     other.interpolate([0,3], 1/3)
     assert other.controlPoints == [0,1,2,3]
     assert other.curveCount == 1 and isinstance(other.curveCount,int)
+
+def test_bezier_recursive_sampling():
+    path = bezier.BezierPath()
+    path.setControlPoints([V(0,0),V(1,0),V(2,0),V(3,0)])
+    assert path.findDrawingPoints(0)
+
+
+def test_bezier_sample_points():
+    path = bezier.BezierPath()
+    path.samplePoints([V(0,0),V(1,0),V(2,0)],0.01,1,0.5)
+    assert path.controlPoints

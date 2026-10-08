@@ -266,3 +266,16 @@ core evaluation class with unresolved legacy sampling methods. Applications
 using those methods must retain the experimental class until E04 is repaired.
 The transitional package is included in wheels; no new dependency is added.
 See [migration examples and verification](PHASE2F3A.md).
+
+## Adaptive Bezier sampling
+
+E04 sampling and path builders now live in `gem.bezier`; experimental imports
+refer to the identical core class. Squared tolerance units, public signatures,
+nested drawing-point lists and None builder returns are retained. Sampling
+uses a geometric chord criterion with depth 16 instead of the broken angle
+heuristic. `samplePoints` replaces stale generated controls on repeated calls;
+`interpolate` preserves append-only accumulation, detaching the container to
+avoid extending a caller-owned control list. Generated Vectors have fresh
+storage. Malformed nonempty sampling layouts are rejected with ValueError.
+Depth-limited output may miss tolerance; thinning thresholds cannot guarantee
+maximum gaps. See [compatibility and sampling contract](PHASE2F3B.md).

@@ -143,3 +143,13 @@ harmonics sampling and irradiance work will migrate to coherent core modules.
 Incomplete shadow transport is reviewed separately. Final removal of the
 experimental directory requires a dedicated cleanup after all migrations and
 compatibility decisions; no unrelated modules move in Phase 2F-3A.
+
+## Bezier adaptive sampling and builders
+
+E04 is supported in core with midpoint subdivision, squared-distance tolerance
+and maximum depth 16. The finite-chord flatness criterion handles coincidence
+and collinear overshoot; capped output is best effort. Nested path output and
+ordered endpoints are preserved. `interpolate` remains append-only;
+`samplePoints` rebuilds from ordered source vertices using distinct squared
+thinning thresholds. Experimental modules reexport the core class. See
+[contract and verification](PHASE2F3B.md).
