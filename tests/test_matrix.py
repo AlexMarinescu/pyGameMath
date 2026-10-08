@@ -74,12 +74,10 @@ def test_rotations(angle):
     assert r.det() == pytest.approx(1)
 
 
-@pytest.mark.defect('M02')
 def test_scalar_division_helper():
     assert_matrix(matrix.matrix_div([[2,4],[6,8]], 2), [[1,2],[3,4]])
 
 
-@pytest.mark.defect('M03')
 def test_python3_division():
     assert_matrix((matrix.Matrix(2, [[2,4],[6,8]])/2.0).matrix, [[1,2],[3,4]])
 

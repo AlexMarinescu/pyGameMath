@@ -129,7 +129,6 @@ def test_arbitrary_axis_helper_returns_rotation_quaternion():
     assert rotation.data == pytest.approx(expected.data)
 
 
-@pytest.mark.defect('M07')
 def test_legacy_inplace_division_ctypes_sync():
     a = matrix.Matrix(2,[[2,0],[0,4]])
     a.__idiv__(2.0)

@@ -43,7 +43,7 @@ def matrix_div(mat, scalar):
     crange = list(sm.range(size))
     for i in crange:
         for j in crange:
-            matOut[i][j] = mat[j][i] / scalar
+            matOut[i][j] = mat[i][j] / scalar
     return matOut
 
 def transpose(mat):
@@ -332,7 +332,8 @@ def inverse4(mat):
            + mat[0][2] * inverse[0][2]
            + mat[0][3] * inverse[0][3])
 
-    inverse = matrix_div(inverse, det)
+    # The entries above are cofactors; transpose explicitly for the adjugate.
+    inverse = matrix_div(transpose(inverse), det)
 
     return inverse
 
@@ -391,9 +392,13 @@ class Matrix(object):
     def __idiv__(self, other):
         if isinstance(other, float):
             self.matrix = matrix_div(self.matrix, other)
+            self.c_matrix = common.conv_list_2d(self.matrix, common.GLfloat)
             return self
         else:
             return NotImplemented
+
+    __truediv__ = __div__
+    __itruediv__ = __idiv__
 
     def i_scale(self, value):
         ''' Scale matrix instance in-place by Vector. '''
