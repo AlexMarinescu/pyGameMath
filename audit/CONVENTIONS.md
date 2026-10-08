@@ -1,0 +1,54 @@
+# Existing mathematical conventions
+
+Baseline: `5257291431bb45db0274dc48edf24694ecfe2e2d`. These describe the observed implementation, not a redesigned API. No convention was changed in Phase 1.
+
+## Matrices and vectors
+
+`Matrix.matrix[i][j]` is a nested list addressed as row `i`, column `j`. `matrix_multiply` implements the ordinary product `C[i][j] = sum(A[i][k] B[k][j])` ([matrix.py:17](../gem/matrix.py#L17)). Flattening and the ctypes buffer preserve row-major list order ([common.py:21](../gem/common.py#L21), [common.py:34](../gem/common.py#L34)). This is storage order, not a claim that all consumers use the same interpretation.
+
+Despite the expression `M * v`, the vector kernel computes `out[j] = sum(v[i] M[i][j])`: mathematically **row-vector multiplication `v M`** ([matrix.py:28](../gem/matrix.py#L28)). A concrete probe is `[[1,2],[3,4]] * [5,6] -> [23,34]`, not `[17,39]`. Accordingly, `(A * B) * v` means apply `A`, then `B`; it equals `B * (A * v)` in the library's syntax. Matrix products themselves are ordinary products.
+
+3D homogeneous translation occupies the final row: `translate4([tx,ty,tz])` returns rows `[..., [tx,ty,tz,1]]` ([matrix.py:119](../gem/matrix.py#L119)). Use four-component positions `[x,y,z,1]` and directions `[x,y,z,0]`. There is no automatic promotion of a Vector3 to Vector4. `translate2` similarly uses a 3×3 homogeneous matrix. `translate3` is a separate, ambiguous 3×3 operation that overwrites the last row, including its diagonal; it cannot encode general 3D affine translation.
+
+For OpenGL column-vector consumers, the contiguous row-major bytes describe the transpose when interpreted as column-major data. This can represent the equivalent transform, but the upload call's transpose flag and matrix composition must agree. No external integration was assumed or tested. `c_matrix` is a float32 snapshot, whereas `.matrix` arithmetic uses Python numbers; it is not a live view and direct list mutation can leave it stale.
+
+## Coordinates, orientation, and projections
+
+Cross products use the right-handed formula: X cross Y = Z ([vector.py:43](../gem/vector.py#L43)). Positive rotation around +Z sends +X toward +Y for the row-vector representation ([matrix.py:144](../gem/matrix.py#L144)). Vector helpers identify +X as right, +Y as up, and **−Z as front** ([vector.py:413](../gem/vector.py#L413)). These support a right-handed, negative-Z viewing convention. The library does not enforce one universal world-coordinate convention.
+
+`lookAt` builds a right-handed view matrix with a negative-Z viewing direction ([matrix.py:657](../gem/matrix.py#L657)). `perspective`, `perspectiveX`, and `orthographic` use OpenGL-style NDC depth **[−1,+1]**; points at camera Z = −near and −far map to −1 and +1 respectively. `perspective` takes vertical FOV, `perspectiveX` horizontal FOV; aspect = width / height. FOV is in degrees.
+
+`unproject` expects window depth [0,1], mapped by `2*z−1`, and window X/Y mapped relative to `[x,y,width,height]`. Its current multiplication order is incorrect for noncommuting model/projection matrices. `project` is unusable; its unreachable return also leaves NDC depth unremapped and declares a size-3 vector with four values. Those are defects, not alternative documented conventions.
+
+Quaternion `getForward()` uses **+Z**, whereas Vector `front()` uses −Z ([quaternion.py:418](../gem/quaternion.py#L418)). Preserve both until a compatibility policy is approved; the mismatch must be explicit in documentation.
+
+## Quaternions and angles
+
+Quaternions are **[w,x,y,z]**, identity `[1,0,0,0]`, with Hamilton multiplication ([quaternion.py:6](../gem/quaternion.py#L6), [quaternion.py:18](../gem/quaternion.py#L18)). Vector rotation is `q * (0,v) * conjugate(q)` for unit `q`, implemented by `quat_rotate_vector`. `q * Vector` alone returns a Quaternion product, not a rotated Vector. Rotation preserves length only for unit quaternions; nonunit inputs scale the rotated vector by the squared norm. Rotation-matrix conversion also assumes unit quaternions.
+
+`toMatrix()` uses a row-vector matrix consistent with `Matrix.rotate`; conversion round trips must allow `q` and `−q` to represent the same rotation. Quaternion composition applies the right operand first in `q1*q2`; the equivalent row matrices appear in reversed order.
+
+Angle units vary:
+
+| API | Observed unit |
+| --- | --- |
+| `rotate2`, `rotate3`, `rotate4`, `Matrix.rotate` | degrees |
+| `rotate_origin2` | radians |
+| `quat_from_axis_angle`, `quat_rotate`, `quat_rotate_from_axis_angle` | degrees |
+| `quat_rotate_x/y/z_from_angle` | radians |
+| `toAngle` | returns radians |
+| `SPH(theta, phi)` / sample theta, phi | radians |
+
+`common.radiansToDegrees` and `degreesToRadians` implement the opposite conversions using 3.14, contrary to their names. Keep the established angle units in the other APIs; do not globally switch to radians.
+
+## Planes, rays, interpolation, and spherical harmonics
+
+`Plane.dot` and `point_location` express `a*x+b*y+c*z+d=0`, with positive values on the normal side ([plane.py:82](../gem/plane.py#L82), [plane.py:115](../gem/plane.py#L115)). `fromPoints` instead stores points in the coefficient fields and sets `d=normal.dot(point)`, incompatible with that equation. `bestFitD` returns the positive average dot product, corresponding to `normal.dot(point)=D`; its sign differs from coefficient `d`. This is inconsistent representation, not evidence to silently choose a new equation.
+
+`Ray` stores a mutable origin, normalizes the caller's direction in place, and records its original magnitude as `distance`. The stored `end` remains a zero vector: intersections are unfinished. Preserve the misspelled public method `roateUsingMatrix`; any corrected spelling should be an additive alias. Translation should distinguish homogeneous positions and directions, but currently changes only the direction and fails on common 4×4 inputs.
+
+Vector and scalar LERP use `a+t*(b−a)` without clamping `t`, so extrapolation is supported. Quaternion LERP is linear component interpolation, **not** normalized LERP. SLERP uses shortest-path sign correction, with an unnormalized linear approximation for nearby inputs. `slerp_no_invert` deliberately omits sign correction; its antipodal midpoint is the zero quaternion, an ambiguous rotation rather than a unique mathematical answer. SQUAD's signature has three quaternions, unlike the usual four-control implementation: choosing its intended spline contract requires approval.
+
+`Legendre` and `SPH` use associated Legendre polynomials with the **Condon–Shortley phase** and real SH: `m>0` cosine terms, `m<0` sine terms, `m=0` zonal terms. `theta` is polar angle from +Z, `phi` azimuth from +X toward +Y. SH sample index is `l*(l+1)+m`, number of coefficients = bands². Low orders 0–2 pass orthonormality checks. Higher-order recurrence is defective.
+
+The irradiance map's nine hard-coded SH polynomials instead use positive X/Y first-order terms, which differ in sign from `SPH(1,±1,...)`. Its intended input is raw native-endian 32-bit RGB floats, not a general HDR decoder; the integration assumes a square angular light probe. Rectangular images crash. Basis/sign interoperability and file-endian semantics need documentation before mathematical corrections.

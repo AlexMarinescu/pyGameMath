@@ -1,0 +1,717 @@
+{
+  "baseline_source_commit": "5257291431bb45db0274dc48edf24694ecfe2e2d",
+  "python": "3.12.14",
+  "pytest": "9.1.1",
+  "runxfail": {
+    "total": 271,
+    "passed": 179,
+    "failed": 92,
+    "skipped": 0
+  },
+  "failures": [
+    {
+      "test": "tests.test_api_edges.test_duplicate_aliases",
+      "defect_id": "R01",
+      "message": "assert 99 == 1"
+    },
+    {
+      "test": "tests.test_api_edges.test_arbitrary_axis_helper_returns_rotation_quaternion",
+      "defect_id": "Q11",
+      "message": "assert [0.0, 0.0, 0.0, 1.0] == approx([0.707...75 \u00b1 7.1e-07])\n  \n  comparison failed. Mismatched elements: 2 / 4:\n  Max absolute difference: 0.7071067811865476\n  Max relative difference: inf\n  Index | Obtained | Expected                    \n  0     | 0.0      | 0.7071067811865476 \u00b1 7.1e-07\n  3     | 1.0      | 0.7071067811865475 \u00b1 7.1e-07"
+    },
+    {
+      "test": "tests.test_api_edges.test_legacy_inplace_division_ctypes_sync",
+      "defect_id": "M07",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_experimental.test_cubic_bezier_scalar[0]",
+      "defect_id": "E01",
+      "message": "assert 3 == 0 \u00b1 1.0e-12\n  \n  comparison failed\n  Obtained: 3\n  Expected: 0 \u00b1 1.0e-12"
+    },
+    {
+      "test": "tests.test_experimental.test_cubic_bezier_scalar[0.25]",
+      "defect_id": "E01",
+      "message": "assert 3.71875 == 0.75 \u00b1 7.5e-07\n  \n  comparison failed\n  Obtained: 3.71875\n  Expected: 0.75 \u00b1 7.5e-07"
+    },
+    {
+      "test": "tests.test_experimental.test_cubic_bezier_scalar[0.5]",
+      "defect_id": "E01",
+      "message": "assert 4.25 == 1.5 \u00b1 1.5e-06\n  \n  comparison failed\n  Obtained: 4.25\n  Expected: 1.5 \u00b1 1.5e-06"
+    },
+    {
+      "test": "tests.test_experimental.test_cubic_bezier_scalar[0.75]",
+      "defect_id": "E01",
+      "message": "assert 4.40625 == 2.25 \u00b1 2.3e-06\n  \n  comparison failed\n  Obtained: 4.40625\n  Expected: 2.25 \u00b1 2.3e-06"
+    },
+    {
+      "test": "tests.test_experimental.test_cubic_bezier_scalar[1]",
+      "defect_id": "E01",
+      "message": "assert 4 == 3 \u00b1 3.0e-06\n  \n  comparison failed\n  Obtained: 4\n  Expected: 3 \u00b1 3.0e-06"
+    },
+    {
+      "test": "tests.test_experimental.test_bezier_vectors",
+      "defect_id": "E02",
+      "message": "TypeError: unsupported operand type(s) for *: 'float' and 'Vector'"
+    },
+    {
+      "test": "tests.test_experimental.test_bezier_path_count_python3",
+      "defect_id": "E03",
+      "message": "assert False\n +  where False = isinstance(1.0, int)\n +    where 1.0 = <gem.experimental.bezier.BezierPath object at <address>>.curveCount"
+    },
+    {
+      "test": "tests.test_experimental.test_bezier_recursive_sampling",
+      "defect_id": "E04",
+      "message": "TypeError: unsupported operand type(s) for *: 'int' and 'Vector'"
+    },
+    {
+      "test": "tests.test_experimental.test_bezier_sample_points",
+      "defect_id": "E04",
+      "message": "AttributeError: 'Vector' object has no attribute 'sqrMagnitude'. Did you mean: 'magnitude'?"
+    },
+    {
+      "test": "tests.test_experimental.test_legendre_recurrence[3-0.2]",
+      "defect_id": "E05",
+      "message": "assert -0.6 == -0.28 \u00b1 2.8e-07\n  \n  comparison failed\n  Obtained: -0.6\n  Expected: -0.28 \u00b1 2.8e-07"
+    },
+    {
+      "test": "tests.test_experimental.test_legendre_recurrence[4-0.5]",
+      "defect_id": "E05",
+      "message": "assert -0.3125 == -0.2890625 \u00b1 2.9e-07\n  \n  comparison failed\n  Obtained: -0.3125\n  Expected: -0.2890625 \u00b1 2.9e-07"
+    },
+    {
+      "test": "tests.test_experimental.test_legendre_recurrence[5--0.4]",
+      "defect_id": "E05",
+      "message": "assert -0.5119999999999999 == -0.27063999999999994 \u00b1 2.7e-07\n  \n  comparison failed\n  Obtained: -0.5119999999999999\n  Expected: -0.27063999999999994 \u00b1 2.7e-07"
+    },
+    {
+      "test": "tests.test_experimental.test_legendre_repeatability",
+      "defect_id": "E05",
+      "message": "assert 2.25 == 5.0625\n +  where 2.25 = run()\n +    where run = <gem.experimental.legendre.Legendre object at <address>>.run\n +  and   5.0625 = run()\n +    where run = <gem.experimental.legendre.Legendre object at <address>>.run"
+    },
+    {
+      "test": "tests.test_experimental.test_generate_samples",
+      "defect_id": "E06",
+      "message": "AttributeError: module 'math' has no attribute 'PI'"
+    },
+    {
+      "test": "tests.test_experimental.test_generate_object_coefficients",
+      "defect_id": "E07",
+      "message": "TypeError: type 'object' is not subscriptable"
+    },
+    {
+      "test": "tests.test_experimental.test_rectangular_irradiance_file",
+      "defect_id": "E08",
+      "message": "IndexError: list index out of range"
+    },
+    {
+      "test": "tests.test_experimental.test_spherical_harmonics_addition_theorem[3]",
+      "defect_id": "E05",
+      "message": "assert 0.5904885338279339 == 0.5570423008216338 \u00b1 5.6e-07\n  \n  comparison failed\n  Obtained: 0.5904885338279339\n  Expected: 0.5570423008216338 \u00b1 5.6e-07"
+    },
+    {
+      "test": "tests.test_experimental.test_spherical_harmonics_addition_theorem[4]",
+      "defect_id": "E05",
+      "message": "assert 1.0341068074818827 == 0.716197243913529 \u00b1 7.2e-07\n  \n  comparison failed\n  Obtained: 1.0341068074818827\n  Expected: 0.716197243913529 \u00b1 7.2e-07"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[0-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[1-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[2-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[3-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[4-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[5-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[6-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[7-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[8-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[9-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[10-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[11-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[12-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[13-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[14-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[15-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[16-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[17-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[18-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_determinant_and_inverse[19-2]",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_inverse2_known_answer",
+      "defect_id": "M01",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_scalar_division_helper",
+      "defect_id": "M02",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_matrix.test_python3_division",
+      "defect_id": "M03",
+      "message": "TypeError: unsupported operand type(s) for /: 'Matrix' and 'float'"
+    },
+    {
+      "test": "tests.test_matrix.test_inplace_translate_matches_returning",
+      "defect_id": "M04",
+      "message": "IndexError: list index out of range"
+    },
+    {
+      "test": "tests.test_matrix.test_shear_xy3",
+      "defect_id": "M05",
+      "message": "IndexError: list assignment index out of range"
+    },
+    {
+      "test": "tests.test_matrix.test_rotate2_fixed_pivot",
+      "defect_id": "M06",
+      "message": "assert [4.0, 6.0, 1.0] == approx([2 \u00b1 2... 1 \u00b1 1.0e-06])\n  \n  comparison failed. Mismatched elements: 2 / 3:\n  Max absolute difference: 3.0\n  Max relative difference: 0.5\n  Index | Obtained | Expected   \n  0     | 4.0      | 2 \u00b1 2.0e-06\n  1     | 6.0      | 3 \u00b1 3.0e-06"
+    },
+    {
+      "test": "tests.test_matrix.test_project_center[False]",
+      "defect_id": "P01",
+      "message": "TypeError: 'Matrix' object is not subscriptable"
+    },
+    {
+      "test": "tests.test_matrix.test_project_center[True]",
+      "defect_id": "P01",
+      "message": "TypeError: 'Matrix' object is not subscriptable"
+    },
+    {
+      "test": "tests.test_matrix.test_unproject_noncommuting_transforms",
+      "defect_id": "P02",
+      "message": "assert [-5.0, 1.0, -...0000000000004] == approx([1 \u00b1 1...-3 \u00b1 3.0e-06])\n  \n  comparison failed. Mismatched elements: 1 / 3:\n  Max absolute difference: 6.0\n  Max relative difference: 1.2\n  Index | Obtained | Expected   \n  0     | -5.0     | 1 \u00b1 1.0e-06"
+    },
+    {
+      "test": "tests.test_matrix.test_inverse4_extreme_uniform_scale[1e-100]",
+      "defect_id": "N03",
+      "message": "ZeroDivisionError: float division by zero"
+    },
+    {
+      "test": "tests.test_matrix.test_inverse4_extreme_uniform_scale[1e+100]",
+      "defect_id": "N03",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_plane_ray.test_plane_from_coefficients",
+      "defect_id": "G01",
+      "message": "AttributeError: 'int' object has no attribute 'vector'"
+    },
+    {
+      "test": "tests.test_plane_ray.test_plane_normalization_offset",
+      "defect_id": "G02",
+      "message": "assert (0.0, 1.0, 0.0, -4.0) == approx([0 \u00b1 1...-2 \u00b1 2.0e-06])\n  \n  comparison failed. Mismatched elements: 1 / 4:\n  Max absolute difference: 2.0\n  Max relative difference: 0.5\n  Index | Obtained | Expected    \n  3     | -4.0     | -2 \u00b1 2.0e-06"
+    },
+    {
+      "test": "tests.test_plane_ray.test_plane_normalization_normal_field",
+      "defect_id": "G02",
+      "message": "assert [0.0, 0.0, 0.0] == [0, 1, 0]\n  \n  At index 1 diff: 0.0 != 1\n  Use -v to get more diff"
+    },
+    {
+      "test": "tests.test_plane_ray.test_plane_from_points_incidence",
+      "defect_id": "G03",
+      "message": "assert Vector: size:...2.0, 6.0, 4.0] == 0 \u00b1 1.0e-12\n  \n  comparison failed\n  Obtained: Vector: size:3 , data:[2.0, 6.0, 4.0]\n  Expected: 0 \u00b1 1.0e-12"
+    },
+    {
+      "test": "tests.test_plane_ray.test_best_fit_normal_closed_polygon",
+      "defect_id": "G04",
+      "message": "IndexError: list index out of range"
+    },
+    {
+      "test": "tests.test_plane_ray.test_duplicate_independence_and_distance",
+      "defect_id": "R01",
+      "message": "assert 1.0 == 5.0\n +  where 1.0 = <gem.ray.Ray object at <address>>.distance\n +  and   5.0 = <gem.ray.Ray object at <address>>.distance"
+    },
+    {
+      "test": "tests.test_plane_ray.test_ray_quaternion_rotation",
+      "defect_id": "R02",
+      "message": "AttributeError: 'Quaternion' object has no attribute 'vector'"
+    },
+    {
+      "test": "tests.test_plane_ray.test_ray_translation_moves_origin",
+      "defect_id": "R03",
+      "message": "IndexError: list index out of range"
+    },
+    {
+      "test": "tests.test_quaternion.test_inverse_identity[values0]",
+      "defect_id": "Q01",
+      "message": "assert [-0.933333333...6666666666666] == approx([1 \u00b1 1... 0 \u00b1 1.0e-12])\n  \n  comparison failed. Mismatched elements: 4 / 4:\n  Max absolute difference: 1.9333333333333333\n  Max relative difference: 2.0714285714285716\n  Index | Obtained            | Expected   \n  0     | -0.9333333333333333 | 1 \u00b1 1.0e-06\n  1     | 0.1333333333333333  | 0 \u00b1 1.0e-12\n  2     | 0.2                 | 0 \u00b1 1.0e-12\n  3     | 0.26666666666666666 | 0 \u00b1 1.0e-12"
+    },
+    {
+      "test": "tests.test_quaternion.test_inverse_identity[values1]",
+      "defect_id": "Q01",
+      "message": "assert [-1.0, 0.0, 0.0, 0.0] == approx([1 \u00b1 1... 0 \u00b1 1.0e-12])\n  \n  comparison failed. Mismatched elements: 1 / 4:\n  Max absolute difference: 2.0\n  Max relative difference: 2.0\n  Index | Obtained | Expected   \n  0     | -1.0     | 1 \u00b1 1.0e-06"
+    },
+    {
+      "test": "tests.test_quaternion.test_half_turn_matrix_roundtrip[axis0]",
+      "defect_id": "Q02",
+      "message": "ZeroDivisionError: float division by zero"
+    },
+    {
+      "test": "tests.test_quaternion.test_half_turn_matrix_roundtrip[axis1]",
+      "defect_id": "Q02",
+      "message": "ZeroDivisionError: float division by zero"
+    },
+    {
+      "test": "tests.test_quaternion.test_half_turn_matrix_roundtrip[axis2]",
+      "defect_id": "Q02",
+      "message": "ZeroDivisionError: float division by zero"
+    },
+    {
+      "test": "tests.test_quaternion.test_half_turn_matrix_roundtrip[axis3]",
+      "defect_id": "Q02",
+      "message": "ValueError: math domain error"
+    },
+    {
+      "test": "tests.test_quaternion.test_power_one",
+      "defect_id": "Q03",
+      "message": "assert [0.7071067811...0.0, 0.0, 0.0] == approx([0.707...75 \u00b1 7.1e-07])\n  \n  comparison failed. Mismatched elements: 1 / 4:\n  Max absolute difference: 0.7071067811865475\n  Max relative difference: inf\n  Index | Obtained | Expected                    \n  3     | 0.0      | 0.7071067811865475 \u00b1 7.1e-07"
+    },
+    {
+      "test": "tests.test_quaternion.test_identity_power",
+      "defect_id": "Q03",
+      "message": "ZeroDivisionError: float division by zero"
+    },
+    {
+      "test": "tests.test_quaternion.test_unit_log",
+      "defect_id": "Q04",
+      "message": "assert [1.0, 0.0, 0....3981633974484] == approx([0 \u00b1 1...83 \u00b1 7.9e-07])\n  \n  comparison failed. Mismatched elements: 1 / 4:\n  Max absolute difference: 1.0\n  Max relative difference: 1.0\n  Index | Obtained | Expected   \n  0     | 1.0      | 0 \u00b1 1.0e-12"
+    },
+    {
+      "test": "tests.test_quaternion.test_squad_identical",
+      "defect_id": "Q05",
+      "message": "TypeError: 'float' object is not callable"
+    },
+    {
+      "test": "tests.test_quaternion.test_list_axis[quat_from_axis_angle]",
+      "defect_id": "Q06",
+      "message": "AttributeError: 'list' object has no attribute 'normalize'"
+    },
+    {
+      "test": "tests.test_quaternion.test_list_axis[quat_rotate_from_axis_angle]",
+      "defect_id": "Q06",
+      "message": "AttributeError: 'list' object has no attribute 'normalize'"
+    },
+    {
+      "test": "tests.test_quaternion.test_rotation_matrix_ctypes_snapshot",
+      "defect_id": "Q07",
+      "message": "AssertionError"
+    },
+    {
+      "test": "tests.test_quaternion.test_inplace_vector_multiply",
+      "defect_id": "Q08",
+      "message": "AttributeError: 'Vector' object has no attribute 'data'"
+    },
+    {
+      "test": "tests.test_quaternion.test_python3_quaternion_division",
+      "defect_id": "Q09",
+      "message": "TypeError: unsupported operand type(s) for /: 'Quaternion' and 'float'"
+    },
+    {
+      "test": "tests.test_quaternion.test_slerp_nearby_unit_length",
+      "defect_id": "Q10",
+      "message": "assert 0.9999904807207345 == 1 \u00b1 1.0e-12\n  \n  comparison failed\n  Obtained: 0.9999904807207345\n  Expected: 1 \u00b1 1.0e-12"
+    },
+    {
+      "test": "tests.test_quaternion.test_zero_quaternion_normalization",
+      "defect_id": "N01",
+      "message": "ZeroDivisionError: float division by zero"
+    },
+    {
+      "test": "tests.test_vector_common.test_equality_all_components[eq]",
+      "defect_id": "V01",
+      "message": "assert False"
+    },
+    {
+      "test": "tests.test_vector_common.test_equality_all_components[ne]",
+      "defect_id": "V01",
+      "message": "assert False"
+    },
+    {
+      "test": "tests.test_vector_common.test_equality_dimensions",
+      "defect_id": "V01",
+      "message": "assert (Vector: size:2 , data:[1, 2] == Vector: size:3 , data:[1, 2, 3]) is False\n +  where Vector: size:2 , data:[1, 2] = V(1, 2)\n +  and   Vector: size:3 , data:[1, 2, 3] = V(1, 2, 3)"
+    },
+    {
+      "test": "tests.test_vector_common.test_empty_equality",
+      "defect_id": "V01",
+      "message": "assert (Vector: size:0 , data:[] == Vector: size:0 , data:[]) is True\n +  where Vector: size:0 , data:[] = V()\n +  and   Vector: size:0 , data:[] = V()"
+    },
+    {
+      "test": "tests.test_vector_common.test_zero_normalization",
+      "defect_id": "N01",
+      "message": "ZeroDivisionError: float division by zero"
+    },
+    {
+      "test": "tests.test_vector_common.test_extreme_magnitude[1e+200]",
+      "defect_id": "N02",
+      "message": "assert inf == 1.41421356237...200 \u00b1 1.4e+186\n  \n  comparison failed\n  Obtained: inf\n  Expected: 1.414213562373095e+200 \u00b1 1.4e+186"
+    },
+    {
+      "test": "tests.test_vector_common.test_extreme_magnitude[1e-200]",
+      "defect_id": "N02",
+      "message": "assert 0.0 == 1.41421356237...200 \u00b1 1.4e-214\n  \n  comparison failed\n  Obtained: 0.0\n  Expected: 1.414213562373095e-200 \u00b1 1.4e-214"
+    },
+    {
+      "test": "tests.test_vector_common.test_angle_conversion[radiansToDegrees-3.141592653589793-180]",
+      "defect_id": "C01",
+      "message": "assert 0.05480333851262195 == 180 \u00b1 1.8e-04\n  \n  comparison failed\n  Obtained: 0.05480333851262195\n  Expected: 180 \u00b1 1.8e-04"
+    },
+    {
+      "test": "tests.test_vector_common.test_angle_conversion[degreesToRadians-180-3.141592653589793]",
+      "defect_id": "C01",
+      "message": "assert 10318.471337579618 == 3.141592653589793 \u00b1 3.1e-06\n  \n  comparison failed\n  Obtained: 10318.471337579618\n  Expected: 3.141592653589793 \u00b1 3.1e-06"
+    },
+    {
+      "test": "tests.test_vector_common.test_refraction_normal_incidence",
+      "defect_id": "V02",
+      "message": "TypeError: unsupported operand type(s) for *: 'float' and 'Vector'"
+    },
+    {
+      "test": "tests.test_vector_common.test_refraction_critical_angle",
+      "defect_id": "V02",
+      "message": "assert [0.0, 0.0, 0.0] == approx([0.9 \u00b1... 0 \u00b1 1.0e-12])\n  \n  comparison failed. Mismatched elements: 2 / 3:\n  Max absolute difference: 0.9\n  Max relative difference: inf\n  Index | Obtained | Expected                      \n  0     | 0.0      | 0.9 \u00b1 9.0e-07                 \n  1     | 0.0      | -0.43588989435406733 \u00b1 4.4e-07"
+    },
+    {
+      "test": "tests.test_vector_common.test_transform_identity",
+      "defect_id": "V03",
+      "message": "assert [2.0, 3.0, 5.0] == [2, 3, 4]\n  \n  At index 2 diff: 5.0 != 4\n  Use -v to get more diff"
+    },
+    {
+      "test": "tests.test_vector_common.test_clamp_preserves_input",
+      "defect_id": "V04",
+      "message": "assert [0, 2, 5] == [-2, 2, 10]\n  \n  At index 0 diff: 0 != -2\n  Use -v to get more diff"
+    },
+    {
+      "test": "tests.test_vector_common.test_viewport_vector",
+      "defect_id": "C02",
+      "message": "TypeError: 'Vector' object is not subscriptable"
+    },
+    {
+      "test": "tests.test_vector_common.test_quaternion_extreme_magnitude",
+      "defect_id": "N02",
+      "message": "assert inf == 2e+200 \u00b1 2.0e+194\n  \n  comparison failed\n  Obtained: inf\n  Expected: 2e+200 \u00b1 2.0e+194"
+    }
+  ],
+  "coverage": {
+    "totals": {
+      "covered_lines": 1320,
+      "num_statements": 1605,
+      "percent_covered": 78.34078489816194,
+      "percent_covered_display": "78",
+      "missing_lines": 285,
+      "excluded_lines": 0,
+      "percent_statements_covered": 82.24299065420561,
+      "percent_statements_covered_display": "82",
+      "num_branches": 408,
+      "num_partial_branches": 71,
+      "covered_branches": 257,
+      "missing_branches": 151,
+      "percent_branches_covered": 62.990196078431374,
+      "percent_branches_covered_display": "63"
+    },
+    "modules": {
+      "gem/__init__.py": {
+        "covered_lines": 0,
+        "num_statements": 0,
+        "percent_covered": 100.0,
+        "percent_covered_display": "100",
+        "missing_lines": 0,
+        "excluded_lines": 0,
+        "percent_statements_covered": 100.0,
+        "percent_statements_covered_display": "100",
+        "num_branches": 0,
+        "num_partial_branches": 0,
+        "covered_branches": 0,
+        "missing_branches": 0,
+        "percent_branches_covered": 100.0,
+        "percent_branches_covered_display": "100"
+      },
+      "gem/common.py": {
+        "covered_lines": 46,
+        "num_statements": 51,
+        "percent_covered": 89.55223880597015,
+        "percent_covered_display": "90",
+        "missing_lines": 5,
+        "excluded_lines": 0,
+        "percent_statements_covered": 90.19607843137256,
+        "percent_statements_covered_display": "90",
+        "num_branches": 16,
+        "num_partial_branches": 0,
+        "covered_branches": 14,
+        "missing_branches": 2,
+        "percent_branches_covered": 87.5,
+        "percent_branches_covered_display": "88"
+      },
+      "gem/experimental/__init__.py": {
+        "covered_lines": 0,
+        "num_statements": 0,
+        "percent_covered": 100.0,
+        "percent_covered_display": "100",
+        "missing_lines": 0,
+        "excluded_lines": 0,
+        "percent_statements_covered": 100.0,
+        "percent_statements_covered_display": "100",
+        "num_branches": 0,
+        "num_partial_branches": 0,
+        "covered_branches": 0,
+        "missing_branches": 0,
+        "percent_branches_covered": 100.0,
+        "percent_branches_covered_display": "100"
+      },
+      "gem/experimental/bezier.py": {
+        "covered_lines": 55,
+        "num_statements": 124,
+        "percent_covered": 39.04109589041096,
+        "percent_covered_display": "39",
+        "missing_lines": 69,
+        "excluded_lines": 0,
+        "percent_statements_covered": 44.354838709677416,
+        "percent_statements_covered_display": "44",
+        "num_branches": 22,
+        "num_partial_branches": 4,
+        "covered_branches": 2,
+        "missing_branches": 20,
+        "percent_branches_covered": 9.090909090909092,
+        "percent_branches_covered_display": "9"
+      },
+      "gem/experimental/legendre.py": {
+        "covered_lines": 36,
+        "num_statements": 36,
+        "percent_covered": 100.0,
+        "percent_covered_display": "100",
+        "missing_lines": 0,
+        "excluded_lines": 0,
+        "percent_statements_covered": 100.0,
+        "percent_statements_covered_display": "100",
+        "num_branches": 10,
+        "num_partial_branches": 0,
+        "covered_branches": 10,
+        "missing_branches": 0,
+        "percent_branches_covered": 100.0,
+        "percent_branches_covered_display": "100"
+      },
+      "gem/experimental/sph.py": {
+        "covered_lines": 21,
+        "num_statements": 23,
+        "percent_covered": 90.9090909090909,
+        "percent_covered_display": "91",
+        "missing_lines": 2,
+        "excluded_lines": 0,
+        "percent_statements_covered": 91.30434782608695,
+        "percent_statements_covered_display": "91",
+        "num_branches": 10,
+        "num_partial_branches": 1,
+        "covered_branches": 9,
+        "missing_branches": 1,
+        "percent_branches_covered": 90.0,
+        "percent_branches_covered_display": "90"
+      },
+      "gem/experimental/sph_irradiance_map.py": {
+        "covered_lines": 51,
+        "num_statements": 52,
+        "percent_covered": 98.48484848484848,
+        "percent_covered_display": "98",
+        "missing_lines": 1,
+        "excluded_lines": 0,
+        "percent_statements_covered": 98.07692307692308,
+        "percent_statements_covered_display": "98",
+        "num_branches": 14,
+        "num_partial_branches": 0,
+        "covered_branches": 14,
+        "missing_branches": 0,
+        "percent_branches_covered": 100.0,
+        "percent_branches_covered_display": "100"
+      },
+      "gem/experimental/sph_object.py": {
+        "covered_lines": 22,
+        "num_statements": 37,
+        "percent_covered": 49.09090909090909,
+        "percent_covered_display": "49",
+        "missing_lines": 15,
+        "excluded_lines": 0,
+        "percent_statements_covered": 59.45945945945946,
+        "percent_statements_covered_display": "59",
+        "num_branches": 18,
+        "num_partial_branches": 1,
+        "covered_branches": 5,
+        "missing_branches": 13,
+        "percent_branches_covered": 27.77777777777778,
+        "percent_branches_covered_display": "28"
+      },
+      "gem/experimental/sph_sample.py": {
+        "covered_lines": 34,
+        "num_statements": 44,
+        "percent_covered": 70.6896551724138,
+        "percent_covered_display": "71",
+        "missing_lines": 10,
+        "excluded_lines": 0,
+        "percent_statements_covered": 77.27272727272727,
+        "percent_statements_covered_display": "77",
+        "num_branches": 14,
+        "num_partial_branches": 3,
+        "covered_branches": 7,
+        "missing_branches": 7,
+        "percent_branches_covered": 50.0,
+        "percent_branches_covered_display": "50"
+      },
+      "gem/matrix.py": {
+        "covered_lines": 417,
+        "num_statements": 487,
+        "percent_covered": 80.32,
+        "percent_covered_display": "80",
+        "missing_lines": 70,
+        "excluded_lines": 0,
+        "percent_statements_covered": 85.62628336755647,
+        "percent_statements_covered_display": "86",
+        "num_branches": 138,
+        "num_partial_branches": 29,
+        "covered_branches": 85,
+        "missing_branches": 53,
+        "percent_branches_covered": 61.594202898550726,
+        "percent_branches_covered_display": "62"
+      },
+      "gem/plane.py": {
+        "covered_lines": 79,
+        "num_statements": 93,
+        "percent_covered": 83.80952380952381,
+        "percent_covered_display": "84",
+        "missing_lines": 14,
+        "excluded_lines": 0,
+        "percent_statements_covered": 84.94623655913979,
+        "percent_statements_covered_display": "85",
+        "num_branches": 12,
+        "num_partial_branches": 3,
+        "covered_branches": 9,
+        "missing_branches": 3,
+        "percent_branches_covered": 75.0,
+        "percent_branches_covered_display": "75"
+      },
+      "gem/quaternion.py": {
+        "covered_lines": 293,
+        "num_statements": 340,
+        "percent_covered": 82.4390243902439,
+        "percent_covered_display": "82",
+        "missing_lines": 47,
+        "excluded_lines": 0,
+        "percent_statements_covered": 86.17647058823529,
+        "percent_statements_covered_display": "86",
+        "num_branches": 70,
+        "num_partial_branches": 13,
+        "covered_branches": 45,
+        "missing_branches": 25,
+        "percent_branches_covered": 64.28571428571429,
+        "percent_branches_covered_display": "64"
+      },
+      "gem/ray.py": {
+        "covered_lines": 21,
+        "num_statements": 28,
+        "percent_covered": 75.0,
+        "percent_covered_display": "75",
+        "missing_lines": 7,
+        "excluded_lines": 0,
+        "percent_statements_covered": 75.0,
+        "percent_statements_covered_display": "75",
+        "num_branches": 0,
+        "num_partial_branches": 0,
+        "covered_branches": 0,
+        "missing_branches": 0,
+        "percent_branches_covered": 100.0,
+        "percent_branches_covered_display": "100"
+      },
+      "gem/vector.py": {
+        "covered_lines": 245,
+        "num_statements": 290,
+        "percent_covered": 80.74866310160428,
+        "percent_covered_display": "81",
+        "missing_lines": 45,
+        "excluded_lines": 0,
+        "percent_statements_covered": 84.48275862068965,
+        "percent_statements_covered_display": "84",
+        "num_branches": 84,
+        "num_partial_branches": 17,
+        "covered_branches": 57,
+        "missing_branches": 27,
+        "percent_branches_covered": 67.85714285714286,
+        "percent_branches_covered_display": "68"
+      }
+    }
+  }
+}
