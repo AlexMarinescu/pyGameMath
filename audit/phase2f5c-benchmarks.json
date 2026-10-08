@@ -1,0 +1,14 @@
+{
+  "method": "median of five 10000-call trials; arbitrary-axis L2 rotation",
+  "python": "3.12.14",
+  "results": [
+    {
+      "representation": "scalar",
+      "median_seconds_per_rotation": 2.842713719983294e-05
+    },
+    {
+      "representation": "RGB",
+      "median_seconds_per_rotation": 5.497439850005321e-05
+    }
+  ]
+}

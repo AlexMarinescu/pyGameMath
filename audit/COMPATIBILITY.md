@@ -305,3 +305,13 @@ cosine convolution and reconstruction are separate APIs. Native-endian raw
 format, low-resolution approximation limits and malformed-input errors are
 specified in the [SH guide](../docs/SPHERICAL_HARMONICS.md). No mandatory
 image dependency is added; transport and coefficient rotation remain separate.
+
+## SH coefficient rotation
+
+rotate_coefficients is an additive canonical API for scalar/RGB arrays of
+1, 4 or 9 coefficients and Quaternion orientations. It returns fresh storage,
+preserves L0 and never normalizes caller data or applies diffuse convolution.
+A temporary quaternion copy removes norm drift <=1e-12; larger deviations and
+invalid arrays raise ValueError. This boundary does not change existing gem
+rotation/normalization APIs. Historical coefficients require explicit
+conversion; Matrix orientations and higher bands are not supported.
