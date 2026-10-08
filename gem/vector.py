@@ -53,15 +53,22 @@ def reflect(incidentVec, normal):
     return incidentVec - (normal * (2.0 * incidentVec.dot(normal)))
 
 def refract(IOR, incidentVec, normal):
-    ''' Refract a vector. '''
+    ''' Return a refracted direction for IOR = n1 / n2.
+
+    incidentVec and normal must be unit vectors of matching dimension.
+    The incident direction points toward the interface; normal points toward
+    the incident medium, so normal.dot(incidentVec) <= 0. Inputs are not
+    normalized or flipped. Total internal reflection returns a zero Vector
+    of the same dimension. Neither input is mutated.
+    '''
     dotNI = normal.dot(incidentVec)
-    k = 1.0 - IOR * IOR * IOR * (1.0 - dotNI * dotNI)
+    k = 1.0 - IOR * IOR * (1.0 - dotNI * dotNI)
 
     if k < 0.0:
         return Vector(normal.size)
     else:
         scalar = IOR * dotNI + math.sqrt(k)
-        return (IOR * incidentVec) - (scalar * normal)
+        return (incidentVec * IOR) - (normal * scalar)
 
 # 2D - get angle of the vector
 def toAngle(vector):

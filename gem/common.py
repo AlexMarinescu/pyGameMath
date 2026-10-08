@@ -77,11 +77,13 @@ def getViewPort(coords, width, height):
 
 # Radians to degree
 def radiansToDegrees(degrees):
-    return (degrees * 3.14) / 180.0
+    ''' Convert radians to degrees (legacy parameter name is preserved). '''
+    return degrees * (180.0 / math.pi)
 
 # Degrees to radians
 def degreesToRadians(radians):
-    return (radians * 180.0) / 3.14
+    ''' Convert degrees to radians (legacy parameter name is preserved). '''
+    return radians * (math.pi / 180.0)
 
 # Returns the sign
 def sign(x):
