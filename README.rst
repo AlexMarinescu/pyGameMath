@@ -219,5 +219,7 @@ applies convolution again. The legacy raw-probe class retains its historical
 coefficient basis and requires ``legacy_to_canonical`` before this pipeline.
 Experimental imports remain compatible. See ``docs/SPHERICAL_HARMONICS.md``
 for basis signs, raw file format, angular mapping, weights and approximation
-limits. Latitude-longitude maps, mirrored-ball decoding, coefficient rotation
-and unfinished shadow transport are outside this API.
+limits. Latitude-longitude maps, mirrored-ball decoding and unfinished shadow
+transport are outside this API. Analytical active rotation through L2 is
+available as ``rotate_coefficients(coefficients, orientation)`` for canonical
+scalar/RGB coefficients and unit Quaternion orientations.

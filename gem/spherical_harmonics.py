@@ -304,3 +304,60 @@ class SPH_IrradianceMapCoeff(object):
 
     def output(self):
         pprint.pprint(self.coeffs)
+
+
+def rotate_coefficients(coefficients, orientation):
+    """Actively rotate canonical scalar/RGB coefficients through L2.
+
+    f_rotated(d) = f_original(R^-1 d). Accept 1, 4 or 9 coefficients.
+    Unit Quaternion inputs permit norm drift <= 1e-12; only a temporary copy
+    is normalized. Historical probe coefficients require explicit conversion.
+    """
+    from gem.quaternion import Quaternion
+    if not isinstance(orientation, Quaternion):
+        raise ValueError("orientation must be a unit Quaternion")
+    try:
+        q = list(orientation.data)
+        valid = len(q) == 4 and all(math.isfinite(v) for v in q)
+        norm = math.hypot(*q) if valid else 0
+    except (TypeError, ValueError, OverflowError):
+        norm = 0
+    if norm == 0 or abs(norm-1) > 1e-12:
+        raise ValueError("quaternion norm must differ from unity by at most 1e-12")
+    try:
+        if len(coefficients) not in (1,4,9):
+            raise ValueError("require 1, 4 or 9 canonical coefficients")
+        scalar = isinstance(coefficients[0], (int,float))
+        rows = [[v] for v in coefficients] if scalar else [list(v) for v in coefficients]
+        channels = 1 if scalar else 3
+        if any(len(row) != channels or not all(math.isfinite(v) for v in row) for row in rows):
+            raise ValueError("require finite scalar coefficients or RGB rows")
+    except (TypeError, ValueError, OverflowError, IndexError):
+        raise ValueError("require finite scalar coefficients or RGB rows") from None
+    w,x,y,z = (v/norm for v in q)
+    # Column-vector active rotation, transpose of gem's row-vector matrix.
+    r = [[1-2*(y*y+z*z),2*(x*y-w*z),2*(x*z+w*y)],
+         [2*(x*y+w*z),1-2*(x*x+z*z),2*(y*z-w*x)],
+         [2*(x*z-w*y),2*(y*z+w*x),1-2*(x*x+y*y)]]
+    result = [row[:] for row in rows]
+    diagonal = math.sqrt(5/(16*math.pi))
+    cross = math.sqrt(15/(16*math.pi))
+    for channel in range(channels):
+        c = [row[channel] for row in rows]
+        if len(c) >= 4:
+            v = [-c[3],-c[1],c[2]]
+            rotated = [sum(a*b for a,b in zip(row,v)) for row in r]
+            result[1][channel],result[2][channel],result[3][channel] = -rotated[1],rotated[2],-rotated[0]
+        if len(c) == 9:
+            # f_L2(d)=d^T T d; active rotation gives T'=R T R^T.
+            t = [[cross*c[8]-diagonal*c[6],cross*c[4],-cross*c[7]],
+                 [cross*c[4],-cross*c[8]-diagonal*c[6],-cross*c[5]],
+                 [-cross*c[7],-cross*c[5],2*diagonal*c[6]]]
+            rt = [[sum(r[i][k]*t[k][j] for k in range(3)) for j in range(3)] for i in range(3)]
+            out = [[sum(rt[i][k]*r[j][k] for k in range(3)) for j in range(3)] for i in range(3)]
+            result[4][channel] = (out[0][1]+out[1][0])/(2*cross)
+            result[5][channel] = -(out[1][2]+out[2][1])/(2*cross)
+            result[6][channel] = (2*out[2][2]-out[0][0]-out[1][1])/(6*diagonal)
+            result[7][channel] = -(out[0][2]+out[2][0])/(2*cross)
+            result[8][channel] = (out[0][0]-out[1][1])/(2*cross)
+    return [row[0] for row in result] if scalar else result

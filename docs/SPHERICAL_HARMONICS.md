@@ -18,7 +18,7 @@ nonnegative m. `Factorial(n)` retains its historical nonnegative-integer API.
 Coefficients use index `l*(l+1)+m`, with bands² entries. Each entry is an
 RGB list. The first nine canonical basis functions are proportional to
 `[1,-Y,Z,-X,XY,-YZ,3Z²-1,-XZ,X²-Y²]`, with orthonormal scale factors.
-For example Y_1,1(+X)=-sqrt(3/(4*pi)). No coefficient rotation is implemented.
+For example Y_1,1(+X)=-sqrt(3/(4*pi)). Analytical coefficient rotation through L2 is documented below.
 
 ## Directional samples and radiance
 
@@ -127,3 +127,40 @@ The SH representation is a low-frequency approximation; all three RGB channels
 remain independent. Extreme orders, ill-conditioned numerical integrations,
 and unrepresentable binary64 results are outside this phase's accuracy contract.
 No new NaN/Infinity policy is applied to historical scalar basis helpers.
+
+## Analytical coefficient rotation
+
+`rotate_coefficients(coefficients, orientation)` accepts complete canonical
+L0, L0–L1 or L0–L2 arrays (1, 4 or 9 entries), as scalar values or RGB rows.
+It returns independent output storage and never mixes bands or changes L0.
+Use the same API for radiance and already cosine-convolved irradiance;
+rotation commutes with the per-degree diffuse factors and never convolves.
+
+Rotation is active and right-handed: `f_rotated(d)=f_original(R^-1 d)`.
+Positive 90-degree rotation about Z moves a +X lighting feature toward +Y.
+Orientation is a gem Quaternion in [w,x,y,z] order; q and -q are equivalent.
+Applying a then b corresponds to Hamilton product b*a. The equivalent inverse
+direction uses the transpose of gem's row-vector rotation matrix.
+
+```python
+import math
+from gem.quaternion import Quaternion
+from gem.spherical_harmonics import rotate_coefficients
+
+orientation = Quaternion([math.sqrt(0.5), 0.0, 0.0, math.sqrt(0.5)])
+# Canonical scalar L1: negative c3 corresponds to a positive-X feature.
+coefficients = [0.0, 0.0, 0.0, -1.0]
+rotated = rotate_coefficients(coefficients, orientation)
+# Approximately [0, -1, 0, 0]: the feature now points toward +Y.
+```
+
+Only Quaternion orientations are supported. The finite quaternion norm may
+deviate from 1 by at most 1e-12; a temporary copy is normalized to remove that
+small drift. Zero, nonfinite or larger deviations raise ValueError, without
+mutating the supplied object. Existing quaternion normalization rules are
+unchanged. Matrix adapters and higher bands remain outside this API.
+
+Historical probe arrays must first pass through `legacy_to_canonical`.
+The rotation implementation uses L1 linear forms and L2 symmetric traceless
+tensors; it does not rotate sample directions or reintegrate an environment.
+See `audit/PHASE2F5C.md` for the derivation, verification and benchmark method.

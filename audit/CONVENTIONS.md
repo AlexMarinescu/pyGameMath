@@ -328,3 +328,13 @@ coefficients require explicit legacy_to_canonical conversion. Radiance and
 irradiance are distinct: first-three-band diffuse factors are pi, 2*pi/3,
 pi/4; reconstruction never convolves or normalizes a supplied unit direction.
 See [complete conventions](../docs/SPHERICAL_HARMONICS.md).
+
+## Spherical-harmonics coefficient rotation
+
+Core rotate_coefficients actively rotates canonical scalar/RGB complete bands
+through L2: f_rotated(d)=f_original(R^-1 d). A positive Z quarter-turn moves
++X lighting toward +Y. Hamilton b*a applies a then b; row-vector inverse
+directions use R_row^T. Finite Quaternion norm drift <=1e-12 is removed only
+in a temporary copy; larger/degenerate inputs raise ValueError. Bands remain
+independent, L0 is unchanged and radiance/irradiance share the transformation.
+Legacy probe conversion remains explicit. See [derivation](PHASE2F5C.md).

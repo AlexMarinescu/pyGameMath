@@ -174,3 +174,13 @@ convolution and unit-direction reconstruction. Global RNG stratification is
 retained. Recalculation rebuilds coefficients; direct updates accumulate.
 E07 transport and coefficient rotation remain separate. See
 [API and numerical limits](../docs/SPHERICAL_HARMONICS.md).
+
+## Analytical SH coefficient rotation
+
+Canonical complete bands through L2 support active Quaternion rotation with
+f_rotated(d)=f_original(R^-1 d), fresh scalar/RGB output and preserved L0.
+The orientation boundary accepts finite norm drift <=1e-12 and normalizes
+only a temporary copy. Larger deviations raise ValueError. Linear-form and
+traceless-tensor transformations replace neither basis conventions nor
+projection algorithms. Legacy conversion is explicit; Matrix adapters and
+higher-band rotation remain separate. See [verification](PHASE2F5C.md).
