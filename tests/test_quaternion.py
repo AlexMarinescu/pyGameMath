@@ -20,13 +20,34 @@ def test_quaternion_algebra(seed):
     assert a.conjugate().conjugate().data == a.data
 
 
-@pytest.mark.parametrize('values', [pytest.param([1,2,3,4],marks=pytest.mark.defect('Q01')),pytest.param([0,1,0,0],marks=pytest.mark.defect('Q01')),[2,0,0,0]])
-def test_inverse_identity(values):
-    if values[1:]==[0,0,0]:
-        assert (q.Quaternion(values)*q.Quaternion(values).inverse()).data == [1,0,0,0]
-    else:
-        # Mark at collection time below, so --runxfail exposes the failure.
-        assert (q.Quaternion(values)*q.Quaternion(values).inverse()).data == pytest.approx([1,0,0,0])
+@pytest.mark.parametrize('values,expected', [
+    ([1,2,3,4], [1/30,-2/30,-3/30,-4/30]),
+    ([0,1,0,0], [0,-1,0,0]),
+    ([2,0,0,0], [0.5,0,0,0]),
+    ([0,0,2,0], [0,0,-0.5,0]),
+    ([0,0,0,-4], [0,0,0,0.25]),
+    ([1,0,0,0], [1,0,0,0]),
+    ([-1,2,-3,4], [-1/30,-2/30,3/30,-4/30]),
+])
+def test_inverse_identity(values, expected):
+    original = list(values)
+    quat = q.Quaternion(values)
+    result = quat.inverse()
+    assert result is not quat
+    assert q.quat_inverse(values) == pytest.approx(expected)
+    assert result.data == pytest.approx(expected)
+    assert (quat*result).data == pytest.approx([1,0,0,0], abs=1e-14)
+    assert (result*quat).data == pytest.approx([1,0,0,0], abs=1e-14)
+    assert values == original
+
+
+@pytest.mark.parametrize('seed', range(20))
+def test_inverse_general_quaternion(seed):
+    rng = random.Random(seed)
+    quat = q.Quaternion([rng.uniform(-2,2) for _ in range(4)])
+    result = quat.inverse()
+    assert (quat*result).data == pytest.approx([1,0,0,0], abs=1e-14)
+    assert (result*quat).data == pytest.approx([1,0,0,0], abs=1e-14)
 
 
 @pytest.mark.parametrize('axis', [[1,0,0],[0,1,0],[0,0,1],[1,2,3]])

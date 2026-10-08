@@ -1,0 +1,107 @@
+{
+  "base_commit": "75c3fde1541007f9803c903674525a3e0bb49384",
+  "branch": "fix/phase2a-core-math",
+  "python": "3.12.14",
+  "pytest": "9.1.1",
+  "six": "1.17.0",
+  "summary": {
+    "total": 381,
+    "passed": 312,
+    "defect_xfailed": 61,
+    "contract_question_xfailed": 8,
+    "failed": 0,
+    "xpassed": 0,
+    "skipped": 0,
+    "exit_code": 0
+  },
+  "runxfail": {
+    "passed": 312,
+    "failed": 69,
+    "exit_code": 1,
+    "failures_match_remaining_markers": true
+  },
+  "converted_xfails": {
+    "V01": 2,
+    "M01": 21,
+    "Q01": 2
+  },
+  "additional_cases": 33,
+  "outcomes_by_module": {
+    "tests.test_api_edges": {
+      "passed": 16,
+      "xfailed": 3
+    },
+    "tests.test_experimental": {
+      "passed": 25,
+      "xfailed": 18
+    },
+    "tests.test_matrix": {
+      "passed": 85,
+      "xfailed": 10
+    },
+    "tests.test_plane_ray": {
+      "passed": 2,
+      "xfailed": 8
+    },
+    "tests.test_quaternion": {
+      "passed": 73,
+      "xfailed": 15
+    },
+    "tests.test_vector_common": {
+      "passed": 36,
+      "xfailed": 13
+    },
+    "tests.test_wiki_contracts": {
+      "passed": 75,
+      "xfailed": 2
+    }
+  },
+  "remaining_defect_cases_by_id": {
+    "C01": 2,
+    "C02": 1,
+    "E01": 5,
+    "E02": 1,
+    "E03": 1,
+    "E04": 2,
+    "E05": 6,
+    "E06": 1,
+    "E07": 1,
+    "E08": 1,
+    "G01": 1,
+    "G02": 2,
+    "G03": 1,
+    "G04": 1,
+    "M02": 1,
+    "M03": 2,
+    "M04": 1,
+    "M05": 1,
+    "M06": 1,
+    "M07": 1,
+    "N01": 2,
+    "N02": 3,
+    "N03": 2,
+    "P01": 1,
+    "P02": 1,
+    "Q02": 4,
+    "Q03": 2,
+    "Q04": 1,
+    "Q05": 1,
+    "Q06": 2,
+    "Q07": 1,
+    "Q08": 1,
+    "Q09": 1,
+    "R01": 2,
+    "R02": 1,
+    "V02": 2,
+    "V03": 1
+  },
+  "remaining_contract_cases_by_id": {
+    "P01-input-and-depth-policy": 2,
+    "Q10-unit-accuracy": 1,
+    "Q11-return-semantics": 1,
+    "R03-homogeneous-promotion": 1,
+    "V01-dimension-policy": 1,
+    "V01-empty-policy": 1,
+    "V04-value-list-ownership": 1
+  }
+}

@@ -255,8 +255,8 @@ class Vector(object):
             for i in range(self.size):
                 if self.vector[i] != vecB.vector[i]:
                     return False
-                else:
-                    return True
+            if self.size:
+                return True
         else:
             return NotImplemented
 
@@ -265,8 +265,8 @@ class Vector(object):
             for i in range(self.size):
                 if self.vector[i] != vecB.vector[i]:
                     return True
-                else:
-                    return False
+            if self.size:
+                return False
         else:
             return NotImplemented
 

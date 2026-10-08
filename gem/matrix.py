@@ -256,8 +256,8 @@ def inverse2(mat):
     inverse = zero_matrix(2)
     inverse[0][0] =   mat[1][1] / det
     inverse[0][1] = - mat[0][1] / det
-    inverse[0][0] =   mat[1][0] / det
-    inverse[0][1] = - mat[0][0] / det
+    inverse[1][0] = - mat[1][0] / det
+    inverse[1][1] =   mat[0][0] / det
 
     return inverse
 
