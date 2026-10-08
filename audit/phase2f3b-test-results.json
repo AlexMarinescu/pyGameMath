@@ -1,0 +1,30 @@
+{
+  "baseline": {
+    "passed": 1441,
+    "xfailed": 15
+  },
+  "final": {
+    "passed": 1475,
+    "failed": 0,
+    "xfailed": 13
+  },
+  "converted": [
+    "tests.test_experimental::test_bezier_recursive_sampling",
+    "tests.test_experimental::test_bezier_sample_points"
+  ],
+  "remaining_expected_failures": [
+    "tests.test_experimental::test_generate_object_coefficients",
+    "tests.test_experimental::test_generate_samples",
+    "tests.test_experimental::test_legendre_recurrence[3-0.2]",
+    "tests.test_experimental::test_legendre_recurrence[4-0.5]",
+    "tests.test_experimental::test_legendre_recurrence[5--0.4]",
+    "tests.test_experimental::test_legendre_repeatability",
+    "tests.test_experimental::test_rectangular_irradiance_file",
+    "tests.test_experimental::test_spherical_harmonics_addition_theorem[3]",
+    "tests.test_experimental::test_spherical_harmonics_addition_theorem[4]",
+    "tests.test_vector_common::test_clamp_preserves_input",
+    "tests.test_vector_common::test_empty_equality",
+    "tests.test_vector_common::test_equality_dimensions",
+    "tests.test_vector_common::test_viewport_vector"
+  ]
+}

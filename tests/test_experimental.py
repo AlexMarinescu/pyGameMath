@@ -10,20 +10,6 @@ def V(*xs):
     return vector.Vector(len(xs),list(xs))
 
 
-@pytest.mark.defect('E04')
-def test_bezier_recursive_sampling():
-    path = bezier.BezierPath()
-    path.setControlPoints([V(0,0),V(1,0),V(2,0),V(3,0)])
-    assert path.findDrawingPoints(0)
-
-
-@pytest.mark.defect('E04')
-def test_bezier_sample_points():
-    path = bezier.BezierPath()
-    path.samplePoints([V(0,0),V(1,0),V(2,0)],0.01,1,0.5)
-    assert path.controlPoints
-
-
 @pytest.mark.parametrize('l,m,x,expected',[(0,0,0.2,1),(1,0,0.2,0.2),(1,1,0,-1),(2,0,0.5,-0.125),(2,1,0.5,-1.5*math.sqrt(0.75)),(2,2,0.5,2.25)])
 def test_legendre_low_orders(l,m,x,expected):
     assert legendre.Legendre(l,m,x).run() == pytest.approx(expected)

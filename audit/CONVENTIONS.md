@@ -303,3 +303,14 @@ are not guaranteed. Floating cofactor cancellation/underflow can still
 limit inversion outside that domain. 2x2 inverse and public determinant
 algorithms are unchanged. Float32 ctypes exports retain their own narrower
 range and precision. See [verification](PHASE2F2.md).
+
+## Bezier sampling
+
+Core `gem.bezier` uses midpoint subdivision with maximum interior-control
+distance to the finite endpoint chord. `minimum_sqr_distance` preserves its
+historical squared-distance units (default 0.01 means distance 0.1). Depth is
+capped at 16 per segment; capped output may exceed tolerance. Outputs follow
+parameter order, retain standalone endpoints and omit repeated shared segment
+boundaries within historical nested path output. Source-point thinning uses
+separate squared-distance heuristics. `interpolate` appends;
+`samplePoints` rebuilds. See [sampling details](PHASE2F3B.md).

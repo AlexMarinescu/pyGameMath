@@ -156,6 +156,29 @@ Use ``gem.bezier`` for supported scalar and Vector Bezier evaluation::
 
 Quadratic evaluation is available as ``quadraticBezierPoint(t, p0, p1, p2)``.
 Controls are preserved and parameters are not clamped. Cubic paths use
-``3*k+1`` controls for ``k`` segments. Experimental evaluator imports remain
-compatible; adaptive-sampling methods remain experimental. See
+``3*k+1`` controls for ``k`` segments. Experimental Bezier imports remain compatible; sampling is supported in core. See
 ``audit/PHASE2F3A.md`` for migration and compatibility details.
+
+
+Adaptive Bezier sampling
+-----------------------
+
+Sample a cubic path without changing its control points::
+
+    from gem.bezier import BezierPath
+    from gem.vector import Vector
+
+    path = BezierPath()
+    path.setControlPoints([Vector(2, [0, 0]), Vector(2, [1, 2]),
+                           Vector(2, [2, 2]), Vector(2, [3, 0])])
+    path.minimum_sqr_distance = 0.0001  # distance tolerance 0.01
+    points = path.findDrawingPoints(0)  # ordered, includes both endpoints
+    curves = path.getDrawingPoints()   # nested lists; shared joins appear once
+
+The geometric flatness test applies to Vector2/Vector3 and scalar controls.
+Depth is capped at 16; capped output may exceed tolerance. Source-point
+``samplePoints(sourcePoints, minSqrDistance, maxSqrDistance, scale)`` uses
+separate squared-distance thinning heuristics and rebuilds its generated path.
+``interpolate(segmentPoints, scale)`` retains append-only behavior. Both
+builders return None and preserve source storage. See ``audit/PHASE2F3B.md``
+for limits, validation and compatibility details.
