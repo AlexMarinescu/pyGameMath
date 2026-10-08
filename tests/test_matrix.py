@@ -88,12 +88,10 @@ def test_inplace_translate_matches_returning():
     assert_matrix(a.matrix, b.translate(V(2,3,4)).matrix)
 
 
-@pytest.mark.defect('M05')
 def test_shear_xy3():
     assert len(matrix.shearXY3(1,2)) == 3
 
 
-@pytest.mark.defect('M06')
 def test_rotate2_fixed_pivot():
     r = matrix.Matrix(3, matrix.rotate2([2,3], 90))
     assert (r*V(2,3,1)).vector == pytest.approx([2,3,1])
