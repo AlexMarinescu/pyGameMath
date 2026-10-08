@@ -198,3 +198,26 @@ removed because those APIs do not exist; vector cross products are retained.
 The [API guide](../docs/QUATERNIONS.md) consolidates established return types,
 units, forward axes, ownership and domains. Existing zero normalization,
 extreme norms and other unresolved numerical policies remain unchanged.
+
+## Phase 2F-1: ray geometry
+
+R01 duplication preserves exact stored distance and start/direction/end
+values with independent Vector storage, avoiding constructor normalization
+and aliasing. R02 quaternion rotation now returns Vector fields from the
+conjugate sandwich rather than single-product Quaternion fields. Unit
+rotation inputs, origin pivot, direction normalization and distance are
+preserved.
+
+R03 pure Matrix4 translation now moves a Vector3 origin through local w=1
+promotion and transforms direction with w=0, preserving its components and
+distance. General Matrix*Vector dimensions are unchanged. Constructor
+references/in-place direction normalization and existing Matrix3 rotation
+are retained, as are signatures and None transform returns.
+
+`.end` remains independent intersection placeholder/state. Transforms leave
+it unchanged even when nonzero; duplication isolates its storage. There is
+no automatic geometric endpoint, hit-validity inference or new intersection
+API. Callers must continue managing actual hit state explicitly until its
+contract is defined. See [ray API documentation](../docs/RAYS.md) and
+[verification](PHASE2F1.md). Unrelated numerical and experimental behavior
+remains unchanged.

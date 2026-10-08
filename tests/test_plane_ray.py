@@ -48,7 +48,6 @@ def test_plane_manual_coefficients():
     assert p.bestFitD([V(0,2,0),V(0,2,1)],p.normal) == 2
 
 
-@pytest.mark.defect('R01')
 def test_duplicate_independence_and_distance():
     r = ray.Ray(V(1,2,3),V(0,0,5))
     copy = r.duplicate()
@@ -57,7 +56,6 @@ def test_duplicate_independence_and_distance():
     assert r.start.vector[0] == 1
 
 
-@pytest.mark.defect('R02')
 def test_ray_quaternion_rotation():
     r = ray.Ray(V(1,0,0),V(1,0,0))
     r.rotateUsingQuaternion(quaternion.quat_from_axis_angle(V(0,0,1),90))
@@ -65,7 +63,6 @@ def test_ray_quaternion_rotation():
     assert r.dir.vector == pytest.approx([0,1,0],abs=1e-14)
 
 
-@pytest.mark.contract_question('R03-homogeneous-promotion')
 def test_ray_translation_moves_origin():
     r = ray.Ray(V(1,2,3),V(0,0,1))
     r.translate(matrix.Matrix(4).translate(V(2,3,4)))

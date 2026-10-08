@@ -86,6 +86,26 @@ robustness, malformed/nonfinite inputs, nonunit rotation/power/log policies
 and no-invert antipodal behavior remain separate. See the
 [quaternion API guide](../docs/QUATERNIONS.md).
 
+### Ray copying, rotation and translation
+
+QD02/QD04 are settled for ordinary 3D ray copying and rigid transforms:
+retain constructor references/in-place direction normalization; duplicate
+all stored Vectors independently and copy distance exactly without
+construction; rotate about the coordinate origin with unit-quaternion
+conjugate sandwiches; retain existing Matrix3 rotation; locally promote
+Vector3/Matrix4 positions/directions with w=1/w=0 for pure translation.
+Public signatures, None transform returns and general Matrix*Vector rules
+are unchanged.
+
+Ray `.end` remains the historical intersection placeholder/state. It is
+copied by duplication and left unchanged by transforms. A zero placeholder
+cannot be distinguished from a valid hit at the origin without a validity
+contract; nonzero values do not establish validity either. Hit-state
+validity, ownership and transformation are a separate unresolved API design
+question. No geometric endpoint is assigned automatically. Scale/shear,
+projective and wider invalid-input policies remain separate. See the
+[ray guide](../docs/RAYS.md).
+
 ## Recommended implementation order after review
 
 1. **Small ordinary-math fixes with clear contracts:** equal-size equality/inequality (V01 component cases), inverse2 (M01), quaternion inverse (Q01). Preserve exact comparisons, return types, and component order; defer unsupported-dimension policy changes.
