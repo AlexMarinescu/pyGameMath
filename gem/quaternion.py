@@ -137,8 +137,9 @@ def quat_rotate_from_axis_angle(axis, theta):
     ''' Return the legacy Quaternion product rotating the normalized axis.
 
     Accepts a Vector/list axis and degrees without mutating caller data.
-    This preserves the existing axis-rotation result, not an axis-angle
-    rotation quaternion; the broader return contract remains unresolved.
+    The result is the pure Quaternion approximately [0, normalized_axis],
+    not an axis-angle rotation constructor. Use quat_from_axis_angle to
+    construct a rotation Quaternion. The numerical sandwich is retained.
     '''
     thetaOver2 = theta * 0.5
     sto2 = math.sin(math.radians(thetaOver2))

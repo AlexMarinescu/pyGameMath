@@ -180,3 +180,21 @@ a local one-degree microbenchmark (3.949 versus 2.610 microseconds/call);
 this replaces the approximate prototype estimate and is not an application
 performance guarantee. Full measurements and reproduction are in
 [Phase 2E-4](PHASE2E4.md).
+
+
+## Phase 2E-5: quaternion API contracts
+
+Q11 documents the historical `quat_rotate_from_axis_angle` result rather
+than changing its values: approximately `[0,normalized_axis]`, the pure
+Quaternion obtained by rotating that axis about itself. Rotation callers
+should use the existing `quat_from_axis_angle` constructor. Signatures,
+accepted axes, nonmutating inputs and numerical code are unchanged; no
+redundant API or runtime deprecation warning is added.
+
+The former constructor-expectation test now protects the retained legacy
+result. Independent known answers distinguish the two helpers and verify
+caller storage. README quaternion cross-product/exponential claims are
+removed because those APIs do not exist; vector cross products are retained.
+The [API guide](../docs/QUATERNIONS.md) consolidates established return types,
+units, forward axes, ownership and domains. Existing zero normalization,
+extreme norms and other unresolved numerical policies remain unchanged.

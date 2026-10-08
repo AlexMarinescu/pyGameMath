@@ -73,6 +73,19 @@ blend using accurate SLERP and explicit unit controls. Control generation,
 nonunit/nonfinite domains and antipodal no-invert policy remain separate.
 See [interpolation conventions](CONVENTIONS.md#quaternion-interpolation).
 
+### Quaternion API compatibility
+
+Q11 is settled by preserving `quat_rotate_from_axis_angle` as the legacy
+pure Quaternion axis-rotation result and recommending the existing
+`quat_from_axis_angle` constructor for conventional rotations. Vector/list
+support, degrees, caller ownership, numerical sandwich and signatures are
+retained. No redundant constructor or runtime warning is added. Public API
+documentation separates return types, units, forward axes and domains;
+Q01-Q11 are resolved within the previously defined scopes. General numerical
+robustness, malformed/nonfinite inputs, nonunit rotation/power/log policies
+and no-invert antipodal behavior remain separate. See the
+[quaternion API guide](../docs/QUATERNIONS.md).
+
 ## Recommended implementation order after review
 
 1. **Small ordinary-math fixes with clear contracts:** equal-size equality/inequality (V01 component cases), inverse2 (M01), quaternion inverse (Q01). Preserve exact comparisons, return types, and component order; defer unsupported-dimension policy changes.
