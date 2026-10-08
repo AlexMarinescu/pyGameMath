@@ -1,0 +1,34 @@
+{
+  "method": "median of five 30,000-call trials, constructor plus run, x=0.37",
+  "python": "3.12.14",
+  "results": [
+    {
+      "l": 0,
+      "m": 0,
+      "old_seconds_per_call": 3.919392333045835e-07,
+      "new_seconds_per_call": 4.833768666382335e-07,
+      "new_over_old": 1.2332954334852009
+    },
+    {
+      "l": 2,
+      "m": 2,
+      "old_seconds_per_call": 6.838445333414711e-07,
+      "new_seconds_per_call": 9.246122333327852e-07,
+      "new_over_old": 1.3520795857135106
+    },
+    {
+      "l": 12,
+      "m": 0,
+      "old_seconds_per_call": 5.0404559333401265e-06,
+      "new_seconds_per_call": 2.2688563333455626e-06,
+      "new_over_old": 0.4501291873892198
+    },
+    {
+      "l": 12,
+      "m": 5,
+      "old_seconds_per_call": 5.686505600048501e-06,
+      "new_seconds_per_call": 2.4752643667549515e-06,
+      "new_over_old": 0.43528742268957576
+    }
+  ]
+}

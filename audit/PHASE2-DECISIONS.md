@@ -153,3 +153,12 @@ ordered endpoints are preserved. `interpolate` remains append-only;
 `samplePoints` rebuilds from ordered source vertices using distinct squared
 thinning thresholds. Experimental modules reexport the core class. See
 [contract and verification](PHASE2F3B.md).
+
+## Legendre core support
+
+E05 is corrected under `gem.legendre` with a compatibility class reexport.
+The historical unnormalized Condon–Shortley convention and existing real SH
+basis are retained. Supported associated inputs are integer 0 <= m <= l and
+x in [-1,1]. `run` is state-preserving; named scratch helpers remain explicit
+mutators. Invalid/extreme domains receive no new generalized policy. See
+[verification and compatibility](PHASE2F4.md).
