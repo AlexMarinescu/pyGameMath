@@ -1,5 +1,7 @@
 # Phase 1 correctness and modernization audit
 
+> Historical Phase 1 baseline. [Phase 1B wiki validation](PHASE1B-WIKI.md) revisits all 44 groups, distinguishes unresolved contracts, and supplies the current test counts. Original result and benchmark files remain unchanged.
+
 Audited all 14 Python files under `gem/` (including both empty package initializers), plus `launcher.py`, packaging metadata, README, and legacy CI. Source baseline: `5257291431bb45db0274dc48edf24694ecfe2e2d`. Work is isolated on `audit/phase1-correctness`. Library implementation, public API, `gem` namespace, runtime dependencies, and default branch remain unchanged. Phase 2 and Phase 3 have not begun.
 
 ## Evidence and priority

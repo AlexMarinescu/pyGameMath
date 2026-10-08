@@ -1,6 +1,6 @@
 # Existing mathematical conventions
 
-Baseline: `5257291431bb45db0274dc48edf24694ecfe2e2d`. These describe the observed implementation, not a redesigned API. No convention was changed in Phase 1.
+Baseline: `5257291431bb45db0274dc48edf24694ecfe2e2d`. These describe the observed implementation, not a redesigned API. No convention was changed in Phase 1 or Phase 1B. Historical wiki validation uses snapshot `715e5039c75e080814a12e957f5148c35cdf8bda`; see [complete reconciliation](PHASE1B-WIKI.md).
 
 ## Matrices and vectors
 
@@ -18,7 +18,7 @@ Cross products use the right-handed formula: X cross Y = Z ([vector.py:43](../ge
 
 `lookAt` builds a right-handed view matrix with a negative-Z viewing direction ([matrix.py:657](../gem/matrix.py#L657)). `perspective`, `perspectiveX`, and `orthographic` use OpenGL-style NDC depth **[−1,+1]**; points at camera Z = −near and −far map to −1 and +1 respectively. `perspective` takes vertical FOV, `perspectiveX` horizontal FOV; aspect = width / height. FOV is in degrees.
 
-`unproject` expects window depth [0,1], mapped by `2*z−1`, and window X/Y mapped relative to `[x,y,width,height]`. Its current multiplication order is incorrect for noncommuting model/projection matrices. `project` is unusable; its unreachable return also leaves NDC depth unremapped and declares a size-3 vector with four values. Those are defects, not alternative documented conventions.
+`unproject` expects window depth [0,1], mapped by `2*z−1`, and window X/Y mapped relative to `[x,y,width,height]`. Its current multiplication order is incorrect for noncommuting model/projection matrices. `project` is unusable; its unreachable return also leaves NDC depth unremapped and declares a size-3 vector with four values. The crash and size-3/four-value mismatch are defects. Phase 1B confirms a three-dimensional return from the wiki; window depth [0,1] is a proposed compatibility choice consistent with unproject, not an explicit wiki specification. Project input types and homogeneous behavior require approval.
 
 Quaternion `getForward()` uses **+Z**, whereas Vector `front()` uses −Z ([quaternion.py:418](../gem/quaternion.py#L418)). Preserve both until a compatibility policy is approved; the mismatch must be explicit in documentation.
 
@@ -52,3 +52,15 @@ Vector and scalar LERP use `a+t*(b−a)` without clamping `t`, so extrapolation 
 `Legendre` and `SPH` use associated Legendre polynomials with the **Condon–Shortley phase** and real SH: `m>0` cosine terms, `m<0` sine terms, `m=0` zonal terms. `theta` is polar angle from +Z, `phi` azimuth from +X toward +Y. SH sample index is `l*(l+1)+m`, number of coefficients = bands². Low orders 0–2 pass orthonormality checks. Higher-order recurrence is defective.
 
 The irradiance map's nine hard-coded SH polynomials instead use positive X/Y first-order terms, which differ in sign from `SPH(1,±1,...)`. Its intended input is raw native-endian 32-bit RGB floats, not a general HDR decoder; the integration assumes a square angular light probe. Rectangular images crash. Basis/sign interoperability and file-endian semantics need documentation before mathematical corrections.
+
+## Historical wiki evidence added in Phase 1B
+
+All seven current wiki pages are archived in [wiki-snapshot](wiki-snapshot/manifest.json). Vector and Matrix pages contain API lists/examples; Quaternion, Plane, Ray, and Common Functions remain placeholders, including their earlier revisions. No wiki page documents experimental functions.
+
+The wiki explicitly confirms Vector front=−Z, back=+Z, right=+X, up=+Y; same-size operands for vector operators; matching matrix/vector dimensions for multiplication; vertical versus horizontal FOV APIs; project returning a 3D Vector; and the ordinary/new versus i-prefixed/in-place receiver distinction. “Without returning a new object” permits returning self. It does not specify ownership of a separate mutable value/axis argument.
+
+The wiki does **not** establish storage order, multiplication/composition orientation, quaternion components, angle units, window depth, plane offset sign, ray homogeneous promotion, unit versus general quaternion domains, or numerical tolerances. All corresponding source observations above remain observations rather than newly approved contracts. The equivalent transposed column-vector interpretation of contiguous data does not authorize changing observable multiplication.
+
+Matrix default identity remains established source behavior. The wiki prints zeros, but the contemporaneous 2015 constructor already used identity; its output is a documentation error. Likewise, the wiki's in-place scale output incorrectly shows an unchanged identity while reporting determinant 24. Neither mistake justifies changing constructors or in-place mutation.
+
+Decision-sensitive Phase 1 expectations are separated into contract-question markers: mixed/empty equality, clamp value-list copying, project argument/depth choices, ray Vector3/Matrix4 promotion, SLERP unit tolerance, and arbitrary-axis quaternion return semantics. See [decision list](PHASE2-DECISIONS.md). Core equal-size equality, inverse identities, and dimensional consistency keep their confirmed defect regressions.
