@@ -85,21 +85,22 @@ def quat_inverse(quat):
             -quat[3] / lengthSquared]
 
 def quat_from_axis_angle(axis, theta):
-    ''' Returns a quaternion from a given axis and a angle. '''
+    ''' Return a rotation Quaternion from a Vector/list axis and degrees.
+
+    Normalizes a temporary axis without mutating caller data.
+    '''
     thetaOver2 = theta * 0.5
     sto2 = math.sin(math.radians(thetaOver2))
     cto2 = math.cos(math.radians(thetaOver2))
 
-    quat1List = []
     if isinstance(axis, vector.Vector):
-        axis.i_normalize()
-        quat1List = [cto2, axis.vector[0] * sto2, axis.vector[1] * sto2, axis.vector[2] * sto2]
-    elif isinstance(axis, list):
         naxis = axis.normalize()
-        quat1List = (cto2, naxis[0] * sto2, naxis[1] * sto2, naxis[2] * sto2)
+    elif isinstance(axis, list):
+        naxis = vector.Vector(3, data=axis).normalize()
     else:
         return NotImplemented
 
+    quat1List = [cto2, naxis.vector[0] * sto2, naxis.vector[1] * sto2, naxis.vector[2] * sto2]
     return Quaternion(data=quat1List)
 
 def quat_rotate(origin, axis, theta):
@@ -133,23 +134,26 @@ def quat_rotate_z_from_angle(theta):
     return [cto2, 0.0, 0.0, sto2]
 
 def quat_rotate_from_axis_angle(axis, theta):
-    ''' Creates a quaternion that rotates around an arbitary axis given an angle. '''
+    ''' Return the legacy Quaternion product rotating the normalized axis.
+
+    Accepts a Vector/list axis and degrees without mutating caller data.
+    This preserves the existing axis-rotation result, not an axis-angle
+    rotation quaternion; the broader return contract remains unresolved.
+    '''
     thetaOver2 = theta * 0.5
     sto2 = math.sin(math.radians(thetaOver2))
     cto2 = math.cos(math.radians(thetaOver2))
 
-    quat1List = []
     if isinstance(axis, vector.Vector):
-        axis.i_normalize()
-        quat1List = [cto2, axis.vector[0] * sto2, axis.vector[1] * sto2, axis.vector[2] * sto2]
-    elif isinstance(axis, list):
         naxis = axis.normalize()
-        quat1List = (cto2, naxis[0] * sto2, naxis[1] * sto2, naxis[2] * sto2)
+    elif isinstance(axis, list):
+        naxis = vector.Vector(3, data=axis).normalize()
     else:
         return NotImplemented
 
+    quat1List = [cto2, naxis.vector[0] * sto2, naxis.vector[1] * sto2, naxis.vector[2] * sto2]
     quat1 = Quaternion(data=quat1List)
-    rotation = (quat1 * axis) * quat1.conjugate()
+    rotation = (quat1 * naxis) * quat1.conjugate()
     return rotation
 
 def quat_rotate_vector(quat, vec):
@@ -332,7 +336,7 @@ class Quaternion(object):
             self.data = quat_mul_quat(self.data, other.data)
             return self
         elif isinstance(other, vector.Vector):
-            self.data = quat_mul_vect(self.data, other.data)
+            self.data = quat_mul_vect(self.data, other.vector)
             return self
         elif isinstance(other, float):
             self.data = quat_mul_float(self.data, other)
@@ -352,6 +356,9 @@ class Quaternion(object):
             return self
         else:
             return NotImplemented
+
+    __truediv__ = __div__
+    __itruediv__ = __idiv__
 
     def i_negate(self):
         self.data = quat_neg(self.data)
