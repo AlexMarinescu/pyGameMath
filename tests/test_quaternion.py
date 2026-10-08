@@ -87,7 +87,6 @@ def test_unit_log():
     assert rot.log() == pytest.approx([0,0,0,math.pi/4])
 
 
-@pytest.mark.defect('Q05')
 def test_squad_identical():
     rot = q.Quaternion()
     assert rot.squad(rot,rot,0.5).data == [1,0,0,0]
@@ -120,7 +119,6 @@ def test_slerp_known_answer(t):
     assert a.slerp(b.negate(),t).data == pytest.approx(a.slerp(b,t).data)
 
 
-@pytest.mark.contract_question('Q10-unit-accuracy')
 def test_slerp_nearby_unit_length():
     a,b = q.Quaternion(),q.quat_from_axis_angle(V(0,0,1),1)
     assert a.slerp(b,0.5).magnitude() == pytest.approx(1,abs=1e-12)

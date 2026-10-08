@@ -61,6 +61,18 @@ General nonunit domains, broader accuracy/invalid-input policies, SQUAD,
 SLERP and the arbitrary-axis helper's Q11 return contract remain separate.
 See [power/log conventions](CONVENTIONS.md#quaternion-powers-and-logarithms).
 
+### Quaternion interpolation contracts
+
+QD06/QD07 are settled for Q05/Q10: preserve the legacy three-control nested
+no-invert blend and its sign-sensitive approximation/degeneracy behavior;
+use accurate shortest-path spherical SLERP for unit inputs, with 1e-12 norm
+and known-axis component accuracy over [0,1]. No input normalization or
+parameter clamping is introduced. Exact half-turn ties retain supplied sign
+branches. `squad4(q0,q1,s0,s1,t)` is a separate conventional four-control
+blend using accurate SLERP and explicit unit controls. Control generation,
+nonunit/nonfinite domains and antipodal no-invert policy remain separate.
+See [interpolation conventions](CONVENTIONS.md#quaternion-interpolation).
+
 ## Recommended implementation order after review
 
 1. **Small ordinary-math fixes with clear contracts:** equal-size equality/inequality (V01 component cases), inverse2 (M01), quaternion inverse (Q01). Preserve exact comparisons, return types, and component order; defer unsupported-dimension policy changes.
