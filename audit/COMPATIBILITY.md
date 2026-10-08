@@ -290,3 +290,18 @@ unnormalized polynomial values are preserved; SPH still supplies normalization.
 field updates and None returns. No new invalid-input or extreme-order policy
 is established. Existing packaging includes both imports without new mandatory
 dependencies. See [domains, state and measurements](PHASE2F4.md).
+
+## Spherical-harmonics core promotion
+
+`gem.spherical_harmonics` is canonical; experimental sph/sph_sample/
+sph_irradiance_map imports reexport the same implementations. E06 corrects
+zero directions and removes generation progress printing; global RNG and
+SPHSample direction ownership remain unchanged. E08 fixes rectangular raw
+RGB float32 loading and uses documented angular-disk pixel-center quadrature.
+Probe coefficient recalculation rebuilds output instead of doubling it;
+direct updates still accumulate. The legacy rounded/sign basis stays intact
+in `.coeffs`, with explicit conversion to canonical SH. Radiance projection,
+cosine convolution and reconstruction are separate APIs. Native-endian raw
+format, low-resolution approximation limits and malformed-input errors are
+specified in the [SH guide](../docs/SPHERICAL_HARMONICS.md). No mandatory
+image dependency is added; transport and coefficient rotation remain separate.

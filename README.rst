@@ -198,3 +198,26 @@ Condon–Shortley phase. ``run()`` preserves internal scratch state and is
 repeatable. The experimental import remains a compatibility alias.
 Spherical-harmonics normalization is separate. See ``audit/PHASE2F4.md`` for
 numerical-domain and compatibility details.
+
+Spherical-harmonics environment lighting
+---------------------------------------
+
+Use ``gem.spherical_harmonics`` for real SH basis evaluation, directional
+sampling and RGB projection. Angular-disk RGB probes can be projected directly::
+
+    from gem.spherical_harmonics import (
+        project_angular_probe, convolve_diffuse, reconstruct,
+    )
+
+    hdr = [[[1.0, 2.0, 3.0] for column in range(128)] for row in range(64)]
+    radiance_coeffs = project_angular_probe(hdr)
+    irradiance_coeffs = convolve_diffuse(radiance_coeffs)
+    irradiance_rgb = reconstruct(irradiance_coeffs, [0.0, 0.0, 1.0])
+
+Radiance projection and cosine convolution are separate; reconstruction never
+applies convolution again. The legacy raw-probe class retains its historical
+coefficient basis and requires ``legacy_to_canonical`` before this pipeline.
+Experimental imports remain compatible. See ``docs/SPHERICAL_HARMONICS.md``
+for basis signs, raw file format, angular mapping, weights and approximation
+limits. Latitude-longitude maps, mirrored-ball decoding, coefficient rotation
+and unfinished shadow transport are outside this API.

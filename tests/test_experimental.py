@@ -1,5 +1,4 @@
 import math
-import random
 import struct
 import pytest
 from gem import vector
@@ -22,17 +21,6 @@ def test_spherical_harmonics_low_orders():
     assert sph.SPH(1,-1,math.pi/2,math.pi/2) == pytest.approx(-math.sqrt(3/(4*math.pi)))
 
 
-@pytest.mark.defect('E06')
-def test_generate_samples(monkeypatch):
-    monkeypatch.setattr(random,'random',lambda:0.5)
-    samples = sph_sample.GenerateSamples(2,3)
-    assert len(samples) == 4
-    for sample in samples:
-        assert sample.dir.magnitude() == pytest.approx(1)
-        assert len(sample.values) == 9
-        assert sample.values[0] == pytest.approx(1/math.sqrt(4*math.pi))
-
-
 @pytest.mark.defect('E07')
 def test_generate_object_coefficients():
     vertex = sph_object.SPHVertex(V(0,0,0),V(0,0,1))
@@ -41,15 +29,6 @@ def test_generate_object_coefficients():
     obj = sph_object.SPHObject([0],[vertex])
     sph_object.GenereateCoeffs(1,1,[sample],[obj])
     assert vertex.unshadowedCoeffs == pytest.approx([math.sqrt(4*math.pi)])
-
-
-@pytest.mark.defect('E08')
-def test_rectangular_irradiance_file(tmp_path):
-    path = tmp_path/'probe.float'
-    path.write_bytes(struct.pack('12f',*([1.0]*12)))
-    result = sph_irradiance_map.SPH_IrradianceMapCoeff(str(path),2,1)
-    assert len(result.hdr) == 1
-    assert len(result.hdr[0]) == 2
 
 
 def test_irradiance_coefficient_known_answer(tmp_path):

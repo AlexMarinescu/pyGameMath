@@ -162,3 +162,15 @@ basis are retained. Supported associated inputs are integer 0 <= m <= l and
 x in [-1,1]. `run` is state-preserving; named scratch helpers remain explicit
 mutators. Invalid/extreme domains receive no new generalized policy. See
 [verification and compatibility](PHASE2F4.md).
+
+## Spherical-harmonics sampling and probe contracts
+
+E06/E08 are supported under gem.spherical_harmonics with transitional imports.
+QD11's probe contract is angular-disk pixel-center quadrature stretched to
+rectangular images, native-endian raw float32 RGB and explicit legacy-basis
+conversion. No latitude-longitude or mirrored-ball interpretation is added.
+Canonical radiance projection is separate from first-three-band diffuse
+convolution and unit-direction reconstruction. Global RNG stratification is
+retained. Recalculation rebuilds coefficients; direct updates accumulate.
+E07 transport and coefficient rotation remain separate. See
+[API and numerical limits](../docs/SPHERICAL_HARMONICS.md).
