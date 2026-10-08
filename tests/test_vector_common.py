@@ -37,10 +37,31 @@ def test_vector_properties(seed):
 
 
 @pytest.mark.parametrize('op', ['eq', 'ne'])
-@pytest.mark.defect('V01')
 def test_equality_all_components(op):
     a, b = V(1, 2, 3), V(1, 9, 3)
     assert (a == b) is False if op == 'eq' else (a != b) is True
+
+
+@pytest.mark.parametrize('size', [1, 2, 3, 4, 8])
+def test_equality_each_component_exact(size):
+    values = [1.0] * size
+    a = V(*values)
+    assert (a == V(*values)) is True
+    assert (a != V(*values)) is False
+    for index in range(size):
+        changed = list(values)
+        changed[index] += 1e-12
+        b = V(*changed)
+        assert (a == b) is False
+        assert (b == a) is False
+        assert (a != b) is True
+        assert (b != a) is True
+
+
+def test_equality_unsupported_operand():
+    a = V(1, 2, 3)
+    assert a.__eq__([1, 2, 3]) is NotImplemented
+    assert a.__ne__([1, 2, 3]) is NotImplemented
 
 
 @pytest.mark.contract_question('V01-dimension-policy')

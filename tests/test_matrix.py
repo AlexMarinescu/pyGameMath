@@ -9,7 +9,7 @@ def V(*xs):
     return vector.Vector(len(xs), list(xs))
 
 
-@pytest.mark.parametrize('size', [pytest.param(2, marks=pytest.mark.defect('M01')), 3, 4])
+@pytest.mark.parametrize('size', [2, 3, 4])
 @pytest.mark.parametrize('seed', range(20))
 def test_determinant_and_inverse(size, seed):
     rng = random.Random(seed)
@@ -21,9 +21,25 @@ def test_determinant_and_inverse(size, seed):
     assert_matrix((m.inverse()*m).matrix, matrix.identity(size), abs=1e-12)
 
 
-@pytest.mark.defect('M01')
-def test_inverse2_known_answer():
-    assert_matrix(matrix.inverse2([[1,2],[3,4]]), [[-2,1],[1.5,-0.5]])
+@pytest.mark.parametrize('values,expected', [
+    ([[1,2],[3,4]], [[-2,1],[1.5,-0.5]]),
+    ([[4,7],[2,6]], [[0.6,-0.7],[-0.2,0.4]]),
+    ([[2,0],[0,-4]], [[0.5,0],[0,-0.25]]),
+    ([[0,2],[4,0]], [[0,0.25],[0.5,0]]),
+])
+def test_inverse2_known_answer(values, expected):
+    original = [row[:] for row in values]
+    assert_matrix(matrix.inverse2(values), expected)
+    m = matrix.Matrix(2, values)
+    result = m.inverse()
+    assert result is not m
+    assert_matrix(result.matrix, expected)
+    assert_matrix((m*result).matrix, matrix.identity(2), abs=1e-12)
+    assert_matrix((result*m).matrix, matrix.identity(2), abs=1e-12)
+    assert values == original
+    assert m.i_inverse() is m
+    assert_matrix(m.matrix, expected)
+    assert_matrix([list(row) for row in m.c_matrix], expected, abs=1e-7)
 
 
 @pytest.mark.parametrize('size', [2,3,4])

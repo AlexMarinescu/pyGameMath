@@ -79,9 +79,9 @@ def quat_inverse(quat):
     lengthSquared = quat[0] * quat[0] + quat[1] * quat[1] + quat[2] * quat[2] + quat[3] * quat[3]
 
     return [quat[0] / lengthSquared,
-            quat[1] / lengthSquared,
-            quat[2] / lengthSquared,
-            quat[3] / lengthSquared]
+            -quat[1] / lengthSquared,
+            -quat[2] / lengthSquared,
+            -quat[3] / lengthSquared]
 
 def quat_from_axis_angle(axis, theta):
     ''' Returns a quaternion from a given axis and a angle. '''
