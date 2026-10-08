@@ -29,6 +29,10 @@ The user explicitly approved the refraction portion of QD10 before V02 implement
 
 QD05's representation is settled: scalar `a,b,c,d` satisfy `n·p+d=0`, and `.normal` stores `[a,b,c]` at coefficient scale. Three-point construction produces unit coefficients and a negative dot-product offset; normalization scales all four coefficients and synchronizes `.normal`. Polygon normals wrap edges and support repeated-first closure. `bestFitD` retains signed geometric D, with coefficient `d=-D`. See [plane conventions](CONVENTIONS.md#plane-representation). Broader degeneracy, validation, and numerical error policies remain unresolved.
 
+### Vector transformation decision
+
+QD09's transform portion is settled: same-size inputs use row-vector multiplication; an N-component position with an (N+1)×(N+1) matrix receives local w=1 promotion and returns N components. Explicit homogeneous inputs compute every output component normally, including w; no perspective divide is performed. Implicit promotion is intended for affine positions. Raw position and nested matrix lists, returning versus receiver mutation, and the general multiplication operator's matching-dimension requirement are preserved. See [transformation conventions](CONVENTIONS.md#vector-transformations). Pivot rotation, shear mapping, projection/unprojection, and unsupported-shape error policy remain separate questions.
+
 ## Recommended implementation order after review
 
 1. **Small ordinary-math fixes with clear contracts:** equal-size equality/inequality (V01 component cases), inverse2 (M01), quaternion inverse (Q01). Preserve exact comparisons, return types, and component order; defer unsupported-dimension policy changes.

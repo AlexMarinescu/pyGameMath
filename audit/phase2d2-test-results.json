@@ -1,0 +1,183 @@
+{
+  "base_commit": "6fcb144a9af4047318d2daf6c86f15e9b37298d6",
+  "branch": "fix/phase2d2-transformations",
+  "python": "3.12.14",
+  "pytest": "9.1.1",
+  "six": "1.17.0",
+  "baseline": {
+    "total": 545,
+    "passed": 489,
+    "xfailed": 56
+  },
+  "prefixed_original_regressions": {
+    "failed": 2,
+    "exit_code": 1
+  },
+  "prefixed_additional_regressions": {
+    "total": 99,
+    "passed": 14,
+    "failed": 85,
+    "exit_code": 1
+  },
+  "summary": {
+    "total": 672,
+    "passed": 618,
+    "defect_xfailed": 46,
+    "contract_question_xfailed": 8,
+    "failed": 0,
+    "xpassed": 0,
+    "skipped": 0,
+    "exit_code": 0
+  },
+  "runxfail": {
+    "passed": 618,
+    "failed": 54,
+    "exit_code": 1,
+    "failures_match_remaining_markers": true
+  },
+  "converted_xfails": {
+    "M04": 1,
+    "V03": 1
+  },
+  "additional_cases": 127,
+  "unrelated_expected_failure_set_preserved": true,
+  "outcomes_by_module": {
+    "tests.test_angles_refraction": {
+      "passed": 80,
+      "xfailed": 0
+    },
+    "tests.test_api_edges": {
+      "passed": 17,
+      "xfailed": 2
+    },
+    "tests.test_experimental": {
+      "passed": 25,
+      "xfailed": 18
+    },
+    "tests.test_matrix": {
+      "passed": 88,
+      "xfailed": 7
+    },
+    "tests.test_matrix_division": {
+      "passed": 40,
+      "xfailed": 0
+    },
+    "tests.test_plane_ray": {
+      "passed": 7,
+      "xfailed": 3
+    },
+    "tests.test_planes": {
+      "passed": 44,
+      "xfailed": 0
+    },
+    "tests.test_quaternion": {
+      "passed": 73,
+      "xfailed": 15
+    },
+    "tests.test_transformations": {
+      "passed": 127,
+      "xfailed": 0
+    },
+    "tests.test_vector_common": {
+      "passed": 41,
+      "xfailed": 8
+    },
+    "tests.test_wiki_contracts": {
+      "passed": 76,
+      "xfailed": 1
+    }
+  },
+  "remaining_defect_cases_by_id": {
+    "C02": 1,
+    "E01": 5,
+    "E02": 1,
+    "E03": 1,
+    "E04": 2,
+    "E05": 6,
+    "E06": 1,
+    "E07": 1,
+    "E08": 1,
+    "M05": 1,
+    "M06": 1,
+    "N01": 2,
+    "N02": 3,
+    "N03": 2,
+    "P01": 1,
+    "P02": 1,
+    "Q02": 4,
+    "Q03": 2,
+    "Q04": 1,
+    "Q05": 1,
+    "Q06": 2,
+    "Q07": 1,
+    "Q08": 1,
+    "Q09": 1,
+    "R01": 2,
+    "R02": 1
+  },
+  "remaining_contract_cases_by_id": {
+    "P01-input-and-depth-policy": 2,
+    "Q10-unit-accuracy": 1,
+    "Q11-return-semantics": 1,
+    "R03-homogeneous-promotion": 1,
+    "V01-dimension-policy": 1,
+    "V01-empty-policy": 1,
+    "V04-value-list-ownership": 1
+  },
+  "remaining_failed_cases": [
+    "tests.test_api_edges::test_arbitrary_axis_helper_returns_rotation_quaternion",
+    "tests.test_api_edges::test_duplicate_aliases",
+    "tests.test_experimental::test_bezier_path_count_python3",
+    "tests.test_experimental::test_bezier_recursive_sampling",
+    "tests.test_experimental::test_bezier_sample_points",
+    "tests.test_experimental::test_bezier_vectors",
+    "tests.test_experimental::test_cubic_bezier_scalar[0.25]",
+    "tests.test_experimental::test_cubic_bezier_scalar[0.5]",
+    "tests.test_experimental::test_cubic_bezier_scalar[0.75]",
+    "tests.test_experimental::test_cubic_bezier_scalar[0]",
+    "tests.test_experimental::test_cubic_bezier_scalar[1]",
+    "tests.test_experimental::test_generate_object_coefficients",
+    "tests.test_experimental::test_generate_samples",
+    "tests.test_experimental::test_legendre_recurrence[3-0.2]",
+    "tests.test_experimental::test_legendre_recurrence[4-0.5]",
+    "tests.test_experimental::test_legendre_recurrence[5--0.4]",
+    "tests.test_experimental::test_legendre_repeatability",
+    "tests.test_experimental::test_rectangular_irradiance_file",
+    "tests.test_experimental::test_spherical_harmonics_addition_theorem[3]",
+    "tests.test_experimental::test_spherical_harmonics_addition_theorem[4]",
+    "tests.test_matrix::test_inverse4_extreme_uniform_scale[1e+100]",
+    "tests.test_matrix::test_inverse4_extreme_uniform_scale[1e-100]",
+    "tests.test_matrix::test_project_center[False]",
+    "tests.test_matrix::test_project_center[True]",
+    "tests.test_matrix::test_rotate2_fixed_pivot",
+    "tests.test_matrix::test_shear_xy3",
+    "tests.test_matrix::test_unproject_noncommuting_transforms",
+    "tests.test_plane_ray::test_duplicate_independence_and_distance",
+    "tests.test_plane_ray::test_ray_quaternion_rotation",
+    "tests.test_plane_ray::test_ray_translation_moves_origin",
+    "tests.test_quaternion::test_half_turn_matrix_roundtrip[axis0]",
+    "tests.test_quaternion::test_half_turn_matrix_roundtrip[axis1]",
+    "tests.test_quaternion::test_half_turn_matrix_roundtrip[axis2]",
+    "tests.test_quaternion::test_half_turn_matrix_roundtrip[axis3]",
+    "tests.test_quaternion::test_identity_power",
+    "tests.test_quaternion::test_inplace_vector_multiply",
+    "tests.test_quaternion::test_list_axis[quat_from_axis_angle]",
+    "tests.test_quaternion::test_list_axis[quat_rotate_from_axis_angle]",
+    "tests.test_quaternion::test_power_one",
+    "tests.test_quaternion::test_python3_quaternion_division",
+    "tests.test_quaternion::test_rotation_matrix_ctypes_snapshot",
+    "tests.test_quaternion::test_slerp_nearby_unit_length",
+    "tests.test_quaternion::test_squad_identical",
+    "tests.test_quaternion::test_unit_log",
+    "tests.test_quaternion::test_zero_quaternion_normalization",
+    "tests.test_vector_common::test_clamp_preserves_input",
+    "tests.test_vector_common::test_empty_equality",
+    "tests.test_vector_common::test_equality_dimensions",
+    "tests.test_vector_common::test_extreme_magnitude[1e+200]",
+    "tests.test_vector_common::test_extreme_magnitude[1e-200]",
+    "tests.test_vector_common::test_quaternion_extreme_magnitude",
+    "tests.test_vector_common::test_viewport_vector",
+    "tests.test_vector_common::test_zero_normalization",
+    "tests.test_wiki_contracts::test_wiki_project_returns_three_components"
+  ]
+}
