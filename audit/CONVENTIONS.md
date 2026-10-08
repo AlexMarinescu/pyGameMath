@@ -51,7 +51,7 @@ Vector and scalar LERP use `a+t*(b−a)` without clamping `t`, so extrapolation 
 
 `Legendre` and `SPH` use associated Legendre polynomials with the **Condon–Shortley phase** and real SH: `m>0` cosine terms, `m<0` sine terms, `m=0` zonal terms. `theta` is polar angle from +Z, `phi` azimuth from +X toward +Y. SH sample index is `l*(l+1)+m`, number of coefficients = bands². Low orders 0–2 pass orthonormality checks. Core `gem.legendre` corrects the higher-order recurrence; independent polynomial and addition-theorem regressions cover degrees through 12.
 
-The irradiance map's nine hard-coded SH polynomials instead use positive X/Y first-order terms, which differ in sign from `SPH(1,±1,...)`. Its intended input is raw native-endian 32-bit RGB floats, not a general HDR decoder; the integration assumes a square angular light probe. Rectangular images crash. Basis/sign interoperability and file-endian semantics need documentation before mathematical corrections.
+The irradiance map's nine hard-coded SH polynomials instead use positive X/Y first-order terms, which differ in sign from `SPH(1,±1,...)`. Its intended input is raw native-endian 32-bit RGB floats, not a general HDR decoder; the integration uses an angular disk, stretched independently along the axes for rectangular images. Core `gem.spherical_harmonics` documents pixel centers and solid-angle quadrature; `legacy_to_canonical` explicitly converts the historical rounded nine-coefficient basis. Radiance and cosine-convolved irradiance coefficients remain distinct.
 
 ## Historical wiki evidence added in Phase 1B
 
@@ -314,3 +314,17 @@ parameter order, retain standalone endpoints and omit repeated shared segment
 boundaries within historical nested path output. Source-point thinning uses
 separate squared-distance heuristics. `interpolate` appends;
 `samplePoints` rebuilds. See [sampling details](PHASE2F3B.md).
+
+## Spherical-harmonics lighting pipeline
+
+Canonical core SH uses Condon–Shortley real harmonics, index l*(l+1)+m and
+bands² RGB coefficients. Jittered uniform-sphere samples represent 4*pi/N
+steradians each. Angular probes use row-major pixel centers, right +X/up +Y/
+center +Z, theta=pi*r, and solid-angle weight
+4*pi²/(width*height)*sinc(theta), without normalization. Rectangles stretch
+the disk independently along image axes; other map projections are unsupported.
+Raw probes remain native-endian float32 RGB. Legacy positive-X/Y rounded
+coefficients require explicit legacy_to_canonical conversion. Radiance and
+irradiance are distinct: first-three-band diffuse factors are pi, 2*pi/3,
+pi/4; reconstruction never convolves or normalizes a supplied unit direction.
+See [complete conventions](../docs/SPHERICAL_HARMONICS.md).

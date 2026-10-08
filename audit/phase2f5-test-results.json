@@ -1,0 +1,42 @@
+{
+  "baseline": {
+    "passed": 1642,
+    "xfailed": 7
+  },
+  "final": {
+    "passed": 1687,
+    "failed": 0,
+    "xfailed": 5
+  },
+  "converted": [
+    "tests.test_experimental::test_generate_samples",
+    "tests.test_experimental::test_rectangular_irradiance_file"
+  ],
+  "remaining_expected_failures": [
+    "tests.test_experimental::test_generate_object_coefficients",
+    "tests.test_vector_common::test_clamp_preserves_input",
+    "tests.test_vector_common::test_empty_equality",
+    "tests.test_vector_common::test_equality_dimensions",
+    "tests.test_vector_common::test_viewport_vector"
+  ],
+  "constant_probe_irradiance_convergence": {
+    "widths": [
+      16,
+      32,
+      64,
+      128
+    ],
+    "heights": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "maximum_RGB_axis_error": [
+      0.006351271602445863,
+      0.0009279232128278636,
+      0.00030013318191812743,
+      4.36700772308285e-05
+    ]
+  }
+}
