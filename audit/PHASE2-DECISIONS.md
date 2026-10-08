@@ -45,6 +45,10 @@ QD09's remaining mathematical mappings are settled. `rotate2(point,theta)` uses 
 
 Q02/Q07 are corrected within the established unit-rotation domain: [w,x,y,z], proper row-vector rotation matrices, sign-equivalent q/-q orientations, and synchronized Matrix4 exports. No implicit normalization, orthogonalization, canonical-sign requirement, or new input representation is introduced. Existing zero/nonunit quaternion-to-matrix arithmetic is preserved. Other quaternion-domain, return, validation, and numerical questions in QD06/QD07 remain unresolved. See [conversion conventions](CONVENTIONS.md#quaternionmatrix-conversions).
 
+### Quaternion axis ownership
+
+QD02 is settled for `quat_from_axis_angle` and `quat_rotate_from_axis_angle`: normalize a temporary axis and preserve caller Vector/list storage and values. Both retain degrees and existing supported representations; the latter retains its legacy normalized-axis Quaternion sandwich result, leaving Q11 unresolved. Other ownership questions remain separate. Q09 exposes the legacy float-only division protocol to Python 3 without extending QD12's scalar/reflected-operator policy. See [axis/arithmetic conventions](CONVENTIONS.md#quaternion-axes-and-arithmetic).
+
 ## Recommended implementation order after review
 
 1. **Small ordinary-math fixes with clear contracts:** equal-size equality/inequality (V01 component cases), inverse2 (M01), quaternion inverse (Q01). Preserve exact comparisons, return types, and component order; defer unsupported-dimension policy changes.

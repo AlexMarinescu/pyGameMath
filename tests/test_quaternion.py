@@ -97,7 +97,6 @@ def test_squad_identical():
 
 
 @pytest.mark.parametrize('function',[q.quat_from_axis_angle,q.quat_rotate_from_axis_angle])
-@pytest.mark.defect('Q06')
 def test_list_axis(function):
     assert isinstance(function([0,0,1],90),q.Quaternion)
 
@@ -107,14 +106,12 @@ def test_rotation_matrix_ctypes_snapshot():
     assert_matrix([list(row) for row in m.c_matrix],m.matrix,abs=1e-6)
 
 
-@pytest.mark.defect('Q08')
 def test_inplace_vector_multiply():
     rot = q.Quaternion()
     rot *= V(1,2,3)
     assert rot.data == [0,1,2,3]
 
 
-@pytest.mark.defect('Q09')
 def test_python3_quaternion_division():
     assert (q.Quaternion([2,4,6,8])/2.0).data == [1,2,3,4]
 
