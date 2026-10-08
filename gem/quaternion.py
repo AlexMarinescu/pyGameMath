@@ -162,34 +162,51 @@ def quat_rotate_vector(quat, vec):
     return vector.Vector(3, data=[outQuat.data[1], outQuat.data[2], outQuat.data[3]])
 
 def quat_pow(quat, exp):
-    ''' Returns a quaternion to the power of N. '''
-    quatExp = Quaternion()
+    """Return a fresh unit-quaternion power using the principal angle.
 
-    if quat.data[0] is not 0.0:
-        angle = math.acos(quat.data[0])
-        newAngle = angle * exp
-        quatExp.data[0] = math.cos(newAngle)
-        divAngle = math.sin(newAngle) / math.sin(angle)
-        quatExp.data[1] *= divAngle
-        quatExp.data[2] *= divAngle
-        quatExp.data[3] *= divAngle
-    return quatExp
+    Nonunit inputs are unsupported. Negative identity has no unique axis,
+    so only integer powers are defined for it.
+    """
+    w, x, y, z = quat.data
+    imaginary = math.hypot(math.hypot(x, y), z)
+    if imaginary == 0.0:
+        if w == 0.0:
+            raise ValueError("Zero quaternion has no unit-quaternion power")
+        if w < 0.0:
+            if exp % 1 != 0:
+                raise ValueError("Negative identity requires an integer power")
+            return Quaternion(data=[-1.0 if exp % 2 else 1.0, 0.0, 0.0, 0.0])
+        return Quaternion()
+    if exp == 0:
+        return Quaternion()
+    if exp == 1:
+        return Quaternion(data=list(quat.data))
+    angle = math.atan2(imaginary, w)
+    powered_angle = angle * exp
+    # Reduce the exponent first only when multiplication would overflow.
+    if math.isinf(powered_angle) and not math.isinf(exp):
+        powered_angle = math.fmod(exp, (2.0 * math.pi) / angle) * angle
+    sine = math.sin(powered_angle)
+    return Quaternion(data=[math.cos(powered_angle),
+                            (x / imaginary) * sine,
+                            (y / imaginary) * sine,
+                            (z / imaginary) * sine])
 
 def quat_log(quat):
-    ''' Returns the logatithm of a quaternion. '''
-    alpha = math.acos(quat.data[0])
-    sinAlpha = math.sin(alpha)
+    """Return a fresh [0, axis * principal angle] list for a unit quaternion.
 
-    outList = [1.0, 0.0, 0.0, 0.0]
-
-    if sinAlpha > 0.0:
-        outList[1] = quat.data[1] * alpha / sinAlpha
-        outList[2] = quat.data[2] * alpha / sinAlpha
-        outList[3] = quat.data[3] * alpha / sinAlpha
-    else:
-        outList = quat.data
-
-    return outList
+    Nonunit inputs are unsupported; zero and negative identity raise
+    ValueError. No sign canonicalization or imaginary-axis cutoff is used.
+    """
+    w, x, y, z = quat.data
+    imaginary = math.hypot(math.hypot(x, y), z)
+    if imaginary == 0.0:
+        if w <= 0.0:
+            raise ValueError("Quaternion logarithm has no unique imaginary axis")
+        return [0.0, 0.0, 0.0, 0.0]
+    angle = math.atan2(imaginary, w)
+    return [0.0, (x / imaginary) * angle,
+            (y / imaginary) * angle, (z / imaginary) * angle]
 
 def quat_lerp(quat0, quat1, t):
     ''' Linear interpolation between two quaternions. '''

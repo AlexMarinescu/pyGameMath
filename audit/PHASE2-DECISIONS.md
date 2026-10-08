@@ -49,6 +49,18 @@ Q02/Q07 are corrected within the established unit-rotation domain: [w,x,y,z], pr
 
 QD02 is settled for `quat_from_axis_angle` and `quat_rotate_from_axis_angle`: normalize a temporary axis and preserve caller Vector/list storage and values. Both retain degrees and existing supported representations; the latter retains its legacy normalized-axis Quaternion sandwich result, leaving Q11 unresolved. Other ownership questions remain separate. Q09 exposes the legacy float-only division protocol to Python 3 without extending QD12's scalar/reflected-operator policy. See [axis/arithmetic conventions](CONVENTIONS.md#quaternion-axes-and-arithmetic).
 
+### Quaternion power and logarithm domains
+
+QD06/QD07 are settled for Q03/Q04: unit inputs without normalization or a
+new norm tolerance; finite real powers; principal atan2 imaginary/scalar
+angle; fresh Quaternion powers and fresh four-element list logarithms with
+zero scalar. Zero raises ValueError. Negative identity permits integer
+powers by parity and rejects fractional powers/logarithms. Tiny imaginary
+directions are retained without a cutoff; quaternion signs are preserved.
+General nonunit domains, broader accuracy/invalid-input policies, SQUAD,
+SLERP and the arbitrary-axis helper's Q11 return contract remain separate.
+See [power/log conventions](CONVENTIONS.md#quaternion-powers-and-logarithms).
+
 ## Recommended implementation order after review
 
 1. **Small ordinary-math fixes with clear contracts:** equal-size equality/inequality (V01 component cases), inverse2 (M01), quaternion inverse (Q01). Preserve exact comparisons, return types, and component order; defer unsupported-dimension policy changes.

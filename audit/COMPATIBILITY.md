@@ -136,3 +136,19 @@ In-place Quaternion/Vector multiplication now reads `.vector`, avoiding Attribut
 Quaternion `__truediv__`/`__itruediv__` alias the retained legacy division methods. Python 3 float division now works; the float-only wrapper acceptance rule, including float subclasses, is unchanged. Integers and other unsupported operands remain NotImplemented/TypeError rather than becoming accepted scalars. Returning division is independent; in-place division returns self. Zero float division raises ZeroDivisionError without changing data or its list identity. Legacy methods remain callable, but Python 2 was not executed and interpreter support metadata is unchanged.
 
 Only Q06/Q08/Q09 defect markers are removed. Runtime dependencies, pure-Python gem imports, public signatures, Hamilton conventions, and unrelated algorithms remain unchanged. [CONVENTIONS.md](CONVENTIONS.md#quaternion-axes-and-arithmetic) records ownership and operand rules; [PHASE2E2.md](PHASE2E2.md) records verification and changed files.
+
+## Phase 2E-3: quaternion powers and logarithms
+
+Q03 now preserves imaginary components and handles identity without division
+by zero. Finite real powers use the principal unit-quaternion angle;
+negative identity supports integer parity and rejects fractional powers.
+Q04 changes the logarithm's scalar component from one to zero and always
+returns independent list storage, including for identity. Zero inputs and
+the undefined negative-identity logarithm raise ValueError.
+
+These numerical and error changes replace defective results. Public
+signatures, Quaternion power results, list logarithm results, [w,x,y,z]
+ordering, and caller ownership are preserved. Unit input is a prerequisite;
+there is no implicit normalization, new norm tolerance, general nonunit
+support, sign canonicalization, or exponential API. Broader accuracy and
+invalid-input policies remain separate decisions.

@@ -159,3 +159,24 @@ No implicit quaternion normalization or matrix orthogonalization is performed. Q
 Quaternion/Vector multiplication is the Hamilton product `q*(0,v)`, returning a Quaternion rather than a rotated Vector. In-place multiplication uses the same component kernel, replaces receiver storage, and returns the receiver. For `q=(w,u)`, the result is `(-u dot v, w*v + u cross v)`. Neither form normalizes operands or mutates the Vector. Rotation still requires the conjugate sandwich in the existing rotation helper.
 
 Python 3 `/` and `/=` delegate to the retained `__div__`/`__idiv__` implementations. Quaternion wrappers accept floats, including float subclasses, and return NotImplemented for other operand types. Integer, boolean, complex, vector, and quaternion divisors are not added, and no reflected operators are introduced. Returning division creates a fresh Quaternion; in-place division returns the receiver and replaces its component list. A zero float divisor raises ZeroDivisionError without replacing receiver storage. The raw `quat_div_float` helper retains its existing Python arithmetic independently of wrapper operand acceptance.
+
+## Quaternion powers and logarithms
+
+`pow(e)` / `quat_pow(q,e)` and `log()` / `quat_log(q)` support unit
+quaternions in [w,x,y,z] order. They do not normalize inputs; general
+nonunit quaternions are outside the supported domain. No norm tolerance is
+introduced. Zero inputs raise ValueError.
+
+The principal quaternion angle is `atan2(|imaginary|,w)` in [0,pi]. Powers
+use `[cos(e*angle), axis*sin(e*angle)]` for finite real exponents, returning
+a fresh Quaternion. Zero and one powers return identity and a fresh exact
+copy, respectively. Negative powers retain Hamilton inverse semantics.
+Signs are not canonicalized: q and -q can have different fractional powers.
+
+Logarithms return a fresh four-element list `[0,axis*angle]`, with identity
+mapping to four zeros. Negative identity has no unique imaginary axis:
+integer powers use parity, while fractional powers and logarithms raise
+ValueError. Exactly zero imaginary parts are handled separately. Stable
+hypotenuse calculations preserve tiny nonzero imaginary directions without
+an arbitrary cutoff. Very large exponents remain subject to floating-point
+angle-reduction accuracy; exponent reduction avoids intermediate overflow.

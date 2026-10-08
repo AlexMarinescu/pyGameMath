@@ -73,18 +73,15 @@ def test_small_rotation_matrix_roundtrip():
     assert abs(q.quat_from_matrix(rot.toMatrix()).dot(rot)) == pytest.approx(1)
 
 
-@pytest.mark.defect('Q03')
 def test_power_one():
     rot = q.quat_from_axis_angle(V(0,0,1),90)
     assert rot.pow(1).data == pytest.approx(rot.data)
 
 
-@pytest.mark.defect('Q03')
 def test_identity_power():
     assert q.Quaternion().pow(0.5).data == [1,0,0,0]
 
 
-@pytest.mark.defect('Q04')
 def test_unit_log():
     rot = q.quat_from_axis_angle(V(0,0,1),90)
     assert rot.log() == pytest.approx([0,0,0,math.pi/4])
