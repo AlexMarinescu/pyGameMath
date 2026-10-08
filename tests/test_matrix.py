@@ -82,7 +82,6 @@ def test_python3_division():
     assert_matrix((matrix.Matrix(2, [[2,4],[6,8]])/2.0).matrix, [[1,2],[3,4]])
 
 
-@pytest.mark.defect('M04')
 def test_inplace_translate_matches_returning():
     a, b = matrix.Matrix(4), matrix.Matrix(4)
     a.i_translate(V(2,3,4))

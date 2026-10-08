@@ -504,7 +504,7 @@ class Matrix(object):
                 transMatList = translate2(vecA.vector)
         elif self.size == 4:
             if vecA.size == 3:
-                transMatList = translate3(vecA.vector)
+                transMatList = translate4(vecA.vector)
             elif vecA.size == 4:
                 transMatList = translate4(vecA.vector)
         else:

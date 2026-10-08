@@ -155,11 +155,21 @@ def clamp(size, value, minS, maxS):
     return Vector(size, data=output)
 
 def transform(size, position, matrix):
+    ''' Transform a position list using a nested row-vector matrix.
+
+    A size-by-size matrix applies the ordinary row-vector product, including
+    any explicit homogeneous component. A (size+1)-by-(size+1) matrix treats
+    position as a point with implicit w=1 and returns size components.
+    No perspective division is performed. Neither input is mutated.
+    Implicit promotion is intended for affine positions; projective results
+    require projection/unprojection handling to obtain Cartesian coordinates.
+    '''
     output = zero_vector(size)
     for i in sm.range(size):
         for j in sm.range(size):
-            output[i] += position[j] * matrix[i][j]
-        output[i] += matrix[size-1][i]
+            output[i] += position[j] * matrix[j][i]
+        if len(matrix) == size + 1:
+            output[i] += matrix[size][i]
 
     return output
 
@@ -376,12 +386,20 @@ class Vector(object):
         return [u, v, w]
 
     def transform(self, position, matrix):
-        ''' Transform the vector via a matrix and returns a new vector. '''
+        ''' Return a new Vector from a position list and nested matrix.
+
+        Uses this receiver's size; see transform for homogeneous rules.
+        The receiver and inputs are preserved.
+        '''
         vecList = transform(self.size, position, matrix)
         return Vector(self.size, data=vecList)
 
     def i_transform(self, position, matrix):
-        ''' Transform the vector via a matrix in place. '''
+        ''' Replace this Vector with the transformed position list.
+
+        Uses this receiver's size; see transform for homogeneous rules.
+        Returns self without mutating the supplied list or nested matrix.
+        '''
         self.vector = transform(self.size, position, matrix)
         return self
 

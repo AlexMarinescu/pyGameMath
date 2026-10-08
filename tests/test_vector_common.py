@@ -125,7 +125,6 @@ def test_total_internal_reflection():
     assert vector.refract(2.0, V(0.8,-0.6,0), V(0,1,0)).vector == [0,0,0]
 
 
-@pytest.mark.defect('V03')
 def test_transform_identity():
     assert vector.transform(3, [2,3,4], [[1,0,0],[0,1,0],[0,0,1]]) == [2,3,4]
 
