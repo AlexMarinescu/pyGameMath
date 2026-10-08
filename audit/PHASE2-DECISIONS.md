@@ -21,6 +21,10 @@ This is a review checklist, not an implementation plan already in progress. The 
 
 The default Matrix identity is **not** a proposal to change behavior: it is preserved, supported by contemporaneous source despite a wrong wiki output. Likewise, `i_*` returning self is compatible with “without returning a new object”; no change to None is recommended. `indetity` is a documentation typo, not an API requiring a compatibility alias.
 
+### Phase 2C decision update
+
+The user explicitly approved the refraction portion of QD10 before V02 implementation: IOR=n1/n2 (incident/transmitted indices), normalized incident and normal vectors with matching dimensions, normal opposing incidence and pointing into the incident medium, and preservation of the historical zero-Vector result for total internal reflection. No automatic normalization or normal flipping is added. See [current conventions](CONVENTIONS.md#phase-2c-current-angle-and-refraction-conventions). The viewport portion of QD10 and all other unresolved questions remain pending; approval of refraction does not resolve them.
+
 ## Recommended implementation order after review
 
 1. **Small ordinary-math fixes with clear contracts:** equal-size equality/inequality (V01 component cases), inverse2 (M01), quaternion inverse (Q01). Preserve exact comparisons, return types, and component order; defer unsupported-dimension policy changes.

@@ -107,17 +107,14 @@ def test_known_geometry():
 @pytest.mark.parametrize('function,value,expected', [
     (common.radiansToDegrees, math.pi, 180),
     (common.degreesToRadians, 180, math.pi)])
-@pytest.mark.defect('C01')
 def test_angle_conversion(function, value, expected):
     assert function(value) == pytest.approx(expected)
 
 
-@pytest.mark.defect('V02')
 def test_refraction_normal_incidence():
     assert vector.refract(0.5, V(0,-1,0), V(0,1,0)).vector == pytest.approx([0,-1,0])
 
 
-@pytest.mark.defect('V02')
 def test_refraction_critical_angle():
     # eta=1.5, sin(theta)=0.6: k=0.19 > 0, not total internal reflection.
     out = vector.refract(1.5, V(0.6,-0.8,0), V(0,1,0))
