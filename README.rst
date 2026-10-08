@@ -89,15 +89,16 @@ Quaternions:
 -  From angle Rotation
 -  To Rotation Matrix (4x4)
 -  From Rotation Matrix (4x4)
--  Cross Product
 -  Vector3D, Scalar Multiplication
 -  Logarithm
--  Exponential
 -  Power
 -  Liner Interpolation (LERP)
 -  Spherical Interpolation (SLERP)
 -  Spherical Interpoliaton No Invert
 -  Quaternion Splines (SQUAD)
+
+See the `quaternion API guide <docs/QUATERNIONS.md>`_ for helper return
+types, angle units, input ownership and rotation examples.
 
 Plane:
 ''''''

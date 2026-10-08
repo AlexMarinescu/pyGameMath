@@ -122,11 +122,10 @@ def test_angle_units_characterization():
     assert q.quat_rotate(V(1,0,0),[0,0,1],90).vector == pytest.approx([0,1,0],abs=1e-14)
 
 
-@pytest.mark.contract_question('Q11-return-semantics')
-def test_arbitrary_axis_helper_returns_rotation_quaternion():
-    rotation = q.quat_rotate_from_axis_angle(V(0,0,1),90)
-    expected = q.quat_from_axis_angle(V(0,0,1),90)
-    assert rotation.data == pytest.approx(expected.data)
+def test_arbitrary_axis_helper_retains_legacy_axis_result():
+    result = q.quat_rotate_from_axis_angle(V(0,0,1),90)
+    assert isinstance(result, q.Quaternion)
+    assert result.data == pytest.approx([0,0,0,1], abs=1e-14)
 
 
 def test_legacy_inplace_division_ctypes_sync():

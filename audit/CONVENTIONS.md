@@ -154,7 +154,7 @@ No implicit quaternion normalization or matrix orthogonalization is performed. Q
 
 `quat_from_axis_angle(axis,theta)` and `quat_rotate_from_axis_angle(axis,theta)` accept their existing Vector or Python-list axis representations. Ordinary inputs use a finite, nonzero three-component axis. Both helpers normalize a temporary axis, preserving the caller's Vector component-list identity, values, and list inputs. Angles remain degrees. The X/Y/Z angle-only helpers retain radians, and `quat_rotate` keeps its separate existing axis handling.
 
-`quat_from_axis_angle` returns the rotation Quaternion `[cos(theta/2), n*sin(theta/2)]` for unit axis n. `quat_rotate_from_axis_angle` preserves its legacy result: the Quaternion sandwich rotating normalized n about itself, approximately `[0,n]`. This is not a resolution of Q11's proposed rotation-quaternion return contract. The repaired list branch uses a temporary Vector for that sandwich instead of adding Quaternion/list multiplication. Unsupported axis representations still return NotImplemented; zero-axis normalization still raises ZeroDivisionError. No broader shape, nonfinite, or extreme-scale policy is introduced.
+`quat_from_axis_angle` returns the rotation Quaternion `[cos(theta/2), n*sin(theta/2)]` for unit axis n. `quat_rotate_from_axis_angle` preserves its legacy result: the Quaternion sandwich rotating normalized n about itself, approximately `[0,n]`. Q11 retains this legacy return contract; use `quat_from_axis_angle` to construct a rotation. The repaired list branch uses a temporary Vector for that sandwich instead of adding Quaternion/list multiplication. Unsupported axis representations still return NotImplemented; zero-axis normalization still raises ZeroDivisionError. No broader shape, nonfinite, or extreme-scale policy is introduced.
 
 Quaternion/Vector multiplication is the Hamilton product `q*(0,v)`, returning a Quaternion rather than a rotated Vector. In-place multiplication uses the same component kernel, replaces receiver storage, and returns the receiver. For `q=(w,u)`, the result is `(-u dot v, w*v + u cross v)`. Neither form normalizes operands or mutates the Vector. Rotation still requires the conjugate sandwich in the existing rotation helper.
 
@@ -229,3 +229,21 @@ s0 = quat_from_axis_angle([0, 0, 1], 30)
 s1 = quat_from_axis_angle([0, 0, 1], 120)
 curve = squad4(start, end, s0, s1, 0.5)        # 60 degrees about Z
 ```
+
+
+## Quaternion API closeout
+
+Q11 preserves `quat_rotate_from_axis_angle(axis,theta)` as the legacy pure
+Quaternion result of rotating its normalized axis about itself. The
+existing `quat_from_axis_angle(axis,theta)` is the conventional constructor;
+no additional constructor, signature change or runtime warning is added.
+Both retain degrees, Vector/list axis support and temporary normalization.
+The numerical sandwich is unchanged, including roundoff.
+
+See the [public quaternion API guide](../docs/QUATERNIONS.md) for independent
+construction/rotation examples, return types, ownership, mixed angle units,
+forward axes, and unit-domain requirements. Q01-Q11 are resolved within
+their established scopes. Zero normalization and extreme norms remain
+N01/N02 numerical work; malformed/nonfinite validation, general nonunit
+rotation/power/log domains and no-invert antipodal policy remain separate.
+There is no quaternion cross-product, exponential or control-generation API.
