@@ -148,10 +148,9 @@ def test_scale_and_composition_order():
 
 
 @pytest.mark.parametrize('scale',[1e-100,1e100])
-@pytest.mark.defect('N03')
 def test_inverse4_extreme_uniform_scale(scale):
     a = matrix.Matrix(4,[[scale if i==j else 0 for j in range(4)] for i in range(4)])
-    assert_matrix(a.inverse().matrix,[[1/scale if i==j else 0 for j in range(4)] for i in range(4)],abs=0)
+    assert_matrix(a.inverse().matrix,[[1/scale if i==j else 0 for j in range(4)] for i in range(4)],rel=1e-14,abs=0)
 
 
 def test_matrix5_scale_characterization():

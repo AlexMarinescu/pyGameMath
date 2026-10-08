@@ -1,0 +1,66 @@
+{
+  "base_commit": "2cbd899a47546b8c40f8244f57799969c86b0d87",
+  "python": "3.12.14",
+  "results": {
+    "3": {
+      "process_cpu_microseconds_median_5x3000": {
+        "baseline_raw": 1.366569333333331,
+        "final_raw": 9.354558000000004,
+        "baseline_wrapper": 3.3797993333333407,
+        "final_wrapper": 12.011189666666663
+      },
+      "known_answer_errors": [
+        {
+          "scale": 1e-300,
+          "max_relative_error": 1.487016908477783e-16
+        },
+        {
+          "scale": 1e-200,
+          "max_relative_error": 0.0
+        },
+        {
+          "scale": 1,
+          "max_relative_error": 0.0
+        },
+        {
+          "scale": 1e+200,
+          "max_relative_error": 0.0
+        },
+        {
+          "scale": 1e+300,
+          "max_relative_error": 1.6578092116916188e-16
+        }
+      ]
+    },
+    "4": {
+      "process_cpu_microseconds_median_5x3000": {
+        "baseline_raw": 5.974661333333353,
+        "final_raw": 21.851390666666674,
+        "baseline_wrapper": 8.128748333333325,
+        "final_wrapper": 23.832363999999995
+      },
+      "known_answer_errors": [
+        {
+          "scale": 1e-300,
+          "max_relative_error": 1.487016908477783e-16
+        },
+        {
+          "scale": 1e-200,
+          "max_relative_error": 0.0
+        },
+        {
+          "scale": 1,
+          "max_relative_error": 0.0
+        },
+        {
+          "scale": 1e+200,
+          "max_relative_error": 0.0
+        },
+        {
+          "scale": 1e+300,
+          "max_relative_error": 0.0
+        }
+      ]
+    }
+  }
+}

@@ -46,7 +46,9 @@ class Plane(object):
 
     def fromPoints(self, a, b, c):
         ''' Set a unit-normal plane through three noncollinear 3D Vectors. '''
-        self.normal = vector.cross(b - a, c - a).normalize()
+        normal = vector.cross(b - a, c - a)
+        vector._require_nonzero(normal.size, normal.vector)
+        self.normal = normal.normalize()
         self.a, self.b, self.c = self.normal.vector
         self.d = -self.normal.dot(a)
 
@@ -103,6 +105,7 @@ class Plane(object):
             output.vector[0] += (current[2] + following[2]) * (current[1] - following[1])
             output.vector[1] += (current[0] + following[0]) * (current[2] - following[2])
             output.vector[2] += (current[1] + following[1]) * (current[0] - following[0])
+        vector._require_nonzero(output.size, output.vector)
         return output.normalize()
 
     def bestFitD(self, vecList, bestFitNormal):

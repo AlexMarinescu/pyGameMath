@@ -74,13 +74,11 @@ def test_empty_equality():
     assert (V() == V()) is True
 
 
-@pytest.mark.defect('N01')
 def test_zero_normalization():
     assert V(0, 0, 0).normalize().vector == [0, 0, 0]
 
 
 @pytest.mark.parametrize('scale', [1e200, 1e-200])
-@pytest.mark.defect('N02')
 def test_extreme_magnitude(scale):
     assert V(scale, scale).magnitude() == pytest.approx(math.hypot(scale, scale), rel=1e-14, abs=0)
 
@@ -141,7 +139,6 @@ def test_viewport_vector():
     assert len(common.getViewPort(V(1,1), 100, 100)) == 4
 
 
-@pytest.mark.defect('N02')
 def test_quaternion_extreme_magnitude():
     from gem.quaternion import Quaternion
     assert Quaternion([1e200]*4).magnitude() == pytest.approx(2e200)

@@ -8,6 +8,7 @@ class Ray(object):
         self.start = startVector
         self.dir = dirVector
         self.distance = self.dir.magnitude()
+        vec._require_nonzero(self.dir.size, self.dir.vector)
         self.dir.i_normalize()
         # The end is used when intersections are added so
         # we can know where the ray stops.
@@ -26,6 +27,7 @@ class Ray(object):
         ''' Rotate the ray using a matrix. '''
         self.start = matrix * self.start
         self.dir = matrix * self.dir
+        vec._require_nonzero(self.dir.size, self.dir.vector)
         self.dir.i_normalize()
 
     def rotateUsingQuaternion(self, quat1):
@@ -35,6 +37,7 @@ class Ray(object):
         """
         self.start = quat.quat_rotate_vector(quat1, self.start)
         self.dir = quat.quat_rotate_vector(quat1, self.dir)
+        vec._require_nonzero(self.dir.size, self.dir.vector)
         self.dir.i_normalize()
 
     def translate(self, matrix):

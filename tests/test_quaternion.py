@@ -129,7 +129,6 @@ def test_axis_helpers_use_radians(function):
     assert function(math.pi)[0] == pytest.approx(0,abs=1e-15)
 
 
-@pytest.mark.defect('N01')
 def test_zero_quaternion_normalization():
     assert q.Quaternion([0,0,0,0]).normalize().data == [1,0,0,0]
 
