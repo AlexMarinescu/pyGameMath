@@ -673,48 +673,44 @@ def lookAt(eye, center, up):
     return Matrix(4, data=output)
 
 def project(obj, model, proj, viewport):
-    ''' The most hacked together project code in the world. :| It works tho. :3 '''
-    projM = common.list_2d_to_1d(proj)
-    modelM = common.list_2d_to_1d(model)
+    ''' Project an explicit Vector4 to a fresh window-coordinate Vector3.
 
-    T = Matrix(4)
-    for r in sm.range(4):
-        for c in sm.range(4):
-            T[r][c] = 0.0
-            for i in sm.range(4):
-                T[r][c] += projM[r + i * 4] * modelM[i + c *4]
-
-    result = vector.Vector(4)
-
-    for r in sm.range(4):
-        result.vector[r] = vector.Vector(4, data=T[r]).dot(obj)
-
+    model and proj accept Matrix4 or raw 4x4 nested lists. Row vectors apply
+    model then proj. viewport is [x, y, width, height], with a lower-left
+    origin and upward Y. NDC depth [-1,1] maps to window depth [0,1] without
+    clamping. Zero clip W raises ZeroDivisionError. Inputs are preserved.
+    '''
+    if not isinstance(model, Matrix):
+        model = Matrix(4, data=model)
+    if not isinstance(proj, Matrix):
+        proj = Matrix(4, data=proj)
+    result = (model * proj) * obj
     rhw = 1.0 / result.vector[3]
-
-    return vector.Vector(3, data=[(1 + result.vector[0] * rhw) * viewport[2] / 2.0 + viewport[0],
-            (1 + result.vector[1] * rhw) * viewport[3] / 2.0 + viewport[1],
-            (result.vector[2] * rhw) * (1 - 0) + 0, rhw])
+    return vector.Vector(3, data=[
+        (1.0 + result.vector[0] * rhw) * viewport[2] / 2.0 + viewport[0],
+        (1.0 + result.vector[1] * rhw) * viewport[3] / 2.0 + viewport[1],
+        (1.0 + result.vector[2] * rhw) / 2.0])
 
 def unproject(winx, winy, winz, modelview, projection, viewport):
-    ''' Unproject a point from the screen and return the object coordinates. '''
-    m = Matrix(4)
-    IN = vector.Vector(4).zero()
-    objCoord = vector.Vector(3).zero()
+    ''' Unproject window coordinates to a fresh object-coordinate Vector3.
 
-    A = projection * modelview
-    m = A.inverse()
-
-    IN.vector[0] = (winx - viewport[0]) / viewport[2] * 2.0 - 1.0
-    IN.vector[1] = (winy - viewport[1]) / viewport[3] * 2.0 - 1.0
-    IN.vector[2] = 2.0 * winz - 1.0
-    IN.vector[3] = 1.0
-
-    OUT = m * IN
-    if(OUT.vector[3] == 0.0):
-        return vector.Vector(3).zero()
-
-    OUT.vector[3] = 1.0 / OUT.vector[3]
-    objCoord.vector[0] = OUT.vector[0] * OUT.vector[3]
-    objCoord.vector[1] = OUT.vector[1] * OUT.vector[3]
-    objCoord.vector[2] = OUT.vector[2] * OUT.vector[3]
-    return objCoord
+    Matrices and viewport follow project's input conventions. Window depth
+    maps from [0,1] to NDC [-1,1] without clamping. Zero homogeneous output W
+    returns the historical zero Vector3 sentinel; singular inversion raises
+    ZeroDivisionError. Inputs are preserved.
+    '''
+    if not isinstance(modelview, Matrix):
+        modelview = Matrix(4, data=modelview)
+    if not isinstance(projection, Matrix):
+        projection = Matrix(4, data=projection)
+    m = (modelview * projection).inverse()
+    ndc = vector.Vector(4, data=[
+        (winx - viewport[0]) / viewport[2] * 2.0 - 1.0,
+        (winy - viewport[1]) / viewport[3] * 2.0 - 1.0,
+        2.0 * winz - 1.0,
+        1.0])
+    result = m * ndc
+    if result.vector[3] == 0.0:
+        return vector.Vector(3)
+    rhw = 1.0 / result.vector[3]
+    return vector.Vector(3, data=[value * rhw for value in result.vector[:3]])

@@ -201,7 +201,6 @@ def test_wiki_horizontal_vs_vertical_fov():
     assert px.matrix[1][1] == pytest.approx(2)
 
 
-@pytest.mark.defect('P01')
 def test_wiki_project_returns_three_components():
     # Lists match the source's initial flattening code. No window-depth policy is asserted.
     out=matrix.project(V(0,0,0,1),matrix.identity(4),matrix.identity(4),[0,0,100,100])

@@ -98,8 +98,26 @@ The historical plane wiki contains only “Coming soon.” These conventions res
 
 For a size N position and an N×N matrix, transformation is the ordinary row-vector product: `out[j]=sum(position[i]*matrix[i][j])`. An explicitly supplied homogeneous component participates normally. For example, `[x,y,z,0]` is a direction under affine Matrix4 transforms, and `[x,y,z,w]` receives translation weighted by w. Output w is computed from the matrix's final column; it is not forcibly preserved.
 
-For an N-component position and an (N+1)×(N+1) matrix, the transform helper locally supplies w=1, computes `out[j]=sum(position[i]*matrix[i][j])+matrix[N][j]`, and returns N components. This promotion is intended for **affine position transforms**. No automatic perspective divide occurs. For a projective matrix, the returned N components are homogeneous numerators rather than perspective-correct Cartesian coordinates. Use the appropriate projection/unprojection path when those coordinates are needed; P01/P02 remain outstanding findings. Use explicit homogeneous input when the computed output w is needed.
+For an N-component position and an (N+1)×(N+1) matrix, the transform helper locally supplies w=1, computes `out[j]=sum(position[i]*matrix[i][j])+matrix[N][j]`, and returns N components. This promotion is intended for **affine position transforms**. No automatic perspective divide occurs. For a projective matrix, the returned N components are homogeneous numerators rather than perspective-correct Cartesian coordinates. Use the [projection/unprojection path](#projection-and-unprojection) when those coordinates are needed. Use explicit homogeneous input when the computed output w is needed.
 
 Row-major storage, translation in the final row, and ordinary matrix products are unchanged. In row-vector order, `T*R` applies translation then rotation; `R*T` applies rotation then translation. In library operator syntax, `(T*R)*v` equals `R*(T*v)` for matching dimensions. Local promotion in the transform helper does not extend general `Matrix*Vector`: its established matching-dimension precondition remains, and mismatched Vector3/Matrix4 multiplication still raises IndexError.
 
 `Matrix(4).i_translate(Vector3)` now builds a 4×4 translation matrix, matching the returning method and refreshing the float32 ctypes snapshot through existing in-place multiplication. Vector4 offsets retain their existing ignored fourth component. Matrix3/Vector2 translation remains homogeneous 2D translation; Matrix3/Vector3 retains the legacy last-row replacement helper, not general affine 3D translation. Matrix2 translation remains unsupported. Shape validation and unsupported-input exception policies remain unresolved; this phase defines ordinary valid transformation shapes without introducing a broader validation API.
+
+## Projection and unprojection
+
+Both functions accept Matrix4 wrappers and raw 4×4 nested lists, including mixed representations. `project(obj, model, proj, viewport)` requires an explicit Vector4 `[x,y,z,w]`; a Cartesian position normally uses w=1. Other supplied w values participate in multiplication. Vector3 promotion and new object-input forms are not supported. Both functions return a fresh Vector3 with exactly three stored components and preserve caller vectors, matrix rows, ctypes snapshots, and viewport data.
+
+The viewport is `[x,y,width,height]`, with a lower-left origin and upward-increasing Y. For row vectors, clip coordinates are `obj * (model * proj)` mathematically. Divide clip X/Y/Z by the computed clip W to obtain NDC, then map:
+
+```text
+winx = viewport.x + (ndc.x + 1) * viewport.width / 2
+winy = viewport.y + (ndc.y + 1) * viewport.height / 2
+winz = (ndc.z + 1) / 2
+```
+
+OpenGL NDC depth [-1,1] becomes window depth [0,1]; near/far map to 0/1 for the existing perspective and orthographic cameras. No coordinate or depth clamping occurs, so points outside the frustum can produce values outside the viewport or depth interval. No top-left-origin flip or graphics-driver state is inferred.
+
+`unproject(winx, winy, winz, modelview, projection, viewport)` reverses the viewport mapping, uses NDC `[x,y,2*winz-1,1]`, and applies `(modelview * projection).inverse()` in row-vector mathematics. Divide the resulting X/Y/Z by the computed homogeneous W to obtain object Cartesian coordinates. This composition is essential for noncommuting modelview and projection matrices.
+
+Zero clip W in `project` raises ZeroDivisionError. Zero homogeneous output W in `unproject` retains the historical fresh zero-Vector3 sentinel, which cannot distinguish an invalid finite inverse image from a genuine object origin. Singular combined matrices retain the inverse routine's ZeroDivisionError. Projection requires no inverse and can map through a singular matrix when clip W is nonzero. No near-zero-W tolerance, singularity threshold, invalid-viewport validation, or nonfinite/extreme-scale policy is introduced; broader numerical and error policies remain under QD07.

@@ -92,3 +92,15 @@ The transform helper supports local w=1 promotion for an N-component affine posi
 The free helper returns a list; the returning method returns a fresh Vector of the receiver's size; the in-place method replaces the receiver's storage and returns self. Raw position lists and nested matrix lists remain the accepted representations. Neither method changes a separately supplied position list or matrix. Dimensions 1, 2, 3, 4, and 8 are exercised without restricting the existing generic vector kernel. Broader shape/error and numeric-domain policies remain deferred.
 
 Production changes are confined to `gem/matrix.py` and `gem/vector.py`. Runtime dependencies, pure-Python storage, public signatures, and unrelated algorithms remain unchanged. See [Phase 2D-2 verification](PHASE2D2.md) and [transformation conventions](CONVENTIONS.md#vector-transformations).
+
+## Projection and unprojection
+
+`project` now produces usable window coordinates instead of failing while subscripting Matrix wrappers. It accepts Matrix4 or raw 4×4 nested lists for either matrix argument. `unproject` adds the same raw-list and mixed-form support alongside its existing wrapper form. Project's object input remains explicit Vector4; there is no Vector3 promotion or new position representation. Public signatures, row-major storage, and general multiplication and transform helpers are preserved.
+
+Projection returns exactly `[winx,winy,winz]` in a fresh Vector3, omitting the unusable implementation's fourth reciprocal-W entry. NDC depth now maps from [-1,1] to [0,1], matching unprojection's existing `2*winz-1` input mapping. Identity projection of `[0,0,0,1]` through viewport `[0,0,100,100]` returns `[50,50,0.5]`. Viewports have lower-left origin and upward Y; callers using top-left screen coordinates must convert Y explicitly. Coordinates and depth outside the normal interval are not clamped.
+
+Unprojection now inverts modelview*projection rather than projection*modelview. Identity and commuting matrices retain their ordinary results; noncommuting transforms produce corrected coordinates. In the original translation/orthographic regression, X changes from -5 to the correct 1. Callers that reversed operands or precompensated for the old order should remove that compensation.
+
+Zero clip W raises ZeroDivisionError in project. Unproject preserves its fresh zero-Vector3 sentinel for zero homogeneous output W and the existing singular-inverse ZeroDivisionError. Project does not require an invertible combined matrix. Inputs and public ctypes snapshots are preserved. Numerical conditioning, near-zero-W tolerances, malformed shapes, and invalid viewport policies are not expanded.
+
+Only P01/P02 defect markers and the two now-resolved P01 input/depth question cases are converted. All unrelated expected failures and questions remain. [CONVENTIONS.md](CONVENTIONS.md#projection-and-unprojection) defines the contract; [PHASE2D3.md](PHASE2D3.md) records verification and changed files.

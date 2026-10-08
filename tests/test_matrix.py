@@ -122,7 +122,6 @@ def test_orthographic_and_lookat():
 
 
 @pytest.mark.parametrize('use_objects', [False,True])
-@pytest.mark.contract_question('P01-input-and-depth-policy')
 def test_project_center(use_objects):
     m = matrix.Matrix(4)
     arg = m if use_objects else m.matrix
@@ -133,7 +132,6 @@ def test_unproject_identity():
     assert matrix.unproject(50,50,0.5,matrix.Matrix(4),matrix.Matrix(4),[0,0,100,100]).vector == [0,0,0]
 
 
-@pytest.mark.defect('P02')
 def test_unproject_noncommuting_transforms():
     model = matrix.Matrix(4).translate(V(2,0,0))
     projection = matrix.orthographic(-4,4,-4,4,1,10)
