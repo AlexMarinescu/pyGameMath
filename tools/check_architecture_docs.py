@@ -135,14 +135,16 @@ def check_api_reference(declared, runtime=False):
             'runtime_signatures_checked': runtime, 'omitted_declarations': []}
 
 
-def check(examples=False, getting_started=False, package_root=None, api_reference=False):
+def check(examples=False, getting_started=False, package_root=None, api_reference=False, tutorials=False):
     pages = PAGES + (['README.md'] + ['docs/getting-started/'+name+'.md'
                      for name in ('README', 'installation', 'quick-start', 'verification')]
                      if getting_started else [])
     if api_reference:
         pages += [str(page.relative_to(ROOT)) for page in sorted((ROOT/'docs/api').glob('*.md'))]
+    if tutorials:
+        pages += [str(page.relative_to(ROOT)) for page in sorted((ROOT/'docs/tutorials').glob('*.md'))]
     report = {'base': BASE, 'pages': pages, 'links_checked': 0,
-              'source_declarations_checked': 0, 'examples_executed': 0}
+              'source_declarations_checked': 0, 'examples_executed': 0, 'examples_by_page': {}}
     inventory = (ROOT/'docs/architecture/api-inventory.md').read_text()
     declared = declarations()
     for module, rows in declared.items():
@@ -186,6 +188,7 @@ def check(examples=False, getting_started=False, package_root=None, api_referenc
             for index, code in enumerate(re.findall(r'```python\n(.*?)```', text, re.DOTALL)):
                 exec(compile(code, relative+':example'+str(index+1), 'exec'), {})
                 report['examples_executed'] += 1
+                report['examples_by_page'][relative] = report['examples_by_page'].get(relative, 0) + 1
     # Verify immutable boundaries against the exact audited master, not HEAD
     # (which may already contain the documentation commit).
     paths = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', BASE],
@@ -212,11 +215,12 @@ def main():
     parser.add_argument('--output', type=Path)
     parser.add_argument('--getting-started', action='store_true')
     parser.add_argument('--api-reference', action='store_true')
+    parser.add_argument('--tutorials', action='store_true')
     parser.add_argument('--package-root', type=Path,
                         help='execute examples against this installed site-packages directory')
     args = parser.parse_args()
     try:
-        report = check(args.examples, args.getting_started, args.package_root, args.api_reference)
+        report = check(args.examples, args.getting_started, args.package_root, args.api_reference, args.tutorials)
     except (ValueError, OSError, subprocess.CalledProcessError) as error:
         parser.error(str(error))
     rendered = json.dumps(report, indent=2) + '\n'
