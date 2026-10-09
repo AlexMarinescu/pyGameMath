@@ -1,0 +1,75 @@
+{
+  "base_commit": "f540db6cc5d48ec9fdd60d0972f26f636c66ab19",
+  "environment": {
+    "implementation": "CPython",
+    "python": "3.12.14",
+    "os": "Linux",
+    "architecture": "x86_64",
+    "pytest": "9.1.1",
+    "six": "1.17.0"
+  },
+  "pre_repair_eight": {
+    "failed": 8,
+    "passed": 0,
+    "deselected": 116,
+    "reported_seconds": 0.17
+  },
+  "original_eight_after": {
+    "total": 8,
+    "passed": 8,
+    "failed": [],
+    "skipped_or_xfailed": []
+  },
+  "focused": {
+    "total": 486,
+    "passed": 486,
+    "failed": [],
+    "skipped_or_xfailed": []
+  },
+  "full": {
+    "total": 2615,
+    "passed": 2615,
+    "failed": [],
+    "skipped_or_xfailed": []
+  },
+  "reported_seconds": {
+    "original_eight_after": 0.06,
+    "focused": 0.7,
+    "full": 10.26
+  },
+  "additional_cases": 231,
+  "corrected_cases": [
+    "tests.test_core_algebra_audit::test_subnormal_quaternion_square_root_axis[components0]",
+    "tests.test_core_algebra_audit::test_subnormal_quaternion_square_root_axis[components1]",
+    "tests.test_core_algebra_audit::test_subnormal_quaternion_logarithm_axis[components0]",
+    "tests.test_core_algebra_audit::test_subnormal_quaternion_logarithm_axis[components1]",
+    "tests.test_core_algebra_audit::test_large_integer_quaternion_power[10000000000000000-data0]",
+    "tests.test_core_algebra_audit::test_large_integer_quaternion_power[10000000000000000-data1]",
+    "tests.test_core_algebra_audit::test_large_integer_quaternion_power[-10000000000000000-data0]",
+    "tests.test_core_algebra_audit::test_large_integer_quaternion_power[-10000000000000000-data1]"
+  ],
+  "source_sha256": "f35e99eac8b0563d87b827f38d085d6a83911278eff01ab425dd4317961a8768",
+  "unchanged_paths": [
+    "gem/vector.py",
+    "gem/matrix.py",
+    "gem/ray.py",
+    "gem/plane.py",
+    "gem/bezier.py",
+    "gem/legendre.py",
+    "gem/spherical_harmonics.py",
+    "gem/common.py",
+    "gem/experimental",
+    "setup.py",
+    "setup.cfg",
+    "MANIFEST.in",
+    "pyproject.toml",
+    "requirements-audit.txt",
+    "requirements-docs.txt"
+  ],
+  "performance_datasets": [
+    "phase4g1r-performance.json",
+    "phase4g1r-performance-repeat.json"
+  ],
+  "pr_base_commit": "1ded38f0d36d4a70f264e20ff0324031bb917fe5",
+  "actual_baseline_source_bit_comparisons": 288
+}

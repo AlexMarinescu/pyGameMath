@@ -376,3 +376,15 @@ validation, compensation, radiance/irradiance separation and active rotation rem
 unchanged. HDR references regenerate byte-identically on the measured host.
 Scalar evaluation's dispatch cost and the cache memory trade-off are recorded in
 the [performance and compatibility report](PHASE3D-BEZIER-SH.md).
+
+## Quaternion range repairs
+
+Phase 4G-1R repairs subnormal imaginary-axis scaling in power/log and large
+integer powers of exact cyclic unit controls. Principal branches, negative
+identity, zero errors, q^0/q^1, types and caller storage remain unchanged.
+Ordinary general/fractional and nonunit legacy paths retain their arithmetic;
+no implicit normalization or norm tolerance is added. Exact cyclic integer
+answers can replace former trigonometric residues even at small exponents.
+General enormous-exponent phase accuracy remains limited. Measured cost and
+guarded Hamilton-squaring rationale are in the
+[repair report](PHASE4G1R-QUATERNION-REPAIRS.md).

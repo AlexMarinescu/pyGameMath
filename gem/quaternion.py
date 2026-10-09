@@ -160,11 +160,52 @@ def quat_rotate_vector(quat, vec):
     outQuat = (quat * vec) * quat.conjugate()
     return vector.Vector(3, data=[outQuat.data[1], outQuat.data[2], outQuat.data[3]])
 
+def _quat_imaginary_direction(x, y, z):
+    """Avoid dividing by a norm rounded on the binary64 subnormal grid."""
+    scale = max(abs(x), abs(y), abs(z))
+    x, y, z = x / scale, y / scale, z / scale
+    length = math.hypot(math.hypot(x, y), z)
+    return [x / length, y / length, z / length]
+
+
+def _quat_exact_cyclic(w, x, y, z):
+    """Recognize exact unit basis/half-component controls without a tolerance.
+
+    Their Hamilton products remain in the same finite set, so binary squaring
+    cannot amplify norm drift. Other inputs retain principal-angle arithmetic.
+    """
+    return (abs(w) == abs(x) == abs(y) == abs(z) == 0.5 or
+            (w == 0.0 and
+             ((abs(x) == 1.0 and y == z == 0.0) or
+              (abs(y) == 1.0 and x == z == 0.0) or
+              (abs(z) == 1.0 and x == y == 0.0))))
+
+
+def _quat_integer_power(data, exponent):
+    """Hamilton exponentiation by squaring for exact cyclic unit controls."""
+    exponent = int(exponent)
+    base = quat_conjugate(data) if exponent < 0 else list(data)
+    # These exact controls have orders 1, 2, 3, 4 or 6, all dividing 12.
+    # Reduce the integer before squaring, avoiding both phase loss and work
+    # proportional to a huge exponent's bit count. This is not a rounded period.
+    exponent = abs(exponent) % 12
+    result = quat_identity()
+    while exponent:
+        if exponent & 1:
+            result = quat_mul_quat(result, base)
+        exponent >>= 1
+        if exponent:
+            base = quat_mul_quat(base, base)
+    return Quaternion(data=result)
+
+
 def quat_pow(quat, exp):
     """Return a fresh unit-quaternion power using the principal angle.
 
     Nonunit inputs are unsupported. Negative identity has no unique axis,
-    so only integer powers are defined for it.
+    so only integer powers are defined for it. Exact cyclic unit controls use
+    Hamilton squaring for integer exponents; general large-exponent phase
+    accuracy remains limited by floating-point principal-angle arithmetic.
     """
     w, x, y, z = quat.data
     imaginary = math.hypot(math.hypot(x, y), z)
@@ -182,10 +223,17 @@ def quat_pow(quat, exp):
         return Quaternion(data=list(quat.data))
     angle = math.atan2(imaginary, w)
     powered_angle = angle * exp
+    if _quat_exact_cyclic(w, x, y, z) and exp % 1 == 0:
+        return _quat_integer_power(quat.data, exp)
     # Reduce the exponent first only when multiplication would overflow.
     if math.isinf(powered_angle) and not math.isinf(exp):
         powered_angle = math.fmod(exp, (2.0 * math.pi) / angle) * angle
     sine = math.sin(powered_angle)
+    # Minimum normal binary64, not a zero/axis tolerance. Ordinary arithmetic
+    # is retained without allocating an extra direction list.
+    if imaginary < 2.2250738585072014e-308:
+        x, y, z = _quat_imaginary_direction(x, y, z)
+        imaginary = 1.0
     return Quaternion(data=[math.cos(powered_angle),
                             (x / imaginary) * sine,
                             (y / imaginary) * sine,
@@ -204,6 +252,9 @@ def quat_log(quat):
             raise ValueError("Quaternion logarithm has no unique imaginary axis")
         return [0.0, 0.0, 0.0, 0.0]
     angle = math.atan2(imaginary, w)
+    if imaginary < 2.2250738585072014e-308:
+        x, y, z = _quat_imaginary_direction(x, y, z)
+        imaginary = 1.0
     return [0.0, (x / imaginary) * angle,
             (y / imaginary) * angle, (z / imaginary) * angle]
 
