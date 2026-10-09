@@ -1,0 +1,668 @@
+{
+  "schema": "gem-geometry-audit-verification-v1",
+  "base": "cdad68f0e7525fdfdc67b0a3aaea3b8112d003c6",
+  "branch": "audit/phase4g4-ray-plane-geometry",
+  "runs": {
+    "baseline": {
+      "counts": {
+        "passed": 3313,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "xpass": 0,
+        "skipped": 0
+      },
+      "total_cases": 3313,
+      "junit_seconds": "16.849",
+      "timestamp": "2026-10-09T21:42:13.247380+00:00",
+      "junit_sha256": "f6ffa8d982ca49279e2d3feefa31412631ce72c14c9bdf1cceb2d60aaea3525c",
+      "xfail_groups": {}
+    },
+    "full": {
+      "counts": {
+        "passed": 3540,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 14,
+        "xpass": 0,
+        "skipped": 0
+      },
+      "total_cases": 3554,
+      "junit_seconds": "15.696",
+      "timestamp": "2026-10-09T21:50:47.357558+00:00",
+      "junit_sha256": "1ee4850964a91b1ec7d584730f62329457e2f4399ff4e1d15a4c6651f944fd03",
+      "xfail_groups": {
+        "4G4-A01: equal-index grazing refraction loses nonzero normal component": [
+          "tests.test_geometry_audit::test_equal_media_grazing_refraction_identity[1e-09-2]",
+          "tests.test_geometry_audit::test_equal_media_grazing_refraction_identity[1e-09-3]",
+          "tests.test_geometry_audit::test_equal_media_grazing_refraction_identity[1e-09-4]",
+          "tests.test_geometry_audit::test_equal_media_grazing_refraction_identity[1e-100-2]",
+          "tests.test_geometry_audit::test_equal_media_grazing_refraction_identity[1e-100-3]",
+          "tests.test_geometry_audit::test_equal_media_grazing_refraction_identity[1e-100-4]"
+        ],
+        "4G4-A02: translated Newell normal cancels for a nondegenerate polygon": [
+          "tests.test_geometry_audit::test_translated_polygon_retains_exact_area_normal[False-False-False]",
+          "tests.test_geometry_audit::test_translated_polygon_retains_exact_area_normal[False-False-True]",
+          "tests.test_geometry_audit::test_translated_polygon_retains_exact_area_normal[False-True-False]",
+          "tests.test_geometry_audit::test_translated_polygon_retains_exact_area_normal[False-True-True]",
+          "tests.test_geometry_audit::test_translated_polygon_retains_exact_area_normal[True-False-False]",
+          "tests.test_geometry_audit::test_translated_polygon_retains_exact_area_normal[True-False-True]",
+          "tests.test_geometry_audit::test_translated_polygon_retains_exact_area_normal[True-True-False]",
+          "tests.test_geometry_audit::test_translated_polygon_retains_exact_area_normal[True-True-True]"
+        ]
+      }
+    },
+    "exposed_findings": {
+      "counts": {
+        "passed": 227,
+        "failed": 14,
+        "errors": 0,
+        "xfail": 0,
+        "xpass": 0,
+        "skipped": 0
+      },
+      "total_cases": 241,
+      "junit_seconds": "0.689",
+      "timestamp": "2026-10-09T21:50:39.976422+00:00",
+      "junit_sha256": "a655ce2e1e0cc0d028072b6f77dcec93ea3e29b694c5890b57f8c1e7b7a48657",
+      "xfail_groups": {}
+    }
+  },
+  "new_tests": {
+    "passed": 227,
+    "strict_expected_failures": 14
+  },
+  "preservation": {
+    "existing_3313_case_identities_pass": true,
+    "baseline_expected_failures": 0,
+    "xfails_match_deliberately_exposed_failures": true,
+    "protected_files_byte_identical": 66,
+    "production_api_signatures_unchanged": true,
+    "dependencies_and_packaging_unchanged": true,
+    "all_preexisting_tracked_files_unchanged": true,
+    "wheel_and_sdist_runtime_bytes_match": 17
+  },
+  "source_reproductions": {
+    "schema": "gem-geometry-reproductions-v1",
+    "environment": {
+      "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+      "implementation": "CPython",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+      "architecture": "x86_64",
+      "dependencies": {
+        "six": "1.17.0",
+        "pytest": "9.1.1"
+      }
+    },
+    "installed_check": false,
+    "ordinary_smoke_passed": true,
+    "runtime_modules": {
+      "gem.vector": {
+        "path": "/workspace/pyGameMath/gem/vector.py",
+        "sha256": "323e1c7a72d03c1e121acf174822265ceff7bed3cdf9e376745eb69707137215"
+      },
+      "gem.plane": {
+        "path": "/workspace/pyGameMath/gem/plane.py",
+        "sha256": "b5d5e78c940c7c7f752e2ce6c4b6e1bc4dc901a89f629e75965c76d698fd2110"
+      },
+      "gem.ray": {
+        "path": "/workspace/pyGameMath/gem/ray.py",
+        "sha256": "307dfac3a68a2235c3342d4bfe0d93fd15335dba4c28eff4cf6b79ae6167c1a4"
+      },
+      "gem.matrix": {
+        "path": "/workspace/pyGameMath/gem/matrix.py",
+        "sha256": "e539db231c9b71bc0846954f2a0fad0840b0b03ffd78ae65a4189a634b56c17c"
+      },
+      "gem.quaternion": {
+        "path": "/workspace/pyGameMath/gem/quaternion.py",
+        "sha256": "f35e99eac8b0563d87b827f38d085d6a83911278eff01ab425dd4317961a8768"
+      }
+    },
+    "findings": [
+      {
+        "id": "4G4-A01",
+        "source": "gem/vector.py:65-71",
+        "inputs": {
+          "IOR": 1.0,
+          "incident": [
+            1.0,
+            -1e-09,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "expected": [
+          1.0,
+          -1e-09,
+          0.0
+        ],
+        "actual": {
+          "value": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "reproduced": true
+      },
+      {
+        "id": "4G4-A02",
+        "source": "gem/plane.py:105-109",
+        "inputs": {
+          "points": [
+            [
+              4503599627370496.0,
+              4503599627370496.0,
+              4503599627370496.0
+            ],
+            [
+              4503599627370497.0,
+              4503599627370496.0,
+              4503599627370496.0
+            ],
+            [
+              4503599627370496.0,
+              4503599627370497.0,
+              4503599627370496.0
+            ]
+          ]
+        },
+        "exact_area_vector": [
+          0,
+          0,
+          1
+        ],
+        "expected": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "actual": {
+          "exception": "ZeroDivisionError",
+          "message": "Cannot normalize a zero geometric direction"
+        },
+        "reproduced": true
+      },
+      {
+        "id": "4G4-A02",
+        "source": "gem/plane.py:105-109",
+        "inputs": {
+          "points": [
+            [
+              4503599627370496.0,
+              4503599627370496.0,
+              4503599627370496.0
+            ],
+            [
+              4503599627370497.0,
+              4503599627370496.0,
+              4503599627370497.0
+            ],
+            [
+              4503599627370496.0,
+              4503599627370497.0,
+              4503599627370497.0
+            ]
+          ]
+        },
+        "exact_area_vector": [
+          -1,
+          -1,
+          1
+        ],
+        "expected": [
+          -0.5773502691896258,
+          -0.5773502691896258,
+          0.5773502691896258
+        ],
+        "actual": {
+          "value": [
+            -1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "reproduced": true
+      }
+    ],
+    "observations": [
+      {
+        "classification": "documented limitation",
+        "name": "unscaled barycentric products",
+        "expected": [
+          0.5,
+          0.25,
+          0.25
+        ],
+        "actual": {
+          "exception": "ZeroDivisionError",
+          "message": "float division by zero"
+        }
+      },
+      {
+        "classification": "documented limitation",
+        "name": "unscaled three-point cross underflow",
+        "expected": [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "actual": {
+          "exception": "ZeroDivisionError",
+          "message": "Cannot normalize a zero geometric direction"
+        }
+      },
+      {
+        "classification": "documented limitation",
+        "name": "plane normal magnitude outside binary64 range",
+        "expected": [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ],
+        "actual": {
+          "value": [
+            0.5773502691896257,
+            0.5773502691896257,
+            0.5773502691896257,
+            0.5773502691896257
+          ]
+        }
+      },
+      {
+        "classification": "documented arithmetic limitation",
+        "name": "unscaled reflection product overflow",
+        "expected": [
+          -1e+308,
+          0.0,
+          0.0
+        ],
+        "actual": {
+          "value": [
+            "-inf",
+            "nan",
+            "nan"
+          ]
+        }
+      },
+      {
+        "classification": "accuracy-policy question",
+        "name": "extreme polygon mean accumulation",
+        "expected": 1e+308,
+        "actual": {
+          "value": "inf"
+        }
+      },
+      {
+        "classification": "accuracy-policy question",
+        "name": "enormous IOR at normal incidence",
+        "expected": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "actual": {
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    ],
+    "limitations": "Observations outside established stability guarantees do not become new strict contract tests."
+  },
+  "installed_wheel": {
+    "schema": "gem-geometry-reproductions-v1",
+    "environment": {
+      "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+      "implementation": "CPython",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+      "architecture": "x86_64",
+      "dependencies": {
+        "six": "1.17.0"
+      }
+    },
+    "installed_check": true,
+    "ordinary_smoke_passed": true,
+    "runtime_modules": {
+      "gem.vector": {
+        "path": "/tmp/phase4g4-wheel-env/lib/python3.12/site-packages/gem/vector.py",
+        "sha256": "323e1c7a72d03c1e121acf174822265ceff7bed3cdf9e376745eb69707137215"
+      },
+      "gem.plane": {
+        "path": "/tmp/phase4g4-wheel-env/lib/python3.12/site-packages/gem/plane.py",
+        "sha256": "b5d5e78c940c7c7f752e2ce6c4b6e1bc4dc901a89f629e75965c76d698fd2110"
+      },
+      "gem.ray": {
+        "path": "/tmp/phase4g4-wheel-env/lib/python3.12/site-packages/gem/ray.py",
+        "sha256": "307dfac3a68a2235c3342d4bfe0d93fd15335dba4c28eff4cf6b79ae6167c1a4"
+      },
+      "gem.matrix": {
+        "path": "/tmp/phase4g4-wheel-env/lib/python3.12/site-packages/gem/matrix.py",
+        "sha256": "e539db231c9b71bc0846954f2a0fad0840b0b03ffd78ae65a4189a634b56c17c"
+      },
+      "gem.quaternion": {
+        "path": "/tmp/phase4g4-wheel-env/lib/python3.12/site-packages/gem/quaternion.py",
+        "sha256": "f35e99eac8b0563d87b827f38d085d6a83911278eff01ab425dd4317961a8768"
+      }
+    },
+    "findings": [
+      {
+        "id": "4G4-A01",
+        "source": "gem/vector.py:65-71",
+        "inputs": {
+          "IOR": 1.0,
+          "incident": [
+            1.0,
+            -1e-09,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "expected": [
+          1.0,
+          -1e-09,
+          0.0
+        ],
+        "actual": {
+          "value": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "reproduced": true
+      },
+      {
+        "id": "4G4-A02",
+        "source": "gem/plane.py:105-109",
+        "inputs": {
+          "points": [
+            [
+              4503599627370496.0,
+              4503599627370496.0,
+              4503599627370496.0
+            ],
+            [
+              4503599627370497.0,
+              4503599627370496.0,
+              4503599627370496.0
+            ],
+            [
+              4503599627370496.0,
+              4503599627370497.0,
+              4503599627370496.0
+            ]
+          ]
+        },
+        "exact_area_vector": [
+          0,
+          0,
+          1
+        ],
+        "expected": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "actual": {
+          "exception": "ZeroDivisionError",
+          "message": "Cannot normalize a zero geometric direction"
+        },
+        "reproduced": true
+      },
+      {
+        "id": "4G4-A02",
+        "source": "gem/plane.py:105-109",
+        "inputs": {
+          "points": [
+            [
+              4503599627370496.0,
+              4503599627370496.0,
+              4503599627370496.0
+            ],
+            [
+              4503599627370497.0,
+              4503599627370496.0,
+              4503599627370497.0
+            ],
+            [
+              4503599627370496.0,
+              4503599627370497.0,
+              4503599627370497.0
+            ]
+          ]
+        },
+        "exact_area_vector": [
+          -1,
+          -1,
+          1
+        ],
+        "expected": [
+          -0.5773502691896258,
+          -0.5773502691896258,
+          0.5773502691896258
+        ],
+        "actual": {
+          "value": [
+            -1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "reproduced": true
+      }
+    ],
+    "observations": [
+      {
+        "classification": "documented limitation",
+        "name": "unscaled barycentric products",
+        "expected": [
+          0.5,
+          0.25,
+          0.25
+        ],
+        "actual": {
+          "exception": "ZeroDivisionError",
+          "message": "float division by zero"
+        }
+      },
+      {
+        "classification": "documented limitation",
+        "name": "unscaled three-point cross underflow",
+        "expected": [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "actual": {
+          "exception": "ZeroDivisionError",
+          "message": "Cannot normalize a zero geometric direction"
+        }
+      },
+      {
+        "classification": "documented limitation",
+        "name": "plane normal magnitude outside binary64 range",
+        "expected": [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ],
+        "actual": {
+          "value": [
+            0.5773502691896257,
+            0.5773502691896257,
+            0.5773502691896257,
+            0.5773502691896257
+          ]
+        }
+      },
+      {
+        "classification": "documented arithmetic limitation",
+        "name": "unscaled reflection product overflow",
+        "expected": [
+          -1e+308,
+          0.0,
+          0.0
+        ],
+        "actual": {
+          "value": [
+            "-inf",
+            "nan",
+            "nan"
+          ]
+        }
+      },
+      {
+        "classification": "accuracy-policy question",
+        "name": "extreme polygon mean accumulation",
+        "expected": 1e+308,
+        "actual": {
+          "value": "inf"
+        }
+      },
+      {
+        "classification": "accuracy-policy question",
+        "name": "enormous IOR at normal incidence",
+        "expected": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "actual": {
+          "value": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    ],
+    "limitations": "Observations outside established stability guarantees do not become new strict contract tests."
+  },
+  "public_geometry_inventory": {
+    "gem/plane.py": [
+      {
+        "name": "flip",
+        "line": 4,
+        "arguments": "plane"
+      },
+      {
+        "name": "normalize",
+        "line": 13,
+        "arguments": "pdata"
+      },
+      {
+        "name": "Plane.__init__",
+        "line": 21,
+        "arguments": "self"
+      },
+      {
+        "name": "Plane.clone",
+        "line": 29,
+        "arguments": "self"
+      },
+      {
+        "name": "Plane.fromCoeffs",
+        "line": 39,
+        "arguments": "self, a, b, c, d"
+      },
+      {
+        "name": "Plane.fromPoints",
+        "line": 47,
+        "arguments": "self, a, b, c"
+      },
+      {
+        "name": "Plane.i_flip",
+        "line": 55,
+        "arguments": "self"
+      },
+      {
+        "name": "Plane.flip",
+        "line": 65,
+        "arguments": "self"
+      },
+      {
+        "name": "Plane.dot",
+        "line": 76,
+        "arguments": "self, vec"
+      },
+      {
+        "name": "Plane.i_normalize",
+        "line": 80,
+        "arguments": "self"
+      },
+      {
+        "name": "Plane.normalize",
+        "line": 87,
+        "arguments": "self"
+      },
+      {
+        "name": "Plane.bestFitNormal",
+        "line": 95,
+        "arguments": "self, vecList"
+      },
+      {
+        "name": "Plane.bestFitD",
+        "line": 111,
+        "arguments": "self, vecList, bestFitNormal"
+      },
+      {
+        "name": "Plane.point_location",
+        "line": 122,
+        "arguments": "self, plane, point"
+      }
+    ],
+    "gem/ray.py": [
+      {
+        "name": "Ray.__init__",
+        "line": 6,
+        "arguments": "self, startVector, dirVector"
+      },
+      {
+        "name": "Ray.duplicate",
+        "line": 17,
+        "arguments": "self"
+      },
+      {
+        "name": "Ray.roateUsingMatrix",
+        "line": 26,
+        "arguments": "self, matrix"
+      },
+      {
+        "name": "Ray.rotateUsingQuaternion",
+        "line": 33,
+        "arguments": "self, quat1"
+      },
+      {
+        "name": "Ray.translate",
+        "line": 43,
+        "arguments": "self, matrix"
+      },
+      {
+        "name": "Ray.output",
+        "line": 58,
+        "arguments": "self"
+      }
+    ]
+  },
+  "limitations": [
+    "Only CPython 3.12.14/Linux x86_64 executed",
+    "No production repairs or new runtime APIs",
+    "No universal accuracy or exception policy inferred from out-of-domain observations",
+    "No performance benchmark campaign"
+  ]
+}
