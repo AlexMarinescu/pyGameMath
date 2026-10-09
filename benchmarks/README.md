@@ -83,3 +83,25 @@ Ordinary inputs use fixed seeds 310/311, plus uniform extreme scales and a mixed
 binary-row-exponent dataset. Independent numerical tests remain separate from
 bitwise baseline preservation and performance measurements. The bootstrap
 summary is descriptive conditional evidence, not a universal confidence guarantee.
+
+## Vector and Quaternion comparison
+
+```sh
+python benchmarks/vector_quaternion.py --output audit/phase3c-benchmarks.json
+python benchmarks/vector_quaternion.py --output audit/phase3c-repeat.json
+python benchmarks/vector_quaternion.py --output audit/phase3c-followup.json --rounds 7 --target-seconds .04 --case vector2_subtract --case vector3_dot --case quaternion_squad4
+python benchmarks/summarize_vector_quaternion.py audit/phase3c-performance-summary.json audit/phase3c-benchmarks.json audit/phase3c-repeat.json --follow-up audit/phase3c-followup.json
+python benchmarks/verify_vector_quaternion.py audit/phase3c-equivalence.json
+```
+
+Requires the merged PR #35 git object; no additional dependencies. Both baseline
+modules are loaded independently, with the baseline Quaternion using the baseline
+Vector implementation. The unchanged Phase 3A Vector/Quaternion workload section
+supplies deterministic data. Raw list kernels, public function entry points and
+wrapper methods are labeled separately. Inputs/setup are excluded; result allocation
+is included. In-place cases include fresh receiver construction to avoid drift.
+Two executions of three alternating rounds, each with seven calibrated trials,
+provide six paired blocks per case. JSON stores individual timings and separate
+profiles. The seeded bootstrap interval describes these blocks, not universal
+speedups or a guaranteed population confidence interval. See the
+[performance report](../audit/PHASE3C-VECTOR-QUATERNION.md).

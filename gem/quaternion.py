@@ -63,11 +63,7 @@ def quat_normalize(quat):
 
 def quat_conjugate(quat):
     ''' Returns the conjugate of a quaternion. '''
-    idquat = quat_identity()
-    for i in sm.range(4):
-        idquat[i] = -quat[i]
-    idquat[0] = -idquat[0]
-    return idquat
+    return [-(-quat[0]), -quat[1], -quat[2], -quat[3]]
 
 def quat_inverse(quat):
     ''' Returns the inverse of a quaternion. '''
@@ -157,6 +153,10 @@ def quat_rotate_from_axis_angle(axis, theta):
 
 def quat_rotate_vector(quat, vec):
     ''' Rotates a vector by a quaternion, returns a vector. '''
+    if type(quat) is Quaternion and type(vec) is vector.Vector:
+        product = quat_mul_quat(quat_mul_vect(quat.data, vec.vector),
+                                quat_conjugate(quat.data))
+        return vector.Vector(3, data=product[1:])
     outQuat = (quat * vec) * quat.conjugate()
     return vector.Vector(3, data=[outQuat.data[1], outQuat.data[2], outQuat.data[3]])
 
@@ -207,15 +207,23 @@ def quat_log(quat):
     return [0.0, (x / imaginary) * angle,
             (y / imaginary) * angle, (z / imaginary) * angle]
 
+def _quat_blend(quat0, quat1, k0, k1):
+    """Keep component arithmetic order while avoiding native wrapper temporaries."""
+    if (type(quat0) is Quaternion and type(quat1) is Quaternion
+            and isinstance(k0, float) and isinstance(k1, float)):
+        a, b = quat0.data, quat1.data
+        return Quaternion(data=[a[0] * k0 + b[0] * k1,
+                                a[1] * k0 + b[1] * k1,
+                                a[2] * k0 + b[2] * k1,
+                                a[3] * k0 + b[3] * k1])
+    return (quat0 * k0) + (quat1 * k1)
+
 def quat_lerp(quat0, quat1, t):
     ''' Linear interpolation between two quaternions. '''
     k0 = 1.0 - t
     k1 = t
 
-    output = Quaternion()
-    output = (quat0 * k0) + (quat1 * k1)
-
-    return output
+    return _quat_blend(quat0, quat1, k0, k1)
 
 def quat_slerp(quat0, quat1, t):
     """Return fresh shortest-path spherical interpolation of unit inputs.
@@ -235,20 +243,18 @@ def quat_slerp(quat0, quat1, t):
     denominator = math.sin(theta)
     k0 = math.sin((1.0 - t) * theta) / denominator
     k1 = math.sin(t * theta) / denominator
-    return (quat0 * k0) + (end * k1)
+    return _quat_blend(quat0, end, k0, k1)
 
 def quat_slerp_no_invert(quat0, quat1, t):
     ''' Spherical interpolation between two quaternions, it does not check for theta > 90. Used by SQUAD. '''
     dotP = quat0.dot(quat1)
-
-    output = Quaternion()
 
     if (dotP > -0.95) and (dotP < 0.95):
         angle = math.acos(dotP)
         k0 = math.sin(angle * (1.0 - t)) / math.sin(angle)
         k1 = math.sin(t * angle) / math.sin(angle)
 
-        output = (quat0 * k0) + (quat1 * k1)
+        output = _quat_blend(quat0, quat1, k0, k1)
     else:
         output = quat_lerp(quat0, quat1, t)
 

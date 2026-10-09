@@ -1,0 +1,16 @@
+{
+  "baseline_commit": "86dcd405da75c10da976ac67c0b02d774f066920",
+  "baseline_passed": 1999,
+  "command": "python -m pytest -q -p no:cacheprovider -o junit_family=legacy --junitxml=/tmp/phase3c-tests.xml",
+  "passed": 2100,
+  "unexpected_failures": 0,
+  "expected_failures": 0,
+  "skipped": 0,
+  "seconds": 5.932,
+  "new_regressions": 101,
+  "packaging": "clean offline wheel/sdist built from copied source; isolated -I wheel checks outside repository",
+  "pytest": "9.1.1",
+  "python": "CPython 3.12.14",
+  "six": "1.17.0",
+  "clean_checkout_benchmark_smoke": "fresh local shared clone of baseline plus staged patch: all 57 before/after workloads run; preservation JSON matches"
+}
