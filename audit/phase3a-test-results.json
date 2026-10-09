@@ -1,0 +1,18 @@
+{
+  "final": {
+    "passed": 1778,
+    "xfailed": 4,
+    "unexpected_failures": 0,
+    "skipped": 0
+  },
+  "remaining_expected_failures": [
+    "tests.test_vector_common::test_clamp_preserves_input",
+    "tests.test_vector_common::test_empty_equality",
+    "tests.test_vector_common::test_equality_dimensions",
+    "tests.test_vector_common::test_viewport_vector"
+  ],
+  "clean_source_benchmark_cases": 108,
+  "clean_source_recheck_script_verified": true,
+  "recheck_cases": 9,
+  "recheck_rounds": 3
+}
