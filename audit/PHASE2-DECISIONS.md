@@ -184,3 +184,12 @@ only a temporary copy. Larger deviations raise ValueError. Linear-form and
 traceless-tensor transformations replace neither basis conventions nor
 projection algorithms. Legacy conversion is explicit; Matrix adapters and
 higher-band rotation remain separate. See [verification](PHASE2F5C.md).
+
+## Experimental retirement disposition
+
+E07 transport scaffolding is retired; scene visibility is not promoted into
+core. Validated algorithms retain canonical core APIs and minimal compatibility
+reexports. The experimental directory is not fully eliminated. Removing the
+remaining import paths requires a future release-boundary/compatibility-window
+decision. Archived E07 test evidence and explicit removal checks distinguish
+retirement from mathematical repair. See [migration](../docs/EXPERIMENTAL_MIGRATION.md).

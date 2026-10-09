@@ -2,7 +2,8 @@ import math
 import struct
 import pytest
 from gem import vector
-from gem.experimental import sph, sph_sample, sph_object, sph_irradiance_map
+from gem import spherical_harmonics as sph
+from gem import spherical_harmonics as sph_irradiance_map
 
 
 def V(*xs):
@@ -20,15 +21,6 @@ def test_spherical_harmonics_low_orders():
     assert sph.SPH(1,1,math.pi/2,0) == pytest.approx(-math.sqrt(3/(4*math.pi)))
     assert sph.SPH(1,-1,math.pi/2,math.pi/2) == pytest.approx(-math.sqrt(3/(4*math.pi)))
 
-
-@pytest.mark.defect('E07')
-def test_generate_object_coefficients():
-    vertex = sph_object.SPHVertex(V(0,0,0),V(0,0,1))
-    sample = sph_sample.SPHSample(0,0,V(0,0,1),1)
-    sample.values[0] = 1/math.sqrt(4*math.pi)
-    obj = sph_object.SPHObject([0],[vertex])
-    sph_object.GenereateCoeffs(1,1,[sample],[obj])
-    assert vertex.unshadowedCoeffs == pytest.approx([math.sqrt(4*math.pi)])
 
 
 def test_irradiance_coefficient_known_answer(tmp_path):

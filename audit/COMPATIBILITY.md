@@ -325,3 +325,13 @@ and separate from angular disks. Standard-library RGBE support is limited to
 specified formats/scan orders; no image format or color profile is implicitly
 converted. Radiance, irradiance and reflected/display output remain separate.
 See [reproducible workflow](../examples/hdr_sh/README.md).
+
+## Experimental retirement and core consolidation
+
+The unfinished E07 `gem.experimental.sph_object` module and its three symbols
+are retired without a core replacement. Historical reproduction tests are
+archived and absence checks replace their collection. The supported Bezier,
+Legendre and SH implementations retain all existing contracts. Minimal
+experimental compatibility reexports still ship; full package deletion needs
+a release-boundary decision because established imports remain supported.
+See the [migration table](../docs/EXPERIMENTAL_MIGRATION.md).

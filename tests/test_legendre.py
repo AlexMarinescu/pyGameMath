@@ -77,7 +77,7 @@ def test_run_preserves_all_state_and_helper_initialization(l,m):
 @pytest.mark.parametrize('l',range(13))
 @pytest.mark.parametrize('theta,phi',[(.2,-.3),(.73,1.27),(2.2,3.1),(0,0),(math.pi,.9)])
 def test_spherical_addition_theorem_high_orders(l,theta,phi):
-    from gem.experimental import sph
+    from gem import spherical_harmonics as sph
     assert sum(sph.SPH(l,m,theta,phi)**2 for m in range(-l,l+1))==pytest.approx((2*l+1)/(4*math.pi),rel=2e-13)
 
 
