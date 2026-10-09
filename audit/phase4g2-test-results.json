@@ -1,0 +1,570 @@
+{
+  "schema_version": 1,
+  "audit": "Phase 4G-2",
+  "base_commit": "db303e99c75807b68f262a69b4c4a00ce5a54420",
+  "branch": "audit/phase4g2-curves-legendre",
+  "environment": {
+    "implementation": "CPython",
+    "python": "3.12.14",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "architecture": "x86_64",
+    "pytest": "9.1.1",
+    "six": "1.17.0",
+    "other_python_versions_verified": false
+  },
+  "baseline": {
+    "command": "python -m pytest -q",
+    "passed": 2615,
+    "xfail": 0,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration_seconds": 11.59,
+    "exit_code": 0
+  },
+  "focused": {
+    "command": "python -m pytest tests/test_curves_legendre_audit.py -q -o junit_family=legacy --junitxml=/tmp/phase4g2-focused.xml",
+    "exit_code": 0,
+    "passed": 270,
+    "failed": 0,
+    "errors": 0,
+    "xfail": 8,
+    "skipped": 0,
+    "xpassed": 0,
+    "xfail_cases": [
+      {
+        "case": "tests.test_curves_legendre_audit::test_tiny_parameter_large_control_representable_result[None-2-1e-200]",
+        "finding": "4G2-A01"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_tiny_parameter_large_control_representable_result[None-3-1e-150]",
+        "finding": "4G2-A01"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_tiny_parameter_large_control_representable_result[2-2-1e-200]",
+        "finding": "4G2-A01"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_tiny_parameter_large_control_representable_result[2-3-1e-150]",
+        "finding": "4G2-A01"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_tiny_parameter_large_control_representable_result[3-2-1e-200]",
+        "finding": "4G2-A01"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_tiny_parameter_large_control_representable_result[3-3-1e-150]",
+        "finding": "4G2-A01"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_low_degree_extrapolation_avoids_intermediate_overflow[-1e+154]",
+        "finding": "4G2-A02"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_low_degree_extrapolation_avoids_intermediate_overflow[1e+154]",
+        "finding": "4G2-A02"
+      }
+    ],
+    "failure_cases": [],
+    "modules": {
+      "tests.test_curves_legendre_audit": {
+        "passed": 270,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 8,
+        "skipped": 0
+      }
+    },
+    "total": 278,
+    "duration_seconds": 4.277
+  },
+  "full_suite": {
+    "command": "python -m pytest -q -p no:cacheprovider -o junit_family=legacy --junitxml=/tmp/phase4g2-full.xml",
+    "exit_code": 0,
+    "passed": 2885,
+    "failed": 0,
+    "errors": 0,
+    "xfail": 8,
+    "skipped": 0,
+    "xpassed": 0,
+    "xfail_cases": [
+      {
+        "case": "tests.test_curves_legendre_audit::test_tiny_parameter_large_control_representable_result[None-2-1e-200]",
+        "finding": "4G2-A01"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_tiny_parameter_large_control_representable_result[None-3-1e-150]",
+        "finding": "4G2-A01"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_tiny_parameter_large_control_representable_result[2-2-1e-200]",
+        "finding": "4G2-A01"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_tiny_parameter_large_control_representable_result[2-3-1e-150]",
+        "finding": "4G2-A01"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_tiny_parameter_large_control_representable_result[3-2-1e-200]",
+        "finding": "4G2-A01"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_tiny_parameter_large_control_representable_result[3-3-1e-150]",
+        "finding": "4G2-A01"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_low_degree_extrapolation_avoids_intermediate_overflow[-1e+154]",
+        "finding": "4G2-A02"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_low_degree_extrapolation_avoids_intermediate_overflow[1e+154]",
+        "finding": "4G2-A02"
+      }
+    ],
+    "failure_cases": [],
+    "modules": {
+      "tests.test_angles_refraction": {
+        "passed": 80,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_api_edges": {
+        "passed": 19,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_bezier": {
+        "passed": 65,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_bezier_sampling": {
+        "passed": 32,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_bezier_sh_optimization": {
+        "passed": 94,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_core_algebra_audit": {
+        "passed": 124,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_core_packaging": {
+        "passed": 7,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_curves_legendre_audit": {
+        "passed": 270,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 8,
+        "skipped": 0
+      },
+      "tests.test_documentation_infrastructure": {
+        "passed": 3,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_experimental": {
+        "passed": 16,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_final_vector_contracts": {
+        "passed": 39,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_hdr_sh_example": {
+        "passed": 19,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_inverse_optimization": {
+        "passed": 178,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_legendre": {
+        "passed": 171,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_matrix": {
+        "passed": 95,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_matrix_division": {
+        "passed": 40,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_numerical_robustness": {
+        "passed": 55,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_performance_reporting": {
+        "passed": 55,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_pivot_shear": {
+        "passed": 95,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_plane_ray": {
+        "passed": 10,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_planes": {
+        "passed": 44,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_projection": {
+        "passed": 81,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_quaternion": {
+        "passed": 88,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_quaternion_contracts": {
+        "passed": 10,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_quaternion_interpolation": {
+        "passed": 141,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_quaternion_matrix": {
+        "passed": 67,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_quaternion_numerical_repairs": {
+        "passed": 231,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_quaternion_operations": {
+        "passed": 118,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_quaternion_powers": {
+        "passed": 131,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_rays": {
+        "passed": 35,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_sh_rotation": {
+        "passed": 65,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_showcase_examples": {
+        "passed": 8,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_spherical_harmonics": {
+        "passed": 45,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_transformations": {
+        "passed": 127,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_vector_common": {
+        "passed": 49,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_vector_quaternion_optimization": {
+        "passed": 101,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      },
+      "tests.test_wiki_contracts": {
+        "passed": 77,
+        "failed": 0,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      }
+    },
+    "total": 2893,
+    "duration_seconds": 14.281
+  },
+  "reproductions": {
+    "command": "python -m pytest tests/test_curves_legendre_audit.py --runxfail -k 'tiny_parameter_large_control or low_degree_extrapolation_avoids' -q --tb=short -o junit_family=legacy --junitxml=/tmp/phase4g2-reproductions.xml",
+    "exit_code": 1,
+    "deselected": 270,
+    "failures_deliberately_exposed": true,
+    "passed": 0,
+    "failed": 8,
+    "errors": 0,
+    "xfail": 0,
+    "skipped": 0,
+    "xpassed": 0,
+    "xfail_cases": [],
+    "failure_cases": [
+      {
+        "case": "tests.test_curves_legendre_audit::test_tiny_parameter_large_control_representable_result[None-2-1e-200]",
+        "finding": "4G2-A01",
+        "message": "assert 0.0 == 1e-100 \u00b1 3.0e-114\n  \n  comparison failed\n  Obtained: 0.0\n  Expected: 1e-100 \u00b1 3.0e-114"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_tiny_parameter_large_control_representable_result[None-3-1e-150]",
+        "finding": "4G2-A01",
+        "message": "assert 0.0 == 1e-150 \u00b1 3.0e-164\n  \n  comparison failed\n  Obtained: 0.0\n  Expected: 1e-150 \u00b1 3.0e-164"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_tiny_parameter_large_control_representable_result[2-2-1e-200]",
+        "finding": "4G2-A01",
+        "message": "assert [0.0, -0.0] == approx([1e-10...0 \u00b1 3.0e-114])\n  \n  comparison failed. Mismatched elements: 2 / 2:\n  Max absolute difference: 1e-100\n  Max relative difference: inf\n  Index | Obtained | Expected          \n  0     | 0.0      | 1e-100 \u00b1 3.0e-114 \n  1     | -0.0     | -1e-100 \u00b1 3.0e-114"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_tiny_parameter_large_control_representable_result[2-3-1e-150]",
+        "finding": "4G2-A01",
+        "message": "assert [0.0, -0.0] == approx([1e-15...0 \u00b1 3.0e-164])\n  \n  comparison failed. Mismatched elements: 2 / 2:\n  Max absolute difference: 1e-150\n  Max relative difference: inf\n  Index | Obtained | Expected          \n  0     | 0.0      | 1e-150 \u00b1 3.0e-164 \n  1     | -0.0     | -1e-150 \u00b1 3.0e-164"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_tiny_parameter_large_control_representable_result[3-2-1e-200]",
+        "finding": "4G2-A01",
+        "message": "assert [0.0, -0.0, 0.0] == approx([1e-10...0 \u00b1 3.0e-114])\n  \n  comparison failed. Mismatched elements: 3 / 3:\n  Max absolute difference: 1e-100\n  Max relative difference: inf\n  Index | Obtained | Expected          \n  0     | 0.0      | 1e-100 \u00b1 3.0e-114 \n  1     | -0.0     | -1e-100 \u00b1 3.0e-114\n  2     | 0.0      | 1e-100 \u00b1 3.0e-114"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_tiny_parameter_large_control_representable_result[3-3-1e-150]",
+        "finding": "4G2-A01",
+        "message": "assert [0.0, -0.0, 0.0] == approx([1e-15...0 \u00b1 3.0e-164])\n  \n  comparison failed. Mismatched elements: 3 / 3:\n  Max absolute difference: 1e-150\n  Max relative difference: inf\n  Index | Obtained | Expected          \n  0     | 0.0      | 1e-150 \u00b1 3.0e-164 \n  1     | -0.0     | -1e-150 \u00b1 3.0e-164\n  2     | 0.0      | 1e-150 \u00b1 3.0e-164"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_low_degree_extrapolation_avoids_intermediate_overflow[-1e+154]",
+        "finding": "4G2-A02",
+        "message": "assert inf == 1.5e+308 \u00b1 4.5e+293\n  \n  comparison failed\n  Obtained: inf\n  Expected: 1.5e+308 \u00b1 4.5e+293"
+      },
+      {
+        "case": "tests.test_curves_legendre_audit::test_low_degree_extrapolation_avoids_intermediate_overflow[1e+154]",
+        "finding": "4G2-A02",
+        "message": "assert inf == 1.5e+308 \u00b1 4.5e+293\n  \n  comparison failed\n  Obtained: inf\n  Expected: 1.5e+308 \u00b1 4.5e+293"
+      }
+    ],
+    "modules": {
+      "tests.test_curves_legendre_audit": {
+        "passed": 0,
+        "failed": 8,
+        "errors": 0,
+        "xfail": 0,
+        "skipped": 0
+      }
+    },
+    "total": 8,
+    "duration_seconds": 0.165
+  },
+  "confirmed_findings": [
+    {
+      "id": "4G2-A01",
+      "severity": "medium/P2",
+      "sources": [
+        "gem/bezier.py:19-23",
+        "gem/bezier.py:32-35"
+      ],
+      "strict_xfail_cases": 6,
+      "reproductions": [
+        {
+          "function": "quadraticBezierPoint",
+          "t": 1e-200,
+          "controls": [
+            0.0,
+            0.0,
+            1e+300
+          ],
+          "actual": 0.0,
+          "expected": 1e-100
+        },
+        {
+          "function": "cubicBezierPoint",
+          "t": 1e-150,
+          "controls": [
+            0.0,
+            0.0,
+            0.0,
+            1e+300
+          ],
+          "actual": 0.0,
+          "expected": 1e-150
+        }
+      ]
+    },
+    {
+      "id": "4G2-A02",
+      "severity": "medium/P2",
+      "sources": [
+        "gem/legendre.py:36-37"
+      ],
+      "strict_xfail_cases": 2,
+      "reproductions": [
+        {
+          "degree": 2,
+          "order": 0,
+          "x": -1e+154,
+          "actual": "Infinity",
+          "expected": 1.5e+308
+        },
+        {
+          "degree": 2,
+          "order": 0,
+          "x": 1e+154,
+          "actual": "Infinity",
+          "expected": 1.5e+308
+        }
+      ]
+    }
+  ],
+  "bounded_reference_measurements": {
+    "rodrigues_comparisons": 231,
+    "max_nonzero_relative_error": {
+      "degree": 32,
+      "order": 1,
+      "x": 0.875,
+      "expected": -0.3159933009456815,
+      "actual": -0.3159933009456751,
+      "relative_error": 2.0202271290213227e-14
+    },
+    "near_endpoint_degree_1000": {
+      "x": 0.9999999999999999,
+      "actual": 0.9999999999213982,
+      "expected": 0.9999999999444333,
+      "absolute_error": 2.3035129359527673e-11,
+      "classification": "documented high-degree accuracy limitation; no new strict xfail"
+    }
+  },
+  "scope_verification": {
+    "tracked_files_modified": [],
+    "runtime_and_packaging_unchanged": true,
+    "existing_tests_unchanged": true,
+    "protected_file_sha256": {
+      "MANIFEST.in": "6cb1c39df0694debef43ad9cbe6bdd098b0a53fb2bb205fe4372d0e742c81295",
+      "gem/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gem/bezier.py": "477b29f7608d59dbbd438f864814e0311073289b50c1d7df32bfad016dc250bd",
+      "gem/common.py": "2384eae0490eff93499fca6fe56cc25074119b6955b40ca3d6823f8099406ec8",
+      "gem/experimental/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "gem/experimental/_bezier_legacy.py": "39f9522eaeb171837e7797ab604bb4bacf718053375266a61c39a0de9217a034",
+      "gem/experimental/bezier.py": "4d61b9ad9b6a807101a06e4641b74dae96325a82cdc5796bd2326f7f1afdaf15",
+      "gem/experimental/legendre.py": "4f1fb87056d71982405e1cd5d83fbb07fe9f8a9c464d18ac641486cc47633db5",
+      "gem/experimental/sph.py": "192b1c96295ddf6585da4c91c1da372b5c4f53bc844ee9125ff38b913496ff0d",
+      "gem/experimental/sph_irradiance_map.py": "e7d8fa175ad566fb2d4def36978d632a537e930b5acb02396c906ae1465bab94",
+      "gem/experimental/sph_sample.py": "fbf10456e724005116524fa797474fe767cbf0224468cfc878e5fd8e6f278c15",
+      "gem/legendre.py": "382becfb7f224906daeb744a24580108ec0c3b819fdf0cbdc022a789b951606a",
+      "gem/matrix.py": "e539db231c9b71bc0846954f2a0fad0840b0b03ffd78ae65a4189a634b56c17c",
+      "gem/plane.py": "b5d5e78c940c7c7f752e2ce6c4b6e1bc4dc901a89f629e75965c76d698fd2110",
+      "gem/quaternion.py": "f35e99eac8b0563d87b827f38d085d6a83911278eff01ab425dd4317961a8768",
+      "gem/ray.py": "307dfac3a68a2235c3342d4bfe0d93fd15335dba4c28eff4cf6b79ae6167c1a4",
+      "gem/spherical_harmonics.py": "93d004db8a62d88ef82f4320d4ecce05c2017e4ba5bf5311dddb82135c92e11b",
+      "gem/vector.py": "323e1c7a72d03c1e121acf174822265ceff7bed3cdf9e376745eb69707137215",
+      "requirements-audit.txt": "578bc80afdccabe4674a6af66a1d9f3b92534e9007861421070fbf00259dccda",
+      "requirements-docs-browser.txt": "3df06265c5059ec04fbe5ebb56b55248b0ad1812be399bf4493851f65de661af",
+      "requirements-docs.txt": "08ca8bda20ce14c5696e0a3eede8f2a9266f2807c01b6651c0e1ee3718307537",
+      "setup.cfg": "450f74fb1d7adf88243fda39629a6d45c5c26cc0c81f3c40e2ded034693a0885",
+      "setup.py": "172ace9784a0dd5408ea9324adc75a347be4c1ce21a3cec0315059bef0c2784d"
+    },
+    "new_test_sha256": "59319cef7ad809f7fa06e981671c59ea7c2175b27695ac60502d4b4a5210094e",
+    "source_verification_command": "git diff --exit-code db303e99c75807b68f262a69b4c4a00ce5a54420 -- gem setup.py setup.cfg pyproject.toml MANIFEST.in requirements-audit.txt requirements-docs.txt"
+  },
+  "retired_tests": 0,
+  "skips_added": 0,
+  "production_repairs": false,
+  "new_public_apis": false,
+  "performance_benchmarks_run": false
+}
