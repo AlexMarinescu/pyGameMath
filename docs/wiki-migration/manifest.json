@@ -1,0 +1,25 @@
+{
+  "files": {
+    "Contributing.md": "2e38186d5a0619e1bf4003278eac2a6e676dd11cb0953df4d1df36639df82690",
+    "Development-Roadmap.md": "3418b453542a4a69c71d8326448233cdd80f4f62595e2c755780992344834959",
+    "Documentation.md": "f6cb7e6dbcb14bb5e26dcadf6dca491052b0331ab2e6babe804ade3a41d63b9d",
+    "Examples-and-Tutorials.md": "7d63d968070eb1159bf77e82704d78db85028e1f4499d7d8285cc297e9d22dc7",
+    "Getting-Started.md": "e80b4698a01f5df05a1fde34e498abd5305b8f8504eb021d1e0528dff3a6cc2c",
+    "Historical-Home.md": "b79b80ce0ca16dff8dea741462e417eb8d2cf74694934a2af8eac60fd8cd92c8",
+    "Historical-and-Legacy-Notes.md": "5fc8a6428c1413d94151c53f17603c15b713bb6dba497ba5b84d9b32d0b250a5",
+    "Home.md": "bfa1ee2cedc3119fa35dd4a17dd4b4e2d73cacfef935357c5e2be3e9105c22e6",
+    "Mathematical-Conventions.md": "46f8afc4c99028f896cc3667b61c857672203184e545015d1ad6b24c0f15a583",
+    "_Sidebar.md": "fc07ce528ef14b601b322a7cbeac64938a590e59389f71014f38033c4b46500c"
+  },
+  "observed_tip": "715e5039c75e080814a12e957f5148c35cdf8bda",
+  "preserve_existing": [
+    "Common-Functions.md",
+    "Matrix-Class.md",
+    "Plane-Class.md",
+    "Quaternion-Class.md",
+    "Ray-Class.md",
+    "Vector-Class.md"
+  ],
+  "published": false,
+  "schema": "gem-wiki-migration-v1"
+}

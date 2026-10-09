@@ -19,7 +19,7 @@ they do not change existing APIs or block this documentation-only review.
 | 1.0 public stability/versioning promise | Review raw kernels, historical helpers and mutable fields separately from well-documented contracts; confirm proposed semantic-version policy | Passing tests alone cannot freeze every incidental public attribute |
 | Wider shape/scalar/error policy | Keep current narrow contracts; separately design mismatch, nonfinite, degeneracy and numeric-protocol rules | Uniform validation/reflected operators would change current exceptions/accepted operands |
 | Future Ray intersection results | Define hit validity, distance versus parameter and ownership before adding queries; keep legacy end state untouched | Zero end cannot identify an unset hit; silently reinterpreting it would break state semantics |
-| Future module organization and documentation/release tooling | Review cohesive conceptual areas and navigation, then select framework/Wiki migration/build work in later phases | Do not rename current imports or treat provisional API sketches as shipped |
+| Future module organization and release tooling | Review conceptual areas and release tooling separately; MkDocs build and non-destructive Wiki migration are prepared in the documentation website phase | Do not rename current imports or treat provisional API sketches as shipped |
 
 Previously settled row-vector, quaternion, refraction, plane, sampling and legacy
 helper conventions are not reopened here. Their historical decision trail is in

@@ -9,3 +9,7 @@ build/
 .pypirc
 setup.sh
 setup.bat
+
+# Documentation build output
+/site/
+.venv-docs/

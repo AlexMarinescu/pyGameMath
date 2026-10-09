@@ -194,3 +194,5 @@ personal OpenGL projects. Distributed under the [BSD 2-Clause license](LICENSE),
 copyright 2015–2026 Alex Marinescu. Historical attribution remains intact.
 
 Explore the [headless graphics gallery](docs/examples/index.md) for reproducible visual examples.
+
+Browse the [documentation homepage](docs/index.md), [build the website locally](docs/development/website.md), or review the [Wiki migration](docs/development/wiki.md). Website publication remains pending.

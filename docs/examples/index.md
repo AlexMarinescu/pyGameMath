@@ -44,3 +44,10 @@ These are CPU reference calculations and diagrams. They do not create an OpenGL
 context or render through a GPU shader. No new core mathematical APIs are added.
 Continue with the [tutorials](../tutorials/index.md), [API reference](../api/index.md)
 or [documentation index](../README.md).
+
+On a small screen, open an SVG at full size and zoom without losing detail:
+[vector diagram](../../examples/showcase/output/vectors.svg),
+[transformation diagram](../../examples/showcase/output/transforms.svg),
+[SLERP frames](../../examples/showcase/output/quaternions.svg), or
+[Bezier diagram](../../examples/showcase/output/bezier.svg).
+Each linked explanation above provides the caption, numerical reference and source.

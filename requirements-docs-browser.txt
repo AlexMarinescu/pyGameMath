@@ -1,0 +1,2 @@
+# Optional browser verification only; needs an installed Chromium executable.
+playwright==1.62.0
