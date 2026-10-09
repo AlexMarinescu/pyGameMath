@@ -399,7 +399,6 @@ def test_direct_zero_fallbacks_do_not_hide_geometric_degeneracy():
 @pytest.mark.parametrize('api', ['free_slerp','method_slerp','squad4'])
 @pytest.mark.parametrize('sign', [-1.,1.])
 @pytest.mark.parametrize('representation', [-1.,1.])
-@pytest.mark.defect('4G5-A01: subnormal SLERP separation loses the endpoint rotation')
 def test_subnormal_interpolation_endpoint_retains_representable_rotation(api,sign,representation):
     tiny = math.ulp(0.)
     constructed = quaternion.quat_from_axis_angle([1.,0.,0.],math.degrees(2*sign*tiny))
