@@ -345,3 +345,12 @@ of old storage intact. Existing signatures/arithmetic are retained. getViewPort
 now accesses Vector components correctly, preserving historical normalization,
 XY offsets, result shape and zero-input error. See the
 [migration details](../docs/VECTOR_VIEWPORT_CONTRACTS.md).
+
+## Matrix inversion overhead
+
+Phase 3B reduces finite checks, integer denominator arithmetic, unused exact
+4x4 cofactors and temporary result traversals. Exact represented-coefficient
+singularity detection, binary scaling/rescaling, overflow and nonfinite behavior,
+public signatures, row conventions, ownership and ctypes refresh are preserved.
+Public determinants and Matrix2 are unchanged. No epsilon or ordinary-scale
+shortcut is added. See [matched measurements and verification](PHASE3B-MATRIX-INVERSE.md).

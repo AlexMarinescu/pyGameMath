@@ -269,26 +269,16 @@ def inverse2(mat):
     return inverse
 
 def _inverse3_cofactor(mat):
-    ''' Inverse of a 3x3 matrix.'''
-    det = ( mat[0][0] * (mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2]) -
-            mat[0][1] * (mat[1][0] * mat[2][2] - mat[1][2] * mat[2][0]) +
-            mat[0][2] * (mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0]) )
-
-    invDet = 1 / det;
-
-    temp = zero_matrix(3)
-
-    temp[0][0] = (mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2]) * invDet
-    temp[0][1] = (mat[0][2] * mat[2][1] - mat[0][1] * mat[2][2]) * invDet
-    temp[0][2] = (mat[0][1] * mat[1][2] - mat[0][2] * mat[1][1]) * invDet
-    temp[1][0] = (mat[1][2] * mat[2][0] - mat[1][0] * mat[2][2]) * invDet
-    temp[1][1] = (mat[0][0] * mat[2][2] - mat[0][2] * mat[2][0]) * invDet
-    temp[1][2] = (mat[1][0] * mat[0][2] - mat[0][0] * mat[1][2]) * invDet
-    temp[2][0] = (mat[1][0] * mat[2][1] - mat[2][0] * mat[1][1]) * invDet
-    temp[2][1] = (mat[2][0] * mat[0][1] - mat[0][0] * mat[2][1]) * invDet
-    temp[2][2] = (mat[0][0] * mat[1][1] - mat[1][0] * mat[0][1]) * invDet
-
-    return temp
+    """Original cofactor arithmetic using local entries and direct output."""
+    a, b, c = mat[0][0], mat[0][1], mat[0][2]
+    d, e, f = mat[1][0], mat[1][1], mat[1][2]
+    g, h, i = mat[2][0], mat[2][1], mat[2][2]
+    ei_hf = e*i - h*f
+    det = a*ei_hf - b*(d*i - f*g) + c*(d*h - e*g)
+    invDet = 1 / det
+    return [[ei_hf*invDet, (c*h - b*i)*invDet, (b*f - c*e)*invDet],
+            [(f*g - d*i)*invDet, (a*i - c*g)*invDet, (d*c - a*f)*invDet],
+            [(d*h - g*e)*invDet, (g*b - a*h)*invDet, (a*e - d*b)*invDet]]
 
 def _inverse4_cofactor(mat):
     ''' Inverse of a 4x4 matrix '''
@@ -340,30 +330,51 @@ def _inverse4_cofactor(mat):
            + mat[0][3] * inverse[0][3])
 
     # The entries above are cofactors; transpose explicitly for the adjugate.
-    inverse = matrix_div(transpose(inverse), det)
+    return [[inverse[j][i] / det for j in range(4)] for i in range(4)]
 
-    return inverse
+def _det4_exact(mat):
+    """First-row expansion for the integer singularity check only.
+
+    Unlike public det4, no unused cofactor rows are constructed. Integer
+    arithmetic makes this algebraic reduction exact, including at extreme scales.
+    """
+    a, b, c, d = mat[0]
+    e, f, g, h = mat[1]
+    i, j, k, l = mat[2]
+    m, n, o, p = mat[3]
+    kp_lo = k*p - l*o
+    jp_ln = j*p - l*n
+    jo_kn = j*o - k*n
+    ip_lm = i*p - l*m
+    io_km = i*o - k*m
+    in_jm = i*n - j*m
+    return (a*(f*kp_lo - g*jp_ln + h*jo_kn)
+            - b*(e*kp_lo - g*ip_lm + h*io_km)
+            + c*(e*jp_ln - f*ip_lm + h*in_jm)
+            - d*(e*jo_kn - f*io_km + g*in_jm))
 
 def _scaled_cofactor_inverse(mat, size, kernel):
     """Use exact binary row scaling without a near-singular cutoff."""
-    if any(math.isnan(mat[i][j]) or math.isinf(mat[i][j])
-           for i in sm.range(size) for j in sm.range(size)):
+    if any(not math.isfinite(mat[i][j])
+           for i in range(size) for j in range(size)):
         return kernel(mat)
     # Clear binary denominators row by row to detect genuine singularity
     # exactly, without rejecting a small nonzero floating determinant.
     integer_rows = []
     for row in mat[:size]:
         ratios = [float(value).as_integer_ratio() for value in row[:size]]
-        denominator = max(pair[1] for pair in ratios)
-        integer_rows.append([numerator * (denominator // divisor)
+        denominator_bits = max(divisor.bit_length() for _, divisor in ratios)
+        # as_integer_ratio denominators are powers of two. Shifting gives
+        # exactly numerator * (maximum_denominator // denominator).
+        integer_rows.append([numerator << (denominator_bits - divisor.bit_length())
                              for numerator, divisor in ratios])
-    determinant = det3(integer_rows) if size == 3 else det4(integer_rows)
+    determinant = det3(integer_rows) if size == 3 else _det4_exact(integer_rows)
     if determinant == 0:
         raise ZeroDivisionError("Singular matrix")
     exponents = []
     scaled = []
     for row in mat[:size]:
-        largest = max(abs(value) for value in row[:size])
+        largest = max(map(abs, row[:size]))
         if largest == 0.0:
             raise ZeroDivisionError("Singular matrix")
         exponent = math.frexp(largest)[1]

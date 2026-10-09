@@ -1,0 +1,15 @@
+{
+  "baseline": {
+    "passed": 1821,
+    "xfailed": 0
+  },
+  "final": {
+    "passed": 1999,
+    "xfailed": 0,
+    "unexpected_failures": 0,
+    "skipped": 0
+  },
+  "new_independent_regressions": 178,
+  "isolated_installed_wheel_checks": true,
+  "bit_identical_differential_cases": 500
+}
