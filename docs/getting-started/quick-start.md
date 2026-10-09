@@ -185,7 +185,7 @@ transpose policy explicitly; this example verifies memory values, not an OpenGL 
 
 ## Next steps
 
-Use [the API inventory](../architecture/api-inventory.md) to find actual signatures
+Use [the API reference](../api/index.md) to find actual signatures
 and documented constraints, [conventions](../architecture/conventions.md) for
 composition/units and [compatibility](../architecture/compatibility.md) for support
 evidence. The [canonical roadmap](../../ROADMAP.md) describes future features;
