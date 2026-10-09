@@ -364,3 +364,15 @@ preserved. Returning storage remains independent; in-place methods retain receiv
 identity and replacement semantics. Subclasses use the existing operator path.
 Public signatures, exact equality, clamp/transform rules and ctypes interoperation
 are unchanged. See [matched measurements and verification](PHASE3C-VECTOR-QUATERNION.md).
+
+## Bezier and spherical-harmonics overhead
+
+Phase 3D reduces native Vector polynomial temporaries, shares each adaptive
+polygon's chord calculation, caches bounded immutable SH normalization layouts,
+reuses equal associated-Legendre values and avoids three-term rotation generators.
+Polynomial grouping, segment flatness, squared tolerance, depth 16, sampling order,
+builder ownership and scalar/subclass fallbacks are preserved. SH signs/indexing,
+validation, compensation, radiance/irradiance separation and active rotation remain
+unchanged. HDR references regenerate byte-identically on the measured host.
+Scalar evaluation's dispatch cost and the cache memory trade-off are recorded in
+the [performance and compatibility report](PHASE3D-BEZIER-SH.md).

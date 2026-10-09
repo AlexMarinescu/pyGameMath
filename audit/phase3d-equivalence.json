@@ -1,0 +1,79 @@
+{
+  "baseline_commit": "09fb57a31fd1b62fad027822cb4ab1eba52ca158",
+  "bit_identical_checks": {
+    "quadraticBezierPoint": 300,
+    "cubicBezierPoint": 300,
+    "flatness": 150,
+    "subdivide": 150,
+    "basis": 180,
+    "rotation": 200,
+    "benchmark_bezier_quadratic": 1,
+    "benchmark_bezier_cubic": 1,
+    "benchmark_bezier_cubic_scalar": 1,
+    "benchmark_bezier_subdivide_0.1": 1,
+    "benchmark_bezier_subdivide_0.01": 1,
+    "benchmark_bezier_subdivide_0.0001": 1,
+    "benchmark_bezier_subdivide_1e-08": 1,
+    "benchmark_bezier_subdivide_1e-15": 1,
+    "benchmark_bezier_path_8_segments": 1,
+    "benchmark_sh_basis_0_0": 1,
+    "benchmark_sh_basis_2_1": 1,
+    "benchmark_sh_basis_8_3": 1,
+    "benchmark_sh_basis_12_6": 1,
+    "benchmark_sh_project_n64_b1": 1,
+    "benchmark_sh_project_n64_b3": 1,
+    "benchmark_sh_project_n64_b5": 1,
+    "benchmark_sh_project_n256_b1": 1,
+    "benchmark_sh_project_n256_b3": 1,
+    "benchmark_sh_project_n256_b5": 1,
+    "benchmark_sh_project_n1024_b1": 1,
+    "benchmark_sh_project_n1024_b3": 1,
+    "benchmark_sh_project_n1024_b5": 1,
+    "benchmark_sh_convolve_l2": 1,
+    "benchmark_sh_rotate_l2_scalar": 1,
+    "benchmark_sh_rotate_l2_rgb": 1,
+    "benchmark_sh_reconstruct_l2": 1,
+    "benchmark_bezier_raw_split": 1,
+    "benchmark_bezier_raw_subdivide": 1,
+    "benchmark_bezier_raw_flatness": 1,
+    "benchmark_sh_raw_basis_b3": 1,
+    "benchmark_sh_raw_basis_b5": 1,
+    "benchmark_sh_raw_basis_b9": 1,
+    "benchmark_sh_angular_probe_b3": 1
+  },
+  "total": 1313,
+  "unchanged_definitions": {
+    "bezier": [
+      "BezierPath",
+      "_coordinates",
+      "_point",
+      "_split",
+      "_chord_distance"
+    ],
+    "spherical_harmonics": [
+      "Factorial",
+      "K",
+      "SPH",
+      "SPHSample",
+      "GenerateSamples",
+      "_positive_integer",
+      "_rgb",
+      "_coefficient_bands",
+      "project_radiance",
+      "_angular_pixels",
+      "project_angular_probe",
+      "reconstruct",
+      "convolve_diffuse",
+      "legacy_to_canonical",
+      "SPH_IrradianceMapCoeff"
+    ]
+  },
+  "baseline_sha256": {
+    "bezier": "e56248cc533b9f0e34c15e7735453ff67282b8fad033935d07e508f3f8b4469b",
+    "spherical_harmonics": "5aecee97762a59b3aabf57efab10c0c51b5111fe037c76f8acf64dabfa799cf5"
+  },
+  "current_sha256": {
+    "bezier": "477b29f7608d59dbbd438f864814e0311073289b50c1d7df32bfad016dc250bd",
+    "spherical_harmonics": "93d004db8a62d88ef82f4320d4ecce05c2017e4ba5bf5311dddb82135c92e11b"
+  }
+}

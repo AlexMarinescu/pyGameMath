@@ -1,0 +1,14 @@
+{
+  "cold_l2_layout_and_basis_peak_bytes": 1464,
+  "l2_layout_retained_traced_bytes": 904,
+  "layouts_1_through_16_retained_traced_bytes": 160648,
+  "fill_16_layouts_peak_bytes": 174536,
+  "cache": {
+    "maxsize": 16,
+    "currsize": 16,
+    "hits": 1,
+    "misses": 16
+  },
+  "method": "clear cache before tracing; discard each result; peak includes recurrence/output temporaries",
+  "limitations": "tracemalloc Python allocations only, not RSS/native allocations; at most 16 layouts, each O(bands^2)"
+}

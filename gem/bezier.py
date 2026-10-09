@@ -12,6 +12,13 @@ from gem.vector import Vector
 def cubicBezierPoint(t, p0, p1, p2, p3):
     """Evaluate the cubic Bernstein polynomial without changing controls."""
     u = 1 - t
+    if (type(p0) is Vector and type(p1) is Vector and type(p2) is Vector
+            and type(p3) is Vector and p0.size == p1.size == p2.size == p3.size
+            and type(t) in (int, float)):
+        a, b, c, d = p0.vector, p1.vector, p2.vector, p3.vector
+        w0, w1, w2, w3 = u * u * u, 3 * u * u * t, 3 * u * t * t, t * t * t
+        return Vector(p0.size, [(a[i] * w0 + b[i] * w1 + c[i] * w2 + d[i] * w3)
+                                for i in range(p0.size)])
     return (p0 * (u * u * u) + p1 * (3 * u * u * t)
             + p2 * (3 * u * t * t) + p3 * (t * t * t))
 
@@ -19,6 +26,12 @@ def cubicBezierPoint(t, p0, p1, p2, p3):
 def quadraticBezierPoint(t, p0, p1, p2):
     """Evaluate the quadratic Bernstein polynomial."""
     u = 1 - t
+    if (type(p0) is Vector and type(p1) is Vector and type(p2) is Vector
+            and p0.size == p1.size == p2.size and type(t) in (int, float)):
+        a, b, c = p0.vector, p1.vector, p2.vector
+        w0, w1, w2 = u * u, 2 * u * t, t * t
+        return Vector(p0.size, [a[i] * w0 + b[i] * w1 + c[i] * w2
+                                for i in range(p0.size)])
     return p0 * (u * u) + p1 * (2 * u * t) + p2 * (t * t)
 
 
@@ -213,14 +226,30 @@ def _chord_distance(point, start, end):
     return math.hypot(*(a-projection*b for a,b in zip(offset,unit)))
 
 
+def _flatness(polygon):
+    """Reuse a segment's chord without changing control-to-segment distances."""
+    start, end = polygon[0], polygon[-1]
+    chord = tuple(b-a for a,b in zip(start,end))
+    length = math.hypot(*chord)
+    if length == 0:
+        return max(math.hypot(*(p-a for p,a in zip(point,start)))
+                   for point in polygon[1:-1])
+    unit = tuple(value/length for value in chord)
+    distances = []
+    for point in polygon[1:-1]:
+        offset = tuple(p-a for p,a in zip(point,start))
+        projection = max(0, min(length, sum(a*b for a,b in zip(offset,unit))))
+        distances.append(math.hypot(*(a-projection*b for a,b in zip(offset,unit))))
+    return max(distances)
+
+
 def _subdivide(controls, tolerance):
     # Stack order emits left intervals first; bounded without Python recursion.
     stack = [(controls, 0)]
     result = [controls[0]]
     while stack:
         polygon, depth = stack.pop()
-        flatness = max(_chord_distance(p, polygon[0], polygon[-1])
-                       for p in polygon[1:-1])
+        flatness = _flatness(polygon)
         if flatness <= tolerance or depth == 16:
             result.append(polygon[-1])
         else:

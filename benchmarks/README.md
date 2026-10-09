@@ -105,3 +105,26 @@ provide six paired blocks per case. JSON stores individual timings and separate
 profiles. The seeded bootstrap interval describes these blocks, not universal
 speedups or a guaranteed population confidence interval. See the
 [performance report](../audit/PHASE3C-VECTOR-QUATERNION.md).
+
+## Bezier and spherical harmonics comparison
+
+```sh
+python benchmarks/bezier_sh.py --output audit/phase3d-benchmarks.json
+python benchmarks/bezier_sh.py --output audit/phase3d-repeat.json
+python benchmarks/summarize_bezier_sh.py audit/phase3d-performance-summary.json audit/phase3d-benchmarks.json audit/phase3d-repeat.json
+python benchmarks/verify_bezier_sh.py audit/phase3d-equivalence.json
+python benchmarks/verify_hdr_reference.py --output audit/phase3d-hdr-reference.json --output-dir /tmp/phase3d-hdr-reference
+```
+
+Requires the merged PR #36 git object. Phase 3A workloads use independently
+loaded baseline/core Bezier and SH modules. Additional cases cover raw splitting,
+flatness/subdivision, full basis arrays and angular projection. Adaptive output
+counts are checked before timing. Deep cases retain the full depth-16 workload;
+slow single calls can exceed the .02-second calibrated target. Warm basis-layout
+cache costs are separate from cache-miss/resident-memory observations in the
+report. Input generation is excluded; result allocation and validated wrappers
+are included. Three alternating rounds of seven trials in each of two executions
+provide six paired blocks. cProfile/tracemalloc are separate from timing.
+The HDR verifier regenerates into a separate directory and compares coefficients,
+linear values, decoded RGB and all file hashes without replacing golden outputs.
+See the [performance report](../audit/PHASE3D-BEZIER-SH.md).

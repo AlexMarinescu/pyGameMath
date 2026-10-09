@@ -1,0 +1,16 @@
+{
+  "baseline_commit": "09fb57a31fd1b62fad027822cb4ab1eba52ca158",
+  "baseline_passed": 2100,
+  "command": "python -m pytest -q -p no:cacheprovider -o junit_family=legacy --junitxml=/tmp/phase3d-tests.xml",
+  "passed": 2194,
+  "unexpected_failures": 0,
+  "expected_failures": 0,
+  "skipped": 0,
+  "seconds": 7.255,
+  "new_regressions": 94,
+  "packaging": "clean offline wheel/sdist built from copied source; -I installed-wheel checks outside repository",
+  "pytest": "9.1.1",
+  "python": "CPython 3.12.14",
+  "six": "1.17.0",
+  "clean_checkout": "fresh local baseline clone plus staged patch: all 33 paired workloads run; preservation JSON matches; all seven HDR outputs reproduce the same bytes and decoded pixels"
+}
