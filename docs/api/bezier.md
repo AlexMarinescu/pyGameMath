@@ -75,3 +75,5 @@ assert source[1].vector == [1, 0]
 
 Transitional imports reexport the same objects; see [compatibility](legacy.md),
 [decisions](decisions.md) and [index](index.md).
+
+See the [graphics gallery example](../examples/gallery/bezier.md) for an executable visualization.

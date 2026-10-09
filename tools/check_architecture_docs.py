@@ -135,7 +135,7 @@ def check_api_reference(declared, runtime=False):
             'runtime_signatures_checked': runtime, 'omitted_declarations': []}
 
 
-def check(examples=False, getting_started=False, package_root=None, api_reference=False, tutorials=False):
+def check(examples=False, getting_started=False, package_root=None, api_reference=False, tutorials=False, showcase=False):
     pages = PAGES + (['README.md'] + ['docs/getting-started/'+name+'.md'
                      for name in ('README', 'installation', 'quick-start', 'verification')]
                      if getting_started else [])
@@ -143,6 +143,9 @@ def check(examples=False, getting_started=False, package_root=None, api_referenc
         pages += [str(page.relative_to(ROOT)) for page in sorted((ROOT/'docs/api').glob('*.md'))]
     if tutorials:
         pages += [str(page.relative_to(ROOT)) for page in sorted((ROOT/'docs/tutorials').glob('*.md'))]
+    if showcase:
+        pages += [str(page.relative_to(ROOT)) for page in sorted((ROOT/'docs/examples').rglob('*.md'))]
+        pages += ['examples/showcase/README.md']
     report = {'base': BASE, 'pages': pages, 'links_checked': 0,
               'source_declarations_checked': 0, 'examples_executed': 0, 'examples_by_page': {}}
     inventory = (ROOT/'docs/architecture/api-inventory.md').read_text()
@@ -216,11 +219,12 @@ def main():
     parser.add_argument('--getting-started', action='store_true')
     parser.add_argument('--api-reference', action='store_true')
     parser.add_argument('--tutorials', action='store_true')
+    parser.add_argument('--showcase', action='store_true')
     parser.add_argument('--package-root', type=Path,
                         help='execute examples against this installed site-packages directory')
     args = parser.parse_args()
     try:
-        report = check(args.examples, args.getting_started, args.package_root, args.api_reference, args.tutorials)
+        report = check(args.examples, args.getting_started, args.package_root, args.api_reference, args.tutorials, args.showcase)
     except (ValueError, OSError, subprocess.CalledProcessError) as error:
         parser.error(str(error))
     rendered = json.dumps(report, indent=2) + '\n'

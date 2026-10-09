@@ -67,3 +67,5 @@ when Python rows are representable. See [matrix API](../api/matrix.md),
 [transform conventions](../api/transformations.md) and [accuracy](numerical.md).
 Continue with [camera coordinates](camera.md), [interoperability](interop.md) or
 [the tutorial index](index.md).
+
+See the [visual example](../examples/gallery/transforms.md) and its reproducible assets.

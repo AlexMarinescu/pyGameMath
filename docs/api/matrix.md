@@ -97,3 +97,5 @@ else:
 
 Transform methods are documented on [transformations](transformations.md),
 projection on [projection](projection.md). See [decisions](decisions.md) and [index](index.md).
+
+See the [graphics gallery example](../examples/gallery/transforms.md) for an executable visualization.

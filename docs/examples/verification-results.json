@@ -1,0 +1,81 @@
+{
+  "artifacts": {
+    "bezier": {
+      "bytes": 9235,
+      "dimensions": [
+        960,
+        560
+      ],
+      "file": "bezier.svg",
+      "sha256": "94c8b64c95df49c440555030b73e7fc5a712ea0997837e260cbcfe769c848b65"
+    },
+    "quaternions": {
+      "bytes": 4774,
+      "dimensions": [
+        960,
+        560
+      ],
+      "file": "quaternions.svg",
+      "sha256": "73b7adcb4dc216cc4069f52f000f7e2db1283301291b19b2b0f5f0641f00d0af"
+    },
+    "transforms": {
+      "bytes": 5803,
+      "dimensions": [
+        960,
+        560
+      ],
+      "file": "transforms.svg",
+      "sha256": "c2dab13a60c12f8ad07a9f92357f5823656cb2b74cdea7c63858db50365db5c1"
+    },
+    "vectors": {
+      "bytes": 3302,
+      "dimensions": [
+        960,
+        560
+      ],
+      "file": "vectors.svg",
+      "sha256": "7fc8bb7fdea7e24c6fb10378d134c7c6808654d17c21fbbc9f3a0396e9d94b44"
+    }
+  },
+  "base": "da2ad2f7715c81851d7853031616036ddfb4f9e5",
+  "byte_identical_regeneration": [
+    "clean checkout",
+    "isolated wheel",
+    "isolated sdist"
+  ],
+  "documentation": {
+    "constants": 7,
+    "examples_executed": 42,
+    "links_checked": 490,
+    "protected_files_unchanged": 93,
+    "protected_sha256": "701db31c85d278d7d547adca3312ee58f2296dc892a6a9aee10500187ecc5196",
+    "source_declarations_checked": 268
+  },
+  "environment": {
+    "architecture": "x86_64",
+    "os": "Linux",
+    "pytest": "9.1.1",
+    "python": "3.12.14",
+    "six": "1.17.0"
+  },
+  "hdr_png_hashes": {
+    "sh_original": "dfc2e0f5aa7cdee17dc32231ae3258c551cc886eff2bbb01cc43f2e38360174a",
+    "sh_rotated": "c9b205dc7dee31d731685d996326badf9da62c48fe69713b6fbe2fea4fccaac7"
+  },
+  "independent_numerics": {
+    "checks": "vector, transform, SLERP, midpoint, endpoints, order and dense-reference distances",
+    "cubic_dense_reference_max_distances": [
+      0.2504016662754978,
+      0.029907009655643756
+    ]
+  },
+  "open_mathematical_decisions": [],
+  "pytest": {
+    "failed": 0,
+    "passed": 2257,
+    "seconds": 9.96,
+    "skipped": 0,
+    "xfailed": 0
+  },
+  "schema": "gem-showcase-verification-v1"
+}

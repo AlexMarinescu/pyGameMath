@@ -128,3 +128,5 @@ Reconstruction requires supplied unit directions and does not normalize them.
 See [SH API](../api/spherical-harmonics.md), [SH guide](../SPHERICAL_HARMONICS.md),
 [analytical rotation tests](../../tests/test_sh_rotation.py), [accuracy](numerical.md),
 [quaternions](quaternions.md) and [tutorial index](index.md).
+
+See the [visual example](../examples/gallery/lighting.md) and its reproducible assets.

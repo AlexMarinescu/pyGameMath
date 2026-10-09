@@ -148,3 +148,5 @@ assert weights == [0.5, 0.25, 0.25]
 
 See [transforms](transformations.md), [utilities/viewport](common.md),
 [decisions](decisions.md) and [API index](index.md).
+
+See the [graphics gallery example](../examples/gallery/vectors.md) for an executable visualization.
