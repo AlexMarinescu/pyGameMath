@@ -1,0 +1,252 @@
+{
+  "base_commit": "ef5a9a36555163e7e6c5b675400f0d0e86087b29",
+  "environment": {
+    "implementation": "CPython",
+    "python": "3.12.14",
+    "os": "Linux",
+    "architecture": "x86_64",
+    "pytest": "9.1.1",
+    "six": "1.17.0"
+  },
+  "baseline": {
+    "passed": 2260,
+    "expected_failures": 0,
+    "unexpected_failures": 0,
+    "skipped": 0,
+    "seconds": 10.71
+  },
+  "focused": {
+    "total": 124,
+    "passed": 116,
+    "expected_failures": [
+      "tests.test_core_algebra_audit::test_subnormal_quaternion_square_root_axis[components0]",
+      "tests.test_core_algebra_audit::test_subnormal_quaternion_square_root_axis[components1]",
+      "tests.test_core_algebra_audit::test_subnormal_quaternion_logarithm_axis[components0]",
+      "tests.test_core_algebra_audit::test_subnormal_quaternion_logarithm_axis[components1]",
+      "tests.test_core_algebra_audit::test_large_integer_quaternion_power[10000000000000000-data0]",
+      "tests.test_core_algebra_audit::test_large_integer_quaternion_power[10000000000000000-data1]",
+      "tests.test_core_algebra_audit::test_large_integer_quaternion_power[-10000000000000000-data0]",
+      "tests.test_core_algebra_audit::test_large_integer_quaternion_power[-10000000000000000-data1]"
+    ],
+    "unexpected_failures": [],
+    "skipped": [],
+    "reported_seconds": 0.71
+  },
+  "full": {
+    "total": 2384,
+    "passed": 2376,
+    "expected_failures": [
+      "tests.test_core_algebra_audit::test_subnormal_quaternion_square_root_axis[components0]",
+      "tests.test_core_algebra_audit::test_subnormal_quaternion_square_root_axis[components1]",
+      "tests.test_core_algebra_audit::test_subnormal_quaternion_logarithm_axis[components0]",
+      "tests.test_core_algebra_audit::test_subnormal_quaternion_logarithm_axis[components1]",
+      "tests.test_core_algebra_audit::test_large_integer_quaternion_power[10000000000000000-data0]",
+      "tests.test_core_algebra_audit::test_large_integer_quaternion_power[10000000000000000-data1]",
+      "tests.test_core_algebra_audit::test_large_integer_quaternion_power[-10000000000000000-data0]",
+      "tests.test_core_algebra_audit::test_large_integer_quaternion_power[-10000000000000000-data1]"
+    ],
+    "unexpected_failures": [],
+    "skipped": [],
+    "reported_seconds": 11.22
+  },
+  "diagnostic_runxfail": {
+    "total": 124,
+    "passed": 116,
+    "expected_failures": [],
+    "unexpected_failures": [
+      "tests.test_core_algebra_audit::test_subnormal_quaternion_square_root_axis[components0]",
+      "tests.test_core_algebra_audit::test_subnormal_quaternion_square_root_axis[components1]",
+      "tests.test_core_algebra_audit::test_subnormal_quaternion_logarithm_axis[components0]",
+      "tests.test_core_algebra_audit::test_subnormal_quaternion_logarithm_axis[components1]",
+      "tests.test_core_algebra_audit::test_large_integer_quaternion_power[10000000000000000-data0]",
+      "tests.test_core_algebra_audit::test_large_integer_quaternion_power[10000000000000000-data1]",
+      "tests.test_core_algebra_audit::test_large_integer_quaternion_power[-10000000000000000-data0]",
+      "tests.test_core_algebra_audit::test_large_integer_quaternion_power[-10000000000000000-data1]"
+    ],
+    "skipped": [],
+    "reported_seconds": 0.31
+  },
+  "diagnostic_note": "The eight exposed failures are deliberate confirmed findings, not additional unexpected failures.",
+  "reproductions": [
+    {
+      "id": "4G1-A01",
+      "input": [
+        -1.0,
+        5e-324,
+        5e-324,
+        0.0
+      ],
+      "input_norm": 1.0,
+      "power": {
+        "exponent": 0.5,
+        "actual": [
+          6.123233995736766e-17,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "expected": [
+          0.0,
+          0.7071067811865476,
+          0.7071067811865476,
+          0.0
+        ],
+        "actual_norm": 1.4142135623730951
+      },
+      "log": {
+        "actual": [
+          0.0,
+          3.141592653589793,
+          3.141592653589793,
+          0.0
+        ],
+        "expected": [
+          0.0,
+          2.221441469079183,
+          2.221441469079183,
+          0.0
+        ]
+      }
+    },
+    {
+      "id": "4G1-A01",
+      "input": [
+        -1.0,
+        5e-324,
+        -5e-324,
+        5e-324
+      ],
+      "input_norm": 1.0,
+      "power": {
+        "exponent": 0.5,
+        "actual": [
+          6.123233995736766e-17,
+          1.0,
+          -1.0,
+          1.0
+        ],
+        "expected": [
+          0.0,
+          0.5773502691896257,
+          -0.5773502691896257,
+          0.5773502691896257
+        ],
+        "actual_norm": 1.7320508075688772
+      },
+      "log": {
+        "actual": [
+          0.0,
+          3.141592653589793,
+          -3.141592653589793,
+          3.141592653589793
+        ],
+        "expected": [
+          0.0,
+          1.8137993642342176,
+          -1.8137993642342176,
+          1.8137993642342176
+        ]
+      }
+    },
+    {
+      "id": "4G1-A02",
+      "input": [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "exponent": 10000000000000000,
+      "expected": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actual": [
+        0.981564736578555,
+        -0.19112997647012858,
+        -0.0,
+        -0.0
+      ],
+      "absolute_rotation_dot": 0.981564736578555
+    },
+    {
+      "id": "4G1-A02",
+      "input": [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "exponent": -10000000000000000,
+      "expected": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actual": [
+        0.981564736578555,
+        0.19112997647012858,
+        0.0,
+        0.0
+      ],
+      "absolute_rotation_dot": 0.981564736578555
+    },
+    {
+      "id": "4G1-A02",
+      "input": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "exponent": 10000000000000000,
+      "expected": [
+        -0.5,
+        -0.5,
+        -0.5,
+        -0.5
+      ],
+      "actual": [
+        0.014858533001856982,
+        -0.5772865331292115,
+        -0.5772865331292115,
+        -0.5772865331292115
+      ],
+      "absolute_rotation_dot": 0.8585005331928888
+    },
+    {
+      "id": "4G1-A02",
+      "input": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "exponent": -10000000000000000,
+      "expected": [
+        -0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "actual": [
+        0.014858533001856982,
+        0.5772865331292115,
+        0.5772865331292115,
+        0.5772865331292115
+      ],
+      "absolute_rotation_dot": 0.8585005331928888
+    }
+  ],
+  "protected_paths_unchanged": [
+    "gem",
+    "setup.py",
+    "setup.cfg",
+    "MANIFEST.in",
+    "pyproject.toml",
+    "requirements-docs.txt"
+  ]
+}
