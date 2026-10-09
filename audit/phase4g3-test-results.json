@@ -1,0 +1,969 @@
+{
+  "schema": "gem-independent-sh-audit-v1",
+  "base_commit": "01ca2fc9f84e45e2c6978f3f5f9a173831533d97",
+  "base_includes_merged_pr": 53,
+  "branch": "audit/phase4g3-spherical-harmonics",
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "implementation": "CPython",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "architecture": "x86_64",
+    "cpu": "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz",
+    "dependencies": {
+      "pytest": "9.1.1",
+      "six": "1.17.0"
+    },
+    "other_interpreters_or_platforms_verified": false
+  },
+  "runs": [
+    {
+      "name": "unchanged master baseline",
+      "command": "python -m pytest -q -p no:cacheprovider -o junit_family=legacy --junitxml=/tmp/phase4g3-baseline.xml",
+      "exit_code": 0,
+      "counts": {
+        "passed": 2984,
+        "failed": 0,
+        "error": 0,
+        "xfailed": 0,
+        "skipped": 0
+      },
+      "total": 2984,
+      "seconds": 15.749,
+      "nonpassing_cases": []
+    },
+    {
+      "name": "new audit tests",
+      "command": "python -m pytest tests/test_spherical_harmonics_audit.py -q --tb=short -o junit_family=legacy --junitxml=/tmp/phase4g3-focused.xml",
+      "exit_code": 0,
+      "counts": {
+        "passed": 181,
+        "failed": 0,
+        "error": 0,
+        "xfailed": 10,
+        "skipped": 0
+      },
+      "total": 191,
+      "seconds": 3.698,
+      "nonpassing_cases": [
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_basis_retains_transverse_components[1e-09-0.0-1-1]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: near-pole transverse information lost through cos(theta)"
+          },
+          "message": "4G3-A01: near-pole transverse information lost through cos(theta)"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_basis_retains_transverse_components[1e-12-0.7-1--1]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: near-pole transverse information lost through cos(theta)"
+          },
+          "message": "4G3-A01: near-pole transverse information lost through cos(theta)"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_basis_retains_transverse_components[1e-100-0.0-1-1]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: near-pole transverse information lost through cos(theta)"
+          },
+          "message": "4G3-A01: near-pole transverse information lost through cos(theta)"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_basis_retains_transverse_components[3.141592652589793-0.0-1-1]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: near-pole transverse information lost through cos(theta)"
+          },
+          "message": "4G3-A01: near-pole transverse information lost through cos(theta)"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_basis_retains_transverse_components[3.141592653588793-0.7-2--1]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: near-pole transverse information lost through cos(theta)"
+          },
+          "message": "4G3-A01: near-pole transverse information lost through cos(theta)"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_basis_retains_transverse_components[1e-09-0.3-2-2]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: near-pole transverse information lost through cos(theta)"
+          },
+          "message": "4G3-A01: near-pole transverse information lost through cos(theta)"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_reconstruction_retains_unit_direction[d0-3]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: reconstruction discards supplied transverse components"
+          },
+          "message": "4G3-A01: reconstruction discards supplied transverse components"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_reconstruction_retains_unit_direction[d1-1]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: reconstruction discards supplied transverse components"
+          },
+          "message": "4G3-A01: reconstruction discards supplied transverse components"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_reconstruction_retains_unit_direction[d2-7]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: reconstruction discards supplied transverse components"
+          },
+          "message": "4G3-A01: reconstruction discards supplied transverse components"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_reconstruction_retains_unit_direction[d3-5]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: reconstruction discards supplied transverse components"
+          },
+          "message": "4G3-A01: reconstruction discards supplied transverse components"
+        }
+      ]
+    },
+    {
+      "name": "confirmed reproductions with xfail disabled",
+      "command": "python -m pytest tests/test_spherical_harmonics_audit.py --runxfail -k near_pole -q --tb=short -o junit_family=legacy --junitxml=/tmp/phase4g3-reproductions.xml",
+      "exit_code": 1,
+      "counts": {
+        "passed": 0,
+        "failed": 10,
+        "error": 0,
+        "xfailed": 0,
+        "skipped": 0
+      },
+      "total": 10,
+      "seconds": 0.282,
+      "nonpassing_cases": [
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_basis_retains_transverse_components[1e-09-0.0-1-1]",
+          "outcome": "failed",
+          "properties": {
+            "defect_id": "4G3-A01: near-pole transverse information lost through cos(theta)"
+          },
+          "message": "assert -0.0 == -4.8860251190292e-10 \u00b1 1.5e-23\n  \n  comparison failed\n  Obtained: -0.0\n  Expected: -4.8860251190292e-10 \u00b1 1.5e-23"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_basis_retains_transverse_components[1e-12-0.7-1--1]",
+          "outcome": "failed",
+          "properties": {
+            "defect_id": "4G3-A01: near-pole transverse information lost through cos(theta)"
+          },
+          "message": "assert -0.0 == -3.1476638019...e-13 \u00b1 9.4e-27\n  \n  comparison failed\n  Obtained: -0.0\n  Expected: -3.1476638019662544e-13 \u00b1 9.4e-27"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_basis_retains_transverse_components[1e-100-0.0-1-1]",
+          "outcome": "failed",
+          "properties": {
+            "defect_id": "4G3-A01: near-pole transverse information lost through cos(theta)"
+          },
+          "message": "assert -0.0 == -4.8860251190...101 \u00b1 1.5e-114\n  \n  comparison failed\n  Obtained: -0.0\n  Expected: -4.886025119029199e-101 \u00b1 1.5e-114"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_basis_retains_transverse_components[3.141592652589793-0.0-1-1]",
+          "outcome": "failed",
+          "properties": {
+            "defect_id": "4G3-A01: near-pole transverse information lost through cos(theta)"
+          },
+          "message": "assert -0.0 == -4.8860261216...e-10 \u00b1 1.5e-23\n  \n  comparison failed\n  Obtained: -0.0\n  Expected: -4.886026121666232e-10 \u00b1 1.5e-23"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_basis_retains_transverse_components[3.141592653588793-0.7-2--1]",
+          "outcome": "failed",
+          "properties": {
+            "defect_id": "4G3-A01: near-pole transverse information lost through cos(theta)"
+          },
+          "message": "assert 0.0 == 7.03987790270...e-13 \u00b1 2.1e-26\n  \n  comparison failed\n  Obtained: 0.0\n  Expected: 7.039877902709124e-13 \u00b1 2.1e-26"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_basis_retains_transverse_components[1e-09-0.3-2-2]",
+          "outcome": "failed",
+          "properties": {
+            "defect_id": "4G3-A01: near-pole transverse information lost through cos(theta)"
+          },
+          "message": "assert 0.0 == 4.50859565390...e-19 \u00b1 1.4e-32\n  \n  comparison failed\n  Obtained: 0.0\n  Expected: 4.508595653906588e-19 \u00b1 1.4e-32"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_reconstruction_retains_unit_direction[d0-3]",
+          "outcome": "failed",
+          "properties": {
+            "defect_id": "4G3-A01: reconstruction discards supplied transverse components"
+          },
+          "message": "assert [0.0, 0.0, 0.0] == approx([-4.88...09 \u00b1 5.9e-23])\n  \n  comparison failed. Mismatched elements: 3 / 3:\n  Max absolute difference: 1.95441004761168e-09\n  Max relative difference: inf\n  Index | Obtained | Expected                       \n  0     | 0.0      | -4.8860251190292e-10 \u00b1 1.5e-23 \n  1     | 0.0      | -9.7720502380584e-10 \u00b1 2.9e-23 \n  2     | 0.0      | -1.95441004761168e-09 \u00b1 5.9e-23"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_reconstruction_retains_unit_direction[d1-1]",
+          "outcome": "failed",
+          "properties": {
+            "defect_id": "4G3-A01: reconstruction discards supplied transverse components"
+          },
+          "message": "assert [0.0, 0.0, 0.0] == approx([-4.88...09 \u00b1 5.9e-23])\n  \n  comparison failed. Mismatched elements: 3 / 3:\n  Max absolute difference: 1.95441004761168e-09\n  Max relative difference: inf\n  Index | Obtained | Expected                       \n  0     | 0.0      | -4.8860251190292e-10 \u00b1 1.5e-23 \n  1     | 0.0      | -9.7720502380584e-10 \u00b1 2.9e-23 \n  2     | 0.0      | -1.95441004761168e-09 \u00b1 5.9e-23"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_reconstruction_retains_unit_direction[d2-7]",
+          "outcome": "failed",
+          "properties": {
+            "defect_id": "4G3-A01: reconstruction discards supplied transverse components"
+          },
+          "message": "assert [0.0, 0.0, 0.0] == approx([1.092...09 \u00b1 1.3e-22])\n  \n  comparison failed. Mismatched elements: 3 / 3:\n  Max absolute difference: 4.370193722368317e-09\n  Max relative difference: inf\n  Index | Obtained | Expected                        \n  0     | 0.0      | 1.0925484305920793e-09 \u00b1 3.3e-23\n  1     | 0.0      | 2.1850968611841586e-09 \u00b1 6.6e-23\n  2     | 0.0      | 4.370193722368317e-09 \u00b1 1.3e-22"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_reconstruction_retains_unit_direction[d3-5]",
+          "outcome": "failed",
+          "properties": {
+            "defect_id": "4G3-A01: reconstruction discards supplied transverse components"
+          },
+          "message": "assert [0.0, 0.0, 0.0] == approx([1.092...09 \u00b1 1.3e-22])\n  \n  comparison failed. Mismatched elements: 3 / 3:\n  Max absolute difference: 4.370193722368317e-09\n  Max relative difference: inf\n  Index | Obtained | Expected                        \n  0     | 0.0      | 1.0925484305920793e-09 \u00b1 3.3e-23\n  1     | 0.0      | 2.1850968611841586e-09 \u00b1 6.6e-23\n  2     | 0.0      | 4.370193722368317e-09 \u00b1 1.3e-22"
+        }
+      ]
+    },
+    {
+      "name": "complete suite",
+      "command": "python -m pytest -q -p no:cacheprovider -o junit_family=legacy --junitxml=/tmp/phase4g3-full.xml",
+      "exit_code": 0,
+      "counts": {
+        "passed": 3165,
+        "failed": 0,
+        "error": 0,
+        "xfailed": 10,
+        "skipped": 0
+      },
+      "total": 3175,
+      "seconds": 15.499,
+      "nonpassing_cases": [
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_basis_retains_transverse_components[1e-09-0.0-1-1]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: near-pole transverse information lost through cos(theta)"
+          },
+          "message": "4G3-A01: near-pole transverse information lost through cos(theta)"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_basis_retains_transverse_components[1e-12-0.7-1--1]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: near-pole transverse information lost through cos(theta)"
+          },
+          "message": "4G3-A01: near-pole transverse information lost through cos(theta)"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_basis_retains_transverse_components[1e-100-0.0-1-1]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: near-pole transverse information lost through cos(theta)"
+          },
+          "message": "4G3-A01: near-pole transverse information lost through cos(theta)"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_basis_retains_transverse_components[3.141592652589793-0.0-1-1]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: near-pole transverse information lost through cos(theta)"
+          },
+          "message": "4G3-A01: near-pole transverse information lost through cos(theta)"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_basis_retains_transverse_components[3.141592653588793-0.7-2--1]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: near-pole transverse information lost through cos(theta)"
+          },
+          "message": "4G3-A01: near-pole transverse information lost through cos(theta)"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_basis_retains_transverse_components[1e-09-0.3-2-2]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: near-pole transverse information lost through cos(theta)"
+          },
+          "message": "4G3-A01: near-pole transverse information lost through cos(theta)"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_reconstruction_retains_unit_direction[d0-3]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: reconstruction discards supplied transverse components"
+          },
+          "message": "4G3-A01: reconstruction discards supplied transverse components"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_reconstruction_retains_unit_direction[d1-1]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: reconstruction discards supplied transverse components"
+          },
+          "message": "4G3-A01: reconstruction discards supplied transverse components"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_reconstruction_retains_unit_direction[d2-7]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: reconstruction discards supplied transverse components"
+          },
+          "message": "4G3-A01: reconstruction discards supplied transverse components"
+        },
+        {
+          "id": "tests.test_spherical_harmonics_audit::test_near_pole_reconstruction_retains_unit_direction[d3-5]",
+          "outcome": "xfailed",
+          "properties": {
+            "defect_id": "4G3-A01: reconstruction discards supplied transverse components"
+          },
+          "message": "4G3-A01: reconstruction discards supplied transverse components"
+        }
+      ]
+    }
+  ],
+  "new_audit_cases": 191,
+  "existing_tests_deleted_weakened_or_skipped": 0,
+  "retired_tests": 0,
+  "findings": [
+    {
+      "id": "4G3-A01",
+      "severity": "low (P3)",
+      "classification": "confirmed defect",
+      "title": "Near-pole transverse components lost by SH coordinate conversion",
+      "strict_xfail_cases": 10,
+      "locations": [
+        "gem/spherical_harmonics.py:43-47",
+        "gem/spherical_harmonics.py:132-138",
+        "gem/spherical_harmonics.py:243"
+      ],
+      "basis_reproductions": [
+        {
+          "degree": 1,
+          "order": 1,
+          "theta": 1e-09,
+          "phi": 0.0,
+          "actual": -0.0,
+          "independent_expected": -4.8860251190292e-10,
+          "reference": "closed-form Cartesian Y_lm evaluated with sin(theta) and cos(theta)",
+          "absolute_error": 4.8860251190292e-10,
+          "relative_error": 1.0
+        },
+        {
+          "degree": 1,
+          "order": -1,
+          "theta": 1e-12,
+          "phi": 0.7,
+          "actual": -0.0,
+          "independent_expected": -3.1476638019662544e-13,
+          "reference": "closed-form Cartesian Y_lm evaluated with sin(theta) and cos(theta)",
+          "absolute_error": 3.1476638019662544e-13,
+          "relative_error": 1.0
+        },
+        {
+          "degree": 1,
+          "order": 1,
+          "theta": 1e-100,
+          "phi": 0.0,
+          "actual": -0.0,
+          "independent_expected": -4.886025119029199e-101,
+          "reference": "closed-form Cartesian Y_lm evaluated with sin(theta) and cos(theta)",
+          "absolute_error": 4.886025119029199e-101,
+          "relative_error": 1.0
+        },
+        {
+          "degree": 1,
+          "order": 1,
+          "theta": 3.141592652589793,
+          "phi": 0.0,
+          "actual": -0.0,
+          "independent_expected": -4.886026121666232e-10,
+          "reference": "closed-form Cartesian Y_lm evaluated with sin(theta) and cos(theta)",
+          "absolute_error": 4.886026121666232e-10,
+          "relative_error": 1.0
+        },
+        {
+          "degree": 2,
+          "order": -1,
+          "theta": 3.141592653588793,
+          "phi": 0.7,
+          "actual": 0.0,
+          "independent_expected": 7.039877902709124e-13,
+          "reference": "closed-form Cartesian Y_lm evaluated with sin(theta) and cos(theta)",
+          "absolute_error": 7.039877902709124e-13,
+          "relative_error": 1.0
+        },
+        {
+          "degree": 2,
+          "order": 2,
+          "theta": 1e-09,
+          "phi": 0.3,
+          "actual": 0.0,
+          "independent_expected": 4.508595653906588e-19,
+          "reference": "closed-form Cartesian Y_lm evaluated with sin(theta) and cos(theta)",
+          "absolute_error": 4.508595653906588e-19,
+          "relative_error": 1.0
+        }
+      ],
+      "reconstruction_reproductions": [
+        {
+          "direction": [
+            1e-09,
+            0.0,
+            1.0
+          ],
+          "norm": 1.0,
+          "coefficient_index": 3,
+          "actual": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "independent_expected": [
+            -4.8860251190292e-10,
+            -9.7720502380584e-10,
+            -1.95441004761168e-09
+          ]
+        },
+        {
+          "direction": [
+            0.0,
+            1e-09,
+            1.0
+          ],
+          "norm": 1.0,
+          "coefficient_index": 1,
+          "actual": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "independent_expected": [
+            -4.8860251190292e-10,
+            -9.7720502380584e-10,
+            -1.95441004761168e-09
+          ]
+        },
+        {
+          "direction": [
+            1e-09,
+            0.0,
+            -1.0
+          ],
+          "norm": 1.0,
+          "coefficient_index": 7,
+          "actual": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "independent_expected": [
+            1.0925484305920793e-09,
+            2.1850968611841586e-09,
+            4.370193722368317e-09
+          ]
+        },
+        {
+          "direction": [
+            0.0,
+            1e-09,
+            -1.0
+          ],
+          "norm": 1.0,
+          "coefficient_index": 5,
+          "actual": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "independent_expected": [
+            1.0925484305920793e-09,
+            2.1850968611841586e-09,
+            4.370193722368317e-09
+          ]
+        }
+      ]
+    }
+  ],
+  "numerical_metrics": {
+    "rodrigues_sph_comparisons": 280,
+    "maximum_normalization_relative_error": 2.1556377933281678e-16,
+    "maximum_sph_absolute_error": [
+      1.2656542480726785e-14,
+      85,
+      85,
+      0.0
+    ],
+    "maximum_sph_relative_error_for_reference_magnitude_above_1e_minus_12": [
+      1.500333053443023e-13,
+      85,
+      0,
+      0.875
+    ],
+    "orthonormality_terms": 49,
+    "orthonormality_integrals": 1225,
+    "quadrature_sphere_samples": 384,
+    "maximum_orthonormality_absolute_error": 1.1102230246251565e-15,
+    "maximum_addition_theorem_relative_error": 1.7100754086142905e-14,
+    "quadrature_convergence": [
+      {
+        "mapping": "angular",
+        "width": 16,
+        "height": 8,
+        "rgb": [
+          1,
+          2,
+          4
+        ],
+        "maximum_irradiance_error_at_positive_axes": 0.008468362136595076,
+        "dc_maximum_absolute_error": 0.025117847267662086
+      },
+      {
+        "mapping": "latlong",
+        "width": 16,
+        "height": 8,
+        "rgb": [
+          1,
+          2,
+          4
+        ],
+        "maximum_irradiance_error_at_positive_axes": 0.10496828207289965,
+        "dc_maximum_absolute_error": 0.0
+      },
+      {
+        "mapping": "angular",
+        "width": 32,
+        "height": 16,
+        "rgb": [
+          1,
+          2,
+          4
+        ],
+        "maximum_irradiance_error_at_positive_axes": 0.0012372309504371515,
+        "dc_maximum_absolute_error": 0.003727000708250827
+      },
+      {
+        "mapping": "latlong",
+        "width": 32,
+        "height": 16,
+        "rgb": [
+          1,
+          2,
+          4
+        ],
+        "maximum_irradiance_error_at_positive_axes": 0.02547838245223133,
+        "dc_maximum_absolute_error": 0.0
+      },
+      {
+        "mapping": "angular",
+        "width": 64,
+        "height": 32,
+        "rgb": [
+          1,
+          2,
+          4
+        ],
+        "maximum_irradiance_error_at_positive_axes": 0.00040017757589261294,
+        "dc_maximum_absolute_error": 0.0012060638254389744
+      },
+      {
+        "mapping": "latlong",
+        "width": 64,
+        "height": 32,
+        "rgb": [
+          1,
+          2,
+          4
+        ],
+        "maximum_irradiance_error_at_positive_axes": 0.006323477561748447,
+        "dc_maximum_absolute_error": 0.0
+      },
+      {
+        "mapping": "angular",
+        "width": 128,
+        "height": 64,
+        "rgb": [
+          1,
+          2,
+          4
+        ],
+        "maximum_irradiance_error_at_positive_axes": 5.822676964406526e-05,
+        "dc_maximum_absolute_error": 0.00017528913747355546
+      },
+      {
+        "mapping": "latlong",
+        "width": 128,
+        "height": 64,
+        "rgb": [
+          1,
+          2,
+          4
+        ],
+        "maximum_irradiance_error_at_positive_axes": 0.0015780113294834308,
+        "dc_maximum_absolute_error": 0.0
+      }
+    ]
+  },
+  "documented_range_observations": [
+    {
+      "classification": "documented high-order numerical limitation",
+      "degree": 85,
+      "order": 85,
+      "actual": -1.2895749521027382,
+      "independent_expected": -1.289574952102756
+    },
+    {
+      "classification": "documented high-order numerical limitation",
+      "degree": 86,
+      "order": 86,
+      "actual": {
+        "exception": "OverflowError",
+        "message": "int too large to convert to float"
+      },
+      "independent_expected": 1.2933182834951145
+    },
+    {
+      "classification": "documented high-order numerical limitation",
+      "degree": 170,
+      "order": 0,
+      "actual": "-inf",
+      "independent_expected": -0.15684686903744635
+    },
+    {
+      "classification": "documented extreme-coefficient intermediate overflow",
+      "operation": "identity L2 rotation, only c6=1e308",
+      "actual_c6": "inf",
+      "independent_expected_c6": 1e+308
+    },
+    {
+      "classification": "documented extreme-value product underflow",
+      "operation": "project one sample, RGB=[1e-300,0,0], Y1,-1 at transverse 1e-100, weight=1e300",
+      "actual": 0.0,
+      "independent_expected": -4.886025119029199e-101
+    },
+    {
+      "classification": "documented extreme-value product overflow",
+      "operation": "one angular center pixel, RGB=[1e307,0,0], one band",
+      "actual": "inf",
+      "independent_expected": 1.1136655993663415e+308
+    }
+  ],
+  "hdr_reference_verification": {
+    "command": [
+      "/workspace/.venvs/pyGameMath/bin/python",
+      "-m",
+      "examples.hdr_sh.regenerate",
+      "--output-dir",
+      "/tmp/phase4g3-hdr-reference"
+    ],
+    "files": {
+      "irradiance_coefficients.glsl": {
+        "committed_sha256": "8d0d751cf32b8dd2a5653bda2187ef96a2bba6eaebbf1b8f4e5899f238323bc4",
+        "generated_sha256": "8d0d751cf32b8dd2a5653bda2187ef96a2bba6eaebbf1b8f4e5899f238323bc4",
+        "bytes_identical": true,
+        "bytes": 607
+      },
+      "reference.json": {
+        "committed_sha256": "99fbca270299bf908ea7ba6d8e395ddb548d6531caa79d317d38e035877ee897",
+        "generated_sha256": "99fbca270299bf908ea7ba6d8e395ddb548d6531caa79d317d38e035877ee897",
+        "bytes_identical": true,
+        "bytes": 6371
+      },
+      "sh_original.png": {
+        "committed_sha256": "dfc2e0f5aa7cdee17dc32231ae3258c551cc886eff2bbb01cc43f2e38360174a",
+        "generated_sha256": "dfc2e0f5aa7cdee17dc32231ae3258c551cc886eff2bbb01cc43f2e38360174a",
+        "bytes_identical": true,
+        "bytes": 11407,
+        "width": 192,
+        "height": 192,
+        "decoded_rgb_identical": true,
+        "minimum_byte": 0,
+        "maximum_byte": 211,
+        "mean_byte": 102.34946469907408,
+        "decoded_rgb_sha256": "fee29ccb805026ebe54c80a53c9bb7a93a5af7c4fadd9292d8f424dfff1a3c1f"
+      },
+      "sh_original_coefficients.glsl": {
+        "committed_sha256": "19e5f8c73e60dac5f0b893e1ae1ae54413c13049a7a32ab7c24c2564d4f055c7",
+        "generated_sha256": "19e5f8c73e60dac5f0b893e1ae1ae54413c13049a7a32ab7c24c2564d4f055c7",
+        "bytes_identical": true,
+        "bytes": 610
+      },
+      "sh_rotated.png": {
+        "committed_sha256": "c9b205dc7dee31d731685d996326badf9da62c48fe69713b6fbe2fea4fccaac7",
+        "generated_sha256": "c9b205dc7dee31d731685d996326badf9da62c48fe69713b6fbe2fea4fccaac7",
+        "bytes_identical": true,
+        "bytes": 16733,
+        "width": 192,
+        "height": 192,
+        "decoded_rgb_identical": true,
+        "minimum_byte": 0,
+        "maximum_byte": 211,
+        "mean_byte": 102.34946469907408,
+        "decoded_rgb_sha256": "07b6c059649bdca9f030bc2f55a09642d761689fd731b7f5bf3886fe820b041a"
+      },
+      "sh_rotated_coefficients.glsl": {
+        "committed_sha256": "a0997cb065d9d0c6c80c8bc8078e0c45505830b03f50753614fff45b08b87b12",
+        "generated_sha256": "a0997cb065d9d0c6c80c8bc8078e0c45505830b03f50753614fff45b08b87b12",
+        "bytes_identical": true,
+        "bytes": 610
+      },
+      "visualization.json": {
+        "committed_sha256": "ab28ea8ab67db742626ba4fc95595f8c06496b1eb2c4d8612c18ee94e008d0f2",
+        "generated_sha256": "ab28ea8ab67db742626ba4fc95595f8c06496b1eb2c4d8612c18ee94e008d0f2",
+        "bytes_identical": true,
+        "bytes": 8582
+      }
+    },
+    "coefficient_equality": {
+      "radiance_coefficients": true,
+      "rotated_radiance_coefficients": true,
+      "irradiance_coefficients": true
+    },
+    "selected_linear_pixels_identical": true,
+    "goldens_modified": false,
+    "environment": {
+      "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+      "zlib": "1.3.2",
+      "zlib_runtime": "1.3.2"
+    },
+    "limitations": "byte identity verified on this host; Python/libm and zlib/platform changes can affect floating outputs or compressed bytes"
+  },
+  "preservation": {
+    "protected_files": [
+      {
+        "path": "MANIFEST.in",
+        "baseline_sha256": "6cb1c39df0694debef43ad9cbe6bdd098b0a53fb2bb205fe4372d0e742c81295",
+        "current_sha256": "6cb1c39df0694debef43ad9cbe6bdd098b0a53fb2bb205fe4372d0e742c81295",
+        "unchanged": true
+      },
+      {
+        "path": "examples/hdr_sh/README.md",
+        "baseline_sha256": "408230f34af26aaf52617c3ae11dac305f4f704701e319a82a48379f07fa350c",
+        "current_sha256": "408230f34af26aaf52617c3ae11dac305f4f704701e319a82a48379f07fa350c",
+        "unchanged": true
+      },
+      {
+        "path": "examples/hdr_sh/__init__.py",
+        "baseline_sha256": "927bde0d2ec6847c46601cb8e6d0a913a5f5d293b968ace49ef197937e627aa9",
+        "current_sha256": "927bde0d2ec6847c46601cb8e6d0a913a5f5d293b968ace49ef197937e627aa9",
+        "unchanged": true
+      },
+      {
+        "path": "examples/hdr_sh/diffuse.glsl",
+        "baseline_sha256": "3dad19e09ec65f314bbc6f8eab010709950de3842d6574d090fd6bcc1dc1dc1b",
+        "current_sha256": "3dad19e09ec65f314bbc6f8eab010709950de3842d6574d090fd6bcc1dc1dc1b",
+        "unchanged": true
+      },
+      {
+        "path": "examples/hdr_sh/environment.py",
+        "baseline_sha256": "ab8737e7219344efe31c22facd4669a7638dde48210002f9b892cea165ce4f5a",
+        "current_sha256": "ab8737e7219344efe31c22facd4669a7638dde48210002f9b892cea165ce4f5a",
+        "unchanged": true
+      },
+      {
+        "path": "examples/hdr_sh/fixtures/asymmetric.json",
+        "baseline_sha256": "e16c79552bb5d6b14b68a4b6c6d7d5eb0fca03e8fd6c1bacd82ccafebf411dd7",
+        "current_sha256": "e16c79552bb5d6b14b68a4b6c6d7d5eb0fca03e8fd6c1bacd82ccafebf411dd7",
+        "unchanged": true
+      },
+      {
+        "path": "examples/hdr_sh/reference.py",
+        "baseline_sha256": "28595b3931b5c70cb09da98d48bd5aefa4d22827eb4126555b5a97d0956f390d",
+        "current_sha256": "28595b3931b5c70cb09da98d48bd5aefa4d22827eb4126555b5a97d0956f390d",
+        "unchanged": true
+      },
+      {
+        "path": "examples/hdr_sh/regenerate.py",
+        "baseline_sha256": "341d4f25fe246a57a872861484eb99ffe873307a2b6b068303b4a83eaa369e3a",
+        "current_sha256": "341d4f25fe246a57a872861484eb99ffe873307a2b6b068303b4a83eaa369e3a",
+        "unchanged": true
+      },
+      {
+        "path": "examples/hdr_sh/visualize.py",
+        "baseline_sha256": "ecbe044da94c0cf7990da97ae6ba8a5ca8a2daf36c1f3c5bf7583f1741b6a627",
+        "current_sha256": "ecbe044da94c0cf7990da97ae6ba8a5ca8a2daf36c1f3c5bf7583f1741b6a627",
+        "unchanged": true
+      },
+      {
+        "path": "examples/output/irradiance_coefficients.glsl",
+        "baseline_sha256": "8d0d751cf32b8dd2a5653bda2187ef96a2bba6eaebbf1b8f4e5899f238323bc4",
+        "current_sha256": "8d0d751cf32b8dd2a5653bda2187ef96a2bba6eaebbf1b8f4e5899f238323bc4",
+        "unchanged": true
+      },
+      {
+        "path": "examples/output/reference.json",
+        "baseline_sha256": "99fbca270299bf908ea7ba6d8e395ddb548d6531caa79d317d38e035877ee897",
+        "current_sha256": "99fbca270299bf908ea7ba6d8e395ddb548d6531caa79d317d38e035877ee897",
+        "unchanged": true
+      },
+      {
+        "path": "examples/output/sh_original.png",
+        "baseline_sha256": "dfc2e0f5aa7cdee17dc32231ae3258c551cc886eff2bbb01cc43f2e38360174a",
+        "current_sha256": "dfc2e0f5aa7cdee17dc32231ae3258c551cc886eff2bbb01cc43f2e38360174a",
+        "unchanged": true
+      },
+      {
+        "path": "examples/output/sh_original_coefficients.glsl",
+        "baseline_sha256": "19e5f8c73e60dac5f0b893e1ae1ae54413c13049a7a32ab7c24c2564d4f055c7",
+        "current_sha256": "19e5f8c73e60dac5f0b893e1ae1ae54413c13049a7a32ab7c24c2564d4f055c7",
+        "unchanged": true
+      },
+      {
+        "path": "examples/output/sh_rotated.png",
+        "baseline_sha256": "c9b205dc7dee31d731685d996326badf9da62c48fe69713b6fbe2fea4fccaac7",
+        "current_sha256": "c9b205dc7dee31d731685d996326badf9da62c48fe69713b6fbe2fea4fccaac7",
+        "unchanged": true
+      },
+      {
+        "path": "examples/output/sh_rotated_coefficients.glsl",
+        "baseline_sha256": "a0997cb065d9d0c6c80c8bc8078e0c45505830b03f50753614fff45b08b87b12",
+        "current_sha256": "a0997cb065d9d0c6c80c8bc8078e0c45505830b03f50753614fff45b08b87b12",
+        "unchanged": true
+      },
+      {
+        "path": "examples/output/visualization.json",
+        "baseline_sha256": "ab28ea8ab67db742626ba4fc95595f8c06496b1eb2c4d8612c18ee94e008d0f2",
+        "current_sha256": "ab28ea8ab67db742626ba4fc95595f8c06496b1eb2c4d8612c18ee94e008d0f2",
+        "unchanged": true
+      },
+      {
+        "path": "gem/__init__.py",
+        "baseline_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "current_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "unchanged": true
+      },
+      {
+        "path": "gem/bezier.py",
+        "baseline_sha256": "1d354070a425ea0cb99e590f984f1dd86cf5b2a03432bee848f3352f85fc75b3",
+        "current_sha256": "1d354070a425ea0cb99e590f984f1dd86cf5b2a03432bee848f3352f85fc75b3",
+        "unchanged": true
+      },
+      {
+        "path": "gem/common.py",
+        "baseline_sha256": "2384eae0490eff93499fca6fe56cc25074119b6955b40ca3d6823f8099406ec8",
+        "current_sha256": "2384eae0490eff93499fca6fe56cc25074119b6955b40ca3d6823f8099406ec8",
+        "unchanged": true
+      },
+      {
+        "path": "gem/experimental/__init__.py",
+        "baseline_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "current_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "unchanged": true
+      },
+      {
+        "path": "gem/experimental/_bezier_legacy.py",
+        "baseline_sha256": "39f9522eaeb171837e7797ab604bb4bacf718053375266a61c39a0de9217a034",
+        "current_sha256": "39f9522eaeb171837e7797ab604bb4bacf718053375266a61c39a0de9217a034",
+        "unchanged": true
+      },
+      {
+        "path": "gem/experimental/bezier.py",
+        "baseline_sha256": "4d61b9ad9b6a807101a06e4641b74dae96325a82cdc5796bd2326f7f1afdaf15",
+        "current_sha256": "4d61b9ad9b6a807101a06e4641b74dae96325a82cdc5796bd2326f7f1afdaf15",
+        "unchanged": true
+      },
+      {
+        "path": "gem/experimental/legendre.py",
+        "baseline_sha256": "4f1fb87056d71982405e1cd5d83fbb07fe9f8a9c464d18ac641486cc47633db5",
+        "current_sha256": "4f1fb87056d71982405e1cd5d83fbb07fe9f8a9c464d18ac641486cc47633db5",
+        "unchanged": true
+      },
+      {
+        "path": "gem/experimental/sph.py",
+        "baseline_sha256": "192b1c96295ddf6585da4c91c1da372b5c4f53bc844ee9125ff38b913496ff0d",
+        "current_sha256": "192b1c96295ddf6585da4c91c1da372b5c4f53bc844ee9125ff38b913496ff0d",
+        "unchanged": true
+      },
+      {
+        "path": "gem/experimental/sph_irradiance_map.py",
+        "baseline_sha256": "e7d8fa175ad566fb2d4def36978d632a537e930b5acb02396c906ae1465bab94",
+        "current_sha256": "e7d8fa175ad566fb2d4def36978d632a537e930b5acb02396c906ae1465bab94",
+        "unchanged": true
+      },
+      {
+        "path": "gem/experimental/sph_sample.py",
+        "baseline_sha256": "fbf10456e724005116524fa797474fe767cbf0224468cfc878e5fd8e6f278c15",
+        "current_sha256": "fbf10456e724005116524fa797474fe767cbf0224468cfc878e5fd8e6f278c15",
+        "unchanged": true
+      },
+      {
+        "path": "gem/legendre.py",
+        "baseline_sha256": "bcad8a96d35f47eb4f03a1535cf5083017a351e89129534b6acb673966a254f8",
+        "current_sha256": "bcad8a96d35f47eb4f03a1535cf5083017a351e89129534b6acb673966a254f8",
+        "unchanged": true
+      },
+      {
+        "path": "gem/matrix.py",
+        "baseline_sha256": "e539db231c9b71bc0846954f2a0fad0840b0b03ffd78ae65a4189a634b56c17c",
+        "current_sha256": "e539db231c9b71bc0846954f2a0fad0840b0b03ffd78ae65a4189a634b56c17c",
+        "unchanged": true
+      },
+      {
+        "path": "gem/plane.py",
+        "baseline_sha256": "b5d5e78c940c7c7f752e2ce6c4b6e1bc4dc901a89f629e75965c76d698fd2110",
+        "current_sha256": "b5d5e78c940c7c7f752e2ce6c4b6e1bc4dc901a89f629e75965c76d698fd2110",
+        "unchanged": true
+      },
+      {
+        "path": "gem/quaternion.py",
+        "baseline_sha256": "f35e99eac8b0563d87b827f38d085d6a83911278eff01ab425dd4317961a8768",
+        "current_sha256": "f35e99eac8b0563d87b827f38d085d6a83911278eff01ab425dd4317961a8768",
+        "unchanged": true
+      },
+      {
+        "path": "gem/ray.py",
+        "baseline_sha256": "307dfac3a68a2235c3342d4bfe0d93fd15335dba4c28eff4cf6b79ae6167c1a4",
+        "current_sha256": "307dfac3a68a2235c3342d4bfe0d93fd15335dba4c28eff4cf6b79ae6167c1a4",
+        "unchanged": true
+      },
+      {
+        "path": "gem/spherical_harmonics.py",
+        "baseline_sha256": "93d004db8a62d88ef82f4320d4ecce05c2017e4ba5bf5311dddb82135c92e11b",
+        "current_sha256": "93d004db8a62d88ef82f4320d4ecce05c2017e4ba5bf5311dddb82135c92e11b",
+        "unchanged": true
+      },
+      {
+        "path": "gem/vector.py",
+        "baseline_sha256": "323e1c7a72d03c1e121acf174822265ceff7bed3cdf9e376745eb69707137215",
+        "current_sha256": "323e1c7a72d03c1e121acf174822265ceff7bed3cdf9e376745eb69707137215",
+        "unchanged": true
+      },
+      {
+        "path": "requirements-audit.txt",
+        "baseline_sha256": "578bc80afdccabe4674a6af66a1d9f3b92534e9007861421070fbf00259dccda",
+        "current_sha256": "578bc80afdccabe4674a6af66a1d9f3b92534e9007861421070fbf00259dccda",
+        "unchanged": true
+      },
+      {
+        "path": "requirements-docs-browser.txt",
+        "baseline_sha256": "3df06265c5059ec04fbe5ebb56b55248b0ad1812be399bf4493851f65de661af",
+        "current_sha256": "3df06265c5059ec04fbe5ebb56b55248b0ad1812be399bf4493851f65de661af",
+        "unchanged": true
+      },
+      {
+        "path": "requirements-docs.txt",
+        "baseline_sha256": "08ca8bda20ce14c5696e0a3eede8f2a9266f2807c01b6651c0e1ee3718307537",
+        "current_sha256": "08ca8bda20ce14c5696e0a3eede8f2a9266f2807c01b6651c0e1ee3718307537",
+        "unchanged": true
+      },
+      {
+        "path": "setup.cfg",
+        "baseline_sha256": "450f74fb1d7adf88243fda39629a6d45c5c26cc0c81f3c40e2ded034693a0885",
+        "current_sha256": "450f74fb1d7adf88243fda39629a6d45c5c26cc0c81f3c40e2ded034693a0885",
+        "unchanged": true
+      },
+      {
+        "path": "setup.py",
+        "baseline_sha256": "172ace9784a0dd5408ea9324adc75a347be4c1ce21a3cec0315059bef0c2784d",
+        "current_sha256": "172ace9784a0dd5408ea9324adc75a347be4c1ce21a3cec0315059bef0c2784d",
+        "unchanged": true
+      }
+    ],
+    "all_protected_bytes_unchanged": true,
+    "public_sh_signatures_unchanged": true,
+    "existing_tests_unchanged": true,
+    "runtime_dependencies_unchanged": true,
+    "packaging_metadata_unchanged": true,
+    "release_metadata_unchanged": true,
+    "test_source_sha256": "cde644d407a5f604ff775b68d5197a32f6fd2e0d8801f8a6aa716106998a34db"
+  },
+  "scope": "Audit-only. No production, SH order/API expansion, probe/visibility features, release or subsequent phase."
+}
