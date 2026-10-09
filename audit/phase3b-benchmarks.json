@@ -1,0 +1,4691 @@
+{
+  "baseline_commit": "89cd4b97784d32625de65b8f465cfcbf6e102943",
+  "baseline_source_sha256": "4655796208fa87a8035e61e43bb5fb2db52423b48c05645601541c27602d55aa",
+  "current_source_sha256": "e539db231c9b71bc0846954f2a0fad0840b0b03ffd78ae65a4189a634b56c17c",
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "implementation": "CPython",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "six": "1.17.0"
+  },
+  "methodology": {
+    "rounds": 3,
+    "trials": 7,
+    "target_seconds": 0.04,
+    "order": "alternate before/after each round",
+    "timer": "perf_counter, timeit GC disabled",
+    "timings": "per inverse, normalized by batch size; driver/list allocation included",
+    "in_place": "fresh receiver construction included equally",
+    "setup": "data generation and returning-receiver construction excluded",
+    "profiles": "100 batches; instrumented times not latency; peak is per batch"
+  },
+  "summary": {
+    "matrix3_ordinary_raw": {
+      "size": 3,
+      "regime": "ordinary",
+      "mode": "raw",
+      "inverses_per_call": 4,
+      "before_median_us": 16.201612305088986,
+      "after_median_us": 11.07350878903901,
+      "paired_median_speedup": 1.3107180843932125,
+      "paired_speedup_range": [
+        1.233407842868083,
+        1.4776977142887755
+      ],
+      "before_round_medians_us": [
+        16.201612305088986,
+        20.026071532619483,
+        13.658152588469363
+      ],
+      "after_round_medians_us": [
+        10.964091064380455,
+        15.278702393040078,
+        11.07350878903901
+      ]
+    },
+    "matrix3_ordinary_returning": {
+      "size": 3,
+      "regime": "ordinary",
+      "mode": "returning",
+      "inverses_per_call": 4,
+      "before_median_us": 16.47777026381192,
+      "after_median_us": 14.463503173800518,
+      "paired_median_speedup": 1.1392655061368593,
+      "paired_speedup_range": [
+        1.1344941989670856,
+        1.4303800633137422
+      ],
+      "before_round_medians_us": [
+        15.87034960870426,
+        27.932380859851946,
+        16.47777026381192
+      ],
+      "after_round_medians_us": [
+        13.988920898100332,
+        19.527943360131417,
+        14.463503173800518
+      ]
+    },
+    "matrix3_ordinary_in_place": {
+      "size": 3,
+      "regime": "ordinary",
+      "mode": "in_place",
+      "inverses_per_call": 4,
+      "before_median_us": 17.446198485870923,
+      "after_median_us": 15.190100097761672,
+      "paired_median_speedup": 1.1424173181138173,
+      "paired_speedup_range": [
+        1.0327314008976014,
+        1.1485242607744037
+      ],
+      "before_round_medians_us": [
+        17.121691161747776,
+        26.004980469451766,
+        17.446198485870923
+      ],
+      "after_round_medians_us": [
+        14.987247558551076,
+        25.180778319366937,
+        15.190100097761672
+      ]
+    },
+    "matrix3_scale_1e-300_raw": {
+      "size": 3,
+      "regime": "scale_1e-300",
+      "mode": "raw",
+      "inverses_per_call": 4,
+      "before_median_us": 17.694224364817046,
+      "after_median_us": 12.013990722259393,
+      "paired_median_speedup": 1.4728015672621901,
+      "paired_speedup_range": [
+        1.3675880350697738,
+        1.928599689464628
+      ],
+      "before_round_medians_us": [
+        16.359139159760616,
+        33.82154199194076,
+        17.694224364817046
+      ],
+      "after_round_medians_us": [
+        11.962037353541177,
+        17.536838866405446,
+        12.013990722259393
+      ]
+    },
+    "matrix3_scale_1e-300_returning": {
+      "size": 3,
+      "regime": "scale_1e-300",
+      "mode": "returning",
+      "inverses_per_call": 4,
+      "before_median_us": 19.5673420417819,
+      "after_median_us": 14.284261963481981,
+      "paired_median_speedup": 1.3016651488316704,
+      "paired_speedup_range": [
+        1.0753915032954218,
+        1.3698532057033275
+      ],
+      "before_round_medians_us": [
+        19.5673420417819,
+        24.874198242486045,
+        18.429981933465456
+      ],
+      "after_round_medians_us": [
+        14.284261963481981,
+        23.130365235601857,
+        14.158773437245031
+      ]
+    },
+    "matrix3_scale_1e-300_in_place": {
+      "size": 3,
+      "regime": "scale_1e-300",
+      "mode": "in_place",
+      "inverses_per_call": 4,
+      "before_median_us": 20.131838379455758,
+      "after_median_us": 16.514976318049435,
+      "paired_median_speedup": 1.219136039786095,
+      "paired_speedup_range": [
+        1.2190049801920337,
+        1.2691744218635708
+      ],
+      "before_round_medians_us": [
+        20.131838379455758,
+        28.05323339849508,
+        19.53581152491779
+      ],
+      "after_round_medians_us": [
+        16.514976318049435,
+        22.103528809935824,
+        16.024308106210583
+      ]
+    },
+    "matrix3_scale_1e+300_raw": {
+      "size": 3,
+      "regime": "scale_1e+300",
+      "mode": "raw",
+      "inverses_per_call": 4,
+      "before_median_us": 27.601811522615094,
+      "after_median_us": 25.79616015552233,
+      "paired_median_speedup": 1.0626438089260537,
+      "paired_speedup_range": [
+        1.044769397674389,
+        1.0918406469209112
+      ],
+      "before_round_medians_us": [
+        27.601811522615094,
+        40.41881054739349,
+        27.41212988333075
+      ],
+      "after_round_medians_us": [
+        25.280073241873424,
+        38.68682470731244,
+        25.79616015552233
+      ]
+    },
+    "matrix3_scale_1e+300_returning": {
+      "size": 3,
+      "regime": "scale_1e+300",
+      "mode": "returning",
+      "inverses_per_call": 4,
+      "before_median_us": 29.500839355378616,
+      "after_median_us": 27.661668946521445,
+      "paired_median_speedup": 1.0709661512509576,
+      "paired_speedup_range": [
+        1.0504888536241326,
+        1.1456196261096643
+      ],
+      "before_round_medians_us": [
+        29.058274900961578,
+        46.419989260471084,
+        29.500839355378616
+      ],
+      "after_round_medians_us": [
+        27.661668946521445,
+        40.51954785211365,
+        27.546005371803517
+      ]
+    },
+    "matrix3_scale_1e+300_in_place": {
+      "size": 3,
+      "regime": "scale_1e+300",
+      "mode": "in_place",
+      "inverses_per_call": 4,
+      "before_median_us": 30.70343994160396,
+      "after_median_us": 29.37655126977745,
+      "paired_median_speedup": 1.02581404576533,
+      "paired_speedup_range": [
+        0.902903670640054,
+        1.0503153694674847
+      ],
+      "before_round_medians_us": [
+        30.70343994160396,
+        38.146312501652346,
+        30.13487890868305
+      ],
+      "after_round_medians_us": [
+        29.232591309380496,
+        42.24848535017145,
+        29.37655126977745
+      ]
+    },
+    "matrix3_mixed_rows_raw": {
+      "size": 3,
+      "regime": "mixed_rows",
+      "mode": "raw",
+      "inverses_per_call": 1,
+      "before_median_us": 11.550293701034775,
+      "after_median_us": 9.376617187584202,
+      "paired_median_speedup": 1.3000002551450425,
+      "paired_speedup_range": [
+        1.2025230716016677,
+        1.3022806293766016
+      ],
+      "before_round_medians_us": [
+        11.401464843352471,
+        11.550293701034775,
+        12.189604736256854
+      ],
+      "after_round_medians_us": [
+        8.75499841290761,
+        9.605049561045576,
+        9.376617187584202
+      ]
+    },
+    "matrix3_mixed_rows_returning": {
+      "size": 3,
+      "regime": "mixed_rows",
+      "mode": "returning",
+      "inverses_per_call": 1,
+      "before_median_us": 14.169884765102836,
+      "after_median_us": 11.899193603781555,
+      "paired_median_speedup": 1.1876558443989946,
+      "paired_speedup_range": [
+        1.152026318473301,
+        1.2595587685748617
+      ],
+      "before_round_medians_us": [
+        13.26307031224161,
+        14.987733642612966,
+        14.169884765102836
+      ],
+      "after_round_medians_us": [
+        11.512818847592143,
+        11.899193603781555,
+        11.930968749851445
+      ]
+    },
+    "matrix3_mixed_rows_in_place": {
+      "size": 3,
+      "regime": "mixed_rows",
+      "mode": "in_place",
+      "inverses_per_call": 1,
+      "before_median_us": 15.368036133445173,
+      "after_median_us": 13.33978930695423,
+      "paired_median_speedup": 1.152044892150852,
+      "paired_speedup_range": [
+        1.0297064508573954,
+        1.2017780324917866
+      ],
+      "before_round_medians_us": [
+        15.368036133445173,
+        21.03292675670332,
+        14.969146485022122
+      ],
+      "after_round_medians_us": [
+        13.33978930695423,
+        20.42613867203613,
+        12.455833007685158
+      ]
+    },
+    "matrix4_ordinary_raw": {
+      "size": 4,
+      "regime": "ordinary",
+      "mode": "raw",
+      "inverses_per_call": 4,
+      "before_median_us": 35.00395898470288,
+      "after_median_us": 22.072862304156615,
+      "paired_median_speedup": 1.5858368752706422,
+      "paired_speedup_range": [
+        1.4774879512095052,
+        1.5973755566274992
+      ],
+      "before_round_medians_us": [
+        35.00395898470288,
+        36.24006249935974,
+        29.836148925710404
+      ],
+      "after_round_medians_us": [
+        22.072862304156615,
+        22.687252442921135,
+        20.19383569340505
+      ]
+    },
+    "matrix4_ordinary_returning": {
+      "size": 4,
+      "regime": "ordinary",
+      "mode": "returning",
+      "inverses_per_call": 4,
+      "before_median_us": 35.92338134872364,
+      "after_median_us": 25.14160058630921,
+      "paired_median_speedup": 1.4451386849184387,
+      "paired_speedup_range": [
+        1.3389470794239142,
+        1.467247091897785
+      ],
+      "before_round_medians_us": [
+        35.92338134872364,
+        36.33309960804354,
+        33.80936279206992
+      ],
+      "after_round_medians_us": [
+        26.829575194398103,
+        25.14160058630921,
+        23.04271923847523
+      ]
+    },
+    "matrix4_ordinary_in_place": {
+      "size": 4,
+      "regime": "ordinary",
+      "mode": "in_place",
+      "inverses_per_call": 4,
+      "before_median_us": 38.18455761717132,
+      "after_median_us": 27.763575683792396,
+      "paired_median_speedup": 1.3753472554135888,
+      "paired_speedup_range": [
+        1.2708104980998138,
+        1.880520856151078
+      ],
+      "before_round_medians_us": [
+        38.18455761717132,
+        37.488043457045706,
+        47.86021533220719
+      ],
+      "after_round_medians_us": [
+        27.763575683792396,
+        29.499318358716664,
+        25.450510253932634
+      ]
+    },
+    "matrix4_scale_1e-300_raw": {
+      "size": 4,
+      "regime": "scale_1e-300",
+      "mode": "raw",
+      "inverses_per_call": 4,
+      "before_median_us": 34.60218847806118,
+      "after_median_us": 23.405637694651205,
+      "paired_median_speedup": 1.4783698239492393,
+      "paired_speedup_range": [
+        1.3535178276371822,
+        1.585076409811552
+      ],
+      "before_round_medians_us": [
+        34.60218847806118,
+        35.60218017639727,
+        33.44076025335596
+      ],
+      "after_round_medians_us": [
+        23.405637694651205,
+        26.30344384790817,
+        21.097254395030518
+      ]
+    },
+    "matrix4_scale_1e-300_returning": {
+      "size": 4,
+      "regime": "scale_1e-300",
+      "mode": "returning",
+      "inverses_per_call": 4,
+      "before_median_us": 38.62735693438424,
+      "after_median_us": 25.948654784002656,
+      "paired_median_speedup": 1.5168705373147457,
+      "paired_speedup_range": [
+        1.424049409966864,
+        1.5767132152087149
+      ],
+      "before_round_medians_us": [
+        40.91358691482583,
+        38.62735693438424,
+        37.173268554013816
+      ],
+      "after_round_medians_us": [
+        25.948654784002656,
+        27.125011719419945,
+        24.506553222281013
+      ]
+    },
+    "matrix4_scale_1e-300_in_place": {
+      "size": 4,
+      "regime": "scale_1e-300",
+      "mode": "in_place",
+      "inverses_per_call": 4,
+      "before_median_us": 42.441089846079194,
+      "after_median_us": 28.66711816551515,
+      "paired_median_speedup": 1.433950938582206,
+      "paired_speedup_range": [
+        1.1413438464880092,
+        1.4804798166679105
+      ],
+      "before_round_medians_us": [
+        42.9077089876273,
+        42.441089846079194,
+        38.196581055416345
+      ],
+      "after_round_medians_us": [
+        37.59402490288721,
+        28.66711816551515,
+        26.637299804121994
+      ]
+    },
+    "matrix4_scale_1e+300_raw": {
+      "size": 4,
+      "regime": "scale_1e+300",
+      "mode": "raw",
+      "inverses_per_call": 4,
+      "before_median_us": 207.9595507780141,
+      "after_median_us": 77.24020117194641,
+      "paired_median_speedup": 2.6923745358336126,
+      "paired_speedup_range": [
+        2.4955770783076643,
+        3.5235534650589053
+      ],
+      "before_round_medians_us": [
+        288.21489843267045,
+        207.9595507780141,
+        182.7045781368497
+      ],
+      "after_round_medians_us": [
+        81.79665820051696,
+        77.24020117194641,
+        73.21135448989935
+      ]
+    },
+    "matrix4_scale_1e+300_returning": {
+      "size": 4,
+      "regime": "scale_1e+300",
+      "mode": "returning",
+      "inverses_per_call": 4,
+      "before_median_us": 219.44613283153558,
+      "after_median_us": 77.3050917999285,
+      "paired_median_speedup": 2.546887018451866,
+      "paired_speedup_range": [
+        2.4494935988122957,
+        3.810349602128715
+      ],
+      "before_round_medians_us": [
+        294.55942578238137,
+        219.44613283153558,
+        185.7962734419516
+      ],
+      "after_round_medians_us": [
+        77.3050917999285,
+        86.16249218817984,
+        75.85089160144776
+      ]
+    },
+    "matrix4_scale_1e+300_in_place": {
+      "size": 4,
+      "regime": "scale_1e+300",
+      "mode": "in_place",
+      "inverses_per_call": 4,
+      "before_median_us": 212.165964839528,
+      "after_median_us": 81.0772910142532,
+      "paired_median_speedup": 2.486215856247388,
+      "paired_speedup_range": [
+        2.245994109657529,
+        2.9491084330139876
+      ],
+      "before_round_medians_us": [
+        239.10572265606334,
+        212.165964839528,
+        186.98241406411853
+      ],
+      "after_round_medians_us": [
+        81.0772910142532,
+        94.46416797231905,
+        75.20763476520642
+      ]
+    },
+    "matrix4_mixed_rows_raw": {
+      "size": 4,
+      "regime": "mixed_rows",
+      "mode": "raw",
+      "inverses_per_call": 1,
+      "before_median_us": 25.29125000094723,
+      "after_median_us": 17.795964355471483,
+      "paired_median_speedup": 1.420693338038564,
+      "paired_speedup_range": [
+        1.3942517769021845,
+        1.5889134197345707
+      ],
+      "before_round_medians_us": [
+        25.29125000094723,
+        28.27624658152672,
+        24.328282226093734
+      ],
+      "after_round_medians_us": [
+        18.139657714577595,
+        17.795964355471483,
+        17.124231932896805
+      ]
+    },
+    "matrix4_mixed_rows_returning": {
+      "size": 4,
+      "regime": "mixed_rows",
+      "mode": "returning",
+      "inverses_per_call": 1,
+      "before_median_us": 28.48579003789098,
+      "after_median_us": 20.162491699338148,
+      "paired_median_speedup": 1.4335897717503487,
+      "paired_speedup_range": [
+        1.393225471957105,
+        1.4480236413194376
+      ],
+      "before_round_medians_us": [
+        29.19576464854856,
+        28.48579003789098,
+        27.479790039919294
+      ],
+      "after_round_medians_us": [
+        20.162491699338148,
+        20.44592968708514,
+        19.168517090051296
+      ]
+    },
+    "matrix4_mixed_rows_in_place": {
+      "size": 4,
+      "regime": "mixed_rows",
+      "mode": "in_place",
+      "inverses_per_call": 1,
+      "before_median_us": 31.33466113247607,
+      "after_median_us": 22.79169970798023,
+      "paired_median_speedup": 1.391753897557691,
+      "paired_speedup_range": [
+        1.3463237806957986,
+        1.5726125581882986
+      ],
+      "before_round_medians_us": [
+        31.33466113247607,
+        35.84251318322629,
+        29.395066896142907
+      ],
+      "after_round_medians_us": [
+        23.27423876913315,
+        22.79169970798023,
+        21.120879882374766
+      ]
+    }
+  },
+  "rounds": [
+    {
+      "matrix3_ordinary_raw": {
+        "before": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.372548291023179e-05,
+            1.3380370849525036e-05,
+            1.3509943603828845e-05,
+            1.7655867431187744e-05,
+            2.149708569376685e-05,
+            1.6201612305088986e-05,
+            1.9761585448918595e-05
+          ],
+          "median_us": 16.201612305088986,
+          "min_us": 13.380370849525036,
+          "max_us": 21.49708569376685,
+          "mad_us": 2.6916687012601415,
+          "inversions_per_trial": 4096
+        },
+        "after": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.0868031494304375e-05,
+            1.178165649484697e-05,
+            1.046274585014828e-05,
+            1.1597743652558279e-05,
+            1.0695397705262621e-05,
+            1.1038360106851997e-05,
+            1.0964091064380455e-05
+          ],
+          "median_us": 10.964091064380455,
+          "min_us": 10.46274585014828,
+          "max_us": 11.78165649484697,
+          "mad_us": 0.2686933591178331,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix3_ordinary_returning": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.5883676269368152e-05,
+            1.6325978027253996e-05,
+            1.7047040039130934e-05,
+            1.5072440429975131e-05,
+            1.587034960870426e-05,
+            1.586286718691099e-05,
+            1.5826009764907667e-05
+          ],
+          "median_us": 15.87034960870426,
+          "min_us": 15.072440429975131,
+          "max_us": 17.047040039130934,
+          "mad_us": 0.044339843796592504,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.3988920898100332e-05,
+            1.704095434629238e-05,
+            1.3922811278987979e-05,
+            1.4435043456551e-05,
+            1.40571982427673e-05,
+            1.388043945382833e-05,
+            1.2653113524940807e-05
+          ],
+          "median_us": 13.988920898100332,
+          "min_us": 12.653113524940807,
+          "max_us": 17.04095434629238,
+          "mad_us": 0.10848144427200168,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix3_ordinary_in_place": {
+        "before": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.695030053738833e-05,
+            1.799093335019819e-05,
+            1.698584106524237e-05,
+            1.8325226807114348e-05,
+            1.7056882323451816e-05,
+            1.7121691161747776e-05,
+            1.7446108642182878e-05
+          ],
+          "median_us": 17.121691161747776,
+          "min_us": 16.95030053738833,
+          "max_us": 18.325226807114348,
+          "mad_us": 0.17139062435944652,
+          "inversions_per_trial": 4096
+        },
+        "after": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.4837030762215875e-05,
+            1.4987247558551076e-05,
+            1.639692651345115e-05,
+            1.4788703124324343e-05,
+            1.8827182128866582e-05,
+            1.7903441894340233e-05,
+            1.4743238036629691e-05
+          ],
+          "median_us": 14.987247558551076,
+          "min_us": 14.743238036629691,
+          "max_us": 18.827182128866582,
+          "mad_us": 0.24400952192138448,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix3_scale_1e-300_raw": {
+        "before": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.6688312255652704e-05,
+            1.905323486361965e-05,
+            1.5692998046823448e-05,
+            1.701842041068602e-05,
+            1.5672682617484668e-05,
+            1.624226904262116e-05,
+            1.6359139159760616e-05
+          ],
+          "median_us": 16.359139159760616,
+          "min_us": 15.672682617484668,
+          "max_us": 19.05323486361965,
+          "mad_us": 0.6592812509254031,
+          "inversions_per_trial": 4096
+        },
+        "after": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.1205903076572099e-05,
+            1.2522256591651626e-05,
+            1.1937129639427724e-05,
+            1.2398786377154636e-05,
+            1.153529296882283e-05,
+            1.2020225097053583e-05,
+            1.1962037353541177e-05
+          ],
+          "median_us": 11.962037353541177,
+          "min_us": 11.205903076572099,
+          "max_us": 12.522256591651626,
+          "mad_us": 0.4267443847183472,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix3_scale_1e-300_returning": {
+        "before": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.5248968261060156e-05,
+            2.3305348388902303e-05,
+            2.238032959045455e-05,
+            1.7441243651994398e-05,
+            1.7435369384699584e-05,
+            1.934092504818352e-05,
+            1.95673420417819e-05
+          ],
+          "median_us": 19.5673420417819,
+          "min_us": 17.435369384699584,
+          "max_us": 25.248968261060156,
+          "mad_us": 2.131972657082315,
+          "inversions_per_trial": 4096
+        },
+        "after": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.4284261963481981e-05,
+            1.4640445068714314e-05,
+            1.4387835937768045e-05,
+            1.3721017090517762e-05,
+            1.4419207276183954e-05,
+            1.4249370605234901e-05,
+            1.3560156738812168e-05
+          ],
+          "median_us": 14.284261963481981,
+          "min_us": 13.560156738812168,
+          "max_us": 14.640445068714314,
+          "mad_us": 0.13494531270197285,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix3_scale_1e-300_in_place": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.0131838379455758e-05,
+            2.116507275395918e-05,
+            1.881304931750094e-05,
+            1.866251269611041e-05,
+            1.8662338378661047e-05,
+            2.0402541016650844e-05,
+            2.0450507323133138e-05
+          ],
+          "median_us": 20.131838379455758,
+          "min_us": 18.662338378661047,
+          "max_us": 21.16507275395918,
+          "mad_us": 1.0332343745034223,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.5605167480003956e-05,
+            1.6085193115245033e-05,
+            1.729571704167654e-05,
+            1.732139135768307e-05,
+            1.6514976318049435e-05,
+            1.7556779785543597e-05,
+            1.579631787063107e-05
+          ],
+          "median_us": 16.514976318049435,
+          "min_us": 15.605167480003956,
+          "max_us": 17.556779785543597,
+          "mad_us": 0.7807407236271047,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix3_scale_1e+300_raw": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.7601811522615094e-05,
+            2.8525743651641733e-05,
+            3.319598291007253e-05,
+            2.6208697754270815e-05,
+            2.8959848144438638e-05,
+            2.536791748042333e-05,
+            2.6414862793089355e-05
+          ],
+          "median_us": 27.601811522615094,
+          "min_us": 25.36791748042333,
+          "max_us": 33.19598291007253,
+          "mad_us": 1.358036621823544,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.5280073241873424e-05,
+            2.4709071777095915e-05,
+            2.5391443360334165e-05,
+            2.4199956541792744e-05,
+            2.403817285134835e-05,
+            2.555742578103093e-05,
+            2.615533349548116e-05
+          ],
+          "median_us": 25.280073241873424,
+          "min_us": 24.03817285134835,
+          "max_us": 26.15533349548116,
+          "mad_us": 0.5710014647775097,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix3_scale_1e+300_returning": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.258294238328574e-05,
+            3.2471479004314574e-05,
+            2.8453539551165363e-05,
+            2.9058274900961578e-05,
+            3.7183721678601955e-05,
+            2.8561474609389848e-05,
+            2.8616069824849433e-05
+          ],
+          "median_us": 29.058274900961578,
+          "min_us": 28.453539551165363,
+          "max_us": 37.183721678601955,
+          "mad_us": 0.6047353497962149,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.7661668946521445e-05,
+            2.9953065919130495e-05,
+            2.712674121063685e-05,
+            8.029688183697203e-05,
+            2.6143503417230818e-05,
+            7.305473925711681e-05,
+            2.7211066894849978e-05
+          ],
+          "median_us": 27.661668946521445,
+          "min_us": 26.143503417230818,
+          "max_us": 80.29688183697203,
+          "mad_us": 1.518165529290627,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix3_scale_1e+300_in_place": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.9943687499311977e-05,
+            3.1809863280329864e-05,
+            3.0145034179085428e-05,
+            3.070343994160396e-05,
+            3.350241503952134e-05,
+            3.1111492674540386e-05,
+            3.038602001836921e-05
+          ],
+          "median_us": 30.70343994160396,
+          "min_us": 29.943687499311977,
+          "max_us": 33.50241503952134,
+          "mad_us": 0.5584057625185324,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.9232591309380496e-05,
+            2.6736344727495975e-05,
+            2.9091797363989258e-05,
+            3.291010253825277e-05,
+            3.1747800781189994e-05,
+            2.8585548829340723e-05,
+            3.14687646483236e-05
+          ],
+          "median_us": 29.232591309380496,
+          "min_us": 26.736344727495975,
+          "max_us": 32.91010253825277,
+          "mad_us": 2.2361733389431038,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix3_mixed_rows_raw": {
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.1565784912015431e-05,
+            1.0296495116968174e-05,
+            1.1945128662205207e-05,
+            1.0438041015525812e-05,
+            1.2393721434911242e-05,
+            1.1401464843352471e-05,
+            1.1073401367411861e-05
+          ],
+          "median_us": 11.401464843352471,
+          "min_us": 10.296495116968174,
+          "max_us": 12.393721434911242,
+          "mad_us": 0.5436638188527354,
+          "inversions_per_trial": 4096
+        },
+        "after": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            8.982093505860433e-06,
+            8.543648315484376e-06,
+            8.637712402226327e-06,
+            9.733218017338174e-06,
+            8.779241576828412e-06,
+            8.618143066296824e-06,
+            8.75499841290761e-06
+          ],
+          "median_us": 8.75499841290761,
+          "min_us": 8.543648315484376,
+          "max_us": 9.733218017338174,
+          "mad_us": 0.1368553466107869,
+          "inversions_per_trial": 8192
+        }
+      },
+      "matrix3_mixed_rows_returning": {
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.383136474597535e-05,
+            1.318606469702388e-05,
+            1.4439604004046203e-05,
+            1.355539843750364e-05,
+            1.326307031224161e-05,
+            1.3229878906173553e-05,
+            1.3260638427325944e-05
+          ],
+          "median_us": 13.26307031224161,
+          "min_us": 13.18606469702388,
+          "max_us": 14.439604004046203,
+          "mad_us": 0.07700561521772897,
+          "inversions_per_trial": 4096
+        },
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.0872482909540793e-05,
+            1.1791290771334673e-05,
+            1.1512818847592143e-05,
+            1.2833162597480907e-05,
+            1.152490673828055e-05,
+            1.1152987793749958e-05,
+            1.0714014404555883e-05
+          ],
+          "median_us": 11.512818847592143,
+          "min_us": 10.714014404555883,
+          "max_us": 12.833162597480907,
+          "mad_us": 0.3598310538421856,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix3_mixed_rows_in_place": {
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.4664056396718195e-05,
+            1.5368036133445173e-05,
+            1.6728495605633498e-05,
+            1.7002611572891624e-05,
+            1.4696235351330245e-05,
+            1.512818408233585e-05,
+            1.5469697509651326e-05
+          ],
+          "median_us": 15.368036133445173,
+          "min_us": 14.664056396718195,
+          "max_us": 17.002611572891624,
+          "mad_us": 0.6718007821149286,
+          "inversions_per_trial": 4096
+        },
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.2108797607268684e-05,
+            1.2956779296580123e-05,
+            1.3319798095601243e-05,
+            1.4221804931935367e-05,
+            1.3913644286489557e-05,
+            1.333978930695423e-05,
+            1.358786377014809e-05
+          ],
+          "median_us": 13.33978930695423,
+          "min_us": 12.108797607268684,
+          "max_us": 14.221804931935367,
+          "mad_us": 0.3830100103741074,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix4_ordinary_raw": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.197043701064217e-05,
+            3.512622656387521e-05,
+            3.5003958984702876e-05,
+            3.531711181636865e-05,
+            3.0430265136160983e-05,
+            3.659143212964011e-05,
+            3.2370848144225306e-05
+          ],
+          "median_us": 35.00395898470288,
+          "min_us": 30.430265136160983,
+          "max_us": 36.59143212964011,
+          "mad_us": 1.5874731449372348,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.1416593261491812e-05,
+            2.244804004014611e-05,
+            2.2072862304156615e-05,
+            2.2734785156686144e-05,
+            2.0684310058527444e-05,
+            2.4751624023267027e-05,
+            2.1697993652480818e-05
+          ],
+          "median_us": 22.072862304156615,
+          "min_us": 20.684310058527444,
+          "max_us": 24.751624023267027,
+          "mad_us": 0.6562690426648032,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix4_ordinary_returning": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.577098193474626e-05,
+            3.592338134872364e-05,
+            3.847547705149168e-05,
+            3.390998535124368e-05,
+            3.873802685561145e-05,
+            3.763624951069744e-05,
+            3.556329687448567e-05
+          ],
+          "median_us": 35.92338134872364,
+          "min_us": 33.90998535124368,
+          "max_us": 38.73802685561145,
+          "mad_us": 1.7128681619738018,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.6829575194398103e-05,
+            2.5860761720508663e-05,
+            2.501393066367541e-05,
+            2.7257614256370744e-05,
+            2.9721932616411095e-05,
+            3.422979492029299e-05,
+            2.3762596679688386e-05
+          ],
+          "median_us": 26.829575194398103,
+          "min_us": 23.762596679688386,
+          "max_us": 34.22979492029299,
+          "mad_us": 1.8156445307226932,
+          "inversions_per_trial": 1024
+        }
+      },
+      "matrix4_ordinary_in_place": {
+        "before": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.4198797848338245e-05,
+            3.800143847598747e-05,
+            3.520137890689057e-05,
+            3.9352989258389925e-05,
+            3.572779687388561e-05,
+            3.818455761717132e-05,
+            3.901390332217147e-05
+          ],
+          "median_us": 38.18455761717132,
+          "min_us": 35.20137890689057,
+          "max_us": 44.198797848338245,
+          "mad_us": 1.1684316412186035,
+          "inversions_per_trial": 1024
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.593261181615958e-05,
+            2.6117404297920643e-05,
+            3.222437548799917e-05,
+            2.814690625108085e-05,
+            2.7763575683792396e-05,
+            2.7650682616453537e-05,
+            2.7991061035237408e-05
+          ],
+          "median_us": 27.763575683792396,
+          "min_us": 25.93261181615958,
+          "max_us": 32.22437548799917,
+          "mad_us": 0.3833305672884535,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix4_scale_1e-300_raw": {
+        "before": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.426131445394276e-05,
+            3.6317178711442466e-05,
+            3.754809472766851e-05,
+            3.37998359398739e-05,
+            3.7651995114629244e-05,
+            3.460218847806118e-05,
+            3.373477343870945e-05
+          ],
+          "median_us": 34.60218847806118,
+          "min_us": 33.73477343870945,
+          "max_us": 37.651995114629244,
+          "mad_us": 0.8674150393517266,
+          "inversions_per_trial": 1024
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.3361947754096946e-05,
+            2.5540417967206963e-05,
+            2.4740249511268075e-05,
+            2.2982893554512884e-05,
+            2.3194507324575397e-05,
+            2.4033840819726038e-05,
+            2.3405637694651205e-05
+          ],
+          "median_us": 23.405637694651205,
+          "min_us": 22.982893554512884,
+          "max_us": 25.540417967206963,
+          "mad_us": 0.4227441401383203,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix4_scale_1e-300_returning": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.1547653808038376e-05,
+            4.1860688476447194e-05,
+            4.091358691482583e-05,
+            3.86124321281045e-05,
+            3.7897018065891075e-05,
+            3.9391885254147496e-05,
+            4.108995947227356e-05
+          ],
+          "median_us": 40.91358691482583,
+          "min_us": 37.897018065891075,
+          "max_us": 41.860688476447194,
+          "mad_us": 0.9471015616213663,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.5948654784002656e-05,
+            2.492756396321738e-05,
+            2.6128119142043715e-05,
+            2.4169436034782166e-05,
+            2.5349527344786793e-05,
+            2.7044068360737583e-05,
+            2.727838915994596e-05
+          ],
+          "median_us": 25.948654784002656,
+          "min_us": 24.169436034782166,
+          "max_us": 27.27838915994596,
+          "mad_us": 1.0210908207852754,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix4_scale_1e-300_in_place": {
+        "before": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.138752539262214e-05,
+            4.29077089876273e-05,
+            4.811101171853238e-05,
+            3.9066146481303576e-05,
+            4.42069414070545e-05,
+            4.129469921920759e-05,
+            5.107230078138514e-05
+          ],
+          "median_us": 42.9077089876273,
+          "min_us": 39.066146481303576,
+          "max_us": 51.07230078138514,
+          "mad_us": 1.6130097684197153,
+          "inversions_per_trial": 1024
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.610433300949012e-05,
+            3.000331298785852e-05,
+            3.759402490288721e-05,
+            4.294747070332505e-05,
+            4.101598193351208e-05,
+            4.970390869196706e-05,
+            3.268226953068165e-05
+          ],
+          "median_us": 37.59402490288721,
+          "min_us": 30.00331298785852,
+          "max_us": 49.70390869196706,
+          "mad_us": 4.911755372205562,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix4_scale_1e+300_raw": {
+        "before": {
+          "operations_per_trial": 32,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0004027899452978545,
+            0.0004903721484197376,
+            0.00028821489843267045,
+            0.00048075542187575593,
+            0.0002209233046812642,
+            0.0001968526484290578,
+            0.00022966080467767824
+          ],
+          "median_us": 288.21489843267045,
+          "min_us": 196.8526484290578,
+          "max_us": 490.37214841973764,
+          "mad_us": 91.36225000361264,
+          "inversions_per_trial": 128
+        },
+        "after": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            8.179665820051696e-05,
+            7.305555273973141e-05,
+            7.887089844160755e-05,
+            8.735965234052401e-05,
+            8.276414452978997e-05,
+            7.192228906660603e-05,
+            9.045405663954398e-05
+          ],
+          "median_us": 81.79665820051696,
+          "min_us": 71.92228906660603,
+          "max_us": 90.45405663954398,
+          "mad_us": 5.562994140007049,
+          "inversions_per_trial": 512
+        }
+      },
+      "matrix4_scale_1e+300_returning": {
+        "before": {
+          "operations_per_trial": 64,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00029634562500291395,
+            0.00019223435155879542,
+            0.00034513862890150904,
+            0.000600257703126772,
+            0.000179245292969199,
+            0.00029455942578238137,
+            0.00019370537499696638
+          ],
+          "median_us": 294.55942578238137,
+          "min_us": 179.245292969199,
+          "max_us": 600.257703126772,
+          "mad_us": 100.85405078541498,
+          "inversions_per_trial": 256
+        },
+        "after": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            8.025669725952866e-05,
+            7.23088593730381e-05,
+            8.288258984379127e-05,
+            7.73050917999285e-05,
+            7.210288476500182e-05,
+            8.716005664410886e-05,
+            7.095109570087743e-05
+          ],
+          "median_us": 77.3050917999285,
+          "min_us": 70.95109570087743,
+          "max_us": 87.16005664410886,
+          "mad_us": 5.202207034926687,
+          "inversions_per_trial": 512
+        }
+      },
+      "matrix4_scale_1e+300_in_place": {
+        "before": {
+          "operations_per_trial": 64,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00022667804688580873,
+            0.0002595963984362015,
+            0.0003357980664020488,
+            0.000306416984372504,
+            0.00023910572265606334,
+            0.0001953674960901708,
+            0.0001976244648460579
+          ],
+          "median_us": 239.10572265606334,
+          "min_us": 195.3674960901708,
+          "max_us": 335.7980664020488,
+          "mad_us": 41.481257810005445,
+          "inversions_per_trial": 256
+        },
+        "after": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.1129232416165e-05,
+            0.00010418279492085958,
+            8.10772910142532e-05,
+            7.971387890393089e-05,
+            9.156829101897301e-05,
+            7.577606640296608e-05,
+            7.740908398545798e-05
+          ],
+          "median_us": 81.0772910142532,
+          "min_us": 75.77606640296608,
+          "max_us": 104.18279492085958,
+          "mad_us": 5.301224611287125,
+          "inversions_per_trial": 512
+        }
+      },
+      "matrix4_mixed_rows_raw": {
+        "before": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.5523594237242264e-05,
+            2.522048339770322e-05,
+            2.460361523404231e-05,
+            2.3731404297677727e-05,
+            2.7365774414533917e-05,
+            2.9632572754678677e-05,
+            2.529125000094723e-05
+          ],
+          "median_us": 25.29125000094723,
+          "min_us": 23.731404297677727,
+          "max_us": 29.632572754678677,
+          "mad_us": 0.687634766904921,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.620193872042819e-05,
+            1.907347241214552e-05,
+            1.8139657714577595e-05,
+            2.175878051779989e-05,
+            1.6359013427447167e-05,
+            1.874524218781204e-05,
+            1.8003190917603717e-05
+          ],
+          "median_us": 18.139657714577595,
+          "min_us": 16.20193872042819,
+          "max_us": 21.75878051779989,
+          "mad_us": 0.9338146975679251,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix4_mixed_rows_returning": {
+        "before": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.860968212914372e-05,
+            3.6663489746402433e-05,
+            3.303583740255078e-05,
+            2.9627624511974204e-05,
+            2.858698681684757e-05,
+            2.919576464854856e-05,
+            2.8116841308545304e-05
+          ],
+          "median_us": 29.19576464854856,
+          "min_us": 28.116841308545304,
+          "max_us": 36.66348974640243,
+          "mad_us": 0.6087778317009906,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.0879140624430192e-05,
+            2.0162491699338148e-05,
+            2.1275739745973965e-05,
+            1.9303499511735822e-05,
+            1.9456881346968657e-05,
+            2.0542862303685183e-05,
+            2.0025047852811895e-05
+          ],
+          "median_us": 20.162491699338148,
+          "min_us": 19.303499511735822,
+          "max_us": 21.275739745973965,
+          "mad_us": 0.7056103523694901,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix4_mixed_rows_in_place": {
+        "before": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.0387750976856864e-05,
+            3.341476367069163e-05,
+            3.3718684569805646e-05,
+            3.075744921865464e-05,
+            3.170665527285621e-05,
+            2.9817277344079685e-05,
+            3.133466113247607e-05
+          ],
+          "median_us": 31.33466113247607,
+          "min_us": 29.817277344079685,
+          "max_us": 33.718684569805646,
+          "mad_us": 0.9469101556192072,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.27402426755674e-05,
+            2.153431250029314e-05,
+            3.0002262207062813e-05,
+            2.327423876913315e-05,
+            3.18969560542115e-05,
+            2.3217225585625556e-05,
+            3.546112011676428e-05
+          ],
+          "median_us": 23.27423876913315,
+          "min_us": 21.53431250029314,
+          "max_us": 35.46112011676428,
+          "mad_us": 1.7399262688400086,
+          "inversions_per_trial": 2048
+        }
+      }
+    },
+    {
+      "matrix3_ordinary_raw": {
+        "after": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.2153361083733216e-05,
+            1.5440215819673142e-05,
+            1.5165715332443597e-05,
+            1.2919409668299409e-05,
+            1.535205712865917e-05,
+            1.6034227295236292e-05,
+            1.5278702393040078e-05
+          ],
+          "median_us": 15.278702393040078,
+          "min_us": 12.153361083733216,
+          "max_us": 16.034227295236292,
+          "mad_us": 0.16151342663306423,
+          "inversions_per_trial": 4096
+        },
+        "before": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.9218745361371248e-05,
+            1.862866040003297e-05,
+            1.7965909179906703e-05,
+            2.0026071532619483e-05,
+            2.0349136230279896e-05,
+            2.3957910644689662e-05,
+            2.3124501953297738e-05
+          ],
+          "median_us": 20.026071532619483,
+          "min_us": 17.965909179906703,
+          "max_us": 23.95791064468966,
+          "mad_us": 1.3974111325865124,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix3_ordinary_returning": {
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.9527943360131417e-05,
+            1.8857422849904992e-05,
+            2.1705799316151797e-05,
+            1.920575146563408e-05,
+            2.0641250976893843e-05,
+            2.0428199217548126e-05,
+            1.8427958496047836e-05
+          ],
+          "median_us": 19.527943360131417,
+          "min_us": 18.427958496047836,
+          "max_us": 21.705799316151797,
+          "mad_us": 0.9002558574167097,
+          "inversions_per_trial": 2048
+        },
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.4370274902096867e-05,
+            2.1437935547652387e-05,
+            2.9779808594199153e-05,
+            2.392106933513105e-05,
+            3.215327880923269e-05,
+            2.9221507812593472e-05,
+            2.7932380859851946e-05
+          ],
+          "median_us": 27.932380859851946,
+          "min_us": 21.437935547652387,
+          "max_us": 32.15327880923269,
+          "mad_us": 3.5621059577550795,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix3_ordinary_in_place": {
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.6710920899120083e-05,
+            2.7965706054899897e-05,
+            2.279683886818873e-05,
+            2.017831298850581e-05,
+            2.5180778319366937e-05,
+            2.4729996093597606e-05,
+            3.28362700194873e-05
+          ],
+          "median_us": 25.180778319366937,
+          "min_us": 20.17831298850581,
+          "max_us": 32.8362700194873,
+          "mad_us": 2.3839394511782075,
+          "inversions_per_trial": 2048
+        },
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.0817645508894884e-05,
+            2.615652636706045e-05,
+            2.4745311034024553e-05,
+            2.737481494285987e-05,
+            2.5169820801806964e-05,
+            2.4957192870544986e-05,
+            2.6004980469451766e-05
+          ],
+          "median_us": 26.004980469451766,
+          "min_us": 24.745311034024553,
+          "max_us": 40.817645508894884,
+          "mad_us": 1.0477875989067797,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix3_scale_1e-300_raw": {
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.364888232442297e-05,
+            2.3413968749608216e-05,
+            1.65611748048633e-05,
+            1.6500777832106905e-05,
+            1.6964928711615812e-05,
+            1.795684081962179e-05,
+            1.7536838866405446e-05
+          ],
+          "median_us": 17.536838866405446,
+          "min_us": 16.500777832106905,
+          "max_us": 23.64888232442297,
+          "mad_us": 0.9756640615421475,
+          "inversions_per_trial": 2048
+        },
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.236671240396504e-05,
+            3.542954394575304e-05,
+            3.382154199194076e-05,
+            2.8517173827680153e-05,
+            4.319313086043053e-05,
+            3.902837402236514e-05,
+            2.629753808669477e-05
+          ],
+          "median_us": 33.82154199194076,
+          "min_us": 22.36671240396504,
+          "max_us": 43.19313086043053,
+          "mad_us": 5.304368164260609,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix3_scale_1e-300_returning": {
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.1906678222549658e-05,
+            2.4868109862907772e-05,
+            2.1754104004401142e-05,
+            2.7979531250110767e-05,
+            2.0309506346904982e-05,
+            2.3130365235601857e-05,
+            2.3904610840119744e-05
+          ],
+          "median_us": 23.130365235601857,
+          "min_us": 20.309506346904982,
+          "max_us": 27.979531250110767,
+          "mad_us": 1.376261231200715,
+          "inversions_per_trial": 2048
+        },
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.899619433665123e-05,
+            2.4941235839293086e-05,
+            2.4874198242486045e-05,
+            2.232552099634688e-05,
+            2.4875911133648287e-05,
+            2.4308029297870348e-05,
+            2.8253789551513364e-05
+          ],
+          "median_us": 24.874198242486045,
+          "min_us": 18.99619433665123,
+          "max_us": 28.253789551513364,
+          "mad_us": 0.566168944615697,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix3_scale_1e-300_in_place": {
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.3796198242109767e-05,
+            2.6528702148809202e-05,
+            2.1447195312163103e-05,
+            2.2103528809935824e-05,
+            2.1228433105591193e-05,
+            3.046086230540368e-05,
+            1.9428070801907893e-05
+          ],
+          "median_us": 22.103528809935824,
+          "min_us": 19.428070801907893,
+          "max_us": 30.46086230540368,
+          "mad_us": 1.6926694321739433,
+          "inversions_per_trial": 2048
+        },
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.064759912163595e-05,
+            3.0153469239735387e-05,
+            2.7330648437740024e-05,
+            2.767763085920194e-05,
+            2.8549689940149392e-05,
+            2.3500886719318714e-05,
+            2.805323339849508e-05
+          ],
+          "median_us": 28.05323339849508,
+          "min_us": 23.500886719318714,
+          "max_us": 30.64759912163595,
+          "mad_us": 0.7225849607550572,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix3_scale_1e+300_raw": {
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.069183691335354e-05,
+            3.7864784667718254e-05,
+            3.9391020507650865e-05,
+            3.44895644541765e-05,
+            3.868682470731244e-05,
+            4.086020165949833e-05,
+            3.3838932617769046e-05
+          ],
+          "median_us": 38.68682470731244,
+          "min_us": 33.838932617769046,
+          "max_us": 40.86020165949833,
+          "mad_us": 2.0050122060411013,
+          "inversions_per_trial": 2048
+        },
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.292206640561403e-05,
+            4.26788852543325e-05,
+            4.041881054739349e-05,
+            4.2938293946193085e-05,
+            3.862963281342502e-05,
+            3.884932714903755e-05,
+            3.494054492136911e-05
+          ],
+          "median_us": 40.41881054739349,
+          "min_us": 34.94054492136911,
+          "max_us": 52.92206640561403,
+          "mad_us": 2.260074706939008,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix3_scale_1e+300_returning": {
+        "after": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.1753242186359785e-05,
+            4.764880273455674e-05,
+            3.9665068360505984e-05,
+            4.0519547852113647e-05,
+            3.819869824184252e-05,
+            5.7220872069052575e-05,
+            3.8059972656157015e-05
+          ],
+          "median_us": 40.51954785211365,
+          "min_us": 38.059972656157015,
+          "max_us": 57.220872069052575,
+          "mad_us": 2.320849610271125,
+          "inversions_per_trial": 1024
+        },
+        "before": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.6419989260471084e-05,
+            3.588667090070885e-05,
+            3.610271484077998e-05,
+            6.068554003846316e-05,
+            7.040524999979425e-05,
+            5.1045136718386175e-05,
+            3.800461230341057e-05
+          ],
+          "median_us": 46.419989260471084,
+          "min_us": 35.88667090070885,
+          "max_us": 70.40524999979425,
+          "mad_us": 10.317274419691103,
+          "inversions_per_trial": 1024
+        }
+      },
+      "matrix3_scale_1e+300_in_place": {
+        "after": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.403629980169853e-05,
+            4.224848535017145e-05,
+            4.871746484269579e-05,
+            5.4345414064016495e-05,
+            4.1988595704367526e-05,
+            3.225713086152382e-05,
+            9.017254589949175e-05
+          ],
+          "median_us": 42.24848535017145,
+          "min_us": 32.25713086152382,
+          "max_us": 90.17254589949175,
+          "mad_us": 8.212185548472917,
+          "inversions_per_trial": 1024
+        },
+        "before": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.7055062498913e-05,
+            4.8177273434646395e-05,
+            3.8430904297115376e-05,
+            3.8146312501652346e-05,
+            3.699449023386592e-05,
+            3.612498633032146e-05,
+            3.664795605473614e-05
+          ],
+          "median_us": 38.146312501652346,
+          "min_us": 36.12498633032146,
+          "max_us": 48.177273434646395,
+          "mad_us": 1.4983564469162047,
+          "inversions_per_trial": 1024
+        }
+      },
+      "matrix3_mixed_rows_raw": {
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.2387481689302149e-05,
+            2.1236339355468203e-05,
+            1.6894357422359008e-05,
+            9.183157226644312e-06,
+            9.471243408221142e-06,
+            8.99010620081242e-06,
+            9.605049561045576e-06
+          ],
+          "median_us": 9.605049561045576,
+          "min_us": 8.99010620081242,
+          "max_us": 21.236339355468203,
+          "mad_us": 0.6149433602331555,
+          "inversions_per_trial": 4096
+        },
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.3339193358774537e-05,
+            1.4747479248455875e-05,
+            1.610421166997611e-05,
+            1.1001907470387096e-05,
+            1.1550293701034775e-05,
+            1.1297750488026281e-05,
+            1.0886912842344998e-05
+          ],
+          "median_us": 11.550293701034775,
+          "min_us": 10.886912842344998,
+          "max_us": 16.10421166997611,
+          "mad_us": 0.6633808586897771,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix3_mixed_rows_returning": {
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.1345804443507745e-05,
+            1.201665893546533e-05,
+            1.0709727050972617e-05,
+            1.2134673584185407e-05,
+            1.2103206542768419e-05,
+            1.1899193603781555e-05,
+            1.1859156005655791e-05
+          ],
+          "median_us": 11.899193603781555,
+          "min_us": 10.709727050972617,
+          "max_us": 12.134673584185407,
+          "mad_us": 0.2040129389868639,
+          "inversions_per_trial": 4096
+        },
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.683909326199995e-05,
+            1.6266269531328703e-05,
+            1.4987733642612966e-05,
+            1.4457867432149385e-05,
+            1.5241884033123654e-05,
+            1.4357978271206662e-05,
+            1.277378198238921e-05
+          ],
+          "median_us": 14.987733642612966,
+          "min_us": 12.77378198238921,
+          "max_us": 16.83909326199995,
+          "mad_us": 0.6297553714063042,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix3_mixed_rows_in_place": {
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.2736483154363043e-05,
+            2.48001196290204e-05,
+            2.165645629848001e-05,
+            2.0680267578399025e-05,
+            2.042613867203613e-05,
+            1.4669920165744088e-05,
+            1.4766898437379439e-05
+          ],
+          "median_us": 20.42613867203613,
+          "min_us": 12.736483154363043,
+          "max_us": 24.8001196290204,
+          "mad_us": 4.373980956984269,
+          "inversions_per_trial": 4096
+        },
+        "before": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.3021470703099567e-05,
+            2.0645345703229623e-05,
+            2.37389511710262e-05,
+            2.103292675670332e-05,
+            2.5854248043799544e-05,
+            1.5370415042070817e-05,
+            1.4269624024620953e-05
+          ],
+          "median_us": 21.03292675670332,
+          "min_us": 14.269624024620953,
+          "max_us": 25.854248043799544,
+          "mad_us": 2.706024414322883,
+          "inversions_per_trial": 1024
+        }
+      },
+      "matrix4_ordinary_raw": {
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.2687252442921135e-05,
+            2.445787695215529e-05,
+            2.0837854004085443e-05,
+            2.4716189940932054e-05,
+            2.0223309569189496e-05,
+            2.3296008301088023e-05,
+            1.982778662146245e-05
+          ],
+          "median_us": 22.687252442921135,
+          "min_us": 19.82778662146245,
+          "max_us": 24.716189940932054,
+          "mad_us": 1.849398438835692,
+          "inversions_per_trial": 2048
+        },
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.624006249935974e-05,
+            4.0564033691126156e-05,
+            5.143280712793796e-05,
+            3.841704785045863e-05,
+            3.297934277313175e-05,
+            3.0460848144286956e-05,
+            3.4082853515471356e-05
+          ],
+          "median_us": 36.24006249935974,
+          "min_us": 30.460848144286956,
+          "max_us": 51.43280712793796,
+          "mad_us": 3.2607197262279897,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix4_ordinary_returning": {
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.514160058630921e-05,
+            2.607230908324709e-05,
+            2.4513933105652086e-05,
+            2.323648046953508e-05,
+            2.453287792825165e-05,
+            2.6190492675937094e-05,
+            4.023645556650024e-05
+          ],
+          "median_us": 25.14160058630921,
+          "min_us": 23.23648046953508,
+          "max_us": 40.23645556650024,
+          "mad_us": 0.930708496937882,
+          "inversions_per_trial": 2048
+        },
+        "before": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.551861718875671e-05,
+            3.6022111327582707e-05,
+            3.633309960804354e-05,
+            4.813418945204262e-05,
+            6.464098925818007e-05,
+            7.020024413861847e-05,
+            3.3549930662957195e-05
+          ],
+          "median_us": 36.33309960804354,
+          "min_us": 33.549930662957195,
+          "max_us": 70.20024413861847,
+          "mad_us": 2.783168945086345,
+          "inversions_per_trial": 1024
+        }
+      },
+      "matrix4_ordinary_in_place": {
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.7327241697960858e-05,
+            2.610322558638245e-05,
+            2.9499318358716664e-05,
+            3.092702490192778e-05,
+            3.6708380859451495e-05,
+            3.060352441508485e-05,
+            2.7341777343536933e-05
+          ],
+          "median_us": 29.499318358716664,
+          "min_us": 26.10322558638245,
+          "max_us": 36.708380859451495,
+          "mad_us": 2.1575410151797314,
+          "inversions_per_trial": 2048
+        },
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.7488043457045706e-05,
+            3.8561204590337184e-05,
+            3.5963863769694626e-05,
+            3.7476993652418855e-05,
+            3.925674658056266e-05,
+            3.674556591803935e-05,
+            4.756494775293163e-05
+          ],
+          "median_us": 37.488043457045706,
+          "min_us": 35.963863769694626,
+          "max_us": 47.56494775293163,
+          "mad_us": 1.073161133291478,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix4_scale_1e-300_raw": {
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.952896435637342e-05,
+            3.829419091871955e-05,
+            2.3243853027210548e-05,
+            2.630344384790817e-05,
+            2.6790232421802784e-05,
+            2.1688904295658062e-05,
+            2.207899658301926e-05
+          ],
+          "median_us": 26.30344384790817,
+          "min_us": 21.688904295658062,
+          "max_us": 38.29419091871955,
+          "mad_us": 3.2255205084652516,
+          "inversions_per_trial": 2048
+        },
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.582143847680186e-05,
+            3.3932544432957457e-05,
+            3.5158897460974003e-05,
+            3.4921830076584115e-05,
+            3.734569384761244e-05,
+            3.56747636711674e-05,
+            3.560218017639727e-05
+          ],
+          "median_us": 35.60218017639727,
+          "min_us": 33.93254443295746,
+          "max_us": 37.34569384761244,
+          "mad_us": 0.44328271542326547,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix4_scale_1e-300_returning": {
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.5568722167079727e-05,
+            2.6253382323204733e-05,
+            3.1349339355557504e-05,
+            3.507062695362606e-05,
+            2.7125011719419945e-05,
+            2.9513297363337188e-05,
+            2.4139739746686928e-05
+          ],
+          "median_us": 27.125011719419945,
+          "min_us": 24.139739746686928,
+          "max_us": 35.07062695362606,
+          "mad_us": 2.388285643917243,
+          "inversions_per_trial": 2048
+        },
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.745322802828355e-05,
+            4.141211669939082e-05,
+            4.117931982428047e-05,
+            3.909709619165369e-05,
+            3.819064404275707e-05,
+            3.8240338867012724e-05,
+            3.862735693438424e-05
+          ],
+          "median_us": 38.62735693438424,
+          "min_us": 37.45322802828355,
+          "max_us": 41.41211669939082,
+          "mad_us": 0.46973925726945254,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix4_scale_1e-300_in_place": {
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.6273952638433684e-05,
+            2.866711816551515e-05,
+            2.6483028321422353e-05,
+            3.1430750487615455e-05,
+            3.3975991700074815e-05,
+            2.937684179649125e-05,
+            2.8662029297521485e-05
+          ],
+          "median_us": 28.66711816551515,
+          "min_us": 26.273952638433684,
+          "max_us": 33.975991700074815,
+          "mad_us": 2.184089844092796,
+          "inversions_per_trial": 2048
+        },
+        "before": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.7548357422044774e-05,
+            4.2441089846079194e-05,
+            4.1001308595411956e-05,
+            4.2903315428333144e-05,
+            4.025763671933191e-05,
+            3.77732343750381e-05,
+            5.461740527579195e-05
+          ],
+          "median_us": 42.441089846079194,
+          "min_us": 37.7732343750381,
+          "max_us": 54.61740527579195,
+          "mad_us": 2.183453126747281,
+          "inversions_per_trial": 1024
+        }
+      },
+      "matrix4_scale_1e+300_raw": {
+        "after": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            8.48291093689113e-05,
+            7.890072070892984e-05,
+            7.451745702979906e-05,
+            7.305195507711915e-05,
+            7.724020117194641e-05,
+            7.575281835414671e-05,
+            9.218931640475603e-05
+          ],
+          "median_us": 77.24020117194641,
+          "min_us": 73.05195507711915,
+          "max_us": 92.18931640475603,
+          "mad_us": 2.7227441421473486,
+          "inversions_per_trial": 512
+        },
+        "before": {
+          "operations_per_trial": 64,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0002079595507780141,
+            0.000182191160149614,
+            0.00019946758594358016,
+            0.00020236154297492703,
+            0.0002527580976590116,
+            0.00034459042578305343,
+            0.00028222686327694646
+          ],
+          "median_us": 207.9595507780141,
+          "min_us": 182.191160149614,
+          "max_us": 344.59042578305343,
+          "mad_us": 25.768390628400084,
+          "inversions_per_trial": 256
+        }
+      },
+      "matrix4_scale_1e+300_returning": {
+        "after": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            8.674032226707595e-05,
+            8.00414746109368e-05,
+            0.0001060810488269226,
+            7.735433007383108e-05,
+            8.616249218817984e-05,
+            7.911901171553382e-05,
+            9.758003710658159e-05
+          ],
+          "median_us": 86.16249218817984,
+          "min_us": 77.35433007383108,
+          "max_us": 106.0810488269226,
+          "mad_us": 7.043480472646024,
+          "inversions_per_trial": 512
+        },
+        "before": {
+          "operations_per_trial": 32,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00021117030470918507,
+            0.0002219979609208167,
+            0.00021944613283153558,
+            0.00022923367185967436,
+            0.00022645226562190146,
+            0.0001944532265554244,
+            0.0001817471171818852
+          ],
+          "median_us": 219.44613283153558,
+          "min_us": 181.7471171818852,
+          "max_us": 229.23367185967436,
+          "mad_us": 8.275828122350504,
+          "inversions_per_trial": 128
+        }
+      },
+      "matrix4_scale_1e+300_in_place": {
+        "after": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.665592578045334e-05,
+            8.000452929479707e-05,
+            7.959682422153946e-05,
+            9.878388085837742e-05,
+            9.700264843814921e-05,
+            9.446416797231905e-05,
+            8.490802929372876e-05
+          ],
+          "median_us": 94.46416797231905,
+          "min_us": 79.59682422153946,
+          "max_us": 98.78388085837742,
+          "mad_us": 4.319712886058369,
+          "inversions_per_trial": 512
+        },
+        "before": {
+          "operations_per_trial": 64,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00021293887890294627,
+            0.00019278778906084426,
+            0.00022604475780951816,
+            0.000212165964839528,
+            0.00019107666797424372,
+            0.00021650385546934103,
+            0.00018237875781323964
+          ],
+          "median_us": 212.165964839528,
+          "min_us": 182.37875781323964,
+          "max_us": 226.04475780951816,
+          "mad_us": 13.878792969990172,
+          "inversions_per_trial": 256
+        }
+      },
+      "matrix4_mixed_rows_raw": {
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.8128317138099703e-05,
+            1.9681648192992895e-05,
+            1.7795964355471483e-05,
+            1.9094732910396317e-05,
+            1.7697826904417013e-05,
+            1.7609559082032433e-05,
+            1.759143139690167e-05
+          ],
+          "median_us": 17.795964355471483,
+          "min_us": 17.59143139690167,
+          "max_us": 19.681648192992895,
+          "mad_us": 0.20453295856981413,
+          "inversions_per_trial": 4096
+        },
+        "before": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.4721843749020422e-05,
+            2.827624658152672e-05,
+            3.9194145507792655e-05,
+            2.857101855546773e-05,
+            2.8866183106046606e-05,
+            2.425499169866896e-05,
+            2.5892354980072696e-05
+          ],
+          "median_us": 28.27624658152672,
+          "min_us": 24.25499169866896,
+          "max_us": 39.194145507792655,
+          "mad_us": 2.3838916014540246,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix4_mixed_rows_returning": {
+        "after": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.994514257930291e-05,
+            2.044592968708514e-05,
+            2.046968847579933e-05,
+            2.0360719725331933e-05,
+            2.1107247558660447e-05,
+            2.034024365293874e-05,
+            2.1980642088692548e-05
+          ],
+          "median_us": 20.44592968708514,
+          "min_us": 19.94514257930291,
+          "max_us": 21.980642088692548,
+          "mad_us": 0.10568603414640165,
+          "inversions_per_trial": 2048
+        },
+        "before": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.8402874511002096e-05,
+            2.8846491211709235e-05,
+            2.848579003789098e-05,
+            2.7536254394888715e-05,
+            2.9388287110521105e-05,
+            2.937031640648513e-05,
+            2.8470513672829156e-05
+          ],
+          "median_us": 28.48579003789098,
+          "min_us": 27.536254394888715,
+          "max_us": 29.388287110521105,
+          "mad_us": 0.3607011738182564,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix4_mixed_rows_in_place": {
+        "after": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.5760845215216932e-05,
+            2.2947509277670974e-05,
+            2.3181560058205264e-05,
+            2.264856543021665e-05,
+            2.249891210936994e-05,
+            2.279169970798023e-05,
+            2.2674113768772486e-05
+          ],
+          "median_us": 22.79169970798023,
+          "min_us": 22.49891210936994,
+          "max_us": 25.760845215216932,
+          "mad_us": 0.15580956969074578,
+          "inversions_per_trial": 2048
+        },
+        "before": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.993772607380208e-05,
+            3.714737158233561e-05,
+            3.099027685493638e-05,
+            3.022995019641428e-05,
+            3.998882421996086e-05,
+            3.584251318322629e-05,
+            3.5295645997024394e-05
+          ],
+          "median_us": 35.84251318322629,
+          "min_us": 30.22995019641428,
+          "max_us": 39.98882421996086,
+          "mad_us": 4.0952128905757945,
+          "inversions_per_trial": 2048
+        }
+      }
+    },
+    {
+      "matrix3_ordinary_raw": {
+        "before": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.3986720214909099e-05,
+            1.5313052734278187e-05,
+            1.3503181151897081e-05,
+            1.333515234414051e-05,
+            1.4368088379512756e-05,
+            1.3472199951181096e-05,
+            1.3658152588469363e-05
+          ],
+          "median_us": 13.658152588469363,
+          "min_us": 13.33515234414051,
+          "max_us": 15.313052734278187,
+          "mad_us": 0.32300024432885266,
+          "inversions_per_trial": 4096
+        },
+        "after": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.0476595947217504e-05,
+            1.107350878903901e-05,
+            1.0617789794942212e-05,
+            1.1228335204727102e-05,
+            1.2780399657685848e-05,
+            1.190524682659344e-05,
+            1.0671453124722063e-05
+          ],
+          "median_us": 11.07350878903901,
+          "min_us": 10.476595947217504,
+          "max_us": 12.780399657685848,
+          "mad_us": 0.4557189940967987,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix3_ordinary_returning": {
+        "before": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.604810766675513e-05,
+            1.589966503967588e-05,
+            1.568592480438724e-05,
+            1.7706700927710983e-05,
+            2.202337280277078e-05,
+            1.647777026381192e-05,
+            4.074400854481297e-05
+          ],
+          "median_us": 16.47777026381192,
+          "min_us": 15.685924804387241,
+          "max_us": 40.74400854481297,
+          "mad_us": 0.7918454594246782,
+          "inversions_per_trial": 4096
+        },
+        "after": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.64467404788482e-05,
+            1.480020629873735e-05,
+            1.4245984619520868e-05,
+            1.8115202148116794e-05,
+            1.4463503173800518e-05,
+            1.3416941650135072e-05,
+            1.3483104492451048e-05
+          ],
+          "median_us": 14.463503173800518,
+          "min_us": 13.416941650135072,
+          "max_us": 18.115202148116794,
+          "mad_us": 0.9803986813494703,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix3_ordinary_in_place": {
+        "before": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.1311956055036774e-05,
+            1.7807196044827833e-05,
+            1.7349459228377384e-05,
+            1.779181030325816e-05,
+            1.7421869873857077e-05,
+            1.7429684081804453e-05,
+            1.7446198485870923e-05
+          ],
+          "median_us": 17.446198485870923,
+          "min_us": 17.349459228377384,
+          "max_us": 21.311956055036774,
+          "mad_us": 0.09673925749353884,
+          "inversions_per_trial": 4096
+        },
+        "after": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.6548534912175228e-05,
+            1.669034521523116e-05,
+            1.4884863769992762e-05,
+            1.5190100097761672e-05,
+            1.446437451235738e-05,
+            1.4916437011791572e-05,
+            1.6444162109330307e-05
+          ],
+          "median_us": 15.190100097761672,
+          "min_us": 14.46437451235738,
+          "max_us": 16.69034521523116,
+          "mad_us": 0.725725585404291,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix3_scale_1e-300_raw": {
+        "before": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.8320701903995484e-05,
+            1.7774808349635407e-05,
+            1.74655234372878e-05,
+            1.7568149414337597e-05,
+            1.5646999023566366e-05,
+            1.7694224364817046e-05,
+            1.7844970703784213e-05
+          ],
+          "median_us": 17.694224364817046,
+          "min_us": 15.646999023566366,
+          "max_us": 18.320701903995484,
+          "mad_us": 0.15074633896716705,
+          "inversions_per_trial": 4096
+        },
+        "after": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.2013990722259393e-05,
+            1.161201538124601e-05,
+            1.156840795868419e-05,
+            1.3258142578465026e-05,
+            1.1850889648279406e-05,
+            1.2312687012183687e-05,
+            1.223673095651634e-05
+          ],
+          "median_us": 12.013990722259393,
+          "min_us": 11.56840795868419,
+          "max_us": 13.258142578465026,
+          "mad_us": 0.298696289924294,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix3_scale_1e-300_returning": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.7322804199082498e-05,
+            2.0682418945483505e-05,
+            1.8429981933465456e-05,
+            1.7577453613526473e-05,
+            1.7627035155953763e-05,
+            2.008538818287775e-05,
+            1.8839125488057107e-05
+          ],
+          "median_us": 18.429981933465456,
+          "min_us": 17.322804199082498,
+          "max_us": 20.682418945483505,
+          "mad_us": 0.8525283199389833,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.4669377685017082e-05,
+            1.48747968751195e-05,
+            1.39791999504979e-05,
+            1.3871460937231461e-05,
+            1.4158773437245031e-05,
+            1.3631264648594765e-05,
+            1.5292136962941072e-05
+          ],
+          "median_us": 14.158773437245031,
+          "min_us": 13.631264648594765,
+          "max_us": 15.292136962941072,
+          "mad_us": 0.5106042477720507,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix3_scale_1e-300_in_place": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.953581152491779e-05,
+            1.9254861816975222e-05,
+            1.8739946778367766e-05,
+            1.8791535644879787e-05,
+            1.9686747071645527e-05,
+            2.0384000977813344e-05,
+            1.9954008788403144e-05
+          ],
+          "median_us": 19.53581152491779,
+          "min_us": 18.739946778367766,
+          "max_us": 20.384000977813344,
+          "mad_us": 0.4181972634853537,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.69921225587899e-05,
+            1.6024308106210583e-05,
+            1.7195236084788235e-05,
+            1.544367919947831e-05,
+            1.5745187743831934e-05,
+            1.5637767577736383e-05,
+            1.7326468993772437e-05
+          ],
+          "median_us": 16.024308106210583,
+          "min_us": 15.44367919947831,
+          "max_us": 17.326468993772437,
+          "mad_us": 0.5806289067322723,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix3_scale_1e+300_raw": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.6185277832269094e-05,
+            2.741212988333075e-05,
+            2.7143055175926634e-05,
+            2.8812237305331223e-05,
+            2.618181298785771e-05,
+            2.806429345625361e-05,
+            2.7464033204083194e-05
+          ],
+          "median_us": 27.41212988333075,
+          "min_us": 26.18181298785771,
+          "max_us": 28.812237305331223,
+          "mad_us": 0.6521635729228592,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.837355566498445e-05,
+            2.651316894564104e-05,
+            2.4397172852630433e-05,
+            2.579616015552233e-05,
+            2.5188241698614888e-05,
+            2.5130582031351878e-05,
+            2.6888089355026068e-05
+          ],
+          "median_us": 25.79616015552233,
+          "min_us": 24.397172852630433,
+          "max_us": 28.37355566498445,
+          "mad_us": 0.7170087901187117,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix3_scale_1e+300_returning": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.9500839355378616e-05,
+            2.900072753853067e-05,
+            2.871526416114989e-05,
+            2.9525178222300497e-05,
+            2.9815065429872334e-05,
+            3.4849358398147956e-05,
+            2.8946915039185228e-05
+          ],
+          "median_us": 29.500839355378616,
+          "min_us": 28.71526416114989,
+          "max_us": 34.849358398147956,
+          "mad_us": 0.5001118168479479,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.9369941895396323e-05,
+            2.6887845704592905e-05,
+            2.7546005371803517e-05,
+            2.6478316895506282e-05,
+            2.7907897949930316e-05,
+            2.8499112305624408e-05,
+            2.6345676269912133e-05
+          ],
+          "median_us": 27.546005371803517,
+          "min_us": 26.345676269912133,
+          "max_us": 29.369941895396323,
+          "mad_us": 0.9531069338208908,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix3_scale_1e+300_in_place": {
+        "before": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.9346794921281116e-05,
+            2.955504492163641e-05,
+            3.2460842774639787e-05,
+            2.996914160391384e-05,
+            3.013487890868305e-05,
+            3.244966503856972e-05,
+            3.0687135740947724e-05
+          ],
+          "median_us": 30.13487890868305,
+          "min_us": 29.346794921281116,
+          "max_us": 32.46084277463979,
+          "mad_us": 0.5798339870466407,
+          "inversions_per_trial": 1024
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.017946044892028e-05,
+            2.937655126977745e-05,
+            3.120008154233744e-05,
+            3.549891455101317e-05,
+            2.798713085994109e-05,
+            2.917091308596298e-05,
+            2.9140049315756755e-05
+          ],
+          "median_us": 29.37655126977745,
+          "min_us": 27.98713085994109,
+          "max_us": 35.49891455101317,
+          "mad_us": 0.80290917914283,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix3_mixed_rows_raw": {
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.1294446533582914e-05,
+            1.0750614501731093e-05,
+            1.2529729003674106e-05,
+            1.0801353515610401e-05,
+            1.2289299315959568e-05,
+            1.2189604736256854e-05,
+            1.839044043006055e-05
+          ],
+          "median_us": 12.189604736256854,
+          "min_us": 10.750614501731093,
+          "max_us": 18.39044043006055,
+          "mad_us": 0.8951582026739402,
+          "inversions_per_trial": 4096
+        },
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.151236572080279e-06,
+            9.376617187584202e-06,
+            9.03030419951989e-06,
+            1.0152153564924049e-05,
+            1.104628881876124e-05,
+            9.238889892237978e-06,
+            9.831335449739242e-06
+          ],
+          "median_us": 9.376617187584202,
+          "min_us": 9.03030419951989,
+          "max_us": 11.04628881876124,
+          "mad_us": 0.3463129880643123,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix3_mixed_rows_returning": {
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.2784843750779373e-05,
+            1.4393361571940488e-05,
+            1.5615791991940853e-05,
+            1.996956274386008e-05,
+            1.2884030761384224e-05,
+            1.4134025634326974e-05,
+            1.4169884765102836e-05
+          ],
+          "median_us": 14.169884765102836,
+          "min_us": 12.784843750779373,
+          "max_us": 19.96956274386008,
+          "mad_us": 1.2858540037186117,
+          "inversions_per_trial": 4096
+        },
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.1930968749851445e-05,
+            1.2660350341420212e-05,
+            1.2393007080113705e-05,
+            1.0267747314607334e-05,
+            1.2947780028582656e-05,
+            1.115653295880037e-05,
+            1.1177785888882852e-05
+          ],
+          "median_us": 11.930968749851445,
+          "min_us": 10.267747314607334,
+          "max_us": 12.947780028582656,
+          "mad_us": 0.7531828609685931,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix3_mixed_rows_in_place": {
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.4000971191308054e-05,
+            1.4969146485022122e-05,
+            1.7341301757234362e-05,
+            1.551716308600959e-05,
+            1.4783455077882479e-05,
+            1.6631247802045834e-05,
+            1.3808440917806308e-05
+          ],
+          "median_us": 14.969146485022122,
+          "min_us": 13.808440917806308,
+          "max_us": 17.341301757234362,
+          "mad_us": 0.9681752937140686,
+          "inversions_per_trial": 4096
+        },
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.2897615722984312e-05,
+            1.3614230224057167e-05,
+            1.2308145263872916e-05,
+            1.2455833007685158e-05,
+            1.356478369096692e-05,
+            1.2437027831602165e-05,
+            1.2397849853407195e-05
+          ],
+          "median_us": 12.455833007685158,
+          "min_us": 12.308145263872916,
+          "max_us": 13.614230224057167,
+          "mad_us": 0.14768774381224148,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix4_ordinary_raw": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.962744238210746e-05,
+            3.006837939523166e-05,
+            2.9836148925710404e-05,
+            3.3444617676181565e-05,
+            2.8967029296111946e-05,
+            3.188768505779649e-05,
+            2.965698535284389e-05
+          ],
+          "median_us": 29.836148925710404,
+          "min_us": 28.967029296111946,
+          "max_us": 33.444617676181565,
+          "mad_us": 0.23223046952125515,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.019383569340505e-05,
+            2.0744074951117852e-05,
+            1.9993550781194358e-05,
+            1.9959878174269363e-05,
+            2.047269067428914e-05,
+            1.9259002196569952e-05,
+            2.079017773404246e-05
+          ],
+          "median_us": 20.19383569340505,
+          "min_us": 19.259002196569952,
+          "max_us": 20.79017773404246,
+          "mad_us": 0.2788549808840912,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix4_ordinary_returning": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.506863574287422e-05,
+            3.419607177690409e-05,
+            3.2787461424987896e-05,
+            3.380936279206992e-05,
+            3.3010690916768226e-05,
+            3.4010876953871616e-05,
+            3.3098645019435935e-05
+          ],
+          "median_us": 33.80936279206992,
+          "min_us": 32.787461424987896,
+          "max_us": 35.06863574287422,
+          "mad_us": 0.7107177726339842,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.933046533293293e-05,
+            2.5155738768489755e-05,
+            2.2788059570899577e-05,
+            2.2318692384004635e-05,
+            2.304271923847523e-05,
+            2.2421991211274417e-05,
+            2.4922492675827357e-05
+          ],
+          "median_us": 23.04271923847523,
+          "min_us": 22.318692384004635,
+          "max_us": 29.33046533293293,
+          "mad_us": 0.7240268544705941,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix4_ordinary_in_place": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.786021533220719e-05,
+            4.813913769474709e-05,
+            3.796844531223087e-05,
+            3.731079345747901e-05,
+            5.5195404296881634e-05,
+            5.6003512206359574e-05,
+            3.825115185662753e-05
+          ],
+          "median_us": 47.86021533220719,
+          "min_us": 37.31079345747901,
+          "max_us": 56.003512206359574,
+          "mad_us": 8.143296874152384,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.4980563477328133e-05,
+            3.353431250019412e-05,
+            2.8875575194931002e-05,
+            2.5357290038385827e-05,
+            2.63989277335952e-05,
+            2.5450510253932634e-05,
+            2.5102096191886858e-05
+          ],
+          "median_us": 25.450510253932634,
+          "min_us": 24.980563477328133,
+          "max_us": 33.53431250019412,
+          "mad_us": 0.4699467766045018,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix4_scale_1e-300_raw": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.539687988407536e-05,
+            3.658985839827267e-05,
+            3.344076025335596e-05,
+            3.6772951171215595e-05,
+            3.308924951106462e-05,
+            3.296947363295999e-05,
+            3.2925993163956946e-05
+          ],
+          "median_us": 33.44076025335596,
+          "min_us": 32.925993163956946,
+          "max_us": 36.772951171215595,
+          "mad_us": 0.5147670893990153,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.036531445348544e-05,
+            2.1097254395030518e-05,
+            2.043357714853755e-05,
+            2.17271689457732e-05,
+            2.2251551756724552e-05,
+            2.0315281737737223e-05,
+            2.1956259276478818e-05
+          ],
+          "median_us": 21.097254395030518,
+          "min_us": 20.315281737737223,
+          "max_us": 22.251551756724552,
+          "mad_us": 0.7319399415450789,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix4_scale_1e-300_returning": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.807915039111265e-05,
+            3.559863232460714e-05,
+            3.7173268554013816e-05,
+            3.705614648374933e-05,
+            3.582118310596627e-05,
+            3.734411474631827e-05,
+            3.8287145995852256e-05
+          ],
+          "median_us": 37.173268554013816,
+          "min_us": 35.59863232460714,
+          "max_us": 38.287145995852256,
+          "mad_us": 0.905881837098832,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.3892239747524968e-05,
+            2.4506553222281013e-05,
+            2.5130696776898276e-05,
+            2.3688255371467903e-05,
+            2.5198833496276052e-05,
+            2.451061083874606e-05,
+            2.3394572753687726e-05
+          ],
+          "median_us": 24.506553222281013,
+          "min_us": 23.394572753687726,
+          "max_us": 25.198833496276052,
+          "mad_us": 0.6241435546172625,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix4_scale_1e-300_in_place": {
+        "before": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.807697851598846e-05,
+            3.916417480454015e-05,
+            3.8087294921496095e-05,
+            3.8294349611334155e-05,
+            4.3691301758741474e-05,
+            3.639365136720585e-05,
+            3.8196581055416345e-05
+          ],
+          "median_us": 38.196581055416345,
+          "min_us": 36.39365136720585,
+          "max_us": 43.691301758741474,
+          "mad_us": 0.11960253942788768,
+          "inversions_per_trial": 1024
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.6637299804121994e-05,
+            2.7109001464964422e-05,
+            2.561039453041758e-05,
+            2.7444578613256e-05,
+            2.5231010742032822e-05,
+            2.812121093676012e-05,
+            2.6041205567040038e-05
+          ],
+          "median_us": 26.637299804121994,
+          "min_us": 25.231010742032822,
+          "max_us": 28.12121093676012,
+          "mad_us": 0.8072788091340044,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix4_scale_1e+300_raw": {
+        "before": {
+          "operations_per_trial": 64,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0001760487890578588,
+            0.00018327453905442326,
+            0.00019216392577448005,
+            0.0001735272343807992,
+            0.00017894958594411037,
+            0.0001827045781368497,
+            0.0001859748359436253
+          ],
+          "median_us": 182.7045781368497,
+          "min_us": 173.5272343807992,
+          "max_us": 192.16392577448005,
+          "mad_us": 3.754992192739337,
+          "inversions_per_trial": 256
+        },
+        "after": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            7.264229198966632e-05,
+            7.392010839879504e-05,
+            7.008731347468711e-05,
+            7.362388378950868e-05,
+            7.321135448989935e-05,
+            7.437623144213035e-05,
+            7.310381640479591e-05
+          ],
+          "median_us": 73.21135448989935,
+          "min_us": 70.08731347468711,
+          "max_us": 74.37623144213035,
+          "mad_us": 0.5690625002330307,
+          "inversions_per_trial": 1024
+        }
+      },
+      "matrix4_scale_1e+300_returning": {
+        "before": {
+          "operations_per_trial": 64,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0001957904804754662,
+            0.0001794604062581584,
+            0.0001810381523483784,
+            0.0001857962734419516,
+            0.00018961370703607372,
+            0.00018653573046378824,
+            0.00018075831250996544
+          ],
+          "median_us": 185.7962734419516,
+          "min_us": 179.4604062581584,
+          "max_us": 195.7904804754662,
+          "mad_us": 4.758121093573209,
+          "inversions_per_trial": 256
+        },
+        "after": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            7.59469208979624e-05,
+            7.418474804765651e-05,
+            7.269847949231689e-05,
+            7.656258691213225e-05,
+            7.585089160144776e-05,
+            7.513078027443498e-05,
+            7.875980566396379e-05
+          ],
+          "median_us": 75.85089160144776,
+          "min_us": 72.69847949231689,
+          "max_us": 78.75980566396379,
+          "mad_us": 0.7201113270127735,
+          "inversions_per_trial": 1024
+        }
+      },
+      "matrix4_scale_1e+300_in_place": {
+        "before": {
+          "operations_per_trial": 64,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00018972212890844276,
+            0.00018224595312688052,
+            0.0001929924218728729,
+            0.0001906526250081697,
+            0.00018215976952262736,
+            0.00018698241406411853,
+            0.00018671027734740164
+          ],
+          "median_us": 186.98241406411853,
+          "min_us": 182.15976952262736,
+          "max_us": 192.9924218728729,
+          "mad_us": 3.6702109440511776,
+          "inversions_per_trial": 256
+        },
+        "after": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            7.494990234135912e-05,
+            7.450327148461611e-05,
+            7.922998828036043e-05,
+            7.520763476520642e-05,
+            7.299033398311394e-05,
+            8.192319336330911e-05,
+            7.575585742358726e-05
+          ],
+          "median_us": 75.20763476520642,
+          "min_us": 72.99033398311394,
+          "max_us": 81.92319336330911,
+          "mad_us": 0.7043632805903144,
+          "inversions_per_trial": 512
+        }
+      },
+      "matrix4_mixed_rows_raw": {
+        "before": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.424284326174586e-05,
+            2.6996620116293002e-05,
+            2.494299365274344e-05,
+            2.2797428711029966e-05,
+            2.4328282226093734e-05,
+            2.3163126465775008e-05,
+            2.46261557617089e-05
+          ],
+          "median_us": 24.328282226093734,
+          "min_us": 22.797428711029966,
+          "max_us": 26.996620116293002,
+          "mad_us": 0.6147114266497056,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.6136229004537483e-05,
+            1.7124231932896805e-05,
+            1.578394775414438e-05,
+            1.6726035887870694e-05,
+            1.7791009277345893e-05,
+            1.832957055647455e-05,
+            1.8640307861694794e-05
+          ],
+          "median_us": 17.124231932896805,
+          "min_us": 15.783947754144378,
+          "max_us": 18.640307861694794,
+          "mad_us": 0.9880029283593217,
+          "inversions_per_trial": 4096
+        }
+      },
+      "matrix4_mixed_rows_returning": {
+        "before": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.0045802246192466e-05,
+            2.659697704920916e-05,
+            2.837681738299125e-05,
+            2.7329721190127998e-05,
+            2.747982324180498e-05,
+            2.7479790039919294e-05,
+            2.7316410644573352e-05
+          ],
+          "median_us": 27.479790039919294,
+          "min_us": 26.59697704920916,
+          "max_us": 30.045802246192466,
+          "mad_us": 0.1633793953459417,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.1696477050525687e-05,
+            1.880880908267102e-05,
+            1.9168517090051296e-05,
+            1.9129628418212974e-05,
+            1.9896490234927455e-05,
+            1.8697906249087737e-05,
+            2.0494643067081597e-05
+          ],
+          "median_us": 19.168517090051296,
+          "min_us": 18.697906249087737,
+          "max_us": 21.696477050525687,
+          "mad_us": 0.470610840963559,
+          "inversions_per_trial": 2048
+        }
+      },
+      "matrix4_mixed_rows_in_place": {
+        "before": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.927951415898633e-05,
+            3.124849316371581e-05,
+            2.9884532715129808e-05,
+            2.8769615722623598e-05,
+            2.9395066896142907e-05,
+            2.9669460449355256e-05,
+            2.807312939445694e-05
+          ],
+          "median_us": 29.395066896142907,
+          "min_us": 28.07312939445694,
+          "max_us": 31.248493163715807,
+          "mad_us": 0.48946581898690056,
+          "inversions_per_trial": 2048
+        },
+        "after": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.119227148433822e-05,
+            2.173908593761098e-05,
+            2.2558362793745346e-05,
+            2.0977858397941418e-05,
+            2.0992749998782756e-05,
+            2.1120879882374766e-05,
+            2.1110815429992158e-05
+          ],
+          "median_us": 21.120879882374766,
+          "min_us": 20.977858397941418,
+          "max_us": 22.558362793745346,
+          "mad_us": 0.12812988359200972,
+          "inversions_per_trial": 2048
+        }
+      }
+    }
+  ],
+  "profiles": {
+    "matrix3_ordinary_raw": {
+      "before": {
+        "operations": 100,
+        "top_cumulative": [
+          {
+            "function": "/workspace/pyGameMath/benchmarks/matrix_inverse.py:53:<lambda>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.00010648500000000001,
+            "cumulative_seconds": 0.017209584
+          },
+          {
+            "function": "baseline_matrix.py:382:inverse3",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000283294,
+            "cumulative_seconds": 0.017103099
+          },
+          {
+            "function": "baseline_matrix.py:347:_scaled_cofactor_inverse",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.006120935,
+            "cumulative_seconds": 0.016819805
+          },
+          {
+            "function": "~:0:<built-in method builtins.max>",
+            "primitive_calls": 2400,
+            "calls": 2400,
+            "self_seconds": 0.0021682100000000003,
+            "cumulative_seconds": 0.0038837200000000002
+          },
+          {
+            "function": "~:0:<built-in method builtins.any>",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.0005657090000000001,
+            "cumulative_seconds": 0.00293296
+          },
+          {
+            "function": "baseline_matrix.py:349:<genexpr>",
+            "primitive_calls": 4000,
+            "calls": 4000,
+            "self_seconds": 0.001574227,
+            "cumulative_seconds": 0.0023672510000000003
+          },
+          {
+            "function": "baseline_matrix.py:366:<genexpr>",
+            "primitive_calls": 4800,
+            "calls": 4800,
+            "self_seconds": 0.000903978,
+            "cumulative_seconds": 0.001235434
+          },
+          {
+            "function": "~:0:<method 'as_integer_ratio' of 'float' objects>",
+            "primitive_calls": 3600,
+            "calls": 3600,
+            "self_seconds": 0.001138174,
+            "cumulative_seconds": 0.001138174
+          },
+          {
+            "function": "~:0:<built-in method math.ldexp>",
+            "primitive_calls": 7200,
+            "calls": 7200,
+            "self_seconds": 0.000790117,
+            "cumulative_seconds": 0.000790117
+          },
+          {
+            "function": "baseline_matrix.py:271:_inverse3_cofactor",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.0005470420000000001,
+            "cumulative_seconds": 0.0007496060000000001
+          },
+          {
+            "function": "~:0:<method 'append' of 'list' objects>",
+            "primitive_calls": 3600,
+            "calls": 3600,
+            "self_seconds": 0.000676199,
+            "cumulative_seconds": 0.000676199
+          },
+          {
+            "function": "baseline_matrix.py:357:<genexpr>",
+            "primitive_calls": 4800,
+            "calls": 4800,
+            "self_seconds": 0.000480076,
+            "cumulative_seconds": 0.000480076
+          },
+          {
+            "function": "~:0:<built-in method math.isinf>",
+            "primitive_calls": 3600,
+            "calls": 3600,
+            "self_seconds": 0.000461652,
+            "cumulative_seconds": 0.000461652
+          },
+          {
+            "function": "~:0:<built-in method builtins.abs>",
+            "primitive_calls": 3600,
+            "calls": 3600,
+            "self_seconds": 0.00033145600000000005,
+            "cumulative_seconds": 0.00033145600000000005
+          },
+          {
+            "function": "~:0:<built-in method math.isnan>",
+            "primitive_calls": 3600,
+            "calls": 3600,
+            "self_seconds": 0.000331372,
+            "cumulative_seconds": 0.000331372
+          },
+          {
+            "function": "baseline_matrix.py:202:det3",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.00030600900000000004,
+            "cumulative_seconds": 0.00030600900000000004
+          },
+          {
+            "function": "~:0:<built-in method math.frexp>",
+            "primitive_calls": 1200,
+            "calls": 1200,
+            "self_seconds": 0.000222085,
+            "cumulative_seconds": 0.000222085
+          },
+          {
+            "function": "baseline_matrix.py:6:zero_matrix",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.00020256400000000002,
+            "cumulative_seconds": 0.00020256400000000002
+          },
+          {
+            "function": "~:0:<method 'disable' of '_lsprof.Profiler' objects>",
+            "primitive_calls": 1,
+            "calls": 1,
+            "self_seconds": 3.7329e-05,
+            "cumulative_seconds": 3.7329e-05
+          }
+        ],
+        "single_call_peak_traced_bytes": 2864,
+        "single_call_retained_traced_bytes": 1264
+      },
+      "after": {
+        "operations": 100,
+        "top_cumulative": [
+          {
+            "function": "/workspace/pyGameMath/benchmarks/matrix_inverse.py:53:<lambda>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.00010062700000000001,
+            "cumulative_seconds": 0.016399619
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:393:inverse3",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000266017,
+            "cumulative_seconds": 0.016298992
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:356:_scaled_cofactor_inverse",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.007009830000000001,
+            "cumulative_seconds": 0.016032975
+          },
+          {
+            "function": "~:0:<built-in method builtins.max>",
+            "primitive_calls": 2400,
+            "calls": 2400,
+            "self_seconds": 0.001350901,
+            "cumulative_seconds": 0.0028957180000000003
+          },
+          {
+            "function": "~:0:<built-in method builtins.any>",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000529211,
+            "cumulative_seconds": 0.001823638
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:366:<genexpr>",
+            "primitive_calls": 4800,
+            "calls": 4800,
+            "self_seconds": 0.001107226,
+            "cumulative_seconds": 0.0015448170000000002
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:358:<genexpr>",
+            "primitive_calls": 4000,
+            "calls": 4000,
+            "self_seconds": 0.0009875720000000001,
+            "cumulative_seconds": 0.0012944270000000001
+          },
+          {
+            "function": "~:0:<method 'as_integer_ratio' of 'float' objects>",
+            "primitive_calls": 3600,
+            "calls": 3600,
+            "self_seconds": 0.0012304120000000002,
+            "cumulative_seconds": 0.0012304120000000002
+          },
+          {
+            "function": "~:0:<method 'append' of 'list' objects>",
+            "primitive_calls": 3600,
+            "calls": 3600,
+            "self_seconds": 0.000976349,
+            "cumulative_seconds": 0.000976349
+          },
+          {
+            "function": "~:0:<method 'bit_length' of 'int' objects>",
+            "primitive_calls": 7200,
+            "calls": 7200,
+            "self_seconds": 0.000953499,
+            "cumulative_seconds": 0.000953499
+          },
+          {
+            "function": "~:0:<built-in method math.ldexp>",
+            "primitive_calls": 7200,
+            "calls": 7200,
+            "self_seconds": 0.0007560440000000001,
+            "cumulative_seconds": 0.0007560440000000001
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:202:det3",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000318022,
+            "cumulative_seconds": 0.000318022
+          },
+          {
+            "function": "~:0:<built-in method math.isfinite>",
+            "primitive_calls": 3600,
+            "calls": 3600,
+            "self_seconds": 0.00030685500000000003,
+            "cumulative_seconds": 0.00030685500000000003
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:271:_inverse3_cofactor",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000289662,
+            "cumulative_seconds": 0.000289662
+          },
+          {
+            "function": "~:0:<built-in method math.frexp>",
+            "primitive_calls": 1200,
+            "calls": 1200,
+            "self_seconds": 0.000217392,
+            "cumulative_seconds": 0.000217392
+          },
+          {
+            "function": "~:0:<method 'disable' of '_lsprof.Profiler' objects>",
+            "primitive_calls": 1,
+            "calls": 1,
+            "self_seconds": 6.110600000000001e-05,
+            "cumulative_seconds": 6.110600000000001e-05
+          }
+        ],
+        "single_call_peak_traced_bytes": 2248,
+        "single_call_retained_traced_bytes": 696
+      }
+    },
+    "matrix4_ordinary_raw": {
+      "before": {
+        "operations": 100,
+        "top_cumulative": [
+          {
+            "function": "/workspace/pyGameMath/benchmarks/matrix_inverse.py:53:<lambda>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.000126457,
+            "cumulative_seconds": 0.032711394000000005
+          },
+          {
+            "function": "baseline_matrix.py:386:inverse4",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000349815,
+            "cumulative_seconds": 0.032584937
+          },
+          {
+            "function": "baseline_matrix.py:347:_scaled_cofactor_inverse",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.009618114,
+            "cumulative_seconds": 0.032235122000000005
+          },
+          {
+            "function": "~:0:<built-in method builtins.max>",
+            "primitive_calls": 3200,
+            "calls": 3200,
+            "self_seconds": 0.002908997,
+            "cumulative_seconds": 0.0061257460000000005
+          },
+          {
+            "function": "~:0:<built-in method builtins.any>",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.0010143250000000002,
+            "cumulative_seconds": 0.004646532
+          },
+          {
+            "function": "baseline_matrix.py:293:_inverse4_cofactor",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.001644634,
+            "cumulative_seconds": 0.0037218900000000003
+          },
+          {
+            "function": "baseline_matrix.py:349:<genexpr>",
+            "primitive_calls": 6800,
+            "calls": 6800,
+            "self_seconds": 0.0025438490000000004,
+            "cumulative_seconds": 0.003632207
+          },
+          {
+            "function": "baseline_matrix.py:208:det4",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.0030964250000000003,
+            "cumulative_seconds": 0.0033279090000000004
+          },
+          {
+            "function": "baseline_matrix.py:366:<genexpr>",
+            "primitive_calls": 8000,
+            "calls": 8000,
+            "self_seconds": 0.001602778,
+            "cumulative_seconds": 0.0024077490000000003
+          },
+          {
+            "function": "~:0:<method 'as_integer_ratio' of 'float' objects>",
+            "primitive_calls": 6400,
+            "calls": 6400,
+            "self_seconds": 0.002020107,
+            "cumulative_seconds": 0.002020107
+          },
+          {
+            "function": "~:0:<built-in method math.ldexp>",
+            "primitive_calls": 12800,
+            "calls": 12800,
+            "self_seconds": 0.001448105,
+            "cumulative_seconds": 0.001448105
+          },
+          {
+            "function": "~:0:<method 'append' of 'list' objects>",
+            "primitive_calls": 4800,
+            "calls": 4800,
+            "self_seconds": 0.0010384910000000001,
+            "cumulative_seconds": 0.0010384910000000001
+          },
+          {
+            "function": "baseline_matrix.py:49:transpose",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000736723,
+            "cumulative_seconds": 0.001021116
+          },
+          {
+            "function": "baseline_matrix.py:6:zero_matrix",
+            "primitive_calls": 1600,
+            "calls": 1600,
+            "self_seconds": 0.000882232,
+            "cumulative_seconds": 0.000882232
+          },
+          {
+            "function": "baseline_matrix.py:39:matrix_div",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000583153,
+            "cumulative_seconds": 0.000826281
+          },
+          {
+            "function": "baseline_matrix.py:357:<genexpr>",
+            "primitive_calls": 8000,
+            "calls": 8000,
+            "self_seconds": 0.000809,
+            "cumulative_seconds": 0.000809
+          },
+          {
+            "function": "~:0:<built-in method builtins.abs>",
+            "primitive_calls": 6400,
+            "calls": 6400,
+            "self_seconds": 0.000804971,
+            "cumulative_seconds": 0.000804971
+          },
+          {
+            "function": "~:0:<built-in method math.isinf>",
+            "primitive_calls": 6400,
+            "calls": 6400,
+            "self_seconds": 0.000547588,
+            "cumulative_seconds": 0.000547588
+          },
+          {
+            "function": "~:0:<built-in method math.isnan>",
+            "primitive_calls": 6400,
+            "calls": 6400,
+            "self_seconds": 0.00054077,
+            "cumulative_seconds": 0.00054077
+          },
+          {
+            "function": "~:0:<built-in method math.frexp>",
+            "primitive_calls": 1600,
+            "calls": 1600,
+            "self_seconds": 0.000288228,
+            "cumulative_seconds": 0.000288228
+          }
+        ],
+        "single_call_peak_traced_bytes": 6204,
+        "single_call_retained_traced_bytes": 2624
+      },
+      "after": {
+        "operations": 100,
+        "top_cumulative": [
+          {
+            "function": "/workspace/pyGameMath/benchmarks/matrix_inverse.py:53:<lambda>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.00010318000000000001,
+            "cumulative_seconds": 0.025925490000000002
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:397:inverse4",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000293623,
+            "cumulative_seconds": 0.02582231
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:356:_scaled_cofactor_inverse",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.010050802000000001,
+            "cumulative_seconds": 0.025528687
+          },
+          {
+            "function": "~:0:<built-in method builtins.max>",
+            "primitive_calls": 3200,
+            "calls": 3200,
+            "self_seconds": 0.0017706000000000002,
+            "cumulative_seconds": 0.0040878040000000004
+          },
+          {
+            "function": "~:0:<built-in method builtins.any>",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000683326,
+            "cumulative_seconds": 0.003613943
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:358:<genexpr>",
+            "primitive_calls": 6800,
+            "calls": 6800,
+            "self_seconds": 0.001543186,
+            "cumulative_seconds": 0.0029306170000000004
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:366:<genexpr>",
+            "primitive_calls": 8000,
+            "calls": 8000,
+            "self_seconds": 0.0016223560000000001,
+            "cumulative_seconds": 0.0023172040000000002
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:283:_inverse4_cofactor",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.0017825610000000002,
+            "cumulative_seconds": 0.002027385
+          },
+          {
+            "function": "~:0:<method 'as_integer_ratio' of 'float' objects>",
+            "primitive_calls": 6400,
+            "calls": 6400,
+            "self_seconds": 0.002011536,
+            "cumulative_seconds": 0.002011536
+          },
+          {
+            "function": "~:0:<method 'bit_length' of 'int' objects>",
+            "primitive_calls": 12800,
+            "calls": 12800,
+            "self_seconds": 0.001476055,
+            "cumulative_seconds": 0.001476055
+          },
+          {
+            "function": "~:0:<built-in method math.isfinite>",
+            "primitive_calls": 6400,
+            "calls": 6400,
+            "self_seconds": 0.0013874310000000002,
+            "cumulative_seconds": 0.0013874310000000002
+          },
+          {
+            "function": "~:0:<built-in method math.ldexp>",
+            "primitive_calls": 12800,
+            "calls": 12800,
+            "self_seconds": 0.001305256,
+            "cumulative_seconds": 0.001305256
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:335:_det4_exact",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000708127,
+            "cumulative_seconds": 0.000708127
+          },
+          {
+            "function": "~:0:<method 'append' of 'list' objects>",
+            "primitive_calls": 4800,
+            "calls": 4800,
+            "self_seconds": 0.000674599,
+            "cumulative_seconds": 0.000674599
+          },
+          {
+            "function": "~:0:<built-in method math.frexp>",
+            "primitive_calls": 1600,
+            "calls": 1600,
+            "self_seconds": 0.000268028,
+            "cumulative_seconds": 0.000268028
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:6:zero_matrix",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.00024482400000000004,
+            "cumulative_seconds": 0.00024482400000000004
+          },
+          {
+            "function": "~:0:<method 'disable' of '_lsprof.Profiler' objects>",
+            "primitive_calls": 1,
+            "calls": 1,
+            "self_seconds": 2.1289000000000002e-05,
+            "cumulative_seconds": 2.1289000000000002e-05
+          }
+        ],
+        "single_call_peak_traced_bytes": 4320,
+        "single_call_retained_traced_bytes": 1632
+      }
+    },
+    "matrix4_ordinary_returning": {
+      "before": {
+        "operations": 100,
+        "top_cumulative": [
+          {
+            "function": "/workspace/pyGameMath/benchmarks/matrix_inverse.py:56:<lambda>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.00015214700000000002,
+            "cumulative_seconds": 0.035328184000000006
+          },
+          {
+            "function": "baseline_matrix.py:500:inverse",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.00036969600000000003,
+            "cumulative_seconds": 0.035176037
+          },
+          {
+            "function": "baseline_matrix.py:386:inverse4",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.00035771900000000005,
+            "cumulative_seconds": 0.033211721
+          },
+          {
+            "function": "baseline_matrix.py:347:_scaled_cofactor_inverse",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.009476244,
+            "cumulative_seconds": 0.032854002
+          },
+          {
+            "function": "~:0:<built-in method builtins.max>",
+            "primitive_calls": 3200,
+            "calls": 3200,
+            "self_seconds": 0.0040072020000000005,
+            "cumulative_seconds": 0.006947623000000001
+          },
+          {
+            "function": "~:0:<built-in method builtins.any>",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000770033,
+            "cumulative_seconds": 0.0045836950000000005
+          },
+          {
+            "function": "baseline_matrix.py:293:_inverse4_cofactor",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.001954295,
+            "cumulative_seconds": 0.0039196510000000006
+          },
+          {
+            "function": "baseline_matrix.py:349:<genexpr>",
+            "primitive_calls": 6800,
+            "calls": 6800,
+            "self_seconds": 0.0026149650000000003,
+            "cumulative_seconds": 0.003813662
+          },
+          {
+            "function": "baseline_matrix.py:208:det4",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.002995989,
+            "cumulative_seconds": 0.003235715
+          },
+          {
+            "function": "baseline_matrix.py:366:<genexpr>",
+            "primitive_calls": 8000,
+            "calls": 8000,
+            "self_seconds": 0.0014770940000000002,
+            "cumulative_seconds": 0.002104687
+          },
+          {
+            "function": "~:0:<method 'as_integer_ratio' of 'float' objects>",
+            "primitive_calls": 6400,
+            "calls": 6400,
+            "self_seconds": 0.0020602190000000003,
+            "cumulative_seconds": 0.0020602190000000003
+          },
+          {
+            "function": "baseline_matrix.py:396:__init__",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000162942,
+            "cumulative_seconds": 0.0015946200000000002
+          },
+          {
+            "function": "~:0:<built-in method math.ldexp>",
+            "primitive_calls": 12800,
+            "calls": 12800,
+            "self_seconds": 0.00151902,
+            "cumulative_seconds": 0.00151902
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/common.py:21:conv_list_2d",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.0013366670000000002,
+            "cumulative_seconds": 0.001431678
+          },
+          {
+            "function": "baseline_matrix.py:6:zero_matrix",
+            "primitive_calls": 1600,
+            "calls": 1600,
+            "self_seconds": 0.0009099990000000001,
+            "cumulative_seconds": 0.0009099990000000001
+          },
+          {
+            "function": "baseline_matrix.py:39:matrix_div",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000629538,
+            "cumulative_seconds": 0.0008711750000000001
+          },
+          {
+            "function": "baseline_matrix.py:49:transpose",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000562587,
+            "cumulative_seconds": 0.000846032
+          },
+          {
+            "function": "baseline_matrix.py:357:<genexpr>",
+            "primitive_calls": 8000,
+            "calls": 8000,
+            "self_seconds": 0.0008357340000000001,
+            "cumulative_seconds": 0.0008357340000000001
+          },
+          {
+            "function": "~:0:<method 'append' of 'list' objects>",
+            "primitive_calls": 4800,
+            "calls": 4800,
+            "self_seconds": 0.0008028400000000001,
+            "cumulative_seconds": 0.0008028400000000001
+          },
+          {
+            "function": "~:0:<built-in method math.isnan>",
+            "primitive_calls": 6400,
+            "calls": 6400,
+            "self_seconds": 0.000638712,
+            "cumulative_seconds": 0.000638712
+          }
+        ],
+        "single_call_peak_traced_bytes": 7372,
+        "single_call_retained_traced_bytes": 2952
+      },
+      "after": {
+        "operations": 100,
+        "top_cumulative": [
+          {
+            "function": "/workspace/pyGameMath/benchmarks/matrix_inverse.py:56:<lambda>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.00013249800000000002,
+            "cumulative_seconds": 0.028801196
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:511:inverse",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.00042159600000000005,
+            "cumulative_seconds": 0.028668698000000003
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:397:inverse4",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.00036659100000000004,
+            "cumulative_seconds": 0.026545807
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:356:_scaled_cofactor_inverse",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.01017733,
+            "cumulative_seconds": 0.026179216
+          },
+          {
+            "function": "~:0:<built-in method builtins.max>",
+            "primitive_calls": 3200,
+            "calls": 3200,
+            "self_seconds": 0.002083175,
+            "cumulative_seconds": 0.0044356890000000005
+          },
+          {
+            "function": "~:0:<built-in method builtins.any>",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000695395,
+            "cumulative_seconds": 0.0030666440000000003
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:358:<genexpr>",
+            "primitive_calls": 6800,
+            "calls": 6800,
+            "self_seconds": 0.001502924,
+            "cumulative_seconds": 0.002371249
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:366:<genexpr>",
+            "primitive_calls": 8000,
+            "calls": 8000,
+            "self_seconds": 0.001700258,
+            "cumulative_seconds": 0.002352514
+          },
+          {
+            "function": "~:0:<method 'as_integer_ratio' of 'float' objects>",
+            "primitive_calls": 6400,
+            "calls": 6400,
+            "self_seconds": 0.002289882,
+            "cumulative_seconds": 0.002289882
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:283:_inverse4_cofactor",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.001857885,
+            "cumulative_seconds": 0.002117075
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:407:__init__",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000154263,
+            "cumulative_seconds": 0.001701295
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/common.py:21:conv_list_2d",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.001442581,
+            "cumulative_seconds": 0.001547032
+          },
+          {
+            "function": "~:0:<method 'bit_length' of 'int' objects>",
+            "primitive_calls": 12800,
+            "calls": 12800,
+            "self_seconds": 0.001412988,
+            "cumulative_seconds": 0.001412988
+          },
+          {
+            "function": "~:0:<built-in method math.ldexp>",
+            "primitive_calls": 12800,
+            "calls": 12800,
+            "self_seconds": 0.0013964530000000002,
+            "cumulative_seconds": 0.0013964530000000002
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:335:_det4_exact",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.0009730260000000001,
+            "cumulative_seconds": 0.0009730260000000001
+          },
+          {
+            "function": "~:0:<built-in method math.isfinite>",
+            "primitive_calls": 6400,
+            "calls": 6400,
+            "self_seconds": 0.0008683250000000001,
+            "cumulative_seconds": 0.0008683250000000001
+          },
+          {
+            "function": "~:0:<method 'append' of 'list' objects>",
+            "primitive_calls": 4800,
+            "calls": 4800,
+            "self_seconds": 0.000681684,
+            "cumulative_seconds": 0.000681684
+          },
+          {
+            "function": "~:0:<built-in method math.frexp>",
+            "primitive_calls": 1600,
+            "calls": 1600,
+            "self_seconds": 0.000280701,
+            "cumulative_seconds": 0.000280701
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:6:zero_matrix",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.00025919,
+            "cumulative_seconds": 0.00025919
+          },
+          {
+            "function": "~:0:<built-in method builtins.len>",
+            "primitive_calls": 800,
+            "calls": 800,
+            "self_seconds": 0.000104451,
+            "cumulative_seconds": 0.000104451
+          }
+        ],
+        "single_call_peak_traced_bytes": 5728,
+        "single_call_retained_traced_bytes": 2176
+      }
+    },
+    "matrix4_scale_1e+300_raw": {
+      "before": {
+        "operations": 100,
+        "top_cumulative": [
+          {
+            "function": "/workspace/pyGameMath/benchmarks/matrix_inverse.py:53:<lambda>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.000118938,
+            "cumulative_seconds": 0.09127565
+          },
+          {
+            "function": "baseline_matrix.py:386:inverse4",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000401391,
+            "cumulative_seconds": 0.091156712
+          },
+          {
+            "function": "baseline_matrix.py:347:_scaled_cofactor_inverse",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.009178108,
+            "cumulative_seconds": 0.090755321
+          },
+          {
+            "function": "baseline_matrix.py:208:det4",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.061377517000000006,
+            "cumulative_seconds": 0.061619928000000004
+          },
+          {
+            "function": "~:0:<built-in method builtins.max>",
+            "primitive_calls": 3200,
+            "calls": 3200,
+            "self_seconds": 0.0028211060000000003,
+            "cumulative_seconds": 0.006093691
+          },
+          {
+            "function": "~:0:<built-in method builtins.any>",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000822131,
+            "cumulative_seconds": 0.00492963
+          },
+          {
+            "function": "baseline_matrix.py:349:<genexpr>",
+            "primitive_calls": 6800,
+            "calls": 6800,
+            "self_seconds": 0.002589329,
+            "cumulative_seconds": 0.004107499000000001
+          },
+          {
+            "function": "baseline_matrix.py:293:_inverse4_cofactor",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.001920473,
+            "cumulative_seconds": 0.0038635490000000004
+          },
+          {
+            "function": "~:0:<method 'as_integer_ratio' of 'float' objects>",
+            "primitive_calls": 6400,
+            "calls": 6400,
+            "self_seconds": 0.0026832040000000002,
+            "cumulative_seconds": 0.0026832040000000002
+          },
+          {
+            "function": "baseline_matrix.py:366:<genexpr>",
+            "primitive_calls": 8000,
+            "calls": 8000,
+            "self_seconds": 0.0015022100000000001,
+            "cumulative_seconds": 0.002137008
+          },
+          {
+            "function": "~:0:<built-in method math.ldexp>",
+            "primitive_calls": 12800,
+            "calls": 12800,
+            "self_seconds": 0.0013909290000000002,
+            "cumulative_seconds": 0.0013909290000000002
+          },
+          {
+            "function": "baseline_matrix.py:357:<genexpr>",
+            "primitive_calls": 8000,
+            "calls": 8000,
+            "self_seconds": 0.001135577,
+            "cumulative_seconds": 0.001135577
+          },
+          {
+            "function": "baseline_matrix.py:6:zero_matrix",
+            "primitive_calls": 1600,
+            "calls": 1600,
+            "self_seconds": 0.0009111430000000001,
+            "cumulative_seconds": 0.0009111430000000001
+          },
+          {
+            "function": "baseline_matrix.py:39:matrix_div",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.00059698,
+            "cumulative_seconds": 0.000856766
+          },
+          {
+            "function": "baseline_matrix.py:49:transpose",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000568348,
+            "cumulative_seconds": 0.000835778
+          },
+          {
+            "function": "~:0:<built-in method math.isnan>",
+            "primitive_calls": 6400,
+            "calls": 6400,
+            "self_seconds": 0.000829711,
+            "cumulative_seconds": 0.000829711
+          },
+          {
+            "function": "~:0:<built-in method math.isinf>",
+            "primitive_calls": 6400,
+            "calls": 6400,
+            "self_seconds": 0.000688459,
+            "cumulative_seconds": 0.000688459
+          },
+          {
+            "function": "~:0:<method 'append' of 'list' objects>",
+            "primitive_calls": 4800,
+            "calls": 4800,
+            "self_seconds": 0.000679876,
+            "cumulative_seconds": 0.000679876
+          },
+          {
+            "function": "~:0:<built-in method builtins.abs>",
+            "primitive_calls": 6400,
+            "calls": 6400,
+            "self_seconds": 0.000634798,
+            "cumulative_seconds": 0.000634798
+          },
+          {
+            "function": "~:0:<built-in method math.frexp>",
+            "primitive_calls": 1600,
+            "calls": 1600,
+            "self_seconds": 0.00031640600000000003,
+            "cumulative_seconds": 0.00031640600000000003
+          }
+        ],
+        "single_call_peak_traced_bytes": 20936,
+        "single_call_retained_traced_bytes": 2624
+      },
+      "after": {
+        "operations": 100,
+        "top_cumulative": [
+          {
+            "function": "/workspace/pyGameMath/benchmarks/matrix_inverse.py:53:<lambda>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.000113245,
+            "cumulative_seconds": 0.049668094
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:397:inverse4",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.00034443600000000005,
+            "cumulative_seconds": 0.049554849000000005
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:356:_scaled_cofactor_inverse",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.010498395,
+            "cumulative_seconds": 0.049210413
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:335:_det4_exact",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.022480984000000002,
+            "cumulative_seconds": 0.022480984000000002
+          },
+          {
+            "function": "~:0:<built-in method builtins.max>",
+            "primitive_calls": 3200,
+            "calls": 3200,
+            "self_seconds": 0.001979607,
+            "cumulative_seconds": 0.004390814000000001
+          },
+          {
+            "function": "~:0:<built-in method builtins.any>",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000840893,
+            "cumulative_seconds": 0.003096044
+          },
+          {
+            "function": "~:0:<method 'as_integer_ratio' of 'float' objects>",
+            "primitive_calls": 6400,
+            "calls": 6400,
+            "self_seconds": 0.002514005,
+            "cumulative_seconds": 0.002514005
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:366:<genexpr>",
+            "primitive_calls": 8000,
+            "calls": 8000,
+            "self_seconds": 0.0017626360000000002,
+            "cumulative_seconds": 0.0024112070000000003
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:358:<genexpr>",
+            "primitive_calls": 6800,
+            "calls": 6800,
+            "self_seconds": 0.0016492680000000002,
+            "cumulative_seconds": 0.002255151
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:283:_inverse4_cofactor",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.0018225090000000002,
+            "cumulative_seconds": 0.002108986
+          },
+          {
+            "function": "~:0:<built-in method math.ldexp>",
+            "primitive_calls": 12800,
+            "calls": 12800,
+            "self_seconds": 0.001575369,
+            "cumulative_seconds": 0.001575369
+          },
+          {
+            "function": "~:0:<method 'bit_length' of 'int' objects>",
+            "primitive_calls": 12800,
+            "calls": 12800,
+            "self_seconds": 0.0014510310000000002,
+            "cumulative_seconds": 0.0014510310000000002
+          },
+          {
+            "function": "~:0:<method 'append' of 'list' objects>",
+            "primitive_calls": 4800,
+            "calls": 4800,
+            "self_seconds": 0.0013745620000000002,
+            "cumulative_seconds": 0.0013745620000000002
+          },
+          {
+            "function": "~:0:<built-in method math.isfinite>",
+            "primitive_calls": 6400,
+            "calls": 6400,
+            "self_seconds": 0.000605883,
+            "cumulative_seconds": 0.000605883
+          },
+          {
+            "function": "~:0:<built-in method math.frexp>",
+            "primitive_calls": 1600,
+            "calls": 1600,
+            "self_seconds": 0.00036879400000000003,
+            "cumulative_seconds": 0.00036879400000000003
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:6:zero_matrix",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.00028647700000000004,
+            "cumulative_seconds": 0.00028647700000000004
+          },
+          {
+            "function": "~:0:<method 'disable' of '_lsprof.Profiler' objects>",
+            "primitive_calls": 1,
+            "calls": 1,
+            "self_seconds": 4.4205e-05,
+            "cumulative_seconds": 4.4205e-05
+          }
+        ],
+        "single_call_peak_traced_bytes": 9280,
+        "single_call_retained_traced_bytes": 1632
+      }
+    },
+    "matrix3_mixed_rows_raw": {
+      "before": {
+        "operations": 100,
+        "top_cumulative": [
+          {
+            "function": "/workspace/pyGameMath/benchmarks/matrix_inverse.py:53:<lambda>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 5.8521000000000004e-05,
+            "cumulative_seconds": 0.004419149000000001
+          },
+          {
+            "function": "baseline_matrix.py:382:inverse3",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.000337404,
+            "cumulative_seconds": 0.004360628
+          },
+          {
+            "function": "baseline_matrix.py:347:_scaled_cofactor_inverse",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.001497267,
+            "cumulative_seconds": 0.004023224000000001
+          },
+          {
+            "function": "~:0:<built-in method builtins.max>",
+            "primitive_calls": 600,
+            "calls": 600,
+            "self_seconds": 0.000481005,
+            "cumulative_seconds": 0.000976766
+          },
+          {
+            "function": "~:0:<built-in method builtins.any>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.000127806,
+            "cumulative_seconds": 0.0006772070000000001
+          },
+          {
+            "function": "baseline_matrix.py:349:<genexpr>",
+            "primitive_calls": 1000,
+            "calls": 1000,
+            "self_seconds": 0.000384297,
+            "cumulative_seconds": 0.000549401
+          },
+          {
+            "function": "baseline_matrix.py:366:<genexpr>",
+            "primitive_calls": 1200,
+            "calls": 1200,
+            "self_seconds": 0.000261686,
+            "cumulative_seconds": 0.000362502
+          },
+          {
+            "function": "~:0:<built-in method math.ldexp>",
+            "primitive_calls": 1800,
+            "calls": 1800,
+            "self_seconds": 0.000226259,
+            "cumulative_seconds": 0.000226259
+          },
+          {
+            "function": "baseline_matrix.py:271:_inverse3_cofactor",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.00013886900000000001,
+            "cumulative_seconds": 0.000194477
+          },
+          {
+            "function": "~:0:<method 'as_integer_ratio' of 'float' objects>",
+            "primitive_calls": 900,
+            "calls": 900,
+            "self_seconds": 0.00017321800000000002,
+            "cumulative_seconds": 0.00017321800000000002
+          },
+          {
+            "function": "~:0:<method 'append' of 'list' objects>",
+            "primitive_calls": 900,
+            "calls": 900,
+            "self_seconds": 0.000145808,
+            "cumulative_seconds": 0.000145808
+          },
+          {
+            "function": "baseline_matrix.py:357:<genexpr>",
+            "primitive_calls": 1200,
+            "calls": 1200,
+            "self_seconds": 0.00013325900000000002,
+            "cumulative_seconds": 0.00013325900000000002
+          },
+          {
+            "function": "~:0:<built-in method builtins.abs>",
+            "primitive_calls": 900,
+            "calls": 900,
+            "self_seconds": 0.000100816,
+            "cumulative_seconds": 0.000100816
+          },
+          {
+            "function": "~:0:<built-in method math.isnan>",
+            "primitive_calls": 900,
+            "calls": 900,
+            "self_seconds": 8.264100000000001e-05,
+            "cumulative_seconds": 8.264100000000001e-05
+          },
+          {
+            "function": "~:0:<built-in method math.isinf>",
+            "primitive_calls": 900,
+            "calls": 900,
+            "self_seconds": 8.2463e-05,
+            "cumulative_seconds": 8.2463e-05
+          },
+          {
+            "function": "~:0:<built-in method math.frexp>",
+            "primitive_calls": 300,
+            "calls": 300,
+            "self_seconds": 7.4472e-05,
+            "cumulative_seconds": 7.4472e-05
+          },
+          {
+            "function": "baseline_matrix.py:202:det3",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 5.775e-05,
+            "cumulative_seconds": 5.775e-05
+          },
+          {
+            "function": "baseline_matrix.py:6:zero_matrix",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 5.5608e-05,
+            "cumulative_seconds": 5.5608e-05
+          },
+          {
+            "function": "~:0:<method 'disable' of '_lsprof.Profiler' objects>",
+            "primitive_calls": 1,
+            "calls": 1,
+            "self_seconds": 1.876e-05,
+            "cumulative_seconds": 1.876e-05
+          }
+        ],
+        "single_call_peak_traced_bytes": 1264,
+        "single_call_retained_traced_bytes": 0
+      },
+      "after": {
+        "operations": 100,
+        "top_cumulative": [
+          {
+            "function": "/workspace/pyGameMath/benchmarks/matrix_inverse.py:53:<lambda>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 5.8849000000000005e-05,
+            "cumulative_seconds": 0.0042390710000000005
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:393:inverse3",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 7.999000000000001e-05,
+            "cumulative_seconds": 0.004180222
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:356:_scaled_cofactor_inverse",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.0016742430000000002,
+            "cumulative_seconds": 0.0041002320000000005
+          },
+          {
+            "function": "~:0:<built-in method builtins.any>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.00025218,
+            "cumulative_seconds": 0.000956399
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:358:<genexpr>",
+            "primitive_calls": 1000,
+            "calls": 1000,
+            "self_seconds": 0.0006270980000000001,
+            "cumulative_seconds": 0.0007042190000000001
+          },
+          {
+            "function": "~:0:<built-in method builtins.max>",
+            "primitive_calls": 600,
+            "calls": 600,
+            "self_seconds": 0.000283776,
+            "cumulative_seconds": 0.0006413440000000001
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:366:<genexpr>",
+            "primitive_calls": 1200,
+            "calls": 1200,
+            "self_seconds": 0.000250961,
+            "cumulative_seconds": 0.000357568
+          },
+          {
+            "function": "~:0:<method 'bit_length' of 'int' objects>",
+            "primitive_calls": 1800,
+            "calls": 1800,
+            "self_seconds": 0.00022739300000000002,
+            "cumulative_seconds": 0.00022739300000000002
+          },
+          {
+            "function": "~:0:<built-in method math.ldexp>",
+            "primitive_calls": 1800,
+            "calls": 1800,
+            "self_seconds": 0.000202468,
+            "cumulative_seconds": 0.000202468
+          },
+          {
+            "function": "~:0:<method 'as_integer_ratio' of 'float' objects>",
+            "primitive_calls": 900,
+            "calls": 900,
+            "self_seconds": 0.00015905200000000002,
+            "cumulative_seconds": 0.00015905200000000002
+          },
+          {
+            "function": "~:0:<method 'append' of 'list' objects>",
+            "primitive_calls": 900,
+            "calls": 900,
+            "self_seconds": 0.0001151,
+            "cumulative_seconds": 0.0001151
+          },
+          {
+            "function": "~:0:<built-in method math.frexp>",
+            "primitive_calls": 300,
+            "calls": 300,
+            "self_seconds": 0.00010314,
+            "cumulative_seconds": 0.00010314
+          },
+          {
+            "function": "~:0:<built-in method math.isfinite>",
+            "primitive_calls": 900,
+            "calls": 900,
+            "self_seconds": 7.712100000000001e-05,
+            "cumulative_seconds": 7.712100000000001e-05
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:271:_inverse3_cofactor",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 7.1933e-05,
+            "cumulative_seconds": 7.1933e-05
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/matrix.py:202:det3",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 5.5767e-05,
+            "cumulative_seconds": 5.5767e-05
+          },
+          {
+            "function": "~:0:<method 'disable' of '_lsprof.Profiler' objects>",
+            "primitive_calls": 1,
+            "calls": 1,
+            "self_seconds": 1.7871000000000002e-05,
+            "cumulative_seconds": 1.7871000000000002e-05
+          }
+        ],
+        "single_call_peak_traced_bytes": 1560,
+        "single_call_retained_traced_bytes": 528
+      }
+    }
+  }
+}

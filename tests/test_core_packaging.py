@@ -127,6 +127,20 @@ clamped = clamp(3, values, [0]*3, [5]*3)
 assert clamped.vector == [0, 2, 5] and values == [-2, 2, 10]
 assert clamped.vector is not values
 assert getViewPort(Vector(2, [3, 4]), 100, 200) == [83, 184, 100, 200]
+from gem import matrix
+import ctypes
+for size in (3, 4):
+    for scale in (1e-300, 1., 1e300):
+        rows = [[(2. if i==j else 1. if j==i+1 else 0.)*scale for j in range(size)] for i in range(size)]
+        obj = matrix.Matrix(size, rows)
+        result = obj.inverse()
+        assert obj.i_inverse() is obj
+        for i in range(size):
+            for j in range(size):
+                expected = ((-1)**(j-i)/2**(j-i+1))/scale if j>=i else 0.
+                assert math.isclose(result.matrix[i][j], expected, rel_tol=3e-14, abs_tol=0)
+                assert obj.matrix[i][j] == result.matrix[i][j]
+                assert obj.c_matrix[i][j] == ctypes.c_float(result.matrix[i][j]).value
 for module in (bezier, legendre, sh, b, l, sph, sph_sample, sph_irradiance_map):
     assert module.__file__.startswith(sys.argv[1])
 try:

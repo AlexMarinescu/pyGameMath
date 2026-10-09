@@ -66,3 +66,20 @@ python benchmarks/recheck_variability.py --output /tmp/gem-recheck.json
 This executes nine cases in three rounds, seven trials each, with .05-second
 calibration. It isolates run-to-run variability from mathematical changes; it
 does not automatically declare performance gains or impose a noise threshold.
+
+## Matrix inverse matched comparison
+
+```
+python benchmarks/matrix_inverse.py --output /tmp/gem-inverse.json
+python benchmarks/matrix_inverse.py --output /tmp/gem-inverse-repeat.json
+python benchmarks/summarize_matrix_inverse.py /tmp/gem-inverse-summary.json /tmp/gem-inverse.json /tmp/gem-inverse-repeat.json
+python benchmarks/verify_inverse_baseline.py /tmp/gem-inverse-equivalence.json
+```
+
+The scripts require the post-2G base git object
+`89cd4b97784d32625de65b8f465cfcbf6e102943`. They reuse the calibrated timing
+and profiling routines above. Run sequentially without a concurrent test suite.
+Ordinary inputs use fixed seeds 310/311, plus uniform extreme scales and a mixed
+binary-row-exponent dataset. Independent numerical tests remain separate from
+bitwise baseline preservation and performance measurements. The bootstrap
+summary is descriptive conditional evidence, not a universal confidence guarantee.
