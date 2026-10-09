@@ -388,3 +388,15 @@ answers can replace former trigonometric residues even at small exponents.
 General enormous-exponent phase accuracy remains limited. Measured cost and
 guarded Hamilton-squaring rationale are in the
 [repair report](PHASE4G1R-QUATERNION-REPAIRS.md).
+
+## Bezier and Legendre range repairs
+
+Phase 4G-2R rescues tiny-parameter Bernstein terms for finite builtin controls
+and native matching Vectors, and scales overflowing ordinary Legendre recurrence
+steps. Public signatures, dimensions, ownership, extrapolation, associated phase
+and scratch semantics are unchanged. Ordinary arithmetic retains its operation
+order; generic/custom and nonfinite paths preserve historical behavior. Binary64
+range guards are not new geometric tolerances or invalid-input policies.
+Unrepresentable results and extreme-order/cancellation limits remain.
+Guard and fallback costs are recorded in the
+[numerical repair report](PHASE4G2R-NUMERICAL-REPAIRS.md).

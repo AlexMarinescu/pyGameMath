@@ -9,8 +9,51 @@ import math
 from gem.vector import Vector
 
 
+# Binary64 parameter ranges in which the final Bernstein weight can become
+# subnormal. The cubic bound conservatively covers t**3 < 2**-1022.
+_QUADRATIC_SMALL_PARAMETER = math.ldexp(1.0, -511)
+_CUBIC_SMALL_PARAMETER = math.ldexp(1.0, -340)
+
+
+def _finite_scalar_controls(values):
+    try:
+        return all(type(value) in (int, float) and math.isfinite(value)
+                   for value in values)
+    except OverflowError:
+        # Huge integers retain the existing arithmetic/conversion behavior.
+        return False
+
+
+def _small_parameter_component(t, values):
+    # Here 1-t rounds to exactly 1. Apply factors smaller than one to the
+    # control first, so a lost t**2/t**3 weight cannot erase a finite term.
+    if len(values) == 3:
+        return values[0] + values[1]*(2*t) + (values[2]*t)*t
+    return (values[0] + values[1]*(3*t) + (values[2]*(3*t))*t
+            + ((values[3]*t)*t)*t)
+
+
+def _small_parameter_point(t, controls):
+    if all(type(point) is Vector for point in controls):
+        dimension = controls[0].size
+        if all(point.size == dimension for point in controls):
+            rows = [point.vector for point in controls]
+            if all(_finite_scalar_controls(row) for row in rows):
+                return Vector(dimension, [_small_parameter_component(
+                    t, [row[i] for row in rows]) for i in range(dimension)])
+    elif _finite_scalar_controls(controls):
+        return _small_parameter_component(t, controls)
+    # Custom arithmetic, mismatched dimensions and nonfinite inputs retain
+    # the original dispatch and operand order.
+    return None
+
+
 def cubicBezierPoint(t, p0, p1, p2, p3):
     """Evaluate the cubic Bernstein polynomial without changing controls."""
+    if type(t) is float and 0 < abs(t) < _CUBIC_SMALL_PARAMETER:
+        result = _small_parameter_point(t, (p0, p1, p2, p3))
+        if result is not None:
+            return result
     u = 1 - t
     if (type(p0) is Vector and type(p1) is Vector and type(p2) is Vector
             and type(p3) is Vector and p0.size == p1.size == p2.size == p3.size
@@ -25,6 +68,10 @@ def cubicBezierPoint(t, p0, p1, p2, p3):
 
 def quadraticBezierPoint(t, p0, p1, p2):
     """Evaluate the quadratic Bernstein polynomial."""
+    if type(t) is float and 0 < abs(t) < _QUADRATIC_SMALL_PARAMETER:
+        result = _small_parameter_point(t, (p0, p1, p2))
+        if result is not None:
+            return result
     u = 1 - t
     if (type(p0) is Vector and type(p1) is Vector and type(p2) is Vector
             and p0.size == p1.size == p2.size and type(t) in (int, float)):

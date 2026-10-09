@@ -32,9 +32,39 @@ class Legendre(object):
     def _evaluate(self, degree, previous, current):
         if degree == self.m:
             return previous
+        if (self.m == 0 and (type(self.x) is float or type(self.x) is int)
+                and (self.x > 1 or self.x < -1)):
+            # For integer l <= 64 and |x| <= 2, each recurrence step grows
+            # its absolute state by less than 8. Even the undivided products
+            # remain below 2**(3*l+8), far inside binary64's finite range.
+            if not (type(degree) is int and degree <= 64 and -2 <= self.x <= 2):
+                return self._evaluate_extrapolation(degree, previous, current)
         for index in range(self.m+2, degree+1):
             following = (self.x*(2.0*index-1.0)*current
                          - (index+self.m-1.0)*previous)/(index-self.m)
+            previous, current = current, following
+        return current
+
+    def _evaluate_extrapolation(self, degree, previous, current):
+        for index in range(self.m+2, degree+1):
+            following = (self.x*(2.0*index-1.0)*current
+                         - (index+self.m-1.0)*previous)/(index-self.m)
+            if (math.isinf(following) and math.isfinite(self.x)
+                    and math.isfinite(previous) and math.isfinite(current)):
+                # Align product exponents before subtraction and division.
+                # Scaling by powers of two avoids an overflowing numerator
+                # without changing the ordinary finite recurrence's rounding.
+                x, xe = math.frexp(self.x)
+                c, ce = math.frexp(current)
+                p, pe = math.frexp(previous)
+                exponent = max(xe+ce, pe)
+                numerator = (math.ldexp(x*c*(2.0*index-1.0), xe+ce-exponent)
+                             - math.ldexp(p*(index-1.0), pe-exponent))
+                try:
+                    following = math.ldexp(numerator/index, exponent)
+                except OverflowError:
+                    # A genuinely unrepresentable result retains infinity.
+                    following = math.copysign(float('inf'), numerator)
             previous, current = current, following
         return current
 

@@ -28,6 +28,13 @@ can raise ValueError from sqrt. Negative orders/degrees, nonfinite inputs,
 high-order overflow and generalized invalid-input behavior remain unsupported
 rather than covered by a new validation policy.
 
+Ordinary builtin int/float extrapolation retries overflowing recurrence steps with
+power-of-two scaling when the preceding values are finite. Finite ordinary
+steps keep their existing rounding; associated phase and normalization are
+unchanged. A genuinely unrepresentable result can still be infinity, and
+high-order range/conditioning limits remain. See the
+[numerical repair evidence](../../audit/PHASE4G2R-NUMERICAL-REPAIRS.md).
+
 ```python
 import math
 from gem.legendre import Legendre
