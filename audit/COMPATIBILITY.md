@@ -354,3 +354,13 @@ singularity detection, binary scaling/rescaling, overflow and nonfinite behavior
 public signatures, row conventions, ownership and ctypes refresh are preserved.
 Public determinants and Matrix2 are unchanged. No epsilon or ordinary-scale
 shortcut is added. See [matched measurements and verification](PHASE3B-MATRIX-INVERSE.md).
+
+## Vector and Quaternion overhead
+
+Phase 3C removes redundant finite normalization work and temporary Quaternion
+wrappers in native rotation/interpolation. Scaling, chained hypot order, zero
+fallbacks, nonfinite arithmetic, Hamilton products and interpolation weights are
+preserved. Returning storage remains independent; in-place methods retain receiver
+identity and replacement semantics. Subclasses use the existing operator path.
+Public signatures, exact equality, clamp/transform rules and ctypes interoperation
+are unchanged. See [matched measurements and verification](PHASE3C-VECTOR-QUATERNION.md).

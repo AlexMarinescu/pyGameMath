@@ -1,0 +1,94 @@
+{
+  "baseline_commit": "86dcd405da75c10da976ac67c0b02d774f066920",
+  "bit_identical_checks": {
+    "normalize": 606,
+    "quaternion_normalize": 6,
+    "conjugate": 206,
+    "rotation": 200,
+    "quat_lerp": 200,
+    "quat_slerp": 200,
+    "quat_slerp_no_invert": 200,
+    "quat_squad": 200,
+    "squad4": 200
+  },
+  "total": 2018,
+  "invalid_input_checks": [
+    {
+      "operation": "normalize",
+      "exception": "IndexError"
+    },
+    {
+      "operation": "normalize",
+      "exception": "OverflowError"
+    },
+    {
+      "operation": "quat_conjugate",
+      "exception": "IndexError"
+    }
+  ],
+  "unchanged_definitions": {
+    "vector": [
+      "zero_vector",
+      "one_vector",
+      "lerp",
+      "cross",
+      "reflect",
+      "refract",
+      "toAngle",
+      "lperp",
+      "rperp",
+      "vec_add",
+      "s_vec_add",
+      "vec_sub",
+      "s_vec_sub",
+      "vec_mul",
+      "vec_div",
+      "vec_neg",
+      "dot",
+      "magnitude",
+      "_require_nonzero",
+      "maxV",
+      "minV",
+      "maxS",
+      "minS",
+      "clamp",
+      "transform",
+      "Vector"
+    ],
+    "quaternion": [
+      "quat_identity",
+      "quat_add",
+      "quat_sub",
+      "quat_mul_quat",
+      "quat_mul_vect",
+      "quat_mul_float",
+      "quat_div_float",
+      "quat_neg",
+      "quat_dot",
+      "quat_magnitude",
+      "quat_normalize",
+      "quat_inverse",
+      "quat_from_axis_angle",
+      "quat_rotate",
+      "quat_rotate_x_from_angle",
+      "quat_rotate_y_from_angle",
+      "quat_rotate_z_from_angle",
+      "quat_rotate_from_axis_angle",
+      "quat_pow",
+      "quat_log",
+      "quat_squad",
+      "squad4",
+      "quat_to_matrix",
+      "Quaternion",
+      "quat_from_matrix"
+    ]
+  },
+  "baseline_sha256": {
+    "vector": "8af89604a4bf24c808d9ddc67f3689c2d79f33c48953b0ae2026d5435071cfd0",
+    "quaternion": "b4e7635bca5cc25103dc537665f71fb6f0e6b4e10729c15d5958ac1b07db9c83"
+  },
+  "current_sha256": {
+    "vector": "323e1c7a72d03c1e121acf174822265ceff7bed3cdf9e376745eb69707137215",
+    "quaternion": "4177578c45042459c5d80d56e30e1edeeb5ed873b8aa493fc46b6b6d2d91da40"
+  }
+}

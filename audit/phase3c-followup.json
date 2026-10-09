@@ -1,0 +1,1254 @@
+{
+  "baseline_commit": "86dcd405da75c10da976ac67c0b02d774f066920",
+  "baseline_sha256": {
+    "vector": "8af89604a4bf24c808d9ddc67f3689c2d79f33c48953b0ae2026d5435071cfd0",
+    "quaternion": "b4e7635bca5cc25103dc537665f71fb6f0e6b4e10729c15d5958ac1b07db9c83"
+  },
+  "current_sha256": {
+    "vector": "323e1c7a72d03c1e121acf174822265ceff7bed3cdf9e376745eb69707137215",
+    "quaternion": "4177578c45042459c5d80d56e30e1edeeb5ed873b8aa493fc46b6b6d2d91da40"
+  },
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "implementation": "CPython",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "six": "1.17.0"
+  },
+  "methodology": {
+    "rounds": 7,
+    "trials": 7,
+    "target_seconds": 0.04,
+    "order": "alternate before/after per round",
+    "timer": "perf_counter, timeit disables GC",
+    "setup": "Phase 3A deterministic input generation excluded; result allocation included",
+    "in_place": "fresh receiver construction/copy included to avoid input drift",
+    "profiles": "1000 calls, separately instrumented; traced peak per call is not RSS"
+  },
+  "datasets": {
+    "vector2_allocate": {
+      "domain": "ordinary"
+    },
+    "vector2_add": {
+      "domain": "ordinary"
+    },
+    "vector2_subtract": {
+      "domain": "ordinary"
+    },
+    "vector2_scalar_multiply": {
+      "domain": "ordinary"
+    },
+    "vector2_dot": {
+      "domain": "ordinary"
+    },
+    "vector2_magnitude": {
+      "domain": "ordinary"
+    },
+    "vector2_normalize": {
+      "domain": "ordinary"
+    },
+    "matrix2_allocate": {
+      "domain": "ordinary"
+    },
+    "matrix2_raw_multiply": {
+      "domain": "ordinary"
+    },
+    "matrix2_multiply": {
+      "domain": "ordinary"
+    },
+    "matrix2_vector": {
+      "domain": "ordinary"
+    },
+    "matrix2_determinant": {
+      "domain": "ordinary"
+    },
+    "matrix2_inverse": {
+      "domain": "ordinary"
+    },
+    "matrix2_raw_inverse": {
+      "domain": "ordinary"
+    },
+    "matrix2_transpose": {
+      "domain": "ordinary"
+    },
+    "vector2_transform": {
+      "domain": "ordinary"
+    },
+    "vector3_allocate": {
+      "domain": "ordinary"
+    },
+    "vector3_add": {
+      "domain": "ordinary"
+    },
+    "vector3_subtract": {
+      "domain": "ordinary"
+    },
+    "vector3_scalar_multiply": {
+      "domain": "ordinary"
+    },
+    "vector3_dot": {
+      "domain": "ordinary"
+    },
+    "vector3_magnitude": {
+      "domain": "ordinary"
+    },
+    "vector3_normalize": {
+      "domain": "ordinary"
+    },
+    "matrix3_allocate": {
+      "domain": "ordinary"
+    },
+    "matrix3_raw_multiply": {
+      "domain": "ordinary"
+    },
+    "matrix3_multiply": {
+      "domain": "ordinary"
+    },
+    "matrix3_vector": {
+      "domain": "ordinary"
+    },
+    "matrix3_determinant": {
+      "domain": "ordinary"
+    },
+    "matrix3_inverse": {
+      "domain": "ordinary"
+    },
+    "matrix3_raw_inverse": {
+      "domain": "ordinary"
+    },
+    "matrix3_transpose": {
+      "domain": "ordinary"
+    },
+    "vector3_transform": {
+      "domain": "ordinary"
+    },
+    "matrix3_raw_inverse_scale_1e-200": {
+      "domain": "extreme uniform scale"
+    },
+    "matrix3_raw_inverse_scale_1e+200": {
+      "domain": "extreme uniform scale"
+    },
+    "vector4_allocate": {
+      "domain": "ordinary"
+    },
+    "vector4_add": {
+      "domain": "ordinary"
+    },
+    "vector4_subtract": {
+      "domain": "ordinary"
+    },
+    "vector4_scalar_multiply": {
+      "domain": "ordinary"
+    },
+    "vector4_dot": {
+      "domain": "ordinary"
+    },
+    "vector4_magnitude": {
+      "domain": "ordinary"
+    },
+    "vector4_normalize": {
+      "domain": "ordinary"
+    },
+    "matrix4_allocate": {
+      "domain": "ordinary"
+    },
+    "matrix4_raw_multiply": {
+      "domain": "ordinary"
+    },
+    "matrix4_multiply": {
+      "domain": "ordinary"
+    },
+    "matrix4_vector": {
+      "domain": "ordinary"
+    },
+    "matrix4_determinant": {
+      "domain": "ordinary"
+    },
+    "matrix4_inverse": {
+      "domain": "ordinary"
+    },
+    "matrix4_raw_inverse": {
+      "domain": "ordinary"
+    },
+    "matrix4_transpose": {
+      "domain": "ordinary"
+    },
+    "vector4_transform": {
+      "domain": "ordinary"
+    },
+    "matrix4_raw_inverse_scale_1e-200": {
+      "domain": "extreme uniform scale"
+    },
+    "matrix4_raw_inverse_scale_1e+200": {
+      "domain": "extreme uniform scale"
+    },
+    "vector3_cross": {
+      "domain": "ordinary"
+    },
+    "vector3_magnitude_large": {
+      "domain": "large"
+    },
+    "vector3_normalize_large": {
+      "domain": "large"
+    },
+    "vector3_magnitude_tiny": {
+      "domain": "tiny"
+    },
+    "vector3_normalize_tiny": {
+      "domain": "tiny"
+    },
+    "vector3_magnitude_mixed": {
+      "domain": "mixed"
+    },
+    "vector3_normalize_mixed": {
+      "domain": "mixed"
+    },
+    "quaternion_normalize_large": {
+      "domain": "large"
+    },
+    "quaternion_normalize_tiny": {
+      "domain": "tiny"
+    },
+    "quaternion_allocate": {
+      "domain": "ordinary"
+    },
+    "quaternion_multiply": {
+      "domain": "ordinary"
+    },
+    "quaternion_normalize": {
+      "domain": "ordinary"
+    },
+    "quaternion_inverse": {
+      "domain": "ordinary"
+    },
+    "quaternion_rotate_vector": {
+      "domain": "ordinary"
+    },
+    "quaternion_slerp": {
+      "domain": "ordinary"
+    },
+    "quaternion_slerp_near": {
+      "domain": "ordinary"
+    },
+    "quaternion_squad": {
+      "domain": "ordinary"
+    },
+    "quaternion_squad4": {
+      "domain": "ordinary"
+    },
+    "quaternion_to_matrix": {
+      "domain": "ordinary"
+    },
+    "quaternion_from_matrix": {
+      "domain": "ordinary"
+    }
+  },
+  "rounds": [
+    {
+      "vector2_subtract": {
+        "before": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.776779480020199e-07,
+            4.842272262606251e-07,
+            4.87916709895897e-07,
+            4.921095962673316e-07,
+            5.003222198485258e-07,
+            4.955939560125078e-07,
+            4.843872909443547e-07
+          ],
+          "median_us": 0.48791670989589697,
+          "min_us": 0.4776779480020199,
+          "max_us": 0.5003222198485258,
+          "mad_us": 0.004192886371434668
+        },
+        "after": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.864428939654886e-07,
+            4.886210861199114e-07,
+            4.986996917644149e-07,
+            5.005629272469836e-07,
+            4.81003372188038e-07,
+            4.888017806903289e-07,
+            4.820113525261238e-07
+          ],
+          "median_us": 0.4886210861199114,
+          "min_us": 0.481003372188038,
+          "max_us": 0.5005629272469836,
+          "mad_us": 0.006609733593787581
+        }
+      },
+      "vector3_dot": {
+        "before": {
+          "operations_per_trial": 262144,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.521570739710821e-07,
+            2.5672858429415246e-07,
+            2.515361022942253e-07,
+            2.470256729170117e-07,
+            2.5940126419099485e-07,
+            2.467165489128398e-07,
+            2.5361944197555e-07
+          ],
+          "median_us": 0.2521570739710821,
+          "min_us": 0.24671654891283978,
+          "max_us": 0.25940126419099485,
+          "mad_us": 0.004571510323070349
+        },
+        "after": {
+          "operations_per_trial": 262144,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.538364791832004e-07,
+            2.5407353973494473e-07,
+            2.471605491521922e-07,
+            2.534428100581243e-07,
+            2.488306694026221e-07,
+            2.492330741926674e-07,
+            2.545194663916561e-07
+          ],
+          "median_us": 0.2534428100581243,
+          "min_us": 0.2471605491521922,
+          "max_us": 0.2545194663916561,
+          "mad_us": 0.0010766563335318224
+        }
+      },
+      "quaternion_squad4": {
+        "before": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.364586791793528e-06,
+            9.693723999060211e-06,
+            9.79651757804234e-06,
+            9.165738281247116e-06,
+            9.167952636612853e-06,
+            9.173474731394293e-06,
+            9.133914794734466e-06
+          ],
+          "median_us": 9.173474731394293,
+          "min_us": 9.133914794734466,
+          "max_us": 9.79651757804234,
+          "mad_us": 0.0395599366598276
+        },
+        "after": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            7.365495849676051e-06,
+            7.0916518555286245e-06,
+            7.3926953123581995e-06,
+            7.416312377550582e-06,
+            7.421945190433377e-06,
+            7.459804565623784e-06,
+            7.268735229715162e-06
+          ],
+          "median_us": 7.3926953123581995,
+          "min_us": 7.0916518555286245,
+          "max_us": 7.459804565623784,
+          "mad_us": 0.029249878075177094
+        }
+      }
+    },
+    {
+      "vector2_subtract": {
+        "after": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.892523422506123e-07,
+            4.91223114018613e-07,
+            4.981937255787994e-07,
+            4.860607834000774e-07,
+            4.994690857018647e-07,
+            4.898308639533777e-07,
+            4.797959671232199e-07
+          ],
+          "median_us": 0.4898308639533777,
+          "min_us": 0.4797959671232199,
+          "max_us": 0.49946908570186466,
+          "mad_us": 0.0037700805533003034
+        },
+        "before": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.20715080248868e-07,
+            5.269022064213758e-07,
+            5.350763320755014e-07,
+            5.17666473381917e-07,
+            5.347947845402157e-07,
+            5.194191055324371e-07,
+            5.271721954247521e-07
+          ],
+          "median_us": 0.5269022064213758,
+          "min_us": 0.517666473381917,
+          "max_us": 0.5350763320755014,
+          "mad_us": 0.007483100888938665
+        }
+      },
+      "vector3_dot": {
+        "after": {
+          "operations_per_trial": 262144,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.849968681328807e-07,
+            2.8384561920336004e-07,
+            2.744499702500569e-07,
+            2.5794327544736984e-07,
+            2.5430195617348605e-07,
+            2.5775475311073937e-07,
+            2.5847450638161185e-07
+          ],
+          "median_us": 0.25847450638161185,
+          "min_us": 0.25430195617348605,
+          "max_us": 0.2849968681328807,
+          "mad_us": 0.0041725502081257915
+        },
+        "before": {
+          "operations_per_trial": 262144,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.8212775039782034e-07,
+            2.537328338547695e-07,
+            2.5766479111455354e-07,
+            2.538271217378263e-07,
+            2.5145853042862765e-07,
+            2.565847816438094e-07,
+            2.540346107499092e-07
+          ],
+          "median_us": 0.2540346107499092,
+          "min_us": 0.25145853042862765,
+          "max_us": 0.28212775039782034,
+          "mad_us": 0.0025501708939001944
+        }
+      },
+      "quaternion_squad4": {
+        "after": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            7.577383667189963e-06,
+            7.221224731068787e-06,
+            7.24881958014123e-06,
+            7.610932494905853e-06,
+            7.72819299310612e-06,
+            1.1801317749249307e-05,
+            8.859176147346659e-06
+          ],
+          "median_us": 7.610932494905853,
+          "min_us": 7.221224731068787,
+          "max_us": 11.801317749249307,
+          "mad_us": 0.36211291476462293
+        },
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.37292919900301e-06,
+            9.114017333722302e-06,
+            9.242934813968873e-06,
+            9.083295410050596e-06,
+            8.96177001941112e-06,
+            9.20448437558008e-06,
+            1.0173573730121177e-05
+          ],
+          "median_us": 9.20448437558008,
+          "min_us": 8.96177001941112,
+          "max_us": 10.173573730121177,
+          "mad_us": 0.121188965529484
+        }
+      }
+    },
+    {
+      "vector2_subtract": {
+        "before": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.867600326419197e-07,
+            4.882765121672072e-07,
+            5.063721084663797e-07,
+            4.984486770553964e-07,
+            5.079127426144137e-07,
+            5.086173401058769e-07,
+            4.99029663092454e-07
+          ],
+          "median_us": 0.499029663092454,
+          "min_us": 0.4867600326419197,
+          "max_us": 0.5086173401058769,
+          "mad_us": 0.008883079521959658
+        },
+        "after": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.979353714074097e-07,
+            4.984610671998624e-07,
+            4.928615493782207e-07,
+            4.870178909044398e-07,
+            5.056844024631246e-07,
+            4.959608917165514e-07,
+            5.003033752282171e-07
+          ],
+          "median_us": 0.49793537140740973,
+          "min_us": 0.4870178909044398,
+          "max_us": 0.5056844024631246,
+          "mad_us": 0.002368003820807374
+        }
+      },
+      "vector3_dot": {
+        "before": {
+          "operations_per_trial": 262144,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.569194488544202e-07,
+            2.6248563003705705e-07,
+            2.5373929214700386e-07,
+            2.5182496642128793e-07,
+            2.6384806442458775e-07,
+            2.5021374130962393e-07,
+            2.5469208908557306e-07
+          ],
+          "median_us": 0.25469208908557306,
+          "min_us": 0.2502137413096239,
+          "max_us": 0.26384806442458775,
+          "mad_us": 0.0028671226642851266
+        },
+        "after": {
+          "operations_per_trial": 262144,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.5952515410321286e-07,
+            2.597544746379965e-07,
+            2.5447466278638586e-07,
+            2.609226493893724e-07,
+            2.5356850814894916e-07,
+            2.5132065582800234e-07,
+            2.6398143768147087e-07
+          ],
+          "median_us": 0.25952515410321286,
+          "min_us": 0.25132065582800234,
+          "max_us": 0.26398143768147087,
+          "mad_us": 0.004456283578258002
+        }
+      },
+      "quaternion_squad4": {
+        "before": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.210385254032616e-06,
+            9.373564209269603e-06,
+            9.169610839965259e-06,
+            8.871299682411404e-06,
+            9.166200805488245e-06,
+            8.924670287679959e-06,
+            9.157707641538337e-06
+          ],
+          "median_us": 9.166200805488245,
+          "min_us": 8.871299682411404,
+          "max_us": 9.373564209269603,
+          "mad_us": 0.04418444854437098
+        },
+        "after": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            7.033517333887573e-06,
+            7.021028930687123e-06,
+            7.177371093902707e-06,
+            8.31363195796797e-06,
+            7.648691040085254e-06,
+            8.060083129812767e-06,
+            8.149027587833757e-06
+          ],
+          "median_us": 7.648691040085254,
+          "min_us": 7.021028930687123,
+          "max_us": 8.31363195796797,
+          "mad_us": 0.5003365477485033
+        }
+      }
+    },
+    {
+      "vector2_subtract": {
+        "after": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.336003952027824e-07,
+            5.337535095017998e-07,
+            5.699061965958041e-07,
+            5.489076309039831e-07,
+            5.426701354949159e-07,
+            5.235681915238821e-07,
+            5.19752632127668e-07
+          ],
+          "median_us": 0.5337535095017998,
+          "min_us": 0.519752632127668,
+          "max_us": 0.5699061965958041,
+          "mad_us": 0.010185317977917663
+        },
+        "before": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.494159622254635e-07,
+            5.984005889969612e-07,
+            5.735187301736389e-07,
+            5.666637878376513e-07,
+            6.032267303446304e-07,
+            5.703464584505546e-07,
+            5.53385490403846e-07
+          ],
+          "median_us": 0.5703464584505546,
+          "min_us": 0.5494159622254635,
+          "max_us": 0.6032267303446304,
+          "mad_us": 0.016960968046708658
+        }
+      },
+      "vector3_dot": {
+        "after": {
+          "operations_per_trial": 262144,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.874093933125099e-07,
+            2.784709129399765e-07,
+            2.729286155689348e-07,
+            2.7384694671617194e-07,
+            2.695047569278852e-07,
+            3.392316627465197e-07,
+            2.8317445373293726e-07
+          ],
+          "median_us": 0.2784709129399765,
+          "min_us": 0.2695047569278852,
+          "max_us": 0.3392316627465197,
+          "mad_us": 0.005542297371041727
+        },
+        "before": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.970811691094255e-07,
+            2.941271896317321e-07,
+            2.800655212464864e-07,
+            2.7081132505935024e-07,
+            2.9681636048994875e-07,
+            2.728807754759366e-07,
+            2.74118713367022e-07
+          ],
+          "median_us": 0.2800655212464864,
+          "min_us": 0.27081132505935024,
+          "max_us": 0.2970811691094255,
+          "mad_us": 0.009254196187136188
+        }
+      },
+      "quaternion_squad4": {
+        "after": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            8.373969482278198e-06,
+            7.500318969899666e-06,
+            7.712584716657034e-06,
+            7.852967773391839e-06,
+            7.944793579461873e-06,
+            8.013334228618163e-06,
+            8.790119384816109e-06
+          ],
+          "median_us": 7.944793579461873,
+          "min_us": 7.500318969899666,
+          "max_us": 8.790119384816109,
+          "mad_us": 0.2322088628048391
+        },
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.011997851563251e-05,
+            9.77025830017908e-06,
+            9.921699462900335e-06,
+            9.950572021466542e-06,
+            9.725933105997342e-06,
+            1.1177274657825365e-05,
+            9.83830078116199e-06
+          ],
+          "median_us": 9.921699462900335,
+          "min_us": 9.725933105997342,
+          "max_us": 11.177274657825365,
+          "mad_us": 0.1514411627212553
+        }
+      }
+    },
+    {
+      "vector2_subtract": {
+        "before": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.419106597903678e-07,
+            5.390362624868583e-07,
+            5.254106902885525e-07,
+            5.45414962749291e-07,
+            5.44506134042555e-07,
+            5.790383071635485e-07,
+            5.720306167356082e-07
+          ],
+          "median_us": 0.544506134042555,
+          "min_us": 0.5254106902885525,
+          "max_us": 0.5790383071635485,
+          "mad_us": 0.00546987155569667
+        },
+        "after": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            6.062459793343411e-07,
+            6.132364959721137e-07,
+            5.487916107105306e-07,
+            5.71261009219004e-07,
+            5.552551193277466e-07,
+            6.100350418147826e-07,
+            5.126326827753491e-07
+          ],
+          "median_us": 0.571261009219004,
+          "min_us": 0.5126326827753491,
+          "max_us": 0.6132364959721137,
+          "mad_us": 0.03498497011533708
+        }
+      },
+      "vector3_dot": {
+        "before": {
+          "operations_per_trial": 262144,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.7851722335381357e-07,
+            3.073262634378793e-07,
+            2.9089801788229064e-07,
+            2.740130767842075e-07,
+            2.8928259658556055e-07,
+            2.7413579560542356e-07,
+            2.7937849807202486e-07
+          ],
+          "median_us": 0.27937849807202486,
+          "min_us": 0.2740130767842075,
+          "max_us": 0.3073262634378793,
+          "mad_us": 0.005365421287817362
+        },
+        "after": {
+          "operations_per_trial": 262144,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.7825371551326583e-07,
+            2.6843987654956436e-07,
+            2.6584729004297536e-07,
+            2.779676208514159e-07,
+            2.8276792145287555e-07,
+            2.72064056394683e-07,
+            2.7998334121981383e-07
+          ],
+          "median_us": 0.2779676208514159,
+          "min_us": 0.26584729004297536,
+          "max_us": 0.28276792145287555,
+          "mad_us": 0.0048003006014596394
+        }
+      },
+      "quaternion_squad4": {
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.50593969761826e-06,
+            9.888447022099456e-06,
+            1.0361324462415666e-05,
+            1.027026586974955e-05,
+            1.0282854492338345e-05,
+            1.0520475342445934e-05,
+            1.006464990283007e-05
+          ],
+          "median_us": 10.27026586974955,
+          "min_us": 9.50593969761826,
+          "max_us": 10.520475342445934,
+          "mad_us": 0.20561596691948125
+        },
+        "after": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            7.731695678803163e-06,
+            7.296925658817344e-06,
+            7.340004394951194e-06,
+            7.589879150504686e-06,
+            9.013485962050538e-06,
+            7.470427856759443e-06,
+            7.80227880881057e-06
+          ],
+          "median_us": 7.589879150504686,
+          "min_us": 7.296925658817344,
+          "max_us": 9.013485962050538,
+          "mad_us": 0.21239965830588403
+        }
+      }
+    },
+    {
+      "vector2_subtract": {
+        "after": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.746006393470005e-07,
+            5.759858245635296e-07,
+            6.149771423213934e-07,
+            5.718969726675738e-07,
+            5.952964172439845e-07,
+            5.454045791664086e-07,
+            5.542242278999687e-07
+          ],
+          "median_us": 0.5746006393470005,
+          "min_us": 0.5454045791664086,
+          "max_us": 0.6149771423213934,
+          "mad_us": 0.020376411447031728
+        },
+        "before": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.500354614274006e-07,
+            5.217701644910644e-07,
+            5.606824417248024e-07,
+            5.794298782446639e-07,
+            5.268999557495047e-07,
+            5.774120407087135e-07,
+            5.368460159194122e-07
+          ],
+          "median_us": 0.5500354614274006,
+          "min_us": 0.5217701644910644,
+          "max_us": 0.5794298782446639,
+          "mad_us": 0.023135505677895907
+        }
+      },
+      "vector3_dot": {
+        "after": {
+          "operations_per_trial": 262144,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.7718787003194745e-07,
+            2.820418815580039e-07,
+            2.7035999680680156e-07,
+            2.7680787277606367e-07,
+            2.8901153183158446e-07,
+            2.7783008575699153e-07,
+            2.802474327046056e-07
+          ],
+          "median_us": 0.27783008575699153,
+          "min_us": 0.27035999680680156,
+          "max_us": 0.28901153183158446,
+          "mad_us": 0.002417346947614085
+        },
+        "before": {
+          "operations_per_trial": 262144,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.660827369688201e-07,
+            2.707482948255402e-07,
+            3.207270965616127e-07,
+            3.056263580270002e-07,
+            2.715692520166568e-07,
+            2.705910568251424e-07,
+            2.70977077485024e-07
+          ],
+          "median_us": 0.270977077485024,
+          "min_us": 0.2660827369688201,
+          "max_us": 0.3207270965616127,
+          "mad_us": 0.0005921745316328497
+        }
+      },
+      "quaternion_squad4": {
+        "after": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            7.3804045412906305e-06,
+            7.803207153322944e-06,
+            7.370599487188656e-06,
+            7.870734374915145e-06,
+            7.80448242165832e-06,
+            7.5015217286811264e-06,
+            7.502049194307858e-06
+          ],
+          "median_us": 7.502049194307858,
+          "min_us": 7.370599487188656,
+          "max_us": 7.870734374915145,
+          "mad_us": 0.13144970711920223
+        },
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.0367191162430345e-05,
+            9.98738964863577e-06,
+            9.624345702619053e-06,
+            9.617028076114309e-06,
+            9.493776611080307e-06,
+            1.1233623046891239e-05,
+            1.0111583008232117e-05
+          ],
+          "median_us": 9.98738964863577,
+          "min_us": 9.493776611080307,
+          "max_us": 11.233623046891239,
+          "mad_us": 0.3703615725214604
+        }
+      }
+    },
+    {
+      "vector2_subtract": {
+        "before": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.49462287918745e-07,
+            5.401700821083821e-07,
+            5.450832977482722e-07,
+            5.466778335572187e-07,
+            5.347212219120046e-07,
+            5.281172103799303e-07,
+            5.494714050424676e-07
+          ],
+          "median_us": 0.5450832977482722,
+          "min_us": 0.5281172103799303,
+          "max_us": 0.5494714050424676,
+          "mad_us": 0.004388107294195365
+        },
+        "after": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.431149825985138e-07,
+            5.266866912878587e-07,
+            5.925605316148275e-07,
+            5.223630828998793e-07,
+            5.227867050372481e-07,
+            5.411699752766452e-07,
+            5.561095199613231e-07
+          ],
+          "median_us": 0.5411699752766452,
+          "min_us": 0.5223630828998793,
+          "max_us": 0.5925605316148275,
+          "mad_us": 0.014939544684677841
+        }
+      },
+      "vector3_dot": {
+        "before": {
+          "operations_per_trial": 262144,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.7076194762665207e-07,
+            2.6752951813591164e-07,
+            3.0298940276174413e-07,
+            2.777054023683778e-07,
+            2.9778595733720437e-07,
+            2.8694601439394063e-07,
+            2.8036643982820575e-07
+          ],
+          "median_us": 0.28036643982820575,
+          "min_us": 0.26752951813591164,
+          "max_us": 0.30298940276174413,
+          "mad_us": 0.009604492201553683
+        },
+        "after": {
+          "operations_per_trial": 262144,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.662890930121842e-07,
+            2.6571408080766634e-07,
+            2.817177810615634e-07,
+            2.6934840012537986e-07,
+            2.772124786387664e-07,
+            2.8301689147802733e-07,
+            2.8072601317152834e-07
+          ],
+          "median_us": 0.2772124786387664,
+          "min_us": 0.26571408080766634,
+          "max_us": 0.28301689147802733,
+          "mad_us": 0.0058044128392609196
+        }
+      },
+      "quaternion_squad4": {
+        "before": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.594346435548573e-06,
+            9.807286743157562e-06,
+            1.0168053711012703e-05,
+            9.495350342003661e-06,
+            9.708338256864124e-06,
+            9.416786864946403e-06,
+            9.783566650156672e-06
+          ],
+          "median_us": 9.708338256864124,
+          "min_us": 9.416786864946403,
+          "max_us": 10.168053711012703,
+          "mad_us": 0.11399182131555108
+        },
+        "after": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            7.65082531728467e-06,
+            7.372896240198656e-06,
+            7.528527831812681e-06,
+            7.571001953365908e-06,
+            7.989176025180456e-06,
+            8.822879272507578e-06,
+            9.93863403353501e-06
+          ],
+          "median_us": 7.650825317284671,
+          "min_us": 7.372896240198656,
+          "max_us": 9.93863403353501,
+          "mad_us": 0.27792907708601433
+        }
+      }
+    }
+  ],
+  "summary": {
+    "vector2_subtract": {
+      "before_median_us": 0.544506134042555,
+      "after_median_us": 0.5337535095017998,
+      "paired_median_speedup": 1.002197658065446,
+      "paired_speedup_range": [
+        0.9531652349019465,
+        1.0756819245092046
+      ]
+    },
+    "vector3_dot": {
+      "before_median_us": 0.270977077485024,
+      "after_median_us": 0.2772124786387664,
+      "paired_median_speedup": 0.9949269182789312,
+      "paired_speedup_range": [
+        0.9753338150787542,
+        1.0113774141947962
+      ]
+    },
+    "quaternion_squad4": {
+      "before_median_us": 9.708338256864124,
+      "after_median_us": 7.610932494905853,
+      "paired_median_speedup": 1.2488303646489913,
+      "paired_speedup_range": [
+        1.1984012372117043,
+        1.3531527533039356
+      ]
+    }
+  },
+  "profiles": {
+    "quaternion_squad4": {
+      "before": {
+        "operations": 1000,
+        "top_cumulative": [
+          {
+            "function": "phase3a_vector_quaternion.py:50:<lambda>",
+            "primitive_calls": 1000,
+            "calls": 1000,
+            "self_seconds": 0.000414456,
+            "cumulative_seconds": 0.037969742
+          },
+          {
+            "function": "baseline_quaternion.py:267:squad4",
+            "primitive_calls": 1000,
+            "calls": 1000,
+            "self_seconds": 0.001266741,
+            "cumulative_seconds": 0.037555286
+          },
+          {
+            "function": "baseline_quaternion.py:220:quat_slerp",
+            "primitive_calls": 3000,
+            "calls": 3000,
+            "self_seconds": 0.014884649000000002,
+            "cumulative_seconds": 0.036288545000000005
+          },
+          {
+            "function": "baseline_quaternion.py:349:__mul__",
+            "primitive_calls": 6000,
+            "calls": 6000,
+            "self_seconds": 0.006056893000000001,
+            "cumulative_seconds": 0.010312215000000001
+          },
+          {
+            "function": "~:0:<built-in method builtins.isinstance>",
+            "primitive_calls": 24000,
+            "calls": 24000,
+            "self_seconds": 0.0033117180000000004,
+            "cumulative_seconds": 0.0033117180000000004
+          },
+          {
+            "function": "baseline_quaternion.py:323:__add__",
+            "primitive_calls": 3000,
+            "calls": 3000,
+            "self_seconds": 0.002064968,
+            "cumulative_seconds": 0.0032556020000000002
+          },
+          {
+            "function": "~:0:<built-in method math.hypot>",
+            "primitive_calls": 18000,
+            "calls": 18000,
+            "self_seconds": 0.0029949940000000004,
+            "cumulative_seconds": 0.0029949940000000004
+          },
+          {
+            "function": "baseline_quaternion.py:407:dot",
+            "primitive_calls": 3000,
+            "calls": 3000,
+            "self_seconds": 0.0013440440000000002,
+            "cumulative_seconds": 0.0029945040000000003
+          },
+          {
+            "function": "baseline_quaternion.py:47:quat_dot",
+            "primitive_calls": 3000,
+            "calls": 3000,
+            "self_seconds": 0.001382966,
+            "cumulative_seconds": 0.001382966
+          },
+          {
+            "function": "~:0:<built-in method math.sin>",
+            "primitive_calls": 9000,
+            "calls": 9000,
+            "self_seconds": 0.00127887,
+            "cumulative_seconds": 0.00127887
+          },
+          {
+            "function": "baseline_quaternion.py:35:quat_mul_float",
+            "primitive_calls": 6000,
+            "calls": 6000,
+            "self_seconds": 0.000984937,
+            "cumulative_seconds": 0.000984937
+          },
+          {
+            "function": "baseline_quaternion.py:316:__init__",
+            "primitive_calls": 9000,
+            "calls": 9000,
+            "self_seconds": 0.000816973,
+            "cumulative_seconds": 0.000816973
+          },
+          {
+            "function": "baseline_quaternion.py:11:quat_add",
+            "primitive_calls": 3000,
+            "calls": 3000,
+            "self_seconds": 0.0005998220000000001,
+            "cumulative_seconds": 0.0005998220000000001
+          },
+          {
+            "function": "~:0:<built-in method math.atan2>",
+            "primitive_calls": 3000,
+            "calls": 3000,
+            "self_seconds": 0.000567711,
+            "cumulative_seconds": 0.000567711
+          },
+          {
+            "function": "~:0:<method 'disable' of '_lsprof.Profiler' objects>",
+            "primitive_calls": 1,
+            "calls": 1,
+            "self_seconds": 4.4309000000000006e-05,
+            "cumulative_seconds": 4.4309000000000006e-05
+          }
+        ],
+        "single_call_peak_traced_bytes": 1400,
+        "single_call_retained_traced_bytes": 816
+      },
+      "after": {
+        "operations": 1000,
+        "top_cumulative": [
+          {
+            "function": "phase3a_vector_quaternion.py:50:<lambda>",
+            "primitive_calls": 1000,
+            "calls": 1000,
+            "self_seconds": 0.000737578,
+            "cumulative_seconds": 0.025252292000000003
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/quaternion.py:273:squad4",
+            "primitive_calls": 1000,
+            "calls": 1000,
+            "self_seconds": 0.001402985,
+            "cumulative_seconds": 0.024514714
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/quaternion.py:228:quat_slerp",
+            "primitive_calls": 3000,
+            "calls": 3000,
+            "self_seconds": 0.010220787,
+            "cumulative_seconds": 0.023111729
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/quaternion.py:210:_quat_blend",
+            "primitive_calls": 3000,
+            "calls": 3000,
+            "self_seconds": 0.0034389700000000004,
+            "cumulative_seconds": 0.004446912
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/quaternion.py:413:dot",
+            "primitive_calls": 3000,
+            "calls": 3000,
+            "self_seconds": 0.0011921540000000002,
+            "cumulative_seconds": 0.003805071
+          },
+          {
+            "function": "~:0:<built-in method math.hypot>",
+            "primitive_calls": 18000,
+            "calls": 18000,
+            "self_seconds": 0.0029097460000000004,
+            "cumulative_seconds": 0.0029097460000000004
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/quaternion.py:47:quat_dot",
+            "primitive_calls": 3000,
+            "calls": 3000,
+            "self_seconds": 0.002278284,
+            "cumulative_seconds": 0.002278284
+          },
+          {
+            "function": "~:0:<built-in method math.sin>",
+            "primitive_calls": 9000,
+            "calls": 9000,
+            "self_seconds": 0.0012305060000000001,
+            "cumulative_seconds": 0.0012305060000000001
+          },
+          {
+            "function": "~:0:<built-in method builtins.isinstance>",
+            "primitive_calls": 9000,
+            "calls": 9000,
+            "self_seconds": 0.0009954550000000001,
+            "cumulative_seconds": 0.0009954550000000001
+          },
+          {
+            "function": "~:0:<built-in method math.atan2>",
+            "primitive_calls": 3000,
+            "calls": 3000,
+            "self_seconds": 0.000498707,
+            "cumulative_seconds": 0.000498707
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/quaternion.py:322:__init__",
+            "primitive_calls": 3000,
+            "calls": 3000,
+            "self_seconds": 0.00034712,
+            "cumulative_seconds": 0.00034712
+          },
+          {
+            "function": "~:0:<method 'disable' of '_lsprof.Profiler' objects>",
+            "primitive_calls": 1,
+            "calls": 1,
+            "self_seconds": 4.5119e-05,
+            "cumulative_seconds": 4.5119e-05
+          }
+        ],
+        "single_call_peak_traced_bytes": 752,
+        "single_call_retained_traced_bytes": 352
+      }
+    }
+  }
+}

@@ -123,18 +123,21 @@ def magnitude(size, vecA):
 
 def normalize(size, vecA):
     """Normalize finite components stably; an exact zero returns zeros."""
-    temp = zero_vector(size)
     if any(math.isnan(vecA[i]) or math.isinf(vecA[i]) for i in sm.range(size)):
         length = magnitude(size, vecA)
         if length != 0.0:
             return [vecA[i] / length for i in sm.range(size)]
-        return temp
+        return zero_vector(size)
     scale = max([abs(vecA[i]) for i in sm.range(size)] or [0.0])
     if scale != 0.0:
         scaled = [vecA[i] / scale for i in sm.range(size)]
-        length = magnitude(size, scaled)
-        temp = [value / length for value in scaled]
-    return temp
+        # Finite scaled components have maximum absolute value exactly 1.
+        # Keep magnitude's chained hypot order without rechecking/rescaling.
+        length = 0.0
+        for value in scaled:
+            length = math.hypot(length, value)
+        return [value / length for value in scaled]
+    return zero_vector(size)
 
 def _require_nonzero(size, values):
     """Retain geometric callers' exact-zero normalization error."""

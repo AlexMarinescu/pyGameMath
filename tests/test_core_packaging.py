@@ -141,6 +141,18 @@ for size in (3, 4):
                 assert math.isclose(result.matrix[i][j], expected, rel_tol=3e-14, abs_tol=0)
                 assert obj.matrix[i][j] == result.matrix[i][j]
                 assert obj.c_matrix[i][j] == ctypes.c_float(result.matrix[i][j]).value
+from gem import quaternion
+extreme = Vector(3, [1e300, -2e300, 2e300])
+assert extreme.normalize().vector == [1/3, -2/3, 2/3]
+assert Vector(3).normalize().vector == [0.,0.,0.]
+assert quaternion.Quaternion([0.,0.,0.,0.]).normalize().data == [1.,0.,0.,0.]
+qa = quaternion.Quaternion([1.,0.,0.,0.])
+qb = quaternion.Quaternion([0.,0.,0.,1.])
+assert quaternion.quat_rotate_vector(qb, Vector(3,[1.,2.,3.])).vector == [-1.,-2.,3.]
+assert math.isclose(math.hypot(*qa.slerp(qb,.5).data),1.,abs_tol=1e-12)
+assert math.isclose(math.hypot(*quaternion.squad4(qa,qb,qa,qb,.5).data),1.,abs_tol=1e-12)
+assert qa.data == [1.,0.,0.,0.] and qb.data == [0.,0.,0.,1.]
+assert quaternion.__file__.startswith(sys.argv[1])
 for module in (bezier, legendre, sh, b, l, sph, sph_sample, sph_irradiance_map):
     assert module.__file__.startswith(sys.argv[1])
 try:
