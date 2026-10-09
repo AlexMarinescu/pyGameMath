@@ -1,0 +1,1137 @@
+{
+  "base": "c04ffca436f86e18ad236c191c02ab58a750db4f",
+  "declarations": {
+    "gem.bezier": [
+      {
+        "signature": "cubicBezierPoint(t, p0, p1, p2, p3)",
+        "page": "docs/api/bezier.md"
+      },
+      {
+        "signature": "quadraticBezierPoint(t, p0, p1, p2)",
+        "page": "docs/api/bezier.md"
+      },
+      {
+        "signature": "BezierPath",
+        "page": "docs/api/bezier.md"
+      },
+      {
+        "signature": "BezierPath.__init__(self)",
+        "page": "docs/api/bezier.md"
+      },
+      {
+        "signature": "BezierPath.setControlPoints(self, newControlPoints)",
+        "page": "docs/api/bezier.md"
+      },
+      {
+        "signature": "BezierPath.getControlPoints(self)",
+        "page": "docs/api/bezier.md"
+      },
+      {
+        "signature": "BezierPath.calculateBezerPoint(self, curveIndex, t)",
+        "page": "docs/api/bezier.md"
+      },
+      {
+        "signature": "BezierPath.interpolate(self, segmentPoints, scale)",
+        "page": "docs/api/bezier.md"
+      },
+      {
+        "signature": "BezierPath.samplePoints(self, sourcePoints, minSqrDistance, maxSqrDistance, scale)",
+        "page": "docs/api/bezier.md"
+      },
+      {
+        "signature": "BezierPath.getDrawingPoints(self)",
+        "page": "docs/api/bezier.md"
+      },
+      {
+        "signature": "BezierPath.findDrawingPoints(self, curveIndex)",
+        "page": "docs/api/bezier.md"
+      },
+      {
+        "signature": "BezierPath.findDrawingPointsAdded(self, curveIndex, t0, t1, pointList, insertionIndex)",
+        "page": "docs/api/bezier.md"
+      }
+    ],
+    "gem.common": [
+      {
+        "signature": "convertArr(l, n)",
+        "page": "docs/api/common.md"
+      },
+      {
+        "signature": "mulV4(v1, v2)",
+        "page": "docs/api/common.md"
+      },
+      {
+        "signature": "conv_list(listIn, cType)",
+        "page": "docs/api/common.md"
+      },
+      {
+        "signature": "conv_list_2d(listIn, cType)",
+        "page": "docs/api/common.md"
+      },
+      {
+        "signature": "list_2d_to_1d(inlist)",
+        "page": "docs/api/common.md"
+      },
+      {
+        "signature": "convertM4to3(matrix)",
+        "page": "docs/api/common.md"
+      },
+      {
+        "signature": "sinc(x)",
+        "page": "docs/api/common.md"
+      },
+      {
+        "signature": "scalarLerp(a, b, time)",
+        "page": "docs/api/common.md"
+      },
+      {
+        "signature": "getViewPort(coords, width, height)",
+        "page": "docs/api/common.md"
+      },
+      {
+        "signature": "radiansToDegrees(degrees)",
+        "page": "docs/api/common.md"
+      },
+      {
+        "signature": "degreesToRadians(radians)",
+        "page": "docs/api/common.md"
+      },
+      {
+        "signature": "sign(x)",
+        "page": "docs/api/common.md"
+      }
+    ],
+    "gem.legendre": [
+      {
+        "signature": "Legendre",
+        "page": "docs/api/legendre.md"
+      },
+      {
+        "signature": "Legendre.__init__(self, l, m, x)",
+        "page": "docs/api/legendre.md"
+      },
+      {
+        "signature": "Legendre.mGreaterThan0(self)",
+        "page": "docs/api/legendre.md"
+      },
+      {
+        "signature": "Legendre.calculatePM1(self)",
+        "page": "docs/api/legendre.md"
+      },
+      {
+        "signature": "Legendre.calculatePML(self, i)",
+        "page": "docs/api/legendre.md"
+      },
+      {
+        "signature": "Legendre.run(self)",
+        "page": "docs/api/legendre.md"
+      }
+    ],
+    "gem.matrix": [
+      {
+        "signature": "zero_matrix(size)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "identity(size)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "scale(size, value)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "matrix_multiply(matrixA, matrixB)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "matrix_vector_multiply(matrix, vec)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "matrix_div(mat, scalar)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "transpose(mat)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "shearXY3(x, y)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "shearYZ3(y, z)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "shearXZ3(x, z)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "shearXY4(x, y)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "shearYZ4(y, z)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "shearXZ4(x, z)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "translate2(vector)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "translate3(vector)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "translate4(vector)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "rotate2(point, theta)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "rotate3(axis, theta)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "rotate4(axis, theta)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "rotate_origin2(theta)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "det2(mat)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "det3(mat)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "det4(mat)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "inverse2(mat)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "inverse3(mat)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "inverse4(mat)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "Matrix",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "Matrix.__init__(self, size, data=None)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "Matrix.__mul__(self, other)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "Matrix.__imul__(self, other)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "Matrix.__div__(self, other)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "Matrix.__idiv__(self, other)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "Matrix.__truediv__ = Matrix.__div__",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "Matrix.__itruediv__ = Matrix.__idiv__",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "Matrix.i_scale(self, value)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "Matrix.scale(self, value)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "Matrix.det(self)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "Matrix.i_inverse(self)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "Matrix.inverse(self)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "Matrix.i_rotate(self, axis, theta)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "Matrix.rotate(self, axis, theta)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "Matrix.i_translate(self, vecA)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "Matrix.translate(self, vecA)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "Matrix.i_transpose(self)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "Matrix.transpose(self)",
+        "page": "docs/api/matrix.md"
+      },
+      {
+        "signature": "Matrix.shearXY(self, x, y)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "Matrix.i_shearXY(self, x, y)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "Matrix.shearYZ(self, y, z)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "Matrix.i_shearYZ(self, y, z)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "Matrix.shearXZ(self, x, z)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "Matrix.i_shearXZ(self, x, z)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "orthographic(left, right, bottom, top, zNear, zFar)",
+        "page": "docs/api/projection.md"
+      },
+      {
+        "signature": "perspective(fov, aspect, znear, zfar)",
+        "page": "docs/api/projection.md"
+      },
+      {
+        "signature": "perspectiveX(fov, aspect, znear, zfar)",
+        "page": "docs/api/projection.md"
+      },
+      {
+        "signature": "lookAt(eye, center, up)",
+        "page": "docs/api/projection.md"
+      },
+      {
+        "signature": "project(obj, model, proj, viewport)",
+        "page": "docs/api/projection.md"
+      },
+      {
+        "signature": "unproject(winx, winy, winz, modelview, projection, viewport)",
+        "page": "docs/api/projection.md"
+      }
+    ],
+    "gem.plane": [
+      {
+        "signature": "flip(plane)",
+        "page": "docs/api/plane.md"
+      },
+      {
+        "signature": "normalize(pdata)",
+        "page": "docs/api/plane.md"
+      },
+      {
+        "signature": "Plane",
+        "page": "docs/api/plane.md"
+      },
+      {
+        "signature": "Plane.__init__(self)",
+        "page": "docs/api/plane.md"
+      },
+      {
+        "signature": "Plane.clone(self)",
+        "page": "docs/api/plane.md"
+      },
+      {
+        "signature": "Plane.fromCoeffs(self, a, b, c, d)",
+        "page": "docs/api/plane.md"
+      },
+      {
+        "signature": "Plane.fromPoints(self, a, b, c)",
+        "page": "docs/api/plane.md"
+      },
+      {
+        "signature": "Plane.i_flip(self)",
+        "page": "docs/api/plane.md"
+      },
+      {
+        "signature": "Plane.flip(self)",
+        "page": "docs/api/plane.md"
+      },
+      {
+        "signature": "Plane.dot(self, vec)",
+        "page": "docs/api/plane.md"
+      },
+      {
+        "signature": "Plane.i_normalize(self)",
+        "page": "docs/api/plane.md"
+      },
+      {
+        "signature": "Plane.normalize(self)",
+        "page": "docs/api/plane.md"
+      },
+      {
+        "signature": "Plane.bestFitNormal(self, vecList)",
+        "page": "docs/api/plane.md"
+      },
+      {
+        "signature": "Plane.bestFitD(self, vecList, bestFitNormal)",
+        "page": "docs/api/plane.md"
+      },
+      {
+        "signature": "Plane.point_location(self, plane, point)",
+        "page": "docs/api/plane.md"
+      }
+    ],
+    "gem.quaternion": [
+      {
+        "signature": "quat_identity()",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_add(quat, quat1)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_sub(quat, quat1)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_mul_quat(quat, quat1)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_mul_vect(quat, vect)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_mul_float(quat, scalar)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_div_float(quat, scalar)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_neg(quat)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_dot(quat1, quat2)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_magnitude(quat)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_normalize(quat)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_conjugate(quat)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_inverse(quat)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_from_axis_angle(axis, theta)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_rotate(origin, axis, theta)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_rotate_x_from_angle(theta)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_rotate_y_from_angle(theta)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_rotate_z_from_angle(theta)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_rotate_from_axis_angle(axis, theta)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_rotate_vector(quat, vec)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_pow(quat, exp)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_log(quat)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_lerp(quat0, quat1, t)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_slerp(quat0, quat1, t)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_slerp_no_invert(quat0, quat1, t)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_squad(quat0, quat1, quat2, t)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "squad4(q0, q1, s0, s1, t)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_to_matrix(quat)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.__init__(self, data=None)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.__add__(self, other)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.__iadd__(self, other)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.__sub__(self, other)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.__isub__(self, other)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.__mul__(self, other)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.__imul__(self, other)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.__div__(self, other)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.__idiv__(self, other)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.__truediv__ = Quaternion.__div__",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.__itruediv__ = Quaternion.__idiv__",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.i_negate(self)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.negate(self)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.i_identity(self)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.identity(self)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.magnitude(self)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.dot(self, quat2)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.i_normalize(self)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.normalize(self)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.i_conjugate(self)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.conjugate(self)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.inverse(self)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.pow(self, e)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.log(self)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.lerp(self, quat1, time)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.slerp(self, quat1, time)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.slerp_no_invert(self, quat1, time)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.squad(self, quat1, quat2, time)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.toMatrix(self)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.getForward(self)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.getBack(self)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.getLeft(self)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.getRight(self)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.getUp(self)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "Quaternion.getDown(self)",
+        "page": "docs/api/quaternion.md"
+      },
+      {
+        "signature": "quat_from_matrix(matrix)",
+        "page": "docs/api/quaternion.md"
+      }
+    ],
+    "gem.ray": [
+      {
+        "signature": "Ray",
+        "page": "docs/api/ray.md"
+      },
+      {
+        "signature": "Ray.__init__(self, startVector, dirVector)",
+        "page": "docs/api/ray.md"
+      },
+      {
+        "signature": "Ray.duplicate(self)",
+        "page": "docs/api/ray.md"
+      },
+      {
+        "signature": "Ray.roateUsingMatrix(self, matrix)",
+        "page": "docs/api/ray.md"
+      },
+      {
+        "signature": "Ray.rotateUsingQuaternion(self, quat1)",
+        "page": "docs/api/ray.md"
+      },
+      {
+        "signature": "Ray.translate(self, matrix)",
+        "page": "docs/api/ray.md"
+      },
+      {
+        "signature": "Ray.output(self)",
+        "page": "docs/api/ray.md"
+      }
+    ],
+    "gem.spherical_harmonics": [
+      {
+        "signature": "Factorial(n)",
+        "page": "docs/api/spherical-harmonics.md"
+      },
+      {
+        "signature": "K(l, m)",
+        "page": "docs/api/spherical-harmonics.md"
+      },
+      {
+        "signature": "SPH(l, m, theta, phi)",
+        "page": "docs/api/spherical-harmonics.md"
+      },
+      {
+        "signature": "SPHSample",
+        "page": "docs/api/spherical-harmonics.md"
+      },
+      {
+        "signature": "SPHSample.__init__(self, theta, phi, dirc, sampleNumber)",
+        "page": "docs/api/spherical-harmonics.md"
+      },
+      {
+        "signature": "GenerateSamples(sqrtNumSamples, numBands)",
+        "page": "docs/api/spherical-harmonics.md"
+      },
+      {
+        "signature": "project_radiance(samples, radiances, weights=None)",
+        "page": "docs/api/spherical-harmonics.md"
+      },
+      {
+        "signature": "project_angular_probe(hdr, numBands=3)",
+        "page": "docs/api/spherical-harmonics.md"
+      },
+      {
+        "signature": "reconstruct(coefficients, direction)",
+        "page": "docs/api/spherical-harmonics.md"
+      },
+      {
+        "signature": "convolve_diffuse(radiance_coefficients)",
+        "page": "docs/api/spherical-harmonics.md"
+      },
+      {
+        "signature": "legacy_to_canonical(coefficients)",
+        "page": "docs/api/spherical-harmonics.md"
+      },
+      {
+        "signature": "SPH_IrradianceMapCoeff",
+        "page": "docs/api/spherical-harmonics.md"
+      },
+      {
+        "signature": "SPH_IrradianceMapCoeff.__init__(self, fileU, width, height)",
+        "page": "docs/api/spherical-harmonics.md"
+      },
+      {
+        "signature": "SPH_IrradianceMapCoeff.load(self)",
+        "page": "docs/api/spherical-harmonics.md"
+      },
+      {
+        "signature": "SPH_IrradianceMapCoeff.calculateCoefficients(self)",
+        "page": "docs/api/spherical-harmonics.md"
+      },
+      {
+        "signature": "SPH_IrradianceMapCoeff.updateCoefficients(self, hdr, domega, x, y, z)",
+        "page": "docs/api/spherical-harmonics.md"
+      },
+      {
+        "signature": "SPH_IrradianceMapCoeff.output(self)",
+        "page": "docs/api/spherical-harmonics.md"
+      },
+      {
+        "signature": "rotate_coefficients(coefficients, orientation)",
+        "page": "docs/api/spherical-harmonics.md"
+      }
+    ],
+    "gem.vector": [
+      {
+        "signature": "zero_vector(size)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "one_vector(size)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "lerp(vecA, vecB, time)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "cross(vecA, vecB)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "reflect(incidentVec, normal)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "refract(IOR, incidentVec, normal)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "toAngle(vector)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "lperp(vector)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "rperp(vector)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "vec_add(size, vecA, vecB)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "s_vec_add(size, vecA, scalar)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "vec_sub(size, vecA, vecB)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "s_vec_sub(size, vecA, scalar)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "vec_mul(size, vecA, scalar)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "vec_div(size, vecA, scalar)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "vec_neg(size, vecA)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "dot(size, vecA, vecB)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "magnitude(size, vecA)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "normalize(size, vecA)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "maxV(size, vecA, vecB)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "minV(size, vecA, vecB)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "maxS(size, vecA)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "minS(size, vecA)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "clamp(size, value, minS, maxS)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "transform(size, position, matrix)",
+        "page": "docs/api/transformations.md"
+      },
+      {
+        "signature": "Vector",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.__init__(self, size, data=None)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.__repr__(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.__add__(self, other)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.__iadd__(self, other)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.__sub__(self, other)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.__isub__(self, other)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.__mul__(self, scalar)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.__imul__(self, scalar)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.__div__(self, scalar)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.__truediv__(self, scalar)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.__idiv__(self, scalar)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.__itruediv__(self, scalar)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.__eq__(self, vecB)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.__ne__(self, vecB)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.__neg__(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.clone(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.one(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.zero(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.negate(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.maxV(self, vecB)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.maxS(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.minV(self, vecB)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.minS(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.magnitude(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.clamp(self, size, value, minS, maxS)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.i_clamp(self, size, value, minS, maxS)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.i_normalize(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.normalize(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.dot(self, vecB)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.isInSameDirection(self, otherVec)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.isInOppositeDirection(self, otherVec)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.barycentric(self, a, b, c)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.transform(self, position, matrix)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.i_transform(self, position, matrix)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.xy(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.yz(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.xz(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.xw(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.yw(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.zw(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.xyw(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.yzw(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.xzw(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.xyz(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.right(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.left(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.front(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.back(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.up(self)",
+        "page": "docs/api/vector.md"
+      },
+      {
+        "signature": "Vector.down(self)",
+        "page": "docs/api/vector.md"
+      }
+    ]
+  },
+  "constants": {
+    "gem.common": [
+      "GLfloat"
+    ],
+    "gem.vector": [
+      "REFRENCE_VECTOR_2",
+      "REFRENCE_VECTOR_3",
+      "REFRENCE_VECTOR_4",
+      "IREFRENCE_VECTOR_2",
+      "IREFRENCE_VECTOR_3",
+      "IREFRENCE_VECTOR_4"
+    ]
+  },
+  "reexports": {
+    "gem.spherical_harmonics.Legendre": "gem.legendre.Legendre",
+    "gem.experimental.bezier": [
+      "gem.bezier.cubicBezierPoint",
+      "gem.bezier.quadraticBezierPoint",
+      "gem.bezier.BezierPath"
+    ],
+    "gem.experimental._bezier_legacy": [
+      "gem.bezier.BezierPath"
+    ],
+    "gem.experimental.legendre": [
+      "gem.legendre.Legendre"
+    ],
+    "gem.experimental.sph": [
+      "gem.spherical_harmonics.Factorial",
+      "gem.spherical_harmonics.K",
+      "gem.spherical_harmonics.SPH",
+      "gem.legendre.Legendre"
+    ],
+    "gem.experimental.sph_sample": [
+      "gem.spherical_harmonics.SPHSample",
+      "gem.spherical_harmonics.GenerateSamples"
+    ],
+    "gem.experimental.sph_irradiance_map": [
+      "gem.spherical_harmonics.SPH_IrradianceMapCoeff"
+    ]
+  },
+  "omitted_declarations": [],
+  "excluded": "Private underscore helpers (except wrapper constructors/operators), incidental imported dependencies, source-tree examples/launcher/benchmarks/tools and retired E07 are not public core declarations. Retained private _bezier_legacy import path is documented explicitly."
+}

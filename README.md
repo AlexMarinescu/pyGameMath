@@ -140,15 +140,15 @@ Pure Python and numerical contracts take precedence over unsupported speed claim
 
 | Start here | Deeper reference |
 |---|---|
-| [Getting started](docs/getting-started/README.md) | [API inventory](docs/architecture/api-inventory.md) |
+| [Getting started](docs/getting-started/README.md) | [API reference](docs/api/index.md) |
 | [Installation](docs/getting-started/installation.md) | [Mathematical conventions](docs/architecture/conventions.md) |
 | [Quick start](docs/getting-started/quick-start.md) | [Architecture charter](docs/architecture/philosophy.md) |
 | [Documentation index](docs/README.md) | [Compatibility policy](docs/architecture/compatibility.md) |
 | [HDR/SH reference](examples/hdr_sh/README.md) | [Benchmark workflow](benchmarks/README.md) |
 
-The inventory is the current entry to API documentation, not a claim that a
-complete generated API reference/site already exists. Historical Wiki content
-has not yet been migrated.
+The topic reference documents current signatures, domains and ownership, with
+[declaration coverage](docs/api/coverage.md). No generated documentation site exists.
+Historical Wiki content has not yet been migrated.
 
 ## Roadmap
 
