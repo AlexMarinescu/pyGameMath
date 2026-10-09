@@ -142,7 +142,7 @@ Pure Python and numerical contracts take precedence over unsupported speed claim
 |---|---|
 | [Getting started](docs/getting-started/README.md) | [API reference](docs/api/index.md) |
 | [Installation](docs/getting-started/installation.md) | [Mathematical conventions](docs/architecture/conventions.md) |
-| [Quick start](docs/getting-started/quick-start.md) | [Architecture charter](docs/architecture/philosophy.md) |
+| [Practical tutorials](docs/tutorials/index.md) | [Architecture charter](docs/architecture/philosophy.md) |
 | [Documentation index](docs/README.md) | [Compatibility policy](docs/architecture/compatibility.md) |
 | [HDR/SH reference](examples/hdr_sh/README.md) | [Benchmark workflow](benchmarks/README.md) |
 
