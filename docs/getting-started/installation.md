@@ -7,6 +7,8 @@ declaration or verification of other interpreters.
 
 ## Source installation
 
+### Linux and macOS
+
 Create a new environment so an older package with the same distribution/version
 does not obscure the source being tested. POSIX shell:
 
@@ -18,7 +20,9 @@ python3.12 -m venv .venv
 python -m pip install .
 ```
 
-Windows PowerShell equivalents, provided Python 3.12 and Git are installed:
+### Windows PowerShell
+
+Provided Python 3.12 and Git are installed:
 
 ```powershell
 git clone https://github.com/AlexMarinescu/pyGameMath.git
@@ -26,6 +30,21 @@ Set-Location pyGameMath
 py -3.12 -m venv .venv
 .venv\Scripts\python.exe -m pip install .
 ```
+
+### Windows Command Prompt
+
+With Python 3.12 and Git installed, run these in Command Prompt:
+
+```bat
+git clone https://github.com/AlexMarinescu/pyGameMath.git
+cd pyGameMath
+py -3.12 -m venv .venv
+.venv\Scripts\python.exe -m pip install .
+```
+
+These commands select the environment's Python directly; activation is optional.
+The Windows and macOS instructions are provided for setup, not a claim that those
+platforms have been tested here. Linux is the verified reference environment.
 
 Using the environment's python executable avoids requiring activation. On Windows,
 substitute `.venv\Scripts\python.exe` for `python` in subsequent commands. These
