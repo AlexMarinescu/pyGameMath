@@ -34,6 +34,14 @@ also accepts scalar coefficient arrays. Reconstruction is RGB-only. No public
 module constants or cache-management APIs are exposed; imported math/random/etc
 and private basis-layout cache are implementation details.
 
+Angle evaluation retains `sin(theta)` in the associated seed instead of recovering
+it from rounded `cos(theta)`. The exact polar endpoints 0 and pi keep zero
+transverse terms. Reconstruction retains a unit direction's `hypot(X,Y)` and Z,
+and its first/second-order azimuth factors, without an inverse-trigonometric round
+trip or implicit normalization. Small nonzero components at either pole survive;
+ordinary last-bit rounding may differ. The public Legendre API, recurrence and
+high-order limits are unchanged. See the [near-pole repair evidence](../../audit/PHASE4G3R-NEAR-POLE-REPAIR.md).
+
 ## Functions and containers
 
 | Exact source declaration | Parameters, result and behavior |
