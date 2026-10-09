@@ -162,7 +162,8 @@ def minS(size, vecA):
     return mScalar
 
 def clamp(size, value, minS, maxS):
-    output = value
+    """Return independent clamped storage, preserving value and bound lists."""
+    output = value[:]
     for i in sm.range(size):
         # Check to see if greater than max
         output[i] = maxS[i] if output[i] > maxS[i] else output[i]
@@ -286,24 +287,24 @@ class Vector(object):
             return NotImplemented
 
     def __eq__(self, vecB):
-        if isinstance(vecB, Vector):
-            for i in range(self.size):
-                if self.vector[i] != vecB.vector[i]:
-                    return False
-            if self.size:
-                return True
-        else:
+        if not isinstance(vecB, Vector):
             return NotImplemented
+        if self.size != vecB.size:
+            return False
+        for i in range(self.size):
+            if self.vector[i] != vecB.vector[i]:
+                return False
+        return True
 
     def __ne__(self, vecB):
-        if isinstance(vecB, Vector):
-            for i in range(self.size):
-                if self.vector[i] != vecB.vector[i]:
-                    return True
-            if self.size:
-                return False
-        else:
+        if not isinstance(vecB, Vector):
             return NotImplemented
+        if self.size != vecB.size:
+            return True
+        for i in range(self.size):
+            if self.vector[i] != vecB.vector[i]:
+                return True
+        return False
 
     def __neg__(self):
         vecList = vec_neg(self.size, self.vector)
@@ -344,7 +345,7 @@ class Vector(object):
         return clamp(size, value, minS, maxS)
 
     def i_clamp(self, size, value, minS, maxS):
-        ''' Clamp the vector into place. '''
+        ''' Replace receiver storage with clamped values; preserve input lists. '''
         self.vector = clamp(size, value, minS, maxS).vector
         return self
 

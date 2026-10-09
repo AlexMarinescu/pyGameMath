@@ -193,3 +193,13 @@ reexports. The experimental directory is not fully eliminated. Removing the
 remaining import paths requires a future release-boundary/compatibility-window
 decision. Archived E07 test evidence and explicit removal checks distinguish
 retirement from mathematical repair. See [migration](../docs/EXPERIMENTAL_MIGRATION.md).
+
+## Final Vector and viewport resolution
+
+QD01 mixed/empty equality and V04/QD02 clamp ownership are settled in Phase 2G.
+C02 retains the historical whole-Vector-normalized coordinate formula with
+original XY offsets; it does not implement projection or OpenGL state setting.
+Zero-vector viewport behavior remains ZeroDivisionError. All four remaining
+strict expected-failure cases become ordinary regressions. Other malformed,
+nonfinite and unrelated domain policies are unchanged. See
+[current contracts](../docs/VECTOR_VIEWPORT_CONTRACTS.md).

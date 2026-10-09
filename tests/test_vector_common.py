@@ -64,12 +64,10 @@ def test_equality_unsupported_operand():
     assert a.__ne__([1, 2, 3]) is NotImplemented
 
 
-@pytest.mark.contract_question('V01-dimension-policy')
 def test_equality_dimensions():
     assert (V(1, 2) == V(1, 2, 3)) is False
 
 
-@pytest.mark.contract_question('V01-empty-policy')
 def test_empty_equality():
     assert (V() == V()) is True
 
@@ -127,14 +125,12 @@ def test_transform_identity():
     assert vector.transform(3, [2,3,4], [[1,0,0],[0,1,0],[0,0,1]]) == [2,3,4]
 
 
-@pytest.mark.contract_question('V04-value-list-ownership')
 def test_clamp_preserves_input():
     values = [-2, 2, 10]
     assert vector.clamp(3, values, [0]*3, [5]*3).vector == [0,2,5]
     assert values == [-2,2,10]
 
 
-@pytest.mark.defect('C02')
 def test_viewport_vector():
     assert len(common.getViewPort(V(1,1), 100, 100)) == 4
 

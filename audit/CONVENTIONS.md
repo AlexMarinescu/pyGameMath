@@ -347,3 +347,13 @@ contain no algorithms and preserve the same objects/contracts. The unfinished
 E07 `sph_object` module is retired without a replacement or invented transport
 convention. The remaining package paths await a release-boundary removal
 decision; the directory still exists. See [migration](../docs/EXPERIMENTAL_MIGRATION.md).
+
+## Final Vector and legacy viewport contracts
+
+QD01 dimension/empty comparisons are resolved: declared dimensions must match,
+empty/empty is equal, and != complements exact ==. Unsupported operands retain
+NotImplemented. V04/QD02 returning clamp preserves caller lists and returns fresh
+storage; i_clamp replaces only receiver storage. C02 fixes Vector field access
+while retaining whole-Vector normalization plus original XY offsets and the
+zero-vector ZeroDivisionError. This helper is separate from projection and
+OpenGL state. See [current contracts](../docs/VECTOR_VIEWPORT_CONTRACTS.md).
