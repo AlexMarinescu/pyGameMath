@@ -412,3 +412,16 @@ Ordinary last-bit differences occur; regenerated HDR images remain byte-identica
 while JSON/GLSL references have recorded small rounding changes. Goldens are not
 replaced. High-order and extreme-product limits remain separate. See
 [verification and performance](PHASE4G3R-NEAR-POLE-REPAIR.md).
+
+## Grazing refraction and translated polygon normals
+
+Equal-index refraction retains tiny normal components instead of rounding them
+away at grazing incidence. Other index ratios keep their existing arithmetic;
+unit-vector and opposing-normal prerequisites, fresh output and the TIR sentinel
+remain unchanged. Newell normals now use coordinates relative to the first
+vertex, preserving local geometry at large world offsets. Ordinary results can
+differ in their last bits. Winding, cyclic wrapping, normalization, input ownership
+and degenerate ZeroDivisionError behavior remain unchanged. No threshold, new
+domain policy, signature, dependency or metadata change is introduced. Additional
+local-coordinate arithmetic increases measured polygon cost; see the
+[repair and performance report](PHASE4G4R-GEOMETRY-REPAIR.md).
