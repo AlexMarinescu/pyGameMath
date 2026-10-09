@@ -54,8 +54,11 @@ def anchors(text):
     return result
 
 
-def check(examples=False):
-    report = {'base': BASE, 'pages': PAGES, 'links_checked': 0,
+def check(examples=False, getting_started=False, package_root=None):
+    pages = PAGES + (['README.md'] + ['docs/getting-started/'+name+'.md'
+                     for name in ('README', 'installation', 'quick-start', 'verification')]
+                     if getting_started else [])
+    report = {'base': BASE, 'pages': pages, 'links_checked': 0,
               'source_declarations_checked': 0, 'examples_executed': 0}
     inventory = (ROOT/'docs/architecture/api-inventory.md').read_text()
     declared = declarations()
@@ -69,8 +72,16 @@ def check(examples=False):
         if documented != rows:
             raise ValueError('source/catalog mismatch: '+module)
         report['source_declarations_checked'] += len(rows)
-    sys.path.insert(0, str(ROOT))
-    for relative in PAGES:
+    if package_root is None:
+        sys.path.insert(0, str(ROOT))
+    else:
+        package_root = package_root.resolve()
+        sys.path.insert(0, str(package_root))
+        import gem
+        if not Path(gem.__file__).resolve().is_relative_to(package_root):
+            raise ValueError('examples imported gem outside installed package root')
+        report['example_package'] = str(Path(gem.__file__).resolve())
+    for relative in pages:
         page = ROOT/relative
         text = page.read_text()
         # Exclude fenced code before interpreting Markdown links/headings.
@@ -114,9 +125,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--examples', action='store_true')
     parser.add_argument('--output', type=Path)
+    parser.add_argument('--getting-started', action='store_true')
+    parser.add_argument('--package-root', type=Path,
+                        help='execute examples against this installed site-packages directory')
     args = parser.parse_args()
     try:
-        report = check(args.examples)
+        report = check(args.examples, args.getting_started, args.package_root)
     except (ValueError, OSError, subprocess.CalledProcessError) as error:
         parser.error(str(error))
     rendered = json.dumps(report, indent=2) + '\n'

@@ -7,7 +7,7 @@ not a documentation framework or a rewrite of the historical GitHub Wiki.
 
 | Section | Current entry point | Future documentation work |
 |---|---|---|
-| Installation and quick start | [Existing README](../README.rst) (historical) | Verify release installation instructions and add a concise quick start |
+| Installation and quick start | [README](../README.md), [getting started](getting-started/README.md) | Release-specific installation and broader interpreter verification |
 | API reference | [Audited inventory](architecture/api-inventory.md) | Complete module/function/method reference with domains, returns and ownership |
 | Practical tutorials | [Quaternion guide](QUATERNIONS.md), [Ray guide](RAYS.md), [SH guide](SPHERICAL_HARMONICS.md) | Transform, plane, curve, polynomial and integration tutorials |
 | Examples/use cases | [Headless HDR/SH workflow](../examples/hdr_sh/README.md), [launcher](../launcher.py) | More executable, independently verified small examples |
