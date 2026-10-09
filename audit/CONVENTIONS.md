@@ -357,3 +357,15 @@ storage; i_clamp replaces only receiver storage. C02 fixes Vector field access
 while retaining whole-Vector normalization plus original XY offsets and the
 zero-vector ZeroDivisionError. This helper is separate from projection and
 OpenGL state. See [current contracts](../docs/VECTOR_VIEWPORT_CONTRACTS.md).
+
+## Quaternion subnormal directions and exact cyclic powers
+
+Power/log preserve the principal-angle and unit-input contracts. Below the
+minimum normal binary64 imaginary norm, scale components before calculating
+axis direction; no epsilon discards a nonzero axis. Exact unit basis and
+four-half-component controls form a closed 24-element set with orders dividing
+12. Integer powers reduce by that exact period and use Hamilton squaring;
+negative powers use conjugation. Other inputs retain principal-angle evaluation
+without normalization or a new unit-tolerance decision. Extremely large general
+exponents have no new phase-accuracy guarantee. See
+[verification](PHASE4G1R-QUATERNION-REPAIRS.md).

@@ -2,7 +2,7 @@
 
 Random datasets use explicit seeds. Fraction elimination, Decimal norms,
 Leibniz determinants, Rodrigues rotations and analytic camera equations are
-oracles, rather than round trips alone. Confirmed defects stay strict xfails.
+oracles, rather than round trips alone. Quaternion range findings are repaired.
 """
 import copy
 import ctypes
@@ -78,7 +78,6 @@ def assert_rows(actual, expected, rel=3e-14, abs=3e-14):
         assert row == pytest.approx(reference, rel=rel, abs=abs)
 
 
-@pytest.mark.defect('4G1-A01: subnormal imaginary-axis scaling in quaternion powers')
 @pytest.mark.parametrize('components', [(1, 1, 0), (1, -1, 1)])
 def test_subnormal_quaternion_square_root_axis(components):
     tiny = math.ldexp(1.0, -1074)
@@ -95,7 +94,6 @@ def test_subnormal_quaternion_square_root_axis(components):
     assert math.hypot(*result.data) == pytest.approx(1.0, abs=2e-15)
 
 
-@pytest.mark.defect('4G1-A01: subnormal imaginary-axis scaling in quaternion logarithms')
 @pytest.mark.parametrize('components', [(1, 1, 0), (1, -1, 1)])
 def test_subnormal_quaternion_logarithm_axis(components):
     tiny = math.ldexp(1.0, -1074)
@@ -109,7 +107,6 @@ def test_subnormal_quaternion_logarithm_axis(components):
     assert result == pytest.approx([0.0] + [math.pi*x for x in axis], rel=2e-15, abs=0)
 
 
-@pytest.mark.defect('4G1-A02: large integer powers lose the algebraic rotation phase')
 @pytest.mark.parametrize('data', [[0.0, 1.0, 0.0, 0.0], [0.5, 0.5, 0.5, 0.5]])
 @pytest.mark.parametrize('exponent', [10**16, -10**16])
 def test_large_integer_quaternion_power(data, exponent):

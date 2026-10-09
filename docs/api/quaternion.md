@@ -146,6 +146,16 @@ raise ValueError. Negative identity [−1,0,0,0] supports integer powers by pari
 fractional powers and log reject the nonunique axis with ValueError. No quaternion
 exponential API exists. Finite exponents are prerequisites, not a general validator.
 
+Subnormal imaginary directions use component scaling before division; the
+minimum-normal binary64 boundary selects this arithmetic, not an epsilon axis
+cutoff. Ordinary power/log arithmetic is retained. Integer powers of the exact
+unit basis and four-half-component controls use their exact order (dividing 12)
+and Hamilton squaring. No near-unit input is rounded onto this finite set.
+General rotations and fractional powers retain principal-angle evaluation:
+extremely large arbitrary exponents can lose phase accuracy. Unguarded Hamilton
+squaring can instead amplify norm drift and is not used for those inputs.
+See the [repair evidence and measured costs](../../audit/PHASE4G1R-QUATERNION-REPAIRS.md).
+
 Accurate SLERP uses the difference/sum norm angle to resolve tiny separations,
 then sine weights; identical orientations use the continuous limit. For unit inputs
 and t in [0,1], unit norm is tested within 1e-12; this is not implicit normalization.
