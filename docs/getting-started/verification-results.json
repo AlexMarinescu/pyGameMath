@@ -1,0 +1,101 @@
+{
+  "base": "fe75c4e842a0c62385c33717be2d709623e009ad",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "dependencies": {
+    "six": "1.17.0",
+    "setuptools": "84.0.0",
+    "wheel": "0.48.0",
+    "pytest": "9.1.1"
+  },
+  "pytest": {
+    "passed": 2249,
+    "failed": 0,
+    "xfail": 0,
+    "skipped": 0,
+    "seconds": 10.81
+  },
+  "documentation": {
+    "base": "dc418923c692b609a9fc611c66433e5950e0a321",
+    "pages": [
+      "ROADMAP.md",
+      "docs/README.md",
+      "docs/development/roadmap.md",
+      "docs/development/verification.md",
+      "docs/architecture/philosophy.md",
+      "docs/architecture/conventions.md",
+      "docs/architecture/compatibility.md",
+      "docs/architecture/api-inventory.md",
+      "README.md",
+      "docs/getting-started/README.md",
+      "docs/getting-started/installation.md",
+      "docs/getting-started/quick-start.md",
+      "docs/getting-started/verification.md"
+    ],
+    "links_checked": 181,
+    "source_declarations_checked": 268,
+    "examples_executed": 13,
+    "example_package": "/tmp/phase4b-wheel-env/lib/python3.12/site-packages/gem/__init__.py",
+    "protected_files_unchanged": 93,
+    "protected_sha256": "701db31c85d278d7d547adca3312ee58f2296dc892a6a9aee10500187ecc5196"
+  },
+  "architecture_checker": {
+    "base": "dc418923c692b609a9fc611c66433e5950e0a321",
+    "pages": [
+      "ROADMAP.md",
+      "docs/README.md",
+      "docs/development/roadmap.md",
+      "docs/development/verification.md",
+      "docs/architecture/philosophy.md",
+      "docs/architecture/conventions.md",
+      "docs/architecture/compatibility.md",
+      "docs/architecture/api-inventory.md"
+    ],
+    "links_checked": 130,
+    "source_declarations_checked": 268,
+    "examples_executed": 4,
+    "protected_files_unchanged": 93,
+    "protected_sha256": "701db31c85d278d7d547adca3312ee58f2296dc892a6a9aee10500187ecc5196"
+  },
+  "commands": [
+    "git clone --no-hardlinks /workspace/pyGameMath /tmp/phase4b-source",
+    "python3.12 -m venv /tmp/phase4b-source-env",
+    "PIP_NO_INDEX=1 PIP_FIND_LINKS=/tmp/phase4b-dependencies /tmp/phase4b-source-env/bin/python -m pip install .",
+    "/tmp/phase4b-wheel-env/bin/python setup.py sdist bdist_wheel",
+    "/tmp/phase4b-wheel-env/bin/python -m pip install --no-index dist/gem-0.1.12-py3-none-any.whl",
+    "/tmp/phase4b-wheel-env/bin/python -I /workspace/pyGameMath/tools/check_architecture_docs.py --examples --getting-started --package-root /tmp/phase4b-wheel-env/lib/python3.12/site-packages",
+    "/workspace/.venvs/pyGameMath/bin/python -m pytest -q",
+    "/workspace/.venvs/pyGameMath/bin/python tools/check_architecture_docs.py --examples",
+    "/tmp/phase4b-wheel-env/bin/python -m examples.hdr_sh.regenerate --output-dir /tmp/gem-hdr-reference"
+  ],
+  "command_context": "Build, source-install and documented example commands ran in /tmp/phase4b-source; installed snippet/import checks ran from /tmp. Locally downloaded build tools and six supplied offline dependency resolution. The local clean clone substitutes for an external git transport check; the GitHub repository and master URL were verified through its API.",
+  "wheel": "gem-0.1.12-py3-none-any.whl",
+  "sdist": "gem-0.1.12.tar.gz",
+  "historical_pypi": {
+    "version": "0.1.12",
+    "installed": true,
+    "vector_addition": [
+      5,
+      7,
+      9
+    ],
+    "canonical_promoted_modules_present": false,
+    "archive_sha256": "b236efb47897cbb37e3d07d36e2a613027e75eb96d726ad174b1ae1d270d7fd5"
+  },
+  "hdr_images": {
+    "sh_original.png": {
+      "sha256": "dfc2e0f5aa7cdee17dc32231ae3258c551cc886eff2bbb01cc43f2e38360174a",
+      "matches_committed_reference": true
+    },
+    "sh_rotated.png": {
+      "sha256": "c9b205dc7dee31d731685d996326badf9da62c48fe69713b6fbe2fea4fccaac7",
+      "matches_committed_reference": true
+    }
+  },
+  "limitations": [
+    "Only CPython 3.12/Linux executed; Windows commands are documented equivalents.",
+    "Python 2.7 remains unverified with known blockers.",
+    "Historical package smoke test does not validate mathematical correctness.",
+    "Release version, support matrix and documentation packaging remain separate decisions."
+  ]
+}
