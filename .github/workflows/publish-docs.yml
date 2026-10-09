@@ -1,0 +1,52 @@
+name: Publish documentation to GitHub Pages
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'docs/**'
+      - 'examples/**'
+      - 'gem/**'
+      - 'tools/**'
+      - 'ROADMAP.md'
+      - 'README.md'
+      - 'mkdocs.yml'
+      - 'requirements-docs.txt'
+      - '.github/workflows/publish-docs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements-docs.txt
+      - run: python -m pip install -e .
+      - run: python -m mkdocs build --strict
+      - run: python tools/check_site.py --site-dir site
+      - run: python tools/check_architecture_docs.py --examples --getting-started --api-reference --tutorials --showcase --website
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
