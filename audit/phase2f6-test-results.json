@@ -1,0 +1,22 @@
+{
+  "baseline": {
+    "passed": 1771,
+    "failed": 0,
+    "xfailed": 5
+  },
+  "final": {
+    "passed": 1780,
+    "failed": 0,
+    "xfailed": 5
+  },
+  "remaining_expected_failures": [
+    "tests.test_experimental::test_generate_object_coefficients",
+    "tests.test_vector_common::test_clamp_preserves_input",
+    "tests.test_vector_common::test_empty_equality",
+    "tests.test_vector_common::test_equality_dimensions",
+    "tests.test_vector_common::test_viewport_vector"
+  ],
+  "diagnostic_tests_added": 9,
+  "installed_wheel_imports_verified": true,
+  "production_changes": false
+}
