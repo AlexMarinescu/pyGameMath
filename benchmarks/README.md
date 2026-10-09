@@ -1,5 +1,10 @@
 # Core performance baseline
 
+For current-core regression monitoring, use `run_core.py` and `compare.py`.
+See [the consolidated workflow and CI policy](REGRESSION_POLICY.md) for quick/stress
+suites, versioned workload matching, advisory reporting and baseline refresh.
+The commands below preserve the original Phase 3A–3D measurement workflows.
+
 Run from a clean checkout with Python 3.12 and the existing `six` dependency:
 
 ```

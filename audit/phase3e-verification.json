@@ -1,0 +1,32 @@
+{
+  "base": "45b708ec44da8be8352e6ce3b70abfb4c2737773",
+  "runtime_and_packaging": {
+    "checked_files": 21,
+    "changed_files": [],
+    "combined_sha256": "a6b896bdd59cffe0d135769e2b4758e50376d93e3943f81a7a5468bff5de2aaa"
+  },
+  "pytest": {
+    "full": {
+      "tests": 2249,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 2249
+    },
+    "clean_reporting_and_wheel": {
+      "tests": 56,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 56
+    }
+  },
+  "clean_checkout": {
+    "quick_workloads": 103,
+    "extended_workloads": 5,
+    "core_and_workload_fingerprints_match": true
+  },
+  "benchmark_runner_sha256": "dfb47541e08f4b8b594316042c6b296b1f6d1baba7d5bf0e85cda646260bbe97",
+  "hdr_verifier": "phase3e-hdr-reference.json",
+  "policy": "advisory comparison only; no timing gate"
+}

@@ -1,0 +1,572 @@
+{
+  "schema": "gem-benchmark-v1",
+  "recorded_at_utc": "2026-10-09T02:07:50.940481+00:00",
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "implementation": "CPython",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "architecture": "x86_64",
+    "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "cpu_count": 3,
+    "host_id": "ade31b5dc43d70c661c0762a0aa4c009ae70d8b6d714754d3b80a6550769ef10",
+    "affinity": [
+      0,
+      1,
+      2
+    ],
+    "six": "1.17.0"
+  },
+  "source": {
+    "commit": "553f1664987ab45b4212a4e5c105ebbf92493e81",
+    "core_sha256": "a9b3f174143ad1b2e13f6fa855a5afed4e460f6a3ffb139a317f91c807b96076",
+    "runner_sha256": "dfb47541e08f4b8b594316042c6b296b1f6d1baba7d5bf0e85cda646260bbe97"
+  },
+  "methodology": {
+    "timer": "perf_counter",
+    "gc": "timeit disables GC",
+    "allocation": "returned results included",
+    "execution": "warm calibrated calls",
+    "rounds": 3,
+    "trials": 7,
+    "target_seconds": 0.005,
+    "setup_seconds": 0.07550972799799638,
+    "order": "reverse workload order on alternating rounds",
+    "seed": "fixed source constants; no RNG"
+  },
+  "suite": "quick",
+  "results": {
+    "matrix4_raw_inverse": {
+      "definition_sha256": "c831f6fd34a1f3e5c1b852e0ae25b056a51513bfe39a0d332e7119a850bd95f8",
+      "definition_version": "core-v1",
+      "metadata": {
+        "domain": "ordinary"
+      },
+      "unit": "named workload call",
+      "blocks": [
+        {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.901380273494624e-05,
+            2.0078964844572056e-05,
+            1.881216601162805e-05,
+            1.949858594230136e-05,
+            1.94552226560063e-05,
+            2.058998828147196e-05,
+            1.963841797447685e-05
+          ],
+          "median_us": 19.49858594230136,
+          "min_us": 18.81216601162805,
+          "max_us": 20.58998828147196,
+          "mad_us": 0.4847832073551217,
+          "round": 0
+        },
+        {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.8988207031611637e-05,
+            1.9932695309421433e-05,
+            2.075008202950812e-05,
+            1.938929688094504e-05,
+            1.9406437502311746e-05,
+            1.961267577144099e-05,
+            2.1775085940589634e-05
+          ],
+          "median_us": 19.61267577144099,
+          "min_us": 18.988207031611637,
+          "max_us": 21.775085940589634,
+          "mad_us": 0.3200195379804427,
+          "round": 1
+        },
+        {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.0916039062512937e-05,
+            1.9055980473581258e-05,
+            2.043107812710332e-05,
+            1.8799617194531493e-05,
+            1.8860554675370622e-05,
+            2.1432257810261035e-05,
+            2.1113781244253005e-05
+          ],
+          "median_us": 20.43107812710332,
+          "min_us": 18.799617194531493,
+          "max_us": 21.432257810261035,
+          "mad_us": 1.0011796831577158,
+          "round": 2
+        }
+      ]
+    },
+    "quaternion_squad4": {
+      "definition_sha256": "4b3e45c350843faad00bfaee77b1276e8bcf96c1662d74c137072ef622e338da",
+      "definition_version": "core-v1",
+      "metadata": {
+        "domain": "ordinary"
+      },
+      "unit": "named workload call",
+      "blocks": [
+        {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            6.812595703564739e-06,
+            7.307115232890737e-06,
+            7.133539064341221e-06,
+            7.074624026159881e-06,
+            7.204150389128472e-06,
+            6.8534707047263055e-06,
+            7.002293944680105e-06
+          ],
+          "median_us": 7.074624026159881,
+          "min_us": 6.812595703564739,
+          "max_us": 7.307115232890737,
+          "mad_us": 0.12952636296859055,
+          "round": 0
+        },
+        {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            6.968054684364233e-06,
+            7.736515627243534e-06,
+            6.899164063156604e-06,
+            7.514123048224519e-06,
+            7.619529299063288e-06,
+            7.2977128908746636e-06,
+            6.711371092649188e-06
+          ],
+          "median_us": 7.297712890874664,
+          "min_us": 6.711371092649188,
+          "max_us": 7.736515627243534,
+          "mad_us": 0.3296582065104303,
+          "round": 1
+        },
+        {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            7.323209963772115e-06,
+            6.867042969815884e-06,
+            6.9924062486848015e-06,
+            8.048648435732275e-06,
+            7.323458007135741e-06,
+            7.471023437233271e-06,
+            6.999268553187221e-06
+          ],
+          "median_us": 7.323209963772115,
+          "min_us": 6.867042969815884,
+          "max_us": 8.048648435732275,
+          "mad_us": 0.3239414105848937,
+          "round": 2
+        }
+      ]
+    },
+    "sh_rotate_l2_rgb": {
+      "definition_sha256": "5c3255e85656a16a59dc2d40acee0af94c68b2a9118cbe1287fe54bba964aff3",
+      "definition_version": "core-v1",
+      "metadata": {
+        "domain": "ordinary"
+      },
+      "unit": "named workload call",
+      "blocks": [
+        {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.343925000047875e-05,
+            2.2676707033042476e-05,
+            2.583149610302371e-05,
+            2.7233671872295417e-05,
+            2.5070191398413044e-05,
+            2.4596164053036773e-05,
+            2.315280468678793e-05
+          ],
+          "median_us": 24.596164053036773,
+          "min_us": 22.676707033042476,
+          "max_us": 27.233671872295417,
+          "mad_us": 1.235332049986937,
+          "round": 0
+        },
+        {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.329375782039733e-05,
+            2.2846140623755673e-05,
+            2.2683226561071024e-05,
+            2.296149999381214e-05,
+            2.331978124914258e-05,
+            2.3182082031780737e-05,
+            2.223022265468444e-05
+          ],
+          "median_us": 22.96149999381214,
+          "min_us": 22.23022265468444,
+          "max_us": 23.31978124914258,
+          "mad_us": 0.27827343274111627,
+          "round": 1
+        },
+        {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.3658332040099594e-05,
+            2.29162617131351e-05,
+            2.3833746098489428e-05,
+            2.3704371102439836e-05,
+            2.2821546878049048e-05,
+            2.3145058591467205e-05,
+            2.4138925780903264e-05
+          ],
+          "median_us": 23.658332040099594,
+          "min_us": 22.82154687804905,
+          "max_us": 24.138925780903264,
+          "mad_us": 0.4805937408036698,
+          "round": 2
+        }
+      ]
+    }
+  },
+  "unsupported": {
+    "ray_intersections": "supported Ray has no intersection method"
+  },
+  "profiles": {
+    "matrix4_raw_inverse": {
+      "operations": 1000,
+      "top_cumulative": [
+        {
+          "function": "/workspace/pyGameMath/benchmarks/core_baseline.py:63:<lambda>",
+          "primitive_calls": 1000,
+          "calls": 1000,
+          "self_seconds": 0.0007395990000000001,
+          "cumulative_seconds": 0.06901220200000001
+        },
+        {
+          "function": "/workspace/pyGameMath/gem/matrix.py:397:inverse4",
+          "primitive_calls": 1000,
+          "calls": 1000,
+          "self_seconds": 0.0008389980000000001,
+          "cumulative_seconds": 0.068018486
+        },
+        {
+          "function": "/workspace/pyGameMath/gem/matrix.py:356:_scaled_cofactor_inverse",
+          "primitive_calls": 1000,
+          "calls": 1000,
+          "self_seconds": 0.02538653,
+          "cumulative_seconds": 0.06717948800000001
+        },
+        {
+          "function": "~:0:<built-in method builtins.max>",
+          "primitive_calls": 8000,
+          "calls": 8000,
+          "self_seconds": 0.004629692,
+          "cumulative_seconds": 0.010768248000000001
+        },
+        {
+          "function": "~:0:<built-in method builtins.any>",
+          "primitive_calls": 1000,
+          "calls": 1000,
+          "self_seconds": 0.001897159,
+          "cumulative_seconds": 0.008199545
+        },
+        {
+          "function": "/workspace/pyGameMath/gem/matrix.py:358:<genexpr>",
+          "primitive_calls": 17000,
+          "calls": 17000,
+          "self_seconds": 0.004938627,
+          "cumulative_seconds": 0.006302386
+        },
+        {
+          "function": "/workspace/pyGameMath/gem/matrix.py:366:<genexpr>",
+          "primitive_calls": 20000,
+          "calls": 20000,
+          "self_seconds": 0.004215849000000001,
+          "cumulative_seconds": 0.006138556000000001
+        },
+        {
+          "function": "~:0:<method 'as_integer_ratio' of 'float' objects>",
+          "primitive_calls": 16000,
+          "calls": 16000,
+          "self_seconds": 0.005661594000000001,
+          "cumulative_seconds": 0.005661594000000001
+        },
+        {
+          "function": "/workspace/pyGameMath/gem/matrix.py:283:_inverse4_cofactor",
+          "primitive_calls": 1000,
+          "calls": 1000,
+          "self_seconds": 0.00444073,
+          "cumulative_seconds": 0.005093841
+        },
+        {
+          "function": "~:0:<method 'bit_length' of 'int' objects>",
+          "primitive_calls": 32000,
+          "calls": 32000,
+          "self_seconds": 0.004756509,
+          "cumulative_seconds": 0.004756509
+        },
+        {
+          "function": "~:0:<built-in method math.ldexp>",
+          "primitive_calls": 32000,
+          "calls": 32000,
+          "self_seconds": 0.004680984,
+          "cumulative_seconds": 0.004680984
+        },
+        {
+          "function": "/workspace/pyGameMath/gem/matrix.py:335:_det4_exact",
+          "primitive_calls": 1000,
+          "calls": 1000,
+          "self_seconds": 0.002114219,
+          "cumulative_seconds": 0.002114219
+        },
+        {
+          "function": "~:0:<method 'append' of 'list' objects>",
+          "primitive_calls": 12000,
+          "calls": 12000,
+          "self_seconds": 0.001729873,
+          "cumulative_seconds": 0.001729873
+        },
+        {
+          "function": "~:0:<built-in method math.isfinite>",
+          "primitive_calls": 16000,
+          "calls": 16000,
+          "self_seconds": 0.001363759,
+          "cumulative_seconds": 0.001363759
+        },
+        {
+          "function": "~:0:<built-in method math.frexp>",
+          "primitive_calls": 4000,
+          "calls": 4000,
+          "self_seconds": 0.0007108520000000001,
+          "cumulative_seconds": 0.0007108520000000001
+        },
+        {
+          "function": "/workspace/pyGameMath/gem/matrix.py:6:zero_matrix",
+          "primitive_calls": 1000,
+          "calls": 1000,
+          "self_seconds": 0.0006531110000000001,
+          "cumulative_seconds": 0.0006531110000000001
+        },
+        {
+          "function": "~:0:<built-in method builtins.getattr>",
+          "primitive_calls": 1000,
+          "calls": 1000,
+          "self_seconds": 0.000254117,
+          "cumulative_seconds": 0.000254117
+        },
+        {
+          "function": "~:0:<method 'disable' of '_lsprof.Profiler' objects>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 2.7626000000000003e-05,
+          "cumulative_seconds": 2.7626000000000003e-05
+        }
+      ],
+      "single_call_peak_traced_bytes": 3433,
+      "single_call_retained_traced_bytes": 1681
+    },
+    "quaternion_squad4": {
+      "operations": 1000,
+      "top_cumulative": [
+        {
+          "function": "/workspace/pyGameMath/benchmarks/core_baseline.py:89:<lambda>",
+          "primitive_calls": 1000,
+          "calls": 1000,
+          "self_seconds": 0.00039627200000000003,
+          "cumulative_seconds": 0.021743273
+        },
+        {
+          "function": "/workspace/pyGameMath/gem/quaternion.py:273:squad4",
+          "primitive_calls": 1000,
+          "calls": 1000,
+          "self_seconds": 0.0009356910000000001,
+          "cumulative_seconds": 0.021347001
+        },
+        {
+          "function": "/workspace/pyGameMath/gem/quaternion.py:228:quat_slerp",
+          "primitive_calls": 3000,
+          "calls": 3000,
+          "self_seconds": 0.009414178,
+          "cumulative_seconds": 0.020411310000000002
+        },
+        {
+          "function": "/workspace/pyGameMath/gem/quaternion.py:210:_quat_blend",
+          "primitive_calls": 3000,
+          "calls": 3000,
+          "self_seconds": 0.0033061260000000004,
+          "cumulative_seconds": 0.0040900960000000005
+        },
+        {
+          "function": "/workspace/pyGameMath/gem/quaternion.py:413:dot",
+          "primitive_calls": 3000,
+          "calls": 3000,
+          "self_seconds": 0.0012537680000000002,
+          "cumulative_seconds": 0.0028471580000000002
+        },
+        {
+          "function": "~:0:<built-in method math.hypot>",
+          "primitive_calls": 18000,
+          "calls": 18000,
+          "self_seconds": 0.002410422,
+          "cumulative_seconds": 0.002410422
+        },
+        {
+          "function": "/workspace/pyGameMath/gem/quaternion.py:47:quat_dot",
+          "primitive_calls": 3000,
+          "calls": 3000,
+          "self_seconds": 0.001346516,
+          "cumulative_seconds": 0.001346516
+        },
+        {
+          "function": "~:0:<built-in method math.sin>",
+          "primitive_calls": 9000,
+          "calls": 9000,
+          "self_seconds": 0.001087333,
+          "cumulative_seconds": 0.001087333
+        },
+        {
+          "function": "~:0:<built-in method builtins.isinstance>",
+          "primitive_calls": 9000,
+          "calls": 9000,
+          "self_seconds": 0.000736568,
+          "cumulative_seconds": 0.000736568
+        },
+        {
+          "function": "~:0:<built-in method math.atan2>",
+          "primitive_calls": 3000,
+          "calls": 3000,
+          "self_seconds": 0.000562123,
+          "cumulative_seconds": 0.000562123
+        },
+        {
+          "function": "/workspace/pyGameMath/gem/quaternion.py:322:__init__",
+          "primitive_calls": 3000,
+          "calls": 3000,
+          "self_seconds": 0.000294276,
+          "cumulative_seconds": 0.000294276
+        },
+        {
+          "function": "~:0:<method 'disable' of '_lsprof.Profiler' objects>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 2.7609000000000003e-05,
+          "cumulative_seconds": 2.7609000000000003e-05
+        }
+      ],
+      "single_call_peak_traced_bytes": 616,
+      "single_call_retained_traced_bytes": 184
+    },
+    "sh_rotate_l2_rgb": {
+      "operations": 1000,
+      "top_cumulative": [
+        {
+          "function": "/workspace/pyGameMath/benchmarks/core_baseline.py:127:<lambda>",
+          "primitive_calls": 1000,
+          "calls": 1000,
+          "self_seconds": 0.000960172,
+          "cumulative_seconds": 0.066337617
+        },
+        {
+          "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:332:rotate_coefficients",
+          "primitive_calls": 1000,
+          "calls": 1000,
+          "self_seconds": 0.03148218,
+          "cumulative_seconds": 0.065377445
+        },
+        {
+          "function": "~:0:<built-in method builtins.any>",
+          "primitive_calls": 1000,
+          "calls": 1000,
+          "self_seconds": 0.001284006,
+          "cumulative_seconds": 0.019977653
+        },
+        {
+          "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:356:<genexpr>",
+          "primitive_calls": 10000,
+          "calls": 10000,
+          "self_seconds": 0.004582087,
+          "cumulative_seconds": 0.018693647
+        },
+        {
+          "function": "~:0:<built-in method builtins.all>",
+          "primitive_calls": 10000,
+          "calls": 10000,
+          "self_seconds": 0.005501720000000001,
+          "cumulative_seconds": 0.015166462
+        },
+        {
+          "function": "~:0:<built-in method builtins.sum>",
+          "primitive_calls": 63000,
+          "calls": 63000,
+          "self_seconds": 0.009394355,
+          "cumulative_seconds": 0.009394355
+        },
+        {
+          "function": "~:0:<built-in method math.isfinite>",
+          "primitive_calls": 31000,
+          "calls": 31000,
+          "self_seconds": 0.002303479,
+          "cumulative_seconds": 0.002303479
+        },
+        {
+          "function": "~:0:<built-in method builtins.len>",
+          "primitive_calls": 17000,
+          "calls": 17000,
+          "self_seconds": 0.002027398,
+          "cumulative_seconds": 0.002027398
+        },
+        {
+          "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:344:<genexpr>",
+          "primitive_calls": 5000,
+          "calls": 5000,
+          "self_seconds": 0.0009486230000000001,
+          "cumulative_seconds": 0.001282327
+        },
+        {
+          "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:360:<genexpr>",
+          "primitive_calls": 5000,
+          "calls": 5000,
+          "self_seconds": 0.0005419880000000001,
+          "cumulative_seconds": 0.0005419880000000001
+        },
+        {
+          "function": "~:0:<built-in method builtins.isinstance>",
+          "primitive_calls": 2000,
+          "calls": 2000,
+          "self_seconds": 0.000298029,
+          "cumulative_seconds": 0.000298029
+        },
+        {
+          "function": "~:0:<built-in method math.sqrt>",
+          "primitive_calls": 2000,
+          "calls": 2000,
+          "self_seconds": 0.000295317,
+          "cumulative_seconds": 0.000295317
+        },
+        {
+          "function": "~:0:<built-in method math.hypot>",
+          "primitive_calls": 1000,
+          "calls": 1000,
+          "self_seconds": 0.000183455,
+          "cumulative_seconds": 0.000183455
+        },
+        {
+          "function": "~:0:<built-in method builtins.abs>",
+          "primitive_calls": 1000,
+          "calls": 1000,
+          "self_seconds": 0.000122168,
+          "cumulative_seconds": 0.000122168
+        },
+        {
+          "function": "~:0:<method 'disable' of '_lsprof.Profiler' objects>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 2.7119000000000002e-05,
+          "cumulative_seconds": 2.7119000000000002e-05
+        }
+      ],
+      "single_call_peak_traced_bytes": 3872,
+      "single_call_retained_traced_bytes": 2072
+    }
+  }
+}
