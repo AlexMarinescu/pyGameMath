@@ -1,0 +1,2064 @@
+{
+  "schema": "gem-sh-near-pole-repair-v1",
+  "base": "72fb9dac9beadc6c7ca1eae8a615b4ad86441254",
+  "source_sha256": {
+    "before": "93d004db8a62d88ef82f4320d4ecce05c2017e4ba5bf5311dddb82135c92e11b",
+    "after": "25bb90b46e4ba5175e320a7f232ac6a2523b31d495e82412db5bdc9579f0d06b"
+  },
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "implementation": "CPython",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "architecture": "x86_64",
+    "cpu": "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz"
+  },
+  "methodology": {
+    "trials": 9,
+    "iterations": 20000,
+    "clock": "process_time_ns",
+    "warmup_calls_per_workload_and_implementation": 100,
+    "gc_during_timing": false,
+    "trial_order": "alternating before/after, shuffled workloads seed 473102+trial",
+    "setup_excluded": true,
+    "loop_and_return_allocation_included": true,
+    "random_generation": "Warmup seed 473103; each paired generation trial resets seed 473104+trial outside timing; restored on exit; comparison seed 473101",
+    "latency_ratio": "median of paired after/before; not the ratio of independent medians",
+    "limitations": "Shared-host frequency/load not controlled; medians/MADs describe this run, not universal guarantees."
+  },
+  "compatibility": {
+    "metrics": {
+      "ordinary_SPH": {
+        "components": 4732,
+        "bit_identical": 2083,
+        "maximum_absolute_difference": 4.218847493575595e-15
+      },
+      "ordinary_basis": {
+        "components": 3248,
+        "bit_identical": 1566,
+        "maximum_absolute_difference": 3.3306690738754696e-15
+      },
+      "ordinary_reconstruct": {
+        "components": 1536,
+        "bit_identical": 687,
+        "maximum_absolute_difference": 3.219646771412954e-15
+      },
+      "exact_poles": {
+        "components": 2048,
+        "bit_identical": 2048,
+        "maximum_absolute_difference": 0.0
+      },
+      "rotate_coefficients": {
+        "components": 27,
+        "bit_identical": 27,
+        "maximum_absolute_difference": 0.0
+      },
+      "convolve_diffuse": {
+        "components": 27,
+        "bit_identical": 27,
+        "maximum_absolute_difference": 0.0
+      },
+      "legacy_to_canonical": {
+        "components": 27,
+        "bit_identical": 27,
+        "maximum_absolute_difference": 0.0
+      }
+    },
+    "historical_domain_observations": [
+      {
+        "arguments": "(2, 1, -0.7, 0.3)",
+        "before": {
+          "value_hex": "-0x1.075001144657ap-1"
+        },
+        "after": {
+          "value_hex": "-0x1.075001144657ap-1"
+        }
+      },
+      {
+        "arguments": "(2, 1, -1e-09, 0.3)",
+        "before": {
+          "value_hex": "-0x0.0p+0"
+        },
+        "after": {
+          "value_hex": "-0x0.0p+0"
+        }
+      },
+      {
+        "arguments": "(2, 1, 6.283185307179586, 0.3)",
+        "before": {
+          "value_hex": "-0x0.0p+0"
+        },
+        "after": {
+          "value_hex": "-0x0.0p+0"
+        }
+      },
+      {
+        "arguments": "(2, 1, 3.241592653589793, 0.3)",
+        "before": {
+          "value_hex": "0x1.a8ad16725e6f5p-4"
+        },
+        "after": {
+          "value_hex": "0x1.a8ad16725e6f5p-4"
+        }
+      },
+      {
+        "arguments": "(2, 1, nan, 0.3)",
+        "before": {
+          "value_hex": "nan"
+        },
+        "after": {
+          "value_hex": "nan"
+        }
+      },
+      {
+        "arguments": "(2, 1, inf, 0.3)",
+        "before": {
+          "exception": "ValueError"
+        },
+        "after": {
+          "exception": "ValueError"
+        }
+      },
+      {
+        "arguments": "(2, 1, None, 0.3)",
+        "before": {
+          "exception": "TypeError"
+        },
+        "after": {
+          "exception": "TypeError"
+        }
+      },
+      {
+        "arguments": "(2, 1.5, 0.7, 0.3)",
+        "before": {
+          "exception": "TypeError"
+        },
+        "after": {
+          "exception": "TypeError"
+        }
+      },
+      {
+        "arguments": "(2, 3, 0.7, 0.3)",
+        "before": {
+          "value_hex": "0x0.0p+0"
+        },
+        "after": {
+          "value_hex": "0x0.0p+0"
+        }
+      },
+      {
+        "arguments": "(0, 0, nan, 0.3)",
+        "before": {
+          "value_hex": "0x1.20dd750429b6dp-2"
+        },
+        "after": {
+          "value_hex": "0x1.20dd750429b6dp-2"
+        }
+      }
+    ],
+    "limitations": "Ordinary last-bit differences are recorded; independent mathematical tests remain the correctness oracle."
+  },
+  "hdr_reference": {
+    "regeneration_command": "python -m examples.hdr_sh.regenerate --output-dir /tmp/phase4g3r-hdr-output",
+    "files": {
+      "irradiance_coefficients.glsl": {
+        "reference_sha256": "8d0d751cf32b8dd2a5653bda2187ef96a2bba6eaebbf1b8f4e5899f238323bc4",
+        "generated_sha256": "bd45279c47a5ba57e256deb972a0f20c809d46e58129b8670d481b0be1f496b8",
+        "bytes_identical": false,
+        "changed_numeric_constants": 16,
+        "maximum_absolute_difference": 3.673333600000002e-17
+      },
+      "reference.json": {
+        "reference_sha256": "99fbca270299bf908ea7ba6d8e395ddb548d6531caa79d317d38e035877ee897",
+        "generated_sha256": "05c82917301cc59cddb02bf8f6c5d530fb7d04a80d3a49f7382011a8dc0b1a20",
+        "bytes_identical": false,
+        "numeric_changes": [
+          {
+            "path": "/radiance_coefficients/1/0",
+            "reference": 4.782856239966132e-17,
+            "generated": 5.246162086290553e-17,
+            "absolute_difference": 4.633058463244209e-18
+          },
+          {
+            "path": "/radiance_coefficients/1/2",
+            "reference": 6.456572167916948e-17,
+            "generated": 6.205066910053465e-17,
+            "absolute_difference": 2.5150525786348313e-18
+          },
+          {
+            "path": "/radiance_coefficients/3/1",
+            "reference": 4.1295121991781047e-16,
+            "generated": 4.289423549290244e-16,
+            "absolute_difference": 1.5991135011213936e-17
+          },
+          {
+            "path": "/radiance_coefficients/3/2",
+            "reference": 5.601394998874798e-16,
+            "generated": 5.776783758515642e-16,
+            "absolute_difference": 1.7538875964084356e-17
+          },
+          {
+            "path": "/radiance_coefficients/4/0",
+            "reference": 9.509877126840445e-17,
+            "generated": 1.0027153530283746e-16,
+            "absolute_difference": 5.172764034433008e-18
+          },
+          {
+            "path": "/radiance_coefficients/4/1",
+            "reference": 1.1542417387071864e-16,
+            "generated": 1.0321459098274193e-16,
+            "absolute_difference": 1.2209582887976714e-17
+          },
+          {
+            "path": "/radiance_coefficients/4/2",
+            "reference": 1.826428292104682e-16,
+            "generated": 1.7573990773703967e-16,
+            "absolute_difference": 6.902921473428522e-18
+          },
+          {
+            "path": "/radiance_coefficients/5/0",
+            "reference": -2.332305220264716e-18,
+            "generated": 2.507217523872729e-19,
+            "absolute_difference": 2.583026972651989e-18
+          },
+          {
+            "path": "/radiance_coefficients/5/1",
+            "reference": 3.995962631966887e-17,
+            "generated": 6.006861200395959e-17,
+            "absolute_difference": 2.0108985684290717e-17
+          },
+          {
+            "path": "/radiance_coefficients/5/2",
+            "reference": 8.956949900740599e-18,
+            "generated": 3.6288585526268735e-17,
+            "absolute_difference": 2.7331635625528136e-17
+          },
+          {
+            "path": "/radiance_coefficients/7/0",
+            "reference": 4.5439929488404196e-17,
+            "generated": 5.57478969400154e-17,
+            "absolute_difference": 1.0307967451611208e-17
+          },
+          {
+            "path": "/radiance_coefficients/7/1",
+            "reference": 5.180029988933674e-18,
+            "generated": -6.508601166702044e-18,
+            "absolute_difference": 1.1688631155635718e-17
+          },
+          {
+            "path": "/radiance_coefficients/7/2",
+            "reference": 3.972118654501679e-17,
+            "generated": 1.8408143526204082e-17,
+            "absolute_difference": 2.1313043018812705e-17
+          },
+          {
+            "path": "/radiance_coefficients/8/0",
+            "reference": -6.285098553376992e-16,
+            "generated": -6.426133509561773e-16,
+            "absolute_difference": 1.4103495618478126e-17
+          },
+          {
+            "path": "/radiance_coefficients/8/1",
+            "reference": -7.472895237591861e-16,
+            "generated": -7.436908778129966e-16,
+            "absolute_difference": 3.598645946189497e-18
+          },
+          {
+            "path": "/radiance_coefficients/8/2",
+            "reference": -9.881844763484475e-16,
+            "generated": -9.838374238537996e-16,
+            "absolute_difference": 4.3470524946478744e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/1/1",
+            "reference": 8.672166240301135e-16,
+            "generated": 8.832077590413274e-16,
+            "absolute_difference": 1.5991135011213936e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/1/2",
+            "reference": 5.601394998874799e-16,
+            "generated": 5.776783758515643e-16,
+            "absolute_difference": 1.7538875964084356e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/3/0",
+            "reference": 4.064368417126415e-16,
+            "generated": 4.018037832493973e-16,
+            "absolute_difference": 4.633058463244209e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/3/2",
+            "reference": -6.456572167916962e-17,
+            "generated": -6.205066910053479e-17,
+            "absolute_difference": 2.5150525786348313e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/4/0",
+            "reference": -9.509877126840422e-17,
+            "generated": -1.0027153530283721e-16,
+            "absolute_difference": 5.1727640344329956e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/4/1",
+            "reference": -1.1542417387071835e-16,
+            "generated": -1.0321459098274165e-16,
+            "absolute_difference": 1.2209582887976702e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/4/2",
+            "reference": -1.8264282921046785e-16,
+            "generated": -1.7573990773703933e-16,
+            "absolute_difference": 6.902921473428522e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/5/0",
+            "reference": 4.543992948840421e-17,
+            "generated": 5.574789694001542e-17,
+            "absolute_difference": 1.0307967451611208e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/5/1",
+            "reference": 5.180029988933666e-18,
+            "generated": -6.5086011667020584e-18,
+            "absolute_difference": 1.1688631155635724e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/5/2",
+            "reference": 3.97211865450168e-17,
+            "generated": 1.8408143526204076e-17,
+            "absolute_difference": 2.1313043018812724e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/6/0",
+            "reference": 0.006381988755326441,
+            "generated": 0.006381988755326442,
+            "absolute_difference": 8.673617379884035e-19
+          },
+          {
+            "path": "/rotated_radiance_coefficients/6/2",
+            "reference": 0.012763977510652568,
+            "generated": 0.01276397751065257,
+            "absolute_difference": 1.734723475976807e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/7/0",
+            "reference": 2.332305220264706e-18,
+            "generated": -2.507217523872853e-19,
+            "absolute_difference": 2.5830269726519912e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/7/1",
+            "reference": -3.995962631966888e-17,
+            "generated": -6.00686120039596e-17,
+            "absolute_difference": 2.0108985684290723e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/7/2",
+            "reference": -8.95694990074061e-18,
+            "generated": -3.628858552626875e-17,
+            "absolute_difference": 2.7331635625528136e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/8/0",
+            "reference": 6.287597668457956e-16,
+            "generated": 6.422558729523342e-16,
+            "absolute_difference": 1.3496106106538578e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/8/1",
+            "reference": 7.470491674266334e-16,
+            "generated": 7.438736130486244e-16,
+            "absolute_difference": 3.1755543780090075e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/8/2",
+            "reference": 9.875974115608205e-16,
+            "generated": 9.844218571828112e-16,
+            "absolute_difference": 3.1755543780092047e-18
+          },
+          {
+            "path": "/irradiance_coefficients/1/1",
+            "reference": 1.8162942500826306e-15,
+            "generated": 1.8497860049318254e-15,
+            "absolute_difference": 3.34917548491948e-17
+          },
+          {
+            "path": "/irradiance_coefficients/1/2",
+            "reference": 1.1731534252213117e-15,
+            "generated": 1.2098867611419716e-15,
+            "absolute_difference": 3.673333592065994e-17
+          },
+          {
+            "path": "/irradiance_coefficients/3/0",
+            "reference": 8.512393307151147e-16,
+            "generated": 8.415358757605947e-16,
+            "absolute_difference": 9.703454954520008e-18
+          },
+          {
+            "path": "/irradiance_coefficients/3/2",
+            "reference": -1.35226131267335e-16,
+            "generated": -1.2995861746438083e-16,
+            "absolute_difference": 5.2675138029541754e-18
+          },
+          {
+            "path": "/irradiance_coefficients/4/0",
+            "reference": -7.46904002955587e-17,
+            "generated": -7.875307966789074e-17,
+            "absolute_difference": 4.0626793723320445e-18
+          },
+          {
+            "path": "/irradiance_coefficients/4/1",
+            "reference": -9.065393416972992e-17,
+            "generated": -8.106455019366412e-17,
+            "absolute_difference": 9.589383976065804e-18
+          },
+          {
+            "path": "/irradiance_coefficients/4/2",
+            "reference": -1.4344734261961528e-16,
+            "generated": -1.380258007723077e-16,
+            "absolute_difference": 5.421541847307571e-18
+          },
+          {
+            "path": "/irradiance_coefficients/5/0",
+            "reference": 3.5688437165102216e-17,
+            "generated": 4.3784295869958336e-17,
+            "absolute_difference": 8.09585870485612e-18
+          },
+          {
+            "path": "/irradiance_coefficients/5/1",
+            "reference": 4.068386039652206e-18,
+            "generated": -5.111843402614286e-18,
+            "absolute_difference": 9.18022944226649e-18
+          },
+          {
+            "path": "/irradiance_coefficients/5/2",
+            "reference": 3.119694696042363e-17,
+            "generated": 1.445772211703731e-17,
+            "absolute_difference": 1.673922484338632e-17
+          },
+          {
+            "path": "/irradiance_coefficients/6/0",
+            "reference": 0.005012402247256554,
+            "generated": 0.005012402247256555,
+            "absolute_difference": 8.673617379884035e-19
+          },
+          {
+            "path": "/irradiance_coefficients/6/2",
+            "reference": 0.010024804494512861,
+            "generated": 0.010024804494512863,
+            "absolute_difference": 1.734723475976807e-18
+          },
+          {
+            "path": "/irradiance_coefficients/7/0",
+            "reference": 1.831788236478181e-18,
+            "generated": -1.9691640384876369e-19,
+            "absolute_difference": 2.028704640326945e-18
+          },
+          {
+            "path": "/irradiance_coefficients/7/1",
+            "reference": -3.1384217121516275e-17,
+            "generated": -4.7177777545743785e-17,
+            "absolute_difference": 1.579356042422751e-17
+          },
+          {
+            "path": "/irradiance_coefficients/7/2",
+            "reference": -7.034772001684631e-18,
+            "generated": -2.85009884246227e-17,
+            "absolute_difference": 2.1466216422938067e-17
+          },
+          {
+            "path": "/irradiance_coefficients/8/0",
+            "reference": 4.938267660988956e-16,
+            "generated": 5.044265830479882e-16,
+            "absolute_difference": 1.0599816949092526e-17
+          },
+          {
+            "path": "/irradiance_coefficients/8/1",
+            "reference": 5.867310440644707e-16,
+            "generated": 5.842369694882137e-16,
+            "absolute_difference": 2.494074576256978e-18
+          },
+          {
+            "path": "/irradiance_coefficients/8/2",
+            "reference": 7.756571932159422e-16,
+            "generated": 7.731631186396851e-16,
+            "absolute_difference": 2.494074576257175e-18
+          },
+          {
+            "path": "/evaluations/0/irradiance_linear_rgb/1",
+            "reference": 7.328854684632094,
+            "generated": 7.328854684632093,
+            "absolute_difference": 8.881784197001252e-16
+          },
+          {
+            "path": "/evaluations/0/lambertian_linear_rgb/1",
+            "reference": 1.1664234502613915,
+            "generated": 1.1664234502613913,
+            "absolute_difference": 2.220446049250313e-16
+          },
+          {
+            "path": "/evaluations/4/irradiance_linear_rgb/0",
+            "reference": 4.188052465737519,
+            "generated": 4.188052465737518,
+            "absolute_difference": 8.881784197001252e-16
+          },
+          {
+            "path": "/evaluations/4/lambertian_linear_rgb/0",
+            "reference": 0.6665492518503268,
+            "generated": 0.6665492518503267,
+            "absolute_difference": 1.1102230246251565e-16
+          },
+          {
+            "path": "/evaluations/4/display_srgb/0",
+            "reference": 0.835941581425073,
+            "generated": 0.8359415814250729,
+            "absolute_difference": 1.1102230246251565e-16
+          }
+        ],
+        "changed_numeric_fields": 57,
+        "maximum_absolute_difference": 8.881784197001252e-16
+      },
+      "sh_original.png": {
+        "reference_sha256": "dfc2e0f5aa7cdee17dc32231ae3258c551cc886eff2bbb01cc43f2e38360174a",
+        "generated_sha256": "dfc2e0f5aa7cdee17dc32231ae3258c551cc886eff2bbb01cc43f2e38360174a",
+        "bytes_identical": true,
+        "width": 192,
+        "height": 192,
+        "decoded_pixels_identical": true,
+        "changed_channel_bytes": 0,
+        "maximum_channel_byte_difference": 0
+      },
+      "sh_original_coefficients.glsl": {
+        "reference_sha256": "19e5f8c73e60dac5f0b893e1ae1ae54413c13049a7a32ab7c24c2564d4f055c7",
+        "generated_sha256": "fa422aec785f14067474edad2f2b338d566c3b704d27cb271db8f05561fc9d9b",
+        "bytes_identical": false,
+        "changed_numeric_constants": 9,
+        "maximum_absolute_difference": 4.0251676000000224e-18
+      },
+      "sh_rotated.png": {
+        "reference_sha256": "c9b205dc7dee31d731685d996326badf9da62c48fe69713b6fbe2fea4fccaac7",
+        "generated_sha256": "c9b205dc7dee31d731685d996326badf9da62c48fe69713b6fbe2fea4fccaac7",
+        "bytes_identical": true,
+        "width": 192,
+        "height": 192,
+        "decoded_pixels_identical": true,
+        "changed_channel_bytes": 0,
+        "maximum_channel_byte_difference": 0
+      },
+      "sh_rotated_coefficients.glsl": {
+        "reference_sha256": "a0997cb065d9d0c6c80c8bc8078e0c45505830b03f50753614fff45b08b87b12",
+        "generated_sha256": "b021fc92fecb0f0652645767507a6112900ea145dd498c529e65755ebf2033fc",
+        "bytes_identical": false,
+        "changed_numeric_constants": 9,
+        "maximum_absolute_difference": 4.025166999999715e-18
+      },
+      "visualization.json": {
+        "reference_sha256": "ab28ea8ab67db742626ba4fc95595f8c06496b1eb2c4d8612c18ee94e008d0f2",
+        "generated_sha256": "44ecac0f6442cc377d5b8b9285aba72cb710b44b248946f3ff07bb5ecac42825",
+        "bytes_identical": false,
+        "numeric_changes": [
+          {
+            "path": "/radiance_coefficients/1/0",
+            "reference": -1.3877337470009468e-16,
+            "generated": -1.368514987153956e-16,
+            "absolute_difference": 1.9218759846990735e-18
+          },
+          {
+            "path": "/radiance_coefficients/1/1",
+            "reference": -9.347109447626905e-17,
+            "generated": -9.475311027480171e-17,
+            "absolute_difference": 1.2820157985326606e-18
+          },
+          {
+            "path": "/radiance_coefficients/1/2",
+            "reference": -5.381033202743319e-17,
+            "generated": -5.4695724028028565e-17,
+            "absolute_difference": 8.85392000595375e-19
+          },
+          {
+            "path": "/radiance_coefficients/4/0",
+            "reference": 2.3983818035919825e-16,
+            "generated": 2.3916425615162387e-16,
+            "absolute_difference": 6.739242075743826e-19
+          },
+          {
+            "path": "/radiance_coefficients/4/1",
+            "reference": 1.616953849069707e-16,
+            "generated": 1.6154029493337971e-16,
+            "absolute_difference": 1.55089973590991e-19
+          },
+          {
+            "path": "/radiance_coefficients/4/2",
+            "reference": 9.389223363927807e-17,
+            "generated": 9.373197739931146e-17,
+            "absolute_difference": 1.6025623996661605e-19
+          },
+          {
+            "path": "/radiance_coefficients/5/0",
+            "reference": -1.600932491967913e-16,
+            "generated": -1.5845943224296892e-16,
+            "absolute_difference": 1.633816953822382e-18
+          },
+          {
+            "path": "/radiance_coefficients/5/1",
+            "reference": -1.041180872786091e-16,
+            "generated": -1.0277701078434015e-16,
+            "absolute_difference": 1.3410764942689468e-18
+          },
+          {
+            "path": "/radiance_coefficients/5/2",
+            "reference": -6.423821130295284e-17,
+            "generated": -6.256132512258635e-17,
+            "absolute_difference": 1.6768861803664868e-18
+          },
+          {
+            "path": "/radiance_coefficients/8/1",
+            "reference": 1.8256444006726287,
+            "generated": 1.8256444006726285,
+            "absolute_difference": 2.220446049250313e-16
+          },
+          {
+            "path": "/rotated_radiance_coefficients/3/0",
+            "reference": 8.604718194165384e-16,
+            "generated": 8.585499434318393e-16,
+            "absolute_difference": 1.9218759846990735e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/3/1",
+            "reference": 5.746033909538982e-16,
+            "generated": 5.7588540675243085e-16,
+            "absolute_difference": 1.2820157985326606e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/3/2",
+            "reference": 3.424897099140107e-16,
+            "generated": 3.4337510191460606e-16,
+            "absolute_difference": 8.85392000595375e-19
+          },
+          {
+            "path": "/rotated_radiance_coefficients/4/0",
+            "reference": -1.4559616494020468e-15,
+            "generated": -1.4552877251944724e-15,
+            "absolute_difference": 6.739242075743826e-19
+          },
+          {
+            "path": "/rotated_radiance_coefficients/4/1",
+            "reference": -9.724443642688698e-16,
+            "generated": -9.722892742952786e-16,
+            "absolute_difference": 1.5508997359118823e-19
+          },
+          {
+            "path": "/rotated_radiance_coefficients/4/2",
+            "reference": -5.803416212564175e-16,
+            "generated": -5.801813650164508e-16,
+            "absolute_difference": 1.6025623996671466e-19
+          },
+          {
+            "path": "/rotated_radiance_coefficients/6/1",
+            "reference": 0.13180231494924183,
+            "generated": 0.13180231494924177,
+            "absolute_difference": 5.551115123125783e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/7/0",
+            "reference": 1.0721858509750123e-15,
+            "generated": 1.07055203402119e-15,
+            "absolute_difference": 1.633816953822382e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/7/1",
+            "reference": 7.12179821797423e-16,
+            "generated": 7.108387453031541e-16,
+            "absolute_difference": 1.3410764942689468e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/7/2",
+            "reference": 4.2907525201424123e-16,
+            "generated": 4.2739836583387474e-16,
+            "absolute_difference": 1.6768861803664868e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/8/1",
+            "reference": -1.8256444006726296,
+            "generated": -1.8256444006726291,
+            "absolute_difference": 4.440892098500626e-16
+          },
+          {
+            "path": "/irradiance_coefficients/0/1/0",
+            "reference": -2.9064627631445406e-16,
+            "generated": -2.866211086646932e-16,
+            "absolute_difference": 4.025167649760875e-18
+          },
+          {
+            "path": "/irradiance_coefficients/0/1/1",
+            "reference": -1.9576540248642953e-16,
+            "generated": -1.9845045009606706e-16,
+            "absolute_difference": 2.68504760963752e-18
+          },
+          {
+            "path": "/irradiance_coefficients/0/1/2",
+            "reference": -1.1270009585640778e-16,
+            "generated": -1.1455445652615283e-16,
+            "absolute_difference": 1.8543606697450527e-18
+          },
+          {
+            "path": "/irradiance_coefficients/0/4/0",
+            "reference": 1.8836846636670026e-16,
+            "generated": 1.8783916753180225e-16,
+            "absolute_difference": 5.292988348980081e-19
+          },
+          {
+            "path": "/irradiance_coefficients/0/4/1",
+            "reference": 1.2699525833577827e-16,
+            "generated": 1.2687345095535855e-16,
+            "absolute_difference": 1.21807380419716e-19
+          },
+          {
+            "path": "/irradiance_coefficients/0/4/2",
+            "reference": 7.37427878575731e-17,
+            "generated": 7.361692290103035e-17,
+            "absolute_difference": 1.2586495654275627e-19
+          },
+          {
+            "path": "/irradiance_coefficients/0/5/0",
+            "reference": -1.257369438914899e-16,
+            "generated": -1.244537470566302e-16,
+            "absolute_difference": 1.2831968348597096e-18
+          },
+          {
+            "path": "/irradiance_coefficients/0/5/1",
+            "reference": -8.177415452507481e-17,
+            "generated": -8.07208755095005e-17,
+            "absolute_difference": 1.0532790155743143e-18
+          },
+          {
+            "path": "/irradiance_coefficients/0/5/2",
+            "reference": -5.045257317727637e-17,
+            "generated": -4.9135549850989964e-17,
+            "absolute_difference": 1.3170233262864039e-18
+          },
+          {
+            "path": "/irradiance_coefficients/0/8/1",
+            "reference": 1.4338577593051178,
+            "generated": 1.4338577593051176,
+            "absolute_difference": 2.220446049250313e-16
+          },
+          {
+            "path": "/irradiance_coefficients/1/3/0",
+            "reference": 1.80216796433336e-15,
+            "generated": 1.798142796683599e-15,
+            "absolute_difference": 4.025167649760777e-18
+          },
+          {
+            "path": "/irradiance_coefficients/1/3/1",
+            "reference": 1.2034465278323667e-15,
+            "generated": 1.2061315754420043e-15,
+            "absolute_difference": 2.6850476096376188e-18
+          },
+          {
+            "path": "/irradiance_coefficients/1/3/2",
+            "reference": 7.173087710639702e-16,
+            "generated": 7.191631317337152e-16,
+            "absolute_difference": 1.8543606697450034e-18
+          },
+          {
+            "path": "/irradiance_coefficients/1/4/0",
+            "reference": -1.143509605417487e-15,
+            "generated": -1.1429803065825891e-15,
+            "absolute_difference": 5.292988348979588e-19
+          },
+          {
+            "path": "/irradiance_coefficients/1/4/1",
+            "reference": -7.637560177029695e-16,
+            "generated": -7.636342103225496e-16,
+            "absolute_difference": 1.2180738041988855e-19
+          },
+          {
+            "path": "/irradiance_coefficients/1/4/2",
+            "reference": -4.557992434778878e-16,
+            "generated": -4.55673378521345e-16,
+            "absolute_difference": 1.2586495654285488e-19
+          },
+          {
+            "path": "/irradiance_coefficients/1/6/1",
+            "reference": 0.10351729609266658,
+            "generated": 0.10351729609266654,
+            "absolute_difference": 4.163336342344337e-17
+          },
+          {
+            "path": "/irradiance_coefficients/1/7/0",
+            "reference": 8.420927981765049e-16,
+            "generated": 8.408096013416451e-16,
+            "absolute_difference": 1.2831968348597096e-18
+          },
+          {
+            "path": "/irradiance_coefficients/1/7/1",
+            "reference": 5.593447240484181e-16,
+            "generated": 5.582914450328437e-16,
+            "absolute_difference": 1.0532790155743513e-18
+          },
+          {
+            "path": "/irradiance_coefficients/1/7/2",
+            "reference": 3.3699491489128233e-16,
+            "generated": 3.356778915649959e-16,
+            "absolute_difference": 1.3170233262864223e-18
+          },
+          {
+            "path": "/irradiance_coefficients/1/8/1",
+            "reference": -1.4338577593051185,
+            "generated": -1.433857759305118,
+            "absolute_difference": 4.440892098500626e-16
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/0/irradiance_linear_rgb/1",
+            "reference": 2.8286366982402993,
+            "generated": 2.8286366982402997,
+            "absolute_difference": 4.440892098500626e-16
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/0/irradiance_linear_rgb/2",
+            "reference": 1.7097492520705424,
+            "generated": 1.7097492520705426,
+            "absolute_difference": 2.220446049250313e-16
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/0/lambertian_linear_rgb/1",
+            "reference": 0.5852489665569061,
+            "generated": 0.5852489665569062,
+            "absolute_difference": 1.1102230246251565e-16
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/1/irradiance_linear_rgb/0",
+            "reference": 5.025144418082802,
+            "generated": 5.0251444180827916,
+            "absolute_difference": 1.0658141036401503e-14
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/1/irradiance_linear_rgb/1",
+            "reference": 3.3710428595004465,
+            "generated": 3.3710428595004394,
+            "absolute_difference": 7.105427357601002e-15
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/1/irradiance_linear_rgb/2",
+            "reference": 2.035193664167415,
+            "generated": 2.0351936641674104,
+            "absolute_difference": 4.440892098500626e-15
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/1/lambertian_linear_rgb/0",
+            "reference": 1.0397095460550811,
+            "generated": 1.039709546055079,
+            "absolute_difference": 2.220446049250313e-15
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/1/lambertian_linear_rgb/1",
+            "reference": 0.6974735748033738,
+            "generated": 0.6974735748033724,
+            "absolute_difference": 1.4432899320127035e-15
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/1/lambertian_linear_rgb/2",
+            "reference": 0.42108447134201615,
+            "generated": 0.42108447134201527,
+            "absolute_difference": 8.881784197001252e-16
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/2/irradiance_linear_rgb/1",
+            "reference": 5.610145500458568,
+            "generated": 5.610145500458569,
+            "absolute_difference": 8.881784197001252e-16
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/2/irradiance_linear_rgb/2",
+            "reference": 3.3786545029614703,
+            "generated": 3.3786545029614707,
+            "absolute_difference": 4.440892098500626e-16
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/2/lambertian_linear_rgb/2",
+            "reference": 0.6990484346898114,
+            "generated": 0.6990484346898115,
+            "absolute_difference": 1.1102230246251565e-16
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/0/irradiance_linear_rgb/1",
+            "reference": 5.5760129261094695,
+            "generated": 5.57601292610947,
+            "absolute_difference": 8.881784197001252e-16
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/0/irradiance_linear_rgb/2",
+            "reference": 3.3581749887920447,
+            "generated": 3.358174988792045,
+            "absolute_difference": 4.440892098500626e-16
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/0/lambertian_linear_rgb/1",
+            "reference": 1.153685025915013,
+            "generated": 1.1536850259150133,
+            "absolute_difference": 2.220446049250313e-16
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/0/lambertian_linear_rgb/2",
+            "reference": 0.6948111940039714,
+            "generated": 0.6948111940039715,
+            "absolute_difference": 1.1102230246251565e-16
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/1/irradiance_linear_rgb/0",
+            "reference": 4.945853931153801,
+            "generated": 4.9458539311538114,
+            "absolute_difference": 1.0658141036401503e-14
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/1/irradiance_linear_rgb/1",
+            "reference": 3.318182534881112,
+            "generated": 3.318182534881119,
+            "absolute_difference": 7.105427357601002e-15
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/1/irradiance_linear_rgb/2",
+            "reference": 2.003477469395814,
+            "generated": 2.0034774693958184,
+            "absolute_difference": 4.440892098500626e-15
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/1/lambertian_linear_rgb/0",
+            "reference": 1.023304231239693,
+            "generated": 1.0233042312396954,
+            "absolute_difference": 2.4424906541753444e-15
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/1/lambertian_linear_rgb/1",
+            "reference": 0.6865366982597818,
+            "generated": 0.6865366982597831,
+            "absolute_difference": 1.3322676295501878e-15
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/1/lambertian_linear_rgb/2",
+            "reference": 0.41452234541586086,
+            "generated": 0.41452234541586175,
+            "absolute_difference": 8.881784197001252e-16
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/2/irradiance_linear_rgb/0",
+            "reference": 4.102831110324627,
+            "generated": 4.102831110324626,
+            "absolute_difference": 8.881784197001252e-16
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/2/lambertian_linear_rgb/0",
+            "reference": 0.8488816074431859,
+            "generated": 0.8488816074431857,
+            "absolute_difference": 1.1102230246251565e-16
+          }
+        ],
+        "changed_numeric_fields": 66,
+        "maximum_absolute_difference": 1.0658141036401503e-14
+      }
+    },
+    "goldens_modified": false,
+    "limitations": "Same-host byte and numerical comparisons; floating/libm/compression bytes are not a cross-platform correctness guarantee."
+  },
+  "workloads": {
+    "SPH_L0": {
+      "calls_per_trial": 20000,
+      "before": {
+        "median_ns": 741.16785,
+        "mad_ns": 13.20920000000001,
+        "minimum_ns": 717.4648,
+        "maximum_ns": 920.04055,
+        "samples_ns": [
+          732.5382,
+          717.4648,
+          783.22515,
+          739.583,
+          741.16785,
+          732.10745,
+          754.37705,
+          920.04055,
+          763.4475
+        ]
+      },
+      "after": {
+        "median_ns": 776.92075,
+        "mad_ns": 33.14945,
+        "minimum_ns": 734.5565,
+        "maximum_ns": 1194.32625,
+        "samples_ns": [
+          778.29125,
+          737.28655,
+          788.0677,
+          764.7914,
+          743.7713,
+          776.92075,
+          1194.32625,
+          926.61835,
+          734.5565
+        ]
+      },
+      "paired_after_before": {
+        "median_ns": 1.0276274877875542,
+        "mad_ns": 0.02411485566245597,
+        "minimum_ns": 0.9621571882807921,
+        "maximum_ns": 1.583195366295939,
+        "samples_ns": [
+          1.0624582444983757,
+          1.0276274877875542,
+          1.0061828326120528,
+          1.0340846125451775,
+          1.0035126321250982,
+          1.061211369997669,
+          1.583195366295939,
+          1.007149467488145,
+          0.9621571882807921
+        ]
+      }
+    },
+    "SPH_L1_ordinary": {
+      "calls_per_trial": 20000,
+      "before": {
+        "median_ns": 1090.84405,
+        "mad_ns": 19.51065000000017,
+        "minimum_ns": 1040.9242,
+        "maximum_ns": 2510.12055,
+        "samples_ns": [
+          1090.84405,
+          1079.42595,
+          1150.1631,
+          1070.5953,
+          1040.9242,
+          1088.33325,
+          1110.3547,
+          1097.55465,
+          2510.12055
+        ]
+      },
+      "after": {
+        "median_ns": 1299.5075,
+        "mad_ns": 55.272399999999834,
+        "minimum_ns": 1171.728,
+        "maximum_ns": 3088.61775,
+        "samples_ns": [
+          1241.646,
+          1285.1954,
+          1244.2351,
+          1334.8466,
+          1311.21105,
+          1171.728,
+          1393.38555,
+          1299.5075,
+          3088.61775
+        ]
+      },
+      "paired_after_before": {
+        "median_ns": 1.1906285929108893,
+        "mad_ns": 0.05619791566802945,
+        "minimum_ns": 1.076626116127574,
+        "maximum_ns": 1.259660453662236,
+        "samples_ns": [
+          1.1382433630178392,
+          1.1906285929108893,
+          1.0817901391550468,
+          1.2468265085789187,
+          1.259660453662236,
+          1.076626116127574,
+          1.2549012941540212,
+          1.1840025460235624,
+          1.2304659033208583
+        ]
+      }
+    },
+    "SPH_L1_near_north": {
+      "calls_per_trial": 20000,
+      "before": {
+        "median_ns": 1093.6789,
+        "mad_ns": 54.9049500000001,
+        "minimum_ns": 1012.1819,
+        "maximum_ns": 2355.4953,
+        "samples_ns": [
+          1426.04905,
+          1093.6789,
+          1055.41335,
+          1043.38085,
+          1038.77395,
+          1012.1819,
+          1378.0005,
+          1145.47395,
+          2355.4953
+        ]
+      },
+      "after": {
+        "median_ns": 1235.39725,
+        "mad_ns": 106.58715000000007,
+        "minimum_ns": 1128.8101,
+        "maximum_ns": 2144.84805,
+        "samples_ns": [
+          1482.1622,
+          1128.8101,
+          1235.39725,
+          1168.9773,
+          1191.7877,
+          1134.19875,
+          2144.84805,
+          2060.13625,
+          2108.3615
+        ]
+      },
+      "paired_after_before": {
+        "median_ns": 1.1205483421507536,
+        "mad_ns": 0.08119966056087424,
+        "minimum_ns": 0.8950820237255408,
+        "maximum_ns": 1.7985011793589893,
+        "samples_ns": [
+          1.0393486815898794,
+          1.0321220424020248,
+          1.170534037682961,
+          1.120374501793856,
+          1.1473022595531974,
+          1.1205483421507536,
+          1.556492940314608,
+          1.7985011793589893,
+          0.8950820237255408
+        ]
+      }
+    },
+    "SPH_L2_ordinary": {
+      "calls_per_trial": 20000,
+      "before": {
+        "median_ns": 1356.03725,
+        "mad_ns": 104.09349999999995,
+        "minimum_ns": 1181.6633,
+        "maximum_ns": 1694.896,
+        "samples_ns": [
+          1279.0527,
+          1246.346,
+          1181.6633,
+          1460.13075,
+          1214.7421,
+          1396.258,
+          1356.03725,
+          1382.0617,
+          1694.896
+        ]
+      },
+      "after": {
+        "median_ns": 1358.51595,
+        "mad_ns": 37.07934999999998,
+        "minimum_ns": 1316.7773,
+        "maximum_ns": 1886.8971,
+        "samples_ns": [
+          1387.50965,
+          1391.37655,
+          1317.3509,
+          1398.41045,
+          1358.51595,
+          1336.5323,
+          1886.8971,
+          1321.4366,
+          1316.7773
+        ]
+      },
+      "paired_after_before": {
+        "median_ns": 1.084794746924814,
+        "mad_ns": 0.1270651394906852,
+        "minimum_ns": 0.7769074326684351,
+        "maximum_ns": 1.3914788107775062,
+        "samples_ns": [
+          1.084794746924814,
+          1.116364596989921,
+          1.1148276332183626,
+          0.9577296074341288,
+          1.1183575097957008,
+          0.9572244527873789,
+          1.3914788107775062,
+          0.9561343028317766,
+          0.7769074326684351
+        ]
+      }
+    },
+    "SPH_L2_near_south": {
+      "calls_per_trial": 20000,
+      "before": {
+        "median_ns": 1345.5341,
+        "mad_ns": 109.04314999999997,
+        "minimum_ns": 1186.8122,
+        "maximum_ns": 2764.36115,
+        "samples_ns": [
+          1551.3099,
+          1186.8122,
+          1236.49095,
+          1345.5341,
+          1272.2643,
+          1270.5898,
+          2764.36115,
+          1440.99145,
+          1855.8181
+        ]
+      },
+      "after": {
+        "median_ns": 1431.5538,
+        "mad_ns": 87.30779999999982,
+        "minimum_ns": 1343.16615,
+        "maximum_ns": 3555.34075,
+        "samples_ns": [
+          1691.98815,
+          1431.5538,
+          1362.87315,
+          1343.16615,
+          1367.116,
+          1344.246,
+          3555.34075,
+          1586.0523,
+          1434.49525
+        ]
+      },
+      "paired_after_before": {
+        "median_ns": 1.0906835249359268,
+        "mad_ns": 0.032713438917606696,
+        "minimum_ns": 0.7729719038735531,
+        "maximum_ns": 1.2861346825106408,
+        "samples_ns": [
+          1.0906835249359268,
+          1.2062176307254002,
+          1.102210372020919,
+          0.998240141219758,
+          1.074553455598809,
+          1.05797008601832,
+          1.2861346825106408,
+          1.1006673911909748,
+          0.7729719038735531
+        ]
+      }
+    },
+    "SPH_L12_m6": {
+      "calls_per_trial": 20000,
+      "before": {
+        "median_ns": 3097.6725,
+        "mad_ns": 62.620800000000145,
+        "minimum_ns": 2815.05235,
+        "maximum_ns": 6119.6043,
+        "samples_ns": [
+          2914.5232,
+          2815.05235,
+          3035.0517,
+          3144.74565,
+          3048.4072,
+          3394.61295,
+          6119.6043,
+          3101.51895,
+          3097.6725
+        ]
+      },
+      "after": {
+        "median_ns": 3204.22485,
+        "mad_ns": 91.76015000000007,
+        "minimum_ns": 3078.0284,
+        "maximum_ns": 5527.31895,
+        "samples_ns": [
+          3078.0284,
+          3135.54355,
+          3318.47805,
+          3112.4647,
+          3206.173,
+          3204.22485,
+          5527.31895,
+          3579.1617,
+          3167.28835
+        ]
+      },
+      "paired_after_before": {
+        "median_ns": 1.051753519018063,
+        "mad_ns": 0.06201856223387903,
+        "minimum_ns": 0.9032150902305889,
+        "maximum_ns": 1.154002847540235,
+        "samples_ns": [
+          1.0561001538776567,
+          1.113849108347843,
+          1.0933843565168924,
+          0.9897349567841839,
+          1.051753519018063,
+          0.9439146368660379,
+          0.9032150902305889,
+          1.154002847540235,
+          1.022473599129669
+        ]
+      }
+    },
+    "basis_B3_ordinary": {
+      "calls_per_trial": 20000,
+      "before": {
+        "median_ns": 6273.36825,
+        "mad_ns": 235.96114999999918,
+        "minimum_ns": 6022.72555,
+        "maximum_ns": 12881.6695,
+        "samples_ns": [
+          6273.36825,
+          6049.1993,
+          6022.72555,
+          6067.24015,
+          6691.701,
+          6509.3294,
+          12881.6695,
+          6071.0411,
+          12503.7294
+        ]
+      },
+      "after": {
+        "median_ns": 6374.35515,
+        "mad_ns": 119.79054999999971,
+        "minimum_ns": 6220.9079,
+        "maximum_ns": 9308.25865,
+        "samples_ns": [
+          6358.2479,
+          6222.4069,
+          6321.07945,
+          6374.35515,
+          6494.1457,
+          6421.68905,
+          9308.25865,
+          7481.45275,
+          6220.9079
+        ]
+      },
+      "paired_after_before": {
+        "median_ns": 1.013530155829765,
+        "mad_ns": 0.03708841083435521,
+        "minimum_ns": 0.49752419466147435,
+        "maximum_ns": 1.2323179215505558,
+        "samples_ns": [
+          1.013530155829765,
+          1.0286331448858033,
+          1.049538020207479,
+          1.0506185666641201,
+          0.9704775661674064,
+          0.9865361937283432,
+          0.7225972262368632,
+          1.2323179215505558,
+          0.49752419466147435
+        ]
+      }
+    },
+    "basis_B3_near": {
+      "calls_per_trial": 20000,
+      "before": {
+        "median_ns": 6255.6706,
+        "mad_ns": 215.71240000000034,
+        "minimum_ns": 6017.11535,
+        "maximum_ns": 13280.8519,
+        "samples_ns": [
+          6039.9582,
+          6034.086,
+          6422.8078,
+          6360.95485,
+          6017.11535,
+          6161.1799,
+          10745.21665,
+          6255.6706,
+          13280.8519
+        ]
+      },
+      "after": {
+        "median_ns": 6277.6841,
+        "mad_ns": 262.38035000000036,
+        "minimum_ns": 5982.56215,
+        "maximum_ns": 11485.9645,
+        "samples_ns": [
+          8520.5485,
+          6277.6841,
+          6037.95365,
+          6015.30375,
+          5982.56215,
+          6122.4196,
+          11485.9645,
+          6437.3199,
+          10566.8889
+        ]
+      },
+      "paired_after_before": {
+        "median_ns": 0.9942575141093148,
+        "mad_ns": 0.04859701315480802,
+        "minimum_ns": 0.7956484252339264,
+        "maximum_ns": 1.410696600516209,
+        "samples_ns": [
+          1.410696600516209,
+          1.040370339435003,
+          0.9400800768162486,
+          0.9456605009545068,
+          0.9942575141093148,
+          0.9937089485083855,
+          1.0689374513449201,
+          1.0290375423539724,
+          0.7956484252339264
+        ]
+      }
+    },
+    "basis_B9_ordinary": {
+      "calls_per_trial": 5000,
+      "before": {
+        "median_ns": 68136.0768,
+        "mad_ns": 2295.731599999999,
+        "minimum_ns": 65840.3452,
+        "maximum_ns": 102988.2054,
+        "samples_ns": [
+          68136.0768,
+          66921.0308,
+          67505.9242,
+          67540.8514,
+          74456.6312,
+          65840.3452,
+          102988.2054,
+          73585.0138,
+          99996.3624
+        ]
+      },
+      "after": {
+        "median_ns": 65276.2218,
+        "mad_ns": 2037.337599999999,
+        "minimum_ns": 63185.2752,
+        "maximum_ns": 97553.1666,
+        "samples_ns": [
+          63185.2752,
+          63572.369,
+          63238.8842,
+          63786.6016,
+          65427.3584,
+          65276.2218,
+          97553.1666,
+          74441.2346,
+          78844.265
+        ]
+      },
+      "paired_after_before": {
+        "median_ns": 0.9444151247403435,
+        "mad_ns": 0.017075627553443495,
+        "minimum_ns": 0.7884713314331522,
+        "maximum_ns": 1.0116358040283469,
+        "samples_ns": [
+          0.9273394971869,
+          0.9499609949223915,
+          0.9367901402644601,
+          0.9444151247403435,
+          0.8787311129381313,
+          0.9914319495396571,
+          0.9472265898906516,
+          1.0116358040283469,
+          0.7884713314331522
+        ]
+      }
+    },
+    "reconstruct_L2_ordinary": {
+      "calls_per_trial": 20000,
+      "before": {
+        "median_ns": 13667.63665,
+        "mad_ns": 263.68495000000075,
+        "minimum_ns": 13403.9517,
+        "maximum_ns": 16688.1172,
+        "samples_ns": [
+          13646.5694,
+          13403.9517,
+          13667.63665,
+          13585.00365,
+          13573.0119,
+          14435.0956,
+          16688.1172,
+          14888.3774,
+          15518.8118
+        ]
+      },
+      "after": {
+        "median_ns": 14011.97475,
+        "mad_ns": 323.1524499999996,
+        "minimum_ns": 13688.8223,
+        "maximum_ns": 19018.44265,
+        "samples_ns": [
+          14530.68465,
+          13688.8223,
+          14011.97475,
+          13725.9193,
+          13947.525,
+          13708.88265,
+          19018.44265,
+          16685.4385,
+          14636.16415
+        ]
+      },
+      "paired_after_before": {
+        "median_ns": 1.0251936826254449,
+        "mad_ns": 0.039592947925087385,
+        "minimum_ns": 0.9431240186829253,
+        "maximum_ns": 1.1396398061010742,
+        "samples_ns": [
+          1.0647866305505322,
+          1.021252732505743,
+          1.0251936826254449,
+          1.0103728827485445,
+          1.027592482991929,
+          0.9496911575701652,
+          1.1396398061010742,
+          1.1207022801557947,
+          0.9431240186829253
+        ]
+      }
+    },
+    "reconstruct_L2_near_north": {
+      "calls_per_trial": 20000,
+      "before": {
+        "median_ns": 14357.73755,
+        "mad_ns": 788.4257999999991,
+        "minimum_ns": 13453.92615,
+        "maximum_ns": 23471.187,
+        "samples_ns": [
+          14882.8826,
+          13569.31175,
+          13453.92615,
+          13741.6007,
+          14386.90955,
+          13504.34385,
+          23471.187,
+          17617.8695,
+          14357.73755
+        ]
+      },
+      "after": {
+        "median_ns": 14125.74145,
+        "mad_ns": 503.93334999999934,
+        "minimum_ns": 13586.67405,
+        "maximum_ns": 32354.18105,
+        "samples_ns": [
+          14125.74145,
+          13621.8081,
+          13586.67405,
+          14294.80275,
+          13938.8213,
+          13810.7512,
+          32354.18105,
+          15364.2128,
+          14868.79945
+        ]
+      },
+      "paired_after_before": {
+        "median_ns": 1.0098668521381768,
+        "mad_ns": 0.030390615829146705,
+        "minimum_ns": 0.8720812014188207,
+        "maximum_ns": 1.3784637756070879,
+        "samples_ns": [
+          0.9491267135306166,
+          1.003868755539499,
+          1.0098668521381768,
+          1.0402574679673235,
+          0.968854447270783,
+          1.0226895400030858,
+          1.3784637756070879,
+          0.8720812014188207,
+          1.035594876854397
+        ]
+      }
+    },
+    "reconstruct_L2_near_south": {
+      "calls_per_trial": 20000,
+      "before": {
+        "median_ns": 14703.28475,
+        "mad_ns": 684.2787000000008,
+        "minimum_ns": 13441.8464,
+        "maximum_ns": 27499.05765,
+        "samples_ns": [
+          14570.6818,
+          14019.00605,
+          14455.07795,
+          14703.28475,
+          13441.8464,
+          27499.05765,
+          23866.41415,
+          15247.6075,
+          17917.1085
+        ]
+      },
+      "after": {
+        "median_ns": 14427.18415,
+        "mad_ns": 512.800299999999,
+        "minimum_ns": 13584.05305,
+        "maximum_ns": 21909.4267,
+        "samples_ns": [
+          14335.5549,
+          13584.05305,
+          13914.38385,
+          14427.18415,
+          14098.1727,
+          21909.4267,
+          19639.26625,
+          14616.8921,
+          15435.0454
+        ]
+      },
+      "paired_after_before": {
+        "median_ns": 0.9625948679162951,
+        "mad_ns": 0.02126814527502985,
+        "minimum_ns": 0.7967337273464715,
+        "maximum_ns": 1.0488270941706341,
+        "samples_ns": [
+          0.983863013191325,
+          0.9689740486273634,
+          0.9625948679162951,
+          0.9812218422825552,
+          1.0488270941706341,
+          0.7967337273464715,
+          0.8228829905727585,
+          0.9586351235759446,
+          0.8614696618039681
+        ]
+      }
+    },
+    "reconstruct_B5": {
+      "calls_per_trial": 20000,
+      "before": {
+        "median_ns": 37495.80235,
+        "mad_ns": 2348.941350000001,
+        "minimum_ns": 35087.57505,
+        "maximum_ns": 48329.84355,
+        "samples_ns": [
+          40784.9576,
+          35087.57505,
+          35209.5082,
+          35146.861,
+          36111.7696,
+          37945.32725,
+          48329.84355,
+          37495.80235,
+          40674.26745
+        ]
+      },
+      "after": {
+        "median_ns": 38063.5017,
+        "mad_ns": 2102.7559000000037,
+        "minimum_ns": 35117.6596,
+        "maximum_ns": 59186.6658,
+        "samples_ns": [
+          41486.79435,
+          35960.7458,
+          37705.6065,
+          35117.6596,
+          36639.5599,
+          38433.5445,
+          55199.20105,
+          38063.5017,
+          59186.6658
+        ]
+      },
+      "paired_after_before": {
+        "median_ns": 1.017208225564025,
+        "mad_ns": 0.00767724311700313,
+        "minimum_ns": 0.9991691605119445,
+        "maximum_ns": 1.455137842931207,
+        "samples_ns": [
+          1.017208225564025,
+          1.024885468681028,
+          1.0708927340257484,
+          0.9991691605119445,
+          1.0146154648704893,
+          1.0128663338909536,
+          1.1421349004139287,
+          1.015140344103078,
+          1.455137842931207
+        ]
+      }
+    },
+    "rotate_L2_RGB_control": {
+      "calls_per_trial": 20000,
+      "before": {
+        "median_ns": 28043.35475,
+        "mad_ns": 1773.1131999999998,
+        "minimum_ns": 26016.2042,
+        "maximum_ns": 43907.40805,
+        "samples_ns": [
+          28043.35475,
+          26270.24155,
+          26603.26675,
+          28164.7372,
+          26016.2042,
+          27207.24905,
+          43907.40805,
+          30366.3471,
+          35029.4683
+        ]
+      },
+      "after": {
+        "median_ns": 26623.21305,
+        "mad_ns": 678.6178499999987,
+        "minimum_ns": 25944.5952,
+        "maximum_ns": 50971.2323,
+        "samples_ns": [
+          26623.21305,
+          28180.53185,
+          26155.2277,
+          25974.22035,
+          25944.5952,
+          26351.63885,
+          50971.2323,
+          32694.2074,
+          31772.65715
+        ]
+      },
+      "paired_after_before": {
+        "median_ns": 0.983158494999491,
+        "mad_ns": 0.06093365172987231,
+        "minimum_ns": 0.9070265320013435,
+        "maximum_ns": 1.1608800100875005,
+        "samples_ns": [
+          0.9493590651810301,
+          1.0727168913298402,
+          0.983158494999491,
+          0.9222248432696187,
+          0.9972475231417502,
+          0.9685521237951105,
+          1.1608800100875005,
+          1.0766592139757238,
+          0.9070265320013435
+        ]
+      }
+    },
+    "convolve_L2_control": {
+      "calls_per_trial": 20000,
+      "before": {
+        "median_ns": 6593.69175,
+        "mad_ns": 206.08594999999968,
+        "minimum_ns": 6101.42255,
+        "maximum_ns": 14359.22375,
+        "samples_ns": [
+          6707.54205,
+          6101.42255,
+          7115.9242,
+          6799.7777,
+          6414.3475,
+          6235.19535,
+          14359.22375,
+          6424.1147,
+          6593.69175
+        ]
+      },
+      "after": {
+        "median_ns": 6818.6508,
+        "mad_ns": 508.56265000000076,
+        "minimum_ns": 6146.4882,
+        "maximum_ns": 8663.4158,
+        "samples_ns": [
+          6388.2111,
+          6310.08815,
+          6842.30135,
+          7536.81025,
+          6146.4882,
+          6322.6124,
+          7919.08225,
+          6818.6508,
+          8663.4158
+        ]
+      },
+      "paired_after_before": {
+        "median_ns": 1.0140199376431727,
+        "mad_ns": 0.055779337176796284,
+        "minimum_ns": 0.5514979352557272,
+        "maximum_ns": 1.3138945720354611,
+        "samples_ns": [
+          0.9523922552226117,
+          1.0341994999182607,
+          0.9615478127212203,
+          1.1083906831248322,
+          0.9582406004663764,
+          1.0140199376431727,
+          0.5514979352557272,
+          1.0614148592334443,
+          1.3138945720354611
+        ]
+      }
+    },
+    "project_samples_16_control": {
+      "calls_per_trial": 20000,
+      "before": {
+        "median_ns": 73360.27275,
+        "mad_ns": 5888.974700000006,
+        "minimum_ns": 67177.61985,
+        "maximum_ns": 95255.54055,
+        "samples_ns": [
+          73360.27275,
+          67471.29805,
+          71886.42415,
+          74286.3971,
+          68094.5328,
+          67177.61985,
+          95255.54055,
+          81059.16125,
+          89645.93775
+        ]
+      },
+      "after": {
+        "median_ns": 74384.3936,
+        "mad_ns": 7394.7583999999915,
+        "minimum_ns": 66299.24435,
+        "maximum_ns": 98161.9608,
+        "samples_ns": [
+          98161.9608,
+          74384.3936,
+          66989.6352,
+          67742.74905,
+          66299.24435,
+          68512.83665,
+          94874.51315,
+          93786.3129,
+          79375.19085
+        ]
+      },
+      "paired_after_before": {
+        "median_ns": 0.9959999450131722,
+        "mad_ns": 0.08408670524723405,
+        "minimum_ns": 0.8854298682373927,
+        "maximum_ns": 1.3380806412009965,
+        "samples_ns": [
+          1.3380806412009965,
+          1.102459797718387,
+          0.9318815894948086,
+          0.9119132397659382,
+          0.9736353510894489,
+          1.0198759170536464,
+          0.9959999450131722,
+          1.1570106506622655,
+          0.8854298682373927
+        ]
+      }
+    },
+    "project_angular_32x16": {
+      "calls_per_trial": 39,
+      "before": {
+        "median_ns": 5262251.153846154,
+        "mad_ns": 748507.17948718,
+        "minimum_ns": 4490198.358974359,
+        "maximum_ns": 15373221.23076923,
+        "samples_ns": [
+          6141531.307692308,
+          4513743.974358974,
+          4490198.358974359,
+          4593663.384615385,
+          5331217.948717949,
+          15373221.23076923,
+          8489907.871794872,
+          5056516.487179487,
+          5262251.153846154
+        ]
+      },
+      "after": {
+        "median_ns": 4942604.256410256,
+        "mad_ns": 430742.51282051206,
+        "minimum_ns": 4511861.743589744,
+        "maximum_ns": 13444596.461538462,
+        "samples_ns": [
+          6021966.897435897,
+          4600888.820512821,
+          4511861.743589744,
+          4747150.820512821,
+          4942604.256410256,
+          13444596.461538462,
+          8624091.897435898,
+          5868784.923076923,
+          4841166.923076923
+        ]
+      },
+      "paired_after_before": {
+        "median_ns": 1.0048245941233502,
+        "mad_ns": 0.028588266821463426,
+        "minimum_ns": 0.8745464766115081,
+        "maximum_ns": 1.1606379486662204,
+        "samples_ns": [
+          0.9805318243502796,
+          1.0193065549683116,
+          1.0048245941233502,
+          1.0334128609448137,
+          0.9271060204167517,
+          0.8745464766115081,
+          1.0158051215239698,
+          1.1606379486662204,
+          0.91998021028292
+        ]
+      }
+    },
+    "GenerateSamples_4x4_B3": {
+      "calls_per_trial": 625,
+      "before": {
+        "median_ns": 206080.9392,
+        "mad_ns": 15137.228799999983,
+        "minimum_ns": 189806.0416,
+        "maximum_ns": 459776.9104,
+        "samples_ns": [
+          189806.0416,
+          197582.5936,
+          211113.7856,
+          194702.9312,
+          190943.7104,
+          259624.5104,
+          254007.6016,
+          206080.9392,
+          459776.9104
+        ]
+      },
+      "after": {
+        "median_ns": 231554.2208,
+        "mad_ns": 26621.580799999996,
+        "minimum_ns": 204932.64,
+        "maximum_ns": 702258.6384,
+        "samples_ns": [
+          282328.9232,
+          216110.168,
+          208635.3984,
+          211234.6272,
+          204932.64,
+          537070.7344,
+          231554.2208,
+          281481.9632,
+          702258.6384
+        ]
+      },
+      "paired_after_before": {
+        "median_ns": 1.0937712885655735,
+        "mad_ns": 0.18216778008222734,
+        "minimum_ns": 0.9116035084833461,
+        "maximum_ns": 2.0686441876097996,
+        "samples_ns": [
+          1.4874601504781606,
+          1.0937712885655735,
+          0.9882604198823102,
+          1.0849072784786098,
+          1.073262060167864,
+          2.0686441876097996,
+          0.9116035084833461,
+          1.365880630652716,
+          1.5273899635130526
+        ]
+      }
+    }
+  },
+  "profiles": {
+    "before": [
+      {
+        "function": "_basis",
+        "calls": 1000,
+        "total_seconds": 0.023295164,
+        "self_seconds": 0.010433491000000001
+      },
+      {
+        "function": "run",
+        "calls": 6000,
+        "total_seconds": 0.007325713,
+        "self_seconds": 0.003141804
+      },
+      {
+        "function": "<method 'append' of 'list' objects>",
+        "calls": 9000,
+        "total_seconds": 0.002138748,
+        "self_seconds": 0.002138748
+      },
+      {
+        "function": "_seed",
+        "calls": 6000,
+        "total_seconds": 0.0023292200000000003,
+        "self_seconds": 0.0020049200000000003
+      },
+      {
+        "function": "_evaluate",
+        "calls": 6000,
+        "total_seconds": 0.001854689,
+        "self_seconds": 0.001854689
+      },
+      {
+        "function": "<built-in method builtins.abs>",
+        "calls": 15000,
+        "total_seconds": 0.0016342910000000002,
+        "self_seconds": 0.0016342910000000002
+      },
+      {
+        "function": "__init__",
+        "calls": 6000,
+        "total_seconds": 0.0006957140000000001,
+        "self_seconds": 0.0006957140000000001
+      },
+      {
+        "function": "<built-in method math.cos>",
+        "calls": 4000,
+        "total_seconds": 0.000586445,
+        "self_seconds": 0.000586445
+      },
+      {
+        "function": "<built-in method math.sin>",
+        "calls": 3000,
+        "total_seconds": 0.00048076200000000003,
+        "self_seconds": 0.00048076200000000003
+      },
+      {
+        "function": "<lambda>",
+        "calls": 1000,
+        "total_seconds": 0.023705058,
+        "self_seconds": 0.000409894
+      }
+    ],
+    "after": [
+      {
+        "function": "_polar_basis",
+        "calls": 1000,
+        "total_seconds": 0.024390353,
+        "self_seconds": 0.008994629
+      },
+      {
+        "function": "_polar_legendre",
+        "calls": 6000,
+        "total_seconds": 0.010959834,
+        "self_seconds": 0.006118867
+      },
+      {
+        "function": "_angle_sine",
+        "calls": 1000,
+        "total_seconds": 0.002494582,
+        "self_seconds": 0.002372688
+      },
+      {
+        "function": "_evaluate",
+        "calls": 6000,
+        "total_seconds": 0.0022177200000000003,
+        "self_seconds": 0.0022177200000000003
+      },
+      {
+        "function": "run",
+        "calls": 3000,
+        "total_seconds": 0.003210735,
+        "self_seconds": 0.001539131
+      },
+      {
+        "function": "<method 'append' of 'list' objects>",
+        "calls": 9000,
+        "total_seconds": 0.00143194,
+        "self_seconds": 0.00143194
+      },
+      {
+        "function": "<built-in method builtins.abs>",
+        "calls": 15000,
+        "total_seconds": 0.001415833,
+        "self_seconds": 0.001415833
+      },
+      {
+        "function": "_basis",
+        "calls": 1000,
+        "total_seconds": 0.028153298,
+        "self_seconds": 0.001144821
+      },
+      {
+        "function": "<built-in method math.cos>",
+        "calls": 4000,
+        "total_seconds": 0.001111933,
+        "self_seconds": 0.001111933
+      },
+      {
+        "function": "__init__",
+        "calls": 6000,
+        "total_seconds": 0.00076384,
+        "self_seconds": 0.00076384
+      }
+    ]
+  }
+}

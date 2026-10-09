@@ -35,6 +35,33 @@ def K(l, m):
     return math.sqrt(K)
 
 
+def _angle_sine(theta, cosine):
+    angle = float(theta)
+    if angle == 0 or angle == math.pi:
+        return 0.0
+    if 0 < angle < math.pi:
+        return math.sin(angle)
+    # Preserve historical arithmetic outside the polar-angle domain.
+    return math.sqrt((1.0-cosine)*(1.0+cosine))
+
+
+def _polar_legendre(l, m, cosine, sine):
+    polynomial = Legendre(l, m, cosine)
+    if m == 0 or l < m:
+        return polynomial.run()
+    # Retain the transverse factor instead of recovering it from rounded cos.
+    previous = 1.0
+    for order in range(1, m+1):
+        previous *= -(2.0*order-1.0)*sine
+    current = cosine*(2.0*m+1.0)*previous
+    return polynomial._evaluate(l, previous, current)
+
+
+def _angle_legendre(l, m, theta):
+    cosine = math.cos(theta)
+    return _polar_legendre(l, m, cosine, _angle_sine(theta, cosine))
+
+
 # Sample a Spherical Harmonic function Y(l, m) at a point on the unit sphere
 def SPH(l, m, theta, phi):
     """Real SH with Condon–Shortley phase, polar theta and azimuth phi."""
@@ -42,9 +69,9 @@ def SPH(l, m, theta, phi):
     if m == 0:
         return K(l, 0) * Legendre(l, m, math.cos(theta)).run()
     elif m > 0:
-        return root2 * K(l, m) * math.cos(m * phi) * Legendre(l, m, math.cos(theta)).run()
+        return root2 * K(l, m) * math.cos(m * phi) * _angle_legendre(l, m, theta)
     elif m < 0:
-        return root2 * K(l, -m) * math.sin(-m * phi) * Legendre(l, -m, math.cos(theta)).run()
+        return root2 * K(l, -m) * math.sin(-m * phi) * _angle_legendre(l, -m, theta)
     else:
         print ("WTF... The m is ...")
         return 0
@@ -130,15 +157,27 @@ def _basis_layout(bands):
 
 def _basis(bands, theta, phi):
     x = math.cos(theta)
+    return _polar_basis(bands, x, _angle_sine(theta, x), phi)
+
+
+def _polar_basis(bands, cosine, sine, phi, azimuth=None):
     polynomials = {}
     result = []
+    if azimuth is not None:
+        x, y = azimuth
+        phases = (x, y, x*x-y*y, 2*x*y)
     for l, m, scale in _basis_layout(bands):
         key = (l, abs(m))
         if key not in polynomials:
-            polynomials[key] = Legendre(l, abs(m), x).run()
+            polynomials[key] = _polar_legendre(l, abs(m), cosine, sine)
         value = polynomials[key]
         if m == 0:
             result.append(scale * value)
+        elif azimuth is not None and abs(m) <= 2:
+            # Preserve supplied X/Y even when atan2 rounds onto a cardinal
+            # azimuth. These are the exact first/second-angle identities.
+            phase = phases[2*(abs(m)-1)+(m < 0)]
+            result.append(scale * phase * value)
         elif m > 0:
             result.append(scale * math.cos(m * phi) * value)
         else:
@@ -240,7 +279,11 @@ def reconstruct(coefficients, direction):
     x,y,z = values
     if not -1 <= z <= 1:
         raise ValueError("unit direction Z must be within [-1,1]")
-    basis = _basis(bands, math.acos(z), math.atan2(y,x))
+    # Unit-direction polar components avoid acos(Z) and preserve tiny X/Y at
+    # both poles, even when the corresponding angle would round to 0 or pi.
+    transverse = math.hypot(x,y)
+    azimuth = (x/transverse, y/transverse) if transverse else None
+    basis = _polar_basis(bands, z, transverse, math.atan2(y,x), azimuth)
     return [math.fsum(coefficient[channel]*value for coefficient,value in zip(coefficients,basis))
             for channel in range(3)]
 

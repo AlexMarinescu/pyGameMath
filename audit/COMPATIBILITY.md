@@ -400,3 +400,15 @@ range guards are not new geometric tolerances or invalid-input policies.
 Unrepresentable results and extreme-order/cancellation limits remain.
 Guard and fallback costs are recorded in the
 [numerical repair report](PHASE4G2R-NUMERICAL-REPAIRS.md).
+
+## SH near-pole numerical repair
+
+SH-associated seeds retain sine magnitude from polar angles; unit-direction
+reconstruction retains transverse components directly, including first/second-order
+azimuth factors. Tiny finite values replace erroneous zeros near both poles.
+Exact pole behavior, Condon–Shortley phase, coefficient layout, public signatures
+and ownership remain. `gem.legendre` and compatibility shims are unchanged.
+Ordinary last-bit differences occur; regenerated HDR images remain byte-identical,
+while JSON/GLSL references have recorded small rounding changes. Goldens are not
+replaced. High-order and extreme-product limits remain separate. See
+[verification and performance](PHASE4G3R-NEAR-POLE-REPAIR.md).

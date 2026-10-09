@@ -1,7 +1,7 @@
 """Independent SH audit: Cartesian polynomials, Rodrigues and exact quadrature.
 
 No gem basis, matrix conversion or quaternion rotation is used as an oracle.
-Confirmed near-pole losses are strict expected failures, not repaired here.
+Near-pole findings are passing regressions after the focused SH repair.
 """
 from decimal import Decimal, localcontext
 from fractions import Fraction
@@ -332,7 +332,6 @@ def test_zero_energy_channel_aliases_and_independent_results():
 @pytest.mark.parametrize('theta,phi,l,m', [
     (1e-9, 0., 1, 1), (1e-12, .7, 1, -1), (1e-100, 0., 1, 1),
     (math.pi-1e-9, 0., 1, 1), (math.pi-1e-12, .7, 2, -1), (1e-9, .3, 2, 2)])
-@pytest.mark.defect('4G3-A01: near-pole transverse information lost through cos(theta)')
 def test_near_pole_basis_retains_transverse_components(theta, phi, l, m):
     expected = cartesian_basis(direction(theta, phi))[l*(l+1)+m]
     assert expected != 0 and math.isfinite(expected)
@@ -341,7 +340,6 @@ def test_near_pole_basis_retains_transverse_components(theta, phi, l, m):
 
 @pytest.mark.parametrize('d,index', [([1e-9,0.,1.],3), ([0.,1e-9,1.],1),
                                      ([1e-9,0.,-1.],7), ([0.,1e-9,-1.],5)])
-@pytest.mark.defect('4G3-A01: reconstruction discards supplied transverse components')
 def test_near_pole_reconstruction_retains_unit_direction(d, index):
     # Unit sphere coordinates rounded independently to binary64; hypot is 1.
     assert math.hypot(*d) == 1.
