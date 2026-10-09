@@ -1,0 +1,8 @@
+@pytest.mark.defect('E07')
+def test_generate_object_coefficients():
+    vertex = sph_object.SPHVertex(V(0,0,0),V(0,0,1))
+    sample = sph_sample.SPHSample(0,0,V(0,0,1),1)
+    sample.values[0] = 1/math.sqrt(4*math.pi)
+    obj = sph_object.SPHObject([0],[vertex])
+    sph_object.GenereateCoeffs(1,1,[sample],[obj])
+    assert vertex.unshadowedCoeffs == pytest.approx([math.sqrt(4*math.pi)])

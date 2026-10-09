@@ -3,8 +3,9 @@
 Use `gem.spherical_harmonics` for validated basis evaluation, directional
 sampling, RGB radiance projection and low-order diffuse convolution.
 The experimental `sph`, `sph_sample` and `sph_irradiance_map` modules reexport
-the same supported functions/classes. Shadow transport in `sph_object` is
-unfinished and is not part of this lighting pipeline.
+the same supported functions/classes. The unfinished `sph_object` transport module is retired with no core replacement.
+These compatibility reexports remain pending a release-boundary removal decision;
+see [import migration](EXPERIMENTAL_MIGRATION.md).
 
 ## Basis and coefficient layout
 

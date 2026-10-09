@@ -1,2 +1,3 @@
 include README.rst LICENSE .travis.yml .landscape.yaml setup.cfg setup.py
 prune gem/gem.egg-info
+include docs/EXPERIMENTAL_MIGRATION.md

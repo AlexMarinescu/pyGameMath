@@ -232,3 +232,13 @@ references and CPU diffuse-sphere PNGs before/after active 90-degree lighting
 rotation. No GPU or image dependency is required. See
 ``examples/hdr_sh/README.md`` for raw angular/Radiance RGBE inputs,
 latitude-longitude mapping, GLSL coefficients and reproducibility hashes.
+
+Experimental import migration
+-----------------------------
+
+Validated algorithms live in ``gem.bezier``, ``gem.legendre`` and
+``gem.spherical_harmonics``. Transitional experimental modules contain only
+re-exports and remain available pending a release-boundary removal decision.
+The unfinished ``gem.experimental.sph_object`` transport module is removed;
+there is no supported shadow-transport replacement. See
+``docs/EXPERIMENTAL_MIGRATION.md`` for the complete migration table.

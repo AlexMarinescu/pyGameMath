@@ -1,0 +1,36 @@
+{
+  "baseline": {
+    "passed": 1780,
+    "failed": 0,
+    "xfailed": 5
+  },
+  "final": {
+    "passed": 1778,
+    "xfailed": 4,
+    "unexpected_failures": 0,
+    "skipped": 0
+  },
+  "deliberately_retired": {
+    "expected_failures": [
+      "tests.test_experimental::test_generate_object_coefficients"
+    ],
+    "diagnostic_passing_cases": 9,
+    "total_cases": 10,
+    "evidence": "audit/retired-tests/"
+  },
+  "added_passing_cases": 7,
+  "remaining_expected_failures": [
+    "tests.test_vector_common::test_clamp_preserves_input",
+    "tests.test_vector_common::test_empty_equality",
+    "tests.test_vector_common::test_equality_dimensions",
+    "tests.test_vector_common::test_viewport_vector"
+  ],
+  "remaining_runxfail_probe": {
+    "failed": 4,
+    "deselected": 45
+  },
+  "clean_wheel_and_sdist_verified": true,
+  "isolated_installed_wheel_verified": true,
+  "experimental_directory_removed": false,
+  "transport_module_removed": true
+}

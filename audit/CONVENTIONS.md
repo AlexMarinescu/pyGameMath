@@ -338,3 +338,12 @@ directions use R_row^T. Finite Quaternion norm drift <=1e-12 is removed only
 in a temporary copy; larger/degenerate inputs raise ValueError. Bands remain
 independent, L0 is unchanged and radiance/irradiance share the transformation.
 Legacy probe conversion remains explicit. See [derivation](PHASE2F5C.md).
+
+## Supported core and transitional imports
+
+Bezier, Legendre and spherical-harmonics implementations are canonical under
+`gem.bezier`, `gem.legendre` and `gem.spherical_harmonics`. Experimental aliases
+contain no algorithms and preserve the same objects/contracts. The unfinished
+E07 `sph_object` module is retired without a replacement or invented transport
+convention. The remaining package paths await a release-boundary removal
+decision; the directory still exists. See [migration](../docs/EXPERIMENTAL_MIGRATION.md).
