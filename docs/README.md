@@ -22,3 +22,5 @@ linked pages. Choose a documentation framework/site and Wiki migration strategy
 in a later phase. Existing audit reports remain chronological evidence rather
 than a second public roadmap. The complete architecture documentation is not yet
 included by current distribution manifests; packaging changes are separate work.
+
+Explore the [headless graphics gallery](examples/index.md) for reproducible visual examples.

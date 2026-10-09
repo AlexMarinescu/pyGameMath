@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560" role="img">
+<title>Vector geometry</title>
+<desc>Displacement, length and orientation from the same pair of vectors</desc>
+<rect width="960" height="560" fill="#f5f8fb"/>
+<text x="32" y="40" fill="#18344a" font-family="sans-serif" font-size="25">Vector geometry</text>
+<text x="32" y="69" fill="#667987" font-family="sans-serif" font-size="15">Displacement, length and orientation from the same pair of vectors</text>
+<path d="M 68 405 L 497 405" fill="none" stroke="#c0ccd5" stroke-width="1"/>
+<path d="M 185 483 L 185 116.4" fill="none" stroke="#c0ccd5" stroke-width="1"/>
+<text x="497" y="432.3" fill="#18344a" font-family="sans-serif" font-size="13">X</text>
+<text x="196.7" y="116.4" fill="#18344a" font-family="sans-serif" font-size="13">Y</text>
+<path d="M 185 405 L 419 327" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 419 327 L 411.509657 335.055729" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 419 327 L 408.174289 325.049623" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 185 405 L 107 249" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<path d="M 107 249 L 116.034059 255.275809" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<path d="M 107 249 L 106.600212 259.992733" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<path d="M 419 327 L 341 171" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<path d="M 341 171 L 350.034059 177.275809" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<path d="M 341 171 L 340.600212 181.992733" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<path d="M 185 405 L 341 171" fill="none" stroke="#137b62" stroke-width="3"/>
+<path d="M 341 171 L 340.03322 181.957433" fill="none" stroke="#137b62" stroke-width="3"/>
+<path d="M 341 171 L 331.257285 176.106809" fill="none" stroke="#137b62" stroke-width="3"/>
+<text x="425" y="336" fill="#176cba" font-family="sans-serif" font-size="15">a = (3, 1)</text>
+<text x="42" y="218" fill="#bf4d16" font-family="sans-serif" font-size="15">b = (-1, 2)</text>
+<text x="365" y="150" fill="#137b62" font-family="sans-serif" font-size="15">a + b = (2, 3)</text>
+<text x="423" y="210" fill="#bf4d16" font-family="sans-serif" font-size="14">displaced b</text>
+<text x="600" y="145" fill="#18344a" font-family="sans-serif" font-size="19">Normalize without changing a</text>
+<path d="M 620 265 L 762.302495 217.565835" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 762.302495 217.565835 L 754.812152 225.621564" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 762.302495 217.565835 L 751.476783 215.615458" fill="none" stroke="#176cba" stroke-width="3"/>
+<text x="600" y="305" fill="#18344a" font-family="sans-serif" font-size="15">unit a = (0.948683, 0.316228, 0)</text>
+<text x="600" y="365" fill="#18344a" font-family="sans-serif" font-size="18">a dot b = -1  (obtuse angle)</text>
+<text x="600" y="405" fill="#137b62" font-family="sans-serif" font-size="18">a cross b = (0, 0, 7)</text>
+<text x="600" y="433" fill="#18344a" font-family="sans-serif" font-size="15">+Z points out of the XY diagram</text>
+<text x="32" y="530" fill="#667987" font-family="sans-serif" font-size="15">Arrow positions are coordinates; normalized direction has unit length.</text>
+</svg>

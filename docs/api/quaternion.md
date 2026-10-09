@@ -184,3 +184,5 @@ assert all(abs(a - b) < 1e-14 for a, b in zip(identity.data, [1, 0, 0, 0]))
 
 See [historical quaternion guide](../QUATERNIONS.md), [matrix](matrix.md),
 [decisions](decisions.md) and [API index](index.md).
+
+See the [graphics gallery example](../examples/gallery/quaternions.md) for an executable visualization.

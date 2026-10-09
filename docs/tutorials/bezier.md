@@ -89,3 +89,5 @@ See [Bezier API](../api/bezier.md), [sampling regressions](../../tests/test_bezi
 [ownership](../architecture/conventions.md#curves-polynomials-and-sampling) and
 [numerical accuracy](numerical.md). Continue with [quaternion orientation](quaternions.md),
 [geometry](geometry.md) or the [index](index.md).
+
+See the [visual example](../examples/gallery/bezier.md) and its reproducible assets.

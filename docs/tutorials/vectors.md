@@ -72,3 +72,5 @@ a yes/no answer is needed. Real steering additionally needs acceleration, timest
 and obstacle policies. Continue with [object transforms](transformations.md) or
 [quaternion orientation](quaternions.md); consult [Vector API](../api/vector.md),
 [common angle utilities](../api/common.md) and [tutorial index](index.md).
+
+See the [visual example](../examples/gallery/vectors.md) and its reproducible assets.

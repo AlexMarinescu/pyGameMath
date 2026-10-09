@@ -159,3 +159,5 @@ foreign object/type or overflowing sum.
 adapters and a CPU sphere renderer. Its GLSL is a reference formula, not evidence
 of GPU execution. See [SH guide](../SPHERICAL_HARMONICS.md), [legacy](legacy.md),
 [decisions](decisions.md) and [index](index.md).
+
+See the [graphics gallery example](../examples/gallery/lighting.md) for an executable visualization.

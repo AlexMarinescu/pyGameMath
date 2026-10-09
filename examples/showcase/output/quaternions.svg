@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560" role="img">
+<title>Quaternion orientation with SLERP</title>
+<desc>Unit orientations; active +Z rotation moves +X toward +Y</desc>
+<rect width="960" height="560" fill="#f5f8fb"/>
+<text x="32" y="40" fill="#18344a" font-family="sans-serif" font-size="25">Quaternion orientation with SLERP</text>
+<text x="32" y="69" fill="#667987" font-family="sans-serif" font-size="15">Unit orientations; active +Z rotation moves +X toward +Y</text>
+<circle cx="108" cy="300" r="4" fill="#667987"/>
+<path d="M 108 300 L 172 300" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 172 300 L 162.346592 305.273681" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 172 300 L 162.346592 294.726319" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 108 300 L 108 236" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<path d="M 108 236 L 113.273681 245.653408" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<path d="M 108 236 L 102.726319 245.653408" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<text x="63" y="410" fill="#18344a" font-family="sans-serif" font-size="17">t = 0.0</text>
+<text x="63" y="438" fill="#18344a" font-family="sans-serif" font-size="16">0 degrees</text>
+<circle cx="292" cy="300" r="4" fill="#667987"/>
+<path d="M 292 300 L 347.425626 268" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 347.425626 268 L 341.70237 277.393846" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 347.425626 268 L 336.428689 268.259562" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 292 300 L 260 244.574374" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<path d="M 260 244.574374 L 269.393846 250.29763" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<path d="M 260 244.574374 L 260.259562 255.571311" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<text x="247" y="410" fill="#18344a" font-family="sans-serif" font-size="17">t = 0.25</text>
+<text x="247" y="438" fill="#18344a" font-family="sans-serif" font-size="16">30 degrees</text>
+<circle cx="476" cy="300" r="4" fill="#667987"/>
+<path d="M 476 300 L 508 244.574374" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 508 244.574374 L 507.740438 255.571311" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 508 244.574374 L 498.606154 250.29763" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 476 300 L 420.574374 268" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<path d="M 420.574374 268 L 431.571311 268.259562" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<path d="M 420.574374 268 L 426.29763 277.393846" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<text x="431" y="410" fill="#18344a" font-family="sans-serif" font-size="17">t = 0.5</text>
+<text x="431" y="438" fill="#18344a" font-family="sans-serif" font-size="16">60 degrees</text>
+<circle cx="660" cy="300" r="4" fill="#667987"/>
+<path d="M 660 300 L 660 236" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 660 236 L 665.273681 245.653408" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 660 236 L 654.726319 245.653408" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 660 300 L 596 300" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<path d="M 596 300 L 605.653408 294.726319" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<path d="M 596 300 L 605.653408 305.273681" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<text x="615" y="410" fill="#18344a" font-family="sans-serif" font-size="17">t = 0.75</text>
+<text x="615" y="438" fill="#18344a" font-family="sans-serif" font-size="16">90 degrees</text>
+<circle cx="844" cy="300" r="4" fill="#667987"/>
+<path d="M 844 300 L 812 244.574374" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 812 244.574374 L 821.393846 250.29763" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 812 244.574374 L 812.259562 255.571311" fill="none" stroke="#176cba" stroke-width="3"/>
+<path d="M 844 300 L 788.574374 332" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<path d="M 788.574374 332 L 794.29763 322.606154" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<path d="M 788.574374 332 L 799.571311 331.740438" fill="none" stroke="#bf4d16" stroke-width="3"/>
+<text x="799" y="410" fill="#18344a" font-family="sans-serif" font-size="17">t = 1.0</text>
+<text x="799" y="438" fill="#18344a" font-family="sans-serif" font-size="16">120 degrees</text>
+<text x="32" y="155" fill="#18344a" font-family="sans-serif" font-size="18">Blue: local X     Orange: local Y     All frames share world +Z</text>
+<text x="32" y="515" fill="#667987" font-family="sans-serif" font-size="15">SLERP follows the shortest orientation path; samples are uniform in t, not animation keyframes.</text>
+</svg>

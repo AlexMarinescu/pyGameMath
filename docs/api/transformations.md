@@ -84,3 +84,5 @@ assert b.vector == [2.0, -3.0, 4.0, 1.0]
 Homogeneous pivot construction is not exposed as an additional Matrix overload.
 Unsupported translate dimensions and direct shape edits need a separate policy,
 not an invented exception guarantee. See [decisions](decisions.md) and [index](index.md).
+
+See the [graphics gallery example](../examples/gallery/transforms.md) for an executable visualization.

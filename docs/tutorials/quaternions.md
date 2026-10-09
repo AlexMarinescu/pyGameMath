@@ -105,3 +105,5 @@ See [Quaternion API](../api/quaternion.md), [legacy distinctions](../QUATERNIONS
 [interpolation regressions](../../tests/test_quaternion_interpolation.py) and
 [numerical accuracy](numerical.md). Continue with [motion paths](bezier.md),
 [SH rotation](lighting.md) or the [index](index.md).
+
+See the [visual example](../examples/gallery/quaternions.md) and its reproducible assets.
