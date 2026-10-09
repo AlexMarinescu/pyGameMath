@@ -1,0 +1,2260 @@
+{
+  "schema": 1,
+  "phase": "4G-5",
+  "base": "fe453893b2c3a68b6619206cc3214036bf8c24c1",
+  "branch": "audit/phase4g5-final-integration",
+  "audit_only": true,
+  "release_signoff": false,
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz",
+    "executable": "/workspace/.venvs/pyGameMath/bin/python",
+    "shared_host": true,
+    "pytest": "9.1.1",
+    "six": "1.17.0",
+    "build_tools": {
+      "setuptools": "84.0.0",
+      "wheel": "0.48.0",
+      "packaging": "26.3"
+    }
+  },
+  "tests": {
+    "baseline": {
+      "passed": 3714,
+      "failed": 0,
+      "xfail": 0,
+      "skipped": 0,
+      "errors": 0,
+      "total": 3714,
+      "xfail_identities": [],
+      "failures": [],
+      "elapsed_seconds": 16.651,
+      "junit_sha256": "3569d1b68c3dd4a6a4edf65ef68eeb9b58c9d65b09601c3495059bca6aa001da"
+    },
+    "focused": {
+      "passed": 139,
+      "failed": 0,
+      "xfail": 12,
+      "skipped": 0,
+      "errors": 0,
+      "total": 151,
+      "xfail_identities": [
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-squad4]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-squad4]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-squad4]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-squad4]"
+      ],
+      "failures": [],
+      "elapsed_seconds": 0.589,
+      "junit_sha256": "1b6ed1c272ca9c4729692c8846f43603f2421a3d9135907703a1f176e3123672"
+    },
+    "reproductions": {
+      "passed": 0,
+      "failed": 12,
+      "xfail": 0,
+      "skipped": 0,
+      "errors": 0,
+      "total": 12,
+      "xfail_identities": [],
+      "failures": [
+        {
+          "test": "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-free_slerp]",
+          "message": "assert [0.0, 1.0, 0.0] == [0.0, 1.0, -1e-323]\n  \n  At index 2 diff: 0.0 != -1e-323\n  Use -v to get more diff"
+        },
+        {
+          "test": "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-method_slerp]",
+          "message": "assert [0.0, 1.0, 0.0] == [0.0, 1.0, -1e-323]\n  \n  At index 2 diff: 0.0 != -1e-323\n  Use -v to get more diff"
+        },
+        {
+          "test": "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-squad4]",
+          "message": "assert [0.0, 1.0, 0.0] == [0.0, 1.0, -1e-323]\n  \n  At index 2 diff: 0.0 != -1e-323\n  Use -v to get more diff"
+        },
+        {
+          "test": "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-free_slerp]",
+          "message": "assert [0.0, 1.0, 0.0] == [0.0, 1.0, 1e-323]\n  \n  At index 2 diff: 0.0 != 1e-323\n  Use -v to get more diff"
+        },
+        {
+          "test": "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-method_slerp]",
+          "message": "assert [0.0, 1.0, 0.0] == [0.0, 1.0, 1e-323]\n  \n  At index 2 diff: 0.0 != 1e-323\n  Use -v to get more diff"
+        },
+        {
+          "test": "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-squad4]",
+          "message": "assert [0.0, 1.0, 0.0] == [0.0, 1.0, 1e-323]\n  \n  At index 2 diff: 0.0 != 1e-323\n  Use -v to get more diff"
+        },
+        {
+          "test": "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-free_slerp]",
+          "message": "assert [0.0, 1.0, 0.0] == [0.0, 1.0, -1e-323]\n  \n  At index 2 diff: 0.0 != -1e-323\n  Use -v to get more diff"
+        },
+        {
+          "test": "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-method_slerp]",
+          "message": "assert [0.0, 1.0, 0.0] == [0.0, 1.0, -1e-323]\n  \n  At index 2 diff: 0.0 != -1e-323\n  Use -v to get more diff"
+        },
+        {
+          "test": "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-squad4]",
+          "message": "assert [0.0, 1.0, 0.0] == [0.0, 1.0, -1e-323]\n  \n  At index 2 diff: 0.0 != -1e-323\n  Use -v to get more diff"
+        },
+        {
+          "test": "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-free_slerp]",
+          "message": "assert [0.0, 1.0, 0.0] == [0.0, 1.0, 1e-323]\n  \n  At index 2 diff: 0.0 != 1e-323\n  Use -v to get more diff"
+        },
+        {
+          "test": "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-method_slerp]",
+          "message": "assert [0.0, 1.0, 0.0] == [0.0, 1.0, 1e-323]\n  \n  At index 2 diff: 0.0 != 1e-323\n  Use -v to get more diff"
+        },
+        {
+          "test": "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-squad4]",
+          "message": "assert [0.0, 1.0, 0.0] == [0.0, 1.0, 1e-323]\n  \n  At index 2 diff: 0.0 != 1e-323\n  Use -v to get more diff"
+        }
+      ],
+      "elapsed_seconds": 0.365,
+      "junit_sha256": "9e5d2010e822c1bb29320c2eed3ef523055c0d0d216515b836b2c09f703133ea"
+    },
+    "full": {
+      "passed": 3853,
+      "failed": 0,
+      "xfail": 12,
+      "skipped": 0,
+      "errors": 0,
+      "total": 3865,
+      "xfail_identities": [
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-squad4]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-squad4]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-squad4]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-squad4]"
+      ],
+      "failures": [],
+      "elapsed_seconds": 16.13,
+      "junit_sha256": "84d33e9fa7964a8cf1bb2016a43ad046398dfe6b69f1cfe40c790bd0e92aacc3"
+    }
+  },
+  "distributions": {
+    "gem-0.1.12-py3-none-any.whl": {
+      "sha256": "300348d2a5e0518ce29aa477d067c29f3fb92d1b6a0f258dfa51e4109253e8ef",
+      "bytes": 33824,
+      "members": [
+        "gem/__init__.py",
+        "gem/bezier.py",
+        "gem/common.py",
+        "gem/legendre.py",
+        "gem/matrix.py",
+        "gem/plane.py",
+        "gem/quaternion.py",
+        "gem/ray.py",
+        "gem/spherical_harmonics.py",
+        "gem/vector.py",
+        "gem/experimental/__init__.py",
+        "gem/experimental/_bezier_legacy.py",
+        "gem/experimental/bezier.py",
+        "gem/experimental/legendre.py",
+        "gem/experimental/sph.py",
+        "gem/experimental/sph_irradiance_map.py",
+        "gem/experimental/sph_sample.py",
+        "gem-0.1.12.dist-info/licenses/LICENSE",
+        "gem-0.1.12.dist-info/METADATA",
+        "gem-0.1.12.dist-info/WHEEL",
+        "gem-0.1.12.dist-info/top_level.txt",
+        "gem-0.1.12.dist-info/RECORD"
+      ],
+      "runtime_files": [
+        "gem/__init__.py",
+        "gem/bezier.py",
+        "gem/common.py",
+        "gem/experimental/__init__.py",
+        "gem/experimental/_bezier_legacy.py",
+        "gem/experimental/bezier.py",
+        "gem/experimental/legendre.py",
+        "gem/experimental/sph.py",
+        "gem/experimental/sph_irradiance_map.py",
+        "gem/experimental/sph_sample.py",
+        "gem/legendre.py",
+        "gem/matrix.py",
+        "gem/plane.py",
+        "gem/quaternion.py",
+        "gem/ray.py",
+        "gem/spherical_harmonics.py",
+        "gem/vector.py"
+      ],
+      "runtime_byte_identical": true,
+      "compiled_extensions": [],
+      "requires_dist": [
+        "six"
+      ],
+      "version": "0.1.12",
+      "requires_python": null,
+      "classifiers": [
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
+        "Operating System :: MacOS :: MacOS X",
+        "Operating System :: Microsoft :: Windows",
+        "Operating System :: Unix",
+        "Topic :: Scientific/Engineering :: Mathematics",
+        "Topic :: Software Development :: Libraries",
+        "License :: OSI Approved :: BSD License",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.2",
+        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: Implementation"
+      ]
+    },
+    "gem-0.1.12.tar.gz": {
+      "sha256": "96835f14c218dba06595c794ca6cdd4002c6bc52eff15c4d388ab4f5fc9b8375",
+      "bytes": 36697,
+      "members": [
+        ".landscape.yaml",
+        ".travis.yml",
+        "LICENSE",
+        "MANIFEST.in",
+        "PKG-INFO",
+        "README.rst",
+        "docs/EXPERIMENTAL_MIGRATION.md",
+        "docs/VECTOR_VIEWPORT_CONTRACTS.md",
+        "gem.egg-info/PKG-INFO",
+        "gem.egg-info/SOURCES.txt",
+        "gem.egg-info/dependency_links.txt",
+        "gem.egg-info/requires.txt",
+        "gem.egg-info/top_level.txt",
+        "gem/__init__.py",
+        "gem/bezier.py",
+        "gem/common.py",
+        "gem/experimental/__init__.py",
+        "gem/experimental/_bezier_legacy.py",
+        "gem/experimental/bezier.py",
+        "gem/experimental/legendre.py",
+        "gem/experimental/sph.py",
+        "gem/experimental/sph_irradiance_map.py",
+        "gem/experimental/sph_sample.py",
+        "gem/legendre.py",
+        "gem/matrix.py",
+        "gem/plane.py",
+        "gem/quaternion.py",
+        "gem/ray.py",
+        "gem/spherical_harmonics.py",
+        "gem/vector.py",
+        "setup.cfg",
+        "setup.py"
+      ],
+      "runtime_files": [
+        "gem/__init__.py",
+        "gem/bezier.py",
+        "gem/common.py",
+        "gem/experimental/__init__.py",
+        "gem/experimental/_bezier_legacy.py",
+        "gem/experimental/bezier.py",
+        "gem/experimental/legendre.py",
+        "gem/experimental/sph.py",
+        "gem/experimental/sph_irradiance_map.py",
+        "gem/experimental/sph_sample.py",
+        "gem/legendre.py",
+        "gem/matrix.py",
+        "gem/plane.py",
+        "gem/quaternion.py",
+        "gem/ray.py",
+        "gem/spherical_harmonics.py",
+        "gem/vector.py"
+      ],
+      "runtime_byte_identical": true,
+      "compiled_extensions": [],
+      "requires_dist": [
+        "six"
+      ],
+      "version": "0.1.12",
+      "requires_python": null,
+      "classifiers": [
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
+        "Operating System :: MacOS :: MacOS X",
+        "Operating System :: Microsoft :: Windows",
+        "Operating System :: Unix",
+        "Topic :: Scientific/Engineering :: Mathematics",
+        "Topic :: Software Development :: Libraries",
+        "License :: OSI Approved :: BSD License",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.2",
+        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: Implementation"
+      ],
+      "setup_cfg_build_normalization": {
+        "comments_removed": true,
+        "generated_egg_info": {
+          "tag_build": "",
+          "tag_date": "0"
+        },
+        "metadata_preserved": true,
+        "source_setup_cfg_unchanged": true
+      }
+    }
+  },
+  "installed": {
+    "wheel": {
+      "package_root": "/tmp/phase4g5-wheel-env/lib/python3.12/site-packages",
+      "core_imports": {
+        "gem": "/tmp/phase4g5-wheel-env/lib/python3.12/site-packages/gem/__init__.py",
+        "gem.bezier": "/tmp/phase4g5-wheel-env/lib/python3.12/site-packages/gem/bezier.py",
+        "gem.common": "/tmp/phase4g5-wheel-env/lib/python3.12/site-packages/gem/common.py",
+        "gem.legendre": "/tmp/phase4g5-wheel-env/lib/python3.12/site-packages/gem/legendre.py",
+        "gem.matrix": "/tmp/phase4g5-wheel-env/lib/python3.12/site-packages/gem/matrix.py",
+        "gem.plane": "/tmp/phase4g5-wheel-env/lib/python3.12/site-packages/gem/plane.py",
+        "gem.quaternion": "/tmp/phase4g5-wheel-env/lib/python3.12/site-packages/gem/quaternion.py",
+        "gem.ray": "/tmp/phase4g5-wheel-env/lib/python3.12/site-packages/gem/ray.py",
+        "gem.spherical_harmonics": "/tmp/phase4g5-wheel-env/lib/python3.12/site-packages/gem/spherical_harmonics.py",
+        "gem.vector": "/tmp/phase4g5-wheel-env/lib/python3.12/site-packages/gem/vector.py"
+      },
+      "compatibility_modules": {
+        "bezier": [
+          "bezier",
+          [
+            "BezierPath",
+            "cubicBezierPoint",
+            "quadraticBezierPoint"
+          ]
+        ],
+        "legendre": [
+          "legendre",
+          [
+            "Legendre"
+          ]
+        ],
+        "sph": [
+          "spherical_harmonics",
+          [
+            "Factorial",
+            "K",
+            "SPH",
+            "Legendre"
+          ]
+        ],
+        "sph_sample": [
+          "spherical_harmonics",
+          [
+            "SPHSample",
+            "GenerateSamples"
+          ]
+        ],
+        "sph_irradiance_map": [
+          "spherical_harmonics",
+          [
+            "SPH_IrradianceMapCoeff"
+          ]
+        ]
+      },
+      "retired_transport_absent": true,
+      "passed_checks": [
+        "axis-angle / Hamilton rotation / matrix / matrix-to-quaternion",
+        "ray rotation / translation / deep duplicate / constructor ownership",
+        "plane incidence / translated polygon normal / refraction",
+        "scaled inverses / both multiplication orders / ctypes",
+        "scalar/vector Bezier / adaptive connected path",
+        "Legendre finite extrapolation / Condon-Shortley phase",
+        "SH canonical basis / near pole / analytical rotation / diffuse convolution"
+      ],
+      "mathematical_smoke_checks_passed": 7,
+      "confirmed_finding": {
+        "id": "4G5-A01",
+        "reproduced": true,
+        "actual": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "expected": [
+          0.0,
+          1.0,
+          1e-323
+        ]
+      },
+      "documentation": {
+        "base": "fe453893b2c3a68b6619206cc3214036bf8c24c1",
+        "pages": [
+          "ROADMAP.md",
+          "docs/README.md",
+          "docs/development/roadmap.md",
+          "docs/development/verification.md",
+          "docs/architecture/philosophy.md",
+          "docs/architecture/conventions.md",
+          "docs/architecture/compatibility.md",
+          "docs/architecture/api-inventory.md",
+          "README.md",
+          "docs/getting-started/README.md",
+          "docs/getting-started/installation.md",
+          "docs/getting-started/quick-start.md",
+          "docs/getting-started/verification.md",
+          "docs/api/bezier.md",
+          "docs/api/common.md",
+          "docs/api/coverage.md",
+          "docs/api/decisions.md",
+          "docs/api/index.md",
+          "docs/api/legacy.md",
+          "docs/api/legendre.md",
+          "docs/api/matrix.md",
+          "docs/api/plane.md",
+          "docs/api/projection.md",
+          "docs/api/quaternion.md",
+          "docs/api/ray.md",
+          "docs/api/spherical-harmonics.md",
+          "docs/api/transformations.md",
+          "docs/api/vector.md",
+          "docs/tutorials/bezier.md",
+          "docs/tutorials/camera.md",
+          "docs/tutorials/decisions.md",
+          "docs/tutorials/geometry.md",
+          "docs/tutorials/index.md",
+          "docs/tutorials/interop.md",
+          "docs/tutorials/lighting.md",
+          "docs/tutorials/numerical.md",
+          "docs/tutorials/quaternions.md",
+          "docs/tutorials/transformations.md",
+          "docs/tutorials/vectors.md",
+          "docs/tutorials/verification.md",
+          "docs/examples/ASSET-MANIFEST.md",
+          "docs/examples/gallery/bezier.md",
+          "docs/examples/gallery/lighting.md",
+          "docs/examples/gallery/quaternions.md",
+          "docs/examples/gallery/transforms.md",
+          "docs/examples/gallery/vectors.md",
+          "docs/examples/index.md",
+          "docs/examples/verification.md",
+          "examples/showcase/README.md",
+          "docs/index.md",
+          "docs/architecture/notation.md",
+          "docs/wiki-migration/README.md",
+          "docs/development/documentation-stack.md",
+          "docs/development/contributing.md",
+          "docs/development/releases.md",
+          "docs/development/website.md",
+          "docs/development/website-verification.md",
+          "docs/development/wiki.md"
+        ],
+        "links_checked": 569,
+        "source_declarations_checked": 268,
+        "examples_executed": 42,
+        "examples_by_page": {
+          "docs/architecture/conventions.md": 4,
+          "README.md": 1,
+          "docs/getting-started/quick-start.md": 7,
+          "docs/api/bezier.md": 1,
+          "docs/api/common.md": 1,
+          "docs/api/legacy.md": 1,
+          "docs/api/legendre.md": 1,
+          "docs/api/matrix.md": 1,
+          "docs/api/plane.md": 1,
+          "docs/api/projection.md": 1,
+          "docs/api/quaternion.md": 2,
+          "docs/api/ray.md": 1,
+          "docs/api/spherical-harmonics.md": 3,
+          "docs/api/transformations.md": 1,
+          "docs/api/vector.md": 2,
+          "docs/tutorials/bezier.md": 1,
+          "docs/tutorials/camera.md": 1,
+          "docs/tutorials/geometry.md": 2,
+          "docs/tutorials/interop.md": 1,
+          "docs/tutorials/lighting.md": 2,
+          "docs/tutorials/numerical.md": 2,
+          "docs/tutorials/quaternions.md": 2,
+          "docs/tutorials/transformations.md": 1,
+          "docs/tutorials/vectors.md": 1,
+          "docs/architecture/notation.md": 1
+        },
+        "example_package": "/tmp/phase4g5-wheel-env/lib/python3.12/site-packages/gem/__init__.py",
+        "api_reference": {
+          "declarations": 268,
+          "constants": 7,
+          "runtime_signatures_checked": true,
+          "omitted_declarations": []
+        },
+        "protected_files_unchanged": 119,
+        "protected_sha256": "3c01f36b7cb6ca5d3561bbe57d39bffb75962df9be969cfc2b8b6822e0e3e523",
+        "legacy_tool_checkpoint": "dc418923c692b609a9fc611c66433e5950e0a321",
+        "audit_checkpoint_explicitly_supplied": "fe453893b2c3a68b6619206cc3214036bf8c24c1"
+      },
+      "dependencies": {
+        "gem": "0.1.12",
+        "six": "1.17.0"
+      },
+      "environment": {
+        "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+        "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "executable": "/tmp/phase4g5-wheel-env/bin/python"
+      }
+    },
+    "sdist": {
+      "package_root": "/tmp/phase4g5-sdist-env/lib/python3.12/site-packages",
+      "core_imports": {
+        "gem": "/tmp/phase4g5-sdist-env/lib/python3.12/site-packages/gem/__init__.py",
+        "gem.bezier": "/tmp/phase4g5-sdist-env/lib/python3.12/site-packages/gem/bezier.py",
+        "gem.common": "/tmp/phase4g5-sdist-env/lib/python3.12/site-packages/gem/common.py",
+        "gem.legendre": "/tmp/phase4g5-sdist-env/lib/python3.12/site-packages/gem/legendre.py",
+        "gem.matrix": "/tmp/phase4g5-sdist-env/lib/python3.12/site-packages/gem/matrix.py",
+        "gem.plane": "/tmp/phase4g5-sdist-env/lib/python3.12/site-packages/gem/plane.py",
+        "gem.quaternion": "/tmp/phase4g5-sdist-env/lib/python3.12/site-packages/gem/quaternion.py",
+        "gem.ray": "/tmp/phase4g5-sdist-env/lib/python3.12/site-packages/gem/ray.py",
+        "gem.spherical_harmonics": "/tmp/phase4g5-sdist-env/lib/python3.12/site-packages/gem/spherical_harmonics.py",
+        "gem.vector": "/tmp/phase4g5-sdist-env/lib/python3.12/site-packages/gem/vector.py"
+      },
+      "compatibility_modules": {
+        "bezier": [
+          "bezier",
+          [
+            "BezierPath",
+            "cubicBezierPoint",
+            "quadraticBezierPoint"
+          ]
+        ],
+        "legendre": [
+          "legendre",
+          [
+            "Legendre"
+          ]
+        ],
+        "sph": [
+          "spherical_harmonics",
+          [
+            "Factorial",
+            "K",
+            "SPH",
+            "Legendre"
+          ]
+        ],
+        "sph_sample": [
+          "spherical_harmonics",
+          [
+            "SPHSample",
+            "GenerateSamples"
+          ]
+        ],
+        "sph_irradiance_map": [
+          "spherical_harmonics",
+          [
+            "SPH_IrradianceMapCoeff"
+          ]
+        ]
+      },
+      "retired_transport_absent": true,
+      "passed_checks": [
+        "axis-angle / Hamilton rotation / matrix / matrix-to-quaternion",
+        "ray rotation / translation / deep duplicate / constructor ownership",
+        "plane incidence / translated polygon normal / refraction",
+        "scaled inverses / both multiplication orders / ctypes",
+        "scalar/vector Bezier / adaptive connected path",
+        "Legendre finite extrapolation / Condon-Shortley phase",
+        "SH canonical basis / near pole / analytical rotation / diffuse convolution"
+      ],
+      "mathematical_smoke_checks_passed": 7,
+      "confirmed_finding": {
+        "id": "4G5-A01",
+        "reproduced": true,
+        "actual": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "expected": [
+          0.0,
+          1.0,
+          1e-323
+        ]
+      },
+      "documentation": {
+        "base": "fe453893b2c3a68b6619206cc3214036bf8c24c1",
+        "pages": [
+          "ROADMAP.md",
+          "docs/README.md",
+          "docs/development/roadmap.md",
+          "docs/development/verification.md",
+          "docs/architecture/philosophy.md",
+          "docs/architecture/conventions.md",
+          "docs/architecture/compatibility.md",
+          "docs/architecture/api-inventory.md",
+          "README.md",
+          "docs/getting-started/README.md",
+          "docs/getting-started/installation.md",
+          "docs/getting-started/quick-start.md",
+          "docs/getting-started/verification.md",
+          "docs/api/bezier.md",
+          "docs/api/common.md",
+          "docs/api/coverage.md",
+          "docs/api/decisions.md",
+          "docs/api/index.md",
+          "docs/api/legacy.md",
+          "docs/api/legendre.md",
+          "docs/api/matrix.md",
+          "docs/api/plane.md",
+          "docs/api/projection.md",
+          "docs/api/quaternion.md",
+          "docs/api/ray.md",
+          "docs/api/spherical-harmonics.md",
+          "docs/api/transformations.md",
+          "docs/api/vector.md",
+          "docs/tutorials/bezier.md",
+          "docs/tutorials/camera.md",
+          "docs/tutorials/decisions.md",
+          "docs/tutorials/geometry.md",
+          "docs/tutorials/index.md",
+          "docs/tutorials/interop.md",
+          "docs/tutorials/lighting.md",
+          "docs/tutorials/numerical.md",
+          "docs/tutorials/quaternions.md",
+          "docs/tutorials/transformations.md",
+          "docs/tutorials/vectors.md",
+          "docs/tutorials/verification.md",
+          "docs/examples/ASSET-MANIFEST.md",
+          "docs/examples/gallery/bezier.md",
+          "docs/examples/gallery/lighting.md",
+          "docs/examples/gallery/quaternions.md",
+          "docs/examples/gallery/transforms.md",
+          "docs/examples/gallery/vectors.md",
+          "docs/examples/index.md",
+          "docs/examples/verification.md",
+          "examples/showcase/README.md",
+          "docs/index.md",
+          "docs/architecture/notation.md",
+          "docs/wiki-migration/README.md",
+          "docs/development/documentation-stack.md",
+          "docs/development/contributing.md",
+          "docs/development/releases.md",
+          "docs/development/website.md",
+          "docs/development/website-verification.md",
+          "docs/development/wiki.md"
+        ],
+        "links_checked": 569,
+        "source_declarations_checked": 268,
+        "examples_executed": 42,
+        "examples_by_page": {
+          "docs/architecture/conventions.md": 4,
+          "README.md": 1,
+          "docs/getting-started/quick-start.md": 7,
+          "docs/api/bezier.md": 1,
+          "docs/api/common.md": 1,
+          "docs/api/legacy.md": 1,
+          "docs/api/legendre.md": 1,
+          "docs/api/matrix.md": 1,
+          "docs/api/plane.md": 1,
+          "docs/api/projection.md": 1,
+          "docs/api/quaternion.md": 2,
+          "docs/api/ray.md": 1,
+          "docs/api/spherical-harmonics.md": 3,
+          "docs/api/transformations.md": 1,
+          "docs/api/vector.md": 2,
+          "docs/tutorials/bezier.md": 1,
+          "docs/tutorials/camera.md": 1,
+          "docs/tutorials/geometry.md": 2,
+          "docs/tutorials/interop.md": 1,
+          "docs/tutorials/lighting.md": 2,
+          "docs/tutorials/numerical.md": 2,
+          "docs/tutorials/quaternions.md": 2,
+          "docs/tutorials/transformations.md": 1,
+          "docs/tutorials/vectors.md": 1,
+          "docs/architecture/notation.md": 1
+        },
+        "example_package": "/tmp/phase4g5-sdist-env/lib/python3.12/site-packages/gem/__init__.py",
+        "api_reference": {
+          "declarations": 268,
+          "constants": 7,
+          "runtime_signatures_checked": true,
+          "omitted_declarations": []
+        },
+        "protected_files_unchanged": 119,
+        "protected_sha256": "3c01f36b7cb6ca5d3561bbe57d39bffb75962df9be969cfc2b8b6822e0e3e523",
+        "legacy_tool_checkpoint": "dc418923c692b609a9fc611c66433e5950e0a321",
+        "audit_checkpoint_explicitly_supplied": "fe453893b2c3a68b6619206cc3214036bf8c24c1"
+      },
+      "dependencies": {
+        "gem": "0.1.12",
+        "six": "1.17.0"
+      },
+      "environment": {
+        "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+        "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "executable": "/tmp/phase4g5-sdist-env/bin/python"
+      }
+    }
+  },
+  "documentation": {
+    "base": "fe453893b2c3a68b6619206cc3214036bf8c24c1",
+    "pages": [
+      "ROADMAP.md",
+      "docs/README.md",
+      "docs/development/roadmap.md",
+      "docs/development/verification.md",
+      "docs/architecture/philosophy.md",
+      "docs/architecture/conventions.md",
+      "docs/architecture/compatibility.md",
+      "docs/architecture/api-inventory.md",
+      "README.md",
+      "docs/getting-started/README.md",
+      "docs/getting-started/installation.md",
+      "docs/getting-started/quick-start.md",
+      "docs/getting-started/verification.md",
+      "docs/api/bezier.md",
+      "docs/api/common.md",
+      "docs/api/coverage.md",
+      "docs/api/decisions.md",
+      "docs/api/index.md",
+      "docs/api/legacy.md",
+      "docs/api/legendre.md",
+      "docs/api/matrix.md",
+      "docs/api/plane.md",
+      "docs/api/projection.md",
+      "docs/api/quaternion.md",
+      "docs/api/ray.md",
+      "docs/api/spherical-harmonics.md",
+      "docs/api/transformations.md",
+      "docs/api/vector.md",
+      "docs/tutorials/bezier.md",
+      "docs/tutorials/camera.md",
+      "docs/tutorials/decisions.md",
+      "docs/tutorials/geometry.md",
+      "docs/tutorials/index.md",
+      "docs/tutorials/interop.md",
+      "docs/tutorials/lighting.md",
+      "docs/tutorials/numerical.md",
+      "docs/tutorials/quaternions.md",
+      "docs/tutorials/transformations.md",
+      "docs/tutorials/vectors.md",
+      "docs/tutorials/verification.md",
+      "docs/examples/ASSET-MANIFEST.md",
+      "docs/examples/gallery/bezier.md",
+      "docs/examples/gallery/lighting.md",
+      "docs/examples/gallery/quaternions.md",
+      "docs/examples/gallery/transforms.md",
+      "docs/examples/gallery/vectors.md",
+      "docs/examples/index.md",
+      "docs/examples/verification.md",
+      "examples/showcase/README.md",
+      "docs/index.md",
+      "docs/architecture/notation.md",
+      "docs/wiki-migration/README.md",
+      "docs/development/documentation-stack.md",
+      "docs/development/contributing.md",
+      "docs/development/releases.md",
+      "docs/development/website.md",
+      "docs/development/website-verification.md",
+      "docs/development/wiki.md"
+    ],
+    "links_checked": 569,
+    "source_declarations_checked": 268,
+    "examples_executed": 42,
+    "examples_by_page": {
+      "docs/architecture/conventions.md": 4,
+      "README.md": 1,
+      "docs/getting-started/quick-start.md": 7,
+      "docs/api/bezier.md": 1,
+      "docs/api/common.md": 1,
+      "docs/api/legacy.md": 1,
+      "docs/api/legendre.md": 1,
+      "docs/api/matrix.md": 1,
+      "docs/api/plane.md": 1,
+      "docs/api/projection.md": 1,
+      "docs/api/quaternion.md": 2,
+      "docs/api/ray.md": 1,
+      "docs/api/spherical-harmonics.md": 3,
+      "docs/api/transformations.md": 1,
+      "docs/api/vector.md": 2,
+      "docs/tutorials/bezier.md": 1,
+      "docs/tutorials/camera.md": 1,
+      "docs/tutorials/geometry.md": 2,
+      "docs/tutorials/interop.md": 1,
+      "docs/tutorials/lighting.md": 2,
+      "docs/tutorials/numerical.md": 2,
+      "docs/tutorials/quaternions.md": 2,
+      "docs/tutorials/transformations.md": 1,
+      "docs/tutorials/vectors.md": 1,
+      "docs/architecture/notation.md": 1
+    },
+    "api_reference": {
+      "declarations": 268,
+      "constants": 7,
+      "runtime_signatures_checked": true,
+      "omitted_declarations": []
+    },
+    "protected_files_unchanged": 119,
+    "protected_sha256": "3c01f36b7cb6ca5d3561bbe57d39bffb75962df9be969cfc2b8b6822e0e3e523",
+    "legacy_tool_checkpoint": "dc418923c692b609a9fc611c66433e5950e0a321",
+    "audit_checkpoint_explicitly_supplied": "fe453893b2c3a68b6619206cc3214036bf8c24c1",
+    "inventory": {
+      "gem.bezier": [
+        "cubicBezierPoint(t, p0, p1, p2, p3)",
+        "quadraticBezierPoint(t, p0, p1, p2)",
+        "BezierPath",
+        "BezierPath.__init__(self)",
+        "BezierPath.setControlPoints(self, newControlPoints)",
+        "BezierPath.getControlPoints(self)",
+        "BezierPath.calculateBezerPoint(self, curveIndex, t)",
+        "BezierPath.interpolate(self, segmentPoints, scale)",
+        "BezierPath.samplePoints(self, sourcePoints, minSqrDistance, maxSqrDistance, scale)",
+        "BezierPath.getDrawingPoints(self)",
+        "BezierPath.findDrawingPoints(self, curveIndex)",
+        "BezierPath.findDrawingPointsAdded(self, curveIndex, t0, t1, pointList, insertionIndex)"
+      ],
+      "gem.common": [
+        "convertArr(l, n)",
+        "mulV4(v1, v2)",
+        "conv_list(listIn, cType)",
+        "conv_list_2d(listIn, cType)",
+        "list_2d_to_1d(inlist)",
+        "convertM4to3(matrix)",
+        "sinc(x)",
+        "scalarLerp(a, b, time)",
+        "getViewPort(coords, width, height)",
+        "radiansToDegrees(degrees)",
+        "degreesToRadians(radians)",
+        "sign(x)"
+      ],
+      "gem.legendre": [
+        "Legendre",
+        "Legendre.__init__(self, l, m, x)",
+        "Legendre.mGreaterThan0(self)",
+        "Legendre.calculatePM1(self)",
+        "Legendre.calculatePML(self, i)",
+        "Legendre.run(self)"
+      ],
+      "gem.matrix": [
+        "zero_matrix(size)",
+        "identity(size)",
+        "scale(size, value)",
+        "matrix_multiply(matrixA, matrixB)",
+        "matrix_vector_multiply(matrix, vec)",
+        "matrix_div(mat, scalar)",
+        "transpose(mat)",
+        "shearXY3(x, y)",
+        "shearYZ3(y, z)",
+        "shearXZ3(x, z)",
+        "shearXY4(x, y)",
+        "shearYZ4(y, z)",
+        "shearXZ4(x, z)",
+        "translate2(vector)",
+        "translate3(vector)",
+        "translate4(vector)",
+        "rotate2(point, theta)",
+        "rotate3(axis, theta)",
+        "rotate4(axis, theta)",
+        "rotate_origin2(theta)",
+        "det2(mat)",
+        "det3(mat)",
+        "det4(mat)",
+        "inverse2(mat)",
+        "inverse3(mat)",
+        "inverse4(mat)",
+        "Matrix",
+        "Matrix.__init__(self, size, data=None)",
+        "Matrix.__mul__(self, other)",
+        "Matrix.__imul__(self, other)",
+        "Matrix.__div__(self, other)",
+        "Matrix.__idiv__(self, other)",
+        "Matrix.__truediv__ = Matrix.__div__",
+        "Matrix.__itruediv__ = Matrix.__idiv__",
+        "Matrix.i_scale(self, value)",
+        "Matrix.scale(self, value)",
+        "Matrix.det(self)",
+        "Matrix.i_inverse(self)",
+        "Matrix.inverse(self)",
+        "Matrix.i_rotate(self, axis, theta)",
+        "Matrix.rotate(self, axis, theta)",
+        "Matrix.i_translate(self, vecA)",
+        "Matrix.translate(self, vecA)",
+        "Matrix.i_transpose(self)",
+        "Matrix.transpose(self)",
+        "Matrix.shearXY(self, x, y)",
+        "Matrix.i_shearXY(self, x, y)",
+        "Matrix.shearYZ(self, y, z)",
+        "Matrix.i_shearYZ(self, y, z)",
+        "Matrix.shearXZ(self, x, z)",
+        "Matrix.i_shearXZ(self, x, z)",
+        "orthographic(left, right, bottom, top, zNear, zFar)",
+        "perspective(fov, aspect, znear, zfar)",
+        "perspectiveX(fov, aspect, znear, zfar)",
+        "lookAt(eye, center, up)",
+        "project(obj, model, proj, viewport)",
+        "unproject(winx, winy, winz, modelview, projection, viewport)"
+      ],
+      "gem.plane": [
+        "flip(plane)",
+        "normalize(pdata)",
+        "Plane",
+        "Plane.__init__(self)",
+        "Plane.clone(self)",
+        "Plane.fromCoeffs(self, a, b, c, d)",
+        "Plane.fromPoints(self, a, b, c)",
+        "Plane.i_flip(self)",
+        "Plane.flip(self)",
+        "Plane.dot(self, vec)",
+        "Plane.i_normalize(self)",
+        "Plane.normalize(self)",
+        "Plane.bestFitNormal(self, vecList)",
+        "Plane.bestFitD(self, vecList, bestFitNormal)",
+        "Plane.point_location(self, plane, point)"
+      ],
+      "gem.quaternion": [
+        "quat_identity()",
+        "quat_add(quat, quat1)",
+        "quat_sub(quat, quat1)",
+        "quat_mul_quat(quat, quat1)",
+        "quat_mul_vect(quat, vect)",
+        "quat_mul_float(quat, scalar)",
+        "quat_div_float(quat, scalar)",
+        "quat_neg(quat)",
+        "quat_dot(quat1, quat2)",
+        "quat_magnitude(quat)",
+        "quat_normalize(quat)",
+        "quat_conjugate(quat)",
+        "quat_inverse(quat)",
+        "quat_from_axis_angle(axis, theta)",
+        "quat_rotate(origin, axis, theta)",
+        "quat_rotate_x_from_angle(theta)",
+        "quat_rotate_y_from_angle(theta)",
+        "quat_rotate_z_from_angle(theta)",
+        "quat_rotate_from_axis_angle(axis, theta)",
+        "quat_rotate_vector(quat, vec)",
+        "quat_pow(quat, exp)",
+        "quat_log(quat)",
+        "quat_lerp(quat0, quat1, t)",
+        "quat_slerp(quat0, quat1, t)",
+        "quat_slerp_no_invert(quat0, quat1, t)",
+        "quat_squad(quat0, quat1, quat2, t)",
+        "squad4(q0, q1, s0, s1, t)",
+        "quat_to_matrix(quat)",
+        "Quaternion",
+        "Quaternion.__init__(self, data=None)",
+        "Quaternion.__add__(self, other)",
+        "Quaternion.__iadd__(self, other)",
+        "Quaternion.__sub__(self, other)",
+        "Quaternion.__isub__(self, other)",
+        "Quaternion.__mul__(self, other)",
+        "Quaternion.__imul__(self, other)",
+        "Quaternion.__div__(self, other)",
+        "Quaternion.__idiv__(self, other)",
+        "Quaternion.__truediv__ = Quaternion.__div__",
+        "Quaternion.__itruediv__ = Quaternion.__idiv__",
+        "Quaternion.i_negate(self)",
+        "Quaternion.negate(self)",
+        "Quaternion.i_identity(self)",
+        "Quaternion.identity(self)",
+        "Quaternion.magnitude(self)",
+        "Quaternion.dot(self, quat2)",
+        "Quaternion.i_normalize(self)",
+        "Quaternion.normalize(self)",
+        "Quaternion.i_conjugate(self)",
+        "Quaternion.conjugate(self)",
+        "Quaternion.inverse(self)",
+        "Quaternion.pow(self, e)",
+        "Quaternion.log(self)",
+        "Quaternion.lerp(self, quat1, time)",
+        "Quaternion.slerp(self, quat1, time)",
+        "Quaternion.slerp_no_invert(self, quat1, time)",
+        "Quaternion.squad(self, quat1, quat2, time)",
+        "Quaternion.toMatrix(self)",
+        "Quaternion.getForward(self)",
+        "Quaternion.getBack(self)",
+        "Quaternion.getLeft(self)",
+        "Quaternion.getRight(self)",
+        "Quaternion.getUp(self)",
+        "Quaternion.getDown(self)",
+        "quat_from_matrix(matrix)"
+      ],
+      "gem.ray": [
+        "Ray",
+        "Ray.__init__(self, startVector, dirVector)",
+        "Ray.duplicate(self)",
+        "Ray.roateUsingMatrix(self, matrix)",
+        "Ray.rotateUsingQuaternion(self, quat1)",
+        "Ray.translate(self, matrix)",
+        "Ray.output(self)"
+      ],
+      "gem.spherical_harmonics": [
+        "Factorial(n)",
+        "K(l, m)",
+        "SPH(l, m, theta, phi)",
+        "SPHSample",
+        "SPHSample.__init__(self, theta, phi, dirc, sampleNumber)",
+        "GenerateSamples(sqrtNumSamples, numBands)",
+        "project_radiance(samples, radiances, weights=None)",
+        "project_angular_probe(hdr, numBands=3)",
+        "reconstruct(coefficients, direction)",
+        "convolve_diffuse(radiance_coefficients)",
+        "legacy_to_canonical(coefficients)",
+        "SPH_IrradianceMapCoeff",
+        "SPH_IrradianceMapCoeff.__init__(self, fileU, width, height)",
+        "SPH_IrradianceMapCoeff.load(self)",
+        "SPH_IrradianceMapCoeff.calculateCoefficients(self)",
+        "SPH_IrradianceMapCoeff.updateCoefficients(self, hdr, domega, x, y, z)",
+        "SPH_IrradianceMapCoeff.output(self)",
+        "rotate_coefficients(coefficients, orientation)"
+      ],
+      "gem.vector": [
+        "zero_vector(size)",
+        "one_vector(size)",
+        "lerp(vecA, vecB, time)",
+        "cross(vecA, vecB)",
+        "reflect(incidentVec, normal)",
+        "refract(IOR, incidentVec, normal)",
+        "toAngle(vector)",
+        "lperp(vector)",
+        "rperp(vector)",
+        "vec_add(size, vecA, vecB)",
+        "s_vec_add(size, vecA, scalar)",
+        "vec_sub(size, vecA, vecB)",
+        "s_vec_sub(size, vecA, scalar)",
+        "vec_mul(size, vecA, scalar)",
+        "vec_div(size, vecA, scalar)",
+        "vec_neg(size, vecA)",
+        "dot(size, vecA, vecB)",
+        "magnitude(size, vecA)",
+        "normalize(size, vecA)",
+        "maxV(size, vecA, vecB)",
+        "minV(size, vecA, vecB)",
+        "maxS(size, vecA)",
+        "minS(size, vecA)",
+        "clamp(size, value, minS, maxS)",
+        "transform(size, position, matrix)",
+        "Vector",
+        "Vector.__init__(self, size, data=None)",
+        "Vector.__repr__(self)",
+        "Vector.__add__(self, other)",
+        "Vector.__iadd__(self, other)",
+        "Vector.__sub__(self, other)",
+        "Vector.__isub__(self, other)",
+        "Vector.__mul__(self, scalar)",
+        "Vector.__imul__(self, scalar)",
+        "Vector.__div__(self, scalar)",
+        "Vector.__truediv__(self, scalar)",
+        "Vector.__idiv__(self, scalar)",
+        "Vector.__itruediv__(self, scalar)",
+        "Vector.__eq__(self, vecB)",
+        "Vector.__ne__(self, vecB)",
+        "Vector.__neg__(self)",
+        "Vector.clone(self)",
+        "Vector.one(self)",
+        "Vector.zero(self)",
+        "Vector.negate(self)",
+        "Vector.maxV(self, vecB)",
+        "Vector.maxS(self)",
+        "Vector.minV(self, vecB)",
+        "Vector.minS(self)",
+        "Vector.magnitude(self)",
+        "Vector.clamp(self, size, value, minS, maxS)",
+        "Vector.i_clamp(self, size, value, minS, maxS)",
+        "Vector.i_normalize(self)",
+        "Vector.normalize(self)",
+        "Vector.dot(self, vecB)",
+        "Vector.isInSameDirection(self, otherVec)",
+        "Vector.isInOppositeDirection(self, otherVec)",
+        "Vector.barycentric(self, a, b, c)",
+        "Vector.transform(self, position, matrix)",
+        "Vector.i_transform(self, position, matrix)",
+        "Vector.xy(self)",
+        "Vector.yz(self)",
+        "Vector.xz(self)",
+        "Vector.xw(self)",
+        "Vector.yw(self)",
+        "Vector.zw(self)",
+        "Vector.xyw(self)",
+        "Vector.yzw(self)",
+        "Vector.xzw(self)",
+        "Vector.xyz(self)",
+        "Vector.right(self)",
+        "Vector.left(self)",
+        "Vector.front(self)",
+        "Vector.back(self)",
+        "Vector.up(self)",
+        "Vector.down(self)"
+      ]
+    },
+    "environment": {
+      "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+      "machine": "x86_64",
+      "executable": "/workspace/.venvs/pyGameMath/bin/python"
+    }
+  },
+  "original_documentation_cli": {
+    "exit_code": 2,
+    "error": "out-of-scope modification: gem/bezier.py",
+    "reason": "hardcoded checkpoint predates legitimate merged numerical repairs",
+    "log_sha256": "cd53032ec1bf8780ce357bf506825589fc3162fe26902351c1e9ccccd82bcc1c"
+  },
+  "hdr_regeneration": {
+    "files": {
+      "irradiance_coefficients.glsl": {
+        "committed_sha256": "8d0d751cf32b8dd2a5653bda2187ef96a2bba6eaebbf1b8f4e5899f238323bc4",
+        "generated_sha256": "bd45279c47a5ba57e256deb972a0f20c809d46e58129b8670d481b0be1f496b8",
+        "bytes_identical": false,
+        "changed_numeric_fields": 16,
+        "maximum_absolute_difference": 3.673333600000002e-17,
+        "nonnumeric_text_unchanged": true
+      },
+      "reference.json": {
+        "committed_sha256": "99fbca270299bf908ea7ba6d8e395ddb548d6531caa79d317d38e035877ee897",
+        "generated_sha256": "05c82917301cc59cddb02bf8f6c5d530fb7d04a80d3a49f7382011a8dc0b1a20",
+        "bytes_identical": false,
+        "numeric_changes": [
+          {
+            "path": "/radiance_coefficients/1/0",
+            "before": 4.782856239966132e-17,
+            "after": 5.246162086290553e-17,
+            "absolute_difference": 4.633058463244209e-18
+          },
+          {
+            "path": "/radiance_coefficients/1/2",
+            "before": 6.456572167916948e-17,
+            "after": 6.205066910053465e-17,
+            "absolute_difference": 2.5150525786348313e-18
+          },
+          {
+            "path": "/radiance_coefficients/3/1",
+            "before": 4.1295121991781047e-16,
+            "after": 4.289423549290244e-16,
+            "absolute_difference": 1.5991135011213936e-17
+          },
+          {
+            "path": "/radiance_coefficients/3/2",
+            "before": 5.601394998874798e-16,
+            "after": 5.776783758515642e-16,
+            "absolute_difference": 1.7538875964084356e-17
+          },
+          {
+            "path": "/radiance_coefficients/4/0",
+            "before": 9.509877126840445e-17,
+            "after": 1.0027153530283746e-16,
+            "absolute_difference": 5.172764034433008e-18
+          },
+          {
+            "path": "/radiance_coefficients/4/1",
+            "before": 1.1542417387071864e-16,
+            "after": 1.0321459098274193e-16,
+            "absolute_difference": 1.2209582887976714e-17
+          },
+          {
+            "path": "/radiance_coefficients/4/2",
+            "before": 1.826428292104682e-16,
+            "after": 1.7573990773703967e-16,
+            "absolute_difference": 6.902921473428522e-18
+          },
+          {
+            "path": "/radiance_coefficients/5/0",
+            "before": -2.332305220264716e-18,
+            "after": 2.507217523872729e-19,
+            "absolute_difference": 2.583026972651989e-18
+          },
+          {
+            "path": "/radiance_coefficients/5/1",
+            "before": 3.995962631966887e-17,
+            "after": 6.006861200395959e-17,
+            "absolute_difference": 2.0108985684290717e-17
+          },
+          {
+            "path": "/radiance_coefficients/5/2",
+            "before": 8.956949900740599e-18,
+            "after": 3.6288585526268735e-17,
+            "absolute_difference": 2.7331635625528136e-17
+          },
+          {
+            "path": "/radiance_coefficients/7/0",
+            "before": 4.5439929488404196e-17,
+            "after": 5.57478969400154e-17,
+            "absolute_difference": 1.0307967451611208e-17
+          },
+          {
+            "path": "/radiance_coefficients/7/1",
+            "before": 5.180029988933674e-18,
+            "after": -6.508601166702044e-18,
+            "absolute_difference": 1.1688631155635718e-17
+          },
+          {
+            "path": "/radiance_coefficients/7/2",
+            "before": 3.972118654501679e-17,
+            "after": 1.8408143526204082e-17,
+            "absolute_difference": 2.1313043018812705e-17
+          },
+          {
+            "path": "/radiance_coefficients/8/0",
+            "before": -6.285098553376992e-16,
+            "after": -6.426133509561773e-16,
+            "absolute_difference": 1.4103495618478126e-17
+          },
+          {
+            "path": "/radiance_coefficients/8/1",
+            "before": -7.472895237591861e-16,
+            "after": -7.436908778129966e-16,
+            "absolute_difference": 3.598645946189497e-18
+          },
+          {
+            "path": "/radiance_coefficients/8/2",
+            "before": -9.881844763484475e-16,
+            "after": -9.838374238537996e-16,
+            "absolute_difference": 4.3470524946478744e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/1/1",
+            "before": 8.672166240301135e-16,
+            "after": 8.832077590413274e-16,
+            "absolute_difference": 1.5991135011213936e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/1/2",
+            "before": 5.601394998874799e-16,
+            "after": 5.776783758515643e-16,
+            "absolute_difference": 1.7538875964084356e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/3/0",
+            "before": 4.064368417126415e-16,
+            "after": 4.018037832493973e-16,
+            "absolute_difference": 4.633058463244209e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/3/2",
+            "before": -6.456572167916962e-17,
+            "after": -6.205066910053479e-17,
+            "absolute_difference": 2.5150525786348313e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/4/0",
+            "before": -9.509877126840422e-17,
+            "after": -1.0027153530283721e-16,
+            "absolute_difference": 5.1727640344329956e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/4/1",
+            "before": -1.1542417387071835e-16,
+            "after": -1.0321459098274165e-16,
+            "absolute_difference": 1.2209582887976702e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/4/2",
+            "before": -1.8264282921046785e-16,
+            "after": -1.7573990773703933e-16,
+            "absolute_difference": 6.902921473428522e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/5/0",
+            "before": 4.543992948840421e-17,
+            "after": 5.574789694001542e-17,
+            "absolute_difference": 1.0307967451611208e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/5/1",
+            "before": 5.180029988933666e-18,
+            "after": -6.5086011667020584e-18,
+            "absolute_difference": 1.1688631155635724e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/5/2",
+            "before": 3.97211865450168e-17,
+            "after": 1.8408143526204076e-17,
+            "absolute_difference": 2.1313043018812724e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/6/0",
+            "before": 0.006381988755326441,
+            "after": 0.006381988755326442,
+            "absolute_difference": 8.673617379884035e-19
+          },
+          {
+            "path": "/rotated_radiance_coefficients/6/2",
+            "before": 0.012763977510652568,
+            "after": 0.01276397751065257,
+            "absolute_difference": 1.734723475976807e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/7/0",
+            "before": 2.332305220264706e-18,
+            "after": -2.507217523872853e-19,
+            "absolute_difference": 2.5830269726519912e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/7/1",
+            "before": -3.995962631966888e-17,
+            "after": -6.00686120039596e-17,
+            "absolute_difference": 2.0108985684290723e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/7/2",
+            "before": -8.95694990074061e-18,
+            "after": -3.628858552626875e-17,
+            "absolute_difference": 2.7331635625528136e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/8/0",
+            "before": 6.287597668457956e-16,
+            "after": 6.422558729523342e-16,
+            "absolute_difference": 1.3496106106538578e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/8/1",
+            "before": 7.470491674266334e-16,
+            "after": 7.438736130486244e-16,
+            "absolute_difference": 3.1755543780090075e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/8/2",
+            "before": 9.875974115608205e-16,
+            "after": 9.844218571828112e-16,
+            "absolute_difference": 3.1755543780092047e-18
+          },
+          {
+            "path": "/irradiance_coefficients/1/1",
+            "before": 1.8162942500826306e-15,
+            "after": 1.8497860049318254e-15,
+            "absolute_difference": 3.34917548491948e-17
+          },
+          {
+            "path": "/irradiance_coefficients/1/2",
+            "before": 1.1731534252213117e-15,
+            "after": 1.2098867611419716e-15,
+            "absolute_difference": 3.673333592065994e-17
+          },
+          {
+            "path": "/irradiance_coefficients/3/0",
+            "before": 8.512393307151147e-16,
+            "after": 8.415358757605947e-16,
+            "absolute_difference": 9.703454954520008e-18
+          },
+          {
+            "path": "/irradiance_coefficients/3/2",
+            "before": -1.35226131267335e-16,
+            "after": -1.2995861746438083e-16,
+            "absolute_difference": 5.2675138029541754e-18
+          },
+          {
+            "path": "/irradiance_coefficients/4/0",
+            "before": -7.46904002955587e-17,
+            "after": -7.875307966789074e-17,
+            "absolute_difference": 4.0626793723320445e-18
+          },
+          {
+            "path": "/irradiance_coefficients/4/1",
+            "before": -9.065393416972992e-17,
+            "after": -8.106455019366412e-17,
+            "absolute_difference": 9.589383976065804e-18
+          },
+          {
+            "path": "/irradiance_coefficients/4/2",
+            "before": -1.4344734261961528e-16,
+            "after": -1.380258007723077e-16,
+            "absolute_difference": 5.421541847307571e-18
+          },
+          {
+            "path": "/irradiance_coefficients/5/0",
+            "before": 3.5688437165102216e-17,
+            "after": 4.3784295869958336e-17,
+            "absolute_difference": 8.09585870485612e-18
+          },
+          {
+            "path": "/irradiance_coefficients/5/1",
+            "before": 4.068386039652206e-18,
+            "after": -5.111843402614286e-18,
+            "absolute_difference": 9.18022944226649e-18
+          },
+          {
+            "path": "/irradiance_coefficients/5/2",
+            "before": 3.119694696042363e-17,
+            "after": 1.445772211703731e-17,
+            "absolute_difference": 1.673922484338632e-17
+          },
+          {
+            "path": "/irradiance_coefficients/6/0",
+            "before": 0.005012402247256554,
+            "after": 0.005012402247256555,
+            "absolute_difference": 8.673617379884035e-19
+          },
+          {
+            "path": "/irradiance_coefficients/6/2",
+            "before": 0.010024804494512861,
+            "after": 0.010024804494512863,
+            "absolute_difference": 1.734723475976807e-18
+          },
+          {
+            "path": "/irradiance_coefficients/7/0",
+            "before": 1.831788236478181e-18,
+            "after": -1.9691640384876369e-19,
+            "absolute_difference": 2.028704640326945e-18
+          },
+          {
+            "path": "/irradiance_coefficients/7/1",
+            "before": -3.1384217121516275e-17,
+            "after": -4.7177777545743785e-17,
+            "absolute_difference": 1.579356042422751e-17
+          },
+          {
+            "path": "/irradiance_coefficients/7/2",
+            "before": -7.034772001684631e-18,
+            "after": -2.85009884246227e-17,
+            "absolute_difference": 2.1466216422938067e-17
+          },
+          {
+            "path": "/irradiance_coefficients/8/0",
+            "before": 4.938267660988956e-16,
+            "after": 5.044265830479882e-16,
+            "absolute_difference": 1.0599816949092526e-17
+          },
+          {
+            "path": "/irradiance_coefficients/8/1",
+            "before": 5.867310440644707e-16,
+            "after": 5.842369694882137e-16,
+            "absolute_difference": 2.494074576256978e-18
+          },
+          {
+            "path": "/irradiance_coefficients/8/2",
+            "before": 7.756571932159422e-16,
+            "after": 7.731631186396851e-16,
+            "absolute_difference": 2.494074576257175e-18
+          },
+          {
+            "path": "/evaluations/0/irradiance_linear_rgb/1",
+            "before": 7.328854684632094,
+            "after": 7.328854684632093,
+            "absolute_difference": 8.881784197001252e-16
+          },
+          {
+            "path": "/evaluations/0/lambertian_linear_rgb/1",
+            "before": 1.1664234502613915,
+            "after": 1.1664234502613913,
+            "absolute_difference": 2.220446049250313e-16
+          },
+          {
+            "path": "/evaluations/4/irradiance_linear_rgb/0",
+            "before": 4.188052465737519,
+            "after": 4.188052465737518,
+            "absolute_difference": 8.881784197001252e-16
+          },
+          {
+            "path": "/evaluations/4/lambertian_linear_rgb/0",
+            "before": 0.6665492518503268,
+            "after": 0.6665492518503267,
+            "absolute_difference": 1.1102230246251565e-16
+          },
+          {
+            "path": "/evaluations/4/display_srgb/0",
+            "before": 0.835941581425073,
+            "after": 0.8359415814250729,
+            "absolute_difference": 1.1102230246251565e-16
+          }
+        ],
+        "changed_numeric_fields": 57,
+        "maximum_absolute_difference": 8.881784197001252e-16,
+        "nonnumeric_fields_unchanged": true
+      },
+      "sh_original.png": {
+        "committed_sha256": "dfc2e0f5aa7cdee17dc32231ae3258c551cc886eff2bbb01cc43f2e38360174a",
+        "generated_sha256": "dfc2e0f5aa7cdee17dc32231ae3258c551cc886eff2bbb01cc43f2e38360174a",
+        "bytes_identical": true,
+        "width": 192,
+        "height": 192,
+        "decoded_rgb_identical": true,
+        "changed_channel_bytes": 0,
+        "minimum_byte": 0,
+        "maximum_byte": 211,
+        "mean_byte": 102.34946469907408
+      },
+      "sh_original_coefficients.glsl": {
+        "committed_sha256": "19e5f8c73e60dac5f0b893e1ae1ae54413c13049a7a32ab7c24c2564d4f055c7",
+        "generated_sha256": "fa422aec785f14067474edad2f2b338d566c3b704d27cb271db8f05561fc9d9b",
+        "bytes_identical": false,
+        "changed_numeric_fields": 9,
+        "maximum_absolute_difference": 4.0251676000000224e-18,
+        "nonnumeric_text_unchanged": true
+      },
+      "sh_rotated.png": {
+        "committed_sha256": "c9b205dc7dee31d731685d996326badf9da62c48fe69713b6fbe2fea4fccaac7",
+        "generated_sha256": "c9b205dc7dee31d731685d996326badf9da62c48fe69713b6fbe2fea4fccaac7",
+        "bytes_identical": true,
+        "width": 192,
+        "height": 192,
+        "decoded_rgb_identical": true,
+        "changed_channel_bytes": 0,
+        "minimum_byte": 0,
+        "maximum_byte": 211,
+        "mean_byte": 102.34946469907408
+      },
+      "sh_rotated_coefficients.glsl": {
+        "committed_sha256": "a0997cb065d9d0c6c80c8bc8078e0c45505830b03f50753614fff45b08b87b12",
+        "generated_sha256": "b021fc92fecb0f0652645767507a6112900ea145dd498c529e65755ebf2033fc",
+        "bytes_identical": false,
+        "changed_numeric_fields": 9,
+        "maximum_absolute_difference": 4.025166999999715e-18,
+        "nonnumeric_text_unchanged": true
+      },
+      "visualization.json": {
+        "committed_sha256": "ab28ea8ab67db742626ba4fc95595f8c06496b1eb2c4d8612c18ee94e008d0f2",
+        "generated_sha256": "44ecac0f6442cc377d5b8b9285aba72cb710b44b248946f3ff07bb5ecac42825",
+        "bytes_identical": false,
+        "numeric_changes": [
+          {
+            "path": "/radiance_coefficients/1/0",
+            "before": -1.3877337470009468e-16,
+            "after": -1.368514987153956e-16,
+            "absolute_difference": 1.9218759846990735e-18
+          },
+          {
+            "path": "/radiance_coefficients/1/1",
+            "before": -9.347109447626905e-17,
+            "after": -9.475311027480171e-17,
+            "absolute_difference": 1.2820157985326606e-18
+          },
+          {
+            "path": "/radiance_coefficients/1/2",
+            "before": -5.381033202743319e-17,
+            "after": -5.4695724028028565e-17,
+            "absolute_difference": 8.85392000595375e-19
+          },
+          {
+            "path": "/radiance_coefficients/4/0",
+            "before": 2.3983818035919825e-16,
+            "after": 2.3916425615162387e-16,
+            "absolute_difference": 6.739242075743826e-19
+          },
+          {
+            "path": "/radiance_coefficients/4/1",
+            "before": 1.616953849069707e-16,
+            "after": 1.6154029493337971e-16,
+            "absolute_difference": 1.55089973590991e-19
+          },
+          {
+            "path": "/radiance_coefficients/4/2",
+            "before": 9.389223363927807e-17,
+            "after": 9.373197739931146e-17,
+            "absolute_difference": 1.6025623996661605e-19
+          },
+          {
+            "path": "/radiance_coefficients/5/0",
+            "before": -1.600932491967913e-16,
+            "after": -1.5845943224296892e-16,
+            "absolute_difference": 1.633816953822382e-18
+          },
+          {
+            "path": "/radiance_coefficients/5/1",
+            "before": -1.041180872786091e-16,
+            "after": -1.0277701078434015e-16,
+            "absolute_difference": 1.3410764942689468e-18
+          },
+          {
+            "path": "/radiance_coefficients/5/2",
+            "before": -6.423821130295284e-17,
+            "after": -6.256132512258635e-17,
+            "absolute_difference": 1.6768861803664868e-18
+          },
+          {
+            "path": "/radiance_coefficients/8/1",
+            "before": 1.8256444006726287,
+            "after": 1.8256444006726285,
+            "absolute_difference": 2.220446049250313e-16
+          },
+          {
+            "path": "/rotated_radiance_coefficients/3/0",
+            "before": 8.604718194165384e-16,
+            "after": 8.585499434318393e-16,
+            "absolute_difference": 1.9218759846990735e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/3/1",
+            "before": 5.746033909538982e-16,
+            "after": 5.7588540675243085e-16,
+            "absolute_difference": 1.2820157985326606e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/3/2",
+            "before": 3.424897099140107e-16,
+            "after": 3.4337510191460606e-16,
+            "absolute_difference": 8.85392000595375e-19
+          },
+          {
+            "path": "/rotated_radiance_coefficients/4/0",
+            "before": -1.4559616494020468e-15,
+            "after": -1.4552877251944724e-15,
+            "absolute_difference": 6.739242075743826e-19
+          },
+          {
+            "path": "/rotated_radiance_coefficients/4/1",
+            "before": -9.724443642688698e-16,
+            "after": -9.722892742952786e-16,
+            "absolute_difference": 1.5508997359118823e-19
+          },
+          {
+            "path": "/rotated_radiance_coefficients/4/2",
+            "before": -5.803416212564175e-16,
+            "after": -5.801813650164508e-16,
+            "absolute_difference": 1.6025623996671466e-19
+          },
+          {
+            "path": "/rotated_radiance_coefficients/6/1",
+            "before": 0.13180231494924183,
+            "after": 0.13180231494924177,
+            "absolute_difference": 5.551115123125783e-17
+          },
+          {
+            "path": "/rotated_radiance_coefficients/7/0",
+            "before": 1.0721858509750123e-15,
+            "after": 1.07055203402119e-15,
+            "absolute_difference": 1.633816953822382e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/7/1",
+            "before": 7.12179821797423e-16,
+            "after": 7.108387453031541e-16,
+            "absolute_difference": 1.3410764942689468e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/7/2",
+            "before": 4.2907525201424123e-16,
+            "after": 4.2739836583387474e-16,
+            "absolute_difference": 1.6768861803664868e-18
+          },
+          {
+            "path": "/rotated_radiance_coefficients/8/1",
+            "before": -1.8256444006726296,
+            "after": -1.8256444006726291,
+            "absolute_difference": 4.440892098500626e-16
+          },
+          {
+            "path": "/irradiance_coefficients/0/1/0",
+            "before": -2.9064627631445406e-16,
+            "after": -2.866211086646932e-16,
+            "absolute_difference": 4.025167649760875e-18
+          },
+          {
+            "path": "/irradiance_coefficients/0/1/1",
+            "before": -1.9576540248642953e-16,
+            "after": -1.9845045009606706e-16,
+            "absolute_difference": 2.68504760963752e-18
+          },
+          {
+            "path": "/irradiance_coefficients/0/1/2",
+            "before": -1.1270009585640778e-16,
+            "after": -1.1455445652615283e-16,
+            "absolute_difference": 1.8543606697450527e-18
+          },
+          {
+            "path": "/irradiance_coefficients/0/4/0",
+            "before": 1.8836846636670026e-16,
+            "after": 1.8783916753180225e-16,
+            "absolute_difference": 5.292988348980081e-19
+          },
+          {
+            "path": "/irradiance_coefficients/0/4/1",
+            "before": 1.2699525833577827e-16,
+            "after": 1.2687345095535855e-16,
+            "absolute_difference": 1.21807380419716e-19
+          },
+          {
+            "path": "/irradiance_coefficients/0/4/2",
+            "before": 7.37427878575731e-17,
+            "after": 7.361692290103035e-17,
+            "absolute_difference": 1.2586495654275627e-19
+          },
+          {
+            "path": "/irradiance_coefficients/0/5/0",
+            "before": -1.257369438914899e-16,
+            "after": -1.244537470566302e-16,
+            "absolute_difference": 1.2831968348597096e-18
+          },
+          {
+            "path": "/irradiance_coefficients/0/5/1",
+            "before": -8.177415452507481e-17,
+            "after": -8.07208755095005e-17,
+            "absolute_difference": 1.0532790155743143e-18
+          },
+          {
+            "path": "/irradiance_coefficients/0/5/2",
+            "before": -5.045257317727637e-17,
+            "after": -4.9135549850989964e-17,
+            "absolute_difference": 1.3170233262864039e-18
+          },
+          {
+            "path": "/irradiance_coefficients/0/8/1",
+            "before": 1.4338577593051178,
+            "after": 1.4338577593051176,
+            "absolute_difference": 2.220446049250313e-16
+          },
+          {
+            "path": "/irradiance_coefficients/1/3/0",
+            "before": 1.80216796433336e-15,
+            "after": 1.798142796683599e-15,
+            "absolute_difference": 4.025167649760777e-18
+          },
+          {
+            "path": "/irradiance_coefficients/1/3/1",
+            "before": 1.2034465278323667e-15,
+            "after": 1.2061315754420043e-15,
+            "absolute_difference": 2.6850476096376188e-18
+          },
+          {
+            "path": "/irradiance_coefficients/1/3/2",
+            "before": 7.173087710639702e-16,
+            "after": 7.191631317337152e-16,
+            "absolute_difference": 1.8543606697450034e-18
+          },
+          {
+            "path": "/irradiance_coefficients/1/4/0",
+            "before": -1.143509605417487e-15,
+            "after": -1.1429803065825891e-15,
+            "absolute_difference": 5.292988348979588e-19
+          },
+          {
+            "path": "/irradiance_coefficients/1/4/1",
+            "before": -7.637560177029695e-16,
+            "after": -7.636342103225496e-16,
+            "absolute_difference": 1.2180738041988855e-19
+          },
+          {
+            "path": "/irradiance_coefficients/1/4/2",
+            "before": -4.557992434778878e-16,
+            "after": -4.55673378521345e-16,
+            "absolute_difference": 1.2586495654285488e-19
+          },
+          {
+            "path": "/irradiance_coefficients/1/6/1",
+            "before": 0.10351729609266658,
+            "after": 0.10351729609266654,
+            "absolute_difference": 4.163336342344337e-17
+          },
+          {
+            "path": "/irradiance_coefficients/1/7/0",
+            "before": 8.420927981765049e-16,
+            "after": 8.408096013416451e-16,
+            "absolute_difference": 1.2831968348597096e-18
+          },
+          {
+            "path": "/irradiance_coefficients/1/7/1",
+            "before": 5.593447240484181e-16,
+            "after": 5.582914450328437e-16,
+            "absolute_difference": 1.0532790155743513e-18
+          },
+          {
+            "path": "/irradiance_coefficients/1/7/2",
+            "before": 3.3699491489128233e-16,
+            "after": 3.356778915649959e-16,
+            "absolute_difference": 1.3170233262864223e-18
+          },
+          {
+            "path": "/irradiance_coefficients/1/8/1",
+            "before": -1.4338577593051185,
+            "after": -1.433857759305118,
+            "absolute_difference": 4.440892098500626e-16
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/0/irradiance_linear_rgb/1",
+            "before": 2.8286366982402993,
+            "after": 2.8286366982402997,
+            "absolute_difference": 4.440892098500626e-16
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/0/irradiance_linear_rgb/2",
+            "before": 1.7097492520705424,
+            "after": 1.7097492520705426,
+            "absolute_difference": 2.220446049250313e-16
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/0/lambertian_linear_rgb/1",
+            "before": 0.5852489665569061,
+            "after": 0.5852489665569062,
+            "absolute_difference": 1.1102230246251565e-16
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/1/irradiance_linear_rgb/0",
+            "before": 5.025144418082802,
+            "after": 5.0251444180827916,
+            "absolute_difference": 1.0658141036401503e-14
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/1/irradiance_linear_rgb/1",
+            "before": 3.3710428595004465,
+            "after": 3.3710428595004394,
+            "absolute_difference": 7.105427357601002e-15
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/1/irradiance_linear_rgb/2",
+            "before": 2.035193664167415,
+            "after": 2.0351936641674104,
+            "absolute_difference": 4.440892098500626e-15
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/1/lambertian_linear_rgb/0",
+            "before": 1.0397095460550811,
+            "after": 1.039709546055079,
+            "absolute_difference": 2.220446049250313e-15
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/1/lambertian_linear_rgb/1",
+            "before": 0.6974735748033738,
+            "after": 0.6974735748033724,
+            "absolute_difference": 1.4432899320127035e-15
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/1/lambertian_linear_rgb/2",
+            "before": 0.42108447134201615,
+            "after": 0.42108447134201527,
+            "absolute_difference": 8.881784197001252e-16
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/2/irradiance_linear_rgb/1",
+            "before": 5.610145500458568,
+            "after": 5.610145500458569,
+            "absolute_difference": 8.881784197001252e-16
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/2/irradiance_linear_rgb/2",
+            "before": 3.3786545029614703,
+            "after": 3.3786545029614707,
+            "absolute_difference": 4.440892098500626e-16
+          },
+          {
+            "path": "/images/sh_original/reference_pixels/2/lambertian_linear_rgb/2",
+            "before": 0.6990484346898114,
+            "after": 0.6990484346898115,
+            "absolute_difference": 1.1102230246251565e-16
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/0/irradiance_linear_rgb/1",
+            "before": 5.5760129261094695,
+            "after": 5.57601292610947,
+            "absolute_difference": 8.881784197001252e-16
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/0/irradiance_linear_rgb/2",
+            "before": 3.3581749887920447,
+            "after": 3.358174988792045,
+            "absolute_difference": 4.440892098500626e-16
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/0/lambertian_linear_rgb/1",
+            "before": 1.153685025915013,
+            "after": 1.1536850259150133,
+            "absolute_difference": 2.220446049250313e-16
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/0/lambertian_linear_rgb/2",
+            "before": 0.6948111940039714,
+            "after": 0.6948111940039715,
+            "absolute_difference": 1.1102230246251565e-16
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/1/irradiance_linear_rgb/0",
+            "before": 4.945853931153801,
+            "after": 4.9458539311538114,
+            "absolute_difference": 1.0658141036401503e-14
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/1/irradiance_linear_rgb/1",
+            "before": 3.318182534881112,
+            "after": 3.318182534881119,
+            "absolute_difference": 7.105427357601002e-15
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/1/irradiance_linear_rgb/2",
+            "before": 2.003477469395814,
+            "after": 2.0034774693958184,
+            "absolute_difference": 4.440892098500626e-15
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/1/lambertian_linear_rgb/0",
+            "before": 1.023304231239693,
+            "after": 1.0233042312396954,
+            "absolute_difference": 2.4424906541753444e-15
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/1/lambertian_linear_rgb/1",
+            "before": 0.6865366982597818,
+            "after": 0.6865366982597831,
+            "absolute_difference": 1.3322676295501878e-15
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/1/lambertian_linear_rgb/2",
+            "before": 0.41452234541586086,
+            "after": 0.41452234541586175,
+            "absolute_difference": 8.881784197001252e-16
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/2/irradiance_linear_rgb/0",
+            "before": 4.102831110324627,
+            "after": 4.102831110324626,
+            "absolute_difference": 8.881784197001252e-16
+          },
+          {
+            "path": "/images/sh_rotated/reference_pixels/2/lambertian_linear_rgb/0",
+            "before": 0.8488816074431859,
+            "after": 0.8488816074431857,
+            "absolute_difference": 1.1102230246251565e-16
+          }
+        ],
+        "changed_numeric_fields": 66,
+        "maximum_absolute_difference": 1.0658141036401503e-14,
+        "nonnumeric_fields_unchanged": true
+      }
+    },
+    "goldens_modified": false,
+    "byte_hashes_are_supplemental": true
+  },
+  "performance_runs": [
+    {
+      "schema": 1,
+      "hypothesis": "whole-path validation repeated for each straight segment",
+      "environment": {
+        "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+        "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+        "machine": "x86_64"
+      },
+      "method": {
+        "clock": "process_time_ns",
+        "trials": 7,
+        "seed": 475005,
+        "gc_disabled_during_timing": true,
+        "warmup_calls": 1,
+        "setup_timed": false,
+        "profile_separate_from_timing": true,
+        "control_range": "X=0..3*segments; Y=0; Vector2",
+        "subdivision": "straight segments, endpoints only"
+      },
+      "workloads": [
+        {
+          "segments": 8,
+          "controls": 25,
+          "output_points": 9,
+          "calls_per_trial": 16,
+          "trials_ns_per_call": [
+            124304.0,
+            153415.4375,
+            146149.625,
+            125720.0,
+            152257.4375,
+            124233.6875,
+            129807.375
+          ],
+          "median_ns": 129807.375,
+          "mad_ns": 5573.6875,
+          "min_ns": 124233.6875,
+          "max_ns": 153415.4375,
+          "profile_coordinates_calls": 9,
+          "profile_coordinates_seconds": 0.0005488930000000001,
+          "profile_total_seconds": 0.000777564,
+          "validated_control_visits": 225
+        },
+        {
+          "segments": 32,
+          "controls": 97,
+          "output_points": 33,
+          "calls_per_trial": 8,
+          "trials_ns_per_call": [
+            1267773.875,
+            1266165.125,
+            1345335.625,
+            1257984.625,
+            1275574.75,
+            1251939.625,
+            1367854.125
+          ],
+          "median_ns": 1267773.875,
+          "mad_ns": 9789.25,
+          "min_ns": 1251939.625,
+          "max_ns": 1367854.125,
+          "profile_coordinates_calls": 33,
+          "profile_coordinates_seconds": 0.006291696,
+          "profile_total_seconds": 0.0070999950000000004,
+          "validated_control_visits": 3201
+        },
+        {
+          "segments": 128,
+          "controls": 385,
+          "output_points": 129,
+          "calls_per_trial": 2,
+          "trials_ns_per_call": [
+            17654665.0,
+            17205451.0,
+            17289292.5,
+            17057028.5,
+            18504438.5,
+            17126191.0,
+            17273487.0
+          ],
+          "median_ns": 17273487.0,
+          "mad_ns": 147296.0,
+          "min_ns": 17057028.5,
+          "max_ns": 18504438.5,
+          "profile_coordinates_calls": 129,
+          "profile_coordinates_seconds": 0.09417706,
+          "profile_total_seconds": 0.098379377,
+          "validated_control_visits": 49665
+        },
+        {
+          "segments": 512,
+          "controls": 1537,
+          "output_points": 513,
+          "calls_per_trial": 1,
+          "trials_ns_per_call": [
+            299903502.0,
+            275018109.0,
+            274743398.0,
+            284928156.0,
+            279099340.0,
+            266797926.0,
+            275379776.0
+          ],
+          "median_ns": 275379776.0,
+          "mad_ns": 3719564.0,
+          "min_ns": 266797926.0,
+          "max_ns": 299903502.0,
+          "profile_coordinates_calls": 513,
+          "profile_coordinates_seconds": 1.5367948100000002,
+          "profile_total_seconds": 1.564401374,
+          "validated_control_visits": 788481
+        }
+      ]
+    },
+    {
+      "schema": 1,
+      "hypothesis": "whole-path validation repeated for each straight segment",
+      "environment": {
+        "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+        "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+        "machine": "x86_64"
+      },
+      "method": {
+        "clock": "process_time_ns",
+        "trials": 7,
+        "seed": 475005,
+        "gc_disabled_during_timing": true,
+        "warmup_calls": 1,
+        "setup_timed": false,
+        "profile_separate_from_timing": true,
+        "control_range": "X=0..3*segments; Y=0; Vector2",
+        "subdivision": "straight segments, endpoints only"
+      },
+      "workloads": [
+        {
+          "segments": 8,
+          "controls": 25,
+          "output_points": 9,
+          "calls_per_trial": 16,
+          "trials_ns_per_call": [
+            146807.3125,
+            141272.1875,
+            182502.9375,
+            128591.5625,
+            135171.875,
+            342607.3125,
+            128192.3125
+          ],
+          "median_ns": 141272.1875,
+          "mad_ns": 12680.625,
+          "min_ns": 128192.3125,
+          "max_ns": 342607.3125,
+          "profile_coordinates_calls": 9,
+          "profile_coordinates_seconds": 0.0005976,
+          "profile_total_seconds": 0.0009389730000000001,
+          "validated_control_visits": 225
+        },
+        {
+          "segments": 32,
+          "controls": 97,
+          "output_points": 33,
+          "calls_per_trial": 8,
+          "trials_ns_per_call": [
+            1427284.375,
+            1295865.875,
+            1261375.625,
+            1466720.25,
+            1234796.5,
+            1301047.5,
+            1652505.625
+          ],
+          "median_ns": 1301047.5,
+          "mad_ns": 66251.0,
+          "min_ns": 1234796.5,
+          "max_ns": 1652505.625,
+          "profile_coordinates_calls": 33,
+          "profile_coordinates_seconds": 0.006486749,
+          "profile_total_seconds": 0.007762658,
+          "validated_control_visits": 3201
+        },
+        {
+          "segments": 128,
+          "controls": 385,
+          "output_points": 129,
+          "calls_per_trial": 2,
+          "trials_ns_per_call": [
+            24639215.0,
+            18617730.5,
+            22176946.5,
+            18147737.0,
+            17610483.5,
+            16781228.0,
+            34671361.0
+          ],
+          "median_ns": 18617730.5,
+          "mad_ns": 1836502.5,
+          "min_ns": 16781228.0,
+          "max_ns": 34671361.0,
+          "profile_coordinates_calls": 129,
+          "profile_coordinates_seconds": 0.094396825,
+          "profile_total_seconds": 0.09831474400000001,
+          "validated_control_visits": 49665
+        },
+        {
+          "segments": 512,
+          "controls": 1537,
+          "output_points": 513,
+          "calls_per_trial": 1,
+          "trials_ns_per_call": [
+            289399296.0,
+            295773021.0,
+            334806727.0,
+            266107277.0,
+            261842863.0,
+            350229622.0,
+            306715638.0
+          ],
+          "median_ns": 295773021.0,
+          "mad_ns": 29665744.0,
+          "min_ns": 261842863.0,
+          "max_ns": 350229622.0,
+          "profile_coordinates_calls": 513,
+          "profile_coordinates_seconds": 1.647198031,
+          "profile_total_seconds": 1.677889911,
+          "validated_control_visits": 788481
+        }
+      ]
+    }
+  ],
+  "preservation": {
+    "all_original_tracked_files_unchanged": 358,
+    "all_original_files_sha256": "fa7a3ce78c7dfdef36f36ed1271873f75d3f93aca2dd06ecedf61ffb9df33eda",
+    "runtime_sha256": {
+      "gem/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gem/bezier.py": "1d354070a425ea0cb99e590f984f1dd86cf5b2a03432bee848f3352f85fc75b3",
+      "gem/common.py": "2384eae0490eff93499fca6fe56cc25074119b6955b40ca3d6823f8099406ec8",
+      "gem/experimental/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "gem/experimental/_bezier_legacy.py": "39f9522eaeb171837e7797ab604bb4bacf718053375266a61c39a0de9217a034",
+      "gem/experimental/bezier.py": "4d61b9ad9b6a807101a06e4641b74dae96325a82cdc5796bd2326f7f1afdaf15",
+      "gem/experimental/legendre.py": "4f1fb87056d71982405e1cd5d83fbb07fe9f8a9c464d18ac641486cc47633db5",
+      "gem/experimental/sph.py": "192b1c96295ddf6585da4c91c1da372b5c4f53bc844ee9125ff38b913496ff0d",
+      "gem/experimental/sph_irradiance_map.py": "e7d8fa175ad566fb2d4def36978d632a537e930b5acb02396c906ae1465bab94",
+      "gem/experimental/sph_sample.py": "fbf10456e724005116524fa797474fe767cbf0224468cfc878e5fd8e6f278c15",
+      "gem/legendre.py": "bcad8a96d35f47eb4f03a1535cf5083017a351e89129534b6acb673966a254f8",
+      "gem/matrix.py": "e539db231c9b71bc0846954f2a0fad0840b0b03ffd78ae65a4189a634b56c17c",
+      "gem/plane.py": "bbffce137d4885d3587efcb0aa0f2d5084d12191f9c62efb54e2cbe4dd9033f6",
+      "gem/quaternion.py": "f35e99eac8b0563d87b827f38d085d6a83911278eff01ab425dd4317961a8768",
+      "gem/ray.py": "307dfac3a68a2235c3342d4bfe0d93fd15335dba4c28eff4cf6b79ae6167c1a4",
+      "gem/spherical_harmonics.py": "25bb90b46e4ba5175e320a7f232ac6a2523b31d495e82412db5bdc9579f0d06b",
+      "gem/vector.py": "df658aa596999334153e143c0801eabc5e5fb4e5bc402770e78a0178dc83c28c"
+    },
+    "runtime_imports": {
+      "gem/__init__.py": [],
+      "gem/bezier.py": [
+        "gem.vector",
+        "math"
+      ],
+      "gem/common.py": [
+        "ctypes",
+        "math",
+        "six.moves"
+      ],
+      "gem/experimental/__init__.py": [],
+      "gem/experimental/_bezier_legacy.py": [
+        "gem.bezier"
+      ],
+      "gem/experimental/bezier.py": [
+        "gem.bezier"
+      ],
+      "gem/experimental/legendre.py": [
+        "gem.legendre"
+      ],
+      "gem/experimental/sph.py": [
+        "gem.spherical_harmonics"
+      ],
+      "gem/experimental/sph_irradiance_map.py": [
+        "gem.spherical_harmonics"
+      ],
+      "gem/experimental/sph_sample.py": [
+        "gem.spherical_harmonics"
+      ],
+      "gem/legendre.py": [
+        "math"
+      ],
+      "gem/matrix.py": [
+        "gem",
+        "math",
+        "six.moves"
+      ],
+      "gem/plane.py": [
+        "gem",
+        "six.moves"
+      ],
+      "gem/quaternion.py": [
+        "gem",
+        "math",
+        "six.moves"
+      ],
+      "gem/ray.py": [
+        "gem.quaternion",
+        "gem.vector"
+      ],
+      "gem/spherical_harmonics.py": [
+        "functools",
+        "gem.legendre",
+        "gem.quaternion",
+        "gem.vector",
+        "math",
+        "pprint",
+        "random",
+        "struct"
+      ],
+      "gem/vector.py": [
+        "math",
+        "six.moves"
+      ]
+    },
+    "core_depends_on_experimental": false,
+    "retired_runtime_imports": [],
+    "existing_tests_unchanged": true,
+    "packaging_unchanged": true,
+    "dependencies_unchanged": true,
+    "public_signatures_unchanged": true
+  },
+  "findings": [
+    {
+      "id": "4G5-A01",
+      "severity": "P3",
+      "classification": "Release blocker",
+      "source": "gem/quaternion.py:289-293; squad4 propagation at 331-333",
+      "expected_transverse_rotation": 1e-323,
+      "actual_transverse_rotation": 0.0,
+      "strict_xfails": 12
+    },
+    {
+      "id": "4G5-P01",
+      "severity": "P3",
+      "classification": "Post-1.0 improvement",
+      "source": "gem/bezier.py:169-188,219-246",
+      "validated_controls_formula": "(segments+1)*(3*segments+1)",
+      "confirmed_in_two_runs": true
+    }
+  ],
+  "commands_report": "PHASE4G5-FINAL-INTEGRATION.md"
+}
