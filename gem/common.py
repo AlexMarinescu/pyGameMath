@@ -69,12 +69,16 @@ def scalarLerp(a, b, time):
 
 # Returns the view port coordinates
 def getViewPort(coords, width, height):
-    ''' A version of glViewPort except it returns the coords. '''
+    """Return the historical normalized-coordinate rectangle, not projection.
+
+    Normalize the entire Vector, scale XY to width/height, then add original
+    XY as offsets. Inputs are preserved; a zero Vector raises ZeroDivisionError.
+    """
     if coords.vector and all(value == 0.0 for value in coords.vector):
         raise ZeroDivisionError("Cannot normalize zero viewport coordinates")
     coordsN = coords.normalize()
-    x = (coordsN[0] + 1) * (width / 2) + coords[0]
-    y = (coordsN[1] + 1) * (height / 2) + coords[1]
+    x = (coordsN.vector[0] + 1) * (width / 2) + coords.vector[0]
+    y = (coordsN.vector[1] + 1) * (height / 2) + coords.vector[1]
     return [x,y,width,height]
 
 # Radians to degree

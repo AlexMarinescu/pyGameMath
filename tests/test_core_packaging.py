@@ -72,7 +72,8 @@ def test_clean_wheel_and_sdist_isolated_imports(tmp_path):
     for name in ('setup.py', 'setup.cfg', 'MANIFEST.in', 'README.rst', 'LICENSE'):
         shutil.copy2(ROOT / name, source / name)
     (source / 'docs').mkdir()
-    shutil.copy2(ROOT / 'docs/EXPERIMENTAL_MIGRATION.md', source / 'docs')
+    for guide in ('EXPERIMENTAL_MIGRATION.md', 'VECTOR_VIEWPORT_CONTRACTS.md'):
+        shutil.copy2(ROOT / 'docs' / guide, source / 'docs')
     build_python = os.environ.get('GEM_BUILD_PYTHON', sys._base_executable)
     env = os.environ.copy()
     env.pop('PYTHONPATH', None)
@@ -94,6 +95,7 @@ def test_clean_wheel_and_sdist_isolated_imports(tmp_path):
         assert all(any(name.endswith('/' + item) for name in names) for item in required)
         assert not any('sph_object' in name for name in names)
         assert any(name.endswith('/docs/EXPERIMENTAL_MIGRATION.md') for name in names)
+        assert any(name.endswith('/docs/VECTOR_VIEWPORT_CONTRACTS.md') for name in names)
     # Install using the existing tooling; no index, resolution or dependency installs.
     target = tmp_path / 'installed'
     subprocess.run([sys.executable, '-m', 'pip', 'install', '--no-index', '--no-deps',
@@ -116,6 +118,15 @@ assert sph_irradiance_map.SPH_IrradianceMapCoeff is sh.SPH_IrradianceMapCoeff
 assert bezier.quadraticBezierPoint(.5, 0, 2, 4) == 2
 assert abs(legendre.Legendre(3, 0, .2).run() + .28) < 1e-15
 assert abs(sh.SPH(0, 0, 0, 0) - 1/math.sqrt(4*math.pi)) < 1e-15
+from gem.vector import Vector, clamp
+from gem.common import getViewPort
+assert Vector(0) == Vector(0) and not (Vector(0) != Vector(0))
+assert Vector(2) != Vector(3) and Vector(3) != Vector(2)
+values = [-2, 2, 10]
+clamped = clamp(3, values, [0]*3, [5]*3)
+assert clamped.vector == [0, 2, 5] and values == [-2, 2, 10]
+assert clamped.vector is not values
+assert getViewPort(Vector(2, [3, 4]), 100, 200) == [83, 184, 100, 200]
 for module in (bezier, legendre, sh, b, l, sph, sph_sample, sph_irradiance_map):
     assert module.__file__.startswith(sys.argv[1])
 try:

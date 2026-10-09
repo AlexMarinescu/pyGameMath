@@ -1,0 +1,24 @@
+{
+  "baseline": {
+    "passed": 1778,
+    "xfailed": 4
+  },
+  "before_runxfail": {
+    "failed": 4,
+    "deselected": 45
+  },
+  "final": {
+    "passed": 1821,
+    "xfailed": 0,
+    "unexpected_failures": 0,
+    "skipped": 0
+  },
+  "former_expected_failures_now_passing": [
+    "tests.test_vector_common::test_clamp_preserves_input",
+    "tests.test_vector_common::test_empty_equality",
+    "tests.test_vector_common::test_equality_dimensions",
+    "tests.test_vector_common::test_viewport_vector"
+  ],
+  "added_numerical_and_ownership_cases": 39,
+  "installed_wheel_contract_smoke_verified": true
+}

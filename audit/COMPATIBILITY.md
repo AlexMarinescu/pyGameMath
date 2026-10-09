@@ -335,3 +335,13 @@ Legendre and SH implementations retain all existing contracts. Minimal
 experimental compatibility reexports still ship; full package deletion needs
 a release-boundary decision because established imports remain supported.
 See the [migration table](../docs/EXPERIMENTAL_MIGRATION.md).
+
+## Final comparison, clamp and viewport cleanup
+
+Different Vector dimensions now compare unequal and empty Vectors compare equal,
+with exact comparisons and complementary inequality. Returning clamp no longer
+modifies input storage; i_clamp changes only its receiver and leaves other owners
+of old storage intact. Existing signatures/arithmetic are retained. getViewPort
+now accesses Vector components correctly, preserving historical normalization,
+XY offsets, result shape and zero-input error. See the
+[migration details](../docs/VECTOR_VIEWPORT_CONTRACTS.md).

@@ -242,3 +242,12 @@ re-exports and remain available pending a release-boundary removal decision.
 The unfinished ``gem.experimental.sph_object`` transport module is removed;
 there is no supported shadow-transport replacement. See
 ``docs/EXPERIMENTAL_MIGRATION.md`` for the complete migration table.
+
+Vector and legacy viewport contracts
+-----------------------------------
+
+Vector comparisons require equal declared dimensions; empty Vectors compare
+equal. Returning clamp preserves input lists, and in-place clamp changes only
+its receiver. The legacy ``getViewPort`` helper retains its normalized-coordinate
+formula and is separate from projection/OpenGL state. See
+``docs/VECTOR_VIEWPORT_CONTRACTS.md`` for examples and compatibility details.
