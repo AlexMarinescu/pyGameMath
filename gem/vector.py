@@ -67,7 +67,12 @@ def refract(IOR, incidentVec, normal):
     if k < 0.0:
         return Vector(normal.size)
     else:
-        scalar = IOR * dotNI + math.sqrt(k)
+        # Equal indices leave an opposing unit incident direction unchanged.
+        # Recovering abs(dotNI) from 1 - (1 - dotNI**2) loses grazing terms.
+        if IOR == 1.0 and -1.0 <= dotNI <= 0.0:
+            scalar = 0.0
+        else:
+            scalar = IOR * dotNI + math.sqrt(k)
         return (incidentVec * IOR) - (normal * scalar)
 
 # 2D - get angle of the vector

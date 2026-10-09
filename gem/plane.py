@@ -99,12 +99,18 @@ class Plane(object):
         Reversing vertex order reverses the normal.
         '''
         output = vector.Vector(3).zero()
+        if len(vecList):
+            origin = vecList[0].vector
+            current = (0.0, 0.0, 0.0)
         for i in sm.range(len(vecList)):
-            current = vecList[i].vector
-            following = vecList[(i + 1) % len(vecList)].vector
+            point = vecList[(i + 1) % len(vecList)].vector
+            # Newell's sum is translation invariant. Use local coordinates so
+            # large world offsets cannot obscure the polygon's edge geometry.
+            following = (point[0] - origin[0], point[1] - origin[1], point[2] - origin[2])
             output.vector[0] += (current[2] + following[2]) * (current[1] - following[1])
             output.vector[1] += (current[0] + following[0]) * (current[2] - following[2])
             output.vector[2] += (current[1] + following[1]) * (current[0] - following[0])
+            current = following
         vector._require_nonzero(output.size, output.vector)
         return output.normalize()
 

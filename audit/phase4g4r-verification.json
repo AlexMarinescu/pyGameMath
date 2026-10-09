@@ -1,0 +1,229 @@
+{
+  "base": "495dc3d5b4d5f8bd4969b690b3a207a9f3339023",
+  "status": "passed",
+  "baseline": {
+    "passed": 3540,
+    "failed": 0,
+    "xfailed": 14,
+    "skipped": 0,
+    "errors": 0
+  },
+  "original_reproductions": {
+    "passed": 0,
+    "failed": 14,
+    "xfailed": 0,
+    "skipped": 0,
+    "errors": 0
+  },
+  "reproduction_cases": [
+    {
+      "name": "test_equal_media_grazing_refraction_identity[1e-09-2]",
+      "classname": "tests.test_geometry_audit",
+      "status": "failed"
+    },
+    {
+      "name": "test_equal_media_grazing_refraction_identity[1e-09-3]",
+      "classname": "tests.test_geometry_audit",
+      "status": "failed"
+    },
+    {
+      "name": "test_equal_media_grazing_refraction_identity[1e-09-4]",
+      "classname": "tests.test_geometry_audit",
+      "status": "failed"
+    },
+    {
+      "name": "test_equal_media_grazing_refraction_identity[1e-100-2]",
+      "classname": "tests.test_geometry_audit",
+      "status": "failed"
+    },
+    {
+      "name": "test_equal_media_grazing_refraction_identity[1e-100-3]",
+      "classname": "tests.test_geometry_audit",
+      "status": "failed"
+    },
+    {
+      "name": "test_equal_media_grazing_refraction_identity[1e-100-4]",
+      "classname": "tests.test_geometry_audit",
+      "status": "failed"
+    },
+    {
+      "name": "test_translated_polygon_retains_exact_area_normal[False-False-False]",
+      "classname": "tests.test_geometry_audit",
+      "status": "failed"
+    },
+    {
+      "name": "test_translated_polygon_retains_exact_area_normal[False-False-True]",
+      "classname": "tests.test_geometry_audit",
+      "status": "failed"
+    },
+    {
+      "name": "test_translated_polygon_retains_exact_area_normal[False-True-False]",
+      "classname": "tests.test_geometry_audit",
+      "status": "failed"
+    },
+    {
+      "name": "test_translated_polygon_retains_exact_area_normal[False-True-True]",
+      "classname": "tests.test_geometry_audit",
+      "status": "failed"
+    },
+    {
+      "name": "test_translated_polygon_retains_exact_area_normal[True-False-False]",
+      "classname": "tests.test_geometry_audit",
+      "status": "failed"
+    },
+    {
+      "name": "test_translated_polygon_retains_exact_area_normal[True-False-True]",
+      "classname": "tests.test_geometry_audit",
+      "status": "failed"
+    },
+    {
+      "name": "test_translated_polygon_retains_exact_area_normal[True-True-False]",
+      "classname": "tests.test_geometry_audit",
+      "status": "failed"
+    },
+    {
+      "name": "test_translated_polygon_retains_exact_area_normal[True-True-True]",
+      "classname": "tests.test_geometry_audit",
+      "status": "failed"
+    }
+  ],
+  "full_suite": {
+    "passed": 3714,
+    "failed": 0,
+    "xfailed": 0,
+    "skipped": 0,
+    "errors": 0
+  },
+  "repaired_audit_cases": [
+    {
+      "name": "test_equal_media_grazing_refraction_identity[1e-09-2]",
+      "classname": "tests.test_geometry_audit",
+      "status": "passed"
+    },
+    {
+      "name": "test_equal_media_grazing_refraction_identity[1e-09-3]",
+      "classname": "tests.test_geometry_audit",
+      "status": "passed"
+    },
+    {
+      "name": "test_equal_media_grazing_refraction_identity[1e-09-4]",
+      "classname": "tests.test_geometry_audit",
+      "status": "passed"
+    },
+    {
+      "name": "test_equal_media_grazing_refraction_identity[1e-100-2]",
+      "classname": "tests.test_geometry_audit",
+      "status": "passed"
+    },
+    {
+      "name": "test_equal_media_grazing_refraction_identity[1e-100-3]",
+      "classname": "tests.test_geometry_audit",
+      "status": "passed"
+    },
+    {
+      "name": "test_equal_media_grazing_refraction_identity[1e-100-4]",
+      "classname": "tests.test_geometry_audit",
+      "status": "passed"
+    },
+    {
+      "name": "test_translated_polygon_retains_exact_area_normal[False-False-False]",
+      "classname": "tests.test_geometry_audit",
+      "status": "passed"
+    },
+    {
+      "name": "test_translated_polygon_retains_exact_area_normal[False-False-True]",
+      "classname": "tests.test_geometry_audit",
+      "status": "passed"
+    },
+    {
+      "name": "test_translated_polygon_retains_exact_area_normal[False-True-False]",
+      "classname": "tests.test_geometry_audit",
+      "status": "passed"
+    },
+    {
+      "name": "test_translated_polygon_retains_exact_area_normal[False-True-True]",
+      "classname": "tests.test_geometry_audit",
+      "status": "passed"
+    },
+    {
+      "name": "test_translated_polygon_retains_exact_area_normal[True-False-False]",
+      "classname": "tests.test_geometry_audit",
+      "status": "passed"
+    },
+    {
+      "name": "test_translated_polygon_retains_exact_area_normal[True-False-True]",
+      "classname": "tests.test_geometry_audit",
+      "status": "passed"
+    },
+    {
+      "name": "test_translated_polygon_retains_exact_area_normal[True-True-False]",
+      "classname": "tests.test_geometry_audit",
+      "status": "passed"
+    },
+    {
+      "name": "test_translated_polygon_retains_exact_area_normal[True-True-True]",
+      "classname": "tests.test_geometry_audit",
+      "status": "passed"
+    }
+  ],
+  "new_independent_cases": 160,
+  "cross_module_cases": 580,
+  "preservation": {
+    "original_audit_assertions_inputs_tolerances_unchanged": true,
+    "strict_defect_markers_removed": 2,
+    "other_runtime_modules_unchanged": [
+      "gem/__init__.py",
+      "gem/bezier.py",
+      "gem/common.py",
+      "gem/experimental/__init__.py",
+      "gem/experimental/_bezier_legacy.py",
+      "gem/experimental/bezier.py",
+      "gem/experimental/legendre.py",
+      "gem/experimental/sph.py",
+      "gem/experimental/sph_irradiance_map.py",
+      "gem/experimental/sph_sample.py",
+      "gem/legendre.py",
+      "gem/matrix.py",
+      "gem/quaternion.py",
+      "gem/ray.py",
+      "gem/spherical_harmonics.py"
+    ],
+    "public_signatures_unchanged": true,
+    "only_target_function_bodies_changed": true,
+    "packaging_dependencies_metadata_unchanged": [
+      "setup.py",
+      "setup.cfg",
+      "MANIFEST.in"
+    ]
+  },
+  "installed_smokes": {
+    "wheel": {
+      "status": "passed",
+      "original_regressions": 14,
+      "gem_version": "0.1.12",
+      "vector_path": "/tmp/phase4g4r-wheel-env/lib/python3.12/site-packages/gem/vector.py",
+      "plane_path": "/tmp/phase4g4r-wheel-env/lib/python3.12/site-packages/gem/plane.py",
+      "isolated": true,
+      "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+    },
+    "sdist": {
+      "status": "passed",
+      "original_regressions": 14,
+      "gem_version": "0.1.12",
+      "vector_path": "/tmp/phase4g4r-sdist-env/lib/python3.12/site-packages/gem/vector.py",
+      "plane_path": "/tmp/phase4g4r-sdist-env/lib/python3.12/site-packages/gem/plane.py",
+      "isolated": true,
+      "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+    }
+  },
+  "artifacts": {
+    "gem-0.1.12-py3-none-any.whl": {
+      "sha256": "a909bcfbbd0ad74f7f18c6e56bd1ea8220f6b981c1f626f4e8056a57e65be5bc",
+      "runtime_modules_matching_source": 17
+    },
+    "gem-0.1.12.tar.gz": {
+      "sha256": "846aae72b7a07f2c09e1ade23494153fb041286600891a92b48b86c0792870b3",
+      "runtime_modules_matching_source": 17
+    }
+  }
+}

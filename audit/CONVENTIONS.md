@@ -369,3 +369,17 @@ negative powers use conjugation. Other inputs retain principal-angle evaluation
 without normalization or a new unit-tolerance decision. Extremely large general
 exponents have no new phase-accuracy guarantee. See
 [verification](PHASE4G1R-QUATERNION-REPAIRS.md).
+
+## Grazing refraction and translation-relative polygon normals
+
+At IOR=1, the normal correction in refraction is exactly zero for opposing unit
+inputs: the transmitted direction equals the incident direction. The calculation
+retains small nonzero grazing components without normalization or a new epsilon.
+Other ratios keep the established discriminant and TIR behavior.
+
+Newell normals use coordinates relative to the first polygon vertex before the
+wrapped sum. This preserves the oriented-area definition, including nonplanar
+polygons, while reducing cancellation from large coordinate offsets. It cannot
+recover geometry already rounded out of input coordinates or guarantee accuracy
+for unrepresentable area products. Winding, normalization and exact-zero
+degeneracy behavior remain unchanged. See the [repair report](PHASE4G4R-GEOMETRY-REPAIR.md).

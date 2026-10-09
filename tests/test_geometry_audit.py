@@ -229,7 +229,6 @@ def test_refraction_independent_snell_frame_tir_and_ownership(seed):
 
 @pytest.mark.parametrize('dimension',[2,3,4])
 @pytest.mark.parametrize('normal_component',[1e-9,1e-100])
-@pytest.mark.defect('4G4-A01: equal-index grazing refraction loses nonzero normal component')
 def test_equal_media_grazing_refraction_identity(dimension,normal_component):
     # Unit inputs to binary64 precision, as with ordinary sin/cos directions.
     incident=[math.sqrt(1-normal_component**2),-normal_component]+[0.]*(dimension-2)
@@ -246,7 +245,6 @@ def test_equal_media_grazing_refraction_identity(dimension,normal_component):
 @pytest.mark.parametrize('oblique',[False,True])
 @pytest.mark.parametrize('reverse',[False,True])
 @pytest.mark.parametrize('closed',[False,True])
-@pytest.mark.defect('4G4-A02: translated Newell normal cancels for a nondegenerate polygon')
 def test_translated_polygon_retains_exact_area_normal(oblique,reverse,closed):
     local=[[0.,0.,0.],[1.,0.,float(oblique)],[0.,1.,float(oblique)]]
     origin=float(2**52)
