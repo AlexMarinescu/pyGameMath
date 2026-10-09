@@ -1,4 +1,4 @@
-"""Independent Phase 4G-2 references; no production algorithms are changed.
+"""Independent Phase 4G-2 references; numerical findings have been repaired.
 
 Fraction Bernstein sums and differentiated Rodrigues coefficients are oracles.
 Private subdivision helpers are tested as implementation details, not new APIs.
@@ -110,7 +110,6 @@ def test_exact_scalar_fraction_arithmetic_fallback(degree):
         assert evaluate(degree, controls, t) == bernstein(controls, t)
 
 
-@pytest.mark.defect('4G2-A01')
 @pytest.mark.parametrize('degree,t', [(2, 1e-200), (3, 1e-150)])
 @pytest.mark.parametrize('dimension', [None, 2, 3])
 def test_tiny_parameter_large_control_representable_result(degree, t, dimension):
@@ -413,7 +412,6 @@ def test_associated_near_pole_factored_seed(degree, order, x):
         legendre_reference(degree, order, x), rel=3e-14, abs=0)
 
 
-@pytest.mark.defect('4G2-A02')
 @pytest.mark.parametrize('x', [-1e154, 1e154])
 def test_low_degree_extrapolation_avoids_intermediate_overflow(x):
     expected = legendre_reference(2, 0, x)

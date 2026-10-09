@@ -11,6 +11,14 @@ clamp t, restrict Vector dimension to 2/3, or enforce sampling's finite policy.
 Generic compatible arithmetic follows the fallback path; arbitrary types are
 not guaranteed. No public module constants exist.
 
+For finite builtin numeric controls and native matching Vectors, very small
+float parameters use control-first products to avoid premature t²/t³ underflow.
+The bounds come from binary64's normal range, not a geometric tolerance.
+Ordinary evaluation, extrapolation and custom arithmetic dispatch retain their
+existing operation order. This does not guarantee every extreme sum or
+ill-conditioned cancellation is accurate; see the
+[numerical repair evidence](../../audit/PHASE4G2R-NUMERICAL-REPAIRS.md).
+
 | Exact source declaration | Parameters, result and behavior |
 |---|---|
 | `cubicBezierPoint(t, p0, p1, p2, p3)` | Numeric `t`; `p0,p1,p2,p3` scalar or matching Vector controls; cubic Bernstein result, fresh Vector or numeric value; no mutation/clamping. |
