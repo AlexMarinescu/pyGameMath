@@ -1,0 +1,80 @@
+{
+  "command": [
+    "/workspace/.venvs/pyGameMath/bin/python",
+    "-m",
+    "examples.hdr_sh.regenerate",
+    "--output-dir",
+    "/tmp/phase3e-hdr-reference"
+  ],
+  "files": {
+    "irradiance_coefficients.glsl": {
+      "committed_sha256": "8d0d751cf32b8dd2a5653bda2187ef96a2bba6eaebbf1b8f4e5899f238323bc4",
+      "generated_sha256": "8d0d751cf32b8dd2a5653bda2187ef96a2bba6eaebbf1b8f4e5899f238323bc4",
+      "bytes_identical": true,
+      "bytes": 607
+    },
+    "reference.json": {
+      "committed_sha256": "99fbca270299bf908ea7ba6d8e395ddb548d6531caa79d317d38e035877ee897",
+      "generated_sha256": "99fbca270299bf908ea7ba6d8e395ddb548d6531caa79d317d38e035877ee897",
+      "bytes_identical": true,
+      "bytes": 6371
+    },
+    "sh_original.png": {
+      "committed_sha256": "dfc2e0f5aa7cdee17dc32231ae3258c551cc886eff2bbb01cc43f2e38360174a",
+      "generated_sha256": "dfc2e0f5aa7cdee17dc32231ae3258c551cc886eff2bbb01cc43f2e38360174a",
+      "bytes_identical": true,
+      "bytes": 11407,
+      "width": 192,
+      "height": 192,
+      "decoded_rgb_identical": true,
+      "minimum_byte": 0,
+      "maximum_byte": 211,
+      "mean_byte": 102.34946469907408,
+      "decoded_rgb_sha256": "fee29ccb805026ebe54c80a53c9bb7a93a5af7c4fadd9292d8f424dfff1a3c1f"
+    },
+    "sh_original_coefficients.glsl": {
+      "committed_sha256": "19e5f8c73e60dac5f0b893e1ae1ae54413c13049a7a32ab7c24c2564d4f055c7",
+      "generated_sha256": "19e5f8c73e60dac5f0b893e1ae1ae54413c13049a7a32ab7c24c2564d4f055c7",
+      "bytes_identical": true,
+      "bytes": 610
+    },
+    "sh_rotated.png": {
+      "committed_sha256": "c9b205dc7dee31d731685d996326badf9da62c48fe69713b6fbe2fea4fccaac7",
+      "generated_sha256": "c9b205dc7dee31d731685d996326badf9da62c48fe69713b6fbe2fea4fccaac7",
+      "bytes_identical": true,
+      "bytes": 16733,
+      "width": 192,
+      "height": 192,
+      "decoded_rgb_identical": true,
+      "minimum_byte": 0,
+      "maximum_byte": 211,
+      "mean_byte": 102.34946469907408,
+      "decoded_rgb_sha256": "07b6c059649bdca9f030bc2f55a09642d761689fd731b7f5bf3886fe820b041a"
+    },
+    "sh_rotated_coefficients.glsl": {
+      "committed_sha256": "a0997cb065d9d0c6c80c8bc8078e0c45505830b03f50753614fff45b08b87b12",
+      "generated_sha256": "a0997cb065d9d0c6c80c8bc8078e0c45505830b03f50753614fff45b08b87b12",
+      "bytes_identical": true,
+      "bytes": 610
+    },
+    "visualization.json": {
+      "committed_sha256": "ab28ea8ab67db742626ba4fc95595f8c06496b1eb2c4d8612c18ee94e008d0f2",
+      "generated_sha256": "ab28ea8ab67db742626ba4fc95595f8c06496b1eb2c4d8612c18ee94e008d0f2",
+      "bytes_identical": true,
+      "bytes": 8582
+    }
+  },
+  "coefficient_equality": {
+    "radiance_coefficients": true,
+    "rotated_radiance_coefficients": true,
+    "irradiance_coefficients": true
+  },
+  "selected_linear_pixels_identical": true,
+  "goldens_modified": false,
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "zlib": "1.3.2",
+    "zlib_runtime": "1.3.2"
+  },
+  "limitations": "byte identity verified on this host; Python/libm and zlib/platform changes can affect floating outputs or compressed bytes"
+}

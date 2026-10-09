@@ -1,0 +1,377 @@
+{
+  "schema": "gem-benchmark-v1",
+  "recorded_at_utc": "2026-10-09T02:11:33.095623+00:00",
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "implementation": "CPython",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "architecture": "x86_64",
+    "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "cpu_count": 3,
+    "host_id": "ade31b5dc43d70c661c0762a0aa4c009ae70d8b6d714754d3b80a6550769ef10",
+    "affinity": [
+      0,
+      1,
+      2
+    ],
+    "six": "1.17.0"
+  },
+  "source": {
+    "commit": "553f1664987ab45b4212a4e5c105ebbf92493e81",
+    "core_sha256": "a9b3f174143ad1b2e13f6fa855a5afed4e460f6a3ffb139a317f91c807b96076",
+    "runner_sha256": "dfb47541e08f4b8b594316042c6b296b1f6d1baba7d5bf0e85cda646260bbe97"
+  },
+  "methodology": {
+    "timer": "perf_counter",
+    "gc": "timeit disables GC",
+    "allocation": "returned results included",
+    "execution": "warm calibrated calls",
+    "rounds": 3,
+    "trials": 7,
+    "target_seconds": 0.005,
+    "setup_seconds": 0.07737116399948718,
+    "order": "reverse workload order on alternating rounds",
+    "seed": "fixed source constants; no RNG"
+  },
+  "suite": "extended",
+  "results": {
+    "bezier_subdivide_1e-08": {
+      "definition_sha256": "ee46d9230116a03ff3cce4c46adc42b8c7250a9432ad260b0b35576cc4cb7900",
+      "definition_version": "core-v1",
+      "metadata": {
+        "domain": "adaptive depth sweep",
+        "tolerance_distance": 1e-08,
+        "segments": 1
+      },
+      "unit": "named workload call",
+      "blocks": [
+        {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.2822751000021526,
+            0.2764736790013558,
+            0.30024004300139495,
+            0.27529452700036927,
+            0.2734519990008266,
+            0.2736619229981443,
+            0.274588740998297
+          ],
+          "median_us": 275294.5270003693,
+          "min_us": 273451.9990008266,
+          "max_us": 300240.04300139495,
+          "mad_us": 1632.60400222498,
+          "round": 0
+        },
+        {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.27960689600149635,
+            0.2760890739991737,
+            0.2774381839990383,
+            0.28766717400139896,
+            0.3424298309982987,
+            0.33689868199871853,
+            0.6033084340015193
+          ],
+          "median_us": 287667.17400139896,
+          "min_us": 276089.0739991737,
+          "max_us": 603308.4340015193,
+          "mad_us": 11578.100002225256,
+          "round": 1
+        },
+        {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.305382214999554,
+            0.31633040700035053,
+            0.35211106999850017,
+            0.2946013820001099,
+            0.3444504200015217,
+            0.34001655699830735,
+            0.3668205850008235
+          ],
+          "median_us": 340016.55699830735,
+          "min_us": 294601.3820001099,
+          "max_us": 366820.5850008235,
+          "mad_us": 23686.149997956818,
+          "round": 2
+        }
+      ],
+      "output_points": 16395
+    },
+    "bezier_subdivide_1e-15": {
+      "definition_sha256": "4f0e43ca39aa28ef6a3c4555db1781221544e893825bc8da06f2518a899aaf96",
+      "definition_version": "core-v1",
+      "metadata": {
+        "domain": "adaptive depth sweep",
+        "tolerance_distance": 1e-15,
+        "segments": 1
+      },
+      "unit": "named workload call",
+      "blocks": [
+        {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.1528403150005033,
+            1.176430621999316,
+            1.1422702419986308,
+            1.1238720979999925,
+            1.115898386000481,
+            1.1511833909971756,
+            1.1754358709986263
+          ],
+          "median_us": 1151183.3909971756,
+          "min_us": 1115898.386000481,
+          "max_us": 1176430.621999316,
+          "mad_us": 24252.48000145075,
+          "round": 0
+        },
+        {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.134016222000355,
+            1.1280587159999413,
+            1.4800326069998846,
+            1.298995360997651,
+            1.281723174997751,
+            1.151970472998073,
+            1.1076400199999625
+          ],
+          "median_us": 1151970.472998073,
+          "min_us": 1107640.0199999625,
+          "max_us": 1480032.6069998846,
+          "mad_us": 44330.45299811056,
+          "round": 1
+        },
+        {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.2383312839992868,
+            1.215783259998716,
+            1.480085033999785,
+            1.6782463550007378,
+            1.3355403579989797,
+            1.6512921109970193,
+            1.6529604169991217
+          ],
+          "median_us": 1480085.033999785,
+          "min_us": 1215783.259998716,
+          "max_us": 1678246.3550007378,
+          "mad_us": 172875.38299933658,
+          "round": 2
+        }
+      ],
+      "output_points": 65537
+    },
+    "sh_project_n1024_b1": {
+      "definition_sha256": "e90da874598de062b4fe79aeb01aac6c41e784f09af4fc18a9a2707b7802a967",
+      "definition_version": "core-v1",
+      "metadata": {
+        "domain": "projection scaling",
+        "samples": 1024,
+        "bands": 1,
+        "coefficients": 1
+      },
+      "unit": "named workload call",
+      "blocks": [
+        {
+          "operations_per_trial": 8,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0008978752503026044,
+            0.0009302547500738001,
+            0.0009533163747619255,
+            0.0008525808748345298,
+            0.0009845034996942559,
+            0.001100687625239516,
+            0.000968045500030712
+          ],
+          "median_us": 953.3163747619255,
+          "min_us": 852.5808748345298,
+          "max_us": 1100.687625239516,
+          "mad_us": 31.187124932330335,
+          "round": 0
+        },
+        {
+          "operations_per_trial": 8,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0008545216251150123,
+            0.0008851872503328195,
+            0.0008645157499813649,
+            0.0009213267499035283,
+            0.0008940658749452268,
+            0.0009849409998423653,
+            0.0009225015000993153
+          ],
+          "median_us": 894.0658749452268,
+          "min_us": 854.5216251150123,
+          "max_us": 984.9409998423653,
+          "mad_us": 28.435625154088484,
+          "round": 1
+        },
+        {
+          "operations_per_trial": 2,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0008790895008132793,
+            0.0032684140005585505,
+            0.0019959295004809974,
+            0.0022048555001674686,
+            0.0019052630013902672,
+            0.0021032889999332838,
+            0.0020086704989807913
+          ],
+          "median_us": 2008.6704989807913,
+          "min_us": 879.0895008132793,
+          "max_us": 3268.4140005585505,
+          "mad_us": 103.40749759052414,
+          "round": 2
+        }
+      ]
+    },
+    "sh_project_n1024_b3": {
+      "definition_sha256": "88fd2afe12a7ed1794bb190161f098e87cbdf27f338d1d2ec5bae8524ceaed8c",
+      "definition_version": "core-v1",
+      "metadata": {
+        "domain": "projection scaling",
+        "samples": 1024,
+        "bands": 3,
+        "coefficients": 9
+      },
+      "unit": "named workload call",
+      "blocks": [
+        {
+          "operations_per_trial": 2,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.003771337500438676,
+            0.0033660594999673776,
+            0.0041611084998294245,
+            0.003340199999001925,
+            0.0036700150012620725,
+            0.0034300520001124823,
+            0.003516050999678555
+          ],
+          "median_us": 3516.050999678555,
+          "min_us": 3340.199999001925,
+          "max_us": 4161.1084998294245,
+          "mad_us": 153.96400158351753,
+          "round": 0
+        },
+        {
+          "operations_per_trial": 2,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0036729670009663096,
+            0.004371238999738125,
+            0.003785895500186598,
+            0.0034094085003744112,
+            0.0035231689998909133,
+            0.0036286515005485853,
+            0.0036658695007645292
+          ],
+          "median_us": 3665.869500764529,
+          "min_us": 3409.4085003744112,
+          "max_us": 4371.238999738125,
+          "mad_us": 120.02599942206871,
+          "round": 1
+        },
+        {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.004538485998637043,
+            0.010803575998579618,
+            0.010054226000647759,
+            0.012369395997666288,
+            0.0059167500003241,
+            0.006186026999785099,
+            0.00844593199872179
+          ],
+          "median_us": 8445.93199872179,
+          "min_us": 4538.485998637043,
+          "max_us": 12369.395997666288,
+          "mad_us": 2357.643999857828,
+          "round": 2
+        }
+      ]
+    },
+    "sh_project_n1024_b5": {
+      "definition_sha256": "8c217dbb6c086002bc9a9ac6aa57b491e3829f256bdf363a3dd3656f1291aa8e",
+      "definition_version": "core-v1",
+      "metadata": {
+        "domain": "projection scaling",
+        "samples": 1024,
+        "bands": 5,
+        "coefficients": 25
+      },
+      "unit": "named workload call",
+      "blocks": [
+        {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00911614199867472,
+            0.008418535002419958,
+            0.008375864999834448,
+            0.00869622499885736,
+            0.008351674001460196,
+            0.010221943000942701,
+            0.00931463800225174
+          ],
+          "median_us": 8696.22499885736,
+          "min_us": 8351.674001460196,
+          "max_us": 10221.943000942701,
+          "mad_us": 344.5509973971639,
+          "round": 0
+        },
+        {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.009481233999395045,
+            0.008698726000147872,
+            0.009171314002742292,
+            0.008414302999881329,
+            0.008746187999349786,
+            0.0085439780013985,
+            0.008237103000283241
+          ],
+          "median_us": 8698.726000147872,
+          "min_us": 8237.103000283241,
+          "max_us": 9481.233999395045,
+          "mad_us": 284.42300026654266,
+          "round": 1
+        },
+        {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.01847364499917603,
+            0.014965441998356255,
+            0.021494485998118762,
+            0.015264711997588165,
+            0.019302983000670793,
+            0.020878988998447312,
+            0.020142297998972936
+          ],
+          "median_us": 19302.983000670793,
+          "min_us": 14965.441998356255,
+          "max_us": 21494.485998118762,
+          "mad_us": 1576.0059977765195,
+          "round": 2
+        }
+      ]
+    }
+  },
+  "unsupported": {
+    "ray_intersections": "supported Ray has no intersection method"
+  }
+}

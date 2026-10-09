@@ -1,0 +1,572 @@
+{
+  "synthetic_timings_only": true,
+  "reference_median_us": 10,
+  "scenarios": {
+    "artificial_slowdown": {
+      "schema": "gem-comparison-v1",
+      "advisory_only": true,
+      "environment_mismatches": [],
+      "environments": [
+        {
+          "python": "same",
+          "implementation": "same",
+          "platform": "same",
+          "architecture": "same",
+          "cpu": "same",
+          "cpu_count": "same",
+          "host_id": "same",
+          "affinity": "same",
+          "six": "same"
+        },
+        {
+          "python": "same",
+          "implementation": "same",
+          "platform": "same",
+          "architecture": "same",
+          "cpu": "same",
+          "cpu_count": "same",
+          "host_id": "same",
+          "affinity": "same",
+          "six": "same"
+        }
+      ],
+      "baseline_captures": 1,
+      "current_captures": 1,
+      "methodologies": [
+        {
+          "timer": "same",
+          "gc": "same",
+          "allocation": "same",
+          "execution": "same"
+        },
+        {
+          "timer": "same",
+          "gc": "same",
+          "allocation": "same",
+          "execution": "same"
+        }
+      ],
+      "sources": [
+        {
+          "source": null,
+          "artifact_sha256": null
+        },
+        {
+          "source": null,
+          "artifact_sha256": null
+        }
+      ],
+      "provenance": "explicit host and environment metadata",
+      "policy": {
+        "relative_review_margin": 0.15,
+        "absolute_review_margin_us": 0.05,
+        "minimum_blocks_per_side": 3,
+        "minimum_trials_per_block": 5,
+        "bootstrap": "2000 seeded median-ratio resamples; conditional descriptive interval"
+      },
+      "results": {
+        "dot": {
+          "baseline": {
+            "median_us": 10.0,
+            "mad_us": 0.09999999999999964,
+            "min_us": 9.9,
+            "max_us": 10.1,
+            "block_medians_us": [
+              9.9,
+              10.0,
+              10.1
+            ]
+          },
+          "current": {
+            "median_us": 20.0,
+            "mad_us": 0.1999999999999993,
+            "min_us": 19.8,
+            "max_us": 20.2,
+            "block_medians_us": [
+              19.8,
+              20.0,
+              20.2
+            ]
+          },
+          "unit": "call",
+          "slowdown_ratio": 2.0,
+          "speedup_ratio": 0.5,
+          "delta_us": 10.0,
+          "within_block_relative_mad": {
+            "baseline": 0.0,
+            "current": 0.0
+          },
+          "ratio_interval_95": [
+            1.9603960396039606,
+            2.04040404040404
+          ],
+          "effective_review_margin": 0.15,
+          "resampling": "independent blocks",
+          "status": "possible_regression"
+        }
+      },
+      "counts": {
+        "possible_regression": 1
+      }
+    },
+    "improvement": {
+      "schema": "gem-comparison-v1",
+      "advisory_only": true,
+      "environment_mismatches": [],
+      "environments": [
+        {
+          "python": "same",
+          "implementation": "same",
+          "platform": "same",
+          "architecture": "same",
+          "cpu": "same",
+          "cpu_count": "same",
+          "host_id": "same",
+          "affinity": "same",
+          "six": "same"
+        },
+        {
+          "python": "same",
+          "implementation": "same",
+          "platform": "same",
+          "architecture": "same",
+          "cpu": "same",
+          "cpu_count": "same",
+          "host_id": "same",
+          "affinity": "same",
+          "six": "same"
+        }
+      ],
+      "baseline_captures": 1,
+      "current_captures": 1,
+      "methodologies": [
+        {
+          "timer": "same",
+          "gc": "same",
+          "allocation": "same",
+          "execution": "same"
+        },
+        {
+          "timer": "same",
+          "gc": "same",
+          "allocation": "same",
+          "execution": "same"
+        }
+      ],
+      "sources": [
+        {
+          "source": null,
+          "artifact_sha256": null
+        },
+        {
+          "source": null,
+          "artifact_sha256": null
+        }
+      ],
+      "provenance": "explicit host and environment metadata",
+      "policy": {
+        "relative_review_margin": 0.15,
+        "absolute_review_margin_us": 0.05,
+        "minimum_blocks_per_side": 3,
+        "minimum_trials_per_block": 5,
+        "bootstrap": "2000 seeded median-ratio resamples; conditional descriptive interval"
+      },
+      "results": {
+        "dot": {
+          "baseline": {
+            "median_us": 10.0,
+            "mad_us": 0.09999999999999964,
+            "min_us": 9.9,
+            "max_us": 10.1,
+            "block_medians_us": [
+              9.9,
+              10.0,
+              10.1
+            ]
+          },
+          "current": {
+            "median_us": 5.0,
+            "mad_us": 0.04999999999999982,
+            "min_us": 4.95,
+            "max_us": 5.05,
+            "block_medians_us": [
+              4.95,
+              5.0,
+              5.05
+            ]
+          },
+          "unit": "call",
+          "slowdown_ratio": 0.5,
+          "speedup_ratio": 2.0,
+          "delta_us": -5.0,
+          "within_block_relative_mad": {
+            "baseline": 0.0,
+            "current": 0.0
+          },
+          "ratio_interval_95": [
+            0.49009900990099015,
+            0.51010101010101
+          ],
+          "effective_review_margin": 0.15,
+          "resampling": "independent blocks",
+          "status": "possible_improvement"
+        }
+      },
+      "counts": {
+        "possible_improvement": 1
+      }
+    },
+    "small_difference": {
+      "schema": "gem-comparison-v1",
+      "advisory_only": true,
+      "environment_mismatches": [],
+      "environments": [
+        {
+          "python": "same",
+          "implementation": "same",
+          "platform": "same",
+          "architecture": "same",
+          "cpu": "same",
+          "cpu_count": "same",
+          "host_id": "same",
+          "affinity": "same",
+          "six": "same"
+        },
+        {
+          "python": "same",
+          "implementation": "same",
+          "platform": "same",
+          "architecture": "same",
+          "cpu": "same",
+          "cpu_count": "same",
+          "host_id": "same",
+          "affinity": "same",
+          "six": "same"
+        }
+      ],
+      "baseline_captures": 1,
+      "current_captures": 1,
+      "methodologies": [
+        {
+          "timer": "same",
+          "gc": "same",
+          "allocation": "same",
+          "execution": "same"
+        },
+        {
+          "timer": "same",
+          "gc": "same",
+          "allocation": "same",
+          "execution": "same"
+        }
+      ],
+      "sources": [
+        {
+          "source": null,
+          "artifact_sha256": null
+        },
+        {
+          "source": null,
+          "artifact_sha256": null
+        }
+      ],
+      "provenance": "explicit host and environment metadata",
+      "policy": {
+        "relative_review_margin": 0.15,
+        "absolute_review_margin_us": 0.05,
+        "minimum_blocks_per_side": 3,
+        "minimum_trials_per_block": 5,
+        "bootstrap": "2000 seeded median-ratio resamples; conditional descriptive interval"
+      },
+      "results": {
+        "dot": {
+          "baseline": {
+            "median_us": 10.0,
+            "mad_us": 0.09999999999999964,
+            "min_us": 9.9,
+            "max_us": 10.1,
+            "block_medians_us": [
+              9.9,
+              10.0,
+              10.1
+            ]
+          },
+          "current": {
+            "median_us": 10.2,
+            "mad_us": 0.10200000000000031,
+            "min_us": 10.097999999999999,
+            "max_us": 10.302,
+            "block_medians_us": [
+              10.097999999999999,
+              10.2,
+              10.302
+            ]
+          },
+          "unit": "call",
+          "slowdown_ratio": 1.02,
+          "speedup_ratio": 0.9803921568627451,
+          "delta_us": 0.1999999999999993,
+          "within_block_relative_mad": {
+            "baseline": 0.0,
+            "current": 0.0
+          },
+          "ratio_interval_95": [
+            0.9998019801980197,
+            1.0406060606060605
+          ],
+          "effective_review_margin": 0.15,
+          "resampling": "independent blocks",
+          "status": "inconclusive"
+        }
+      },
+      "counts": {
+        "inconclusive": 1
+      }
+    },
+    "different_host": {
+      "schema": "gem-comparison-v1",
+      "advisory_only": true,
+      "environment_mismatches": [
+        "environment.host_id"
+      ],
+      "environments": [
+        {
+          "python": "same",
+          "implementation": "same",
+          "platform": "same",
+          "architecture": "same",
+          "cpu": "same",
+          "cpu_count": "same",
+          "host_id": "same",
+          "affinity": "same",
+          "six": "same"
+        },
+        {
+          "python": "same",
+          "implementation": "same",
+          "platform": "same",
+          "architecture": "same",
+          "cpu": "same",
+          "cpu_count": "same",
+          "host_id": "different",
+          "affinity": "same",
+          "six": "same"
+        }
+      ],
+      "baseline_captures": 1,
+      "current_captures": 1,
+      "methodologies": [
+        {
+          "timer": "same",
+          "gc": "same",
+          "allocation": "same",
+          "execution": "same"
+        },
+        {
+          "timer": "same",
+          "gc": "same",
+          "allocation": "same",
+          "execution": "same"
+        }
+      ],
+      "sources": [
+        {
+          "source": null,
+          "artifact_sha256": null
+        },
+        {
+          "source": null,
+          "artifact_sha256": null
+        }
+      ],
+      "provenance": "explicit host and environment metadata",
+      "policy": {
+        "relative_review_margin": 0.15,
+        "absolute_review_margin_us": 0.05,
+        "minimum_blocks_per_side": 3,
+        "minimum_trials_per_block": 5,
+        "bootstrap": "2000 seeded median-ratio resamples; conditional descriptive interval"
+      },
+      "results": {
+        "dot": {
+          "baseline": {
+            "median_us": 10.0,
+            "mad_us": 0.09999999999999964,
+            "min_us": 9.9,
+            "max_us": 10.1,
+            "block_medians_us": [
+              9.9,
+              10.0,
+              10.1
+            ]
+          },
+          "current": {
+            "median_us": 20.0,
+            "mad_us": 0.1999999999999993,
+            "min_us": 19.8,
+            "max_us": 20.2,
+            "block_medians_us": [
+              19.8,
+              20.0,
+              20.2
+            ]
+          },
+          "unit": "call",
+          "slowdown_ratio": 2.0,
+          "speedup_ratio": 0.5,
+          "delta_us": 10.0,
+          "status": "environment_not_comparable"
+        }
+      },
+      "counts": {
+        "environment_not_comparable": 1
+      }
+    },
+    "changed_workload": {
+      "schema": "gem-comparison-v1",
+      "advisory_only": true,
+      "environment_mismatches": [],
+      "environments": [
+        {
+          "python": "same",
+          "implementation": "same",
+          "platform": "same",
+          "architecture": "same",
+          "cpu": "same",
+          "cpu_count": "same",
+          "host_id": "same",
+          "affinity": "same",
+          "six": "same"
+        },
+        {
+          "python": "same",
+          "implementation": "same",
+          "platform": "same",
+          "architecture": "same",
+          "cpu": "same",
+          "cpu_count": "same",
+          "host_id": "same",
+          "affinity": "same",
+          "six": "same"
+        }
+      ],
+      "baseline_captures": 1,
+      "current_captures": 1,
+      "methodologies": [
+        {
+          "timer": "same",
+          "gc": "same",
+          "allocation": "same",
+          "execution": "same"
+        },
+        {
+          "timer": "same",
+          "gc": "same",
+          "allocation": "same",
+          "execution": "same"
+        }
+      ],
+      "sources": [
+        {
+          "source": null,
+          "artifact_sha256": null
+        },
+        {
+          "source": null,
+          "artifact_sha256": null
+        }
+      ],
+      "provenance": "explicit host and environment metadata",
+      "policy": {
+        "relative_review_margin": 0.15,
+        "absolute_review_margin_us": 0.05,
+        "minimum_blocks_per_side": 3,
+        "minimum_trials_per_block": 5,
+        "bootstrap": "2000 seeded median-ratio resamples; conditional descriptive interval"
+      },
+      "results": {
+        "dot": {
+          "status": "workload_changed"
+        }
+      },
+      "counts": {
+        "workload_changed": 1
+      }
+    },
+    "missing_workload": {
+      "schema": "gem-comparison-v1",
+      "advisory_only": true,
+      "environment_mismatches": [],
+      "environments": [
+        {
+          "python": "same",
+          "implementation": "same",
+          "platform": "same",
+          "architecture": "same",
+          "cpu": "same",
+          "cpu_count": "same",
+          "host_id": "same",
+          "affinity": "same",
+          "six": "same"
+        },
+        {
+          "python": "same",
+          "implementation": "same",
+          "platform": "same",
+          "architecture": "same",
+          "cpu": "same",
+          "cpu_count": "same",
+          "host_id": "same",
+          "affinity": "same",
+          "six": "same"
+        }
+      ],
+      "baseline_captures": 1,
+      "current_captures": 1,
+      "methodologies": [
+        {
+          "timer": "same",
+          "gc": "same",
+          "allocation": "same",
+          "execution": "same"
+        },
+        {
+          "timer": "same",
+          "gc": "same",
+          "allocation": "same",
+          "execution": "same"
+        }
+      ],
+      "sources": [
+        {
+          "source": null,
+          "artifact_sha256": null
+        },
+        {
+          "source": null,
+          "artifact_sha256": null
+        }
+      ],
+      "provenance": "explicit host and environment metadata",
+      "policy": {
+        "relative_review_margin": 0.15,
+        "absolute_review_margin_us": 0.05,
+        "minimum_blocks_per_side": 3,
+        "minimum_trials_per_block": 5,
+        "bootstrap": "2000 seeded median-ratio resamples; conditional descriptive interval"
+      },
+      "results": {
+        "dot": {
+          "status": "missing_current"
+        },
+        "new": {
+          "status": "missing_baseline"
+        }
+      },
+      "counts": {
+        "missing_current": 1,
+        "missing_baseline": 1
+      }
+    }
+  }
+}
