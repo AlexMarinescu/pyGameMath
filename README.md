@@ -103,8 +103,7 @@ and rotation rules before showing how to combine operations.
 - [API reference](docs/api/index.md) — functions, arguments and return values.
 - [Visual examples](docs/examples/index.md) — diagrams and reproducible lighting.
 - [Documentation home](docs/index.md) — browse the complete documentation.
-- [Build the documentation website locally](docs/development/website.md) — the
-  website is prepared, but no public deployment is claimed.
+- [Build the documentation website locally](docs/development/website.md) — build and navigation instructions.
 - [Contributing](docs/development/contributing.md) — changes, tests and review.
 
 ## What's planned?

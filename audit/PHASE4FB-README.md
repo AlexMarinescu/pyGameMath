@@ -1,13 +1,13 @@
 # README introduction and visual refresh
 
-Base: merged Phase 4F master `92c46c5c470b2d13907342cc16cca9beb012a8d0`.
+Base: latest master `ce8e6883d1498c2768cff4485d2498929f087512`.
 
 The landing page now starts with movement, rotation, curves and lighting instead
 of technical categories. The existing HDR pair and four SVG diagrams appear near
 the top, with short practical captions and links to larger diagrams and source.
 Feature tables become use-case bullets; the two longer Python demonstrations
-become one six-line movement example. The README is 856 whitespace-delimited words
-instead of 1,107, and 140 lines instead of 198. These counts describe size, not a
+become one six-line movement example. The README is 850 whitespace-delimited words
+instead of 1,107, and 139 lines instead of 198. These counts describe size, not a
 measured comprehension or reading-time claim.
 
 Installation uses the environment's Python directly, avoiding activation and a
@@ -18,13 +18,14 @@ Windows/macOS instructions are documented, not newly verified platform support.
 Release status, six, current source versus historical PyPI code, unverified Python
 2.7 support, ownership rules, canonical/legacy imports, author and BSD attribution
 are retained. The old claim that no documentation site exists is replaced with an
-accurate link to the built-but-unpublished website workflow. Proposed geometry,
+link to the local website build and navigation instructions. The existing Pages
+publishing workflow is retained; public deployment availability was not verified. Proposed geometry,
 noise, distance fields, grids, volumetric lighting and language projects remain
 clearly unreleased. Root ROADMAP remains authoritative and unchanged.
 
 ## Executed checks
 
-- Full suite: **2,260 passed**, zero failures, expected failures or skips (10.76s).
+- Full suite: **2,260 passed**, zero failures, expected failures or skips (11.06s).
 - Source and isolated installed-package documentation checks: **42 executable
   Python blocks, 565 source links, 268 declarations and seven constants** checked.
   README contains one Python example; it ran against the installed development
