@@ -153,6 +153,17 @@ assert math.isclose(math.hypot(*qa.slerp(qb,.5).data),1.,abs_tol=1e-12)
 assert math.isclose(math.hypot(*quaternion.squad4(qa,qb,qa,qb,.5).data),1.,abs_tol=1e-12)
 assert qa.data == [1.,0.,0.,0.] and qb.data == [0.,0.,0.,1.]
 assert quaternion.__file__.startswith(sys.argv[1])
+controls = [Vector(2, values) for values in ([0.,0.],[1.,2.],[2.,2.],[3.,0.])]
+assert bezier.cubicBezierPoint(.5, *controls).vector == [1.5,1.5]
+assert bezier.quadraticBezierPoint(.5, *controls[:3]).vector == [1.,1.5]
+path = bezier.BezierPath(); path.setControlPoints(controls)
+samples = path.findDrawingPoints(0)
+assert samples[0].vector == [0.,0.] and samples[-1].vector == [3.,0.]
+assert all(a.vector[0] < b.vector[0] for a,b in zip(samples,samples[1:]))
+constant = [[math.sqrt(4*math.pi),2*math.sqrt(4*math.pi),0.]] + [[0.,0.,0.] for _ in range(8)]
+assert all(math.isclose(actual,expected,abs_tol=1e-14) for actual,expected in zip(sh.reconstruct(constant,[0.,0.,1.]),[1.,2.,0.]))
+rotated = sh.rotate_coefficients(constant,quaternion.Quaternion([.5,.5,.5,.5]))
+assert rotated == constant and all(a is not b for a,b in zip(rotated,constant))
 for module in (bezier, legendre, sh, b, l, sph, sph_sample, sph_irradiance_map):
     assert module.__file__.startswith(sys.argv[1])
 try:

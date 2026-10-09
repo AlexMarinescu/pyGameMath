@@ -1,0 +1,6071 @@
+{
+  "baseline_commit": "09fb57a31fd1b62fad027822cb4ab1eba52ca158",
+  "baseline_sha256": {
+    "bezier": "e56248cc533b9f0e34c15e7735453ff67282b8fad033935d07e508f3f8b4469b",
+    "spherical_harmonics": "5aecee97762a59b3aabf57efab10c0c51b5111fe037c76f8acf64dabfa799cf5"
+  },
+  "current_sha256": {
+    "bezier": "477b29f7608d59dbbd438f864814e0311073289b50c1d7df32bfad016dc250bd",
+    "spherical_harmonics": "93d004db8a62d88ef82f4320d4ecce05c2017e4ba5bf5311dddb82135c92e11b"
+  },
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "implementation": "CPython",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "six": "1.17.0"
+  },
+  "methodology": {
+    "rounds": 3,
+    "trials": 7,
+    "target_seconds": 0.02,
+    "order": "alternate before/after per round",
+    "timer": "perf_counter, timeit disables GC",
+    "setup": "Phase 3A input generation excluded; returned result allocation included",
+    "basis_cache": "warm execution: calibration/warmup excluded; bounded 16-layout cache",
+    "profiles": "separate instrumented calls; traced peak per call is not RSS"
+  },
+  "datasets": {
+    "vector2_allocate": {
+      "domain": "ordinary"
+    },
+    "vector2_add": {
+      "domain": "ordinary"
+    },
+    "vector2_subtract": {
+      "domain": "ordinary"
+    },
+    "vector2_scalar_multiply": {
+      "domain": "ordinary"
+    },
+    "vector2_dot": {
+      "domain": "ordinary"
+    },
+    "vector2_magnitude": {
+      "domain": "ordinary"
+    },
+    "vector2_normalize": {
+      "domain": "ordinary"
+    },
+    "matrix2_allocate": {
+      "domain": "ordinary"
+    },
+    "matrix2_raw_multiply": {
+      "domain": "ordinary"
+    },
+    "matrix2_multiply": {
+      "domain": "ordinary"
+    },
+    "matrix2_vector": {
+      "domain": "ordinary"
+    },
+    "matrix2_determinant": {
+      "domain": "ordinary"
+    },
+    "matrix2_inverse": {
+      "domain": "ordinary"
+    },
+    "matrix2_raw_inverse": {
+      "domain": "ordinary"
+    },
+    "matrix2_transpose": {
+      "domain": "ordinary"
+    },
+    "vector2_transform": {
+      "domain": "ordinary"
+    },
+    "vector3_allocate": {
+      "domain": "ordinary"
+    },
+    "vector3_add": {
+      "domain": "ordinary"
+    },
+    "vector3_subtract": {
+      "domain": "ordinary"
+    },
+    "vector3_scalar_multiply": {
+      "domain": "ordinary"
+    },
+    "vector3_dot": {
+      "domain": "ordinary"
+    },
+    "vector3_magnitude": {
+      "domain": "ordinary"
+    },
+    "vector3_normalize": {
+      "domain": "ordinary"
+    },
+    "matrix3_allocate": {
+      "domain": "ordinary"
+    },
+    "matrix3_raw_multiply": {
+      "domain": "ordinary"
+    },
+    "matrix3_multiply": {
+      "domain": "ordinary"
+    },
+    "matrix3_vector": {
+      "domain": "ordinary"
+    },
+    "matrix3_determinant": {
+      "domain": "ordinary"
+    },
+    "matrix3_inverse": {
+      "domain": "ordinary"
+    },
+    "matrix3_raw_inverse": {
+      "domain": "ordinary"
+    },
+    "matrix3_transpose": {
+      "domain": "ordinary"
+    },
+    "vector3_transform": {
+      "domain": "ordinary"
+    },
+    "matrix3_raw_inverse_scale_1e-200": {
+      "domain": "extreme uniform scale"
+    },
+    "matrix3_raw_inverse_scale_1e+200": {
+      "domain": "extreme uniform scale"
+    },
+    "vector4_allocate": {
+      "domain": "ordinary"
+    },
+    "vector4_add": {
+      "domain": "ordinary"
+    },
+    "vector4_subtract": {
+      "domain": "ordinary"
+    },
+    "vector4_scalar_multiply": {
+      "domain": "ordinary"
+    },
+    "vector4_dot": {
+      "domain": "ordinary"
+    },
+    "vector4_magnitude": {
+      "domain": "ordinary"
+    },
+    "vector4_normalize": {
+      "domain": "ordinary"
+    },
+    "matrix4_allocate": {
+      "domain": "ordinary"
+    },
+    "matrix4_raw_multiply": {
+      "domain": "ordinary"
+    },
+    "matrix4_multiply": {
+      "domain": "ordinary"
+    },
+    "matrix4_vector": {
+      "domain": "ordinary"
+    },
+    "matrix4_determinant": {
+      "domain": "ordinary"
+    },
+    "matrix4_inverse": {
+      "domain": "ordinary"
+    },
+    "matrix4_raw_inverse": {
+      "domain": "ordinary"
+    },
+    "matrix4_transpose": {
+      "domain": "ordinary"
+    },
+    "vector4_transform": {
+      "domain": "ordinary"
+    },
+    "matrix4_raw_inverse_scale_1e-200": {
+      "domain": "extreme uniform scale"
+    },
+    "matrix4_raw_inverse_scale_1e+200": {
+      "domain": "extreme uniform scale"
+    },
+    "vector3_cross": {
+      "domain": "ordinary"
+    },
+    "vector3_magnitude_large": {
+      "domain": "large"
+    },
+    "vector3_normalize_large": {
+      "domain": "large"
+    },
+    "vector3_magnitude_tiny": {
+      "domain": "tiny"
+    },
+    "vector3_normalize_tiny": {
+      "domain": "tiny"
+    },
+    "vector3_magnitude_mixed": {
+      "domain": "mixed"
+    },
+    "vector3_normalize_mixed": {
+      "domain": "mixed"
+    },
+    "quaternion_normalize_large": {
+      "domain": "large"
+    },
+    "quaternion_normalize_tiny": {
+      "domain": "tiny"
+    },
+    "quaternion_allocate": {
+      "domain": "ordinary"
+    },
+    "quaternion_multiply": {
+      "domain": "ordinary"
+    },
+    "quaternion_normalize": {
+      "domain": "ordinary"
+    },
+    "quaternion_inverse": {
+      "domain": "ordinary"
+    },
+    "quaternion_rotate_vector": {
+      "domain": "ordinary"
+    },
+    "quaternion_slerp": {
+      "domain": "ordinary"
+    },
+    "quaternion_slerp_near": {
+      "domain": "ordinary"
+    },
+    "quaternion_squad": {
+      "domain": "ordinary"
+    },
+    "quaternion_squad4": {
+      "domain": "ordinary"
+    },
+    "quaternion_to_matrix": {
+      "domain": "ordinary"
+    },
+    "quaternion_from_matrix": {
+      "domain": "ordinary"
+    },
+    "matrix4_translate": {
+      "domain": "ordinary"
+    },
+    "matrix3_rotate": {
+      "domain": "ordinary"
+    },
+    "vector3_affine_transform": {
+      "domain": "ordinary"
+    },
+    "bezier_quadratic": {
+      "domain": "ordinary"
+    },
+    "bezier_cubic": {
+      "domain": "ordinary"
+    },
+    "bezier_cubic_scalar": {
+      "domain": "ordinary"
+    },
+    "bezier_subdivide_0.1": {
+      "domain": "adaptive depth sweep",
+      "tolerance_distance": 0.1,
+      "segments": 1
+    },
+    "bezier_subdivide_0.01": {
+      "domain": "adaptive depth sweep",
+      "tolerance_distance": 0.01,
+      "segments": 1
+    },
+    "bezier_subdivide_0.0001": {
+      "domain": "adaptive depth sweep",
+      "tolerance_distance": 0.0001,
+      "segments": 1
+    },
+    "bezier_subdivide_1e-08": {
+      "domain": "adaptive depth sweep",
+      "tolerance_distance": 1e-08,
+      "segments": 1
+    },
+    "bezier_subdivide_1e-15": {
+      "domain": "adaptive depth sweep",
+      "tolerance_distance": 1e-15,
+      "segments": 1
+    },
+    "bezier_path_8_segments": {
+      "domain": "multi-segment",
+      "segments": 8
+    },
+    "sh_basis_0_0": {
+      "domain": "ordinary",
+      "degree": 0,
+      "order": 0
+    },
+    "sh_basis_2_1": {
+      "domain": "ordinary",
+      "degree": 2,
+      "order": 1
+    },
+    "sh_basis_8_3": {
+      "domain": "ordinary",
+      "degree": 8,
+      "order": 3
+    },
+    "sh_basis_12_6": {
+      "domain": "ordinary",
+      "degree": 12,
+      "order": 6
+    },
+    "sh_project_n64_b1": {
+      "domain": "projection scaling",
+      "samples": 64,
+      "bands": 1,
+      "coefficients": 1
+    },
+    "sh_project_n64_b3": {
+      "domain": "projection scaling",
+      "samples": 64,
+      "bands": 3,
+      "coefficients": 9
+    },
+    "sh_project_n64_b5": {
+      "domain": "projection scaling",
+      "samples": 64,
+      "bands": 5,
+      "coefficients": 25
+    },
+    "sh_project_n256_b1": {
+      "domain": "projection scaling",
+      "samples": 256,
+      "bands": 1,
+      "coefficients": 1
+    },
+    "sh_project_n256_b3": {
+      "domain": "projection scaling",
+      "samples": 256,
+      "bands": 3,
+      "coefficients": 9
+    },
+    "sh_project_n256_b5": {
+      "domain": "projection scaling",
+      "samples": 256,
+      "bands": 5,
+      "coefficients": 25
+    },
+    "sh_project_n1024_b1": {
+      "domain": "projection scaling",
+      "samples": 1024,
+      "bands": 1,
+      "coefficients": 1
+    },
+    "sh_project_n1024_b3": {
+      "domain": "projection scaling",
+      "samples": 1024,
+      "bands": 3,
+      "coefficients": 9
+    },
+    "sh_project_n1024_b5": {
+      "domain": "projection scaling",
+      "samples": 1024,
+      "bands": 5,
+      "coefficients": 25
+    },
+    "sh_convolve_l2": {
+      "domain": "ordinary"
+    },
+    "sh_rotate_l2_scalar": {
+      "domain": "ordinary"
+    },
+    "sh_rotate_l2_rgb": {
+      "domain": "ordinary"
+    },
+    "sh_reconstruct_l2": {
+      "domain": "ordinary"
+    },
+    "plane_normalize": {
+      "domain": "ordinary"
+    },
+    "plane_dot": {
+      "domain": "ordinary"
+    },
+    "plane_from_points": {
+      "domain": "ordinary"
+    },
+    "ray_duplicate": {
+      "domain": "ordinary"
+    },
+    "ray_translate": {
+      "domain": "ordinary"
+    },
+    "ray_matrix_rotate": {
+      "domain": "ordinary"
+    },
+    "ray_quaternion_rotate": {
+      "domain": "ordinary"
+    }
+  },
+  "sample_counts": {
+    "bezier_subdivide_0.1": {
+      "before": 7,
+      "after": 7
+    },
+    "bezier_subdivide_0.01": {
+      "before": 19,
+      "after": 19
+    },
+    "bezier_subdivide_0.0001": {
+      "before": 161,
+      "after": 161
+    },
+    "bezier_subdivide_1e-08": {
+      "before": 16395,
+      "after": 16395
+    },
+    "bezier_subdivide_1e-15": {
+      "before": 65537,
+      "after": 65537
+    },
+    "bezier_path_8_segments": {
+      "before": [
+        51,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50
+      ],
+      "after": [
+        51,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50
+      ]
+    },
+    "bezier_raw_subdivide": {
+      "before": 19,
+      "after": 19
+    }
+  },
+  "rounds": [
+    {
+      "bezier_quadratic": {
+        "before": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.874949341093782e-06,
+            5.068312744160863e-06,
+            3.607047851961198e-06,
+            2.993777221682592e-06,
+            4.001116332918997e-06,
+            3.718035034072642e-06,
+            3.615879516694065e-06
+          ],
+          "median_us": 3.718035034072642,
+          "min_us": 2.993777221682592,
+          "max_us": 5.068312744160863,
+          "mad_us": 0.2830812988463549
+        },
+        "after": {
+          "operations_per_trial": 32768,
+          "trials": 7,
+          "seconds_per_operation": [
+            8.604252014210445e-07,
+            8.64815307588529e-07,
+            7.993026427399741e-07,
+            8.336446533085962e-07,
+            7.846496581365159e-07,
+            8.082220154248532e-07,
+            7.792886352886441e-07
+          ],
+          "median_us": 0.8082220154248532,
+          "min_us": 0.7792886352886441,
+          "max_us": 0.864815307588529,
+          "mad_us": 0.025422637883742993
+        }
+      },
+      "bezier_cubic": {
+        "before": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.436437500172531e-06,
+            4.3833664551407026e-06,
+            4.793644165168587e-06,
+            5.1785667727344276e-06,
+            4.976164306835784e-06,
+            4.461059082139229e-06,
+            4.593229980365265e-06
+          ],
+          "median_us": 4.793644165168587,
+          "min_us": 4.3833664551407026,
+          "max_us": 5.436437500172531,
+          "mad_us": 0.3325850830293575
+        },
+        "after": {
+          "operations_per_trial": 16384,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.517513428480839e-07,
+            1.0088859863088828e-06,
+            1.0304625244206278e-06,
+            1.0753778076910692e-06,
+            9.869492187952744e-07,
+            9.603289183868213e-07,
+            9.64843688944228e-07
+          ],
+          "median_us": 0.9869492187952744,
+          "min_us": 0.9517513428480839,
+          "max_us": 1.0753778076910692,
+          "mad_us": 0.02662030040845309
+        }
+      },
+      "bezier_cubic_scalar": {
+        "before": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.513446197560665e-07,
+            2.621983413719775e-07,
+            2.529236831638748e-07,
+            2.4992436981063904e-07,
+            2.5773236084214446e-07,
+            2.5788535307214033e-07,
+            2.4629168701717497e-07
+          ],
+          "median_us": 0.2529236831638748,
+          "min_us": 0.24629168701717497,
+          "max_us": 0.2621983413719775,
+          "mad_us": 0.004808677678269646
+        },
+        "after": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.80598159790868e-07,
+            2.6923322296590335e-07,
+            2.788571930034678e-07,
+            2.7759928894477426e-07,
+            2.858782424952633e-07,
+            2.9068155671385654e-07,
+            2.894374923623211e-07
+          ],
+          "median_us": 0.280598159790868,
+          "min_us": 0.26923322296590335,
+          "max_us": 0.29068155671385654,
+          "mad_us": 0.005280082704395284
+        }
+      },
+      "bezier_subdivide_0.1": {
+        "before": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0001042153359378517,
+            9.923328906324969e-05,
+            0.00010339191797470448,
+            0.00010695702734153656,
+            0.00011390277344958122,
+            0.00010876366796708226,
+            0.00010262007030803488
+          ],
+          "median_us": 104.2153359378517,
+          "min_us": 99.23328906324969,
+          "max_us": 113.90277344958122,
+          "mad_us": 2.741691403684854
+        },
+        "after": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.337554295996142e-05,
+            9.288298828380448e-05,
+            8.688424608749301e-05,
+            8.825563281789073e-05,
+            8.788880859356141e-05,
+            8.907097655708185e-05,
+            9.771560937110735e-05
+          ],
+          "median_us": 89.07097655708185,
+          "min_us": 86.88424608749301,
+          "max_us": 97.71560937110735,
+          "mad_us": 2.186730469588838
+        }
+      },
+      "bezier_subdivide_0.01": {
+        "before": {
+          "operations_per_trial": 64,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00032130018752241085,
+            0.0003203814218863954,
+            0.0003258386562379201,
+            0.00030861743749710513,
+            0.00031816175004450997,
+            0.0003083254531475177,
+            0.00032375595310440985
+          ],
+          "median_us": 320.3814218863954,
+          "min_us": 308.3254531475177,
+          "max_us": 325.8386562379201,
+          "mad_us": 3.3745312180144538
+        },
+        "after": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00029190750780117014,
+            0.0002759116875097334,
+            0.0003074756093610631,
+            0.00027528292184797465,
+            0.000283522804693348,
+            0.0002825510546813348,
+            0.000283741414079941
+          ],
+          "median_us": 283.522804693348,
+          "min_us": 275.28292184797465,
+          "max_us": 307.4756093610631,
+          "mad_us": 7.611117183614624
+        }
+      },
+      "bezier_subdivide_0.0001": {
+        "before": {
+          "operations_per_trial": 8,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.003008674750162754,
+            0.002912805499818205,
+            0.003060241874663916,
+            0.002877309000268724,
+            0.0029606296252495667,
+            0.0038275570000223524,
+            0.0031484868750339956
+          ],
+          "median_us": 3008.674750162754,
+          "min_us": 2877.309000268724,
+          "max_us": 3827.5570000223524,
+          "mad_us": 95.86925034454907
+        },
+        "after": {
+          "operations_per_trial": 16,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.002735398750019158,
+            0.002515283125148926,
+            0.002611971249962153,
+            0.002780926624836866,
+            0.0025210764374605787,
+            0.002653184937344122,
+            0.002598320625111228
+          ],
+          "median_us": 2611.971249962153,
+          "min_us": 2515.283125148926,
+          "max_us": 2780.926624836866,
+          "mad_us": 90.89481250157405
+        }
+      },
+      "bezier_subdivide_1e-08": {
+        "before": {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.3059360799998103,
+            0.3110016890022962,
+            0.30382709100013017,
+            0.310349524999765,
+            0.31112455900074565,
+            0.3064861380007642,
+            0.30059241900016787
+          ],
+          "median_us": 306486.1380007642,
+          "min_us": 300592.41900016787,
+          "max_us": 311124.55900074565,
+          "mad_us": 3863.386999000795
+        },
+        "after": {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.26542183000128716,
+            0.26375774199914304,
+            0.2650972350020311,
+            0.2671463289989333,
+            0.2665939620019344,
+            0.27566468700024416,
+            0.2998648229986429
+          ],
+          "median_us": 266593.9620019344,
+          "min_us": 263757.74199914304,
+          "max_us": 299864.8229986429,
+          "mad_us": 1496.7269999033306
+        }
+      },
+      "bezier_subdivide_1e-15": {
+        "before": {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.2085823689994868,
+            1.2729349119981634,
+            1.2474226230006025,
+            1.2878866699975333,
+            1.2493846789984673,
+            1.2740376869987813,
+            1.2642241440007638
+          ],
+          "median_us": 1264224.1440007638,
+          "min_us": 1208582.3689994868,
+          "max_us": 1287886.6699975333,
+          "mad_us": 14839.465002296492
+        },
+        "after": {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.064584333998937,
+            1.0935150069999509,
+            1.063995773998613,
+            1.0826108020009997,
+            1.0554428050018032,
+            1.106485297998006,
+            1.0999053150007967
+          ],
+          "median_us": 1082610.8020009997,
+          "min_us": 1055442.8050018032,
+          "max_us": 1106485.297998006,
+          "mad_us": 18026.468002062757
+        }
+      },
+      "bezier_path_8_segments": {
+        "before": {
+          "operations_per_trial": 4,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.008062754000093264,
+            0.0069611917506335885,
+            0.0068030619995624875,
+            0.007079647750288132,
+            0.007240197000101034,
+            0.007108934500138275,
+            0.007052848249259114
+          ],
+          "median_us": 7079.647750288132,
+          "min_us": 6803.0619995624875,
+          "max_us": 8062.754000093264,
+          "mad_us": 118.45599965454312
+        },
+        "after": {
+          "operations_per_trial": 4,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.006215172749762132,
+            0.006130437749561679,
+            0.006501422999463102,
+            0.0062806732503304374,
+            0.006950793500436703,
+            0.009063426749889913,
+            0.009836971999902744
+          ],
+          "median_us": 6501.422999463102,
+          "min_us": 6130.437749561679,
+          "max_us": 9836.971999902744,
+          "mad_us": 370.98524990142323
+        }
+      },
+      "sh_basis_0_0": {
+        "before": {
+          "operations_per_trial": 32768,
+          "trials": 7,
+          "seconds_per_operation": [
+            8.305578308442918e-07,
+            7.540299987729426e-07,
+            8.085725707873692e-07,
+            8.352298278557768e-07,
+            7.232267150714122e-07,
+            6.574699706884957e-07,
+            6.495682983720386e-07
+          ],
+          "median_us": 0.7540299987729426,
+          "min_us": 0.6495682983720386,
+          "max_us": 0.8352298278557768,
+          "mad_us": 0.07652783207134917
+        },
+        "after": {
+          "operations_per_trial": 32768,
+          "trials": 7,
+          "seconds_per_operation": [
+            6.770364379127258e-07,
+            6.4839181512788e-07,
+            6.578141784618907e-07,
+            6.856619872985803e-07,
+            6.373843993712214e-07,
+            6.321780090523532e-07,
+            6.377116088529533e-07
+          ],
+          "median_us": 0.64839181512788,
+          "min_us": 0.6321780090523532,
+          "max_us": 0.6856619872985803,
+          "mad_us": 0.011007415756658645
+        }
+      },
+      "sh_basis_2_1": {
+        "before": {
+          "operations_per_trial": 16384,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.1052918089671238e-06,
+            1.162383788999577e-06,
+            1.1009805909178993e-06,
+            1.1677183229252819e-06,
+            1.3678232422265069e-06,
+            1.1203646239632548e-06,
+            1.0908619996197189e-06
+          ],
+          "median_us": 1.1203646239632548,
+          "min_us": 1.0908619996197189,
+          "max_us": 1.3678232422265069,
+          "mad_us": 0.0295026243435359
+        },
+        "after": {
+          "operations_per_trial": 32768,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.1151686707400188e-06,
+            1.1911506958561802e-06,
+            1.1463742675132949e-06,
+            1.1348915101017099e-06,
+            1.1390014953427396e-06,
+            1.1361569823842288e-06,
+            1.094987457372909e-06
+          ],
+          "median_us": 1.1361569823842288,
+          "min_us": 1.094987457372909,
+          "max_us": 1.1911506958561802,
+          "mad_us": 0.010217285129066056
+        }
+      },
+      "sh_basis_8_3": {
+        "before": {
+          "operations_per_trial": 16384,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.193219604595953e-06,
+            2.2562389525582205e-06,
+            2.0813931276286723e-06,
+            2.214408813427937e-06,
+            2.1535758667479143e-06,
+            2.1146889648271383e-06,
+            2.1225379638334374e-06
+          ],
+          "median_us": 2.1535758667479143,
+          "min_us": 2.0813931276286723,
+          "max_us": 2.2562389525582205,
+          "mad_us": 0.03964373784803854
+        },
+        "after": {
+          "operations_per_trial": 16384,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.132084961026237e-06,
+            2.105474365299287e-06,
+            2.042712890615306e-06,
+            2.142777343561164e-06,
+            2.2603186036196377e-06,
+            2.1127620237759714e-06,
+            2.305455444329141e-06
+          ],
+          "median_us": 2.132084961026237,
+          "min_us": 2.042712890615306,
+          "max_us": 2.305455444329141,
+          "mad_us": 0.026610595726950237
+        }
+      },
+      "sh_basis_12_6": {
+        "before": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.9055802004407383e-06,
+            2.936494018612734e-06,
+            2.96355761708611e-06,
+            3.0024885253610023e-06,
+            2.952932251165663e-06,
+            3.136722289909244e-06,
+            3.1654372558698185e-06
+          ],
+          "median_us": 2.96355761708611,
+          "min_us": 2.9055802004407383,
+          "max_us": 3.1654372558698185,
+          "mad_us": 0.03893090827489232
+        },
+        "after": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.1988459472387376e-06,
+            3.017656249770795e-06,
+            2.888140503198855e-06,
+            2.898119384919795e-06,
+            3.011071533443044e-06,
+            2.8777757568043683e-06,
+            2.8729676513350455e-06
+          ],
+          "median_us": 2.898119384919795,
+          "min_us": 2.8729676513350455,
+          "max_us": 3.1988459472387376,
+          "mad_us": 0.025151733584749536
+        }
+      },
+      "sh_project_n64_b1": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.7128939452866234e-05,
+            5.827344725872763e-05,
+            6.0372724611568174e-05,
+            5.7169582028393506e-05,
+            5.7038947261389694e-05,
+            6.0079029303494735e-05,
+            6.231952148283426e-05
+          ],
+          "median_us": 58.27344725872763,
+          "min_us": 57.038947261389694,
+          "max_us": 62.31952148283426,
+          "mad_us": 1.2344999973379345
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            6.0843322259529486e-05,
+            5.85728554653997e-05,
+            5.7274335937052e-05,
+            6.080767577998358e-05,
+            6.156697656223287e-05,
+            6.249475585917708e-05,
+            7.159693359426456e-05
+          ],
+          "median_us": 60.84332225952949,
+          "min_us": 57.274335937052,
+          "max_us": 71.59693359426456,
+          "mad_us": 1.6514335996475893
+        }
+      },
+      "sh_project_n64_b3": {
+        "before": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0002414213906263285,
+            0.00021895252342574167,
+            0.00023140492186257688,
+            0.00022583600781445057,
+            0.000228177523439399,
+            0.00022337403126471145,
+            0.0002094203906040093
+          ],
+          "median_us": 225.83600781445057,
+          "min_us": 209.4203906040093,
+          "max_us": 241.4213906263285,
+          "mad_us": 5.568914048126317
+        },
+        "after": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00021973917969830836,
+            0.00021447674217256463,
+            0.00022438265622781728,
+            0.0002214941250144875,
+            0.00021845784374363575,
+            0.00023383915623753637,
+            0.00022179174217740183
+          ],
+          "median_us": 221.4941250144875,
+          "min_us": 214.47674217256463,
+          "max_us": 233.83915623753637,
+          "mad_us": 2.8885312133297703
+        }
+      },
+      "sh_project_n64_b5": {
+        "before": {
+          "operations_per_trial": 64,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0005603621562499939,
+            0.0005443060312586567,
+            0.0005909609531045135,
+            0.0005789068281387699,
+            0.0005683186406599816,
+            0.000709107390605368,
+            0.0005486656562538883
+          ],
+          "median_us": 568.3186406599816,
+          "min_us": 544.3060312586567,
+          "max_us": 709.107390605368,
+          "mad_us": 19.65298440609331
+        },
+        "after": {
+          "operations_per_trial": 64,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0005902166718669832,
+            0.0006203767343890831,
+            0.000561240124966389,
+            0.0005490949218369678,
+            0.0005575048750188216,
+            0.00056836134376681,
+            0.0005706332187287444
+          ],
+          "median_us": 568.36134376681,
+          "min_us": 549.0949218369678,
+          "max_us": 620.3767343890831,
+          "mad_us": 10.856468747988401
+        }
+      },
+      "sh_project_n256_b1": {
+        "before": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00021561675779935285,
+            0.00023699452344771998,
+            0.00022085907031055285,
+            0.00021363590624901008,
+            0.0002239799843550827,
+            0.0002209948046925092,
+            0.00021903195315076118
+          ],
+          "median_us": 220.85907031055285,
+          "min_us": 213.63590624901008,
+          "max_us": 236.99452344771998,
+          "mad_us": 3.1209140445298544
+        },
+        "after": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00021643119529812793,
+            0.00022014873437115057,
+            0.00022000386718445952,
+            0.0002178286015634967,
+            0.00022306758594936582,
+            0.0002166702109320795,
+            0.0002265650547030873
+          ],
+          "median_us": 220.00386718445952,
+          "min_us": 216.43119529812793,
+          "max_us": 226.5650547030873,
+          "mad_us": 3.063718764906298
+        }
+      },
+      "sh_project_n256_b3": {
+        "before": {
+          "operations_per_trial": 32,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0008503805624968663,
+            0.0008256483125705927,
+            0.000828681406233045,
+            0.0008762073749721822,
+            0.0008430384062876328,
+            0.0008323007499484447,
+            0.0008824086249887841
+          ],
+          "median_us": 843.0384062876328,
+          "min_us": 825.6483125705927,
+          "max_us": 882.4086249887841,
+          "mad_us": 14.357000054587843
+        },
+        "after": {
+          "operations_per_trial": 32,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0008201081250263087,
+            0.0008241361249474721,
+            0.0008265914999583401,
+            0.0008317969062545671,
+            0.0008435205623982256,
+            0.0008543400000462498,
+            0.0008229870312561616
+          ],
+          "median_us": 826.5914999583401,
+          "min_us": 820.1081250263087,
+          "max_us": 854.3400000462498,
+          "mad_us": 5.205406296227011
+        }
+      },
+      "sh_project_n256_b5": {
+        "before": {
+          "operations_per_trial": 8,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0022883483752593747,
+            0.0021153618749849556,
+            0.002176882750063669,
+            0.0021565727497545595,
+            0.002100628500102175,
+            0.002261939500385779,
+            0.0021164823747312766
+          ],
+          "median_us": 2156.5727497545595,
+          "min_us": 2100.628500102175,
+          "max_us": 2288.3483752593747,
+          "mad_us": 41.210874769603834
+        },
+        "after": {
+          "operations_per_trial": 16,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0021884096875055548,
+            0.0021599920000880957,
+            0.0021229349999885017,
+            0.002014369875041666,
+            0.00208575024998936,
+            0.002212640187508441,
+            0.0021187901249959395
+          ],
+          "median_us": 2122.9349999885017,
+          "min_us": 2014.369875041666,
+          "max_us": 2212.640187508441,
+          "mad_us": 37.184749999141786
+        }
+      },
+      "sh_project_n1024_b1": {
+        "before": {
+          "operations_per_trial": 32,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0008369727499939472,
+            0.0008501274062382436,
+            0.0008617199687250832,
+            0.0009090030312108865,
+            0.0008899120937257976,
+            0.0008944082811694898,
+            0.001021641031229592
+          ],
+          "median_us": 889.9120937257976,
+          "min_us": 836.9727499939472,
+          "max_us": 1021.641031229592,
+          "mad_us": 28.19212500071444
+        },
+        "after": {
+          "operations_per_trial": 32,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0008546732187824091,
+            0.0009001938125265951,
+            0.0008474966249423233,
+            0.0008706848749397977,
+            0.0008596504999331955,
+            0.0008848284062423772,
+            0.0009475800000018353
+          ],
+          "median_us": 870.6848749397977,
+          "min_us": 847.4966249423233,
+          "max_us": 947.5800000018353,
+          "mad_us": 16.011656157388643
+        }
+      },
+      "sh_project_n1024_b3": {
+        "before": {
+          "operations_per_trial": 8,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0034172781247434614,
+            0.0032712259999243543,
+            0.0031505623746852507,
+            0.0035250226251264394,
+            0.0032263868752124836,
+            0.0033335671250824817,
+            0.003900230624822143
+          ],
+          "median_us": 3333.5671250824817,
+          "min_us": 3150.5623746852507,
+          "max_us": 3900.230624822143,
+          "mad_us": 107.18024986999808
+        },
+        "after": {
+          "operations_per_trial": 8,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.003204128875040624,
+            0.0034251563752150105,
+            0.00320362299999033,
+            0.0032855869999366405,
+            0.0031387138751597377,
+            0.0035043811253672175,
+            0.0034782331249516574
+          ],
+          "median_us": 3285.5869999366405,
+          "min_us": 3138.7138751597377,
+          "max_us": 3504.3811253672175,
+          "mad_us": 139.56937527837
+        }
+      },
+      "sh_project_n1024_b5": {
+        "before": {
+          "operations_per_trial": 4,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00838780224967195,
+            0.008338786999956938,
+            0.009147057499831135,
+            0.008240268000008655,
+            0.009145265749793907,
+            0.009651763999499963,
+            0.008174310250069539
+          ],
+          "median_us": 8387.80224967195,
+          "min_us": 8174.310250069539,
+          "max_us": 9651.763999499963,
+          "mad_us": 213.49199960241094
+        },
+        "after": {
+          "operations_per_trial": 4,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.008419879499342642,
+            0.008179640250091325,
+            0.008658334750180074,
+            0.009353277999252896,
+            0.00896034250035882,
+            0.008268999249594344,
+            0.008274177749626688
+          ],
+          "median_us": 8419.879499342642,
+          "min_us": 8179.640250091325,
+          "max_us": 9353.277999252896,
+          "mad_us": 238.4552508374327
+        }
+      },
+      "sh_convolve_l2": {
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.838612061381809e-06,
+            6.1473647461340875e-06,
+            6.334932860951881e-06,
+            6.676400146510275e-06,
+            6.229861328144182e-06,
+            6.037674560310791e-06,
+            6.023465331850275e-06
+          ],
+          "median_us": 6.1473647461340875,
+          "min_us": 5.838612061381809,
+          "max_us": 6.676400146510275,
+          "mad_us": 0.12389941428381235
+        },
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            6.2243771967729344e-06,
+            6.503228271448336e-06,
+            6.232041504183883e-06,
+            6.862145020214427e-06,
+            6.492291260151717e-06,
+            6.364718993623342e-06,
+            6.722770507394671e-06
+          ],
+          "median_us": 6.492291260151717,
+          "min_us": 6.224377196772934,
+          "max_us": 6.862145020214427,
+          "mad_us": 0.230479247242954
+        }
+      },
+      "sh_rotate_l2_scalar": {
+        "before": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.8430506836253358e-05,
+            1.791625781244477e-05,
+            1.916465625129149e-05,
+            1.7837699218148373e-05,
+            1.7133043456851738e-05,
+            1.8460064453051928e-05,
+            1.7661377441413606e-05
+          ],
+          "median_us": 17.91625781244477,
+          "min_us": 17.133043456851738,
+          "max_us": 19.16465625129149,
+          "mad_us": 0.5142490238085884
+        },
+        "after": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.2509109375002936e-05,
+            1.200750292973396e-05,
+            1.1691660644075341e-05,
+            1.4651588866598786e-05,
+            1.124714111355729e-05,
+            1.1322051758355656e-05,
+            1.1168417479723303e-05
+          ],
+          "median_us": 11.691660644075341,
+          "min_us": 11.168417479723303,
+          "max_us": 14.651588866598786,
+          "mad_us": 0.4445195305180505
+        }
+      },
+      "sh_rotate_l2_rgb": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.1177621092458594e-05,
+            4.190458788855267e-05,
+            5.044162304557176e-05,
+            4.1962994139055354e-05,
+            4.281773632897057e-05,
+            4.397915234477523e-05,
+            4.245087109211454e-05
+          ],
+          "median_us": 42.45087109211454,
+          "min_us": 41.177621092458594,
+          "max_us": 50.44162304557176,
+          "mad_us": 0.5462832035618703
+        },
+        "after": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.2705334959738366e-05,
+            2.2560328122978035e-05,
+            2.568380859457875e-05,
+            2.564173144392612e-05,
+            2.7184102538768684e-05,
+            2.3562352538419873e-05,
+            2.5737826170768585e-05
+          ],
+          "median_us": 25.64173144392612,
+          "min_us": 22.560328122978035,
+          "max_us": 27.184102538768684,
+          "mad_us": 1.542371094842565
+        }
+      },
+      "sh_reconstruct_l2": {
+        "before": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.8130734863675002e-05,
+            1.990474218693805e-05,
+            1.8582466308814105e-05,
+            1.7343657713553284e-05,
+            1.6522381836026057e-05,
+            1.8804623534762754e-05,
+            1.7253201171740784e-05
+          ],
+          "median_us": 18.130734863675002,
+          "min_us": 16.522381836026057,
+          "max_us": 19.90474218693805,
+          "mad_us": 0.7870771501217178
+        },
+        "after": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.4364586425230641e-05,
+            1.2563339355509129e-05,
+            1.4318434081062037e-05,
+            1.2860767578004584e-05,
+            1.33533837889388e-05,
+            1.2773142088917666e-05,
+            1.4106969727478713e-05
+          ],
+          "median_us": 13.3533837889388,
+          "min_us": 12.563339355509129,
+          "max_us": 14.364586425230641,
+          "mad_us": 0.7535859385399135
+        }
+      },
+      "bezier_raw_split": {
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.014866698793696e-06,
+            5.8210622562171466e-06,
+            5.133510742716396e-06,
+            5.340538086429092e-06,
+            4.932143554903234e-06,
+            4.869679687935502e-06,
+            5.1536040039934505e-06
+          ],
+          "median_us": 5.133510742716396,
+          "min_us": 4.869679687935502,
+          "max_us": 5.821062256217147,
+          "mad_us": 0.20136718781316176
+        },
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.862078613498966e-06,
+            4.756219726509414e-06,
+            5.466435791134927e-06,
+            4.969337646265615e-06,
+            5.782381835572892e-06,
+            4.905193847548617e-06,
+            5.07316845688166e-06
+          ],
+          "median_us": 4.969337646265615,
+          "min_us": 4.756219726509414,
+          "max_us": 5.782381835572892,
+          "mad_us": 0.10725903276664894
+        }
+      },
+      "bezier_raw_subdivide": {
+        "before": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00031613107810812835,
+            0.0003447568437593418,
+            0.0003383293515639707,
+            0.00030350085938835036,
+            0.00029129667970551054,
+            0.0003036899609583088,
+            0.0002949762031221326
+          ],
+          "median_us": 303.6899609583088,
+          "min_us": 291.29667970551054,
+          "max_us": 344.7568437593418,
+          "mad_us": 12.39328125279826
+        },
+        "after": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0002868225000156599,
+            0.0002578689530992051,
+            0.00027176000779149945,
+            0.00028182093748796433,
+            0.000252567914088786,
+            0.0002641959609377409,
+            0.0002623607421696761
+          ],
+          "median_us": 264.1959609377409,
+          "min_us": 252.56791408878598,
+          "max_us": 286.8225000156599,
+          "mad_us": 7.564046853758555
+        }
+      },
+      "bezier_raw_flatness": {
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.925686279439901e-06,
+            7.814899414704257e-06,
+            6.463563720693344e-06,
+            6.511269043052437e-06,
+            5.882851562333258e-06,
+            5.993800049175491e-06,
+            5.910539794484748e-06
+          ],
+          "median_us": 5.993800049175491,
+          "min_us": 5.882851562333258,
+          "max_us": 7.814899414704257,
+          "mad_us": 0.1109484868422328
+        },
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.7607158199246555e-06,
+            7.195983642738213e-06,
+            7.878420654527929e-06,
+            9.164154785246126e-06,
+            6.2911201172966e-06,
+            5.24726416006871e-06,
+            5.407734374962558e-06
+          ],
+          "median_us": 6.2911201172966,
+          "min_us": 5.24726416006871,
+          "max_us": 9.164154785246126,
+          "mad_us": 0.9048635254416126
+        }
+      },
+      "sh_raw_basis_b3": {
+        "before": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.583169434890237e-06,
+            1.1186458497292051e-05,
+            8.987532226001349e-06,
+            9.413404297831107e-06,
+            9.617827636532184e-06,
+            9.308360839455077e-06,
+            1.070100927691442e-05
+          ],
+          "median_us": 9.583169434890237,
+          "min_us": 8.987532226001349,
+          "max_us": 11.186458497292051,
+          "mad_us": 0.2748085954351609
+        },
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.366237549431219e-06,
+            5.852823242058491e-06,
+            5.652745117323832e-06,
+            6.0530737302499915e-06,
+            5.355431640374775e-06,
+            5.392069091669782e-06,
+            5.8690009767659035e-06
+          ],
+          "median_us": 5.652745117323832,
+          "min_us": 5.355431640374775,
+          "max_us": 6.0530737302499915,
+          "mad_us": 0.2606760256540497
+        }
+      },
+      "sh_raw_basis_b5": {
+        "before": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.345369140816956e-05,
+            3.236137304796216e-05,
+            3.192995605161286e-05,
+            3.5831543947040245e-05,
+            3.3246974609824065e-05,
+            3.2180258788372385e-05,
+            3.258935937466845e-05
+          ],
+          "median_us": 32.58935937466845,
+          "min_us": 31.929956051612862,
+          "max_us": 35.831543947040245,
+          "mad_us": 0.6576152351556175
+        },
+        "after": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.725669091712234e-05,
+            1.7999427734949336e-05,
+            1.7207119629603085e-05,
+            1.7238252929985265e-05,
+            1.7094892090341318e-05,
+            1.6469655273354533e-05,
+            1.7809429198933913e-05
+          ],
+          "median_us": 17.238252929985265,
+          "min_us": 16.469655273354533,
+          "max_us": 17.999427734949336,
+          "mad_us": 0.14336083964394675
+        }
+      },
+      "sh_raw_basis_b9": {
+        "before": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00014083366015427146,
+            0.0001418420273466836,
+            0.0001522375273310672,
+            0.00014317855860213058,
+            0.0001462701367245245,
+            0.00014579881249687787,
+            0.00015552005078234288
+          ],
+          "median_us": 145.79881249687787,
+          "min_us": 140.83366015427146,
+          "max_us": 155.52005078234288,
+          "mad_us": 3.956785150194264
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            6.328117187592852e-05,
+            7.071399804203793e-05,
+            6.121488281252141e-05,
+            6.1083515625171e-05,
+            7.000058202777382e-05,
+            6.41726796857256e-05,
+            6.177104491911223e-05
+          ],
+          "median_us": 63.28117187592852,
+          "min_us": 61.083515625171,
+          "max_us": 70.71399804203793,
+          "mad_us": 2.066289063407112
+        }
+      },
+      "sh_angular_probe_b3": {
+        "before": {
+          "operations_per_trial": 4,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.006024228499882156,
+            0.006186220000017784,
+            0.00599471875011659,
+            0.006276754749706015,
+            0.006712011250783689,
+            0.0060679525004161405,
+            0.005903811000280257
+          ],
+          "median_us": 6067.9525004161405,
+          "min_us": 5903.811000280257,
+          "max_us": 6712.011250783689,
+          "mad_us": 118.26749960164307
+        },
+        "after": {
+          "operations_per_trial": 8,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00431368149975242,
+            0.004698143624864315,
+            0.004420295625095605,
+            0.005191197999920405,
+            0.004346636249920266,
+            0.004192053750102787,
+            0.004428654000093957
+          ],
+          "median_us": 4420.295625095605,
+          "min_us": 4192.053750102787,
+          "max_us": 5191.197999920405,
+          "mad_us": 106.61412534318515
+        }
+      }
+    },
+    {
+      "bezier_quadratic": {
+        "after": {
+          "operations_per_trial": 32768,
+          "trials": 7,
+          "seconds_per_operation": [
+            7.821156616794056e-07,
+            8.061958617355813e-07,
+            9.422969055039587e-07,
+            7.526850585026779e-07,
+            8.295575560923751e-07,
+            7.988725890806236e-07,
+            7.927676392016636e-07
+          ],
+          "median_us": 0.7988725890806236,
+          "min_us": 0.7526850585026779,
+          "max_us": 0.9422969055039587,
+          "mad_us": 0.016756927401218036
+        },
+        "before": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.9491557618221975e-06,
+            2.89516101092957e-06,
+            2.8407432863808424e-06,
+            3.2440429689195582e-06,
+            3.016492065466281e-06,
+            3.0172524416727242e-06,
+            2.858257934779118e-06
+          ],
+          "median_us": 2.9491557618221975,
+          "min_us": 2.8407432863808424,
+          "max_us": 3.2440429689195582,
+          "mad_us": 0.0680966798505267
+        }
+      },
+      "bezier_cubic": {
+        "after": {
+          "operations_per_trial": 32768,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.604352416703321e-07,
+            1.0067479553343972e-06,
+            1.095360382175059e-06,
+            9.832778931073705e-07,
+            9.747029113826855e-07,
+            9.81330719018736e-07,
+            9.794122924899895e-07
+          ],
+          "median_us": 0.9813307190187359,
+          "min_us": 0.9604352416703321,
+          "max_us": 1.095360382175059,
+          "mad_us": 0.00662780763605042
+        },
+        "before": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.7356791991480804e-06,
+            4.340909667721604e-06,
+            4.096739258052651e-06,
+            4.190951904181617e-06,
+            4.8408216550832606e-06,
+            4.049474608969206e-06,
+            4.585253539968193e-06
+          ],
+          "median_us": 4.340909667721604,
+          "min_us": 4.049474608969206,
+          "max_us": 5.73567919914808,
+          "mad_us": 0.2443438722465885
+        }
+      },
+      "bezier_cubic_scalar": {
+        "after": {
+          "operations_per_trial": 65536,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.7153857423689587e-07,
+            2.7774330135788006e-07,
+            2.9801654050087834e-07,
+            2.788755798510678e-07,
+            2.86992004383535e-07,
+            2.6451538087668425e-07,
+            2.7241024780355616e-07
+          ],
+          "median_us": 0.27774330135788006,
+          "min_us": 0.26451538087668425,
+          "max_us": 0.29801654050087834,
+          "mad_us": 0.006204727120984188
+        },
+        "before": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.4375534818377176e-07,
+            2.736228027211407e-07,
+            2.564396362203514e-07,
+            2.443579559252562e-07,
+            2.987140197696636e-07,
+            2.4972946929824325e-07,
+            2.462305069006465e-07
+          ],
+          "median_us": 0.24972946929824325,
+          "min_us": 0.24375534818377176,
+          "max_us": 0.2987140197696636,
+          "mad_us": 0.005974121114471487
+        }
+      },
+      "bezier_subdivide_0.1": {
+        "after": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.749969140671055e-05,
+            8.441335546649498e-05,
+            0.00010492210937229629,
+            9.459243750598034e-05,
+            8.99956523454648e-05,
+            9.059097266117533e-05,
+            8.798341406190957e-05
+          ],
+          "median_us": 90.59097266117533,
+          "min_us": 84.41335546649498,
+          "max_us": 104.92210937229629,
+          "mad_us": 4.001464844805014
+        },
+        "before": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.561162499949205e-05,
+            0.00010879200391400445,
+            0.00010181650391416497,
+            9.899518359191006e-05,
+            9.850611327522074e-05,
+            0.00012214134375199137,
+            9.975867187961285e-05
+          ],
+          "median_us": 99.75867187961285,
+          "min_us": 95.61162499949205,
+          "max_us": 122.14134375199137,
+          "mad_us": 2.0578320345521206
+        }
+      },
+      "bezier_subdivide_0.01": {
+        "after": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0002872137187637236,
+            0.00027422943750821105,
+            0.0002910425077971013,
+            0.0002679649843742027,
+            0.00028457633592893217,
+            0.0002880182031219647,
+            0.0002676269218682137
+          ],
+          "median_us": 284.57633592893217,
+          "min_us": 267.6269218682137,
+          "max_us": 291.0425077971013,
+          "mad_us": 6.466171868169113
+        },
+        "before": {
+          "operations_per_trial": 64,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0003254879218843598,
+            0.0003103543124893804,
+            0.00030547940622227543,
+            0.0003069389218808283,
+            0.00031610420313654686,
+            0.00031640798437138073,
+            0.00031083293754363694
+          ],
+          "median_us": 310.83293754363694,
+          "min_us": 305.47940622227543,
+          "max_us": 325.4879218843598,
+          "mad_us": 5.271265592909913
+        }
+      },
+      "bezier_subdivide_0.0001": {
+        "after": {
+          "operations_per_trial": 16,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0026231765000375162,
+            0.002368293437484681,
+            0.002553793249944647,
+            0.0024469895624861238,
+            0.0025197001875767455,
+            0.002761149374919114,
+            0.003125508250150233
+          ],
+          "median_us": 2553.793249944647,
+          "min_us": 2368.293437484681,
+          "max_us": 3125.508250150233,
+          "mad_us": 106.8036874585232
+        },
+        "before": {
+          "operations_per_trial": 8,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0043118285002492485,
+            0.004849965124776645,
+            0.002864456500446977,
+            0.002759075749963813,
+            0.0028943797501597146,
+            0.0030471581249003066,
+            0.0029769307498099806
+          ],
+          "median_us": 2976.9307498099806,
+          "min_us": 2759.075749963813,
+          "max_us": 4849.965124776645,
+          "mad_us": 112.47424936300376
+        }
+      },
+      "bezier_subdivide_1e-08": {
+        "after": {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.2650748289997864,
+            0.26764901900241966,
+            0.26109271200039075,
+            0.2669372870004736,
+            0.2777177470015886,
+            0.2706986839984893,
+            0.2623985009995522
+          ],
+          "median_us": 266937.2870004736,
+          "min_us": 261092.71200039075,
+          "max_us": 277717.7470015886,
+          "mad_us": 3761.396998015698
+        },
+        "before": {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.3068935510018491,
+            0.30081785999936983,
+            0.302115483002126,
+            0.3063340239968966,
+            0.3084067719973973,
+            0.3035271160006232,
+            0.3030200760003936
+          ],
+          "median_us": 303527.1160006232,
+          "min_us": 300817.85999936983,
+          "max_us": 308406.7719973973,
+          "mad_us": 2709.2560012533795
+        }
+      },
+      "bezier_subdivide_1e-15": {
+        "after": {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.0747012270003324,
+            1.0898123840015614,
+            1.144882458000211,
+            1.1347001979993365,
+            1.0776660410010663,
+            1.0943827599985525,
+            1.1536063959974854
+          ],
+          "median_us": 1094382.7599985525,
+          "min_us": 1074701.2270003324,
+          "max_us": 1153606.3959974854,
+          "mad_us": 19681.532998220064
+        },
+        "before": {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.3511934060006752,
+            1.6677128609990177,
+            1.3309721980003815,
+            1.2312408090001554,
+            1.2477069070009748,
+            1.192068278996885,
+            1.223337603998516
+          ],
+          "median_us": 1247706.9070009748,
+          "min_us": 1192068.278996885,
+          "max_us": 1667712.8609990177,
+          "mad_us": 55638.628004089696
+        }
+      },
+      "bezier_path_8_segments": {
+        "after": {
+          "operations_per_trial": 4,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.006040150500666641,
+            0.006255433750084194,
+            0.006061789999876055,
+            0.006028200999935507,
+            0.006182274250022601,
+            0.0068763837498408975,
+            0.006312649250503455
+          ],
+          "median_us": 6182.274250022601,
+          "min_us": 6028.200999935507,
+          "max_us": 6876.3837498408975,
+          "mad_us": 130.3750004808535
+        },
+        "before": {
+          "operations_per_trial": 4,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.007011557249825273,
+            0.007030125249912089,
+            0.007180378000157361,
+            0.007024113499937812,
+            0.006945554499907303,
+            0.006998481750088104,
+            0.007659415250600432
+          ],
+          "median_us": 7024.113499937812,
+          "min_us": 6945.554499907303,
+          "max_us": 7659.415250600432,
+          "mad_us": 25.631749849708285
+        }
+      },
+      "sh_basis_0_0": {
+        "after": {
+          "operations_per_trial": 32768,
+          "trials": 7,
+          "seconds_per_operation": [
+            6.499591980180242e-07,
+            6.525253600786485e-07,
+            6.480293883726063e-07,
+            6.400953673768583e-07,
+            6.27445098877466e-07,
+            6.756971130394973e-07,
+            6.68652832103156e-07
+          ],
+          "median_us": 0.6499591980180242,
+          "min_us": 0.627445098877466,
+          "max_us": 0.6756971130394973,
+          "mad_us": 0.009863830641165805
+        },
+        "before": {
+          "operations_per_trial": 32768,
+          "trials": 7,
+          "seconds_per_operation": [
+            6.773676147764363e-07,
+            7.19827697781561e-07,
+            6.534589233053723e-07,
+            6.843103638187742e-07,
+            6.402470702493446e-07,
+            6.383254699260377e-07,
+            6.714906005678145e-07
+          ],
+          "median_us": 0.6714906005678145,
+          "min_us": 0.6383254699260377,
+          "max_us": 0.719827697781561,
+          "mad_us": 0.01803167726244226
+        }
+      },
+      "sh_basis_2_1": {
+        "after": {
+          "operations_per_trial": 32768,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.1502985534095345e-06,
+            1.19633877559977e-06,
+            1.0836739806618922e-06,
+            1.0907269591964308e-06,
+            1.0606920165523448e-06,
+            1.0861875915368913e-06,
+            1.1018116454764026e-06
+          ],
+          "median_us": 1.0907269591964308,
+          "min_us": 1.0606920165523448,
+          "max_us": 1.19633877559977,
+          "mad_us": 0.011084686279971834
+        },
+        "before": {
+          "operations_per_trial": 32768,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.0969670409810561e-06,
+            1.0909220276023035e-06,
+            1.1020085449731098e-06,
+            1.094423553449353e-06,
+            1.096850219650669e-06,
+            1.1266209716254139e-06,
+            1.1502002258412247e-06
+          ],
+          "median_us": 1.0969670409810561,
+          "min_us": 1.0909220276023035,
+          "max_us": 1.1502002258412247,
+          "mad_us": 0.00504150399205372
+        }
+      },
+      "sh_basis_8_3": {
+        "after": {
+          "operations_per_trial": 16384,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.0703773193631037e-06,
+            2.658074340633476e-06,
+            2.5138787231870907e-06,
+            2.324208313142506e-06,
+            2.289995056248273e-06,
+            2.1049220582103345e-06,
+            2.5158682250836506e-06
+          ],
+          "median_us": 2.324208313142506,
+          "min_us": 2.0703773193631037,
+          "max_us": 2.658074340633476,
+          "mad_us": 0.1916599119411444
+        },
+        "before": {
+          "operations_per_trial": 16384,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.2705421143243143e-06,
+            2.246727050847497e-06,
+            2.1986725464717694e-06,
+            2.1593154295729278e-06,
+            2.11621185308708e-06,
+            2.175088195777164e-06,
+            2.0757064820298154e-06
+          ],
+          "median_us": 2.175088195777164,
+          "min_us": 2.0757064820298154,
+          "max_us": 2.2705421143243143,
+          "mad_us": 0.058876342690084016
+        }
+      },
+      "sh_basis_12_6": {
+        "after": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.002757568371095e-06,
+            3.0031170652478067e-06,
+            2.849588500719591e-06,
+            2.93485376001712e-06,
+            3.247958740182355e-06,
+            2.8557794191641506e-06,
+            2.843080322278979e-06
+          ],
+          "median_us": 2.93485376001712,
+          "min_us": 2.843080322278979,
+          "max_us": 3.247958740182355,
+          "mad_us": 0.07907434085296927
+        },
+        "before": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.8897082522405526e-06,
+            3.093540283050089e-06,
+            2.9595218502542764e-06,
+            2.865370605675821e-06,
+            2.931414428530843e-06,
+            2.880120605563974e-06,
+            2.9379143065000335e-06
+          ],
+          "median_us": 2.931414428530843,
+          "min_us": 2.865370605675821,
+          "max_us": 3.093540283050089,
+          "mad_us": 0.04170617629029039
+        }
+      },
+      "sh_project_n64_b1": {
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.677928320579895e-05,
+            5.990056835969426e-05,
+            6.07439277331423e-05,
+            6.030848437177383e-05,
+            5.6487460938114964e-05,
+            6.087912500163384e-05,
+            5.769305077762965e-05
+          ],
+          "median_us": 59.90056835969426,
+          "min_us": 56.487460938114964,
+          "max_us": 60.87912500163384,
+          "mad_us": 0.9785566419395764
+        },
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            6.196598242524942e-05,
+            6.298293750006678e-05,
+            7.547704296939628e-05,
+            6.281214452741324e-05,
+            5.8098689450503116e-05,
+            5.7338499999559644e-05,
+            6.150529492288115e-05
+          ],
+          "median_us": 61.96598242524942,
+          "min_us": 57.338499999559644,
+          "max_us": 75.47704296939628,
+          "mad_us": 1.0169550748173606
+        }
+      },
+      "sh_project_n64_b3": {
+        "after": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00022382389843755846,
+            0.00022180784375791518,
+            0.00021429942188433415,
+            0.00021556385158305602,
+            0.00024499318752191357,
+            0.0002131686562449886,
+            0.00020860774219499945
+          ],
+          "median_us": 215.56385158305602,
+          "min_us": 208.60774219499945,
+          "max_us": 244.99318752191357,
+          "mad_us": 6.243992174859159
+        },
+        "before": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00023318932812799176,
+            0.00021714630469205076,
+            0.000218723453116354,
+            0.00021356903127411897,
+            0.00021174564062675927,
+            0.00022225414841159363,
+            0.0002088206953203553
+          ],
+          "median_us": 217.14630469205076,
+          "min_us": 208.8206953203553,
+          "max_us": 233.18932812799176,
+          "mad_us": 5.1078437195428705
+        }
+      },
+      "sh_project_n64_b5": {
+        "after": {
+          "operations_per_trial": 64,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0005632277499785232,
+            0.0005466202812272059,
+            0.0005528948281607882,
+            0.000544490531297015,
+            0.0005613311562910894,
+            0.0005454200625081285,
+            0.000614775546864621
+          ],
+          "median_us": 552.8948281607882,
+          "min_us": 544.490531297015,
+          "max_us": 614.775546864621,
+          "mad_us": 8.404296863773197
+        },
+        "before": {
+          "operations_per_trial": 64,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0005744848750168785,
+            0.0005818224374820602,
+            0.0005542343125171101,
+            0.0005672387968616022,
+            0.0005947017187395431,
+            0.0005457330624949464,
+            0.0006678589531361467
+          ],
+          "median_us": 574.4848750168785,
+          "min_us": 545.7330624949464,
+          "max_us": 667.8589531361467,
+          "mad_us": 20.216843722664635
+        }
+      },
+      "sh_project_n256_b1": {
+        "after": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00021224215626602927,
+            0.0002195274296639127,
+            0.0002198859453130808,
+            0.00022962242186963522,
+            0.00022384876561432066,
+            0.00021511143751240525,
+            0.00021792492188410506
+          ],
+          "median_us": 219.5274296639127,
+          "min_us": 212.24215626602927,
+          "max_us": 229.62242186963522,
+          "mad_us": 4.321335950407956
+        },
+        "before": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0002124165077930229,
+            0.00022519873439819094,
+            0.00022876725779497065,
+            0.0002346678984395112,
+            0.00022051467189498908,
+            0.00021231049217362852,
+            0.00022629171095900347
+          ],
+          "median_us": 225.19873439819094,
+          "min_us": 212.31049217362852,
+          "max_us": 234.6678984395112,
+          "mad_us": 4.684062503201858
+        }
+      },
+      "sh_project_n256_b3": {
+        "after": {
+          "operations_per_trial": 32,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.000815636281231491,
+            0.0009520420937860763,
+            0.0009031837499833273,
+            0.0008906224375095917,
+            0.0008336756875451101,
+            0.0008252505000427846,
+            0.0008422901562425977
+          ],
+          "median_us": 842.2901562425977,
+          "min_us": 815.636281231491,
+          "max_us": 952.0420937860763,
+          "mad_us": 26.65387501110672
+        },
+        "before": {
+          "operations_per_trial": 32,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0008180556561683261,
+            0.0008180698437172396,
+            0.0008293295312569171,
+            0.000886426968691012,
+            0.0008352815937087144,
+            0.0008129456249434952,
+            0.0008258016562194825
+          ],
+          "median_us": 825.8016562194825,
+          "min_us": 812.9456249434952,
+          "max_us": 886.426968691012,
+          "mad_us": 7.746000051156443
+        }
+      },
+      "sh_project_n256_b5": {
+        "after": {
+          "operations_per_trial": 16,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.002093750750191248,
+            0.002150856937532808,
+            0.0022061132499402447,
+            0.002119581625038336,
+            0.002104706687532598,
+            0.0020747408125316724,
+            0.002284477812509067
+          ],
+          "median_us": 2119.581625038336,
+          "min_us": 2074.7408125316724,
+          "max_us": 2284.477812509067,
+          "mad_us": 31.27531249447202
+        },
+        "before": {
+          "operations_per_trial": 16,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.002299458000152299,
+            0.002107817312435145,
+            0.0020684359999449953,
+            0.0021212155002103827,
+            0.0022137505625323683,
+            0.002116837562425644,
+            0.0021684840626221558
+          ],
+          "median_us": 2121.2155002103827,
+          "min_us": 2068.4359999449953,
+          "max_us": 2299.458000152299,
+          "mad_us": 47.26856241177302
+        }
+      },
+      "sh_project_n1024_b1": {
+        "after": {
+          "operations_per_trial": 32,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0008852688124534325,
+            0.0008561480311755076,
+            0.0008462609062007687,
+            0.0008571105000783064,
+            0.0009235471561623854,
+            0.0008325647187348295,
+            0.0008467772812537078
+          ],
+          "median_us": 856.1480311755076,
+          "min_us": 832.5647187348295,
+          "max_us": 923.5471561623854,
+          "mad_us": 9.887124974738981
+        },
+        "before": {
+          "operations_per_trial": 32,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0008612812812316406,
+            0.0008600213436693593,
+            0.0008674265000081505,
+            0.0008748705937478007,
+            0.0008414364999680402,
+            0.0008570569999619693,
+            0.0008736157500379704
+          ],
+          "median_us": 861.2812812316406,
+          "min_us": 841.4364999680402,
+          "max_us": 874.8705937478007,
+          "mad_us": 6.145218776509864
+        }
+      },
+      "sh_project_n1024_b3": {
+        "after": {
+          "operations_per_trial": 8,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.003207714250038407,
+            0.003669062749850127,
+            0.0032457430002068577,
+            0.0032185898749048647,
+            0.0034779063748828776,
+            0.00322115049993954,
+            0.004484475125082099
+          ],
+          "median_us": 3245.7430002068577,
+          "min_us": 3207.714250038407,
+          "max_us": 4484.475125082099,
+          "mad_us": 38.02875016845064
+        },
+        "before": {
+          "operations_per_trial": 8,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0033150673748423287,
+            0.003995765750005376,
+            0.004714775125194137,
+            0.0038543914997717366,
+            0.0034176005001427257,
+            0.003492896999887307,
+            0.0035202077501708118
+          ],
+          "median_us": 3520.207750170812,
+          "min_us": 3315.0673748423287,
+          "max_us": 4714.775125194137,
+          "mad_us": 205.14037532848306
+        }
+      },
+      "sh_project_n1024_b5": {
+        "after": {
+          "operations_per_trial": 4,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.008253018499999598,
+            0.008165997250216606,
+            0.009662911749728664,
+            0.008754027249779028,
+            0.008459512249828549,
+            0.009385734750139818,
+            0.008199366749977344
+          ],
+          "median_us": 8459.51224982855,
+          "min_us": 8165.997250216606,
+          "max_us": 9662.911749728664,
+          "mad_us": 293.5149996119435
+        },
+        "before": {
+          "operations_per_trial": 4,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.008210854000026302,
+            0.009050430249772035,
+            0.008768427250288369,
+            0.008855014750224655,
+            0.008580930500102113,
+            0.008698069249476248,
+            0.008368919500753691
+          ],
+          "median_us": 8698.069249476248,
+          "min_us": 8210.854000026302,
+          "max_us": 9050.430249772035,
+          "mad_us": 156.94550074840663
+        }
+      },
+      "sh_convolve_l2": {
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            6.08573876981211e-06,
+            6.483846924254522e-06,
+            6.368361083808338e-06,
+            7.079780761642951e-06,
+            6.057279541060723e-06,
+            6.149148681799943e-06,
+            6.175516356954347e-06
+          ],
+          "median_us": 6.175516356954347,
+          "min_us": 6.057279541060723,
+          "max_us": 7.079780761642951,
+          "mad_us": 0.11823681589362423
+        },
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.936787841775981e-06,
+            6.103074951191445e-06,
+            6.056059813630554e-06,
+            6.5254418943894166e-06,
+            6.658844726281643e-06,
+            6.061777344079644e-06,
+            6.045166991874851e-06
+          ],
+          "median_us": 6.061777344079644,
+          "min_us": 5.936787841775981,
+          "max_us": 6.658844726281643,
+          "mad_us": 0.04129760711180097
+        }
+      },
+      "sh_rotate_l2_scalar": {
+        "after": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.1369361327950855e-05,
+            1.2145673828456438e-05,
+            1.1364954101367175e-05,
+            1.3225467773381183e-05,
+            1.1850553711667544e-05,
+            1.3190238769666962e-05,
+            1.1366607420626451e-05
+          ],
+          "median_us": 11.850553711667544,
+          "min_us": 11.364954101367175,
+          "max_us": 13.225467773381183,
+          "mad_us": 0.483946291041093
+        },
+        "before": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.8195487793803977e-05,
+            1.7765447752893238e-05,
+            1.8272387206863527e-05,
+            1.8852945800063026e-05,
+            1.790706738269421e-05,
+            1.773239160129947e-05,
+            1.8028094238786707e-05
+          ],
+          "median_us": 18.028094238786707,
+          "min_us": 17.73239160129947,
+          "max_us": 18.852945800063026,
+          "mad_us": 0.24429296807682022
+        }
+      },
+      "sh_rotate_l2_rgb": {
+        "after": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.3747549803943002e-05,
+            2.4232178709837626e-05,
+            2.573148730533603e-05,
+            2.406285448941503e-05,
+            2.2774346682297164e-05,
+            2.2415724611590804e-05,
+            2.3160118164611276e-05
+          ],
+          "median_us": 23.747549803943002,
+          "min_us": 22.415724611590804,
+          "max_us": 25.73148730533603,
+          "mad_us": 0.5874316393317258
+        },
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.213648046658136e-05,
+            4.179483203614609e-05,
+            4.762817382442108e-05,
+            4.3821285160561274e-05,
+            4.8103353513795355e-05,
+            4.301209570201081e-05,
+            4.1975019534845615e-05
+          ],
+          "median_us": 43.01209570201081,
+          "min_us": 41.79483203614609,
+          "max_us": 48.103353513795355,
+          "mad_us": 1.0370761671651962
+        }
+      },
+      "sh_reconstruct_l2": {
+        "after": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.2282940430097256e-05,
+            1.3066327635868902e-05,
+            1.3148825683373389e-05,
+            1.3003737304728702e-05,
+            1.2768891112457936e-05,
+            1.4376633300727804e-05,
+            1.2741968260954195e-05
+          ],
+          "median_us": 13.003737304728702,
+          "min_us": 12.282940430097256,
+          "max_us": 14.376633300727804,
+          "mad_us": 0.23484619227076564
+        },
+        "before": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.6511568359689477e-05,
+            1.67925239260569e-05,
+            1.727588281141834e-05,
+            1.7292163086324308e-05,
+            1.782410400252843e-05,
+            1.8033495605251915e-05,
+            1.695338134766189e-05
+          ],
+          "median_us": 17.27588281141834,
+          "min_us": 16.511568359689477,
+          "max_us": 18.033495605251915,
+          "mad_us": 0.4833588853614401
+        }
+      },
+      "bezier_raw_split": {
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.031582275272228e-06,
+            4.939741698350986e-06,
+            5.344667480144949e-06,
+            5.2904758298666366e-06,
+            5.571335937482047e-06,
+            5.127017089101571e-06,
+            4.924760986568799e-06
+          ],
+          "median_us": 5.127017089101571,
+          "min_us": 4.924760986568799,
+          "max_us": 5.571335937482047,
+          "mad_us": 0.1872753907505853
+        },
+        "before": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.121605712865573e-06,
+            5.05638598635727e-06,
+            5.464066161753323e-06,
+            5.035811523335099e-06,
+            4.887910522555217e-06,
+            4.923831298686565e-06,
+            5.28806005872795e-06
+          ],
+          "median_us": 5.05638598635727,
+          "min_us": 4.887910522555217,
+          "max_us": 5.464066161753323,
+          "mad_us": 0.1325546876707051
+        }
+      },
+      "bezier_raw_subdivide": {
+        "after": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0002839545156234635,
+            0.0002490744296892444,
+            0.0002507384062653273,
+            0.0002497220156385538,
+            0.00024362157029145237,
+            0.00024721230468571775,
+            0.0002597604531331399
+          ],
+          "median_us": 249.72201563855378,
+          "min_us": 243.62157029145237,
+          "max_us": 283.9545156234635,
+          "mad_us": 2.5097109528360306
+        },
+        "before": {
+          "operations_per_trial": 64,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0004037431718870721,
+            0.0003224754687494169,
+            0.00030527470312335936,
+            0.00029630531247448744,
+            0.0003252847343446774,
+            0.00034763428124051643,
+            0.00031533684375517623
+          ],
+          "median_us": 322.4754687494169,
+          "min_us": 296.30531247448744,
+          "max_us": 403.7431718870721,
+          "mad_us": 17.200765626057546
+        }
+      },
+      "bezier_raw_flatness": {
+        "after": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.569702759000705e-06,
+            4.715026123314203e-06,
+            4.8375450436566325e-06,
+            4.6657326659982346e-06,
+            4.701904174453375e-06,
+            4.874677490107615e-06,
+            5.1360743404949005e-06
+          ],
+          "median_us": 4.8375450436566325,
+          "min_us": 4.6657326659982346,
+          "max_us": 5.569702759000705,
+          "mad_us": 0.13564086920325735
+        },
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.774368164068733e-06,
+            5.949851074049661e-06,
+            5.65155834930664e-06,
+            6.208673339891391e-06,
+            5.881797608076056e-06,
+            5.943351317760914e-06,
+            6.235271972521161e-06
+          ],
+          "median_us": 5.943351317760914,
+          "min_us": 5.65155834930664,
+          "max_us": 6.235271972521161,
+          "mad_us": 0.16898315369218153
+        }
+      },
+      "sh_raw_basis_b3": {
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.285487793216248e-06,
+            5.395035155508765e-06,
+            5.560769531953724e-06,
+            5.830773925907806e-06,
+            5.238192870571368e-06,
+            5.284180420339624e-06,
+            5.153071288788169e-06
+          ],
+          "median_us": 5.285487793216248,
+          "min_us": 5.153071288788169,
+          "max_us": 5.830773925907806,
+          "mad_us": 0.10954736229251694
+        },
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.669320800931303e-06,
+            9.284216796245914e-06,
+            9.414489257508762e-06,
+            9.978756104089825e-06,
+            1.0378341064765095e-05,
+            1.0869839355720501e-05,
+            9.804626952991669e-06
+          ],
+          "median_us": 9.804626952991669,
+          "min_us": 9.284216796245914,
+          "max_us": 10.8698393557205,
+          "mad_us": 0.3901376954829061
+        }
+      },
+      "sh_raw_basis_b5": {
+        "after": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.76050224602875e-05,
+            1.62761464856942e-05,
+            2.1012929686037296e-05,
+            1.644265332245709e-05,
+            1.5916803711490957e-05,
+            1.7054325194720832e-05,
+            1.8865067382023426e-05
+          ],
+          "median_us": 17.054325194720832,
+          "min_us": 15.916803711490957,
+          "max_us": 21.012929686037296,
+          "mad_us": 0.7781787090266334
+        },
+        "before": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.333501172164688e-05,
+            3.221694433364064e-05,
+            3.2298511719375256e-05,
+            3.4428960937304964e-05,
+            3.213054394635151e-05,
+            3.328396288893032e-05,
+            3.622847363260462e-05
+          ],
+          "median_us": 33.28396288893032,
+          "min_us": 32.13054394635151,
+          "max_us": 36.22847363260462,
+          "mad_us": 1.0670185552896783
+        }
+      },
+      "sh_raw_basis_b9": {
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            7.788687891263635e-05,
+            7.117488281238593e-05,
+            6.56429550787152e-05,
+            6.083699609149562e-05,
+            7.07622636753058e-05,
+            6.837801953452072e-05,
+            6.161068554888516e-05
+          ],
+          "median_us": 68.37801953452072,
+          "min_us": 60.83699609149562,
+          "max_us": 77.88687891263635,
+          "mad_us": 2.7968632778652136
+        },
+        "before": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00014101428514834424,
+            0.00014948557812033414,
+            0.0001615823554743656,
+            0.00014304351952887373,
+            0.00014375118360021588,
+            0.00014871113280889858,
+            0.0001438327343663559
+          ],
+          "median_us": 143.8327343663559,
+          "min_us": 141.01428514834424,
+          "max_us": 161.5823554743656,
+          "mad_us": 2.818449218011665
+        }
+      },
+      "sh_angular_probe_b3": {
+        "after": {
+          "operations_per_trial": 8,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.004492395624765777,
+            0.004343117750067904,
+            0.004098733625141904,
+            0.004127709624754061,
+            0.004625800249868917,
+            0.004143888749695179,
+            0.004250217874869122
+          ],
+          "median_us": 4250.217874869122,
+          "min_us": 4098.733625141904,
+          "max_us": 4625.800249868917,
+          "mad_us": 122.50825011506095
+        },
+        "before": {
+          "operations_per_trial": 4,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.006241387500267592,
+            0.006033055999978387,
+            0.006206440750247566,
+            0.005787637749563146,
+            0.007559246249911666,
+            0.006262031999540341,
+            0.006168158000036783
+          ],
+          "median_us": 6206.440750247566,
+          "min_us": 5787.637749563146,
+          "max_us": 7559.246249911666,
+          "mad_us": 55.59124929277459
+        }
+      }
+    },
+    {
+      "bezier_quadratic": {
+        "before": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.926552123749815e-06,
+            2.9493592528240242e-06,
+            2.801108886618664e-06,
+            2.7750529785208755e-06,
+            2.836334838551835e-06,
+            2.9889851074216267e-06,
+            2.7965938724783257e-06
+          ],
+          "median_us": 2.836334838551835,
+          "min_us": 2.7750529785208755,
+          "max_us": 2.9889851074216267,
+          "mad_us": 0.06128186003095948
+        },
+        "after": {
+          "operations_per_trial": 32768,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.211622009619447e-07,
+            8.289822692741922e-07,
+            7.701527710013423e-07,
+            7.888173523262765e-07,
+            8.115551451970404e-07,
+            7.64269988962063e-07,
+            7.890473938676479e-07
+          ],
+          "median_us": 0.7890473938676479,
+          "min_us": 0.764269988962063,
+          "max_us": 0.9211622009619447,
+          "mad_us": 0.022507751329392534
+        }
+      },
+      "bezier_cubic": {
+        "before": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.495302368123788e-06,
+            4.2349099120819744e-06,
+            3.943830444441687e-06,
+            4.010836914147831e-06,
+            4.19567907705698e-06,
+            3.9664587401233575e-06,
+            3.952791259642652e-06
+          ],
+          "median_us": 4.010836914147831,
+          "min_us": 3.943830444441687,
+          "max_us": 4.495302368123788,
+          "mad_us": 0.06700646970614343
+        },
+        "after": {
+          "operations_per_trial": 32768,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.985949706026176e-07,
+            1.0112882995461092e-06,
+            1.0260436706932552e-06,
+            9.884900817880293e-07,
+            1.0004224242354809e-06,
+            9.694010314476031e-07,
+            1.0189467163357335e-06
+          ],
+          "median_us": 1.000422424235481,
+          "min_us": 0.9694010314476031,
+          "max_us": 1.0260436706932552,
+          "mad_us": 0.01193234244745156
+        }
+      },
+      "bezier_cubic_scalar": {
+        "before": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.4064406584090037e-07,
+            2.518642120419301e-07,
+            2.462108993628309e-07,
+            2.471517028812542e-07,
+            2.5403598022388785e-07,
+            2.6654453277874524e-07,
+            2.459335021742781e-07
+          ],
+          "median_us": 0.2471517028812542,
+          "min_us": 0.24064406584090037,
+          "max_us": 0.26654453277874524,
+          "mad_us": 0.004712509160675893
+        },
+        "after": {
+          "operations_per_trial": 131072,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.775424346734834e-07,
+            3.145357208023114e-07,
+            3.0866312406008234e-07,
+            2.9369368745313373e-07,
+            2.7475129699139345e-07,
+            2.7497494506367737e-07,
+            2.7999416349344664e-07
+          ],
+          "median_us": 0.27999416349344664,
+          "min_us": 0.27475129699139345,
+          "max_us": 0.3145357208023114,
+          "mad_us": 0.0052428665020531895
+        }
+      },
+      "bezier_subdivide_0.1": {
+        "before": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00010810867189547935,
+            0.00010035892188398066,
+            0.00010086266405551214,
+            0.00010214908593297878,
+            0.00011318055470610489,
+            0.00010874928125303995,
+            0.00010016271872359539
+          ],
+          "median_us": 102.14908593297878,
+          "min_us": 100.16271872359539,
+          "max_us": 113.18055470610489,
+          "mad_us": 1.9863672093833884
+        },
+        "after": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.070957031553917e-05,
+            8.970428125110175e-05,
+            8.513691406619728e-05,
+            8.553116015264095e-05,
+            8.862488282090908e-05,
+            9.221744531373588e-05,
+            8.497873047019766e-05
+          ],
+          "median_us": 88.62488282090908,
+          "min_us": 84.97873047019766,
+          "max_us": 92.21744531373588,
+          "mad_us": 3.0937226682681285
+        }
+      },
+      "bezier_subdivide_0.01": {
+        "before": {
+          "operations_per_trial": 64,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00031751709371974357,
+            0.0003468014531335939,
+            0.0003090170781092638,
+            0.0003145472031178542,
+            0.000327132609356795,
+            0.00035360882810664407,
+            0.00030725271875553517
+          ],
+          "median_us": 317.51709371974357,
+          "min_us": 307.25271875553517,
+          "max_us": 353.60882810664407,
+          "mad_us": 9.61551563705143
+        },
+        "after": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0002954133046841889,
+            0.0002624870624856612,
+            0.00033184615625714287,
+            0.0002904249375035306,
+            0.00027575947655122945,
+            0.000281303320321058,
+            0.00029501624999284104
+          ],
+          "median_us": 290.4249375035306,
+          "min_us": 262.4870624856612,
+          "max_us": 331.84615625714287,
+          "mad_us": 9.121617182472619
+        }
+      },
+      "bezier_subdivide_0.0001": {
+        "before": {
+          "operations_per_trial": 8,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.002761370124972018,
+            0.0026983002499036957,
+            0.0026494923749851296,
+            0.002792987124848878,
+            0.003124690625099902,
+            0.002950387625332951,
+            0.0027758891251323803
+          ],
+          "median_us": 2775.8891251323803,
+          "min_us": 2649.4923749851296,
+          "max_us": 3124.690625099902,
+          "mad_us": 77.58887522868463
+        },
+        "after": {
+          "operations_per_trial": 8,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0027139949997945223,
+            0.002485376875029033,
+            0.0024002171253414417,
+            0.0023838730003262754,
+            0.0025540076248944388,
+            0.0025780092496461293,
+            0.002427875874673191
+          ],
+          "median_us": 2485.376875029033,
+          "min_us": 2383.8730003262754,
+          "max_us": 2713.9949997945223,
+          "mad_us": 85.1597496875911
+        }
+      },
+      "bezier_subdivide_1e-08": {
+        "before": {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.35245033699902706,
+            0.3072810039993783,
+            0.30703358199752984,
+            0.30916378399706446,
+            0.3087551389980945,
+            0.3003225059983379,
+            0.3017154989975097
+          ],
+          "median_us": 307281.0039993783,
+          "min_us": 300322.5059983379,
+          "max_us": 352450.33699902706,
+          "mad_us": 1882.779997686157
+        },
+        "after": {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.2693679309995787,
+            0.26012420500046574,
+            0.260428117999254,
+            0.26100448299985146,
+            0.2640822630019102,
+            0.2584320729984029,
+            0.2679102830006741
+          ],
+          "median_us": 261004.48299985146,
+          "min_us": 258432.07299840287,
+          "max_us": 269367.9309995787,
+          "mad_us": 2572.4100014485884
+        }
+      },
+      "bezier_subdivide_1e-15": {
+        "before": {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.225567621000664,
+            1.202471656997659,
+            1.2247719209990464,
+            1.2025821610004641,
+            1.231344681000337,
+            1.2429473039992445,
+            1.2307510530008585
+          ],
+          "median_us": 1225567.621000664,
+          "min_us": 1202471.656997659,
+          "max_us": 1242947.3039992445,
+          "mad_us": 5777.059999672929
+        },
+        "after": {
+          "operations_per_trial": 1,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.0617972830004874,
+            1.0548635980012477,
+            1.086950713997794,
+            1.0815005069998733,
+            1.0628852650006593,
+            1.0592972720005491,
+            1.0797865959975752
+          ],
+          "median_us": 1062885.2650006593,
+          "min_us": 1054863.5980012477,
+          "max_us": 1086950.713997794,
+          "mad_us": 8021.666999411536
+        }
+      },
+      "bezier_path_8_segments": {
+        "before": {
+          "operations_per_trial": 4,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.007088998499966692,
+            0.00714848349980457,
+            0.00713004750014079,
+            0.009181454500321706,
+            0.007303544249225524,
+            0.007618160249876382,
+            0.00945370150020608
+          ],
+          "median_us": 7303.544249225524,
+          "min_us": 7088.998499966692,
+          "max_us": 9453.70150020608,
+          "mad_us": 214.54574925883207
+        },
+        "after": {
+          "operations_per_trial": 4,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.006202213500728249,
+            0.006454843000028632,
+            0.006140769500234455,
+            0.006746137250047468,
+            0.006128151999291731,
+            0.006319715000245196,
+            0.006702352499814879
+          ],
+          "median_us": 6319.715000245196,
+          "min_us": 6128.151999291731,
+          "max_us": 6746.137250047468,
+          "mad_us": 178.94550001074094
+        }
+      },
+      "sh_basis_0_0": {
+        "before": {
+          "operations_per_trial": 32768,
+          "trials": 7,
+          "seconds_per_operation": [
+            6.848211059340414e-07,
+            6.553135680764655e-07,
+            6.660737610353351e-07,
+            6.501114501178407e-07,
+            6.755971374561298e-07,
+            6.669723204844047e-07,
+            6.665694884944173e-07
+          ],
+          "median_us": 0.6665694884944173,
+          "min_us": 0.6501114501178407,
+          "max_us": 0.6848211059340414,
+          "mad_us": 0.009027648961712487
+        },
+        "after": {
+          "operations_per_trial": 32768,
+          "trials": 7,
+          "seconds_per_operation": [
+            7.021079101443561e-07,
+            6.346557922531915e-07,
+            6.589494628839176e-07,
+            6.542008972321156e-07,
+            6.562565307843826e-07,
+            7.141935118859521e-07,
+            6.659634094186018e-07
+          ],
+          "median_us": 0.6589494628839176,
+          "min_us": 0.6346557922531915,
+          "max_us": 0.7141935118859521,
+          "mad_us": 0.0070139465346841234
+        }
+      },
+      "sh_basis_2_1": {
+        "before": {
+          "operations_per_trial": 32768,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.1437771301192612e-06,
+            1.0426947021358046e-06,
+            1.075281860329902e-06,
+            1.100929840180953e-06,
+            1.1010174560954766e-06,
+            1.0939213866967279e-06,
+            1.1265595397658146e-06
+          ],
+          "median_us": 1.100929840180953,
+          "min_us": 1.0426947021358046,
+          "max_us": 1.1437771301192612,
+          "mad_us": 0.0256296995848615
+        },
+        "after": {
+          "operations_per_trial": 32768,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.0811981506764212e-06,
+            1.091984558110326e-06,
+            1.0874816284145439e-06,
+            1.0791325683046082e-06,
+            1.159490905733307e-06,
+            1.1791047057618798e-06,
+            1.0521360473969565e-06
+          ],
+          "median_us": 1.0874816284145439,
+          "min_us": 1.0521360473969565,
+          "max_us": 1.1791047057618798,
+          "mad_us": 0.008349060109935635
+        }
+      },
+      "sh_basis_8_3": {
+        "before": {
+          "operations_per_trial": 16384,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.181757202235346e-06,
+            2.1679936523799626e-06,
+            2.1930418701021637e-06,
+            2.403397155736897e-06,
+            2.1280704345372214e-06,
+            2.113181884588755e-06,
+            2.1865051877956176e-06
+          ],
+          "median_us": 2.181757202235346,
+          "min_us": 2.113181884588755,
+          "max_us": 2.403397155736897,
+          "mad_us": 0.013763549855383417
+        },
+        "after": {
+          "operations_per_trial": 16384,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.197627319233675e-06,
+            2.204323791499263e-06,
+            2.0826678466256965e-06,
+            2.2154593504186693e-06,
+            2.179426147552732e-06,
+            2.1489769286286986e-06,
+            2.16844610601008e-06
+          ],
+          "median_us": 2.179426147552732,
+          "min_us": 2.0826678466256965,
+          "max_us": 2.2154593504186693,
+          "mad_us": 0.024897643946530934
+        }
+      },
+      "sh_basis_12_6": {
+        "before": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.059188476761676e-06,
+            2.790453857759445e-06,
+            2.922015381212617e-06,
+            2.9549495850211827e-06,
+            3.101382324288693e-06,
+            2.7979064940453213e-06,
+            3.035527953887396e-06
+          ],
+          "median_us": 2.9549495850211827,
+          "min_us": 2.790453857759445,
+          "max_us": 3.101382324288693,
+          "mad_us": 0.1042388917404935
+        },
+        "after": {
+          "operations_per_trial": 8192,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.9827658689640657e-06,
+            3.2618432617148585e-06,
+            2.8881595461882625e-06,
+            2.913614502109141e-06,
+            2.85907348640535e-06,
+            3.0202235108411912e-06,
+            3.248279296652612e-06
+          ],
+          "median_us": 2.9827658689640657,
+          "min_us": 2.85907348640535,
+          "max_us": 3.2618432617148585,
+          "mad_us": 0.09460632277580316
+        }
+      },
+      "sh_project_n64_b1": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.943786523232575e-05,
+            6.498177929614712e-05,
+            5.829059765716238e-05,
+            6.100854882618023e-05,
+            5.772807226378518e-05,
+            5.820369921849533e-05,
+            5.8294818359172496e-05
+          ],
+          "median_us": 58.294818359172496,
+          "min_us": 57.72807226378518,
+          "max_us": 64.98177929614712,
+          "mad_us": 0.566746095387316
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.994235742434739e-05,
+            5.760648828356807e-05,
+            5.888755664074097e-05,
+            5.8974341797579655e-05,
+            5.971181250430391e-05,
+            5.7091097659167644e-05,
+            5.873286132640487e-05
+          ],
+          "median_us": 58.88755664074097,
+          "min_us": 57.091097659167644,
+          "max_us": 59.94235742434739,
+          "mad_us": 0.8242558635629393
+        }
+      },
+      "sh_project_n64_b3": {
+        "before": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00026178075782468113,
+            0.0002253251250010635,
+            0.00022213921874936204,
+            0.00021715921874942978,
+            0.00021250642967629574,
+            0.00023501934373371114,
+            0.00020759559376415382
+          ],
+          "median_us": 222.13921874936204,
+          "min_us": 207.59559376415382,
+          "max_us": 261.78075782468113,
+          "mad_us": 9.632789073066306
+        },
+        "after": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0002819288984596824,
+            0.00021475924216929343,
+            0.0002055634375039972,
+            0.00022025015624649313,
+            0.00020526203127246845,
+            0.00021865528123043987,
+            0.0002128338906288718
+          ],
+          "median_us": 214.75924216929343,
+          "min_us": 205.26203127246845,
+          "max_us": 281.9288984596824,
+          "mad_us": 5.4909140771997045
+        }
+      },
+      "sh_project_n64_b5": {
+        "before": {
+          "operations_per_trial": 64,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0005696564375057278,
+            0.0005551977499749228,
+            0.0005589643750454343,
+            0.0005594398124912914,
+            0.0005582037031217624,
+            0.0005781985000226086,
+            0.000572983546874184
+          ],
+          "median_us": 559.4398124912914,
+          "min_us": 555.1977499749228,
+          "max_us": 578.1985000226086,
+          "mad_us": 4.242062516368605
+        },
+        "after": {
+          "operations_per_trial": 64,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0005472084530993016,
+            0.0005697486249687245,
+            0.0005569834374909988,
+            0.000582295000015165,
+            0.0005708118281404495,
+            0.0005476722187722771,
+            0.0005665786406439111
+          ],
+          "median_us": 566.5786406439111,
+          "min_us": 547.2084530993016,
+          "max_us": 582.295000015165,
+          "mad_us": 9.59520315291229
+        }
+      },
+      "sh_project_n256_b1": {
+        "before": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00021009022654538967,
+            0.00022109281249527157,
+            0.0002511878280984092,
+            0.00022604934375181074,
+            0.0002106521015718954,
+            0.00022086940623466944,
+            0.00022118687499528278
+          ],
+          "median_us": 221.09281249527157,
+          "min_us": 210.09022654538967,
+          "max_us": 251.18782809840923,
+          "mad_us": 4.956531256539165
+        },
+        "after": {
+          "operations_per_trial": 128,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00021853914844882638,
+            0.00022030231249914323,
+            0.0002290951406394015,
+            0.00024063560155695995,
+            0.00022521553904653047,
+            0.00021457500781707495,
+            0.0002534685312411966
+          ],
+          "median_us": 225.21553904653047,
+          "min_us": 214.57500781707495,
+          "max_us": 253.46853124119662,
+          "mad_us": 6.676390597704085
+        }
+      },
+      "sh_project_n256_b3": {
+        "before": {
+          "operations_per_trial": 32,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.000849144000085289,
+            0.001136703531301464,
+            0.0010010222499658994,
+            0.0009126547188316181,
+            0.0010208176875039499,
+            0.00079743478124783,
+            0.0008371383438543489
+          ],
+          "median_us": 912.6547188316181,
+          "min_us": 797.43478124783,
+          "max_us": 1136.703531301464,
+          "mad_us": 88.36753113428131
+        },
+        "after": {
+          "operations_per_trial": 32,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0011580479061876758,
+            0.0008439390936700875,
+            0.0008657267812850478,
+            0.0010040561562618677,
+            0.0008288296874070511,
+            0.0008707360311746015,
+            0.0008041859687182296
+          ],
+          "median_us": 865.7267812850478,
+          "min_us": 804.1859687182296,
+          "max_us": 1158.0479061876758,
+          "mad_us": 36.89709387799667
+        }
+      },
+      "sh_project_n256_b5": {
+        "before": {
+          "operations_per_trial": 16,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0022529882501203247,
+            0.0020564411875056976,
+            0.0022758730626719625,
+            0.003240380187662595,
+            0.005316934624943315,
+            0.002666452187440882,
+            0.002995713437485392
+          ],
+          "median_us": 2666.452187440882,
+          "min_us": 2056.4411875056976,
+          "max_us": 5316.934624943315,
+          "mad_us": 413.4639373205573
+        },
+        "after": {
+          "operations_per_trial": 16,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0020317134999459086,
+            0.002155456874788797,
+            0.0022556408125637972,
+            0.0021192134377088223,
+            0.00212459887507066,
+            0.0021549049376972107,
+            0.0022440609375280474
+          ],
+          "median_us": 2154.9049376972107,
+          "min_us": 2031.7134999459086,
+          "max_us": 2255.640812563797,
+          "mad_us": 35.69149998838839
+        }
+      },
+      "sh_project_n1024_b1": {
+        "before": {
+          "operations_per_trial": 32,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0008646633749549437,
+            0.0008946171875550135,
+            0.0009664832499538534,
+            0.0008965677187688925,
+            0.000860981249957149,
+            0.0008517600937238967,
+            0.000880128312587658
+          ],
+          "median_us": 880.128312587658,
+          "min_us": 851.7600937238967,
+          "max_us": 966.4832499538534,
+          "mad_us": 16.439406181234517
+        },
+        "after": {
+          "operations_per_trial": 32,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0009097508437889701,
+            0.0009130092499844977,
+            0.0008236241561689894,
+            0.000858166062471355,
+            0.0008530956874892581,
+            0.0008829373125536222,
+            0.0008466220624541165
+          ],
+          "median_us": 858.166062471355,
+          "min_us": 823.6241561689894,
+          "max_us": 913.0092499844977,
+          "mad_us": 24.771250082267215
+        }
+      },
+      "sh_project_n1024_b3": {
+        "before": {
+          "operations_per_trial": 8,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0032528370002182783,
+            0.003463464624928747,
+            0.0036756028748641256,
+            0.0034939906249746855,
+            0.003299146374956763,
+            0.0035216044998378493,
+            0.0035005519998776435
+          ],
+          "median_us": 3493.9906249746855,
+          "min_us": 3252.8370002182783,
+          "max_us": 3675.6028748641256,
+          "mad_us": 30.526000045938417
+        },
+        "after": {
+          "operations_per_trial": 8,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0034059506247103855,
+            0.0035461046250020445,
+            0.003098161125308252,
+            0.0032231511249847244,
+            0.0032449820000692853,
+            0.003457843250089354,
+            0.0031953458751559083
+          ],
+          "median_us": 3244.9820000692853,
+          "min_us": 3098.161125308252,
+          "max_us": 3546.1046250020445,
+          "mad_us": 146.82087476103334
+        }
+      },
+      "sh_project_n1024_b5": {
+        "before": {
+          "operations_per_trial": 4,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.008677216499563656,
+            0.008569653749873396,
+            0.008617767500254558,
+            0.008412114999373443,
+            0.008494218250234553,
+            0.008795311000540096,
+            0.008211567750549875
+          ],
+          "median_us": 8569.653749873396,
+          "min_us": 8211.567750549875,
+          "max_us": 8795.311000540096,
+          "mad_us": 107.5627496902598
+        },
+        "after": {
+          "operations_per_trial": 4,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.008368519749637926,
+            0.008509943749231752,
+            0.008434655749624653,
+            0.00960495275012363,
+            0.008419044500442396,
+            0.008770620750510716,
+            0.00887431725004717
+          ],
+          "median_us": 8509.943749231752,
+          "min_us": 8368.519749637926,
+          "max_us": 9604.95275012363,
+          "mad_us": 141.423999593826
+        }
+      },
+      "sh_convolve_l2": {
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.969542725026145e-06,
+            6.193926513908821e-06,
+            5.905736083278157e-06,
+            6.1830346682612e-06,
+            5.711745361125509e-06,
+            6.203938965221312e-06,
+            6.303954590336502e-06
+          ],
+          "median_us": 6.1830346682612,
+          "min_us": 5.711745361125509,
+          "max_us": 6.303954590336502,
+          "mad_us": 0.12091992207530211
+        },
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            6.29586108402691e-06,
+            6.376011718600694e-06,
+            6.230650390293135e-06,
+            5.963179199319768e-06,
+            6.171656737663511e-06,
+            6.047626952998542e-06,
+            6.283120850270052e-06
+          ],
+          "median_us": 6.230650390293135,
+          "min_us": 5.963179199319768,
+          "max_us": 6.376011718600694,
+          "mad_us": 0.06521069373377486
+        }
+      },
+      "sh_rotate_l2_scalar": {
+        "before": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.8289341307209384e-05,
+            1.799646191358306e-05,
+            1.766614599674199e-05,
+            1.7471624023102095e-05,
+            1.7886834960734177e-05,
+            1.9528183594630377e-05,
+            1.704472997943185e-05
+          ],
+          "median_us": 17.886834960734177,
+          "min_us": 17.04472997943185,
+          "max_us": 19.528183594630377,
+          "mad_us": 0.40250634647520656
+        },
+        "after": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.134969482308179e-05,
+            1.1041632323127715e-05,
+            1.2731335937488097e-05,
+            1.1964525391761072e-05,
+            1.1629667968193758e-05,
+            1.1513319824629775e-05,
+            1.1911412109100183e-05
+          ],
+          "median_us": 11.629667968193758,
+          "min_us": 11.041632323127715,
+          "max_us": 12.731335937488097,
+          "mad_us": 0.28174414090642586
+        }
+      },
+      "sh_rotate_l2_rgb": {
+        "before": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            4.207552930068914e-05,
+            4.292133203165349e-05,
+            4.265424218630187e-05,
+            4.15529316413199e-05,
+            4.220656835940417e-05,
+            4.030139258048848e-05,
+            4.424749023712593e-05
+          ],
+          "median_us": 42.20656835940417,
+          "min_us": 40.30139258048848,
+          "max_us": 44.24749023712593,
+          "mad_us": 0.6536367180842717
+        },
+        "after": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            2.2443517579517902e-05,
+            2.270098437762158e-05,
+            2.325776269529456e-05,
+            2.3231267579859605e-05,
+            2.3349688476059782e-05,
+            2.325950097414875e-05,
+            2.290086621314913e-05
+          ],
+          "median_us": 23.231267579859605,
+          "min_us": 22.443517579517902,
+          "max_us": 23.349688476059782,
+          "mad_us": 0.1184208962001776
+        }
+      },
+      "sh_reconstruct_l2": {
+        "before": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.7736169921178657e-05,
+            1.7157229491360226e-05,
+            1.7626074219734278e-05,
+            1.706258251843451e-05,
+            1.723225439320686e-05,
+            1.658798974624176e-05,
+            1.791763427760884e-05
+          ],
+          "median_us": 17.23225439320686,
+          "min_us": 16.58798974624176,
+          "max_us": 17.91763427760884,
+          "mad_us": 0.39381982652741954
+        },
+        "after": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.257279394550892e-05,
+            1.3101318847574817e-05,
+            1.266244238173897e-05,
+            1.2576741699632521e-05,
+            1.2721081054323236e-05,
+            1.247621875144489e-05,
+            1.2390757325064783e-05
+          ],
+          "median_us": 12.576741699632521,
+          "min_us": 12.390757325064783,
+          "max_us": 13.101318847574817,
+          "mad_us": 0.1005229481876313
+        }
+      },
+      "bezier_raw_split": {
+        "before": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.3573896483527506e-06,
+            5.118145019800124e-06,
+            5.225751220194752e-06,
+            5.2925170903606045e-06,
+            6.009945556328944e-06,
+            5.406679931319047e-06,
+            5.0203781736257724e-06
+          ],
+          "median_us": 5.2925170903606045,
+          "min_us": 5.020378173625772,
+          "max_us": 6.009945556328944,
+          "mad_us": 0.11416284095844276
+        },
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.2073889156289965e-06,
+            5.253545898753487e-06,
+            4.924124267446928e-06,
+            4.907154784739021e-06,
+            5.636642821826854e-06,
+            5.097973144962964e-06,
+            4.920044188949646e-06
+          ],
+          "median_us": 5.097973144962964,
+          "min_us": 4.907154784739021,
+          "max_us": 5.636642821826854,
+          "mad_us": 0.17384887751603628
+        }
+      },
+      "bezier_raw_subdivide": {
+        "before": {
+          "operations_per_trial": 64,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0003168846405969816,
+            0.0003037910312855274,
+            0.0003125833280819279,
+            0.0002953537500047787,
+            0.0003076107187780508,
+            0.0003109025312255653,
+            0.0003106109531358925
+          ],
+          "median_us": 310.6109531358925,
+          "min_us": 295.3537500047787,
+          "max_us": 316.8846405969816,
+          "mad_us": 3.0002343578416912
+        },
+        "after": {
+          "operations_per_trial": 64,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.0005252059374925011,
+            0.0004626130625524638,
+            0.0005192348905893596,
+            0.0005344377811979939,
+            0.0005449134687296464,
+            0.0002914540468736959,
+            0.0003623998125021899
+          ],
+          "median_us": 519.2348905893596,
+          "min_us": 291.4540468736959,
+          "max_us": 544.9134687296464,
+          "mad_us": 25.678578140286845
+        }
+      },
+      "bezier_raw_flatness": {
+        "before": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.99434765525109e-06,
+            9.207446288073129e-06,
+            1.1744444336159177e-05,
+            9.776478515632903e-06,
+            1.0300740722613e-05,
+            8.823382325218176e-06,
+            1.047631689488071e-05
+          ],
+          "median_us": 9.99434765525109,
+          "min_us": 8.823382325218176,
+          "max_us": 11.744444336159177,
+          "mad_us": 0.48196923962962046
+        },
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            6.805093262229889e-06,
+            7.817432373435906e-06,
+            1.0729482910143417e-05,
+            7.070176757828506e-06,
+            5.1936496587856595e-06,
+            5.393768065964366e-06,
+            6.266697510248775e-06
+          ],
+          "median_us": 6.805093262229889,
+          "min_us": 5.1936496587856595,
+          "max_us": 10.729482910143417,
+          "mad_us": 1.0123391112060176
+        }
+      },
+      "sh_raw_basis_b3": {
+        "before": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            9.789886718181151e-06,
+            1.112849706963459e-05,
+            9.457478027385946e-06,
+            2.7705499022090407e-05,
+            9.660002930900191e-06,
+            9.506344726517568e-06,
+            9.751512205724566e-06
+          ],
+          "median_us": 9.751512205724566,
+          "min_us": 9.457478027385946,
+          "max_us": 27.705499022090407,
+          "mad_us": 0.245167479206998
+        },
+        "after": {
+          "operations_per_trial": 4096,
+          "trials": 7,
+          "seconds_per_operation": [
+            5.870696533349928e-06,
+            5.935510009713596e-06,
+            6.0832817379008475e-06,
+            5.614001953091474e-06,
+            5.529754393940323e-06,
+            5.458951171988247e-06,
+            5.377905273107331e-06
+          ],
+          "median_us": 5.614001953091474,
+          "min_us": 5.377905273107331,
+          "max_us": 6.0832817379008475,
+          "mad_us": 0.23609667998414352
+        }
+      },
+      "sh_raw_basis_b5": {
+        "before": {
+          "operations_per_trial": 1024,
+          "trials": 7,
+          "seconds_per_operation": [
+            3.229446972596861e-05,
+            3.2365680663559715e-05,
+            3.288572265702783e-05,
+            3.348287890503343e-05,
+            3.52103818350713e-05,
+            3.367862207070971e-05,
+            3.4017943359998526e-05
+          ],
+          "median_us": 33.48287890503343,
+          "min_us": 32.29446972596861,
+          "max_us": 35.2103818350713,
+          "mad_us": 0.5971562480056036
+        },
+        "after": {
+          "operations_per_trial": 2048,
+          "trials": 7,
+          "seconds_per_operation": [
+            1.6605866697716465e-05,
+            1.62644921868349e-05,
+            1.7315099608339324e-05,
+            1.649204540932203e-05,
+            1.702919775325995e-05,
+            1.7188782715393813e-05,
+            1.5978790527171327e-05
+          ],
+          "median_us": 16.605866697716465,
+          "min_us": 15.978790527171327,
+          "max_us": 17.315099608339324,
+          "mad_us": 0.4233310555434855
+        }
+      },
+      "sh_raw_basis_b9": {
+        "before": {
+          "operations_per_trial": 256,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.00014569953124521362,
+            0.00014612544140391037,
+            0.00015723365234521225,
+            0.00019534669921483783,
+            0.00019099766015528985,
+            0.00016981412500172155,
+            0.00018111996485004056
+          ],
+          "median_us": 169.81412500172155,
+          "min_us": 145.69953124521362,
+          "max_us": 195.34669921483783,
+          "mad_us": 21.1835351535683
+        },
+        "after": {
+          "operations_per_trial": 512,
+          "trials": 7,
+          "seconds_per_operation": [
+            6.227068750064291e-05,
+            6.843731249972507e-05,
+            7.44493671831492e-05,
+            6.687293164020502e-05,
+            6.34985136684918e-05,
+            6.268836523304344e-05,
+            6.524032031052229e-05
+          ],
+          "median_us": 65.24032031052229,
+          "min_us": 62.27068750064291,
+          "max_us": 74.4493671831492,
+          "mad_us": 2.5519550774788513
+        }
+      },
+      "sh_angular_probe_b3": {
+        "before": {
+          "operations_per_trial": 4,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.005852566750036203,
+            0.006433866999941529,
+            0.006285705499976757,
+            0.006429945749914623,
+            0.005848463250003988,
+            0.006523038500745315,
+            0.00591617500049324
+          ],
+          "median_us": 6285.705499976757,
+          "min_us": 5848.463250003988,
+          "max_us": 6523.038500745315,
+          "mad_us": 237.33300076855812
+        },
+        "after": {
+          "operations_per_trial": 8,
+          "trials": 7,
+          "seconds_per_operation": [
+            0.004333157125074649,
+            0.004321658874687273,
+            0.00430795787497118,
+            0.004247819999818603,
+            0.004257418875113217,
+            0.004345660750004754,
+            0.00446388325008229
+          ],
+          "median_us": 4321.658874687273,
+          "min_us": 4247.819999818603,
+          "max_us": 4463.88325008229,
+          "mad_us": 24.00187531748088
+        }
+      }
+    }
+  ],
+  "summary": {
+    "bezier_quadratic": {
+      "before_median_us": 2.9491557618221975,
+      "after_median_us": 0.7988725890806236,
+      "paired_median_speedup": 3.6916472064916017,
+      "paired_speedup_range": [
+        3.5946317807971773,
+        4.600264485641616
+      ]
+    },
+    "bezier_cubic": {
+      "before_median_us": 4.340909667721604,
+      "after_median_us": 0.9869492187952744,
+      "paired_median_speedup": 4.423493103387428,
+      "paired_speedup_range": [
+        4.009143354831233,
+        4.857032230108027
+      ]
+    },
+    "bezier_cubic_scalar": {
+      "before_median_us": 0.24972946929824325,
+      "after_median_us": 0.27999416349344664,
+      "paired_median_speedup": 0.8991376860479519,
+      "paired_speedup_range": [
+        0.8827030527978805,
+        0.9013732782580641
+      ]
+    },
+    "bezier_subdivide_0.1": {
+      "before_median_us": 102.14908593297878,
+      "after_median_us": 89.07097655708185,
+      "paired_median_speedup": 1.1526005189693629,
+      "paired_speedup_range": [
+        1.1011988164949522,
+        1.1700257476245866
+      ]
+    },
+    "bezier_subdivide_0.01": {
+      "before_median_us": 317.51709371974357,
+      "after_median_us": 284.57633592893217,
+      "paired_median_speedup": 1.0932845383357743,
+      "paired_speedup_range": [
+        1.0922655832537738,
+        1.1300023016946128
+      ]
+    },
+    "bezier_subdivide_0.0001": {
+      "before_median_us": 2976.9307498099806,
+      "after_median_us": 2553.793249944647,
+      "paired_median_speedup": 1.1518789688846498,
+      "paired_speedup_range": [
+        1.1168886107463898,
+        1.1656898027569402
+      ]
+    },
+    "bezier_subdivide_1e-08": {
+      "before_median_us": 306486.1380007642,
+      "after_median_us": 266593.9620019344,
+      "paired_median_speedup": 1.1496364572523226,
+      "paired_speedup_range": [
+        1.1370727537216812,
+        1.1773016327828867
+      ]
+    },
+    "bezier_subdivide_1e-15": {
+      "before_median_us": 1247706.9070009748,
+      "after_median_us": 1082610.8020009997,
+      "paired_median_speedup": 1.1530573067074215,
+      "paired_speedup_range": [
+        1.1401010255339046,
+        1.167754969435079
+      ]
+    },
+    "bezier_path_8_segments": {
+      "before_median_us": 7079.647750288132,
+      "after_median_us": 6319.715000245196,
+      "paired_median_speedup": 1.1361698326327294,
+      "paired_speedup_range": [
+        1.0889381833596707,
+        1.155676205167821
+      ]
+    },
+    "sh_basis_0_0": {
+      "before_median_us": 0.6714906005678145,
+      "after_median_us": 0.6499591980180242,
+      "paired_median_speedup": 1.0331273141690247,
+      "paired_speedup_range": [
+        1.0115638998735204,
+        1.162923376236987
+      ]
+    },
+    "sh_basis_2_1": {
+      "before_median_us": 1.100929840180953,
+      "after_median_us": 1.0907269591964308,
+      "paired_median_speedup": 1.0057210301185024,
+      "paired_speedup_range": [
+        0.9861001968338621,
+        1.012366380649589
+      ]
+    },
+    "sh_basis_8_3": {
+      "before_median_us": 2.175088195777164,
+      "after_median_us": 2.179426147552732,
+      "paired_median_speedup": 1.0010695726878525,
+      "paired_speedup_range": [
+        0.9358404681189181,
+        1.0100797604760239
+      ]
+    },
+    "sh_basis_12_6": {
+      "before_median_us": 2.9549495850211827,
+      "after_median_us": 2.93485376001712,
+      "paired_median_speedup": 0.9988281080532418,
+      "paired_speedup_range": [
+        0.9906743320914612,
+        1.0225795502099808
+      ]
+    },
+    "sh_project_n64_b1": {
+      "before_median_us": 58.294818359172496,
+      "after_median_us": 59.90056835969426,
+      "paired_median_speedup": 0.9899344052397244,
+      "paired_speedup_range": [
+        0.9577624149148207,
+        1.0344807089834716
+      ]
+    },
+    "sh_project_n64_b3": {
+      "before_median_us": 222.13921874936204,
+      "after_median_us": 215.56385158305602,
+      "paired_median_speedup": 1.0196026996186878,
+      "paired_speedup_range": [
+        1.0073409947789183,
+        1.034363953353174
+      ]
+    },
+    "sh_project_n64_b5": {
+      "before_median_us": 568.3186406599816,
+      "after_median_us": 566.5786406439111,
+      "paired_median_speedup": 0.9999248662716127,
+      "paired_speedup_range": [
+        0.9874001106986552,
+        1.039049102571478
+      ]
+    },
+    "sh_project_n256_b1": {
+      "before_median_us": 221.09281249527157,
+      "after_median_us": 220.00386718445952,
+      "paired_median_speedup": 1.003887218606827,
+      "paired_speedup_range": [
+        0.9816943068461759,
+        1.0258341508528606
+      ]
+    },
+    "sh_project_n256_b3": {
+      "before_median_us": 843.0384062876328,
+      "after_median_us": 842.2901562425977,
+      "paired_median_speedup": 1.0198972604123338,
+      "paired_speedup_range": [
+        0.9804242042947892,
+        1.054206406179225
+      ]
+    },
+    "sh_project_n256_b5": {
+      "before_median_us": 2156.5727497545595,
+      "after_median_us": 2122.9349999885017,
+      "paired_median_speedup": 1.0158449268424328,
+      "paired_speedup_range": [
+        1.000770847960157,
+        1.2373873857704016
+      ]
+    },
+    "sh_project_n1024_b1": {
+      "before_median_us": 880.128312587658,
+      "after_median_us": 858.166062471355,
+      "paired_median_speedup": 1.0220828675671314,
+      "paired_speedup_range": [
+        1.0059957505819233,
+        1.0255920748637577
+      ]
+    },
+    "sh_project_n1024_b3": {
+      "before_median_us": 3493.9906249746855,
+      "after_median_us": 3245.7430002068577,
+      "paired_median_speedup": 1.0767365196170837,
+      "paired_speedup_range": [
+        1.0146032124995523,
+        1.0845614547875362
+      ]
+    },
+    "sh_project_n1024_b5": {
+      "before_median_us": 8569.653749873396,
+      "after_median_us": 8459.51224982855,
+      "paired_median_speedup": 1.0070164976880176,
+      "paired_speedup_range": [
+        0.9961902958738071,
+        1.0281998527341258
+      ]
+    },
+    "sh_convolve_l2": {
+      "before_median_us": 6.1473647461340875,
+      "after_median_us": 6.230650390293135,
+      "paired_median_speedup": 0.9815822667611236,
+      "paired_speedup_range": [
+        0.9468713740348167,
+        0.9923578247776321
+      ]
+    },
+    "sh_rotate_l2_scalar": {
+      "before_median_us": 17.91625781244477,
+      "after_median_us": 11.691660644075341,
+      "paired_median_speedup": 1.532396325711326,
+      "paired_speedup_range": [
+        1.5212870788507564,
+        1.5380348785239
+      ]
+    },
+    "sh_rotate_l2_rgb": {
+      "before_median_us": 42.45087109211454,
+      "after_median_us": 23.747549803943002,
+      "paired_median_speedup": 1.811222465353843,
+      "paired_speedup_range": [
+        1.6555384017240413,
+        1.8168000611380863
+      ]
+    },
+    "sh_reconstruct_l2": {
+      "before_median_us": 17.27588281141834,
+      "after_median_us": 13.003737304728702,
+      "paired_median_speedup": 1.357763331770146,
+      "paired_speedup_range": [
+        1.3285321293853045,
+        1.3701684271459886
+      ]
+    },
+    "bezier_raw_split": {
+      "before_median_us": 5.133510742716396,
+      "after_median_us": 5.097973144962964,
+      "paired_median_speedup": 1.033037219069659,
+      "paired_speedup_range": [
+        0.9862237434522229,
+        1.0381610377037507
+      ]
+    },
+    "bezier_raw_subdivide": {
+      "before_median_us": 310.6109531358925,
+      "after_median_us": 264.1959609377409,
+      "paired_median_speedup": 1.1494875238833604,
+      "paired_speedup_range": [
+        0.5982089392785842,
+        1.2913377618101805
+      ]
+    },
+    "bezier_raw_flatness": {
+      "before_median_us": 5.993800049175491,
+      "after_median_us": 6.2911201172966,
+      "paired_median_speedup": 1.2285883157934212,
+      "paired_speedup_range": [
+        0.9527397247902376,
+        1.4686569706138235
+      ]
+    },
+    "sh_raw_basis_b3": {
+      "before_median_us": 9.751512205724566,
+      "after_median_us": 5.614001953091474,
+      "paired_median_speedup": 1.7369983635924247,
+      "paired_speedup_range": [
+        1.6953124961394295,
+        1.855008910544754
+      ]
+    },
+    "sh_raw_basis_b5": {
+      "before_median_us": 33.28396288893032,
+      "after_median_us": 17.054325194720832,
+      "paired_median_speedup": 1.9516434985790803,
+      "paired_speedup_range": [
+        1.8905256528624508,
+        2.016328296170039
+      ]
+    },
+    "sh_raw_basis_b9": {
+      "before_median_us": 145.79881249687787,
+      "after_median_us": 65.24032031052229,
+      "paired_median_speedup": 2.3039840789095467,
+      "paired_speedup_range": [
+        2.103493715458398,
+        2.602901460223718
+      ]
+    },
+    "sh_angular_probe_b3": {
+      "before_median_us": 6206.440750247566,
+      "after_median_us": 4321.658874687273,
+      "paired_median_speedup": 1.4544659081708775,
+      "paired_speedup_range": [
+        1.3727481180141428,
+        1.460264140091567
+      ]
+    }
+  },
+  "profiles": {
+    "bezier_cubic": {
+      "before": {
+        "operations": 100,
+        "top_cumulative": [
+          {
+            "function": "phase3a_bezier_sh.py:76:<lambda>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.00016703600000000002,
+            "cumulative_seconds": 0.001944507
+          },
+          {
+            "function": "baseline_bezier.py:12:cubicBezierPoint",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.000252221,
+            "cumulative_seconds": 0.001777471
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/vector.py:250:__mul__",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000865223,
+            "cumulative_seconds": 0.001118443
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/vector.py:210:__add__",
+            "primitive_calls": 300,
+            "calls": 300,
+            "self_seconds": 0.000238017,
+            "cumulative_seconds": 0.000406807
+          },
+          {
+            "function": "~:0:<method 'disable' of '_lsprof.Profiler' objects>",
+            "primitive_calls": 1,
+            "calls": 1,
+            "self_seconds": 0.000298156,
+            "cumulative_seconds": 0.000298156
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/vector.py:97:vec_mul",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 0.000146305,
+            "cumulative_seconds": 0.000146305
+          },
+          {
+            "function": "~:0:<built-in method builtins.isinstance>",
+            "primitive_calls": 1100,
+            "calls": 1100,
+            "self_seconds": 0.000115932,
+            "cumulative_seconds": 0.000115932
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/vector.py:85:vec_add",
+            "primitive_calls": 300,
+            "calls": 300,
+            "self_seconds": 9.712200000000001e-05,
+            "cumulative_seconds": 9.712200000000001e-05
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/vector.py:199:__init__",
+            "primitive_calls": 700,
+            "calls": 700,
+            "self_seconds": 6.265100000000001e-05,
+            "cumulative_seconds": 6.265100000000001e-05
+          }
+        ],
+        "single_call_peak_traced_bytes": 848,
+        "single_call_retained_traced_bytes": 480
+      },
+      "after": {
+        "operations": 100,
+        "top_cumulative": [
+          {
+            "function": "phase3a_bezier_sh.py:76:<lambda>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 4.058e-05,
+            "cumulative_seconds": 0.000211301
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:12:cubicBezierPoint",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.00016242100000000002,
+            "cumulative_seconds": 0.000170721
+          },
+          {
+            "function": "~:0:<method 'disable' of '_lsprof.Profiler' objects>",
+            "primitive_calls": 1,
+            "calls": 1,
+            "self_seconds": 1.7066000000000002e-05,
+            "cumulative_seconds": 1.7066000000000002e-05
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/vector.py:199:__init__",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 8.3e-06,
+            "cumulative_seconds": 8.3e-06
+          }
+        ],
+        "single_call_peak_traced_bytes": 112,
+        "single_call_retained_traced_bytes": 0
+      }
+    },
+    "bezier_subdivide_0.0001": {
+      "before": {
+        "operations": 5,
+        "top_cumulative": [
+          {
+            "function": "phase3a_bezier_sh.py:80:<lambda>",
+            "primitive_calls": 5,
+            "calls": 5,
+            "self_seconds": 4.1241e-05,
+            "cumulative_seconds": 0.046799695
+          },
+          {
+            "function": "baseline_bezier.py:120:findDrawingPoints",
+            "primitive_calls": 5,
+            "calls": 5,
+            "self_seconds": 0.00017042,
+            "cumulative_seconds": 0.046758454000000005
+          },
+          {
+            "function": "baseline_bezier.py:216:_subdivide",
+            "primitive_calls": 5,
+            "calls": 5,
+            "self_seconds": 0.002151552,
+            "cumulative_seconds": 0.046024963
+          },
+          {
+            "function": "~:0:<built-in method builtins.max>",
+            "primitive_calls": 1595,
+            "calls": 4785,
+            "self_seconds": 0.001809433,
+            "cumulative_seconds": 0.032989123
+          },
+          {
+            "function": "baseline_bezier.py:222:<genexpr>",
+            "primitive_calls": 4785,
+            "calls": 4785,
+            "self_seconds": 0.0017921450000000002,
+            "cumulative_seconds": 0.031910128
+          },
+          {
+            "function": "baseline_bezier.py:205:_chord_distance",
+            "primitive_calls": 3190,
+            "calls": 3190,
+            "self_seconds": 0.017621634,
+            "cumulative_seconds": 0.030117983
+          },
+          {
+            "function": "baseline_bezier.py:195:_split",
+            "primitive_calls": 795,
+            "calls": 795,
+            "self_seconds": 0.007007437,
+            "cumulative_seconds": 0.010246175000000001
+          },
+          {
+            "function": "~:0:<built-in method builtins.sum>",
+            "primitive_calls": 3190,
+            "calls": 3190,
+            "self_seconds": 0.002410793,
+            "cumulative_seconds": 0.003780484
+          },
+          {
+            "function": "baseline_bezier.py:199:<genexpr>",
+            "primitive_calls": 19080,
+            "calls": 19080,
+            "self_seconds": 0.0025350190000000003,
+            "cumulative_seconds": 0.0025350190000000003
+          },
+          {
+            "function": "baseline_bezier.py:213:<genexpr>",
+            "primitive_calls": 12760,
+            "calls": 12760,
+            "self_seconds": 0.00161544,
+            "cumulative_seconds": 0.00161544
+          },
+          {
+            "function": "baseline_bezier.py:206:<genexpr>",
+            "primitive_calls": 12760,
+            "calls": 12760,
+            "self_seconds": 0.0014524960000000002,
+            "cumulative_seconds": 0.0014524960000000002
+          },
+          {
+            "function": "baseline_bezier.py:211:<genexpr>",
+            "primitive_calls": 12760,
+            "calls": 12760,
+            "self_seconds": 0.0014480970000000002,
+            "cumulative_seconds": 0.0014480970000000002
+          },
+          {
+            "function": "baseline_bezier.py:208:<genexpr>",
+            "primitive_calls": 12760,
+            "calls": 12760,
+            "self_seconds": 0.001423131,
+            "cumulative_seconds": 0.001423131
+          },
+          {
+            "function": "baseline_bezier.py:212:<genexpr>",
+            "primitive_calls": 12760,
+            "calls": 12760,
+            "self_seconds": 0.0013696910000000001,
+            "cumulative_seconds": 0.0013696910000000001
+          },
+          {
+            "function": "~:0:<built-in method math.hypot>",
+            "primitive_calls": 6380,
+            "calls": 6380,
+            "self_seconds": 0.0013399850000000001,
+            "cumulative_seconds": 0.0013399850000000001
+          },
+          {
+            "function": "~:0:<method 'append' of 'list' objects>",
+            "primitive_calls": 4795,
+            "calls": 4795,
+            "self_seconds": 0.000731641,
+            "cumulative_seconds": 0.000731641
+          },
+          {
+            "function": "~:0:<built-in method builtins.min>",
+            "primitive_calls": 3190,
+            "calls": 3190,
+            "self_seconds": 0.0007062780000000001,
+            "cumulative_seconds": 0.0007062780000000001
+          },
+          {
+            "function": "baseline_bezier.py:191:_point",
+            "primitive_calls": 805,
+            "calls": 805,
+            "self_seconds": 0.00031864400000000003,
+            "cumulative_seconds": 0.00037964700000000005
+          },
+          {
+            "function": "~:0:<built-in method builtins.len>",
+            "primitive_calls": 3185,
+            "calls": 3185,
+            "self_seconds": 0.00036037600000000003,
+            "cumulative_seconds": 0.00036037600000000003
+          },
+          {
+            "function": "~:0:<method 'pop' of 'list' objects>",
+            "primitive_calls": 1595,
+            "calls": 1595,
+            "self_seconds": 0.000254417,
+            "cumulative_seconds": 0.000254417
+          }
+        ],
+        "single_call_peak_traced_bytes": 55416,
+        "single_call_retained_traced_bytes": 5616
+      },
+      "after": {
+        "operations": 5,
+        "top_cumulative": [
+          {
+            "function": "phase3a_bezier_sh.py:80:<lambda>",
+            "primitive_calls": 5,
+            "calls": 5,
+            "self_seconds": 1.9093e-05,
+            "cumulative_seconds": 0.042058937000000005
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:133:findDrawingPoints",
+            "primitive_calls": 5,
+            "calls": 5,
+            "self_seconds": 0.000136441,
+            "cumulative_seconds": 0.042039844
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:246:_subdivide",
+            "primitive_calls": 5,
+            "calls": 5,
+            "self_seconds": 0.0022070460000000003,
+            "cumulative_seconds": 0.041387958
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:229:_flatness",
+            "primitive_calls": 1595,
+            "calls": 1595,
+            "self_seconds": 0.016309499,
+            "cumulative_seconds": 0.028095015
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:208:_split",
+            "primitive_calls": 795,
+            "calls": 795,
+            "self_seconds": 0.007156974000000001,
+            "cumulative_seconds": 0.010515151
+          },
+          {
+            "function": "~:0:<built-in method builtins.sum>",
+            "primitive_calls": 3190,
+            "calls": 3190,
+            "self_seconds": 0.002233773,
+            "cumulative_seconds": 0.0037165540000000004
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:212:<genexpr>",
+            "primitive_calls": 19080,
+            "calls": 19080,
+            "self_seconds": 0.002610167,
+            "cumulative_seconds": 0.002610167
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:242:<genexpr>",
+            "primitive_calls": 12760,
+            "calls": 12760,
+            "self_seconds": 0.0017292070000000002,
+            "cumulative_seconds": 0.0017292070000000002
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:240:<genexpr>",
+            "primitive_calls": 12760,
+            "calls": 12760,
+            "self_seconds": 0.001509144,
+            "cumulative_seconds": 0.001509144
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:241:<genexpr>",
+            "primitive_calls": 12760,
+            "calls": 12760,
+            "self_seconds": 0.001482781,
+            "cumulative_seconds": 0.001482781
+          },
+          {
+            "function": "~:0:<method 'append' of 'list' objects>",
+            "primitive_calls": 7985,
+            "calls": 7985,
+            "self_seconds": 0.0011875050000000002,
+            "cumulative_seconds": 0.0011875050000000002
+          },
+          {
+            "function": "~:0:<built-in method math.hypot>",
+            "primitive_calls": 4785,
+            "calls": 4785,
+            "self_seconds": 0.001005367,
+            "cumulative_seconds": 0.001005367
+          },
+          {
+            "function": "~:0:<built-in method builtins.max>",
+            "primitive_calls": 4785,
+            "calls": 4785,
+            "self_seconds": 0.00098087,
+            "cumulative_seconds": 0.00098087
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:232:<genexpr>",
+            "primitive_calls": 6380,
+            "calls": 6380,
+            "self_seconds": 0.0008393500000000001,
+            "cumulative_seconds": 0.0008393500000000001
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:237:<genexpr>",
+            "primitive_calls": 6380,
+            "calls": 6380,
+            "self_seconds": 0.0008248060000000001,
+            "cumulative_seconds": 0.0008248060000000001
+          },
+          {
+            "function": "~:0:<built-in method builtins.min>",
+            "primitive_calls": 3190,
+            "calls": 3190,
+            "self_seconds": 0.000687863,
+            "cumulative_seconds": 0.000687863
+          },
+          {
+            "function": "~:0:<built-in method builtins.len>",
+            "primitive_calls": 3185,
+            "calls": 3185,
+            "self_seconds": 0.00038424000000000005,
+            "cumulative_seconds": 0.00038424000000000005
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:204:_point",
+            "primitive_calls": 805,
+            "calls": 805,
+            "self_seconds": 0.000317369,
+            "cumulative_seconds": 0.00038058000000000005
+          },
+          {
+            "function": "~:0:<method 'pop' of 'list' objects>",
+            "primitive_calls": 1595,
+            "calls": 1595,
+            "self_seconds": 0.00024392100000000002,
+            "cumulative_seconds": 0.00024392100000000002
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:172:_sampling_controls",
+            "primitive_calls": 5,
+            "calls": 5,
+            "self_seconds": 2.1885e-05,
+            "cumulative_seconds": 0.000127131
+          }
+        ],
+        "single_call_peak_traced_bytes": 55224,
+        "single_call_retained_traced_bytes": 5424
+      }
+    },
+    "bezier_path_8_segments": {
+      "before": {
+        "operations": 5,
+        "top_cumulative": [
+          {
+            "function": "baseline_bezier.py:109:getDrawingPoints",
+            "primitive_calls": 5,
+            "calls": 5,
+            "self_seconds": 0.000132933,
+            "cumulative_seconds": 0.14815292600000002
+          },
+          {
+            "function": "baseline_bezier.py:120:findDrawingPoints",
+            "primitive_calls": 40,
+            "calls": 40,
+            "self_seconds": 0.00046543400000000003,
+            "cumulative_seconds": 0.147637983
+          },
+          {
+            "function": "baseline_bezier.py:216:_subdivide",
+            "primitive_calls": 40,
+            "calls": 40,
+            "self_seconds": 0.0055497720000000006,
+            "cumulative_seconds": 0.142467477
+          },
+          {
+            "function": "~:0:<built-in method builtins.max>",
+            "primitive_calls": 3960,
+            "calls": 11880,
+            "self_seconds": 0.004419826,
+            "cumulative_seconds": 0.10486925100000001
+          },
+          {
+            "function": "baseline_bezier.py:222:<genexpr>",
+            "primitive_calls": 11880,
+            "calls": 11880,
+            "self_seconds": 0.005867562000000001,
+            "cumulative_seconds": 0.102195742
+          },
+          {
+            "function": "baseline_bezier.py:205:_chord_distance",
+            "primitive_calls": 7920,
+            "calls": 7920,
+            "self_seconds": 0.057433222000000006,
+            "cumulative_seconds": 0.09632818
+          },
+          {
+            "function": "baseline_bezier.py:195:_split",
+            "primitive_calls": 1960,
+            "calls": 1960,
+            "self_seconds": 0.021614951,
+            "cumulative_seconds": 0.030376231000000004
+          },
+          {
+            "function": "~:0:<built-in method builtins.sum>",
+            "primitive_calls": 7920,
+            "calls": 7920,
+            "self_seconds": 0.006739934,
+            "cumulative_seconds": 0.010941651
+          },
+          {
+            "function": "baseline_bezier.py:208:<genexpr>",
+            "primitive_calls": 31680,
+            "calls": 31680,
+            "self_seconds": 0.007074686,
+            "cumulative_seconds": 0.007074686
+          },
+          {
+            "function": "baseline_bezier.py:199:<genexpr>",
+            "primitive_calls": 47040,
+            "calls": 47040,
+            "self_seconds": 0.006937370000000001,
+            "cumulative_seconds": 0.006937370000000001
+          },
+          {
+            "function": "baseline_bezier.py:206:<genexpr>",
+            "primitive_calls": 31680,
+            "calls": 31680,
+            "self_seconds": 0.006101147,
+            "cumulative_seconds": 0.006101147
+          },
+          {
+            "function": "baseline_bezier.py:213:<genexpr>",
+            "primitive_calls": 31680,
+            "calls": 31680,
+            "self_seconds": 0.004523251000000001,
+            "cumulative_seconds": 0.004523251000000001
+          },
+          {
+            "function": "baseline_bezier.py:212:<genexpr>",
+            "primitive_calls": 31680,
+            "calls": 31680,
+            "self_seconds": 0.004201717000000001,
+            "cumulative_seconds": 0.004201717000000001
+          },
+          {
+            "function": "baseline_bezier.py:211:<genexpr>",
+            "primitive_calls": 31680,
+            "calls": 31680,
+            "self_seconds": 0.003916445,
+            "cumulative_seconds": 0.003916445
+          },
+          {
+            "function": "baseline_bezier.py:159:_sampling_controls",
+            "primitive_calls": 45,
+            "calls": 45,
+            "self_seconds": 0.00010734000000000001,
+            "cumulative_seconds": 0.0032717120000000004
+          },
+          {
+            "function": "baseline_bezier.py:170:_coordinates",
+            "primitive_calls": 45,
+            "calls": 45,
+            "self_seconds": 0.000983717,
+            "cumulative_seconds": 0.00314749
+          },
+          {
+            "function": "~:0:<built-in method math.hypot>",
+            "primitive_calls": 15840,
+            "calls": 15840,
+            "self_seconds": 0.0026200900000000003,
+            "cumulative_seconds": 0.0026200900000000003
+          },
+          {
+            "function": "~:0:<method 'append' of 'list' objects>",
+            "primitive_calls": 12965,
+            "calls": 12965,
+            "self_seconds": 0.002115919,
+            "cumulative_seconds": 0.002115919
+          },
+          {
+            "function": "~:0:<built-in method builtins.min>",
+            "primitive_calls": 7920,
+            "calls": 7920,
+            "self_seconds": 0.001971371,
+            "cumulative_seconds": 0.001971371
+          },
+          {
+            "function": "~:0:<built-in method builtins.all>",
+            "primitive_calls": 1125,
+            "calls": 1125,
+            "self_seconds": 0.000640692,
+            "cumulative_seconds": 0.0018712940000000001
+          }
+        ],
+        "single_call_peak_traced_bytes": 107760,
+        "single_call_retained_traced_bytes": 5976
+      },
+      "after": {
+        "operations": 5,
+        "top_cumulative": [
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:122:getDrawingPoints",
+            "primitive_calls": 5,
+            "calls": 5,
+            "self_seconds": 0.0018746650000000002,
+            "cumulative_seconds": 0.19712098900000002
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:133:findDrawingPoints",
+            "primitive_calls": 40,
+            "calls": 40,
+            "self_seconds": 0.000453238,
+            "cumulative_seconds": 0.194872033
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:246:_subdivide",
+            "primitive_calls": 40,
+            "calls": 40,
+            "self_seconds": 0.010439226000000001,
+            "cumulative_seconds": 0.18482489900000001
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:229:_flatness",
+            "primitive_calls": 3960,
+            "calls": 3960,
+            "self_seconds": 0.075884268,
+            "cumulative_seconds": 0.131628969
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:208:_split",
+            "primitive_calls": 1960,
+            "calls": 1960,
+            "self_seconds": 0.022300475,
+            "cumulative_seconds": 0.041324579
+          },
+          {
+            "function": "~:0:<built-in method builtins.sum>",
+            "primitive_calls": 7920,
+            "calls": 7920,
+            "self_seconds": 0.011829799,
+            "cumulative_seconds": 0.017351216000000003
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:212:<genexpr>",
+            "primitive_calls": 47040,
+            "calls": 47040,
+            "self_seconds": 0.017265303000000003,
+            "cumulative_seconds": 0.017265303000000003
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:240:<genexpr>",
+            "primitive_calls": 31680,
+            "calls": 31680,
+            "self_seconds": 0.009512758000000001,
+            "cumulative_seconds": 0.009512758000000001
+          },
+          {
+            "function": "~:0:<method 'append' of 'list' objects>",
+            "primitive_calls": 20885,
+            "calls": 20885,
+            "self_seconds": 0.008929734,
+            "cumulative_seconds": 0.008929734
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:204:_point",
+            "primitive_calls": 2040,
+            "calls": 2040,
+            "self_seconds": 0.002308086,
+            "cumulative_seconds": 0.0065591550000000005
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:237:<genexpr>",
+            "primitive_calls": 15840,
+            "calls": 15840,
+            "self_seconds": 0.005774393,
+            "cumulative_seconds": 0.005774393
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:241:<genexpr>",
+            "primitive_calls": 31680,
+            "calls": 31680,
+            "self_seconds": 0.005521417000000001,
+            "cumulative_seconds": 0.005521417000000001
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:232:<genexpr>",
+            "primitive_calls": 15840,
+            "calls": 15840,
+            "self_seconds": 0.004407292,
+            "cumulative_seconds": 0.004407292
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/vector.py:199:__init__",
+            "primitive_calls": 2040,
+            "calls": 2040,
+            "self_seconds": 0.0042510690000000005,
+            "cumulative_seconds": 0.0042510690000000005
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:242:<genexpr>",
+            "primitive_calls": 31680,
+            "calls": 31680,
+            "self_seconds": 0.004173398,
+            "cumulative_seconds": 0.004173398
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:172:_sampling_controls",
+            "primitive_calls": 45,
+            "calls": 45,
+            "self_seconds": 0.000116601,
+            "cumulative_seconds": 0.003347918
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/bezier.py:183:_coordinates",
+            "primitive_calls": 45,
+            "calls": 45,
+            "self_seconds": 0.0011355780000000002,
+            "cumulative_seconds": 0.00321256
+          },
+          {
+            "function": "~:0:<built-in method math.hypot>",
+            "primitive_calls": 11880,
+            "calls": 11880,
+            "self_seconds": 0.003019056,
+            "cumulative_seconds": 0.003019056
+          },
+          {
+            "function": "~:0:<built-in method builtins.max>",
+            "primitive_calls": 11880,
+            "calls": 11880,
+            "self_seconds": 0.0025536810000000004,
+            "cumulative_seconds": 0.0025536810000000004
+          },
+          {
+            "function": "~:0:<built-in method builtins.min>",
+            "primitive_calls": 7920,
+            "calls": 7920,
+            "self_seconds": 0.001790406,
+            "cumulative_seconds": 0.001790406
+          }
+        ],
+        "single_call_peak_traced_bytes": 107568,
+        "single_call_retained_traced_bytes": 5784
+      }
+    },
+    "sh_reconstruct_l2": {
+      "before": {
+        "operations": 100,
+        "top_cumulative": [
+          {
+            "function": "phase3a_bezier_sh.py:104:<lambda>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 6.299100000000001e-05,
+            "cumulative_seconds": 0.018073432
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:203:reconstruct",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.000499165,
+            "cumulative_seconds": 0.018010441000000002
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:111:_coefficient_bands",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.000259179,
+            "cumulative_seconds": 0.008394588
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:101:_rgb",
+            "primitive_calls": 900,
+            "calls": 900,
+            "self_seconds": 0.0005878480000000001,
+            "cumulative_seconds": 0.008093464
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:122:_basis",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.00044207700000000003,
+            "cumulative_seconds": 0.005195772
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:38:SPH",
+            "primitive_calls": 900,
+            "calls": 900,
+            "self_seconds": 0.002026688,
+            "cumulative_seconds": 0.0047536950000000005
+          },
+          {
+            "function": "~:0:<built-in method builtins.len>",
+            "primitive_calls": 1200,
+            "calls": 1200,
+            "self_seconds": 0.004257278000000001,
+            "cumulative_seconds": 0.004257278000000001
+          },
+          {
+            "function": "~:0:<built-in method math.fsum>",
+            "primitive_calls": 300,
+            "calls": 300,
+            "self_seconds": 0.001248194,
+            "cumulative_seconds": 0.003623039
+          },
+          {
+            "function": "~:0:<built-in method builtins.all>",
+            "primitive_calls": 1000,
+            "calls": 1000,
+            "self_seconds": 0.000554835,
+            "cumulative_seconds": 0.0034846160000000003
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:103:<genexpr>",
+            "primitive_calls": 3600,
+            "calls": 3600,
+            "self_seconds": 0.002585071,
+            "cumulative_seconds": 0.002798221
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:221:<genexpr>",
+            "primitive_calls": 3000,
+            "calls": 3000,
+            "self_seconds": 0.002374845,
+            "cumulative_seconds": 0.002374845
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/legendre.py:52:run",
+            "primitive_calls": 900,
+            "calls": 900,
+            "self_seconds": 0.000507196,
+            "cumulative_seconds": 0.0012920960000000002
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:31:K",
+            "primitive_calls": 900,
+            "calls": 900,
+            "self_seconds": 0.0006547520000000001,
+            "cumulative_seconds": 0.001005087
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/legendre.py:24:_seed",
+            "primitive_calls": 900,
+            "calls": 900,
+            "self_seconds": 0.000531516,
+            "cumulative_seconds": 0.000593513
+          },
+          {
+            "function": "~:0:<built-in method math.isfinite>",
+            "primitive_calls": 3000,
+            "calls": 3000,
+            "self_seconds": 0.000264964,
+            "cumulative_seconds": 0.000264964
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:17:Factorial",
+            "primitive_calls": 1800,
+            "calls": 1800,
+            "self_seconds": 0.00025918400000000003,
+            "cumulative_seconds": 0.00025918400000000003
+          },
+          {
+            "function": "~:0:<built-in method math.sqrt>",
+            "primitive_calls": 2400,
+            "calls": 2400,
+            "self_seconds": 0.000250533,
+            "cumulative_seconds": 0.000250533
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/legendre.py:32:_evaluate",
+            "primitive_calls": 900,
+            "calls": 900,
+            "self_seconds": 0.000191387,
+            "cumulative_seconds": 0.000191387
+          },
+          {
+            "function": "~:0:<built-in method math.cos>",
+            "primitive_calls": 1200,
+            "calls": 1200,
+            "self_seconds": 0.00016185,
+            "cumulative_seconds": 0.00016185
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:212:<genexpr>",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 7.9746e-05,
+            "cumulative_seconds": 0.00013156000000000002
+          }
+        ],
+        "single_call_peak_traced_bytes": 1312,
+        "single_call_retained_traced_bytes": 496
+      },
+      "after": {
+        "operations": 100,
+        "top_cumulative": [
+          {
+            "function": "phase3a_bezier_sh.py:104:<lambda>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 5.3791e-05,
+            "cumulative_seconds": 0.011206976
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:226:reconstruct",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.00043231000000000004,
+            "cumulative_seconds": 0.011153185000000001
+          },
+          {
+            "function": "~:0:<built-in method math.fsum>",
+            "primitive_calls": 300,
+            "calls": 300,
+            "self_seconds": 0.000415544,
+            "cumulative_seconds": 0.004788011
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:244:<genexpr>",
+            "primitive_calls": 3000,
+            "calls": 3000,
+            "self_seconds": 0.0043724670000000005,
+            "cumulative_seconds": 0.0043724670000000005
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:112:_coefficient_bands",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.00025351700000000003,
+            "cumulative_seconds": 0.0033619310000000003
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:102:_rgb",
+            "primitive_calls": 900,
+            "calls": 900,
+            "self_seconds": 0.000575437,
+            "cumulative_seconds": 0.003069993
+          },
+          {
+            "function": "~:0:<built-in method builtins.all>",
+            "primitive_calls": 1000,
+            "calls": 1000,
+            "self_seconds": 0.000543188,
+            "cumulative_seconds": 0.0025942680000000003
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:131:_basis",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.001128614,
+            "cumulative_seconds": 0.002303779
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:104:<genexpr>",
+            "primitive_calls": 3600,
+            "calls": 3600,
+            "self_seconds": 0.0017279300000000001,
+            "cumulative_seconds": 0.0019370390000000002
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/legendre.py:52:run",
+            "primitive_calls": 600,
+            "calls": 600,
+            "self_seconds": 0.000322054,
+            "cumulative_seconds": 0.000701064
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/legendre.py:24:_seed",
+            "primitive_calls": 600,
+            "calls": 600,
+            "self_seconds": 0.00020397200000000002,
+            "cumulative_seconds": 0.00024373000000000003
+          },
+          {
+            "function": "~:0:<built-in method math.isfinite>",
+            "primitive_calls": 3000,
+            "calls": 3000,
+            "self_seconds": 0.00024334100000000003,
+            "cumulative_seconds": 0.00024334100000000003
+          },
+          {
+            "function": "~:0:<built-in method builtins.abs>",
+            "primitive_calls": 1500,
+            "calls": 1500,
+            "self_seconds": 0.00014610100000000002,
+            "cumulative_seconds": 0.00014610100000000002
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/legendre.py:32:_evaluate",
+            "primitive_calls": 600,
+            "calls": 600,
+            "self_seconds": 0.00013528000000000002,
+            "cumulative_seconds": 0.00013528000000000002
+          },
+          {
+            "function": "~:0:<method 'append' of 'list' objects>",
+            "primitive_calls": 900,
+            "calls": 900,
+            "self_seconds": 0.000129904,
+            "cumulative_seconds": 0.000129904
+          },
+          {
+            "function": "~:0:<built-in method builtins.len>",
+            "primitive_calls": 1200,
+            "calls": 1200,
+            "self_seconds": 0.00011514000000000001,
+            "cumulative_seconds": 0.00011514000000000001
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:235:<genexpr>",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 7.980900000000001e-05,
+            "cumulative_seconds": 0.000114041
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/legendre.py:16:__init__",
+            "primitive_calls": 600,
+            "calls": 600,
+            "self_seconds": 8.474900000000001e-05,
+            "cumulative_seconds": 8.474900000000001e-05
+          },
+          {
+            "function": "~:0:<built-in method math.cos>",
+            "primitive_calls": 400,
+            "calls": 400,
+            "self_seconds": 6.5054e-05,
+            "cumulative_seconds": 6.5054e-05
+          },
+          {
+            "function": "~:0:<built-in method math.sin>",
+            "primitive_calls": 300,
+            "calls": 300,
+            "self_seconds": 4.8293e-05,
+            "cumulative_seconds": 4.8293e-05
+          }
+        ],
+        "single_call_peak_traced_bytes": 1400,
+        "single_call_retained_traced_bytes": 584
+      }
+    },
+    "sh_rotate_l2_rgb": {
+      "before": {
+        "operations": 100,
+        "top_cumulative": [
+          {
+            "function": "phase3a_bezier_sh.py:102:<lambda>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.000145572,
+            "cumulative_seconds": 0.028634771000000003
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:309:rotate_coefficients",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.007617226,
+            "cumulative_seconds": 0.028489199000000003
+          },
+          {
+            "function": "~:0:<built-in method builtins.sum>",
+            "primitive_calls": 6300,
+            "calls": 6300,
+            "self_seconds": 0.010488214000000001,
+            "cumulative_seconds": 0.013125688000000002
+          },
+          {
+            "function": "~:0:<built-in method builtins.any>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.000140134,
+            "cumulative_seconds": 0.007224938
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:333:<genexpr>",
+            "primitive_calls": 1000,
+            "calls": 1000,
+            "self_seconds": 0.00048160700000000005,
+            "cumulative_seconds": 0.007084804
+          },
+          {
+            "function": "~:0:<built-in method builtins.all>",
+            "primitive_calls": 1000,
+            "calls": 1000,
+            "self_seconds": 0.003675662,
+            "cumulative_seconds": 0.006758854000000001
+          },
+          {
+            "function": "~:0:<built-in method math.isfinite>",
+            "primitive_calls": 3100,
+            "calls": 3100,
+            "self_seconds": 0.0018161610000000002,
+            "cumulative_seconds": 0.0018161610000000002
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:356:<genexpr>",
+            "primitive_calls": 10800,
+            "calls": 10800,
+            "self_seconds": 0.00114506,
+            "cumulative_seconds": 0.00114506
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:357:<genexpr>",
+            "primitive_calls": 10800,
+            "calls": 10800,
+            "self_seconds": 0.0010718210000000001,
+            "cumulative_seconds": 0.0010718210000000001
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:349:<genexpr>",
+            "primitive_calls": 3600,
+            "calls": 3600,
+            "self_seconds": 0.00042059300000000003,
+            "cumulative_seconds": 0.00042059300000000003
+          },
+          {
+            "function": "~:0:<built-in method builtins.len>",
+            "primitive_calls": 1700,
+            "calls": 1700,
+            "self_seconds": 0.00018765400000000002,
+            "cumulative_seconds": 0.00018765400000000002
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:321:<genexpr>",
+            "primitive_calls": 500,
+            "calls": 500,
+            "self_seconds": 0.00011570800000000001,
+            "cumulative_seconds": 0.000153485
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:337:<genexpr>",
+            "primitive_calls": 500,
+            "calls": 500,
+            "self_seconds": 6.0803e-05,
+            "cumulative_seconds": 6.0803e-05
+          },
+          {
+            "function": "~:0:<built-in method builtins.isinstance>",
+            "primitive_calls": 200,
+            "calls": 200,
+            "self_seconds": 3.6535e-05,
+            "cumulative_seconds": 3.6535e-05
+          },
+          {
+            "function": "~:0:<built-in method math.sqrt>",
+            "primitive_calls": 200,
+            "calls": 200,
+            "self_seconds": 3.3444e-05,
+            "cumulative_seconds": 3.3444e-05
+          },
+          {
+            "function": "~:0:<built-in method math.hypot>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 3.1973e-05,
+            "cumulative_seconds": 3.1973e-05
+          },
+          {
+            "function": "~:0:<method 'disable' of '_lsprof.Profiler' objects>",
+            "primitive_calls": 1,
+            "calls": 1,
+            "self_seconds": 2.3049000000000002e-05,
+            "cumulative_seconds": 2.3049000000000002e-05
+          },
+          {
+            "function": "~:0:<built-in method builtins.abs>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 1.5281e-05,
+            "cumulative_seconds": 1.5281e-05
+          }
+        ],
+        "single_call_peak_traced_bytes": 4512,
+        "single_call_retained_traced_bytes": 2000
+      },
+      "after": {
+        "operations": 100,
+        "top_cumulative": [
+          {
+            "function": "phase3a_bezier_sh.py:102:<lambda>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.00012121600000000001,
+            "cumulative_seconds": 0.013264845
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:332:rotate_coefficients",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.0071622560000000005,
+            "cumulative_seconds": 0.013143629
+          },
+          {
+            "function": "~:0:<built-in method builtins.any>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.000128025,
+            "cumulative_seconds": 0.0019015990000000001
+          },
+          {
+            "function": "~:0:<built-in method math.sqrt>",
+            "primitive_calls": 200,
+            "calls": 200,
+            "self_seconds": 0.001878122,
+            "cumulative_seconds": 0.001878122
+          },
+          {
+            "function": "~:0:<built-in method builtins.sum>",
+            "primitive_calls": 6300,
+            "calls": 6300,
+            "self_seconds": 0.0017473990000000002,
+            "cumulative_seconds": 0.0017473990000000002
+          },
+          {
+            "function": "~:0:<built-in method builtins.all>",
+            "primitive_calls": 1000,
+            "calls": 1000,
+            "self_seconds": 0.000526795,
+            "cumulative_seconds": 0.0014328700000000002
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:356:<genexpr>",
+            "primitive_calls": 3600,
+            "calls": 3600,
+            "self_seconds": 0.000560664,
+            "cumulative_seconds": 0.000758622
+          },
+          {
+            "function": "~:0:<built-in method math.isfinite>",
+            "primitive_calls": 3100,
+            "calls": 3100,
+            "self_seconds": 0.000244912,
+            "cumulative_seconds": 0.000244912
+          },
+          {
+            "function": "~:0:<built-in method builtins.len>",
+            "primitive_calls": 1700,
+            "calls": 1700,
+            "self_seconds": 0.00017265000000000002,
+            "cumulative_seconds": 0.00017265000000000002
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:344:<genexpr>",
+            "primitive_calls": 500,
+            "calls": 500,
+            "self_seconds": 0.000100499,
+            "cumulative_seconds": 0.000147453
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:360:<genexpr>",
+            "primitive_calls": 500,
+            "calls": 500,
+            "self_seconds": 5.8065e-05,
+            "cumulative_seconds": 5.8065e-05
+          },
+          {
+            "function": "~:0:<built-in method builtins.isinstance>",
+            "primitive_calls": 200,
+            "calls": 200,
+            "self_seconds": 3.3793e-05,
+            "cumulative_seconds": 3.3793e-05
+          },
+          {
+            "function": "~:0:<built-in method math.hypot>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 2.4707000000000002e-05,
+            "cumulative_seconds": 2.4707000000000002e-05
+          },
+          {
+            "function": "~:0:<method 'disable' of '_lsprof.Profiler' objects>",
+            "primitive_calls": 1,
+            "calls": 1,
+            "self_seconds": 2.4334e-05,
+            "cumulative_seconds": 2.4334e-05
+          },
+          {
+            "function": "~:0:<built-in method builtins.abs>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 1.2494000000000001e-05,
+            "cumulative_seconds": 1.2494000000000001e-05
+          }
+        ],
+        "single_call_peak_traced_bytes": 3344,
+        "single_call_retained_traced_bytes": 1544
+      }
+    },
+    "sh_angular_probe_b3": {
+      "before": {
+        "operations": 5,
+        "top_cumulative": [
+          {
+            "function": "/workspace/pyGameMath/benchmarks/bezier_sh.py:46:<lambda>",
+            "primitive_calls": 5,
+            "calls": 5,
+            "self_seconds": 1.9686e-05,
+            "cumulative_seconds": 0.199851103
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:182:project_angular_probe",
+            "primitive_calls": 5,
+            "calls": 5,
+            "self_seconds": 0.021898249,
+            "cumulative_seconds": 0.199831417
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:122:_basis",
+            "primitive_calls": 2020,
+            "calls": 2020,
+            "self_seconds": 0.022278981,
+            "cumulative_seconds": 0.16229141900000002
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:38:SPH",
+            "primitive_calls": 18180,
+            "calls": 18180,
+            "self_seconds": 0.040377714,
+            "cumulative_seconds": 0.14001243800000002
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/legendre.py:52:run",
+            "primitive_calls": 18180,
+            "calls": 18180,
+            "self_seconds": 0.014456805000000001,
+            "cumulative_seconds": 0.050869049000000006
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:31:K",
+            "primitive_calls": 18180,
+            "calls": 18180,
+            "self_seconds": 0.020686912000000002,
+            "cumulative_seconds": 0.029686880000000002
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/legendre.py:24:_seed",
+            "primitive_calls": 18180,
+            "calls": 18180,
+            "self_seconds": 0.023028831000000003,
+            "cumulative_seconds": 0.028908934
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:156:_angular_pixels",
+            "primitive_calls": 2025,
+            "calls": 2025,
+            "self_seconds": 0.0037387630000000004,
+            "cumulative_seconds": 0.015627599000000002
+          },
+          {
+            "function": "~:0:<built-in method math.sqrt>",
+            "primitive_calls": 48480,
+            "calls": 48480,
+            "self_seconds": 0.012008451000000002,
+            "cumulative_seconds": 0.012008451000000002
+          },
+          {
+            "function": "~:0:<built-in method math.cos>",
+            "primitive_calls": 24240,
+            "calls": 24240,
+            "self_seconds": 0.010652884000000001,
+            "cumulative_seconds": 0.010652884000000001
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:101:_rgb",
+            "primitive_calls": 2560,
+            "calls": 2560,
+            "self_seconds": 0.0015586990000000002,
+            "cumulative_seconds": 0.009409653
+          },
+          {
+            "function": "~:0:<built-in method builtins.all>",
+            "primitive_calls": 2565,
+            "calls": 2565,
+            "self_seconds": 0.005249406000000001,
+            "cumulative_seconds": 0.007695338
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/legendre.py:32:_evaluate",
+            "primitive_calls": 18180,
+            "calls": 18180,
+            "self_seconds": 0.007503310000000001,
+            "cumulative_seconds": 0.007503310000000001
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:17:Factorial",
+            "primitive_calls": 36360,
+            "calls": 36360,
+            "self_seconds": 0.007084883,
+            "cumulative_seconds": 0.007084883
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/legendre.py:16:__init__",
+            "primitive_calls": 18180,
+            "calls": 18180,
+            "self_seconds": 0.003125038,
+            "cumulative_seconds": 0.003125038
+          },
+          {
+            "function": "~:0:<built-in method math.sin>",
+            "primitive_calls": 8080,
+            "calls": 8080,
+            "self_seconds": 0.0024880220000000003,
+            "cumulative_seconds": 0.0024880220000000003
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:103:<genexpr>",
+            "primitive_calls": 10240,
+            "calls": 10240,
+            "self_seconds": 0.001892367,
+            "cumulative_seconds": 0.0024152920000000003
+          },
+          {
+            "function": "~:0:<built-in method math.isfinite>",
+            "primitive_calls": 7680,
+            "calls": 7680,
+            "self_seconds": 0.000522925,
+            "cumulative_seconds": 0.000522925
+          },
+          {
+            "function": "~:0:<built-in method math.atan2>",
+            "primitive_calls": 2020,
+            "calls": 2020,
+            "self_seconds": 0.0005159580000000001,
+            "cumulative_seconds": 0.0005159580000000001
+          },
+          {
+            "function": "~:0:<built-in method math.hypot>",
+            "primitive_calls": 2560,
+            "calls": 2560,
+            "self_seconds": 0.000513313,
+            "cumulative_seconds": 0.000513313
+          }
+        ],
+        "single_call_peak_traced_bytes": 4584,
+        "single_call_retained_traced_bytes": 3104
+      },
+      "after": {
+        "operations": 5,
+        "top_cumulative": [
+          {
+            "function": "/workspace/pyGameMath/benchmarks/bezier_sh.py:46:<lambda>",
+            "primitive_calls": 5,
+            "calls": 5,
+            "self_seconds": 1.2526e-05,
+            "cumulative_seconds": 0.126307906
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:205:project_angular_probe",
+            "primitive_calls": 5,
+            "calls": 5,
+            "self_seconds": 0.02266104,
+            "cumulative_seconds": 0.12629538
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:131:_basis",
+            "primitive_calls": 2020,
+            "calls": 2020,
+            "self_seconds": 0.040880059,
+            "cumulative_seconds": 0.092933977
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/legendre.py:52:run",
+            "primitive_calls": 12120,
+            "calls": 12120,
+            "self_seconds": 0.014966940000000001,
+            "cumulative_seconds": 0.030341528000000003
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/legendre.py:24:_seed",
+            "primitive_calls": 12120,
+            "calls": 12120,
+            "self_seconds": 0.011440809000000001,
+            "cumulative_seconds": 0.012439690000000002
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:179:_angular_pixels",
+            "primitive_calls": 2025,
+            "calls": 2025,
+            "self_seconds": 0.002978666,
+            "cumulative_seconds": 0.010684182
+          },
+          {
+            "function": "~:0:<built-in method builtins.abs>",
+            "primitive_calls": 30300,
+            "calls": 30300,
+            "self_seconds": 0.006922337000000001,
+            "cumulative_seconds": 0.006922337000000001
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:102:_rgb",
+            "primitive_calls": 2560,
+            "calls": 2560,
+            "self_seconds": 0.002318882,
+            "cumulative_seconds": 0.006334882
+          },
+          {
+            "function": "~:0:<built-in method math.cos>",
+            "primitive_calls": 8080,
+            "calls": 8080,
+            "self_seconds": 0.0043742370000000004,
+            "cumulative_seconds": 0.0043742370000000004
+          },
+          {
+            "function": "~:0:<built-in method math.sin>",
+            "primitive_calls": 8080,
+            "calls": 8080,
+            "self_seconds": 0.004329852,
+            "cumulative_seconds": 0.004329852
+          },
+          {
+            "function": "~:0:<method 'append' of 'list' objects>",
+            "primitive_calls": 18180,
+            "calls": 18180,
+            "self_seconds": 0.003920637,
+            "cumulative_seconds": 0.003920637
+          },
+          {
+            "function": "~:0:<built-in method builtins.all>",
+            "primitive_calls": 2565,
+            "calls": 2565,
+            "self_seconds": 0.0013533710000000001,
+            "cumulative_seconds": 0.0038620610000000004
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/legendre.py:32:_evaluate",
+            "primitive_calls": 12120,
+            "calls": 12120,
+            "self_seconds": 0.002934898,
+            "cumulative_seconds": 0.002934898
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/legendre.py:16:__init__",
+            "primitive_calls": 12120,
+            "calls": 12120,
+            "self_seconds": 0.00250482,
+            "cumulative_seconds": 0.00250482
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:104:<genexpr>",
+            "primitive_calls": 10240,
+            "calls": 10240,
+            "self_seconds": 0.0015068850000000001,
+            "cumulative_seconds": 0.002475248
+          },
+          {
+            "function": "~:0:<built-in method math.sqrt>",
+            "primitive_calls": 6060,
+            "calls": 6060,
+            "self_seconds": 0.000998881,
+            "cumulative_seconds": 0.000998881
+          },
+          {
+            "function": "~:0:<built-in method math.isfinite>",
+            "primitive_calls": 7680,
+            "calls": 7680,
+            "self_seconds": 0.0009683630000000001,
+            "cumulative_seconds": 0.0009683630000000001
+          },
+          {
+            "function": "~:0:<built-in method math.atan2>",
+            "primitive_calls": 2020,
+            "calls": 2020,
+            "self_seconds": 0.0004905570000000001,
+            "cumulative_seconds": 0.0004905570000000001
+          },
+          {
+            "function": "~:0:<built-in method math.hypot>",
+            "primitive_calls": 2560,
+            "calls": 2560,
+            "self_seconds": 0.000488468,
+            "cumulative_seconds": 0.000488468
+          },
+          {
+            "function": "~:0:<built-in method builtins.len>",
+            "primitive_calls": 2650,
+            "calls": 2650,
+            "self_seconds": 0.000215235,
+            "cumulative_seconds": 0.000215235
+          }
+        ],
+        "single_call_peak_traced_bytes": 4880,
+        "single_call_retained_traced_bytes": 3192
+      }
+    },
+    "sh_project_n256_b3": {
+      "before": {
+        "operations": 100,
+        "top_cumulative": [
+          {
+            "function": "phase3a_bezier_sh.py:96:<lambda>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.0008446110000000001,
+            "cumulative_seconds": 0.516204793
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:126:project_radiance",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.007814312,
+            "cumulative_seconds": 0.515360182
+          },
+          {
+            "function": "~:0:<built-in method math.fsum>",
+            "primitive_calls": 2700,
+            "calls": 2700,
+            "self_seconds": 0.10873218800000001,
+            "cumulative_seconds": 0.25060896
+          },
+          {
+            "function": "~:0:<built-in method builtins.all>",
+            "primitive_calls": 51300,
+            "calls": 51300,
+            "self_seconds": 0.066879829,
+            "cumulative_seconds": 0.20353785300000002
+          },
+          {
+            "function": "~:0:<built-in method builtins.any>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.004403588,
+            "cumulative_seconds": 0.166492532
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:148:<genexpr>",
+            "primitive_calls": 25700,
+            "calls": 25700,
+            "self_seconds": 0.018267425,
+            "cumulative_seconds": 0.162088944
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:151:<genexpr>",
+            "primitive_calls": 693900,
+            "calls": 693900,
+            "self_seconds": 0.141876772,
+            "cumulative_seconds": 0.141876772
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:101:_rgb",
+            "primitive_calls": 25600,
+            "calls": 25600,
+            "self_seconds": 0.017115325,
+            "cumulative_seconds": 0.075578343
+          },
+          {
+            "function": "~:0:<built-in method math.isfinite>",
+            "primitive_calls": 332800,
+            "calls": 332800,
+            "self_seconds": 0.041205221,
+            "cumulative_seconds": 0.041205221
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:103:<genexpr>",
+            "primitive_calls": 102400,
+            "calls": 102400,
+            "self_seconds": 0.021162479,
+            "cumulative_seconds": 0.029759997000000003
+          },
+          {
+            "function": "~:0:<built-in method builtins.len>",
+            "primitive_calls": 51900,
+            "calls": 51900,
+            "self_seconds": 0.013573661,
+            "cumulative_seconds": 0.013573661
+          },
+          {
+            "function": "baseline_spherical_harmonics.py:143:<genexpr>",
+            "primitive_calls": 25700,
+            "calls": 25700,
+            "self_seconds": 0.007395124,
+            "cumulative_seconds": 0.012544664
+          },
+          {
+            "function": "~:0:<method 'disable' of '_lsprof.Profiler' objects>",
+            "primitive_calls": 1,
+            "calls": 1,
+            "self_seconds": 3.944e-05,
+            "cumulative_seconds": 3.944e-05
+          },
+          {
+            "function": "~:0:<built-in method math.isqrt>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 3.9058000000000004e-05,
+            "cumulative_seconds": 3.9058000000000004e-05
+          }
+        ],
+        "single_call_peak_traced_bytes": 28000,
+        "single_call_retained_traced_bytes": 728
+      },
+      "after": {
+        "operations": 100,
+        "top_cumulative": [
+          {
+            "function": "phase3a_bezier_sh.py:96:<lambda>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.000915496,
+            "cumulative_seconds": 0.56117286
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:149:project_radiance",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.007466226,
+            "cumulative_seconds": 0.560257364
+          },
+          {
+            "function": "~:0:<built-in method math.fsum>",
+            "primitive_calls": 2700,
+            "calls": 2700,
+            "self_seconds": 0.125722739,
+            "cumulative_seconds": 0.29991052700000004
+          },
+          {
+            "function": "~:0:<built-in method builtins.all>",
+            "primitive_calls": 51300,
+            "calls": 51300,
+            "self_seconds": 0.053950373,
+            "cumulative_seconds": 0.194096818
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:174:<genexpr>",
+            "primitive_calls": 693900,
+            "calls": 693900,
+            "self_seconds": 0.174187788,
+            "cumulative_seconds": 0.174187788
+          },
+          {
+            "function": "~:0:<built-in method builtins.any>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 0.0056167890000000005,
+            "cumulative_seconds": 0.149499971
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:102:_rgb",
+            "primitive_calls": 25600,
+            "calls": 25600,
+            "self_seconds": 0.025571048000000002,
+            "cumulative_seconds": 0.091090419
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:171:<genexpr>",
+            "primitive_calls": 256000,
+            "calls": 256000,
+            "self_seconds": 0.049212275,
+            "cumulative_seconds": 0.08382196900000001
+          },
+          {
+            "function": "~:0:<built-in method math.isfinite>",
+            "primitive_calls": 332800,
+            "calls": 332800,
+            "self_seconds": 0.048507516,
+            "cumulative_seconds": 0.048507516
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:104:<genexpr>",
+            "primitive_calls": 102400,
+            "calls": 102400,
+            "self_seconds": 0.034900729000000005,
+            "cumulative_seconds": 0.046177942
+          },
+          {
+            "function": "/workspace/pyGameMath/gem/spherical_harmonics.py:166:<genexpr>",
+            "primitive_calls": 25700,
+            "calls": 25700,
+            "self_seconds": 0.007525925,
+            "cumulative_seconds": 0.010146534
+          },
+          {
+            "function": "~:0:<built-in method builtins.len>",
+            "primitive_calls": 51900,
+            "calls": 51900,
+            "self_seconds": 0.005115744,
+            "cumulative_seconds": 0.005115744
+          },
+          {
+            "function": "~:0:<built-in method math.isqrt>",
+            "primitive_calls": 100,
+            "calls": 100,
+            "self_seconds": 3.6786e-05,
+            "cumulative_seconds": 3.6786e-05
+          },
+          {
+            "function": "~:0:<method 'disable' of '_lsprof.Profiler' objects>",
+            "primitive_calls": 1,
+            "calls": 1,
+            "self_seconds": 3.6383e-05,
+            "cumulative_seconds": 3.6383e-05
+          }
+        ],
+        "single_call_peak_traced_bytes": 28504,
+        "single_call_retained_traced_bytes": 1232
+      }
+    }
+  }
+}

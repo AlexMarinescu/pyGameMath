@@ -5,6 +5,7 @@ RGB radiance coefficients are distinct from cosine-convolved irradiance.
 The legacy probe class retains its historical nine-polynomial basis.
 """
 import math
+from functools import lru_cache
 import pprint
 import random
 import struct
@@ -119,8 +120,30 @@ def _coefficient_bands(coefficients):
     return bands
 
 
+@lru_cache(maxsize=16)
+def _basis_layout(bands):
+    # Bounded immutable normalization data, independent of sampled direction.
+    root2 = math.sqrt(2.0)
+    return tuple((l, m, K(l, abs(m)) if m == 0 else root2 * K(l, abs(m)))
+                 for l in range(bands) for m in range(-l, l+1))
+
+
 def _basis(bands, theta, phi):
-    return [SPH(l,m,theta,phi) for l in range(bands) for m in range(-l,l+1)]
+    x = math.cos(theta)
+    polynomials = {}
+    result = []
+    for l, m, scale in _basis_layout(bands):
+        key = (l, abs(m))
+        if key not in polynomials:
+            polynomials[key] = Legendre(l, abs(m), x).run()
+        value = polynomials[key]
+        if m == 0:
+            result.append(scale * value)
+        elif m > 0:
+            result.append(scale * math.cos(m * phi) * value)
+        else:
+            result.append(scale * math.sin(-m * phi) * value)
+    return result
 
 
 def project_radiance(samples, radiances, weights=None):
@@ -346,15 +369,17 @@ def rotate_coefficients(coefficients, orientation):
         c = [row[channel] for row in rows]
         if len(c) >= 4:
             v = [-c[3],-c[1],c[2]]
-            rotated = [sum(a*b for a,b in zip(row,v)) for row in r]
+            rotated = [sum((row[0]*v[0], row[1]*v[1], row[2]*v[2])) for row in r]
             result[1][channel],result[2][channel],result[3][channel] = -rotated[1],rotated[2],-rotated[0]
         if len(c) == 9:
             # f_L2(d)=d^T T d; active rotation gives T'=R T R^T.
             t = [[cross*c[8]-diagonal*c[6],cross*c[4],-cross*c[7]],
                  [cross*c[4],-cross*c[8]-diagonal*c[6],-cross*c[5]],
                  [-cross*c[7],-cross*c[5],2*diagonal*c[6]]]
-            rt = [[sum(r[i][k]*t[k][j] for k in range(3)) for j in range(3)] for i in range(3)]
-            out = [[sum(rt[i][k]*r[j][k] for k in range(3)) for j in range(3)] for i in range(3)]
+            rt = [[sum((r[i][0]*t[0][j], r[i][1]*t[1][j], r[i][2]*t[2][j]))
+                   for j in range(3)] for i in range(3)]
+            out = [[sum((rt[i][0]*r[j][0], rt[i][1]*r[j][1], rt[i][2]*r[j][2]))
+                    for j in range(3)] for i in range(3)]
             result[4][channel] = (out[0][1]+out[1][0])/(2*cross)
             result[5][channel] = -(out[1][2]+out[2][1])/(2*cross)
             result[6][channel] = (2*out[2][2]-out[0][0]-out[1][1])/(6*diagonal)
