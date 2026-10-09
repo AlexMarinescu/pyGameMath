@@ -1,0 +1,21 @@
+/* Restrained system-font technical design; no external asset requests. */
+:root { --md-primary-fg-color: #18344a; --md-accent-fg-color: #137b62; }
+.md-typeset { font-size: .83rem; line-height: 1.65; }
+.md-typeset h1 { color: var(--md-default-fg-color); font-weight: 650; }
+.md-typeset h2 { font-weight: 600; }
+.md-typeset img { max-width: 100%; height: auto; border-radius: .2rem; }
+.md-typeset .equation { overflow-x: auto; padding: .35rem 0; }
+.md-typeset span.equation { display: inline; padding: 0; }
+.md-typeset math { font-size: 1.12em; }
+.md-typeset pre { max-width: 100%; }
+.md-typeset a:focus-visible, button:focus-visible { outline: 3px solid #d17131; outline-offset: 3px; }
+.md-typeset .gallery-caption { color: var(--md-default-fg-color--light); font-size: .76rem; }
+.md-typeset .intro-links { display: flex; flex-wrap: wrap; gap: .7rem 1.5rem; margin: 1.1rem 0; }
+.md-typeset .intro-links a { font-weight: 600; }
+.md-footer-meta__inner { padding-block: .6rem; }
+@media (max-width: 600px) { .md-typeset { font-size: .8rem; } .md-typeset h1 { font-size: 1.65rem; } }
+/* Text-based identity; do not present the theme's default icon as a gem logo. */
+.md-header__button.md-logo, .md-nav__button.md-logo { display: none !important; }
+[data-md-color-scheme="slate"] { --md-typeset-a-color: #79bde6; --md-accent-fg-color: #70c7b0; }
+
+@media (max-width: 76.234375em) { .md-nav--primary .md-nav__title[for="__drawer"] { height: auto; min-height: 3rem; padding-top: 1rem; } }

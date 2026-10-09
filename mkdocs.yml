@@ -1,0 +1,146 @@
+site_name: pyGameMath · gem
+site_description: Pure-Python graphics and computational mathematics
+site_author: Alex Marinescu
+edit_uri: ''
+copyright: Copyright © 2015–2026 Alex Marinescu · BSD 2-Clause
+site_dir: site
+use_directory_urls: true
+strict: true
+exclude_docs: |
+  /README.md
+  overrides/**
+  wiki-migration/pages/**
+theme:
+  name: material
+  custom_dir: docs/overrides
+  font: false
+  palette:
+    - scheme: default
+      primary: custom
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: custom
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+plugins:
+  - search
+hooks:
+  - tools/site/hooks.py
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+extra_css:
+  - assets/stylesheets/extra.css
+validation:
+  nav:
+    not_found: warn
+    omitted_files: warn
+  links:
+    not_found: warn
+    anchors: warn
+    unrecognized_links: warn
+nav:
+  - Home: index.md
+  - Getting started:
+      - Overview: getting-started/README.md
+      - Installation: getting-started/installation.md
+      - Quick start: getting-started/quick-start.md
+      - First vectors: tutorials/vectors.md
+      - Graphics gallery: examples/index.md
+  - API reference:
+      - Overview: api/index.md
+      - Algebra:
+          - Vector: api/vector.md
+          - Matrix: api/matrix.md
+          - Quaternion: api/quaternion.md
+      - Transformations:
+          - Composition: api/transformations.md
+          - Cameras and projection: api/projection.md
+      - Curves and functions:
+          - Bezier: api/bezier.md
+          - Legendre: api/legendre.md
+      - Geometry:
+          - Plane: api/plane.md
+          - Ray: api/ray.md
+      - Lighting: api/spherical-harmonics.md
+      - Common utilities: api/common.md
+      - Legacy interfaces: api/legacy.md
+      - Extended guides:
+          - Quaternion notes: QUATERNIONS.md
+          - Ray notes: RAYS.md
+          - SH notes: SPHERICAL_HARMONICS.md
+          - Vector and viewport contracts: VECTOR_VIEWPORT_CONTRACTS.md
+      - Open contracts: api/decisions.md
+      - Coverage: api/coverage.md
+  - Tutorials:
+      - Learning paths: tutorials/index.md
+      - Vectors and movement: tutorials/vectors.md
+      - Transformations: tutorials/transformations.md
+      - Camera coordinates: tutorials/camera.md
+      - Quaternion interpolation: tutorials/quaternions.md
+      - Bezier curves: tutorials/bezier.md
+      - Planes and rays: tutorials/geometry.md
+      - Graphics interoperability: tutorials/interop.md
+      - Lighting mathematics: tutorials/lighting.md
+      - Numerical accuracy: tutorials/numerical.md
+      - Contract boundaries: tutorials/decisions.md
+  - Examples:
+      - Gallery: examples/index.md
+      - Vector diagram: examples/gallery/vectors.md
+      - Transformation order: examples/gallery/transforms.md
+      - Quaternion SLERP: examples/gallery/quaternions.md
+      - Bezier sampling: examples/gallery/bezier.md
+      - SH lighting: examples/gallery/lighting.md
+      - HDR reference workflow: examples/hdr-reference.md
+      - Regeneration: examples/regeneration.md
+      - Asset manifest: examples/ASSET-MANIFEST.md
+      - Verification: examples/verification.md
+  - Architecture:
+      - Philosophy: architecture/philosophy.md
+      - Conventions: architecture/conventions.md
+      - Mathematical notation: architecture/notation.md
+      - Compatibility: architecture/compatibility.md
+      - Public inventory: architecture/api-inventory.md
+      - Import migration: EXPERIMENTAL_MIGRATION.md
+  - Development:
+      - Canonical roadmap: development/canonical-roadmap.md
+      - Open decisions: development/roadmap.md
+      - Performance benchmarks: development/benchmarks.md
+      - Performance monitoring: development/performance-policy.md
+      - Contributing: development/contributing.md
+      - Release status: development/releases.md
+      - Verification workflow: development/verification.md
+      - Documentation build: development/website.md
+      - Stack and licensing: development/documentation-stack.md
+      - Wiki migration: development/wiki.md
+      - Website verification: development/website-verification.md
+      - Wiki package inventory: wiki-migration/README.md
+      - Earlier verification:
+          - Getting started: getting-started/verification.md
+          - Tutorials: tutorials/verification.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/AlexMarinescu/pyGameMath
+      name: pyGameMath source on GitHub

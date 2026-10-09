@@ -2,8 +2,8 @@
 
 Start with the [project charter](architecture/philosophy.md),
 [current API inventory](architecture/api-inventory.md) and
-[canonical roadmap](../ROADMAP.md). This is a minimal source-tree navigation layer,
-not a documentation framework or a rewrite of the historical GitHub Wiki.
+[canonical roadmap](../ROADMAP.md). The [website homepage](index.md) and [build instructions](development/website.md)
+provide the static-site entry. The source pages remain canonical.
 
 | Section | Current entry point | Future documentation work |
 |---|---|---|
@@ -18,8 +18,8 @@ not a documentation framework or a rewrite of the historical GitHub Wiki.
 | Roadmap/development status | [Development entry](development/roadmap.md) | Reviewed progress updates in the root roadmap |
 
 Future sections in the table are proposals, not empty published APIs or nonexistent
-linked pages. Choose a documentation framework/site and Wiki migration strategy
-in a later phase. Existing audit reports remain chronological evidence rather
+linked pages. The [selected documentation stack](development/documentation-stack.md) and
+[non-destructive Wiki migration](development/wiki.md) are prepared for review. Existing audit reports remain chronological evidence rather
 than a second public roadmap. The complete architecture documentation is not yet
 included by current distribution manifests; packaging changes are separate work.
 

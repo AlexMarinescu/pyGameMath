@@ -220,6 +220,24 @@ invariants under supported topology, controlled relaxation convergence, degenera
 tests and measured size scaling. Reject unsupported input explicitly once a policy
 is chosen, rather than concealing it as a valid mesh.
 
+## Long-term 2.0 and cross-language direction
+
+Version 2.0 is a proposed comprehensive graphics and computational mathematics
+framework built on the validated Python foundation. Its scope and public contracts
+require separate design review; current 1.x proposals are not already shipped 2.0
+features. There are no committed dates.
+
+Future language ports follow the Python 2.0 foundation, not the current maintenance
+work. Proposed C and C++ implementations would be separate projects rather than
+mandatory acceleration backends inside gem. Shared numerical specifications,
+independent reference data and conformance tests should preserve mathematical
+conventions across implementations while allowing language-specific APIs.
+
+A coherent documentation website, examples, contributor resources and community
+infrastructure support the long-term ecosystem. These goals do not authorize
+publication, domain registration, native dependencies or new mathematics in the
+present documentation phase.
+
 ## Research & experimental
 
 Speculative work has no release commitment: higher-band analytical SH rotation,
