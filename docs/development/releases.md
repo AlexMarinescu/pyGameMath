@@ -8,8 +8,9 @@ to use the current implementation.
 The [packaging guide](packaging.md) describes the CPython 3.10–3.14 Linux test
 matrix, build commands, version policy and artifact contents. Historical package
 association is established; current PyPI maintainer authority and publishing
-credentials still need verification before any upload. No publishing workflow,
-release tag or ownership change is included.
+credentials still need verification before any upload. The [CI and release-candidate guide](ci-release.md) describes manual validation
+and protected human review. Publication remains disabled; no release tag or
+ownership change is included.
 
 ## Change history
 

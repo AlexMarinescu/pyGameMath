@@ -1,0 +1,5 @@
+# CI/development tools only; no installed gem runtime dependencies.
+-r requirements-audit.txt
+-r requirements-build.txt
+six==1.17.0
+PyYAML==6.0.3

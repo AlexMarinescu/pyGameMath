@@ -90,7 +90,8 @@ def check_scope():
         for name, digest in reviewed.items():
             if hashlib.sha256((ROOT/name).read_bytes()).hexdigest() != digest:
                 raise ValueError('unreviewed packaging change: '+name)
-    allowed = {'tests/test_documentation_overhaul.py'} | set(reviewed)
+    allowed = {'tests/test_documentation_overhaul.py',
+               'tests/test_release_workflows.py'} | set(reviewed)
     if additions-allowed:
         raise ValueError('out-of-scope addition: '+', '.join(sorted(additions-allowed)))
     fingerprint = hashlib.sha256()

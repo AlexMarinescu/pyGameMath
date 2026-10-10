@@ -1,32 +1,63 @@
 name: Package validation
 on:
   pull_request:
+  push:
+    branches: [master]
   workflow_dispatch:
+  workflow_call:
+    inputs:
+      source_ref:
+        description: Exact candidate SHA supplied by manual release preflight
+        type: string
+        default: ''
 permissions:
   contents: read
+concurrency:
+  group: package-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   package:
-    runs-on: ubuntu-latest
+    name: ${{ matrix.os }} / Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
     strategy:
       fail-fast: false
       matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
         python: ['3.10', '3.11', '3.12', '3.13', '3.14']
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v5
+          persist-credentials: false
+          ref: ${{ inputs.source_ref || github.sha }}
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: ${{ matrix.python }}
-      - run: python -m pip install -r requirements-audit.txt -r requirements-build.txt six
-      - run: python -m pytest -q
-      - run: python tools/check_architecture_docs.py --examples --getting-started --api-reference --tutorials --showcase --website
-      - run: python -m build
-      - run: python -m twine check --strict dist/*
-      - run: python tools/verify_distribution.py --wheel dist/gem-1.0.0-py3-none-any.whl --sdist dist/gem-1.0.0.tar.gz
-      - run: python -m venv /tmp/gem-wheel && /tmp/gem-wheel/bin/python -m pip install dist/*.whl
-      - run: /tmp/gem-wheel/bin/python -I tools/verify_distribution.py --installed-root /tmp/gem-wheel/lib/python${{ matrix.python }}/site-packages
-      - run: python -m venv /tmp/gem-sdist && /tmp/gem-sdist/bin/python -m pip install dist/*.tar.gz
-      - run: /tmp/gem-sdist/bin/python -I tools/verify_distribution.py --installed-root /tmp/gem-sdist/lib/python${{ matrix.python }}/site-packages
-      - run: /tmp/gem-wheel/bin/python -I tools/check_architecture_docs.py --examples --getting-started --api-reference --tutorials --showcase --website --package-root /tmp/gem-wheel/lib/python${{ matrix.python }}/site-packages
-      - run: /tmp/gem-sdist/bin/python -I tools/check_architecture_docs.py --examples --getting-started --api-reference --tutorials --showcase --website --package-root /tmp/gem-sdist/lib/python${{ matrix.python }}/site-packages
+      - run: python -m pip install -r requirements-ci.txt
+      - name: Full suite, API examples, clean builds and isolated installs
+        run: python tools/ci_validate.py --output-dir "${{ runner.temp }}/gem-ci" --artifacts-dir dist
+      - name: Retain failure diagnostics and verification results
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: gem-checks-${{ runner.os }}-py${{ matrix.python }}-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/gem-ci/*.json
+            ${{ runner.temp }}/gem-ci/*.xml
+            ${{ runner.temp }}/gem-ci/*.log
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Retain validated candidate (one canonical build)
+        if: success() && matrix.os == 'ubuntu-latest' && matrix.python == '3.12'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: gem-candidate-${{ github.run_id }}
+          path: |
+            dist/gem-1.0.0-py3-none-any.whl
+            dist/gem-1.0.0.tar.gz
+            dist/candidate-manifest.json
+            dist/SHA256SUMS
+            dist/INSTALL.md
+          if-no-files-found: error
+          retention-days: 14

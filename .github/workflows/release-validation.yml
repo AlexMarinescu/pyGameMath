@@ -1,0 +1,101 @@
+name: Manual release candidate validation
+on:
+  workflow_dispatch:
+    inputs:
+      commit_sha:
+        description: Full lowercase SHA of the reviewed master commit
+        type: string
+        required: true
+      version:
+        description: Exact source distribution version
+        type: string
+        default: '1.0.0'
+        required: true
+      tag:
+        description: Proposed tag (this workflow never creates it)
+        type: string
+        default: 'v1.0.0'
+        required: true
+      mode:
+        description: Validation only, or protected human review; neither publishes
+        type: choice
+        options: [validate, review]
+        default: validate
+permissions:
+  contents: read
+concurrency:
+  group: gem-release-validation
+  cancel-in-progress: false
+jobs:
+  preflight:
+    if: github.repository == 'AlexMarinescu/pyGameMath' && github.ref == 'refs/heads/master' && github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: read
+    outputs:
+      commit: ${{ steps.gate.outputs.source_commit }}
+      tag: ${{ steps.gate.outputs.tag }}
+      mode: ${{ steps.gate.outputs.mode }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - id: gate
+        run: python tools/release_gate.py preflight --output release-preflight.json
+        env:
+          INPUT_COMMIT: ${{ inputs.commit_sha }}
+          INPUT_VERSION: ${{ inputs.version }}
+          INPUT_TAG: ${{ inputs.tag }}
+          INPUT_MODE: ${{ inputs.mode }}
+          GITHUB_TOKEN: ${{ github.token }}
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release-preflight-${{ github.run_id }}
+          path: release-preflight.json
+          if-no-files-found: error
+  validation:
+    needs: preflight
+    uses: ./.github/workflows/package-validation.yml
+    with:
+      source_ref: ${{ needs.preflight.outputs.commit }}
+  integrity:
+    needs: [preflight, validation]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.preflight.outputs.commit }}
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: gem-candidate-${{ github.run_id }}
+          path: ${{ runner.temp }}/gem-candidate
+          digest-mismatch: error
+      - run: python tools/release_gate.py verify-artifacts --directory "${{ runner.temp }}/gem-candidate" --commit "$CANDIDATE_COMMIT" --tag "$CANDIDATE_TAG" --output release-integrity.json
+        env:
+          CANDIDATE_COMMIT: ${{ needs.preflight.outputs.commit }}
+          CANDIDATE_TAG: ${{ needs.preflight.outputs.tag }}
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release-integrity-${{ github.run_id }}
+          path: release-integrity.json
+          if-no-files-found: error
+  review:
+    if: needs.preflight.outputs.mode == 'review'
+    needs: [preflight, validation, integrity]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment: gem-release-review
+    steps:
+      - name: Record protected human review; publication remains disabled
+        run: echo "Candidate validation approved. PyPI authority remains unverified; no publication is enabled."
