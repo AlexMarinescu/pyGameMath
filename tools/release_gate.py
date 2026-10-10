@@ -15,6 +15,8 @@ REPOSITORY='AlexMarinescu/pyGameMath'
 VERSION='1.0.0'
 TAG='v1.0.0'
 ENVIRONMENT='gem-release-review'
+MAINTAINER_LOGIN='AlexMarinescu'
+MAINTAINER_ID=955100
 FILES={'gem-1.0.0-py3-none-any.whl','gem-1.0.0.tar.gz'}
 
 
@@ -34,18 +36,39 @@ def validate_context(context,commit,version,tag,mode):
             'publication_enabled':False,'ownership_verified':False}
 
 
+def verify_maintainer_identity(actor):
+    require(isinstance(actor,dict) and actor.get('login')==MAINTAINER_LOGIN and
+            type(actor.get('id')) is int and actor['id']==MAINTAINER_ID,
+            'release requires the configured maintainer account')
+
+
+def verify_dispatch_actor(context,sender):
+    verify_maintainer_identity(sender)
+    require(context.get('actor')==MAINTAINER_LOGIN and
+            context.get('triggering_actor')==MAINTAINER_LOGIN,
+            'dispatch and rerun must both belong to the configured maintainer')
+    return {'maintainer_login':MAINTAINER_LOGIN,'maintainer_id':MAINTAINER_ID,
+            'dispatch_actor':context['actor'],'triggering_actor':context['triggering_actor']}
+
+
 def verify_review_configuration(environment,branch):
     require(branch.get('protected') is True,'master must have server-side branch protection')
     require(environment.get('name')==ENVIRONMENT,'release review environment missing')
     rules=environment.get('protection_rules',[])
     reviewers=[r for r in rules if r.get('type')=='required_reviewers']
-    require(len(reviewers)==1 and bool(reviewers[0].get('reviewers')),'environment must require reviewers')
-    require(reviewers[0].get('prevent_self_review') is True,'self-review must be prevented')
+    require(len(reviewers)==1 and len(reviewers[0].get('reviewers',[]))==1,
+            'environment must require exactly the sole maintainer reviewer')
+    reviewer=reviewers[0]['reviewers'][0]
+    require(reviewer.get('type')=='User','release reviewer must be the maintainer user, not a team')
+    verify_maintainer_identity(reviewer.get('reviewer',{}))
+    require(reviewers[0].get('prevent_self_review') is False,
+            'solo-maintainer approval requires self-review to be allowed')
     require(environment.get('can_admins_bypass') is False,'administrative approval bypass must be disabled')
     policy=environment.get('deployment_branch_policy') or {}
     require(policy.get('protected_branches') is True and policy.get('custom_branch_policies') is False,
             'environment must restrict deployments to protected branches')
-    return {'environment':ENVIRONMENT,'required_reviewers':True,'prevent_self_review':True,
+    return {'environment':ENVIRONMENT,'required_reviewers':True,'prevent_self_review':False,
+            'approval_model':'sole maintainer self-approval','maintainer_id':MAINTAINER_ID,
             'admin_bypass':False,'protected_branches_only':True}
 
 
@@ -118,10 +141,12 @@ def main():
     args=parser.parse_args()
     if args.command=='preflight':
         event=json.loads(Path(os.environ['GITHUB_EVENT_PATH']).read_text(encoding='utf-8'))
-        context={name:os.environ.get('GITHUB_'+name.upper()) for name in ('event_name','repository','ref','sha')}
+        context={name:os.environ.get('GITHUB_'+name.upper()) for name in ('event_name','repository','ref','sha','actor','triggering_actor')}
         context['fork']=event.get('repository',{}).get('fork',True)
+        actor=verify_dispatch_actor(context,event.get('sender',{}))
         report=preflight(context,os.environ.get('INPUT_COMMIT'),os.environ.get('INPUT_VERSION'),
                          os.environ.get('INPUT_TAG'),os.environ.get('INPUT_MODE'))
+        report['authorization']=actor
         if os.environ.get('GITHUB_OUTPUT'):
             with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as output:
                 for name in ('source_commit','version','tag','mode'):output.write(name+'='+report[name]+'\n')

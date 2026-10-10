@@ -17,7 +17,7 @@ on:
         default: 'v1.0.0'
         required: true
       mode:
-        description: Validation only, or protected human review; neither publishes
+        description: Validation only, or protected maintainer self-approval; neither publishes
         type: choice
         options: [validate, review]
         default: validate
@@ -28,7 +28,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   preflight:
-    if: github.repository == 'AlexMarinescu/pyGameMath' && github.ref == 'refs/heads/master' && github.event_name == 'workflow_dispatch'
+    if: github.repository == 'AlexMarinescu/pyGameMath' && github.ref == 'refs/heads/master' && github.event_name == 'workflow_dispatch' && github.actor == 'AlexMarinescu' && github.triggering_actor == 'AlexMarinescu'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
@@ -97,5 +97,5 @@ jobs:
     timeout-minutes: 5
     environment: gem-release-review
     steps:
-      - name: Record protected human review; publication remains disabled
+      - name: Record protected maintainer self-approval; publication remains disabled
         run: echo "Candidate validation approved. PyPI authority remains unverified; no publication is enabled."
