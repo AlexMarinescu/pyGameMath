@@ -27,7 +27,7 @@ def declarations():
     result = {}
     for source in sorted((ROOT/'gem').glob('*.py')):
         rows = []
-        for node in ast.parse(source.read_text()).body:
+        for node in ast.parse(source.read_text(encoding='utf-8')).body:
             if isinstance(node, ast.FunctionDef) and not node.name.startswith('_'):
                 rows.append(node.name+'('+ast.unparse(node.args)+')')
             elif isinstance(node, ast.ClassDef) and not node.name.startswith('_'):
@@ -64,7 +64,7 @@ def check_scope():
     Runtime mathematics remains frozen; arbitrary additions remain rejected.
     """
     paths = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', BASE],
-                                    cwd=ROOT, text=True).splitlines()
+                                    cwd=ROOT, text=True, encoding='utf-8').splitlines()
     def protected(name):
         return name.startswith(('gem/', 'tests/', 'examples/', 'benchmarks/')) or name in (
             'setup.py', 'setup.cfg', 'MANIFEST.in', 'LICENSE', 'README.rst',
@@ -72,12 +72,25 @@ def check_scope():
             '.travis.yml')
     originals = {name for name in paths if protected(name)}
     current = subprocess.check_output(['git', 'ls-files', '--cached', '--others',
-        '--exclude-standard'], cwd=ROOT, text=True).splitlines()
+        '--exclude-standard'], cwd=ROOT, text=True, encoding='utf-8').splitlines()
     additions = {name for name in current if protected(name)}-originals
+    ci_reviewed = {}
+    ci_manifest = ROOT/'tools/phase5b-ci-scope.json'
+    if ci_manifest.exists():
+        ci_scope = json.loads(ci_manifest.read_text(encoding='utf-8'))
+        if ci_scope['base'] != BASE:
+            raise ValueError('CI scope baseline mismatch')
+        ci_reviewed = ci_scope['files']
+        if set(ci_reviewed)-{'tests/test_documentation_overhaul.py',
+                             'tests/test_release_packaging.py', 'benchmarks/run_core.py'}:
+            raise ValueError('mathematics cannot be exempted by CI scope')
+        for name, digest in ci_reviewed.items():
+            if hashlib.sha256((ROOT/name).read_bytes()).hexdigest() != digest:
+                raise ValueError('unreviewed CI portability change: '+name)
     reviewed = {}
     manifest = ROOT/'tools/phase5a-packaging-scope.json'
     if manifest.exists():
-        scope = json.loads(manifest.read_text())
+        scope = json.loads(manifest.read_text(encoding='utf-8'))
         if scope['base'] != BASE:
             raise ValueError('packaging scope baseline mismatch')
         reviewed = scope['files']
@@ -88,33 +101,35 @@ def check_scope():
         if set(reviewed)-permitted:
             raise ValueError('mathematics cannot be exempted by packaging scope')
         for name, digest in reviewed.items():
-            if hashlib.sha256((ROOT/name).read_bytes()).hexdigest() != digest:
+            if name not in ci_reviewed and hashlib.sha256((ROOT/name).read_bytes()).hexdigest() != digest:
                 raise ValueError('unreviewed packaging change: '+name)
-    allowed = {'tests/test_documentation_overhaul.py'} | set(reviewed)
+    allowed = {'tests/test_documentation_overhaul.py',
+               'tests/test_release_workflows.py'} | set(reviewed)
     if additions-allowed:
         raise ValueError('out-of-scope addition: '+', '.join(sorted(additions-allowed)))
     fingerprint = hashlib.sha256()
     for name in sorted(originals):
         content = (ROOT/name).read_bytes()
-        if name not in reviewed and content != subprocess.check_output(['git', 'show', BASE+':'+name], cwd=ROOT):
+        if name not in reviewed and name not in ci_reviewed and content != subprocess.check_output(['git', 'show', BASE+':'+name], cwd=ROOT):
             raise ValueError('out-of-scope modification: '+name)
         fingerprint.update(name.encode()); fingerprint.update(content)
-    return {'protected_files_unchanged': len(originals-set(reviewed)),
+    return {'protected_files_unchanged': len(originals-set(reviewed)-set(ci_reviewed)),
             'protected_sha256': fingerprint.hexdigest(),
             'new_documentation_test_modules': sorted(additions),
+            'reviewed_ci_files': sorted(ci_reviewed),
             'reviewed_packaging_files': sorted(reviewed)}
 
 
 def preserve_learning_material(pages):
     """Keep every baseline executable block in order, permitting comments only."""
     baseline = set(subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', BASE],
-                                         cwd=ROOT, text=True).splitlines())
+                                         cwd=ROOT, text=True, encoding='utf-8').splitlines())
     blocks = tutorials = old_anchors = 0
     for name in pages:
         if name not in baseline:
             continue
-        previous = subprocess.check_output(['git', 'show', BASE+':'+name], cwd=ROOT, text=True)
-        current = (ROOT/name).read_text()
+        previous = subprocess.check_output(['git', 'show', BASE+':'+name], cwd=ROOT, text=True, encoding='utf-8')
+        current = (ROOT/name).read_text(encoding='utf-8')
         required = anchors(re.sub(r'```.*?```', '', previous, flags=re.DOTALL))
         present = anchors(re.sub(r'```.*?```', '', current, flags=re.DOTALL))
         if required-present:
@@ -140,7 +155,7 @@ def preserve_learning_material(pages):
 
 def check_api_reference(declared, runtime=False):
     """Check declaration-to-reference coverage, constants and installed signatures."""
-    coverage = json.loads((ROOT/'docs/api/coverage.json').read_text())
+    coverage = json.loads((ROOT/'docs/api/coverage.json').read_text(encoding='utf-8'))
     entries = coverage['declarations']
     if set(entries) != set(declared) or coverage['omitted_declarations']:
         raise ValueError('API reference module coverage mismatch')
@@ -154,7 +169,7 @@ def check_api_reference(declared, runtime=False):
             page = (ROOT/entry['page']).resolve()
             if not page.is_relative_to(ROOT/'docs/api'):
                 raise ValueError('API coverage page escapes reference directory')
-            text = page.read_text()
+            text = page.read_text(encoding='utf-8')
             if text.count('| `'+signature+'` |') != 1:
                 raise ValueError('missing/duplicate API declaration row: '+signature)
             description = text.split('| `'+signature+'` |', 1)[1].split('\n', 1)[0].strip(' |')
@@ -182,7 +197,7 @@ def check_api_reference(declared, runtime=False):
     discovered = {}
     for source in sorted((ROOT/'gem').glob('*.py')):
         names = []
-        for node in ast.parse(source.read_text()).body:
+        for node in ast.parse(source.read_text(encoding='utf-8')).body:
             if isinstance(node, ast.Assign):
                 names.extend(target.id for target in node.targets
                              if isinstance(target, ast.Name) and not target.id.startswith('_'))
@@ -222,18 +237,18 @@ def check(examples=False, getting_started=False, package_root=None, api_referenc
                      for name in ('README', 'installation', 'quick-start', 'verification')]
                      if getting_started else [])
     if api_reference:
-        pages += [str(page.relative_to(ROOT)) for page in sorted((ROOT/'docs/api').glob('*.md'))]
+        pages += [page.relative_to(ROOT).as_posix() for page in sorted((ROOT/'docs/api').glob('*.md'))]
     if tutorials:
-        pages += [str(page.relative_to(ROOT)) for page in sorted((ROOT/'docs/tutorials').glob('*.md'))]
+        pages += [page.relative_to(ROOT).as_posix() for page in sorted((ROOT/'docs/tutorials').glob('*.md'))]
     if showcase:
-        pages += [str(page.relative_to(ROOT)) for page in sorted((ROOT/'docs/examples').rglob('*.md'))]
+        pages += [page.relative_to(ROOT).as_posix() for page in sorted((ROOT/'docs/examples').rglob('*.md'))]
         pages += ['examples/showcase/README.md']
     if website:
         pages += ['docs/index.md', 'docs/architecture/notation.md', 'docs/wiki-migration/README.md']
         pages += ['docs/development/'+name+'.md' for name in ('documentation-stack', 'contributing', 'releases', 'website', 'website-verification', 'wiki', 'visual-overhaul')]
     report = {'base': BASE, 'pages': pages, 'links_checked': 0,
               'source_declarations_checked': 0, 'examples_executed': 0, 'examples_by_page': {}}
-    inventory = (ROOT/'docs/architecture/api-inventory.md').read_text()
+    inventory = (ROOT/'docs/architecture/api-inventory.md').read_text(encoding='utf-8')
     declared = declarations()
     for module, rows in declared.items():
         heading = '### '+module+' declarations'
@@ -259,7 +274,7 @@ def check(examples=False, getting_started=False, package_root=None, api_referenc
     report.update(preserve_learning_material(pages))
     for relative in pages:
         page = ROOT/relative
-        text = page.read_text()
+        text = page.read_text(encoding='utf-8')
         # Exclude fenced code before interpreting Markdown links/headings.
         prose = re.sub(r'```.*?```', '', text, flags=re.DOTALL)
         for target in re.findall(r'!?\[[^\]]*\]\(([^)]+)\)', prose):
@@ -270,7 +285,7 @@ def check(examples=False, getting_started=False, package_root=None, api_referenc
             if not dest.is_relative_to(ROOT) or not dest.exists():
                 raise ValueError(relative+': missing/internal escape link '+target)
             if parts.fragment:
-                if not dest.is_file() or unquote(parts.fragment) not in anchors(dest.read_text()):
+                if not dest.is_file() or unquote(parts.fragment) not in anchors(dest.read_text(encoding='utf-8')):
                     raise ValueError(relative+': missing anchor '+target)
             report['links_checked'] += 1
         if examples:

@@ -6,6 +6,8 @@ import importlib.metadata
 import json
 from pathlib import Path
 import platform
+import re
+from pathlib import PurePosixPath
 import sys
 import tarfile
 import zipfile
@@ -18,16 +20,59 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
+def check_member(name, content=b''):
+    """Fail closed on unsafe paths, development debris and token-shaped contents.
+
+    This is a leak guard, not a guarantee that every possible secret is detected.
+    Errors report filenames/reasons, never matched credential contents.
+    """
+    path = PurePosixPath(name)
+    if not name or path.is_absolute() or '..' in path.parts or '\\' in name or str(path)!=name.rstrip('/'):
+        raise ValueError('unsafe archive path: '+name)
+    if any(part in {'.git', '.pytest_cache', '__pycache__', '.cache', '.mypy_cache',
+                    '.ruff_cache', '.tox', '.venv', 'venv', 'node_modules'} for part in path.parts):
+        raise ValueError('cache/development directory in archive: '+name)
+    if path.parts[0] in {'build', 'dist', 'site'}:
+        raise ValueError('generated tree in archive: '+name)
+    if path.name in {'.pypirc', '.env', '.netrc', 'id_rsa', 'id_ed25519', '.DS_Store'} or (
+            path.name.startswith('.env.') or path.suffix in {'.pyc', '.pyo', '.tmp', '.log', '.pem', '.key'}
+            or path.name.endswith(('~', '.bak'))):
+        raise ValueError('temporary/credential file in archive: '+name)
+    patterns = (rb'pypi-[A-Za-z0-9_-]{50,}', rb'AKIA[0-9A-Z]{16}',
+                rb'-----BEGIN (?:RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----')
+    if any(re.search(pattern, content) for pattern in patterns):
+        raise ValueError('credential-shaped content in archive: '+name)
+
+
 def inspect_archives(wheel, sdist):
-    runtime = {str(p.relative_to(ROOT)): p.read_bytes() for p in (ROOT/'gem').rglob('*.py')}
+    runtime = {p.relative_to(ROOT).as_posix(): p.read_bytes() for p in (ROOT/'gem').rglob('*.py')}
     with zipfile.ZipFile(wheel) as archive:
-        files = {name: archive.read(name) for name in archive.namelist() if not name.endswith('/')}
+        files = {}
+        for info in archive.infolist():
+            check_member(info.filename)
+            if (info.external_attr >> 16) & 0o170000 == 0o120000:
+                raise ValueError('symlink in wheel: '+info.filename)
+            if info.is_dir(): continue
+            if info.filename in files: raise ValueError('duplicate wheel member: '+info.filename)
+            content=archive.read(info); check_member(info.filename,content)
+            files[info.filename]=content
     with tarfile.open(sdist) as archive:
-        source = {member.name.split('/',1)[1]: archive.extractfile(member).read()
-                  for member in archive.getmembers() if member.isfile()}
+        source = {}
+        for member in archive.getmembers():
+            check_member(member.name)
+            if not member.name.startswith('gem-1.0.0/') and member.name != 'gem-1.0.0':
+                raise ValueError('unexpected sdist root: '+member.name)
+            if member.isdir(): continue
+            if not member.isfile(): raise ValueError('link/special member in sdist: '+member.name)
+            name=member.name.split('/',1)[1]
+            if name in source: raise ValueError('duplicate source member: '+name)
+            content=archive.extractfile(member).read(); check_member(name,content)
+            source[name]=content
     for name, content in runtime.items():
         assert files[name] == source[name] == content, name
     assert {n for n in files if n.startswith('gem/')} == set(runtime)
+    allowed_metadata={'METADATA','WHEEL','RECORD','top_level.txt','licenses/LICENSE'}
+    assert set(files) == set(runtime) | {'gem-1.0.0.dist-info/'+n for n in allowed_metadata}
     for names in (files, source):
         assert not any('__pycache__' in n or n.endswith(('.pyc','.pyo')) for n in names)
         assert not any(n.startswith(('build/', 'dist/', 'site/', '.venv', '.git/')) for n in names)

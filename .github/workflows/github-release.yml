@@ -1,0 +1,88 @@
+name: GitHub release preparation
+on:
+  workflow_dispatch:
+    inputs:
+      commit_sha:
+        description: Full final reviewed master commit SHA
+        required: true
+        type: string
+      validation_run_id:
+        description: Successful manual candidate-validation run for that exact commit
+        required: true
+        type: string
+      mode:
+        description: Publication requires Phase 5D authorization and repository enablement
+        type: choice
+        options: [validate, publish]
+        default: validate
+      owner_authorization:
+        description: Leave empty for validation; explicit publication requires publish v1.0.0
+        type: string
+        default: ''
+permissions:
+  contents: read
+concurrency:
+  group: gem-github-release
+  cancel-in-progress: false
+jobs:
+  validate:
+    if: github.repository == 'AlexMarinescu/pyGameMath' && github.ref == 'refs/heads/master' && github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: gem-candidate-${{ inputs.validation_run_id }}
+          run-id: ${{ inputs.validation_run_id }}
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/gem-candidate
+          digest-mismatch: error
+      - name: Verify exact previously installed candidate assets without rebuilding
+        run: python tools/github_release.py --directory "${{ runner.temp }}/gem-candidate" --commit "$CANDIDATE_COMMIT" --run-id "$VALIDATION_RUN" --mode validate --output github-release-validation.json
+        env:
+          CANDIDATE_COMMIT: ${{ inputs.commit_sha }}
+          VALIDATION_RUN: ${{ inputs.validation_run_id }}
+          GITHUB_TOKEN: ${{ github.token }}
+  publish:
+    if: inputs.mode == 'publish' && vars.GEM_RELEASE_ENABLED == 'true' && inputs.owner_authorization == 'publish v1.0.0'
+    needs: validate
+    environment: gem-release-review
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: gem-candidate-${{ inputs.validation_run_id }}
+          run-id: ${{ inputs.validation_run_id }}
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/gem-candidate
+          digest-mismatch: error
+      - name: Publish only after explicit owner authorization and protected approval
+        run: python tools/github_release.py --directory "${{ runner.temp }}/gem-candidate" --commit "$CANDIDATE_COMMIT" --run-id "$VALIDATION_RUN" --mode publish --output github-release-publication.json
+        env:
+          CANDIDATE_COMMIT: ${{ inputs.commit_sha }}
+          VALIDATION_RUN: ${{ inputs.validation_run_id }}
+          RELEASE_ENABLED: ${{ vars.GEM_RELEASE_ENABLED }}
+          OWNER_AUTHORIZATION: ${{ inputs.owner_authorization }}
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}

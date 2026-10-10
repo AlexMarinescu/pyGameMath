@@ -25,18 +25,20 @@ METHOD = {'timer': 'perf_counter', 'gc': 'timeit disables GC',
 
 
 def environment():
-    cpu = 'unavailable'
+    cpu = platform.processor() or os.environ.get('PROCESSOR_IDENTIFIER') or 'unavailable'
     if Path('/proc/cpuinfo').exists():
         cpu = next((line.split(':', 1)[1].strip() for line in
                     Path('/proc/cpuinfo').read_text().splitlines()
                     if line.startswith('model name')), cpu)
+    if cpu == 'unavailable' and platform.system() == 'Darwin':
+        cpu = subprocess.check_output(['sysctl', '-n', 'machdep.cpu.brand_string'], text=True).strip()
     machine = Path('/etc/machine-id')
     host = (machine.read_text().strip() if machine.exists() else '') + platform.node()
     return {'python': sys.version, 'implementation': platform.python_implementation(),
             'platform': platform.platform(), 'architecture': platform.machine(),
             'cpu': cpu, 'cpu_count': os.cpu_count(),
             'host_id': hashlib.sha256(host.encode()).hexdigest() if host else None,
-            'affinity': sorted(os.sched_getaffinity(0)) if hasattr(os, 'sched_getaffinity') else None,
+            'affinity': sorted(os.sched_getaffinity(0)) if hasattr(os, 'sched_getaffinity') else 'unsupported',
             'six': importlib.metadata.version('six')}
 
 

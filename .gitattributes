@@ -1,0 +1,9 @@
+# Preserve source fingerprints and generated text references on every checkout.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.zip binary
+*.whl binary
+*.gz binary
