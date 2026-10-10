@@ -133,6 +133,7 @@ nav:
       - Performance monitoring: development/performance-policy.md
       - Contributing: development/contributing.md
       - Release status: development/releases.md
+      - Packaging and Python support: development/packaging.md
       - Verification workflow: development/verification.md
       - Documentation build: development/website.md
       - Stack and licensing: development/documentation-stack.md

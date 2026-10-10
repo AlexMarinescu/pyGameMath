@@ -22,8 +22,8 @@ or a 1.0 release already exist.
   need an explicit compatibility decision, migration guidance and release boundary.
 - Keep engine-specific image loading, shaders and rendering demonstrations outside
   core. Core lighting mathematics must not require an OpenGL context or GPU.
-- Verify interpreter/platform support explicitly. Python 2.7 remains a deliberate
-  legacy engineering target, not a presently verified support claim.
+- Verify interpreter/platform support explicitly. Python 2.7 is unsupported;
+  the tested release matrix is CPython 3.10–3.14 on Linux x86_64.
 
 gem does not replace NumPy's large-array processing. It is not a game engine,
 GPU renderer, shader compiler, scene graph, ECS, asset manager, general-purpose
@@ -44,7 +44,7 @@ than a complete rendering or simulation framework.
 | Lighting basis and integration | `gem.spherical_harmonics` | vector, legendre; quaternion loaded inside coefficient rotation |
 | Import compatibility | `gem.experimental` shims | Reexports the canonical core implementations |
 
-`gem` itself is an empty package initializer, not a facade reexporting classes.
+`gem` itself exposes version metadata, not a facade reexporting mathematical classes.
 Use explicit module imports. `Vector(size, data)` and `Matrix(size, data)` are
 the existing constructors; there are no separate `Vector3` or `Matrix4` classes.
 The experimental directory still exists solely for compatibility. Unfinished

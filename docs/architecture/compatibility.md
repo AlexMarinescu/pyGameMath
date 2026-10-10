@@ -1,7 +1,6 @@
 # Python, dependency and compatibility policy
 
-This is the current evidence and proposed release policy, not revised package
-metadata. The [API inventory](api-inventory.md) describes present interfaces;
+This is the current release-preparation evidence and compatibility policy. The [API inventory](api-inventory.md) describes present interfaces;
 the [roadmap](../../ROADMAP.md) separates completed work from release preparation.
 
 ## Runtime boundary
@@ -24,50 +23,40 @@ transpose conventions; no OpenGL driver support claim follows from a ctypes test
 
 | Interpreter/platform | Evidence | Policy status |
 |---|---|---|
-| CPython 3.12.14, Linux x86_64, six 1.17.0 | Phase 1–3 audits, full regression suite, clean wheel/sdist and isolated installed execution; [Phase 3E report](../../audit/PHASE3E-PERFORMANCE-GUARDS.md) | Verified reference environment; rerun on release artifacts |
-| Other modern CPython versions | No executed matrix established by these reports | Candidate targets; assess and test before advertising support |
-| PyPy and other implementations | No verified interpreter run | Unverified; performance and rounding may differ |
-| Python 2.7 | Historical classifiers/Travis entry and retained compatibility methods, no real 2.7 execution | Deliberate legacy engineering target; currently unverified, with known blockers |
-| Python 3.2–3.5 | Legacy metadata/Travis entries, no current verification | Historical claims, not current evidence of support |
-| Windows, macOS, other architectures/OS versions | Historical OS classifiers; current executed evidence is Linux x86_64 | Unverified release targets, not excluded by a deliberate platform restriction |
-
-Do not infer support for all of Python 3 from one 3.12 run. A proposed modern
-matrix should cover the chosen minimum and current maintained CPython versions,
-with representative Windows/macOS/Linux jobs and optionally PyPy. Select the
-minimum and concrete matrix during release engineering after source/build/tooling
-assessment; no minimum version is set here.
+| CPython 3.10.21, 3.11.16, 3.12.14, 3.13.5, 3.14.7; Linux x86_64; six 1.17.0 | Phase 5A full suite and installed wheel/sdist checks | Tested modern release matrix; keep testing maintained patch versions |
+| PyPy and other implementations | No executed interpreter run | Unverified |
+| Python 2.7 | Source contains unsupported syntax and standard-library calls; no interpreter available | Unsupported; classifiers removed, no compatibility rewrite |
+| Python 3.2–3.9 | Historical metadata is not evidence; minimum is now 3.10 | Unsupported |
+| Windows, macOS and other architectures | No executed platform matrix | Unverified; pure-Python wheel is not proof of platform testing |
 
 ### Python 2.7 assessment
 
-Retaining six does not make the entire present core Python-2 compatible.
-`gem.spherical_harmonics` imports `functools.lru_cache`, uses `math.isqrt` and
-contains `raise ... from None`; these are unavailable or invalid in Python 2.7.
-Bezier sampling uses variadic `math.hypot` and `math.isfinite`, also unavailable
-there. Variadic hypot and isqrt require newer Python 3 versions as well.
-Division semantics and accepted scalar types need real interpreter tests, not
-syntax inspection alone. None of these findings is repaired in this phase.
+Retaining six does not make the core Python-2 compatible. SH contains
+`raise ... from None`, imports `functools.lru_cache`, and calls `math.isqrt`.
+Bezier uses variadic `math.hypot` and `math.isfinite`. These have concrete
+Python 2.7 syntax or library incompatibilities. No Python 2.7 interpreter was
+available for execution, and no compatibility pass is claimed.
 
-The pinned audit tools ([requirements-audit.txt](../../requirements-audit.txt))
-use pytest 9, which requires Python >=3.10. Tests and benchmark tooling also use
-modern syntax/libraries independently of core. A 2.7 validation effort would need
-a suitable isolated test harness and compatible build/install tools, plus a
-security/support strategy for an end-of-life interpreter. The existing setup.py
-and historical Python classifiers do not establish that modern tooling installs
-on 2.7. This remains a release decision with no verified 2.7 claim.
+The pinned audit tooling uses pytest 9 (Python >=3.10). The chosen 3.10 minimum
+provides a single executed runtime/test matrix without rewriting mathematics to
+serve end-of-life interpreters. Python 3.8/3.9 may support some core functions but
+are outside the declared and tested range; that is a support-policy boundary,
+not a claim that every import necessarily fails there.
 
 ## Packaging, platform and numeric reproducibility
 
-The distribution remains `gem`, currently declared as `v0.1.12` in
-[setup.py](../../setup.py), with `gem` and transitional `gem.experimental` packages.
-The repository has legacy setup.py/setup.cfg metadata, no pyproject.toml or
-declared `python_requires`. Modernization, repository URLs, supported classifiers
-and documentation distribution need a separate packaging phase. Markdown guides
-are source-tree documentation; the current manifest explicitly includes only
-selected migration guides, not the complete architecture/reference site.
+The distribution and import namespace remain `gem`. Version 1.0.0 has one source,
+`gem._version.__version__`, and is exposed as `gem.__version__`. Metadata is in
+[pyproject.toml](../../pyproject.toml); setup.py is a compatibility entry point.
+The only runtime dependency remains `six`. The pure-Python wheel includes all
+core modules and existing transitional `gem.experimental` reexports. The sdist
+includes documentation and verification sources. See the
+[packaging policy](../development/packaging.md) for contents and release blockers.
 
-The legacy [.travis.yml](../../.travis.yml) runs `launcher.py test`; that script
-prints examples and does not execute pytest. It is not evidence of a current
-functional CI matrix. Later CI should run real assertions and installed artifacts.
+The historical [.travis.yml](../../.travis.yml) is not an active support matrix:
+its `launcher.py test` prints examples and does not run pytest. Current packaging
+checks use real pytest, built artifacts and isolated imports; the new GitHub
+workflow is a repeatable check, not evidence that a remote CI run has completed.
 
 Python float calculations ordinarily use binary64; caller numeric types are not
 uniformly coerced, and no arbitrary-precision public contract is established.
@@ -95,12 +84,11 @@ division, mixed angle units, misspelled methods and legacy forward axes remain
 intentional compatibility obligations until explicitly reviewed. Returning methods
 usually allocate fresh storage; constructors and explicit accessors are exceptions.
 
-There is no newly declared blanket 1.0 stability guarantee. Before 1.0, review the
-public surface and document its supported domains. For a future stable release,
-propose semantic versioning: additive compatible interfaces in minor releases,
+Version 1.0.0 is prepared for review, not published. The release versioning
+policy uses semantic versioning: additive compatible interfaces in minor releases,
 compatible fixes in patches, and incompatible removals/changes at a declared
 major boundary. Numerical corrections still need explicit compatibility notes.
-Maintainers must confirm the release policy rather than infer it from this charter.
+Unsupported domains do not acquire new guarantees from the version number.
 
 Transitional imports retain one canonical implementation. No runtime deprecation
 warnings or removal date are introduced. Retiring their paths requires a release

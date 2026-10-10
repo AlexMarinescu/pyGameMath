@@ -1,0 +1,32 @@
+name: Package validation
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.10', '3.11', '3.12', '3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install -r requirements-audit.txt -r requirements-build.txt six
+      - run: python -m pytest -q
+      - run: python tools/check_architecture_docs.py --examples --getting-started --api-reference --tutorials --showcase --website
+      - run: python -m build
+      - run: python -m twine check --strict dist/*
+      - run: python tools/verify_distribution.py --wheel dist/gem-1.0.0-py3-none-any.whl --sdist dist/gem-1.0.0.tar.gz
+      - run: python -m venv /tmp/gem-wheel && /tmp/gem-wheel/bin/python -m pip install dist/*.whl
+      - run: /tmp/gem-wheel/bin/python -I tools/verify_distribution.py --installed-root /tmp/gem-wheel/lib/python${{ matrix.python }}/site-packages
+      - run: python -m venv /tmp/gem-sdist && /tmp/gem-sdist/bin/python -m pip install dist/*.tar.gz
+      - run: /tmp/gem-sdist/bin/python -I tools/verify_distribution.py --installed-root /tmp/gem-sdist/lib/python${{ matrix.python }}/site-packages
+      - run: /tmp/gem-wheel/bin/python -I tools/check_architecture_docs.py --examples --getting-started --api-reference --tutorials --showcase --website --package-root /tmp/gem-wheel/lib/python${{ matrix.python }}/site-packages
+      - run: /tmp/gem-sdist/bin/python -I tools/check_architecture_docs.py --examples --getting-started --api-reference --tutorials --showcase --website --package-root /tmp/gem-sdist/lib/python${{ matrix.python }}/site-packages

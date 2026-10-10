@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=77.0.3", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gem"
+dynamic = ["version"]
+description = "Pure-Python mathematics for games and graphics"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "BSD-2-Clause"
+license-files = ["LICENSE"]
+authors = [{name = "Alex Marinescu", email = "ale632007@gmail.com"}]
+dependencies = ["six"]
+keywords = ["math", "game", "graphics", "library"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Topic :: Scientific/Engineering :: Mathematics",
+  "Topic :: Software Development :: Libraries",
+]
+
+[project.urls]
+Homepage = "https://github.com/AlexMarinescu/pyGameMath"
+Documentation = "https://alexmarinescu.github.io/pyGameMath/"
+Source = "https://github.com/AlexMarinescu/pyGameMath"
+Issues = "https://github.com/AlexMarinescu/pyGameMath/issues"
+
+[tool.setuptools]
+packages = ["gem", "gem.experimental"]
+include-package-data = false
+
+[tool.setuptools.dynamic]
+version = {attr = "gem._version.__version__"}

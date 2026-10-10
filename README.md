@@ -9,39 +9,41 @@ No NumPy or compiled extensions are required. Its only runtime dependency is
 
 ## See what it does
 
-[![Sphere lit from the right](examples/output/sh_original.png)](docs/examples/gallery/lighting.md)
-[![Same sphere with lighting rotated upward](examples/output/sh_rotated.png)](docs/examples/gallery/lighting.md)
+[![Sphere lit from the right](https://raw.githubusercontent.com/AlexMarinescu/pyGameMath/master/examples/output/sh_original.png)](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/examples/gallery/lighting.md)
+[![Same sphere with lighting rotated upward](https://raw.githubusercontent.com/AlexMarinescu/pyGameMath/master/examples/output/sh_rotated.png)](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/examples/gallery/lighting.md)
 
 **Rotate the lighting, keep the object still.** These images show the same sphere
 before and after a 90-degree lighting rotation. They are calculated on the CPU;
 you don't need a graphics card or an OpenGL window to run the example.
-[Spherical harmonics](docs/tutorials/lighting.md) compress light arriving from many
+[Spherical harmonics](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/tutorials/lighting.md) compress light arriving from many
 directions into a small set of numbers, making soft lighting easier to calculate.
-[Try the lighting example](examples/hdr_sh/README.md).
+[Try the lighting example](https://github.com/AlexMarinescu/pyGameMath/blob/master/examples/hdr_sh/README.md).
 
-<a href="docs/examples/gallery/vectors.md"><img src="examples/showcase/output/vectors.svg" width="400" alt="Vector arrows showing directions and addition"></a>
-<a href="docs/examples/gallery/transforms.md"><img src="examples/showcase/output/transforms.svg" width="400" alt="A rectangle moved, rotated and resized in different orders"></a>
+<a href="https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/examples/gallery/vectors.md"><img src="https://raw.githubusercontent.com/AlexMarinescu/pyGameMath/master/examples/showcase/output/vectors.svg" width="400" alt="Vector arrows showing directions and addition"></a>
+<a href="https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/examples/gallery/transforms.md"><img src="https://raw.githubusercontent.com/AlexMarinescu/pyGameMath/master/examples/showcase/output/transforms.svg" width="400" alt="A rectangle moved, rotated and resized in different orders"></a>
 
-**Directions and movement** — [add vectors](docs/tutorials/vectors.md) to combine
-movement. **Object placement** — [use matrices](docs/tutorials/transformations.md)
+**Directions and movement** — [add vectors](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/tutorials/vectors.md) to combine
+movement. **Object placement** — [use matrices](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/tutorials/transformations.md)
 to move, rotate and resize a shape. The order of those steps matters.
 
-<a href="docs/examples/gallery/quaternions.md"><img src="examples/showcase/output/quaternions.svg" width="400" alt="Coordinate axes turning smoothly between two orientations"></a>
-<a href="docs/examples/gallery/bezier.md"><img src="examples/showcase/output/bezier.svg" width="400" alt="Smooth Bezier curves with control points and sample markers"></a>
+<a href="https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/examples/gallery/quaternions.md"><img src="https://raw.githubusercontent.com/AlexMarinescu/pyGameMath/master/examples/showcase/output/quaternions.svg" width="400" alt="Coordinate axes turning smoothly between two orientations"></a>
+<a href="https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/examples/gallery/bezier.md"><img src="https://raw.githubusercontent.com/AlexMarinescu/pyGameMath/master/examples/showcase/output/bezier.svg" width="400" alt="Smooth Bezier curves with control points and sample markers"></a>
 
-**Smooth turns** — [quaternions](docs/tutorials/quaternions.md) describe rotations
-and help blend between them. **Smooth paths** — [Bezier curves](docs/tutorials/bezier.md)
+**Smooth turns** — [quaternions](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/tutorials/quaternions.md) describe rotations
+and help blend between them. **Smooth paths** — [Bezier curves](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/tutorials/bezier.md)
 let you shape a curve with a few control points. Select a diagram for a larger
 view, its explanation and runnable source.
 
 Every image above comes from the committed, reproducible examples.
-[Explore the gallery](docs/examples/index.md) or
-[regenerate the diagrams](examples/showcase/README.md).
+[Explore the gallery](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/examples/index.md) or
+[regenerate the diagrams](https://github.com/AlexMarinescu/pyGameMath/blob/master/examples/showcase/README.md).
 
 ## Install the development version
 
 For the current features, install from this repository. **The older package on
-PyPI does not include these updates.** In a terminal with Git and Python 3.12:
+PyPI does not include these updates.** The prepared distribution version is 1.0.0; it has not been published.
+CPython 3.10–3.14 is tested on Linux x86_64. Windows, macOS and PyPy remain
+unverified. In a terminal with Git and Python 3.12:
 
 ```sh
 git clone https://github.com/AlexMarinescu/pyGameMath.git
@@ -52,7 +54,7 @@ python3.12 -m venv .venv
 
 These commands are for Linux and macOS. On Windows, and for help setting up a
 separate Python environment, follow the
-[installation guide](docs/getting-started/installation.md). It covers PowerShell,
+[installation guide](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/getting-started/installation.md). It covers PowerShell,
 Command Prompt, development edits and package details.
 
 ## Try a simple movement calculation
@@ -72,23 +74,23 @@ print(new_position.vector)  # [5, 2, 2]
 
 The original position stays unchanged. To run this with the environment above,
 save it as `move.py` and use `.venv/bin/python move.py`.
-The [quick start](docs/getting-started/quick-start.md) also covers matrices,
+The [quick start](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/getting-started/quick-start.md) also covers matrices,
 rotations, curves and lighting.
 
 ## Tools available today
 
-- **[Vectors](docs/api/vector.md):** calculate directions, distances and movement.
-- **[Matrices](docs/api/matrix.md):** move, rotate and resize objects in 2D or 3D;
+- **[Vectors](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/api/vector.md):** calculate directions, distances and movement.
+- **[Matrices](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/api/matrix.md):** move, rotate and resize objects in 2D or 3D;
   convert coordinates for a camera or screen.
-- **[Quaternions](docs/api/quaternion.md):** rotate objects and blend smoothly
+- **[Quaternions](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/api/quaternion.md):** rotate objects and blend smoothly
   between orientations.
-- **[Bezier curves](docs/api/bezier.md):** build smooth paths, evaluate points
+- **[Bezier curves](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/api/bezier.md):** build smooth paths, evaluate points
   along them and sample curved sections more closely.
-- **[Planes](docs/api/plane.md) and [rays](docs/api/ray.md):** describe flat
+- **[Planes](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/api/plane.md) and [rays](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/api/ray.md):** describe flat
   surfaces and directed lines, and move or rotate them. Ray intersection queries
   are not implemented.
-- **[Legendre functions](docs/api/legendre.md) and
-  [spherical harmonics](docs/api/spherical-harmonics.md):** provide the building
+- **[Legendre functions](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/api/legendre.md) and
+  [spherical harmonics](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/api/spherical-harmonics.md):** provide the building
   blocks for approximating light from the surrounding environment, including
   rotating that lighting and calculating its effect on a diffuse surface.
 
@@ -98,13 +100,13 @@ and rotation rules before showing how to combine operations.
 
 ## Find your next step
 
-- [Getting started](docs/getting-started/README.md) — installation and first examples.
-- [Tutorials](docs/tutorials/index.md) — learn through practical calculations.
-- [API reference](docs/api/index.md) — functions, arguments and return values.
-- [Visual examples](docs/examples/index.md) — diagrams and reproducible lighting.
-- [Documentation home](docs/index.md) — browse the complete documentation.
-- [Build the documentation website locally](docs/development/website.md) — build and navigation instructions.
-- [Contributing](docs/development/contributing.md) — changes, tests and review.
+- [Getting started](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/getting-started/README.md) — installation and first examples.
+- [Tutorials](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/tutorials/index.md) — learn through practical calculations.
+- [API reference](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/api/index.md) — functions, arguments and return values.
+- [Visual examples](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/examples/index.md) — diagrams and reproducible lighting.
+- [Documentation home](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/index.md) — browse the complete documentation.
+- [Build the documentation website locally](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/development/website.md) — build and navigation instructions.
+- [Contributing](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/development/contributing.md) — changes, tests and review.
 
 ## What's planned?
 
@@ -115,25 +117,26 @@ distance fields), working with 3D grids (voxels), and calculating light through
 volumes such as fog. Future C and C++ versions are proposed as separate projects.
 
 These capabilities are **planned, not available today**, with no promised dates.
-The [development roadmap](ROADMAP.md) gives the full direction and priorities.
+The [development roadmap](https://github.com/AlexMarinescu/pyGameMath/blob/master/ROADMAP.md) gives the full direction and priorities.
 
 ## Compatibility and release notes
 
-The verified development environment is **CPython 3.12 on Linux**. Other Python
-versions and platforms need testing; Python 2.7 support has not been verified.
-The repository still declares version 0.1.12, so matching the old
-[PyPI version](https://pypi.org/project/gem/) does not mean you have the same code.
-A 1.0 release or a blanket promise of API stability is not claimed.
+CPython **3.10–3.14 is tested on Linux x86_64**. Windows, macOS and PyPy remain
+unverified; Python 2.7 and Python <3.10 are unsupported. Version **1.0.0** is
+prepared but not published. The historical [PyPI release](https://pypi.org/project/gem/)
+does not contain the current code. See the
+[packaging and release guide](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/development/packaging.md)
+for support evidence and the outstanding PyPI publishing-authority check.
 
 Some constructors keep references to lists you provide. Read the
-[ownership and compatibility guide](docs/architecture/compatibility.md) before
-sharing mutable data. The [conventions](docs/architecture/conventions.md) explain
+[ownership and compatibility guide](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/architecture/compatibility.md) before
+sharing mutable data. The [conventions](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/architecture/conventions.md) explain
 coordinate and angle rules. Use `gem.bezier`, `gem.legendre` and
 `gem.spherical_harmonics` for current code; older experimental imports remain
-available through [compatibility re-exports](docs/EXPERIMENTAL_MIGRATION.md).
+available through [compatibility re-exports](https://github.com/AlexMarinescu/pyGameMath/blob/master/docs/EXPERIMENTAL_MIGRATION.md).
 
 ## License and author
 
 Created by **Alex Marinescu**, originally for learning graphics mathematics and
-personal OpenGL projects. Licensed under the [BSD 2-Clause license](LICENSE),
+personal OpenGL projects. Licensed under the [BSD 2-Clause license](https://github.com/AlexMarinescu/pyGameMath/blob/master/LICENSE),
 copyright 2015–2026 Alex Marinescu. Historical attribution remains intact.

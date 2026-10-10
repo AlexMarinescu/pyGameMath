@@ -14,7 +14,7 @@ they do not change existing APIs or block this documentation-only review.
 
 | Decision | Recommended next step | Compatibility consequence |
 |---|---|---|
-| Release interpreter/platform matrix and Python 2.7 legacy target | Assess the concrete source/tool blockers, choose modern minimum/test matrix, and determine how the 2.7 target can be engineered/tested | Do not advertise unverified interpreters or remove six in advance |
+| Remaining platform verification | Phase 5A verifies CPython 3.10–3.14/Linux x86_64; test Windows, macOS and PyPy separately | Python 2.7 is unsupported; retain six for current helpers |
 | Experimental alias removal boundary/window | Retain current shims through architecture/release review; explicitly announce a future approved boundary before deletion | Complete package elimination would break documented imports and some serialized references |
 | 1.0 public stability/versioning promise | Review raw kernels, historical helpers and mutable fields separately from well-documented contracts; confirm proposed semantic-version policy | Passing tests alone cannot freeze every incidental public attribute |
 | Wider shape/scalar/error policy | Keep current narrow contracts; separately design mismatch, nonfinite, degeneracy and numeric-protocol rules | Uniform validation/reflected operators would change current exceptions/accepted operands |

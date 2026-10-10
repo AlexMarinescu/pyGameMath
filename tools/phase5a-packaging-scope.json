@@ -1,0 +1,15 @@
+{
+  "base": "15fbce64fa87008203890142070dbf30ea802ebc",
+  "files": {
+    "pyproject.toml": "9c5256e54aaee32b400c2fe1d82e8c5631614ba5ff2b86733a288977a36c8689",
+    "setup.py": "8371037238a9a785296a59cf2e62a8449a878f8de8a1bb5402c3273c92537a16",
+    "setup.cfg": "14884f4efd076a647c5143d45c6488a1203b4e5d87240083a936a9de5eef1c8e",
+    "MANIFEST.in": "f34d5da6e809e918c9b960d76ed7a3885550c160e6b3da83fd4294bc81a1e0f6",
+    "README.rst": "024aabf2e05779f05e170836d8c7dd2d0128b3ff0491658f3bfb4e25680c6f9d",
+    "requirements-build.txt": "0161a091cdc14a2e4ecbd91e1af33688fd51f58fa57569ea8eccede137d2746c",
+    "gem/__init__.py": "ed387aee9744786790d8c56cda8f17e9c311039ef37ba9af0216d782494de735",
+    "gem/_version.py": "49a1ce110282313f047abcfceec9291077a8a1d8495afae37177e05511144a4d",
+    "tests/test_core_packaging.py": "deabe5ae56e3b2c7f554f12034191ed0f8d3f4c5fc512a7e9f6fcc472e679014",
+    "tests/test_release_packaging.py": "4a2b4588de06d05295bdf25ba758aab2719066fdd25cbe39828638f035eff2d2"
+  }
+}

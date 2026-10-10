@@ -16,7 +16,7 @@ import sys
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = '3e714fe949b7a6b7724d5c0da3395ee92483265f'
+BASE = '15fbce64fa87008203890142070dbf30ea802ebc'
 PAGES = ['ROADMAP.md', 'docs/README.md', 'docs/development/roadmap.md',
          'docs/development/verification.md'] + [
     'docs/architecture/' + name + '.md' for name in
@@ -60,7 +60,8 @@ def check_scope():
     """Freeze runtime, existing tests and packaging at the reviewed master.
 
     Baseline changes require review; HEAD is deliberately not the reference.
-    Only the new documentation-tool regression module may join protected paths.
+    Reviewed packaging changes are admitted only by exact content fingerprints.
+    Runtime mathematics remains frozen; arbitrary additions remain rejected.
     """
     paths = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', BASE],
                                     cwd=ROOT, text=True).splitlines()
@@ -73,18 +74,35 @@ def check_scope():
     current = subprocess.check_output(['git', 'ls-files', '--cached', '--others',
         '--exclude-standard'], cwd=ROOT, text=True).splitlines()
     additions = {name for name in current if protected(name)}-originals
-    allowed = {'tests/test_documentation_overhaul.py'}
+    reviewed = {}
+    manifest = ROOT/'tools/phase5a-packaging-scope.json'
+    if manifest.exists():
+        scope = json.loads(manifest.read_text())
+        if scope['base'] != BASE:
+            raise ValueError('packaging scope baseline mismatch')
+        reviewed = scope['files']
+        permitted = {'pyproject.toml', 'setup.py', 'setup.cfg', 'MANIFEST.in',
+                     'README.rst', 'requirements-build.txt', 'gem/__init__.py',
+                     'gem/_version.py', 'tests/test_core_packaging.py',
+                     'tests/test_release_packaging.py'}
+        if set(reviewed)-permitted:
+            raise ValueError('mathematics cannot be exempted by packaging scope')
+        for name, digest in reviewed.items():
+            if hashlib.sha256((ROOT/name).read_bytes()).hexdigest() != digest:
+                raise ValueError('unreviewed packaging change: '+name)
+    allowed = {'tests/test_documentation_overhaul.py'} | set(reviewed)
     if additions-allowed:
         raise ValueError('out-of-scope addition: '+', '.join(sorted(additions-allowed)))
     fingerprint = hashlib.sha256()
     for name in sorted(originals):
         content = (ROOT/name).read_bytes()
-        if content != subprocess.check_output(['git', 'show', BASE+':'+name], cwd=ROOT):
+        if name not in reviewed and content != subprocess.check_output(['git', 'show', BASE+':'+name], cwd=ROOT):
             raise ValueError('out-of-scope modification: '+name)
         fingerprint.update(name.encode()); fingerprint.update(content)
-    return {'protected_files_unchanged': len(originals),
+    return {'protected_files_unchanged': len(originals-set(reviewed)),
             'protected_sha256': fingerprint.hexdigest(),
-            'new_documentation_test_modules': sorted(additions)}
+            'new_documentation_test_modules': sorted(additions),
+            'reviewed_packaging_files': sorted(reviewed)}
 
 
 def preserve_learning_material(pages):
