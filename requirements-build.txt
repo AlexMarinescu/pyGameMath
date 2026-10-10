@@ -1,5 +1,5 @@
 # Release verification tools only; not gem runtime dependencies.
 build==1.6.1
-setuptools==80.9.0
+setuptools==83.0.0
 wheel==0.48.0
 twine==7.0.0
