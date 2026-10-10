@@ -87,6 +87,20 @@ def check_scope():
         for name, digest in ci_reviewed.items():
             if hashlib.sha256((ROOT/name).read_bytes()).hexdigest() != digest:
                 raise ValueError('unreviewed CI portability change: '+name)
+    candidate_reviewed = {}
+    candidate_manifest = ROOT/'tools/phase5c-reference-scope.json'
+    if candidate_manifest.exists():
+        candidate_scope = json.loads(candidate_manifest.read_text(encoding='utf-8'))
+        if candidate_scope['base'] != BASE:
+            raise ValueError('candidate scope baseline mismatch')
+        candidate_reviewed = candidate_scope['files']
+        if set(candidate_reviewed)-{'examples/showcase/verify.py',
+                'examples/showcase/regenerate.py', 'examples/showcase/README.md',
+                'tests/test_showcase_examples.py'}:
+            raise ValueError('mathematics cannot be exempted by candidate scope')
+        for name, digest in candidate_reviewed.items():
+            if hashlib.sha256((ROOT/name).read_bytes()).hexdigest() != digest:
+                raise ValueError('unreviewed candidate reference change: '+name)
     reviewed = {}
     manifest = ROOT/'tools/phase5a-packaging-scope.json'
     if manifest.exists():
@@ -110,10 +124,11 @@ def check_scope():
     fingerprint = hashlib.sha256()
     for name in sorted(originals):
         content = (ROOT/name).read_bytes()
-        if name not in reviewed and name not in ci_reviewed and content != subprocess.check_output(['git', 'show', BASE+':'+name], cwd=ROOT):
+        if name not in reviewed and name not in ci_reviewed and name not in candidate_reviewed and content != subprocess.check_output(['git', 'show', BASE+':'+name], cwd=ROOT):
             raise ValueError('out-of-scope modification: '+name)
         fingerprint.update(name.encode()); fingerprint.update(content)
-    return {'protected_files_unchanged': len(originals-set(reviewed)-set(ci_reviewed)),
+    return {'protected_files_unchanged': len(originals-set(reviewed)-set(ci_reviewed)-set(candidate_reviewed)),
+            'reviewed_candidate_reference_files': sorted(candidate_reviewed),
             'protected_sha256': fingerprint.hexdigest(),
             'new_documentation_test_modules': sorted(additions),
             'reviewed_ci_files': sorted(ci_reviewed),

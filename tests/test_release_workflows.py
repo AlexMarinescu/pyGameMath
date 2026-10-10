@@ -264,3 +264,28 @@ def test_candidate_integrity_rejects_tampering(tmp_path, monkeypatch, case, reas
                         lambda argv, **kwargs: (tree if argv[-1] == 'HEAD^{tree}' else SHA) + '\n')
     with pytest.raises(ValueError, match=reason):
         gate.verify_artifacts(tmp_path, SHA, 'v1.0.0')
+
+
+def test_candidate_scope_cannot_exempt_runtime(tmp_path, monkeypatch):
+    import json
+    checker = load('check_architecture_docs')
+    monkeypatch.setattr(checker, 'ROOT', tmp_path)
+    monkeypatch.setattr(checker.subprocess, 'check_output', lambda *args, **kwargs: '')
+    (tmp_path/'tools').mkdir()
+    (tmp_path/'tools/phase5c-reference-scope.json').write_text(json.dumps({
+        'base': checker.BASE, 'files': {'gem/quaternion.py': 'unauthorized'}}))
+    with pytest.raises(ValueError, match='mathematics cannot be exempted'):
+        checker.check_scope()
+
+
+@pytest.mark.parametrize('change', ['dependency', 'digest', 'workload'])
+def test_canonical_artifact_matrix_cannot_bypass_validation(change):
+    data = workflows.load_workflows()
+    job = data['package-validation.yml']['jobs']['candidate-install']
+    if change == 'dependency': job['needs'] = []
+    elif change == 'digest':
+        step = next(s for s in job['steps'] if s.get('uses', '').startswith('actions/download-artifact@'))
+        step['with']['digest-mismatch'] = 'warn'
+    else: job['strategy']['matrix']['python'] = ['3.12']
+    with pytest.raises(ValueError, match='canonical'):
+        workflows.validate(data)

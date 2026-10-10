@@ -21,6 +21,10 @@ The portable harness runs the complete suite, checks 268 API declarations and
 and installs each archive into a fresh isolated environment. It checks installed
 runtime bytes and repeats the API/examples checks. Skips and expected failures
 fail the candidate gate. Diagnostics remain available when a matrix job fails.
+After the full matrix passes, a second installation matrix verifies the same
+canonical Ubuntu/CPython 3.12 wheel and sdist on all 15 environments, without
+rebuilding them. It reuses the shared installation checks and verifies manifest
+provenance and SHA-256 digests before installation.
 
 The archive inspector rejects unexpected wheel contents, links, unsafe paths,
 caches, temporary credential files and recognizable credential-shaped content.
@@ -59,7 +63,7 @@ is not an independent authenticity guarantee.
 
 GitHub Release v1.0.0 preparation is independent of PyPI account recovery.
 Publishing that release and creating/pushing its tag require final validation
-and explicit owner authorization for each action. This workflow performs neither.
+and explicit owner authorization for each action. Validation mode performs neither.
 Preserve the approved wheel and sdist unchanged for eventual PyPI publication;
 never silently rebuild official 1.0.0 artifacts.
 
@@ -74,10 +78,10 @@ separately reviewed publishing workflow is enabled, establish:
   workflow and protected environment, if OIDC is selected.
 - Protected branch/review settings and an approved release/tag procedure.
 
-No PyPI token is required or hardcoded. There is no PyPI/TestPyPI upload action,
-OIDC package publishing permission, GitHub Release creation or tag creation in
-this pipeline. Introducing any of them requires a separate reviewed change;
-package identity must not be changed to bypass ownership verification.
+No PyPI token is required or hardcoded. There is no PyPI/TestPyPI upload action
+or OIDC package publishing permission. The GitHub publish job below remains
+separately gated; ordinary CI and validation mode create no tag or release.
+Package identity must not be changed to bypass ownership verification.
 
 If validation fails, retain diagnostics, discard the candidate and rerun from a
 reviewed clean commit after correction. Never upload a partially validated

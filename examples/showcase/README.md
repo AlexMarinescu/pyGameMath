@@ -10,7 +10,7 @@ python -m examples.showcase.regenerate --verify
 No GPU, window server, downloads or image packages are needed. The command writes
 only `vectors.svg`, `transforms.svg`, `quaternions.svg`, `bezier.svg` and
 `measurements.json` in `examples/showcase/output/`. Use `--output-dir /tmp/gem-gallery`
-to generate elsewhere. Verification rebuilds in memory and compares without writes.
+to generate elsewhere. Verification rebuilds in memory and compares without writes. SVGs remain byte-exact.
 
 `scenes.py` uses gem for vector geometry, matrices, quaternion SLERP and rotation,
 and Bezier evaluation/subdivision. `svg.py` only maps drawing coordinates and
@@ -22,7 +22,15 @@ The SVG viewBox is 960×560, with CSS sRGB colors and generic sans-serif labels.
 Geometry serializes to six decimal places. Viewer font selection can change text
 appearance. SHA-256 hashes describe text artifacts, not identical rasterization
 across platforms. Python/libm rounding can affect the full-precision JSON values;
-numerical checks remain the primary correctness test.
+numerical checks remain the primary correctness test. Verification permits only
+one binary64 ULP at unit scale (2^-52) between eight audited quaternion
+measurement fields, and independently checks those fields against closed-form
+values within 2^-51. Every other JSON field and its serialization remain exact.
+This handles a measured one-ULP platform difference in sin(pi/4), propagated
+through SLERP and rotation. It does not change gem's mathematical tolerances,
+round generated values or update the committed reference. Identical generation
+within one environment is still byte-exact. See the
+[release-candidate investigation](../../audit/PHASE5C-RELEASE-CANDIDATE.md).
 
 The existing HDR example is reused directly; this command never touches
 `examples/output/`. To verify that reference separately:

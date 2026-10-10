@@ -75,6 +75,16 @@ def validate(workflows):
     require(package['jobs']['package']['strategy'].get('fail-fast') is False,'all platforms must report')
     require(any('tools/ci_validate.py' in s.get('run','') for s in package['jobs']['package']['steps']),
             'shared packaging validation missing')
+    canonical=package['jobs'].get('candidate-install',{})
+    require(canonical.get('needs')=='package','canonical installs must await whole matrix')
+    require(canonical.get('strategy',{}).get('matrix')==matrix and
+            canonical['strategy'].get('fail-fast') is False,'canonical installation matrix incomplete')
+    downloads=[s for s in canonical.get('steps',[]) if s.get('uses','').startswith('actions/download-artifact@')]
+    require(len(downloads)==1 and downloads[0].get('with',{}).get('digest-mismatch')=='error' and
+            downloads[0]['with'].get('name')=='gem-candidate-${{ github.run_id }}',
+            'canonical installs require verified same-run artifacts')
+    require(any('--candidate-directory' in s.get('run','') for s in canonical.get('steps',[])),
+            'canonical archive verification missing')
     docs=workflows['documentation-artifact.yml'];steps=docs['jobs']['build']['steps']
     commands=[s.get('run','') for s in steps]
     require(any('check_architecture_docs.py' in c and '--api-reference' in c and '--tutorials' in c for c in commands),
@@ -117,7 +127,7 @@ def validate(workflows):
     require(github_release['on']['workflow_dispatch']['inputs']['mode']['default']=='validate',
             'GitHub release must default to dry validation')
     return {'workflows':sorted(workflows),'action_pins':sorted(set(pins)),
-            'matrix_jobs':15,'package_publication_enabled':False,'wiki_mutation_enabled':False,
+            'matrix_jobs':15,'canonical_install_jobs':15,'package_publication_enabled':False,'wiki_mutation_enabled':False,
             'pages_write_scope':'master-only deployment job','manual_release_modes':['validate','review']}
 
 

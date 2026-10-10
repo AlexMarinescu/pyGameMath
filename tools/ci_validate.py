@@ -30,6 +30,32 @@ def assert_clean_junit(path):
     return dict(totals, passed=totals['tests'], xfailed=0)
 
 
+def install_artifacts(output_dir, wheel, sdist, command, read, offline=False, wheelhouse=None):
+    installed={}
+    for kind,artifact in [('wheel',wheel),('sdist',sdist)]:
+        target=output_dir/(kind+'-environment')
+        venv.EnvBuilder(with_pip=True,symlinks=os.name!='nt').create(target)
+        executable=environment_python(target)
+        # Build tools are deliberately separate from gem's runtime dependency.
+        setup=[executable,'-m','pip','install','six==1.17.0','setuptools==80.9.0','wheel==0.48.0']
+        if offline: setup.extend(['--no-index','--find-links',str(wheelhouse.resolve())])
+        command(setup,kind+'-dependencies',cwd=output_dir)
+        install=[executable,'-I','-m','pip','install','--no-deps','--no-build-isolation',artifact]
+        if offline:install.insert(-1,'--no-index')
+        command(install,kind+'-install',cwd=output_dir)
+        site=subprocess.check_output([str(executable),'-I','-c',
+            'import sysconfig; print(sysconfig.get_path("purelib"))'],text=True,cwd=output_dir).strip()
+        command([executable,'-I','-X','utf8',ROOT/'tools/verify_distribution.py','--installed-root',site,
+                 '--output',output_dir/(kind+'-smoke.json')],kind+'-smoke',cwd=output_dir)
+        command([executable,'-I','-X','utf8',ROOT/'tools/check_architecture_docs.py',*DOC_FLAGS,'--package-root',site,
+                 '--output',output_dir/(kind+'-docs.json')],kind+'-docs',cwd=output_dir)
+        docs=read(kind+'-docs.json')
+        if docs['source_declarations_checked']!=268 or docs['examples_executed']!=43:
+            raise ValueError('installed API/example coverage incomplete')
+        installed[kind]={'smoke':read(kind+'-smoke.json'),'documentation':docs}
+    return installed
+
+
 def run(output_dir, artifacts_dir, offline=False, wheelhouse=None):
     if sys.flags.optimize: raise ValueError('CI assertions must not run with Python optimization enabled')
     if offline and wheelhouse is None: raise ValueError('offline verification requires an explicit wheelhouse')
@@ -48,6 +74,8 @@ def run(output_dir, artifacts_dir, offline=False, wheelhouse=None):
             subprocess.run(list(map(str,args)),cwd=cwd,env=env,stdout=log,stderr=subprocess.STDOUT,check=True)
     def read(name):return json.loads((output_dir/name).read_text(encoding='utf-8'))
     try:
+        command([sys.executable,ROOT/'tools/trace_showcase.py','--output',
+                 output_dir/'showcase-trace.json'],'showcase-trace')
         pytest_error=None
         try:
             command([sys.executable,'-m','pytest','-q','-o','junit_family=legacy',
@@ -75,28 +103,7 @@ def run(output_dir, artifacts_dir, offline=False, wheelhouse=None):
         command([sys.executable,ROOT/'tools/verify_distribution.py','--wheel',wheel,'--sdist',sdist,
                  '--output',output_dir/'artifacts.json'],'artifacts')
         report['artifacts']=read('artifacts.json')
-        report['installed']={}
-        for kind,artifact in [('wheel',wheel),('sdist',sdist)]:
-            target=output_dir/(kind+'-environment')
-            venv.EnvBuilder(with_pip=True,symlinks=os.name!='nt').create(target)
-            executable=environment_python(target)
-            # Build tools are deliberately separate from gem's runtime dependency.
-            setup=[executable,'-m','pip','install','six==1.17.0','setuptools==80.9.0','wheel==0.48.0']
-            if offline: setup.extend(['--no-index','--find-links',str(wheelhouse.resolve())])
-            command(setup,kind+'-dependencies',cwd=output_dir)
-            install=[executable,'-I','-m','pip','install','--no-deps','--no-build-isolation',artifact]
-            if offline:install.insert(-1,'--no-index')
-            command(install,kind+'-install',cwd=output_dir)
-            site=subprocess.check_output([str(executable),'-I','-c',
-                'import sysconfig; print(sysconfig.get_path("purelib"))'],text=True,cwd=output_dir).strip()
-            command([executable,'-I','-X','utf8',ROOT/'tools/verify_distribution.py','--installed-root',site,
-                     '--output',output_dir/(kind+'-smoke.json')],kind+'-smoke',cwd=output_dir)
-            command([executable,'-I','-X','utf8',ROOT/'tools/check_architecture_docs.py',*DOC_FLAGS,'--package-root',site,
-                     '--output',output_dir/(kind+'-docs.json')],kind+'-docs',cwd=output_dir)
-            docs=read(kind+'-docs.json')
-            if docs['source_declarations_checked']!=268 or docs['examples_executed']!=43:
-                raise ValueError('installed API/example coverage incomplete')
-            report['installed'][kind]={'smoke':read(kind+'-smoke.json'),'documentation':docs}
+        report['installed']=install_artifacts(output_dir,wheel,sdist,command,read,offline,wheelhouse)
         if pytest_error is not None:
             raise ValueError('suite failed; archive/install diagnostics do not approve the candidate') from pytest_error
         commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
@@ -128,14 +135,49 @@ def run(output_dir, artifacts_dir, offline=False, wheelhouse=None):
     return report
 
 
+def verify_candidate(output_dir, directory, offline=False, wheelhouse=None):
+    """Install the same canonical archives on each platform without rebuilding."""
+    from release_gate import verify_artifacts
+    if sys.flags.optimize: raise ValueError('CI assertions must not run with Python optimization enabled')
+    if offline and wheelhouse is None: raise ValueError('offline verification requires an explicit wheelhouse')
+    output_dir=output_dir.resolve(); directory=directory.resolve()
+    output_dir.mkdir(parents=True,exist_ok=True)
+    commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
+    report={'python':platform.python_version(),'platform':platform.platform(),'commands':[],
+            'status':'running','source_commit':commit}
+    env=os.environ.copy();env.pop('PYTHONPATH',None);env['PYTHONUTF8']='1'
+    env['PIP_DISABLE_PIP_VERSION_CHECK']='1'
+    def command(args, name, cwd=ROOT):
+        report['commands'].append({'argv':list(map(str,args)),'cwd':str(cwd),'log':name+'.log'})
+        with (output_dir/(name+'.log')).open('w',encoding='utf-8') as log:
+            subprocess.run(list(map(str,args)),cwd=cwd,env=env,stdout=log,stderr=subprocess.STDOUT,check=True)
+    def read(name):return json.loads((output_dir/name).read_text(encoding='utf-8'))
+    try:
+        report['integrity']=verify_artifacts(directory,commit,'v1.0.0')
+        report['installed']=install_artifacts(output_dir,directory/'gem-1.0.0-py3-none-any.whl',
+            directory/'gem-1.0.0.tar.gz',command,read,offline,wheelhouse)
+        report['status']='passed'
+    except Exception as error:
+        report['status']='failed';report['error_type']=type(error).__name__
+        raise
+    finally:
+        (output_dir/'candidate-install-results.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
+    return report
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output-dir',type=Path,required=True)
-    parser.add_argument('--artifacts-dir',type=Path,required=True)
+    parser.add_argument('--artifacts-dir',type=Path)
+    parser.add_argument('--candidate-directory',type=Path,help='verify/install an existing canonical bundle; never rebuild')
     parser.add_argument('--offline',action='store_true',help='use preinstalled pinned dependencies; no index/build isolation')
     parser.add_argument('--wheelhouse',type=Path,help='local wheels for offline installed dependencies')
-    args=parser.parse_args();report=run(args.output_dir,args.artifacts_dir,args.offline,args.wheelhouse)
-    print(json.dumps({'status':report['status'],'python':report['python'],'tests':report['tests']},indent=2))
+    args=parser.parse_args()
+    if bool(args.artifacts_dir) == bool(args.candidate_directory):
+        parser.error('choose exactly one of --artifacts-dir or --candidate-directory')
+    report=(verify_candidate(args.output_dir,args.candidate_directory,args.offline,args.wheelhouse)
+            if args.candidate_directory else run(args.output_dir,args.artifacts_dir,args.offline,args.wheelhouse))
+    print(json.dumps({'status':report['status'],'python':report['python'],'tests':report.get('tests')},indent=2))
 
 
 if __name__=='__main__':main()

@@ -1,0 +1,9 @@
+{
+  "base": "15fbce64fa87008203890142070dbf30ea802ebc",
+  "files": {
+    "examples/showcase/verify.py": "7dadf3f42b2c831c55b650e9ec9ae87b15c77fd2eee478d31af2079659b37f0c",
+    "examples/showcase/regenerate.py": "cbd21e153e88d529bdfb26dd1941aee3724f4ecb8b322936ac901000d14e8df3",
+    "examples/showcase/README.md": "3aeb634152291eeb25fbde924de2b38a79e6bd2e86096e68df65dadc874a85e4",
+    "tests/test_showcase_examples.py": "88e5e09e52647e90f2f414722304ff62117c08427e2f48d1637db5ec80240a22"
+  }
+}
