@@ -168,3 +168,56 @@ def test_github_publication_guard_cannot_be_removed():
     data = workflows.load_workflows()
     data['github-release.yml']['jobs']['publish']['if'] = "inputs.mode == 'publish'"
     with pytest.raises(ValueError): workflows.validate(data)
+
+
+@pytest.mark.parametrize('mode', ['validate', 'publish'])
+def test_release_execution_uses_exact_assets_and_no_dry_run_mutation(tmp_path, monkeypatch, mode):
+    import json
+    import urllib.error
+    event = tmp_path / 'event.json'
+    event.write_text(json.dumps({'repository': {'fork': False}}))
+    for key, value in {'GITHUB_EVENT_PATH': str(event), 'GITHUB_EVENT_NAME': 'workflow_dispatch',
+                       'GITHUB_REPOSITORY': gate.REPOSITORY, 'GITHUB_REF': 'refs/heads/master',
+                       'GITHUB_SHA': SHA, 'RELEASE_ENABLED': 'true',
+                       'OWNER_AUTHORIZATION': 'publish v1.0.0'}.items():
+        monkeypatch.setenv(key, value)
+    run = dict(id=123, repository={'full_name': gate.REPOSITORY},
+               path='.github/workflows/release-validation.yml', event='workflow_dispatch',
+               head_branch='master', head_sha=SHA, status='completed', conclusion='success')
+    def get(path):
+        if path == 'actions/runs/123': return run
+        if path.startswith('environments/'): return protected_environment()
+        if path == 'branches/master': return {'protected': True}
+        raise urllib.error.HTTPError('https://api.github.com', 404, 'absent', {}, None)
+    monkeypatch.setattr(release.gate, 'github_get', get)
+    preflights = []
+    monkeypatch.setattr(release.gate, 'preflight', lambda *a: preflights.append(a))
+    monkeypatch.setattr(release.gate, 'verify_artifacts', lambda *a: {'publication_enabled': False})
+    commands = []
+    monkeypatch.setattr(release.subprocess, 'run', lambda argv, **kw: commands.append(argv))
+    monkeypatch.setattr('sys.argv', ['github_release.py', '--directory', str(tmp_path),
+                                  '--commit', SHA, '--run-id', '123', '--mode', mode,
+                                  '--output', str(tmp_path / 'report.json')])
+    release.main()
+    assert len(preflights) == 1
+    if mode == 'validate':
+        assert commands == []
+    else:
+        assert len(commands) == 1
+        command = commands[0]
+        assert command[:4] == ['gh', 'release', 'create', 'v1.0.0']
+        assert command[command.index('--target') + 1] == SHA
+        assert set(command[-4:]) == {str(tmp_path / n) for n in gate.FILES | {'SHA256SUMS', 'INSTALL.md'}}
+        assert '--clobber' not in command
+
+
+def test_ci_scope_cannot_exempt_mathematics(tmp_path, monkeypatch):
+    checker = load('check_architecture_docs')
+    import json
+    (tmp_path / 'tools').mkdir()
+    (tmp_path / 'tools/phase5b-ci-scope.json').write_text(json.dumps(
+        {'base': checker.BASE, 'files': {'gem/vector.py': '0' * 64}}))
+    monkeypatch.setattr(checker, 'ROOT', tmp_path)
+    monkeypatch.setattr(checker.subprocess, 'check_output', lambda *a, **k: '')
+    with pytest.raises(ValueError, match='mathematics cannot be exempted'):
+        checker.check_scope()
