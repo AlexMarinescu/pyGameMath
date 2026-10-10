@@ -38,7 +38,7 @@ def test_metadata_changes_do_not_modify_frozen_mathematics():
     import subprocess
     base='15fbce6'
     for path in (ROOT/'gem').rglob('*.py'):
-        name=str(path.relative_to(ROOT))
+        name=path.relative_to(ROOT).as_posix()
         if name in ('gem/__init__.py','gem/_version.py'): continue
         assert path.read_bytes() == subprocess.check_output(['git','show',base+':'+name],cwd=ROOT)
 
@@ -48,8 +48,9 @@ def test_packaging_manifest_rejects_unreviewed_content(tmp_path,monkeypatch,name
     spec=importlib.util.spec_from_file_location('scope_guard',ROOT/'tools/check_architecture_docs.py')
     tool=importlib.util.module_from_spec(spec);spec.loader.exec_module(tool)
     import subprocess
-    (tmp_path/'gem').mkdir();(tmp_path/'gem/original.py').write_text('VALUE=1\n')
+    (tmp_path/'gem').mkdir();(tmp_path/'gem/original.py').write_bytes(b'VALUE=1\n')
     subprocess.run(['git','init'],cwd=tmp_path,check=True,capture_output=True)
+    subprocess.run(['git','config','core.autocrlf','false'],cwd=tmp_path,check=True)
     subprocess.run(['git','add','.'],cwd=tmp_path,check=True)
     subprocess.run(['git','-c','user.name=Fixture','-c','user.email=f@example.invalid','commit','-m','fixture'],cwd=tmp_path,check=True,capture_output=True)
     base=subprocess.check_output(['git','rev-parse','HEAD'],cwd=tmp_path,text=True).strip()

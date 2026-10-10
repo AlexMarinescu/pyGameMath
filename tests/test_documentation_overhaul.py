@@ -17,8 +17,8 @@ def checker(tmp_path, monkeypatch):
     for name, text in {'gem/example.py': 'VALUE = 1\n', 'setup.py': '# metadata\n',
             'tests/existing.py': '# retained test\n',
             'docs/tutorials/vectors.md': '# Tutorial\n\n```python\nx = 1\nassert x == 1\n```\n'}.items():
-        path = tmp_path/name; path.parent.mkdir(parents=True, exist_ok=True); path.write_text(text)
-    for args in (['init'], ['add', '.'], ['-c', 'user.name=Fixture', '-c',
+        path = tmp_path/name; path.parent.mkdir(parents=True, exist_ok=True); path.write_bytes(text.encode())
+    for args in (['init'], ['config', 'core.autocrlf', 'false'], ['add', '.'], ['-c', 'user.name=Fixture', '-c',
             'user.email=fixture@example.invalid', 'commit', '-m', 'fixture']):
         subprocess.run(['git', *args], cwd=tmp_path, capture_output=True, check=True)
     base = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=tmp_path, text=True).strip()
@@ -85,7 +85,7 @@ def wiki_update(tmp_path, monkeypatch):
     for name, text in {'Home.md':'Old portal\n', 'Historical-Home.md':'Historical text\n',
                        'Matrix-Class.md':'Historical mathematics\n'}.items():
         (wiki/name).write_text(text)
-    for args in (['init'], ['add', '.'], ['-c', 'user.name=Fixture', '-c',
+    for args in (['init'], ['config', 'core.autocrlf', 'false'], ['add', '.'], ['-c', 'user.name=Fixture', '-c',
             'user.email=fixture@example.invalid', 'commit', '-m', 'fixture']):
         subprocess.run(['git', *args], cwd=wiki, capture_output=True, check=True)
     package = tmp_path/'package'; pages = package/'pages'; pages.mkdir(parents=True)

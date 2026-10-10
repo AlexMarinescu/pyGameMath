@@ -74,6 +74,19 @@ def check_scope():
     current = subprocess.check_output(['git', 'ls-files', '--cached', '--others',
         '--exclude-standard'], cwd=ROOT, text=True).splitlines()
     additions = {name for name in current if protected(name)}-originals
+    ci_reviewed = {}
+    ci_manifest = ROOT/'tools/phase5b-ci-scope.json'
+    if ci_manifest.exists():
+        ci_scope = json.loads(ci_manifest.read_text())
+        if ci_scope['base'] != BASE:
+            raise ValueError('CI scope baseline mismatch')
+        ci_reviewed = ci_scope['files']
+        if set(ci_reviewed)-{'tests/test_documentation_overhaul.py',
+                             'tests/test_release_packaging.py', 'benchmarks/run_core.py'}:
+            raise ValueError('mathematics cannot be exempted by CI scope')
+        for name, digest in ci_reviewed.items():
+            if hashlib.sha256((ROOT/name).read_bytes()).hexdigest() != digest:
+                raise ValueError('unreviewed CI portability change: '+name)
     reviewed = {}
     manifest = ROOT/'tools/phase5a-packaging-scope.json'
     if manifest.exists():
@@ -88,7 +101,7 @@ def check_scope():
         if set(reviewed)-permitted:
             raise ValueError('mathematics cannot be exempted by packaging scope')
         for name, digest in reviewed.items():
-            if hashlib.sha256((ROOT/name).read_bytes()).hexdigest() != digest:
+            if name not in ci_reviewed and hashlib.sha256((ROOT/name).read_bytes()).hexdigest() != digest:
                 raise ValueError('unreviewed packaging change: '+name)
     allowed = {'tests/test_documentation_overhaul.py',
                'tests/test_release_workflows.py'} | set(reviewed)
@@ -97,12 +110,13 @@ def check_scope():
     fingerprint = hashlib.sha256()
     for name in sorted(originals):
         content = (ROOT/name).read_bytes()
-        if name not in reviewed and content != subprocess.check_output(['git', 'show', BASE+':'+name], cwd=ROOT):
+        if name not in reviewed and name not in ci_reviewed and content != subprocess.check_output(['git', 'show', BASE+':'+name], cwd=ROOT):
             raise ValueError('out-of-scope modification: '+name)
         fingerprint.update(name.encode()); fingerprint.update(content)
-    return {'protected_files_unchanged': len(originals-set(reviewed)),
+    return {'protected_files_unchanged': len(originals-set(reviewed)-set(ci_reviewed)),
             'protected_sha256': fingerprint.hexdigest(),
             'new_documentation_test_modules': sorted(additions),
+            'reviewed_ci_files': sorted(ci_reviewed),
             'reviewed_packaging_files': sorted(reviewed)}
 
 
