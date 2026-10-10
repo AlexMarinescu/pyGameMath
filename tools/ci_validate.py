@@ -69,7 +69,7 @@ def run(output_dir, artifacts_dir, offline=False, wheelhouse=None):
         report['installed']={}
         for kind,artifact in [('wheel',wheel),('sdist',sdist)]:
             target=output_dir/(kind+'-environment')
-            venv.EnvBuilder(with_pip=True).create(target)
+            venv.EnvBuilder(with_pip=True,symlinks=os.name!='nt').create(target)
             executable=environment_python(target)
             # Build tools are deliberately separate from gem's runtime dependency.
             setup=[executable,'-m','pip','install','six==1.17.0','setuptools==80.9.0','wheel==0.48.0']

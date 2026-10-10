@@ -135,6 +135,7 @@ nav:
       - Release status: development/releases.md
       - Packaging and Python support: development/packaging.md
       - CI and release safeguards: development/ci-release.md
+      - Prepared 1.0.0 release notes: development/release-notes-1.0.0.md
       - Verification workflow: development/verification.md
       - Documentation build: development/website.md
       - Stack and licensing: development/documentation-stack.md
