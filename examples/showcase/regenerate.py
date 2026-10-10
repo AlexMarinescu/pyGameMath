@@ -4,7 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 from .scenes import SCENES
-from .verify import check_numerics, check_svg
+from .verify import check_numerics, check_svg, check_artifact
 
 
 def generate():
@@ -34,8 +34,10 @@ def main(argv=None):
     for name, payload in artifacts.items():
         destination = args.output_dir/name
         if args.verify:
-            if destination.read_bytes() != payload:
-                raise SystemExit('artifact mismatch: '+str(destination))
+            try:
+                check_artifact(name, destination.read_bytes(), payload)
+            except (AssertionError, ValueError, KeyError, TypeError, IndexError) as error:
+                raise SystemExit('artifact mismatch: '+str(destination)) from error
         else:
             destination.write_bytes(payload)
         print(('verified ' if args.verify else 'wrote ')+str(destination)+' ('+str(len(payload))+' bytes)')

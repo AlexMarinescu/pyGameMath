@@ -264,3 +264,15 @@ def test_candidate_integrity_rejects_tampering(tmp_path, monkeypatch, case, reas
                         lambda argv, **kwargs: (tree if argv[-1] == 'HEAD^{tree}' else SHA) + '\n')
     with pytest.raises(ValueError, match=reason):
         gate.verify_artifacts(tmp_path, SHA, 'v1.0.0')
+
+
+def test_candidate_scope_cannot_exempt_runtime(tmp_path, monkeypatch):
+    import json
+    checker = load('check_architecture_docs')
+    monkeypatch.setattr(checker, 'ROOT', tmp_path)
+    monkeypatch.setattr(checker.subprocess, 'check_output', lambda *args, **kwargs: '')
+    (tmp_path/'tools').mkdir()
+    (tmp_path/'tools/phase5c-reference-scope.json').write_text(json.dumps({
+        'base': checker.BASE, 'files': {'gem/quaternion.py': 'unauthorized'}}))
+    with pytest.raises(ValueError, match='mathematics cannot be exempted'):
+        checker.check_scope()
