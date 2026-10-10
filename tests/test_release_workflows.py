@@ -55,8 +55,9 @@ def test_reject_unapproved_candidate(commit, version, tag, mode):
 
 def protected_environment():
     return dict(name=gate.ENVIRONMENT, can_admins_bypass=False,
-                protection_rules=[dict(type='required_reviewers', reviewers=[{'id': 1}],
-                                       prevent_self_review=True)],
+                protection_rules=[dict(type='required_reviewers',
+                    reviewers=[{'type':'User', 'reviewer':{'id':gate.MAINTAINER_ID, 'login':gate.MAINTAINER_LOGIN}}],
+                    prevent_self_review=False)],
                 deployment_branch_policy=dict(protected_branches=True,
                                               custom_branch_policies=False))
 
@@ -67,7 +68,7 @@ def test_review_requires_server_side_protection(defect):
     branch = {'protected': True}
     assert gate.verify_review_configuration(environment, branch)['required_reviewers']
     if defect == 'reviewers': environment['protection_rules'][0]['reviewers'] = []
-    if defect == 'self_review': environment['protection_rules'][0]['prevent_self_review'] = False
+    if defect == 'self_review': environment['protection_rules'][0]['prevent_self_review'] = True
     if defect == 'bypass': environment['can_admins_bypass'] = True
     if defect == 'branches': environment['deployment_branch_policy']['protected_branches'] = False
     if defect == 'protection': branch['protected'] = False
@@ -156,7 +157,8 @@ def test_github_publication_requires_canonical_context():
                                         ('head_branch', 'topic'), ('conclusion', 'failure'),
                                         ('status', 'in_progress'), ('path', 'other.yml')])
 def test_github_release_requires_exact_successful_candidate_run(field, value):
-    run = dict(id=123, repository={'full_name': gate.REPOSITORY},
+    run = dict(id=123, actor={'login':gate.MAINTAINER_LOGIN,'id':gate.MAINTAINER_ID},
+               triggering_actor={'login':gate.MAINTAINER_LOGIN,'id':gate.MAINTAINER_ID}, repository={'full_name': gate.REPOSITORY},
                path='.github/workflows/release-validation.yml', event='workflow_dispatch',
                head_branch='master', head_sha=SHA, status='completed', conclusion='success')
     release.validate_run(run, SHA, '123')
@@ -175,13 +177,16 @@ def test_release_execution_uses_exact_assets_and_no_dry_run_mutation(tmp_path, m
     import json
     import urllib.error
     event = tmp_path / 'event.json'
-    event.write_text(json.dumps({'repository': {'fork': False}}))
+    event.write_text(json.dumps({'repository': {'fork': False},
+        'sender': {'login':gate.MAINTAINER_LOGIN,'id':gate.MAINTAINER_ID}}))
     for key, value in {'GITHUB_EVENT_PATH': str(event), 'GITHUB_EVENT_NAME': 'workflow_dispatch',
                        'GITHUB_REPOSITORY': gate.REPOSITORY, 'GITHUB_REF': 'refs/heads/master',
-                       'GITHUB_SHA': SHA, 'RELEASE_ENABLED': 'true',
+                       'GITHUB_SHA': SHA, 'GITHUB_ACTOR':gate.MAINTAINER_LOGIN,
+                       'GITHUB_TRIGGERING_ACTOR':gate.MAINTAINER_LOGIN, 'RELEASE_ENABLED': 'true',
                        'OWNER_AUTHORIZATION': 'publish v1.0.0'}.items():
         monkeypatch.setenv(key, value)
-    run = dict(id=123, repository={'full_name': gate.REPOSITORY},
+    run = dict(id=123, actor={'login':gate.MAINTAINER_LOGIN,'id':gate.MAINTAINER_ID},
+               triggering_actor={'login':gate.MAINTAINER_LOGIN,'id':gate.MAINTAINER_ID}, repository={'full_name': gate.REPOSITORY},
                path='.github/workflows/release-validation.yml', event='workflow_dispatch',
                head_branch='master', head_sha=SHA, status='completed', conclusion='success')
     def get(path):
@@ -289,3 +294,76 @@ def test_canonical_artifact_matrix_cannot_bypass_validation(change):
     else: job['strategy']['matrix']['python'] = ['3.12']
     with pytest.raises(ValueError, match='canonical'):
         workflows.validate(data)
+
+
+@pytest.mark.parametrize('field,value', [('actor','other'), ('triggering_actor','other'),
+                                        ('actor',None), ('triggering_actor',None)])
+def test_solo_dispatch_rejects_other_or_missing_actor(field, value):
+    context = dict(CONTEXT, actor=gate.MAINTAINER_LOGIN, triggering_actor=gate.MAINTAINER_LOGIN)
+    sender = {'login':gate.MAINTAINER_LOGIN,'id':gate.MAINTAINER_ID}
+    assert gate.verify_dispatch_actor(context,sender)['maintainer_id']==955100
+    context[field]=value
+    with pytest.raises(ValueError): gate.verify_dispatch_actor(context,sender)
+
+
+@pytest.mark.parametrize('sender', [{}, {'login':'other','id':955100},
+    {'login':'AlexMarinescu','id':123}, {'login':'AlexMarinescu','id':'955100'}])
+def test_solo_dispatch_checks_immutable_account_identity(sender):
+    context=dict(CONTEXT,actor=gate.MAINTAINER_LOGIN,triggering_actor=gate.MAINTAINER_LOGIN)
+    with pytest.raises(ValueError): gate.verify_dispatch_actor(context,sender)
+
+
+@pytest.mark.parametrize('defect', ['team', 'other', 'extra', 'missing', 'name'])
+def test_environment_accepts_only_sole_maintainer_reviewer(defect):
+    environment=protected_environment()
+    result=gate.verify_review_configuration(environment,{'protected':True})
+    assert result['prevent_self_review'] is False
+    reviewers=environment['protection_rules'][0]['reviewers']
+    if defect=='team': reviewers[0]['type']='Team'
+    elif defect=='other': reviewers[0]['reviewer']['id']=123
+    elif defect=='extra': reviewers.append(copy.deepcopy(reviewers[0]))
+    elif defect=='missing': environment['protection_rules']=[]
+    else: environment['name']='other-environment'
+    with pytest.raises(ValueError): gate.verify_review_configuration(environment,{'protected':True})
+
+
+@pytest.mark.parametrize('field', ['actor','triggering_actor'])
+def test_candidate_run_rejects_other_dispatch_or_rerun_account(field):
+    run=dict(id=123,actor={'login':gate.MAINTAINER_LOGIN,'id':gate.MAINTAINER_ID},
+        triggering_actor={'login':gate.MAINTAINER_LOGIN,'id':gate.MAINTAINER_ID},
+        repository={'full_name':gate.REPOSITORY},path='.github/workflows/release-validation.yml',
+        event='workflow_dispatch',head_branch='master',head_sha=SHA,status='completed',conclusion='success')
+    release.validate_run(run,SHA,'123')
+    run[field]['id']=123
+    with pytest.raises(ValueError): release.validate_run(run,SHA,'123')
+
+
+@pytest.mark.parametrize('workflow,job', [('release-validation.yml','preflight'),
+    ('github-release.yml','validate'), ('github-release.yml','publish')])
+def test_owner_workflow_guard_cannot_be_removed(workflow,job):
+    data=workflows.load_workflows()
+    data[workflow]['jobs'][job]['if']=data[workflow]['jobs'][job]['if'].replace(
+        " && github.triggering_actor == 'AlexMarinescu'", '')
+    with pytest.raises(ValueError): workflows.validate(data)
+
+
+@pytest.mark.parametrize('defect', ['sender', 'actor', 'rerun'])
+def test_unauthorized_publish_stops_before_network_or_mutation(tmp_path,monkeypatch,defect):
+    import json
+    sender={'login':gate.MAINTAINER_LOGIN,'id':gate.MAINTAINER_ID}
+    actors={'GITHUB_ACTOR':gate.MAINTAINER_LOGIN,'GITHUB_TRIGGERING_ACTOR':gate.MAINTAINER_LOGIN}
+    if defect=='sender': sender['id']=123
+    elif defect=='actor': actors['GITHUB_ACTOR']='other'
+    else: actors['GITHUB_TRIGGERING_ACTOR']='other'
+    event=tmp_path/'event.json'
+    event.write_text(json.dumps({'repository':{'fork':False},'sender':sender}))
+    for key,value in dict(actors,GITHUB_EVENT_PATH=str(event),GITHUB_EVENT_NAME='workflow_dispatch',
+        GITHUB_REPOSITORY=gate.REPOSITORY,GITHUB_REF='refs/heads/master',GITHUB_SHA=SHA,
+        RELEASE_ENABLED='true',OWNER_AUTHORIZATION='publish v1.0.0').items():monkeypatch.setenv(key,value)
+    def forbidden(*args,**kwargs):raise AssertionError('unauthorized dispatch reached external operation')
+    monkeypatch.setattr(release.gate,'github_get',forbidden)
+    monkeypatch.setattr(release.subprocess,'run',forbidden)
+    monkeypatch.setattr('sys.argv',['github_release.py','--directory',str(tmp_path),'--commit',SHA,
+        '--run-id','123','--mode','publish','--output',str(tmp_path/'result.json')])
+    with pytest.raises(ValueError):release.main()
+    assert not (tmp_path/'result.json').exists()

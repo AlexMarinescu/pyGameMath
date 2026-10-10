@@ -26,7 +26,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   validate:
-    if: github.repository == 'AlexMarinescu/pyGameMath' && github.ref == 'refs/heads/master' && github.event_name == 'workflow_dispatch'
+    if: github.repository == 'AlexMarinescu/pyGameMath' && github.ref == 'refs/heads/master' && github.event_name == 'workflow_dispatch' && github.actor == 'AlexMarinescu' && github.triggering_actor == 'AlexMarinescu'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -54,7 +54,7 @@ jobs:
           VALIDATION_RUN: ${{ inputs.validation_run_id }}
           GITHUB_TOKEN: ${{ github.token }}
   publish:
-    if: inputs.mode == 'publish' && vars.GEM_RELEASE_ENABLED == 'true' && inputs.owner_authorization == 'publish v1.0.0'
+    if: inputs.mode == 'publish' && vars.GEM_RELEASE_ENABLED == 'true' && inputs.owner_authorization == 'publish v1.0.0' && github.actor == 'AlexMarinescu' && github.triggering_actor == 'AlexMarinescu'
     needs: validate
     environment: gem-release-review
     runs-on: ubuntu-latest
@@ -77,7 +77,7 @@ jobs:
           github-token: ${{ github.token }}
           path: ${{ runner.temp }}/gem-candidate
           digest-mismatch: error
-      - name: Publish only after explicit owner authorization and protected approval
+      - name: Publish only after explicit owner authorization and protected maintainer self-approval
         run: python tools/github_release.py --directory "${{ runner.temp }}/gem-candidate" --commit "$CANDIDATE_COMMIT" --run-id "$VALIDATION_RUN" --mode publish --output github-release-publication.json
         env:
           CANDIDATE_COMMIT: ${{ inputs.commit_sha }}

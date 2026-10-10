@@ -41,14 +41,15 @@ same commit. Forks and other branches cannot enter candidate validation.
 `validate` runs the complete matrix and verifies the resulting candidate bundle.
 `review` additionally requires the `gem-release-review` environment to have:
 
-- Required human reviewers with self-review prevented.
+- Required reviewer: `AlexMarinescu` alone (GitHub user ID `955100`).
+- **Prevent self-review disabled**, so the sole maintainer can approve their own run.
 - Administrative approval bypass disabled.
 - Deployment limited to protected branches, with master protected server-side.
 
 Configure these protections in repository settings before using review mode.
 The preflight reads and validates the server configuration; a missing or
 inaccessible protection fails closed. It does not create an environment or
-change repository settings. Human approval occurs only after the matrix and
+change repository settings. Maintainer self-approval occurs only after the matrix and
 artifact integrity checks pass. Approval still enables **no publication**.
 
 Candidate artifacts contain the wheel, sdist, `SHA256SUMS`, installation instructions
@@ -111,7 +112,7 @@ Preserve official assets durably once released.
 Phase 5B tests preparation only. Phase 5C performs final validation. In Phase 5D,
 separate explicit owner authorization must precede setting repository variable
 `GEM_RELEASE_ENABLED=true` and dispatching mode `publish` with the exact
-phrase `publish v1.0.0`. The protected environment requires human approval.
+phrase `publish v1.0.0`. The protected environment requires explicit maintainer self-approval.
 Only this publish job has contents-write permission. It rechecks provenance and
 protections before creating the tag/release at the exact reviewed commit and
 attaching the original archives, checksums and installation instructions.
@@ -122,3 +123,31 @@ release. If a future authorized upload fails partway, inspect the existing
 release/tag and assets before any recovery; this workflow refuses overwrites.
 Never silently replace official artifacts. PyPI remains separately disabled,
 regardless of GitHub publication approval.
+
+
+## Solo-maintainer release approval
+
+Release dispatches and reruns are restricted to `AlexMarinescu` (GitHub user ID
+`955100`). The workflow checks both initiating and triggering actor names;
+preflight and the publisher also verify the event sender's immutable account ID.
+Candidate validation-run provenance must identify that same account for both
+actors. Missing or mismatched identity fails closed in validation and publication.
+A changed maintainer account requires a reviewed code change, not a workflow input.
+
+In **Settings → Environments → gem-release-review**, set the required reviewer to
+`AlexMarinescu` alone, turn **Prevent self-review off**, disable administrator
+bypass, and retain deployment restrictions to protected branches. Master must
+remain protected. These settings are checked by the workflow; this change does
+not update repository settings automatically. No second account is required.
+
+The approval is a separate deliberate action after candidate validation, not an
+independent-person review. The owner reviews the exact commit, successful manual
+validation run, candidate manifest and checksum listing before approving the job.
+Keep the release-enable variable unset/false until separately authorizing
+publication. Mode `publish`, the exact phrase `publish v1.0.0`, the enable switch,
+master-only dispatch, successful full CI, matching artifact hashes, protected
+self-approval and tag/release checks must all pass. A dry run still cannot publish.
+
+Account security (including GitHub two-factor authentication) remains essential:
+this model protects against accidental publication and other dispatch identities,
+not compromise of the sole maintainer account. PyPI publishing stays disabled.

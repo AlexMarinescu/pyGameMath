@@ -14,6 +14,8 @@ spec.loader.exec_module(gate)
 
 
 def validate_run(run, commit, run_id):
+    gate.verify_maintainer_identity(run.get('actor', {}))
+    gate.verify_maintainer_identity(run.get('triggering_actor', {}))
     gate.require(str(run.get('id')) == str(run_id), 'validation run ID mismatch')
     gate.require(run.get('repository', {}).get('full_name') == gate.REPOSITORY,
                  'candidate run must belong to canonical repository')
@@ -59,8 +61,9 @@ def main():
     args = parser.parse_args()
     event = json.loads(Path(os.environ['GITHUB_EVENT_PATH']).read_text(encoding='utf-8'))
     context = {name: os.environ.get('GITHUB_' + name.upper())
-               for name in ('event_name', 'repository', 'ref', 'sha')}
+               for name in ('event_name', 'repository', 'ref', 'sha', 'actor', 'triggering_actor')}
     context['fork'] = event.get('repository', {}).get('fork', True)
+    authorization = gate.verify_dispatch_actor(context, event.get('sender', {}))
     validate_publication(context, os.environ.get('RELEASE_ENABLED'),
                          os.environ.get('OWNER_AUTHORIZATION'), args.mode)
     gate.require(args.commit == context['sha'], 'release must match final dispatched master commit')
@@ -71,7 +74,7 @@ def main():
         gate.github_get('environments/' + gate.ENVIRONMENT), gate.github_get('branches/master'))
     gate.preflight(context, args.commit, gate.VERSION, gate.TAG, 'review')
     result = gate.verify_artifacts(args.directory, args.commit, gate.TAG)
-    result.update(mode=args.mode, validation_run_id=args.run_id, protection=protection,
+    result.update(authorization=authorization, mode=args.mode, validation_run_id=args.run_id, protection=protection,
                   github_publication_enabled=args.mode == 'publish', pypi_publication_enabled=False)
     # A release is immutable by policy: never overwrite assets or reuse a published release.
     try:

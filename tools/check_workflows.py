@@ -108,7 +108,7 @@ def validate(workflows):
     require(inputs['mode']['options']==['validate','review'] and inputs['mode']['default']=='validate',
             'publication mode is forbidden')
     require(inputs['version']['default']=='1.0.0' and inputs['tag']['default']=='v1.0.0','exact version/tag defaults required')
-    guard="github.repository == 'AlexMarinescu/pyGameMath' && github.ref == 'refs/heads/master' && github.event_name == 'workflow_dispatch'"
+    guard="github.repository == 'AlexMarinescu/pyGameMath' && github.ref == 'refs/heads/master' && github.event_name == 'workflow_dispatch' && github.actor == 'AlexMarinescu' && github.triggering_actor == 'AlexMarinescu'"
     jobs=release['jobs'];require(jobs['preflight']['if']==guard,'release source/event guard changed')
     require(jobs['validation']['needs']=='preflight' and jobs['validation']['uses']=='./.github/workflows/package-validation.yml',
             'release must reuse packaging checks after preflight')
@@ -121,8 +121,8 @@ def validate(workflows):
     gjobs=github_release['jobs']
     require(gjobs['validate']['if']==guard,'GitHub release source/event guard changed')
     require(gjobs['publish']['needs']=='validate' and gjobs['publish']['environment']=='gem-release-review',
-            'GitHub release protected approval bypass')
-    require(gjobs['publish']['if']=="inputs.mode == 'publish' && vars.GEM_RELEASE_ENABLED == 'true' && inputs.owner_authorization == 'publish v1.0.0'",
+            'GitHub release protected maintainer self-approval bypass')
+    require(gjobs['publish']['if']=="inputs.mode == 'publish' && vars.GEM_RELEASE_ENABLED == 'true' && inputs.owner_authorization == 'publish v1.0.0' && github.actor == 'AlexMarinescu' && github.triggering_actor == 'AlexMarinescu'",
             'GitHub publication requires explicit enablement and authorization')
     require(github_release['on']['workflow_dispatch']['inputs']['mode']['default']=='validate',
             'GitHub release must default to dry validation')
