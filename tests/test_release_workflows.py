@@ -234,3 +234,33 @@ def test_remote_release_tag_must_resolve_to_approved_commit(monkeypatch, kind):
     monkeypatch.setattr(release.gate, 'github_get', get)
     with pytest.raises(ValueError, match='another commit'):
         release.remote_tag_matches(SHA)
+
+
+@pytest.mark.parametrize('case,reason', [
+    ('extra_file', 'candidate bundle'), ('dirty_source', 'dirty source'),
+    ('wrong_commit', 'source commit'), ('wrong_tree', 'checkout/tree'),
+    ('wrong_version', 'version/tag'), ('digest', 'digest mismatch'),
+    ('checksums', 'checksum file'), ('empty_instructions', 'instructions missing')])
+def test_candidate_integrity_rejects_tampering(tmp_path, monkeypatch, case, reason):
+    import hashlib
+    import json
+    tree = 'c' * 40
+    files = {name: hashlib.sha256(name.encode()).hexdigest() for name in gate.FILES}
+    manifest = dict(schema_version=1, distribution='gem', version='1.0.0', tag='v1.0.0',
+                    source_commit=SHA, source_tree=tree, source_clean=True, files=files)
+    for name in files: (tmp_path / name).write_bytes(name.encode())
+    (tmp_path / 'SHA256SUMS').write_text(''.join(d + '  ' + n + '\n' for n, d in sorted(files.items())))
+    (tmp_path / 'INSTALL.md').write_text('Installation instructions')
+    if case == 'extra_file': (tmp_path / 'extra.txt').write_text('unexpected')
+    if case == 'dirty_source': manifest['source_clean'] = False
+    if case == 'wrong_commit': manifest['source_commit'] = 'b' * 40
+    if case == 'wrong_tree': manifest['source_tree'] = 'b' * 40
+    if case == 'wrong_version': manifest['version'] = '1.0.1'
+    if case == 'digest': files[next(iter(files))] = '0' * 64
+    if case == 'checksums': (tmp_path / 'SHA256SUMS').write_text('wrong')
+    if case == 'empty_instructions': (tmp_path / 'INSTALL.md').write_text('')
+    (tmp_path / 'candidate-manifest.json').write_text(json.dumps(manifest))
+    monkeypatch.setattr(gate.subprocess, 'check_output',
+                        lambda argv, **kwargs: (tree if argv[-1] == 'HEAD^{tree}' else SHA) + '\n')
+    with pytest.raises(ValueError, match=reason):
+        gate.verify_artifacts(tmp_path, SHA, 'v1.0.0')
