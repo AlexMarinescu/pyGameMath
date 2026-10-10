@@ -64,7 +64,7 @@ def check_scope():
     Runtime mathematics remains frozen; arbitrary additions remain rejected.
     """
     paths = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', BASE],
-                                    cwd=ROOT, text=True).splitlines()
+                                    cwd=ROOT, text=True, encoding='utf-8').splitlines()
     def protected(name):
         return name.startswith(('gem/', 'tests/', 'examples/', 'benchmarks/')) or name in (
             'setup.py', 'setup.cfg', 'MANIFEST.in', 'LICENSE', 'README.rst',
@@ -72,7 +72,7 @@ def check_scope():
             '.travis.yml')
     originals = {name for name in paths if protected(name)}
     current = subprocess.check_output(['git', 'ls-files', '--cached', '--others',
-        '--exclude-standard'], cwd=ROOT, text=True).splitlines()
+        '--exclude-standard'], cwd=ROOT, text=True, encoding='utf-8').splitlines()
     additions = {name for name in current if protected(name)}-originals
     ci_reviewed = {}
     ci_manifest = ROOT/'tools/phase5b-ci-scope.json'
@@ -123,12 +123,12 @@ def check_scope():
 def preserve_learning_material(pages):
     """Keep every baseline executable block in order, permitting comments only."""
     baseline = set(subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', BASE],
-                                         cwd=ROOT, text=True).splitlines())
+                                         cwd=ROOT, text=True, encoding='utf-8').splitlines())
     blocks = tutorials = old_anchors = 0
     for name in pages:
         if name not in baseline:
             continue
-        previous = subprocess.check_output(['git', 'show', BASE+':'+name], cwd=ROOT, text=True)
+        previous = subprocess.check_output(['git', 'show', BASE+':'+name], cwd=ROOT, text=True, encoding='utf-8')
         current = (ROOT/name).read_text(encoding='utf-8')
         required = anchors(re.sub(r'```.*?```', '', previous, flags=re.DOTALL))
         present = anchors(re.sub(r'```.*?```', '', current, flags=re.DOTALL))

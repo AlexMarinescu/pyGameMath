@@ -89,9 +89,9 @@ def run(output_dir, artifacts_dir, offline=False, wheelhouse=None):
             command(install,kind+'-install',cwd=output_dir)
             site=subprocess.check_output([str(executable),'-I','-c',
                 'import sysconfig; print(sysconfig.get_path("purelib"))'],text=True,cwd=output_dir).strip()
-            command([executable,'-I',ROOT/'tools/verify_distribution.py','--installed-root',site,
+            command([executable,'-I','-X','utf8',ROOT/'tools/verify_distribution.py','--installed-root',site,
                      '--output',output_dir/(kind+'-smoke.json')],kind+'-smoke',cwd=output_dir)
-            command([executable,'-I',ROOT/'tools/check_architecture_docs.py',*DOC_FLAGS,'--package-root',site,
+            command([executable,'-I','-X','utf8',ROOT/'tools/check_architecture_docs.py',*DOC_FLAGS,'--package-root',site,
                      '--output',output_dir/(kind+'-docs.json')],kind+'-docs',cwd=output_dir)
             docs=read(kind+'-docs.json')
             if docs['source_declarations_checked']!=268 or docs['examples_executed']!=43:
