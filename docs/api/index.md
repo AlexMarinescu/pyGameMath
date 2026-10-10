@@ -25,7 +25,7 @@ Alias rows identify actual targets rather than inventing annotated signatures.
 | Declaration/constant coverage, executable examples and evidence | [Coverage and verification](coverage.md) |
 
 Start with [installation and quick start](../getting-started/README.md) if new to
-gem. Import from modules, not the empty `gem` initializer. Matrix2/3/4 and
+gem. Import from modules, not the metadata-only `gem` initializer. Matrix2/3/4 and
 Vector2/3/4 denote dimensions of `Matrix`/`Vector`, not separate classes.
 
 Shared [conventions](../architecture/conventions.md),
@@ -35,6 +35,7 @@ Shared [conventions](../architecture/conventions.md),
 not a second policy. Future modules remain planned rather than importable.
 
 Core algorithms remain pure Python with six and standard-library integration.
-No optional renderer/native framework is needed for examples; verified interpreter
-is CPython 3.12/Linux, not a newly declared support matrix or Python 2.7 guarantee.
-The reference is source-tree Markdown; packaging/framework changes are separate.
+No optional renderer/native framework is needed for examples. Release preparation
+checks CPython 3.10–3.14 on Linux x86_64; see the
+[packaging guide](../development/packaging.md) for tested versions and limits.
+Python 2.7 is unsupported.

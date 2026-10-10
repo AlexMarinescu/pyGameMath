@@ -1,6 +1,7 @@
 # Current public API inventory
 
-Audited reference: master `dc418923c692b609a9fc611c66433e5950e0a321` after PR #38.
+Audited reference: master `15fbce64fa87008203890142070dbf30ea802ebc` after PR #60;
+Phase 5A changes version metadata only.
 Sources, retained reexports, tests and examples were inspected directly. The
 [declaration catalog](#source-declaration-catalog) lists every nonprivate declared
 core function/class method, constructors/operators and division aliases. It is an
@@ -17,13 +18,13 @@ imports such as math/six are not intended mathematical APIs.
 
 ## `gem` package
 
-[Source](../../gem/__init__.py): empty initializer. Import classes/functions from
+[Source](../../gem/__init__.py): metadata-only initializer exposing `gem.__version__`. Import classes/functions from
 their modules; there are no root-level Vector/Matrix exports, separate Vector2/3/4
 or Matrix2/3/4 classes. Numeric suffixes in discussion denote dimensions of the
 existing `Vector(size, data=None)` and `Matrix(size, data=None)` wrappers.
 Package names remain `gem` and transitional `gem.experimental`. Packaging/import
 tests: [test_core_packaging.py](../../tests/test_core_packaging.py). Version/support
-metadata is historical; see [compatibility](compatibility.md).
+metadata is described in the release-preparation policy; see [compatibility](compatibility.md).
 
 ## `gem.common` — scalar and interoperability utilities
 

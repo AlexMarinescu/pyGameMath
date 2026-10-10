@@ -153,9 +153,9 @@ and input/output contracts.
 ## Development status
 
 gem 1.0 is in preparation with its mathematical API feature scope frozen.
-Metadata still declares v0.1.12; the historical PyPI release does not contain
-these audited modernizations. Current verification uses CPython 3.12 on Linux;
-the release interpreter/platform policy remains under review.
+Version 1.0.0 is prepared but not published; historical PyPI 0.1.12 does not contain
+these audited modernizations. CPython 3.10–3.14 is tested on Linux x86_64.
+Other platforms and PyPy remain unverified; Python 2.7 is unsupported.
 
 See [compatibility](architecture/compatibility.md), [release information](development/releases.md)
 and the [canonical roadmap](../ROADMAP.md) for supported,

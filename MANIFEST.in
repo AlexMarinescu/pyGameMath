@@ -1,4 +1,16 @@
-include README.rst LICENSE .travis.yml .landscape.yaml setup.cfg setup.py
-prune gem/gem.egg-info
-include docs/EXPERIMENTAL_MIGRATION.md
-include docs/VECTOR_VIEWPORT_CONTRACTS.md
+include pyproject.toml setup.py setup.cfg README.md README.rst LICENSE mkdocs.yml
+include ROADMAP.md
+recursive-include audit *.md *.json *.py *.svg *.png
+recursive-include benchmarks *.py *.md *.json
+include requirements-build.txt
+exclude audit/phase5a-packaging-results.json
+include requirements-audit.txt requirements-docs.txt requirements-docs-browser.txt
+recursive-include docs *.md *.css *.js *.html *.svg *.png *.json
+recursive-include examples *.py *.md *.glsl *.json *.png *.svg
+recursive-include tests *.py
+recursive-include tools *.py
+prune build
+prune dist
+prune site
+prune gem.egg-info
+global-exclude __pycache__ *.py[cod] .DS_Store

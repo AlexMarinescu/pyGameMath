@@ -69,12 +69,12 @@ def test_clean_wheel_and_sdist_isolated_imports(tmp_path):
     source.mkdir()
     shutil.copytree(ROOT / 'gem', source / 'gem',
                     ignore=shutil.ignore_patterns('__pycache__', '*.pyc', '*.egg-info'))
-    for name in ('setup.py', 'setup.cfg', 'MANIFEST.in', 'README.rst', 'LICENSE'):
+    for name in ('pyproject.toml', 'setup.py', 'setup.cfg', 'MANIFEST.in', 'README.md', 'README.rst', 'LICENSE'):
         shutil.copy2(ROOT / name, source / name)
     (source / 'docs').mkdir()
     for guide in ('EXPERIMENTAL_MIGRATION.md', 'VECTOR_VIEWPORT_CONTRACTS.md'):
         shutil.copy2(ROOT / 'docs' / guide, source / 'docs')
-    build_python = os.environ.get('GEM_BUILD_PYTHON', sys._base_executable)
+    build_python = os.environ.get('GEM_BUILD_PYTHON', sys.executable)
     env = os.environ.copy()
     env.pop('PYTHONPATH', None)
     subprocess.run([build_python, 'setup.py', 'sdist', 'bdist_wheel'],

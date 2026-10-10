@@ -1,14 +1,15 @@
 # Release and development information
 
-The current repository package declaration is v0.1.12. The historical PyPI 0.1.12
-release predates the correctness audit, core promotions and documentation in this
-checkout. Install the [development source](../getting-started/installation.md) to
-use the documented modernizations. No new release has been published by this work.
+The prepared distribution version is **1.0.0**, from `gem._version.__version__`.
+It is not a published release. Historical PyPI 0.1.12 predates the current
+mathematics and documentation. Install the [source checkout](../getting-started/installation.md)
+to use the current implementation.
 
-The [canonical roadmap](../../ROADMAP.md) defines 1.0 preparation. Supported release
-interpreters/platforms, stability promises, transitional import removal and release
-packaging remain explicit review decisions. The verified development reference is
-CPython 3.12.14 on Linux x86_64, not a blanket support claim.
+The [packaging guide](packaging.md) describes the CPython 3.10–3.14 Linux test
+matrix, build commands, version policy and artifact contents. Historical package
+association is established; current PyPI maintainer authority and publishing
+credentials still need verification before any upload. No publishing workflow,
+release tag or ownership change is included.
 
 ## Change history
 

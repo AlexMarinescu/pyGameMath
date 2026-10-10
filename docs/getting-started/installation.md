@@ -1,9 +1,9 @@
 # Install current development code
 
 Distribution: **gem**. Import namespace: **gem**. Repository: **pyGameMath**.
-The current verified reference is CPython 3.12.14/Linux x86_64 with six 1.17.0.
-Use Python 3.12 for this reference workflow; this is not a new minimum-version
-declaration or verification of other interpreters.
+CPython 3.10–3.14 is tested on Linux x86_64 with six 1.17.0.
+The commands below use Python 3.12 as one tested example; the declared minimum
+is Python 3.10. Windows, macOS and PyPy remain unverified.
 
 ## Source installation
 
@@ -70,23 +70,23 @@ python -c "from gem.vector import Vector; print((Vector(3, [1, 2, 3]) + Vector(3
 ```
 
 The first command identifies the installed package location; the second prints
-`[5, 7, 9]`. `gem` has an empty package initializer: import `Vector` from
+`[5, 7, 9]`. `gem` exposes version metadata in its package initializer: import `Vector` from
 `gem.vector`, not `from gem import Vector`. Follow the
 [first mathematical examples](quick-start.md) once this check succeeds.
 
 ## Published package versus repository code
 
 The [PyPI project page](https://pypi.org/project/gem/) identifies Alex Marinescu's
-historical gem 0.1.12 release, uploaded June 21, 2017. Repository setup.py still
-declares v0.1.12 despite later correctness fixes and core promotions. Matching
-version strings therefore do not establish identical code.
+historical gem 0.1.12 release, uploaded June 21, 2017. The repository now prepares version 1.0.0 with the validated repairs and core
+promotions. That version has not been published; the historical package is not
+equivalent to current master.
 
 The published archive was installed separately on CPython 3.12 for a basic Vector
 import/addition smoke test. The canonical Bezier, Legendre and SH modules were absent;
 its mathematical correctness and current feature parity are not claimed. Use source
 installation for these examples rather than treating an unqualified PyPI install
-as current master. Packaging/version changes and publishing belong to later release
-engineering, not this documentation phase.
+as current master. Current PyPI maintainer authority remains a release blocker; no package upload
+is part of release preparation.
 
 Legacy classifiers for Python 2.7 and older Python 3 versions do not constitute
 test evidence. Read the [compatibility assessment](../architecture/compatibility.md)
@@ -94,9 +94,14 @@ for known Python 2.7 blockers and the unverified platform/interpreter matrix.
 
 ## Existing build configuration
 
-The repository still uses setup.py/setup.cfg and selected manifest entries.
-`README.md` is the modern GitHub landing page; `README.rst` remains the historical
-description file referenced by packaging. No packaging/dependency/license change
-is made. New getting-started pages and the source-tree HDR example are not promised
-to ship inside the wheel or sdist. Keep the checkout for documentation, tests,
-benchmarks and executable reference-example assets.
+The distribution name remains `gem`; the prepared version is 1.0.0 and is not
+published. Modern [pyproject.toml](../../pyproject.toml) metadata uses setuptools
+and retains both the canonical modules and transitional imports. CPython
+3.10–3.14 is tested on Linux x86_64. Python 2.7 and Python <3.10 are not supported;
+Windows, macOS and PyPy remain unverified. `six` is retained as the only runtime
+dependency and does not imply Python 2 compatibility.
+
+The wheel contains the runtime modules, distribution metadata and BSD license.
+The source distribution additionally includes documentation, tests, reference
+examples and build/verification tools. See the [packaging guide](../development/packaging.md)
+for exact build commands, version policy and the outstanding PyPI authority check.

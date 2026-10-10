@@ -3,8 +3,8 @@
 Install [current repository code](installation.md), then run these independent
 Python snippets using that environment. Each example is checked against an
 isolated installed wheel, with no source-tree gem imports, renderer or GPU.
-Examples use simple cross-version syntax; only the documented modern reference
-interpreter was executed. Python 2.7 compatibility does not follow from syntax.
+Examples are executed on CPython 3.10–3.14/Linux x86_64 against wheel and sdist
+installs. Python 2.7 is unsupported; see the [packaging guide](../development/packaging.md).
 
 ## Vectors and ownership
 

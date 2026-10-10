@@ -31,7 +31,7 @@ or unexpected failures, with performance safeguards separate from mathematical
 assertions. Passing tests do not settle every malformed/extreme input or confer
 a blanket stable API designation. Transitional experimental aliases remain;
 unfinished E07 shadow transport is removed with no replacement. The current
-package declaration is v0.1.12, not 1.0.
+prepared package version is 1.0.0; it is not published.
 
 ## Version 1.0 — Stable foundation
 
@@ -55,9 +55,9 @@ ownership regressions, binary32 export contracts and approximation limits.
 Use the versioned performance suite with manual review; never sacrifice numerical
 correctness to recover historical timings. Do not infer cross-machine speedups.
 
-**Python:** test chosen modern interpreters on real environments. Assess the
-deliberate Python 2.7 legacy target, source blockers and compatible tools before
-making support claims. Retain six until that decision is engineered and verified.
+**Python:** Phase 5A tests CPython 3.10–3.14/Linux x86_64. Verify other platforms
+and PyPy before advertising support; Python 2.7 is unsupported. Retain six for
+the existing compatibility helpers without inferring Python 2 support.
 
 **Applications/docs:** small transform/geometry examples, curve sampling and the
 existing headless HDR lighting pipeline. Provide reference pages for every intended
