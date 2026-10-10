@@ -1,5 +1,13 @@
 {
+  "schema": "gem-wiki-migration-v2",
+  "observed_tip": "400e42712494836ed016a155f2ab7202ae61ba0e",
   "files": {
+    "Home.md": "0ea53df8122b49ebb5db572bee446aa8c27f0cfd73e6fbc6b7a95436d2d95175",
+    "Documentation.md": "337b0c5ae11ffed60b159e0c0434fdae9aef7ce30be46363c96608a7423e9027",
+    "_Sidebar.md": "81b116effb3758a2a23754fa4d2cb8451725703f29dbd684b9a03b40f646a98d"
+  },
+  "observed_files": {
+    "Common-Functions.md": "9e3090de747039e678f865f7018fd61b508aeed7fb9d7c684f5aef44e74baaff",
     "Contributing.md": "2e38186d5a0619e1bf4003278eac2a6e676dd11cb0953df4d1df36639df82690",
     "Development-Roadmap.md": "3418b453542a4a69c71d8326448233cdd80f4f62595e2c755780992344834959",
     "Documentation.md": "f6cb7e6dbcb14bb5e26dcadf6dca491052b0331ab2e6babe804ade3a41d63b9d",
@@ -9,11 +17,22 @@
     "Historical-and-Legacy-Notes.md": "5fc8a6428c1413d94151c53f17603c15b713bb6dba497ba5b84d9b32d0b250a5",
     "Home.md": "bfa1ee2cedc3119fa35dd4a17dd4b4e2d73cacfef935357c5e2be3e9105c22e6",
     "Mathematical-Conventions.md": "46f8afc4c99028f896cc3667b61c857672203184e545015d1ad6b24c0f15a583",
+    "Matrix-Class.md": "f830ddb37d380a17b39aa73f8d889d53fc7f081c59e4f68b910d93bf8ec16648",
+    "Plane-Class.md": "9e3090de747039e678f865f7018fd61b508aeed7fb9d7c684f5aef44e74baaff",
+    "Quaternion-Class.md": "9e3090de747039e678f865f7018fd61b508aeed7fb9d7c684f5aef44e74baaff",
+    "Ray-Class.md": "9e3090de747039e678f865f7018fd61b508aeed7fb9d7c684f5aef44e74baaff",
+    "Vector-Class.md": "8490427ee318d00dc950ec4596f7188b366edeb0a1a002ef1d5712e46e45cc5e",
     "_Sidebar.md": "fc07ce528ef14b601b322a7cbeac64938a590e59389f71014f38033c4b46500c"
   },
-  "observed_tip": "715e5039c75e080814a12e957f5148c35cdf8bda",
   "preserve_existing": [
     "Common-Functions.md",
+    "Contributing.md",
+    "Development-Roadmap.md",
+    "Examples-and-Tutorials.md",
+    "Getting-Started.md",
+    "Historical-Home.md",
+    "Historical-and-Legacy-Notes.md",
+    "Mathematical-Conventions.md",
     "Matrix-Class.md",
     "Plane-Class.md",
     "Quaternion-Class.md",
@@ -21,5 +40,6 @@
     "Vector-Class.md"
   ],
   "published": false,
-  "schema": "gem-wiki-migration-v1"
+  "website_url_source": "GitHub repository homepage metadata; HTTPS GitHub Pages URL",
+  "live_website_check": "Blocked by environment HTTP proxy (CONNECT 403); local project-prefix build checked."
 }

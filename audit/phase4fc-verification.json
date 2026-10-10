@@ -1,0 +1,877 @@
+{
+  "schema": 1,
+  "phase": "4F-C",
+  "base": "3e714fe949b7a6b7724d5c0da3395ee92483265f",
+  "branch": "docs/phase4fc-visual-overhaul",
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "other_python_versions_verified": false
+  },
+  "tests": {
+    "focused": {
+      "passed": 15,
+      "failed": 0,
+      "xfail": 0,
+      "skipped": 0,
+      "errors": 0,
+      "total": 15,
+      "junit_sha256": "64cb5788c6b011bdedff159e38dfac42475ab15837540c514947acc1f39ccbde",
+      "elapsed_seconds": 0.421,
+      "new_documentation_tests": [
+        "tests.test_documentation_overhaul::test_existing_scope_modifications_rejected[gem/example.py]",
+        "tests.test_documentation_overhaul::test_existing_scope_modifications_rejected[setup.py]",
+        "tests.test_documentation_overhaul::test_existing_scope_modifications_rejected[tests/existing.py]",
+        "tests.test_documentation_overhaul::test_new_runtime_file_rejected",
+        "tests.test_documentation_overhaul::test_new_documentation_test_is_the_only_allowed_scoped_addition",
+        "tests.test_documentation_overhaul::test_comment_only_example_edit_preserves_ast",
+        "tests.test_documentation_overhaul::test_changed_or_removed_original_example_rejected[x = 2]",
+        "tests.test_documentation_overhaul::test_changed_or_removed_original_example_rejected[]",
+        "tests.test_documentation_overhaul::test_old_heading_anchor_requires_compatible_destination",
+        "tests.test_documentation_overhaul::test_reviewed_portal_update_preserves_history",
+        "tests.test_documentation_overhaul::test_portal_update_rejects_mismatches_before_writing[observed_files]",
+        "tests.test_documentation_overhaul::test_portal_update_rejects_mismatches_before_writing[files]"
+      ]
+    },
+    "full": {
+      "passed": 3959,
+      "failed": 0,
+      "xfail": 0,
+      "skipped": 0,
+      "errors": 0,
+      "total": 3959,
+      "junit_sha256": "a93fe5b725a93efbeea8272e930fa5c89e241cab568f7664b5ae41fede0c13a2",
+      "elapsed_seconds": 17.514,
+      "new_documentation_tests": [
+        "tests.test_documentation_overhaul::test_existing_scope_modifications_rejected[gem/example.py]",
+        "tests.test_documentation_overhaul::test_existing_scope_modifications_rejected[setup.py]",
+        "tests.test_documentation_overhaul::test_existing_scope_modifications_rejected[tests/existing.py]",
+        "tests.test_documentation_overhaul::test_new_runtime_file_rejected",
+        "tests.test_documentation_overhaul::test_new_documentation_test_is_the_only_allowed_scoped_addition",
+        "tests.test_documentation_overhaul::test_comment_only_example_edit_preserves_ast",
+        "tests.test_documentation_overhaul::test_changed_or_removed_original_example_rejected[x = 2]",
+        "tests.test_documentation_overhaul::test_changed_or_removed_original_example_rejected[]",
+        "tests.test_documentation_overhaul::test_old_heading_anchor_requires_compatible_destination",
+        "tests.test_documentation_overhaul::test_reviewed_portal_update_preserves_history",
+        "tests.test_documentation_overhaul::test_portal_update_rejects_mismatches_before_writing[observed_files]",
+        "tests.test_documentation_overhaul::test_portal_update_rejects_mismatches_before_writing[files]"
+      ]
+    }
+  },
+  "documentation": {
+    "source": {
+      "base": "3e714fe949b7a6b7724d5c0da3395ee92483265f",
+      "pages": [
+        "ROADMAP.md",
+        "docs/README.md",
+        "docs/development/roadmap.md",
+        "docs/development/verification.md",
+        "docs/architecture/philosophy.md",
+        "docs/architecture/conventions.md",
+        "docs/architecture/compatibility.md",
+        "docs/architecture/api-inventory.md",
+        "README.md",
+        "docs/getting-started/README.md",
+        "docs/getting-started/installation.md",
+        "docs/getting-started/quick-start.md",
+        "docs/getting-started/verification.md",
+        "docs/api/bezier.md",
+        "docs/api/common.md",
+        "docs/api/coverage.md",
+        "docs/api/decisions.md",
+        "docs/api/index.md",
+        "docs/api/legacy.md",
+        "docs/api/legendre.md",
+        "docs/api/matrix.md",
+        "docs/api/plane.md",
+        "docs/api/projection.md",
+        "docs/api/quaternion.md",
+        "docs/api/ray.md",
+        "docs/api/spherical-harmonics.md",
+        "docs/api/transformations.md",
+        "docs/api/vector.md",
+        "docs/tutorials/bezier.md",
+        "docs/tutorials/camera.md",
+        "docs/tutorials/decisions.md",
+        "docs/tutorials/geometry.md",
+        "docs/tutorials/index.md",
+        "docs/tutorials/interop.md",
+        "docs/tutorials/lighting.md",
+        "docs/tutorials/numerical.md",
+        "docs/tutorials/quaternions.md",
+        "docs/tutorials/transformations.md",
+        "docs/tutorials/vectors.md",
+        "docs/tutorials/verification.md",
+        "docs/examples/ASSET-MANIFEST.md",
+        "docs/examples/gallery/bezier.md",
+        "docs/examples/gallery/lighting.md",
+        "docs/examples/gallery/quaternions.md",
+        "docs/examples/gallery/transforms.md",
+        "docs/examples/gallery/vectors.md",
+        "docs/examples/index.md",
+        "docs/examples/verification.md",
+        "examples/showcase/README.md",
+        "docs/index.md",
+        "docs/architecture/notation.md",
+        "docs/wiki-migration/README.md",
+        "docs/development/documentation-stack.md",
+        "docs/development/contributing.md",
+        "docs/development/releases.md",
+        "docs/development/website.md",
+        "docs/development/website-verification.md",
+        "docs/development/wiki.md",
+        "docs/development/visual-overhaul.md"
+      ],
+      "links_checked": 603,
+      "source_declarations_checked": 268,
+      "examples_executed": 43,
+      "examples_by_page": {
+        "docs/architecture/conventions.md": 4,
+        "README.md": 1,
+        "docs/getting-started/quick-start.md": 7,
+        "docs/api/bezier.md": 1,
+        "docs/api/common.md": 1,
+        "docs/api/legacy.md": 1,
+        "docs/api/legendre.md": 1,
+        "docs/api/matrix.md": 1,
+        "docs/api/plane.md": 1,
+        "docs/api/projection.md": 1,
+        "docs/api/quaternion.md": 2,
+        "docs/api/ray.md": 1,
+        "docs/api/spherical-harmonics.md": 3,
+        "docs/api/transformations.md": 1,
+        "docs/api/vector.md": 2,
+        "docs/tutorials/bezier.md": 1,
+        "docs/tutorials/camera.md": 1,
+        "docs/tutorials/geometry.md": 2,
+        "docs/tutorials/interop.md": 1,
+        "docs/tutorials/lighting.md": 2,
+        "docs/tutorials/numerical.md": 2,
+        "docs/tutorials/quaternions.md": 2,
+        "docs/tutorials/transformations.md": 1,
+        "docs/tutorials/vectors.md": 1,
+        "docs/index.md": 1,
+        "docs/architecture/notation.md": 1
+      },
+      "api_reference": {
+        "declarations": 268,
+        "constants": 7,
+        "runtime_signatures_checked": true,
+        "omitted_declarations": []
+      },
+      "baseline_examples_preserved": 42,
+      "tutorials_preserved": 9,
+      "baseline_anchors_preserved": 219,
+      "protected_files_unchanged": 126,
+      "protected_sha256": "4217f1966bb50997ed08535fe104a45f12164c3c249c96e7cb098e965bed2b70",
+      "new_documentation_test_modules": [
+        "tests/test_documentation_overhaul.py"
+      ]
+    },
+    "wheel": {
+      "base": "3e714fe949b7a6b7724d5c0da3395ee92483265f",
+      "pages": [
+        "ROADMAP.md",
+        "docs/README.md",
+        "docs/development/roadmap.md",
+        "docs/development/verification.md",
+        "docs/architecture/philosophy.md",
+        "docs/architecture/conventions.md",
+        "docs/architecture/compatibility.md",
+        "docs/architecture/api-inventory.md",
+        "README.md",
+        "docs/getting-started/README.md",
+        "docs/getting-started/installation.md",
+        "docs/getting-started/quick-start.md",
+        "docs/getting-started/verification.md",
+        "docs/api/bezier.md",
+        "docs/api/common.md",
+        "docs/api/coverage.md",
+        "docs/api/decisions.md",
+        "docs/api/index.md",
+        "docs/api/legacy.md",
+        "docs/api/legendre.md",
+        "docs/api/matrix.md",
+        "docs/api/plane.md",
+        "docs/api/projection.md",
+        "docs/api/quaternion.md",
+        "docs/api/ray.md",
+        "docs/api/spherical-harmonics.md",
+        "docs/api/transformations.md",
+        "docs/api/vector.md",
+        "docs/tutorials/bezier.md",
+        "docs/tutorials/camera.md",
+        "docs/tutorials/decisions.md",
+        "docs/tutorials/geometry.md",
+        "docs/tutorials/index.md",
+        "docs/tutorials/interop.md",
+        "docs/tutorials/lighting.md",
+        "docs/tutorials/numerical.md",
+        "docs/tutorials/quaternions.md",
+        "docs/tutorials/transformations.md",
+        "docs/tutorials/vectors.md",
+        "docs/tutorials/verification.md",
+        "docs/examples/ASSET-MANIFEST.md",
+        "docs/examples/gallery/bezier.md",
+        "docs/examples/gallery/lighting.md",
+        "docs/examples/gallery/quaternions.md",
+        "docs/examples/gallery/transforms.md",
+        "docs/examples/gallery/vectors.md",
+        "docs/examples/index.md",
+        "docs/examples/verification.md",
+        "examples/showcase/README.md",
+        "docs/index.md",
+        "docs/architecture/notation.md",
+        "docs/wiki-migration/README.md",
+        "docs/development/documentation-stack.md",
+        "docs/development/contributing.md",
+        "docs/development/releases.md",
+        "docs/development/website.md",
+        "docs/development/website-verification.md",
+        "docs/development/wiki.md",
+        "docs/development/visual-overhaul.md"
+      ],
+      "links_checked": 603,
+      "source_declarations_checked": 268,
+      "examples_executed": 43,
+      "examples_by_page": {
+        "docs/architecture/conventions.md": 4,
+        "README.md": 1,
+        "docs/getting-started/quick-start.md": 7,
+        "docs/api/bezier.md": 1,
+        "docs/api/common.md": 1,
+        "docs/api/legacy.md": 1,
+        "docs/api/legendre.md": 1,
+        "docs/api/matrix.md": 1,
+        "docs/api/plane.md": 1,
+        "docs/api/projection.md": 1,
+        "docs/api/quaternion.md": 2,
+        "docs/api/ray.md": 1,
+        "docs/api/spherical-harmonics.md": 3,
+        "docs/api/transformations.md": 1,
+        "docs/api/vector.md": 2,
+        "docs/tutorials/bezier.md": 1,
+        "docs/tutorials/camera.md": 1,
+        "docs/tutorials/geometry.md": 2,
+        "docs/tutorials/interop.md": 1,
+        "docs/tutorials/lighting.md": 2,
+        "docs/tutorials/numerical.md": 2,
+        "docs/tutorials/quaternions.md": 2,
+        "docs/tutorials/transformations.md": 1,
+        "docs/tutorials/vectors.md": 1,
+        "docs/index.md": 1,
+        "docs/architecture/notation.md": 1
+      },
+      "example_package": "/tmp/phase4g5r-final-wheel-env/lib/python3.12/site-packages/gem/__init__.py",
+      "api_reference": {
+        "declarations": 268,
+        "constants": 7,
+        "runtime_signatures_checked": true,
+        "omitted_declarations": []
+      },
+      "baseline_examples_preserved": 42,
+      "tutorials_preserved": 9,
+      "baseline_anchors_preserved": 219,
+      "protected_files_unchanged": 126,
+      "protected_sha256": "4217f1966bb50997ed08535fe104a45f12164c3c249c96e7cb098e965bed2b70",
+      "new_documentation_test_modules": [
+        "tests/test_documentation_overhaul.py"
+      ]
+    },
+    "sdist": {
+      "base": "3e714fe949b7a6b7724d5c0da3395ee92483265f",
+      "pages": [
+        "ROADMAP.md",
+        "docs/README.md",
+        "docs/development/roadmap.md",
+        "docs/development/verification.md",
+        "docs/architecture/philosophy.md",
+        "docs/architecture/conventions.md",
+        "docs/architecture/compatibility.md",
+        "docs/architecture/api-inventory.md",
+        "README.md",
+        "docs/getting-started/README.md",
+        "docs/getting-started/installation.md",
+        "docs/getting-started/quick-start.md",
+        "docs/getting-started/verification.md",
+        "docs/api/bezier.md",
+        "docs/api/common.md",
+        "docs/api/coverage.md",
+        "docs/api/decisions.md",
+        "docs/api/index.md",
+        "docs/api/legacy.md",
+        "docs/api/legendre.md",
+        "docs/api/matrix.md",
+        "docs/api/plane.md",
+        "docs/api/projection.md",
+        "docs/api/quaternion.md",
+        "docs/api/ray.md",
+        "docs/api/spherical-harmonics.md",
+        "docs/api/transformations.md",
+        "docs/api/vector.md",
+        "docs/tutorials/bezier.md",
+        "docs/tutorials/camera.md",
+        "docs/tutorials/decisions.md",
+        "docs/tutorials/geometry.md",
+        "docs/tutorials/index.md",
+        "docs/tutorials/interop.md",
+        "docs/tutorials/lighting.md",
+        "docs/tutorials/numerical.md",
+        "docs/tutorials/quaternions.md",
+        "docs/tutorials/transformations.md",
+        "docs/tutorials/vectors.md",
+        "docs/tutorials/verification.md",
+        "docs/examples/ASSET-MANIFEST.md",
+        "docs/examples/gallery/bezier.md",
+        "docs/examples/gallery/lighting.md",
+        "docs/examples/gallery/quaternions.md",
+        "docs/examples/gallery/transforms.md",
+        "docs/examples/gallery/vectors.md",
+        "docs/examples/index.md",
+        "docs/examples/verification.md",
+        "examples/showcase/README.md",
+        "docs/index.md",
+        "docs/architecture/notation.md",
+        "docs/wiki-migration/README.md",
+        "docs/development/documentation-stack.md",
+        "docs/development/contributing.md",
+        "docs/development/releases.md",
+        "docs/development/website.md",
+        "docs/development/website-verification.md",
+        "docs/development/wiki.md",
+        "docs/development/visual-overhaul.md"
+      ],
+      "links_checked": 603,
+      "source_declarations_checked": 268,
+      "examples_executed": 43,
+      "examples_by_page": {
+        "docs/architecture/conventions.md": 4,
+        "README.md": 1,
+        "docs/getting-started/quick-start.md": 7,
+        "docs/api/bezier.md": 1,
+        "docs/api/common.md": 1,
+        "docs/api/legacy.md": 1,
+        "docs/api/legendre.md": 1,
+        "docs/api/matrix.md": 1,
+        "docs/api/plane.md": 1,
+        "docs/api/projection.md": 1,
+        "docs/api/quaternion.md": 2,
+        "docs/api/ray.md": 1,
+        "docs/api/spherical-harmonics.md": 3,
+        "docs/api/transformations.md": 1,
+        "docs/api/vector.md": 2,
+        "docs/tutorials/bezier.md": 1,
+        "docs/tutorials/camera.md": 1,
+        "docs/tutorials/geometry.md": 2,
+        "docs/tutorials/interop.md": 1,
+        "docs/tutorials/lighting.md": 2,
+        "docs/tutorials/numerical.md": 2,
+        "docs/tutorials/quaternions.md": 2,
+        "docs/tutorials/transformations.md": 1,
+        "docs/tutorials/vectors.md": 1,
+        "docs/index.md": 1,
+        "docs/architecture/notation.md": 1
+      },
+      "example_package": "/tmp/phase4g5r-final-sdist-env/lib/python3.12/site-packages/gem/__init__.py",
+      "api_reference": {
+        "declarations": 268,
+        "constants": 7,
+        "runtime_signatures_checked": true,
+        "omitted_declarations": []
+      },
+      "baseline_examples_preserved": 42,
+      "tutorials_preserved": 9,
+      "baseline_anchors_preserved": 219,
+      "protected_files_unchanged": 126,
+      "protected_sha256": "4217f1966bb50997ed08535fe104a45f12164c3c249c96e7cb098e965bed2b70",
+      "new_documentation_test_modules": [
+        "tests/test_documentation_overhaul.py"
+      ]
+    }
+  },
+  "built_site": {
+    "external_asset_dependencies": 0,
+    "hosting": "relative project-prefix-safe paths",
+    "html_pages": 66,
+    "image_references": 16,
+    "local_links_checked": 7220,
+    "mathml_equations": 24,
+    "navigation_checked": 7,
+    "search_api_entries": 42,
+    "syntax_highlighting": true
+  },
+  "browser": {
+    "accessibility": "language, main landmark, skip link, controls and alt text; not a full WCAG audit",
+    "brand_contrast_ratios": {
+      "GameMath": 15.742729181521746,
+      "py": 11.968322298779144
+    },
+    "browser": "Chromium 151.0.7922.173",
+    "desktop": [
+      1440,
+      1000
+    ],
+    "external_requests": [],
+    "gallery_aspect_ratios": true,
+    "javascript_errors": [],
+    "keyboard_skip_link": true,
+    "layouts_checked": [
+      {
+        "overflow": false,
+        "route": "",
+        "scheme": "default",
+        "width": 320
+      },
+      {
+        "overflow": false,
+        "route": "api/vector/",
+        "scheme": "default",
+        "width": 320
+      },
+      {
+        "overflow": false,
+        "route": "api/quaternion/",
+        "scheme": "default",
+        "width": 320
+      },
+      {
+        "overflow": false,
+        "route": "api/legendre/",
+        "scheme": "default",
+        "width": 320
+      },
+      {
+        "overflow": false,
+        "route": "architecture/notation/",
+        "scheme": "default",
+        "width": 320
+      },
+      {
+        "overflow": false,
+        "route": "tutorials/bezier/",
+        "scheme": "default",
+        "width": 320
+      },
+      {
+        "overflow": false,
+        "route": "examples/",
+        "scheme": "default",
+        "width": 320
+      },
+      {
+        "overflow": false,
+        "route": "",
+        "scheme": "default",
+        "width": 390
+      },
+      {
+        "overflow": false,
+        "route": "api/vector/",
+        "scheme": "default",
+        "width": 390
+      },
+      {
+        "overflow": false,
+        "route": "api/quaternion/",
+        "scheme": "default",
+        "width": 390
+      },
+      {
+        "overflow": false,
+        "route": "api/legendre/",
+        "scheme": "default",
+        "width": 390
+      },
+      {
+        "overflow": false,
+        "route": "architecture/notation/",
+        "scheme": "default",
+        "width": 390
+      },
+      {
+        "overflow": false,
+        "route": "tutorials/bezier/",
+        "scheme": "default",
+        "width": 390
+      },
+      {
+        "overflow": false,
+        "route": "examples/",
+        "scheme": "default",
+        "width": 390
+      },
+      {
+        "overflow": false,
+        "route": "",
+        "scheme": "default",
+        "width": 768
+      },
+      {
+        "overflow": false,
+        "route": "api/vector/",
+        "scheme": "default",
+        "width": 768
+      },
+      {
+        "overflow": false,
+        "route": "api/quaternion/",
+        "scheme": "default",
+        "width": 768
+      },
+      {
+        "overflow": false,
+        "route": "api/legendre/",
+        "scheme": "default",
+        "width": 768
+      },
+      {
+        "overflow": false,
+        "route": "architecture/notation/",
+        "scheme": "default",
+        "width": 768
+      },
+      {
+        "overflow": false,
+        "route": "tutorials/bezier/",
+        "scheme": "default",
+        "width": 768
+      },
+      {
+        "overflow": false,
+        "route": "examples/",
+        "scheme": "default",
+        "width": 768
+      },
+      {
+        "overflow": false,
+        "route": "",
+        "scheme": "default",
+        "width": 1440
+      },
+      {
+        "overflow": false,
+        "route": "api/vector/",
+        "scheme": "default",
+        "width": 1440
+      },
+      {
+        "overflow": false,
+        "route": "api/quaternion/",
+        "scheme": "default",
+        "width": 1440
+      },
+      {
+        "overflow": false,
+        "route": "api/legendre/",
+        "scheme": "default",
+        "width": 1440
+      },
+      {
+        "overflow": false,
+        "route": "architecture/notation/",
+        "scheme": "default",
+        "width": 1440
+      },
+      {
+        "overflow": false,
+        "route": "tutorials/bezier/",
+        "scheme": "default",
+        "width": 1440
+      },
+      {
+        "overflow": false,
+        "route": "examples/",
+        "scheme": "default",
+        "width": 1440
+      },
+      {
+        "overflow": false,
+        "route": "",
+        "scheme": "slate",
+        "width": 320
+      },
+      {
+        "overflow": false,
+        "route": "api/vector/",
+        "scheme": "slate",
+        "width": 320
+      },
+      {
+        "overflow": false,
+        "route": "api/quaternion/",
+        "scheme": "slate",
+        "width": 320
+      },
+      {
+        "overflow": false,
+        "route": "api/legendre/",
+        "scheme": "slate",
+        "width": 320
+      },
+      {
+        "overflow": false,
+        "route": "architecture/notation/",
+        "scheme": "slate",
+        "width": 320
+      },
+      {
+        "overflow": false,
+        "route": "tutorials/bezier/",
+        "scheme": "slate",
+        "width": 320
+      },
+      {
+        "overflow": false,
+        "route": "examples/",
+        "scheme": "slate",
+        "width": 320
+      },
+      {
+        "overflow": false,
+        "route": "",
+        "scheme": "slate",
+        "width": 390
+      },
+      {
+        "overflow": false,
+        "route": "api/vector/",
+        "scheme": "slate",
+        "width": 390
+      },
+      {
+        "overflow": false,
+        "route": "api/quaternion/",
+        "scheme": "slate",
+        "width": 390
+      },
+      {
+        "overflow": false,
+        "route": "api/legendre/",
+        "scheme": "slate",
+        "width": 390
+      },
+      {
+        "overflow": false,
+        "route": "architecture/notation/",
+        "scheme": "slate",
+        "width": 390
+      },
+      {
+        "overflow": false,
+        "route": "tutorials/bezier/",
+        "scheme": "slate",
+        "width": 390
+      },
+      {
+        "overflow": false,
+        "route": "examples/",
+        "scheme": "slate",
+        "width": 390
+      },
+      {
+        "overflow": false,
+        "route": "",
+        "scheme": "slate",
+        "width": 768
+      },
+      {
+        "overflow": false,
+        "route": "api/vector/",
+        "scheme": "slate",
+        "width": 768
+      },
+      {
+        "overflow": false,
+        "route": "api/quaternion/",
+        "scheme": "slate",
+        "width": 768
+      },
+      {
+        "overflow": false,
+        "route": "api/legendre/",
+        "scheme": "slate",
+        "width": 768
+      },
+      {
+        "overflow": false,
+        "route": "architecture/notation/",
+        "scheme": "slate",
+        "width": 768
+      },
+      {
+        "overflow": false,
+        "route": "tutorials/bezier/",
+        "scheme": "slate",
+        "width": 768
+      },
+      {
+        "overflow": false,
+        "route": "examples/",
+        "scheme": "slate",
+        "width": 768
+      },
+      {
+        "overflow": false,
+        "route": "",
+        "scheme": "slate",
+        "width": 1440
+      },
+      {
+        "overflow": false,
+        "route": "api/vector/",
+        "scheme": "slate",
+        "width": 1440
+      },
+      {
+        "overflow": false,
+        "route": "api/quaternion/",
+        "scheme": "slate",
+        "width": 1440
+      },
+      {
+        "overflow": false,
+        "route": "api/legendre/",
+        "scheme": "slate",
+        "width": 1440
+      },
+      {
+        "overflow": false,
+        "route": "architecture/notation/",
+        "scheme": "slate",
+        "width": 1440
+      },
+      {
+        "overflow": false,
+        "route": "tutorials/bezier/",
+        "scheme": "slate",
+        "width": 1440
+      },
+      {
+        "overflow": false,
+        "route": "examples/",
+        "scheme": "slate",
+        "width": 1440
+      }
+    ],
+    "light_dark": true,
+    "link_contrast_ratios": {
+      "dark": 9.793222113731726,
+      "light": 6.729053636956223
+    },
+    "mathml": true,
+    "mathml_notation_equations": 24,
+    "missing_resources": [],
+    "mobile": [
+      390,
+      844
+    ],
+    "mobile_drawer": true,
+    "project_prefix": "/pyGameMath/",
+    "screenshots": [
+      "gallery-dark.png",
+      "home-dark-viewport.png",
+      "home-dark.png",
+      "home-light-viewport.png",
+      "home-light.png",
+      "home-mobile.png",
+      "mobile-drawer.png",
+      "notation-dark.png"
+    ],
+    "search": "rotate_coefficients result verified"
+  },
+  "installed": {
+    "wheel": {
+      "runtime_files_byte_identical": 17,
+      "package_root": "/tmp/phase4g5r-final-wheel-env/lib/python3.12/site-packages/gem",
+      "environment": "clean Phase 4G-5R installation; runtime unchanged by merged PR #59 and this phase"
+    },
+    "sdist": {
+      "runtime_files_byte_identical": 17,
+      "package_root": "/tmp/phase4g5r-final-sdist-env/lib/python3.12/site-packages/gem",
+      "environment": "clean Phase 4G-5R installation; runtime unchanged by merged PR #59 and this phase"
+    }
+  },
+  "preservation": {
+    "changed_original_files": [
+      ".github/workflows/publish-docs.yml",
+      "docs/api/index.md",
+      "docs/api/legendre.md",
+      "docs/architecture/conventions.md",
+      "docs/architecture/notation.md",
+      "docs/assets/stylesheets/extra.css",
+      "docs/development/website.md",
+      "docs/development/wiki.md",
+      "docs/index.md",
+      "docs/tutorials/bezier.md",
+      "docs/tutorials/camera.md",
+      "docs/tutorials/geometry.md",
+      "docs/tutorials/interop.md",
+      "docs/tutorials/lighting.md",
+      "docs/tutorials/numerical.md",
+      "docs/tutorials/quaternions.md",
+      "docs/tutorials/transformations.md",
+      "docs/tutorials/vectors.md",
+      "docs/wiki-migration/README.md",
+      "docs/wiki-migration/manifest.json",
+      "docs/wiki-migration/pages/Documentation.md",
+      "docs/wiki-migration/pages/Home.md",
+      "docs/wiki-migration/pages/_Sidebar.md",
+      "mkdocs.yml",
+      "tools/check_architecture_docs.py",
+      "tools/check_site_browser.py",
+      "tools/prepare_wiki.py"
+    ],
+    "all_other_original_files_unchanged": 346,
+    "runtime_sha256": {
+      "gem/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gem/common.py": "2384eae0490eff93499fca6fe56cc25074119b6955b40ca3d6823f8099406ec8",
+      "gem/matrix.py": "e539db231c9b71bc0846954f2a0fad0840b0b03ffd78ae65a4189a634b56c17c",
+      "gem/plane.py": "bbffce137d4885d3587efcb0aa0f2d5084d12191f9c62efb54e2cbe4dd9033f6",
+      "gem/quaternion.py": "c17e8fd731d601e36ff21bae86613e1f4982e6275b07d1d27be6f6405dff8059",
+      "gem/ray.py": "307dfac3a68a2235c3342d4bfe0d93fd15335dba4c28eff4cf6b79ae6167c1a4",
+      "gem/vector.py": "df658aa596999334153e143c0801eabc5e5fb4e5bc402770e78a0178dc83c28c",
+      "gem/spherical_harmonics.py": "25bb90b46e4ba5175e320a7f232ac6a2523b31d495e82412db5bdc9579f0d06b",
+      "gem/legendre.py": "bcad8a96d35f47eb4f03a1535cf5083017a351e89129534b6acb673966a254f8",
+      "gem/bezier.py": "1d354070a425ea0cb99e590f984f1dd86cf5b2a03432bee848f3352f85fc75b3",
+      "gem/experimental/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "gem/experimental/bezier.py": "4d61b9ad9b6a807101a06e4641b74dae96325a82cdc5796bd2326f7f1afdaf15",
+      "gem/experimental/legendre.py": "4f1fb87056d71982405e1cd5d83fbb07fe9f8a9c464d18ac641486cc47633db5",
+      "gem/experimental/sph.py": "192b1c96295ddf6585da4c91c1da372b5c4f53bc844ee9125ff38b913496ff0d",
+      "gem/experimental/sph_irradiance_map.py": "e7d8fa175ad566fb2d4def36978d632a537e930b5acb02396c906ae1465bab94",
+      "gem/experimental/sph_sample.py": "fbf10456e724005116524fa797474fe767cbf0224468cfc878e5fd8e6f278c15",
+      "gem/experimental/_bezier_legacy.py": "39f9522eaeb171837e7797ab604bb4bacf718053375266a61c39a0de9217a034"
+    },
+    "production_mathematics_unchanged": true,
+    "public_api_signatures_unchanged": true,
+    "metadata_versions_dependencies_unchanged": true,
+    "existing_tests_examples_benchmarks_unchanged": true,
+    "baseline_example_calculations_preserved": 42,
+    "baseline_tutorials_preserved": 9,
+    "baseline_heading_anchors_preserved": 219
+  },
+  "legendre_plot": {
+    "sha256": "46367d8b6b6d02cfeeb0695c2b02c1581f7ade195768eb182112a0b4946fda87",
+    "regeneration_byte_identical": true,
+    "evaluates_core_api": true,
+    "independent_analytical_checks": 3
+  },
+  "wiki": {
+    "observed_tip": "400e42712494836ed016a155f2ab7202ae61ba0e",
+    "existing_portal_published": true,
+    "prepared_update_published": false,
+    "reviewed_changed_files": [
+      "Documentation.md",
+      "Home.md",
+      "_Sidebar.md"
+    ],
+    "other_pages_preserved": 13,
+    "website_url_source": "GitHub repository homepage metadata; HTTPS GitHub Pages URL",
+    "live_website_check": "HTTP proxy rejected GitHub Pages domain with CONNECT 403; no bypass attempted"
+  },
+  "screenshots": {
+    "mobile-drawer.png": "2527a5d3aaa4449ac67ea07632e60a8ef90ec856725bad2c136bfe8ead317d7a",
+    "home-light-viewport.png": "cdbd66d3afac54ed70ce305e5a633eff52c955953b5fc4aa0dacbcfb949b18d8",
+    "home-dark-viewport.png": "534dc4da499a85be840abc1f57d148af1fa8e4599a56acda1a9048f22b072955"
+  },
+  "commands_report": "audit/PHASE4FC-DOCUMENTATION.md"
+}

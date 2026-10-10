@@ -27,6 +27,7 @@ Quaternion.getForward is +Z. Here we explicitly choose forward=+X.
 ## Worked target update
 
 ```python
+# Displacement retains its scale; normalizing produces a separate facing direction.
 import math
 from gem.vector import Vector, cross
 

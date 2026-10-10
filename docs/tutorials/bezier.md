@@ -8,10 +8,21 @@ as a ready-made animation timing system.
 
 ## Controls, points and derivatives
 
-With u=1-t, quadratic B(t)=u²p0+2utp1+t²p2. Cubic
-B(t)=u³p0+3u²tp1+3ut²p2+t³p3. Endpoints are p0/p3; interior controls pull the
+With $u=1-t$, the quadratic and cubic forms are
+
+$$
+B_2(t)=u^2p_0+2utp_1+t^2p_2,\qquad
+B_3(t)=u^3p_0+3u^2tp_1+3ut^2p_2+t^3p_3.
+$$
+
+Endpoints are p0/p3; interior controls pull the
 curve and determine endpoint tangents but normally are not points on the curve.
-For a cubic, B′(t)=3u²(p1-p0)+6ut(p2-p1)+3t²(p3-p2).
+For a cubic, the derivative is
+
+$$
+B'_3(t)=3u^2(p_1-p_0)+6ut(p_2-p_1)+3t^2(p_3-p_2).
+$$
+
 There is no public tangent helper: the local function below is this derivative
 written with existing Vector arithmetic, not a new gem API.
 
@@ -23,6 +34,7 @@ speed ||B′(t)|| changes from sqrt(45) at t=0 to 3 at t=1/2.
 ## Evaluate and sample a motion path
 
 ```python
+# Control points shape the curve; equal parameter steps need not have equal length.
 import math
 from gem.bezier import BezierPath, cubicBezierPoint, quadraticBezierPoint
 from gem.vector import Vector

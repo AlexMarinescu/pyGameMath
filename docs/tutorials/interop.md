@@ -24,6 +24,7 @@ for both steps; no universal flag setting is prescribed here.
 ## Verify the snapshot and its lifetime
 
 ```python
+# Inspect ctypes storage without creating an OpenGL context.
 import ctypes
 from gem.matrix import Matrix
 from gem.vector import Vector

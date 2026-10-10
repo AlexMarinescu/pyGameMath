@@ -1,7 +1,7 @@
 # gem API reference
 
 This reference documents existing public core declarations and retained compatibility
-imports at merged master `c04ffca436f86e18ad236c191c02ab58a750db4f` (PR #40).
+imports at merged master `3e714fe949b7a6b7724d5c0da3395ee92483265f` (PR #59).
 It covers the [268-declaration inventory](../architecture/api-inventory.md), exposed
 reference buffers/type aliases and public instance fields. Tables show **exact
 source signatures**, including `self`; omit `self` when calling a bound method.

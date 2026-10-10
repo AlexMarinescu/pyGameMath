@@ -1,21 +1,91 @@
-/* Restrained system-font technical design; no external asset requests. */
-:root { --md-primary-fg-color: #18344a; --md-accent-fg-color: #137b62; }
-.md-typeset { font-size: .83rem; line-height: 1.65; }
-.md-typeset h1 { color: var(--md-default-fg-color); font-weight: 650; }
-.md-typeset h2 { font-weight: 600; }
-.md-typeset img { max-width: 100%; height: auto; border-radius: .2rem; }
-.md-typeset .equation { overflow-x: auto; padding: .35rem 0; }
-.md-typeset span.equation { display: inline; padding: 0; }
-.md-typeset math { font-size: 1.12em; }
+/* System fonts, offline assets and a shared light/dark design vocabulary. */
+:root, [data-md-color-scheme="default"] {
+  --md-primary-fg-color: #172338;
+  --md-accent-fg-color: #2157ab;
+  --md-default-bg-color: #fafbfe;
+  --md-default-fg-color: #253247;
+  --md-default-fg-color--light: #56657a;
+  --md-typeset-a-color: #2157ab;
+  --gem-surface: #ffffff;
+  --gem-border: #dbe2ec;
+  --gem-muted: #56657a;
+  --gem-yellow: #ffdf5d;
+  --gem-code-bg: #f0f3f9;
+}
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #141c29;
+  --md-default-fg-color: #e7edf6;
+  --md-default-fg-color--light: #b4c0d0;
+  --md-typeset-a-color: #8dcaff;
+  --md-accent-fg-color: #8dcaff;
+  --gem-surface: #1b2637;
+  --gem-border: #354359;
+  --gem-muted: #b4c0d0;
+  --gem-code-bg: #202c3f;
+}
+.md-grid { max-width: 78rem; }
+.md-typeset { font-size: .85rem; line-height: 1.7; }
+.md-typeset h1 { color: var(--md-default-fg-color); font-weight: 700; letter-spacing: -.025em; }
+.md-typeset h2 { font-weight: 650; letter-spacing: -.015em; margin-top: 2em; }
+.md-typeset h3 { font-weight: 650; }
+.md-typeset p, .md-typeset ul, .md-typeset ol { margin-block: .85em; }
+.md-typeset a { text-underline-offset: .18em; }
+.md-typeset img { max-width: 100%; height: auto; border-radius: .3rem; }
 .md-typeset pre { max-width: 100%; }
-.md-typeset a:focus-visible, button:focus-visible { outline: 3px solid #d17131; outline-offset: 3px; }
-.md-typeset .gallery-caption { color: var(--md-default-fg-color--light); font-size: .76rem; }
-.md-typeset .intro-links { display: flex; flex-wrap: wrap; gap: .7rem 1.5rem; margin: 1.1rem 0; }
-.md-typeset .intro-links a { font-weight: 600; }
+.md-typeset code { background: var(--gem-code-bg); font-size: .82em; }
+.md-typeset pre > code { border: 1px solid var(--gem-border); border-radius: .3rem; padding: 1rem; }
+.md-typeset table:not([class]) { font-size: .78rem; border-color: var(--gem-border); border-radius: .3rem; }
+.md-typeset table:not([class]) th { background: var(--gem-code-bg); }
+.md-typeset table:not([class]) td { vertical-align: top; min-width: 9rem; }
+.md-typeset table code { white-space: normal; overflow-wrap: anywhere; }
+.md-typeset .equation { overflow-x: auto; padding: .8rem .5rem; margin-block: 1rem; }
+.md-typeset span.equation { display: inline; padding: 0; margin: 0; }
+.md-typeset math { font-size: 1.12em; }
+.md-typeset a:focus-visible, button:focus-visible { outline: 3px solid var(--md-typeset-a-color); outline-offset: 3px; }
+.gem-wordmark { display: inline-flex; font-size: 1.12rem; font-weight: 750; letter-spacing: -.035em; white-space: nowrap; }
+.gem-wordmark__py { color: var(--gem-yellow); }
+.gem-wordmark__name { color: #ffffff; }
+.md-header__button.md-logo { display: inline-flex; padding: .35rem .5rem; margin-right: .8rem; }
+.md-header__title { margin-left: 0; font-size: .78rem; }
+.md-header__topic:first-child { opacity: 0; }
+.md-header__topic { color: #d5deec; }
+.md-tabs__link { font-size: .73rem; opacity: .86; }
+.md-tabs__link--active { opacity: 1; font-weight: 650; }
+.md-nav__link { line-height: 1.5; }
+.md-nav--secondary .md-nav__title { font-size: .7rem; text-transform: uppercase; letter-spacing: .055em; }
+.gem-kicker { color: var(--gem-muted); font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.gem-hero { padding: 1rem 0 1.5rem; border-bottom: 1px solid var(--gem-border); }
+.gem-hero h1 { max-width: 22ch; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.13; margin-bottom: .6em; }
+.gem-hero > p { max-width: 62ch; font-size: .96rem; }
+.gem-hero > .gem-kicker { font-size: .68rem; }
+.gem-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.2rem; }
+.md-typeset .md-button { border-radius: .3rem; font-size: .78rem; padding: .55em 1em; }
+.md-typeset .md-button--primary { background: var(--md-typeset-a-color); border-color: var(--md-typeset-a-color); color: var(--md-default-bg-color); }
+.gem-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.3rem 0; }
+.gem-card { background: var(--gem-surface); border: 1px solid var(--gem-border); border-radius: .4rem; padding: 1rem 1.1rem; }
+.gem-card h3 { margin: 0 0 .5rem; font-size: .95rem; }
+.gem-card p { font-size: .8rem; margin: .6rem 0; }
+.gem-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.md-typeset figure { margin: 1.25rem 0; }
+.gem-comparison figure { margin: .5rem 0; }
+.md-typeset figcaption { color: var(--gem-muted); font-size: .75rem; text-align: left; line-height: 1.6; margin-top: .65rem; }
+.md-typeset .gallery-caption { color: var(--gem-muted); font-size: .76rem; }
 .md-footer-meta__inner { padding-block: .6rem; }
-@media (max-width: 600px) { .md-typeset { font-size: .8rem; } .md-typeset h1 { font-size: 1.65rem; } }
-/* Text-based identity; do not present the theme's default icon as a gem logo. */
-.md-header__button.md-logo, .md-nav__button.md-logo { display: none !important; }
-[data-md-color-scheme="slate"] { --md-typeset-a-color: #79bde6; --md-accent-fg-color: #70c7b0; }
-
-@media (max-width: 76.234375em) { .md-nav--primary .md-nav__title[for="__drawer"] { height: auto; min-height: 3rem; padding-top: 1rem; } }
+@media (max-width: 76.234375em) {
+  .md-nav--primary .md-nav__title[for="__drawer"] { height: auto; min-height: 3rem; padding: 1rem .8rem; font-size: 0; }
+  .md-nav__button.md-logo { position: static; display: inline-flex; margin: 0; padding: 0; }
+  .md-header__title { display: none; }
+  .md-header__inner { justify-content: space-between; }
+}
+@media (max-width: 600px) {
+  .md-typeset { font-size: .82rem; }
+  .gem-cards, .gem-comparison { grid-template-columns: 1fr; }
+  .gem-hero { padding-top: .4rem; }
+  .gem-hero h1 { font-size: 2rem; }
+  .gem-hero > p { font-size: .88rem; }
+  .gem-wordmark { font-size: 1rem; }
+  .md-header__button.md-logo { margin-right: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+}

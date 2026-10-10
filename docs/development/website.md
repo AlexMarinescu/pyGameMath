@@ -26,24 +26,24 @@ references, navigation, search entries and MathML. Browser review is separate;
 see [executed verification](website-verification.md). The source checker retains
 all earlier immutability, declaration and executable-block checks.
 
-## GitHub Pages preparation
+<div id="github-pages-preparation" aria-hidden="true"></div>
 
-The proposed workflow builds and uploads a static-site artifact on manual dispatch
-**only from master**. It has read-only repository permissions and no deploy job,
-Pages settings changes, write token, custom domain or feature-branch publication.
-The locally built output uses relative paths and was tested under a project prefix.
-No production documentation URL is configured or claimed.
+## GitHub Pages publication
 
-After review and merge, a maintainer can run the artifact workflow and inspect its
-output. Enabling GitHub Pages then needs an explicit repository decision: choose
-GitHub Actions as its source and add a separate reviewed deployment job with
-`pages: write`, `id-token: write`, the `github-pages` protected environment and a
-master-only condition. Confirm the actual resulting URL before adding `site_url`
-or linking it from README/Wiki. Do not run `mkdocs gh-deploy` as part of normal builds.
+The existing `publish-docs.yml` workflow builds and deploys documentation on
+matching master pushes or manual dispatch. Its build runs only on master;
+deployment uses the `github-pages` environment and the existing Pages/OIDC
+permissions. Strict builds, emitted-link checks and the complete documentation
+checker must pass before artifact upload. Feature-branch builds stay local.
 
-Until then, documentation is browsable on GitHub and in local preview. The
-[Wiki package](wiki.md) points to canonical repository documents and does not
-assume a published website exists.
+The separate manual artifact workflow produces a preview for inspection without
+deploying it. The site uses relative paths and is verified under `/pyGameMath/`.
+The repository homepage identifies
+[the documentation website](https://alexmarinescu.github.io/pyGameMath/).
+Live availability could not be checked from this environment because its HTTP
+proxy rejects that domain; this is not evidence of a website failure.
+See [current verification](visual-overhaul.md) and the [Wiki portal update](wiki.md).
+Normal builds never invoke `mkdocs gh-deploy` or alter repository Pages settings.
 
 ## Optional browser verification
 

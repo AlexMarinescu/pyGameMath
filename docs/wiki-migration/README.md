@@ -1,26 +1,17 @@
-# Non-destructive Wiki migration
+<div id="non-destructive-wiki-migration" aria-hidden="true"></div>
 
-Status: prepared for review; not published. The observed Wiki tip is
-`715e5039c75e080814a12e957f5148c35cdf8bda`. Run the
-[guarded preparation tool](../../tools/prepare_wiki.py) following the
-[publishing instructions](../development/wiki.md).
+# Wiki portal update
 
-| Page | Change | Canonical source |
-| --- | --- | --- |
-| Home | Replace navigation; preserve original as Historical Home | docs/index.md |
-| Getting Started | Add concise entry | docs/getting-started/installation.md |
-| Documentation | Add reference navigation | docs/api/index.md |
-| Mathematical Conventions | Add convention entry | docs/architecture/conventions.md |
-| Examples and Tutorials | Add learning paths | docs/examples/index.md and docs/tutorials/index.md |
-| Development Roadmap | Link authoritative root roadmap | ROADMAP.md |
-| Contributing | Add review workflow entry | docs/development/contributing.md |
-| Historical and Legacy Notes | Explain historical status and compatibility | docs/api/legacy.md |
-| Historical Home | Preserve original Home bytes and attribution | audit/wiki-snapshot/Home.md |
-| _Sidebar | Add canonical navigation | Companion pages |
-| Six original class/function pages | No changes | Existing Wiki / frozen snapshot |
+The current Wiki already has its historical-preserving navigation portal. This
+package proposes a focused update to Home, Documentation and the sidebar, using
+the documentation website listed in repository homepage metadata and retaining
+GitHub source fallbacks.
 
-[Home preview](pages/Home.md). `manifest.json` records original tip, planned paths
-and file hashes. No source API manual is copied into the Wiki.
+The manifest pins the observed Wiki commit and every page hash. The guarded
+[preparation tool](../../tools/prepare_wiki.py) supports this reviewed replacement
+without removing historical pages. See the [Wiki workflow](../development/wiki.md)
+for exact dry-run and apply commands, current observations and publication limits.
 
-Historical Home retains the original trailing space and missing final newline to
-preserve snapshot bytes; the whitespace diagnostic for that file is intentional.
+The remaining files under `pages/` preserve the original migration package's
+historical Home and companion content. They are not copied by this update's
+three-file manifest. Main documentation remains authoritative.

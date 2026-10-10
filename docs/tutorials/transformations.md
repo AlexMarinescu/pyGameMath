@@ -22,6 +22,7 @@ This coordinate derivation gives independent answers for the point group.
 ## Worked local-to-world conversion
 
 ```python
+# With row vectors, the first matrix in the product acts first.
 from gem.matrix import Matrix
 from gem.vector import Vector
 

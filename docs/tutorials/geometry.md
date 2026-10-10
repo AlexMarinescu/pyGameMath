@@ -27,6 +27,7 @@ policy, not an implicit rule added to gem.
 ## Local ray-plane calculation
 
 ```python
+# Use the plane equation n dot p + d = 0 for the independent query.
 from gem.plane import Plane
 from gem.ray import Ray
 from gem.vector import Vector

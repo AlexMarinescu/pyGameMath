@@ -18,15 +18,21 @@ def prepare(wiki_dir, apply=False):
         raise ValueError('Wiki changed since inspection; refresh and review the migration')
     if subprocess.check_output(['git', '-C', str(wiki_dir), 'status', '--porcelain'], text=True).strip():
         raise ValueError('Wiki worktree must be clean')
-    if (wiki_dir/'Home.md').read_bytes() != (PACKAGE/'pages/Historical-Home.md').read_bytes():
-        raise ValueError('historical Home differs from preserved source')
+    observed = manifest.get('observed_files')
+    if observed is None:
+        if (wiki_dir/'Home.md').read_bytes() != (PACKAGE/'pages/Historical-Home.md').read_bytes():
+            raise ValueError('historical Home differs from preserved source')
+    else:
+        for name, digest in observed.items():
+            if Path(name).name != name or hashlib.sha256((wiki_dir/name).read_bytes()).hexdigest() != digest:
+                raise ValueError('observed Wiki file differs: '+name)
     # Validate every file before any mutation.
     for name, digest in manifest['files'].items():
         source = PACKAGE/'pages'/name
         if Path(name).name != name or hashlib.sha256(source.read_bytes()).hexdigest() != digest:
             raise ValueError('migration package integrity mismatch: '+name)
         target = wiki_dir/name
-        if name != 'Home.md' and target.exists():
+        if name != 'Home.md' and target.exists() and (observed is None or name not in observed):
             raise ValueError('target page already exists: '+name)
     for name in manifest['preserve_existing']:
         if not (wiki_dir/name).is_file():
