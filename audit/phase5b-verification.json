@@ -1,0 +1,4443 @@
+{
+  "schema_version": 1,
+  "base_commit": "deea819172cf86f6f7aabeaa2693af1e33afb1b7",
+  "verified_code_commit": "0e085b4bfd532935bb1267bb3eae95f04de3ed15",
+  "date_utc": "2026-10-10",
+  "release_strategy": "GitHub-first; preparation only",
+  "local_tests": [
+    {
+      "python": "3.10.21",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+      "tests": {
+        "tests": 4036,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4036,
+        "xfailed": 0
+      },
+      "command": [
+        "/tmp/phase5a-py310/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-o",
+        "junit_family=legacy",
+        "--junitxml",
+        "/tmp/phase5b-complete-pytest-310.xml"
+      ]
+    },
+    {
+      "python": "3.11.16",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+      "tests": {
+        "tests": 4036,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4036,
+        "xfailed": 0
+      },
+      "command": [
+        "/tmp/phase5a-py311/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-o",
+        "junit_family=legacy",
+        "--junitxml",
+        "/tmp/phase5b-complete-pytest-311.xml"
+      ]
+    },
+    {
+      "python": "3.12.14",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+      "tests": {
+        "tests": 4036,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4036,
+        "xfailed": 0
+      },
+      "command": [
+        "/tmp/phase5a-py312/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-o",
+        "junit_family=legacy",
+        "--junitxml",
+        "/tmp/phase5b-complete-pytest-312.xml"
+      ]
+    },
+    {
+      "python": "3.13.15",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+      "tests": {
+        "tests": 4036,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4036,
+        "xfailed": 0
+      },
+      "command": [
+        "/tmp/phase5b-py313/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-o",
+        "junit_family=legacy",
+        "--junitxml",
+        "/tmp/phase5b-complete-pytest-313.xml"
+      ]
+    },
+    {
+      "python": "3.14.7",
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+      "tests": {
+        "tests": 4036,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4036,
+        "xfailed": 0
+      },
+      "command": [
+        "/tmp/phase5a-py314/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-o",
+        "junit_family=legacy",
+        "--junitxml",
+        "/tmp/phase5b-complete-pytest-314.xml"
+      ]
+    }
+  ],
+  "hosted_run": {
+    "id": 38014899622,
+    "url": "https://github.com/AlexMarinescu/pyGameMath/actions/runs/38014899622",
+    "conclusion": "failure",
+    "jobs": [
+      {
+        "id": 114102890232,
+        "name": "windows-latest / Python 3.11",
+        "conclusion": "failure",
+        "html_url": "https://github.com/AlexMarinescu/pyGameMath/actions/runs/38014899622/job/114102890232"
+      },
+      {
+        "id": 114102890299,
+        "name": "macos-latest / Python 3.12",
+        "conclusion": "success",
+        "html_url": "https://github.com/AlexMarinescu/pyGameMath/actions/runs/38014899622/job/114102890299"
+      },
+      {
+        "id": 114102890311,
+        "name": "macos-latest / Python 3.11",
+        "conclusion": "success",
+        "html_url": "https://github.com/AlexMarinescu/pyGameMath/actions/runs/38014899622/job/114102890311"
+      },
+      {
+        "id": 114102890332,
+        "name": "windows-latest / Python 3.10",
+        "conclusion": "failure",
+        "html_url": "https://github.com/AlexMarinescu/pyGameMath/actions/runs/38014899622/job/114102890332"
+      },
+      {
+        "id": 114102890345,
+        "name": "windows-latest / Python 3.12",
+        "conclusion": "failure",
+        "html_url": "https://github.com/AlexMarinescu/pyGameMath/actions/runs/38014899622/job/114102890345"
+      },
+      {
+        "id": 114102890353,
+        "name": "ubuntu-latest / Python 3.13",
+        "conclusion": "success",
+        "html_url": "https://github.com/AlexMarinescu/pyGameMath/actions/runs/38014899622/job/114102890353"
+      },
+      {
+        "id": 114102890362,
+        "name": "windows-latest / Python 3.14",
+        "conclusion": "failure",
+        "html_url": "https://github.com/AlexMarinescu/pyGameMath/actions/runs/38014899622/job/114102890362"
+      },
+      {
+        "id": 114102890367,
+        "name": "macos-latest / Python 3.14",
+        "conclusion": "success",
+        "html_url": "https://github.com/AlexMarinescu/pyGameMath/actions/runs/38014899622/job/114102890367"
+      },
+      {
+        "id": 114102890368,
+        "name": "windows-latest / Python 3.13",
+        "conclusion": "failure",
+        "html_url": "https://github.com/AlexMarinescu/pyGameMath/actions/runs/38014899622/job/114102890368"
+      },
+      {
+        "id": 114102890369,
+        "name": "ubuntu-latest / Python 3.11",
+        "conclusion": "success",
+        "html_url": "https://github.com/AlexMarinescu/pyGameMath/actions/runs/38014899622/job/114102890369"
+      },
+      {
+        "id": 114102890370,
+        "name": "macos-latest / Python 3.10",
+        "conclusion": "success",
+        "html_url": "https://github.com/AlexMarinescu/pyGameMath/actions/runs/38014899622/job/114102890370"
+      },
+      {
+        "id": 114102890375,
+        "name": "macos-latest / Python 3.13",
+        "conclusion": "success",
+        "html_url": "https://github.com/AlexMarinescu/pyGameMath/actions/runs/38014899622/job/114102890375"
+      },
+      {
+        "id": 114102890377,
+        "name": "ubuntu-latest / Python 3.12",
+        "conclusion": "success",
+        "html_url": "https://github.com/AlexMarinescu/pyGameMath/actions/runs/38014899622/job/114102890377"
+      },
+      {
+        "id": 114102890425,
+        "name": "ubuntu-latest / Python 3.14",
+        "conclusion": "success",
+        "html_url": "https://github.com/AlexMarinescu/pyGameMath/actions/runs/38014899622/job/114102890425"
+      },
+      {
+        "id": 114102890428,
+        "name": "ubuntu-latest / Python 3.10",
+        "conclusion": "success",
+        "html_url": "https://github.com/AlexMarinescu/pyGameMath/actions/runs/38014899622/job/114102890428"
+      }
+    ]
+  },
+  "hosted_results": [
+    {
+      "name": "gem-checks-Linux-py3.10-38014899622",
+      "artifact_id": 11655734615,
+      "artifact_digest": "sha256:a3b47a7dfbb5bc811f02593b90e9f8df7b45ee745c3e8fb0fc9c54b8ba2ecc0c",
+      "python": "3.10.22",
+      "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+      "status": "passed",
+      "tests": {
+        "tests": 4036,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4036,
+        "xfailed": 0
+      },
+      "failed_tests": [],
+      "installed": {
+        "wheel": {
+          "smoke": {
+            "installed": {
+              "python": "3.10.22",
+              "implementation": "CPython",
+              "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+              "package_root": "/home/runner/work/_temp/gem-ci/wheel-environment/lib/python3.10/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        },
+        "sdist": {
+          "smoke": {
+            "installed": {
+              "python": "3.10.22",
+              "implementation": "CPython",
+              "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+              "package_root": "/home/runner/work/_temp/gem-ci/sdist-environment/lib/python3.10/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        }
+      },
+      "api_declarations": 268,
+      "examples": 43,
+      "artifacts": {
+        "metadata": {
+          "Metadata-Version": "2.4",
+          "Name": "gem",
+          "Version": "1.0.0",
+          "Summary": "Pure-Python mathematics for games and graphics",
+          "Author-email": "Alex Marinescu <ale632007@gmail.com>",
+          "License-Expression": "BSD-2-Clause",
+          "Project-URL": "Issues, https://github.com/AlexMarinescu/pyGameMath/issues",
+          "Keywords": "math,game,graphics,library",
+          "Classifier": "Topic :: Software Development :: Libraries",
+          "Requires-Python": ">=3.10",
+          "Description-Content-Type": "text/markdown",
+          "License-File": "LICENSE",
+          "Requires-Dist": "six",
+          "Dynamic": "license-file"
+        },
+        "runtime_files": 18
+      },
+      "commands": [
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.10.22/x64/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "-o",
+            "junit_family=legacy",
+            "--junitxml",
+            "/home/runner/work/_temp/gem-ci/pytest.xml"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "pytest.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.10.22/x64/bin/python",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/source-docs.json"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "source-docs.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.10.22/x64/bin/python",
+            "-m",
+            "build",
+            "--outdir",
+            "/home/runner/work/pyGameMath/pyGameMath/dist"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "build.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.10.22/x64/bin/python",
+            "-m",
+            "twine",
+            "check",
+            "--strict",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "twine.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.10.22/x64/bin/python",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--wheel",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "--sdist",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/artifacts.json"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "artifacts.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-dependencies.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-install.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/home/runner/work/_temp/gem-ci/wheel-environment/lib/python3.10/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/wheel-smoke.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-smoke.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/home/runner/work/_temp/gem-ci/wheel-environment/lib/python3.10/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/wheel-docs.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-docs.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-dependencies.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-install.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/home/runner/work/_temp/gem-ci/sdist-environment/lib/python3.10/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/sdist-smoke.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-smoke.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/home/runner/work/_temp/gem-ci/sdist-environment/lib/python3.10/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/sdist-docs.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-docs.log"
+        }
+      ]
+    },
+    {
+      "name": "gem-checks-Linux-py3.11-38014899622",
+      "artifact_id": 11655674643,
+      "artifact_digest": "sha256:4ff838b436926e4cb204273f113ccf303473f45ef6ff03757e439263675de922",
+      "python": "3.11.17",
+      "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+      "status": "passed",
+      "tests": {
+        "tests": 4036,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4036,
+        "xfailed": 0
+      },
+      "failed_tests": [],
+      "installed": {
+        "wheel": {
+          "smoke": {
+            "installed": {
+              "python": "3.11.17",
+              "implementation": "CPython",
+              "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+              "package_root": "/home/runner/work/_temp/gem-ci/wheel-environment/lib/python3.11/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        },
+        "sdist": {
+          "smoke": {
+            "installed": {
+              "python": "3.11.17",
+              "implementation": "CPython",
+              "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+              "package_root": "/home/runner/work/_temp/gem-ci/sdist-environment/lib/python3.11/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        }
+      },
+      "api_declarations": 268,
+      "examples": 43,
+      "artifacts": {
+        "metadata": {
+          "Metadata-Version": "2.4",
+          "Name": "gem",
+          "Version": "1.0.0",
+          "Summary": "Pure-Python mathematics for games and graphics",
+          "Author-email": "Alex Marinescu <ale632007@gmail.com>",
+          "License-Expression": "BSD-2-Clause",
+          "Project-URL": "Issues, https://github.com/AlexMarinescu/pyGameMath/issues",
+          "Keywords": "math,game,graphics,library",
+          "Classifier": "Topic :: Software Development :: Libraries",
+          "Requires-Python": ">=3.10",
+          "Description-Content-Type": "text/markdown",
+          "License-File": "LICENSE",
+          "Requires-Dist": "six",
+          "Dynamic": "license-file"
+        },
+        "runtime_files": 18
+      },
+      "commands": [
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.11.17/x64/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "-o",
+            "junit_family=legacy",
+            "--junitxml",
+            "/home/runner/work/_temp/gem-ci/pytest.xml"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "pytest.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.11.17/x64/bin/python",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/source-docs.json"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "source-docs.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.11.17/x64/bin/python",
+            "-m",
+            "build",
+            "--outdir",
+            "/home/runner/work/pyGameMath/pyGameMath/dist"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "build.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.11.17/x64/bin/python",
+            "-m",
+            "twine",
+            "check",
+            "--strict",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "twine.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.11.17/x64/bin/python",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--wheel",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "--sdist",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/artifacts.json"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "artifacts.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-dependencies.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-install.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/home/runner/work/_temp/gem-ci/wheel-environment/lib/python3.11/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/wheel-smoke.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-smoke.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/home/runner/work/_temp/gem-ci/wheel-environment/lib/python3.11/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/wheel-docs.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-docs.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-dependencies.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-install.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/home/runner/work/_temp/gem-ci/sdist-environment/lib/python3.11/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/sdist-smoke.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-smoke.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/home/runner/work/_temp/gem-ci/sdist-environment/lib/python3.11/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/sdist-docs.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-docs.log"
+        }
+      ]
+    },
+    {
+      "name": "gem-checks-macOS-py3.11-38014899622",
+      "artifact_id": 11655614447,
+      "artifact_digest": "sha256:166a6270ca618b6cbaea255933a8253bd8792d5abc060d1de526e4a46741aef0",
+      "python": "3.11.9",
+      "platform": "macOS-26.6.2-arm64-arm-64bit",
+      "status": "passed",
+      "tests": {
+        "tests": 4036,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4036,
+        "xfailed": 0
+      },
+      "failed_tests": [],
+      "installed": {
+        "wheel": {
+          "smoke": {
+            "installed": {
+              "python": "3.11.9",
+              "implementation": "CPython",
+              "platform": "macOS-26.6.2-arm64-arm-64bit",
+              "package_root": "/Users/runner/work/_temp/gem-ci/wheel-environment/lib/python3.11/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        },
+        "sdist": {
+          "smoke": {
+            "installed": {
+              "python": "3.11.9",
+              "implementation": "CPython",
+              "platform": "macOS-26.6.2-arm64-arm-64bit",
+              "package_root": "/Users/runner/work/_temp/gem-ci/sdist-environment/lib/python3.11/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        }
+      },
+      "api_declarations": 268,
+      "examples": 43,
+      "artifacts": {
+        "metadata": {
+          "Metadata-Version": "2.4",
+          "Name": "gem",
+          "Version": "1.0.0",
+          "Summary": "Pure-Python mathematics for games and graphics",
+          "Author-email": "Alex Marinescu <ale632007@gmail.com>",
+          "License-Expression": "BSD-2-Clause",
+          "Project-URL": "Issues, https://github.com/AlexMarinescu/pyGameMath/issues",
+          "Keywords": "math,game,graphics,library",
+          "Classifier": "Topic :: Software Development :: Libraries",
+          "Requires-Python": ">=3.10",
+          "Description-Content-Type": "text/markdown",
+          "License-File": "LICENSE",
+          "Requires-Dist": "six",
+          "Dynamic": "license-file"
+        },
+        "runtime_files": 18
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "-o",
+            "junit_family=legacy",
+            "--junitxml",
+            "/Users/runner/work/_temp/gem-ci/pytest.xml"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "pytest.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/source-docs.json"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "source-docs.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python",
+            "-m",
+            "build",
+            "--outdir",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "build.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python",
+            "-m",
+            "twine",
+            "check",
+            "--strict",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "twine.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--wheel",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "--sdist",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/artifacts.json"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "artifacts.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-dependencies.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-install.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/lib/python3.11/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/wheel-smoke.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-smoke.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/lib/python3.11/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/wheel-docs.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-docs.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-dependencies.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-install.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/lib/python3.11/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/sdist-smoke.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-smoke.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/lib/python3.11/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/sdist-docs.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-docs.log"
+        }
+      ]
+    },
+    {
+      "name": "gem-checks-Windows-py3.13-38014899622",
+      "artifact_id": 11655569791,
+      "artifact_digest": "sha256:44bedb400b1141e08a79b1e4c634da8301d349216e71ecae007f747d6da909ca",
+      "python": "3.13.15",
+      "platform": "Windows-2025Server-10.0.26100-SP0",
+      "status": "failed",
+      "tests": {
+        "tests": 4036,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4035,
+        "xfailed": 0
+      },
+      "failed_tests": [
+        "tests.test_showcase_examples::test_committed_artifacts_match_generation"
+      ],
+      "installed": {
+        "wheel": {
+          "smoke": {
+            "installed": {
+              "python": "3.13.15",
+              "implementation": "CPython",
+              "platform": "Windows-2025Server-10.0.26100-SP0",
+              "package_root": "D:\\a\\_temp\\gem-ci\\wheel-environment\\Lib\\site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        },
+        "sdist": {
+          "smoke": {
+            "installed": {
+              "python": "3.13.15",
+              "implementation": "CPython",
+              "platform": "Windows-2025Server-10.0.26100-SP0",
+              "package_root": "D:\\a\\_temp\\gem-ci\\sdist-environment\\Lib\\site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        }
+      },
+      "api_declarations": 268,
+      "examples": 43,
+      "artifacts": {
+        "metadata": {
+          "Metadata-Version": "2.4",
+          "Name": "gem",
+          "Version": "1.0.0",
+          "Summary": "Pure-Python mathematics for games and graphics",
+          "Author-email": "Alex Marinescu <ale632007@gmail.com>",
+          "License-Expression": "BSD-2-Clause",
+          "Project-URL": "Issues, https://github.com/AlexMarinescu/pyGameMath/issues",
+          "Keywords": "math,game,graphics,library",
+          "Classifier": "Topic :: Software Development :: Libraries",
+          "Requires-Python": ">=3.10",
+          "Description-Content-Type": "text/markdown",
+          "License-File": "LICENSE",
+          "Requires-Dist": "six",
+          "Dynamic": "license-file"
+        },
+        "runtime_files": 18
+      },
+      "commands": [
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.13.15\\x64\\python.exe",
+            "-m",
+            "pytest",
+            "-q",
+            "-o",
+            "junit_family=legacy",
+            "--junitxml",
+            "D:\\a\\_temp\\gem-ci\\pytest.xml"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "pytest.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.13.15\\x64\\python.exe",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\source-docs.json"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "source-docs.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.13.15\\x64\\python.exe",
+            "-m",
+            "build",
+            "--outdir",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "build.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.13.15\\x64\\python.exe",
+            "-m",
+            "twine",
+            "check",
+            "--strict",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0-py3-none-any.whl",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0.tar.gz"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "twine.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.13.15\\x64\\python.exe",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\verify_distribution.py",
+            "--wheel",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0-py3-none-any.whl",
+            "--sdist",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0.tar.gz",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\artifacts.json"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "artifacts.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-dependencies.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0-py3-none-any.whl"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-install.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\verify_distribution.py",
+            "--installed-root",
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\wheel-smoke.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-smoke.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\wheel-docs.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-docs.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-dependencies.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0.tar.gz"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-install.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\verify_distribution.py",
+            "--installed-root",
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\sdist-smoke.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-smoke.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\sdist-docs.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-docs.log"
+        }
+      ]
+    },
+    {
+      "name": "gem-checks-macOS-py3.13-38014899622",
+      "artifact_id": 11655499824,
+      "artifact_digest": "sha256:96bf77c97881334a7a7969084ac9ef441f04fb4e9027db49d4997f99ab86a757",
+      "python": "3.13.15",
+      "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+      "status": "passed",
+      "tests": {
+        "tests": 4036,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4036,
+        "xfailed": 0
+      },
+      "failed_tests": [],
+      "installed": {
+        "wheel": {
+          "smoke": {
+            "installed": {
+              "python": "3.13.15",
+              "implementation": "CPython",
+              "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+              "package_root": "/Users/runner/work/_temp/gem-ci/wheel-environment/lib/python3.13/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        },
+        "sdist": {
+          "smoke": {
+            "installed": {
+              "python": "3.13.15",
+              "implementation": "CPython",
+              "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+              "package_root": "/Users/runner/work/_temp/gem-ci/sdist-environment/lib/python3.13/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        }
+      },
+      "api_declarations": 268,
+      "examples": 43,
+      "artifacts": {
+        "metadata": {
+          "Metadata-Version": "2.4",
+          "Name": "gem",
+          "Version": "1.0.0",
+          "Summary": "Pure-Python mathematics for games and graphics",
+          "Author-email": "Alex Marinescu <ale632007@gmail.com>",
+          "License-Expression": "BSD-2-Clause",
+          "Project-URL": "Issues, https://github.com/AlexMarinescu/pyGameMath/issues",
+          "Keywords": "math,game,graphics,library",
+          "Classifier": "Topic :: Software Development :: Libraries",
+          "Requires-Python": ">=3.10",
+          "Description-Content-Type": "text/markdown",
+          "License-File": "LICENSE",
+          "Requires-Dist": "six",
+          "Dynamic": "license-file"
+        },
+        "runtime_files": 18
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.13/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "-o",
+            "junit_family=legacy",
+            "--junitxml",
+            "/Users/runner/work/_temp/gem-ci/pytest.xml"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "pytest.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.13/bin/python",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/source-docs.json"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "source-docs.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.13/bin/python",
+            "-m",
+            "build",
+            "--outdir",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "build.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.13/bin/python",
+            "-m",
+            "twine",
+            "check",
+            "--strict",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "twine.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.13/bin/python",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--wheel",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "--sdist",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/artifacts.json"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "artifacts.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-dependencies.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-install.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/lib/python3.13/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/wheel-smoke.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-smoke.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/lib/python3.13/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/wheel-docs.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-docs.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-dependencies.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-install.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/lib/python3.13/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/sdist-smoke.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-smoke.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/lib/python3.13/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/sdist-docs.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-docs.log"
+        }
+      ]
+    },
+    {
+      "name": "gem-checks-Linux-py3.14-38014899622",
+      "artifact_id": 11655404847,
+      "artifact_digest": "sha256:3bff1db3cadeb93c6caf24dea1ca45b8aa1eff9acf944738ab6bf9f5a8b87eb1",
+      "python": "3.14.8",
+      "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+      "status": "passed",
+      "tests": {
+        "tests": 4036,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4036,
+        "xfailed": 0
+      },
+      "failed_tests": [],
+      "installed": {
+        "wheel": {
+          "smoke": {
+            "installed": {
+              "python": "3.14.8",
+              "implementation": "CPython",
+              "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+              "package_root": "/home/runner/work/_temp/gem-ci/wheel-environment/lib/python3.14/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        },
+        "sdist": {
+          "smoke": {
+            "installed": {
+              "python": "3.14.8",
+              "implementation": "CPython",
+              "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+              "package_root": "/home/runner/work/_temp/gem-ci/sdist-environment/lib/python3.14/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        }
+      },
+      "api_declarations": 268,
+      "examples": 43,
+      "artifacts": {
+        "metadata": {
+          "Metadata-Version": "2.4",
+          "Name": "gem",
+          "Version": "1.0.0",
+          "Summary": "Pure-Python mathematics for games and graphics",
+          "Author-email": "Alex Marinescu <ale632007@gmail.com>",
+          "License-Expression": "BSD-2-Clause",
+          "Project-URL": "Issues, https://github.com/AlexMarinescu/pyGameMath/issues",
+          "Keywords": "math,game,graphics,library",
+          "Classifier": "Topic :: Software Development :: Libraries",
+          "Requires-Python": ">=3.10",
+          "Description-Content-Type": "text/markdown",
+          "License-File": "LICENSE",
+          "Requires-Dist": "six",
+          "Dynamic": "license-file"
+        },
+        "runtime_files": 18
+      },
+      "commands": [
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.14.8/x64/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "-o",
+            "junit_family=legacy",
+            "--junitxml",
+            "/home/runner/work/_temp/gem-ci/pytest.xml"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "pytest.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.14.8/x64/bin/python",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/source-docs.json"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "source-docs.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.14.8/x64/bin/python",
+            "-m",
+            "build",
+            "--outdir",
+            "/home/runner/work/pyGameMath/pyGameMath/dist"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "build.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.14.8/x64/bin/python",
+            "-m",
+            "twine",
+            "check",
+            "--strict",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "twine.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.14.8/x64/bin/python",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--wheel",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "--sdist",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/artifacts.json"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "artifacts.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-dependencies.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-install.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/home/runner/work/_temp/gem-ci/wheel-environment/lib/python3.14/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/wheel-smoke.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-smoke.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/home/runner/work/_temp/gem-ci/wheel-environment/lib/python3.14/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/wheel-docs.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-docs.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-dependencies.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-install.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/home/runner/work/_temp/gem-ci/sdist-environment/lib/python3.14/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/sdist-smoke.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-smoke.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/home/runner/work/_temp/gem-ci/sdist-environment/lib/python3.14/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/sdist-docs.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-docs.log"
+        }
+      ]
+    },
+    {
+      "name": "gem-checks-Windows-py3.11-38014899622",
+      "artifact_id": 11655354985,
+      "artifact_digest": "sha256:8ae28d481315489789d46c952808555f88504f8d48238cb69a750554b8a3d072",
+      "python": "3.11.9",
+      "platform": "Windows-10-10.0.26100-SP0",
+      "status": "failed",
+      "tests": {
+        "tests": 4036,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4035,
+        "xfailed": 0
+      },
+      "failed_tests": [
+        "tests.test_showcase_examples::test_committed_artifacts_match_generation"
+      ],
+      "installed": {
+        "wheel": {
+          "smoke": {
+            "installed": {
+              "python": "3.11.9",
+              "implementation": "CPython",
+              "platform": "Windows-10-10.0.26100-SP0",
+              "package_root": "D:\\a\\_temp\\gem-ci\\wheel-environment\\Lib\\site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        },
+        "sdist": {
+          "smoke": {
+            "installed": {
+              "python": "3.11.9",
+              "implementation": "CPython",
+              "platform": "Windows-10-10.0.26100-SP0",
+              "package_root": "D:\\a\\_temp\\gem-ci\\sdist-environment\\Lib\\site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        }
+      },
+      "api_declarations": 268,
+      "examples": 43,
+      "artifacts": {
+        "metadata": {
+          "Metadata-Version": "2.4",
+          "Name": "gem",
+          "Version": "1.0.0",
+          "Summary": "Pure-Python mathematics for games and graphics",
+          "Author-email": "Alex Marinescu <ale632007@gmail.com>",
+          "License-Expression": "BSD-2-Clause",
+          "Project-URL": "Issues, https://github.com/AlexMarinescu/pyGameMath/issues",
+          "Keywords": "math,game,graphics,library",
+          "Classifier": "Topic :: Software Development :: Libraries",
+          "Requires-Python": ">=3.10",
+          "Description-Content-Type": "text/markdown",
+          "License-File": "LICENSE",
+          "Requires-Dist": "six",
+          "Dynamic": "license-file"
+        },
+        "runtime_files": 18
+      },
+      "commands": [
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\\python.exe",
+            "-m",
+            "pytest",
+            "-q",
+            "-o",
+            "junit_family=legacy",
+            "--junitxml",
+            "D:\\a\\_temp\\gem-ci\\pytest.xml"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "pytest.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\\python.exe",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\source-docs.json"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "source-docs.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\\python.exe",
+            "-m",
+            "build",
+            "--outdir",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "build.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\\python.exe",
+            "-m",
+            "twine",
+            "check",
+            "--strict",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0-py3-none-any.whl",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0.tar.gz"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "twine.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\\python.exe",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\verify_distribution.py",
+            "--wheel",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0-py3-none-any.whl",
+            "--sdist",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0.tar.gz",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\artifacts.json"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "artifacts.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-dependencies.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0-py3-none-any.whl"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-install.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\verify_distribution.py",
+            "--installed-root",
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\wheel-smoke.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-smoke.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\wheel-docs.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-docs.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-dependencies.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0.tar.gz"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-install.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\verify_distribution.py",
+            "--installed-root",
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\sdist-smoke.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-smoke.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\sdist-docs.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-docs.log"
+        }
+      ]
+    },
+    {
+      "name": "gem-checks-Windows-py3.14-38014899622",
+      "artifact_id": 11655339722,
+      "artifact_digest": "sha256:262693fd50796898a979d55ee6375d40b815c82e57493a714f342c7351298bce",
+      "python": "3.14.7",
+      "platform": "Windows-2025Server-10.0.26100-SP0",
+      "status": "failed",
+      "tests": {
+        "tests": 4036,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4035,
+        "xfailed": 0
+      },
+      "failed_tests": [
+        "tests.test_showcase_examples::test_committed_artifacts_match_generation"
+      ],
+      "installed": {
+        "wheel": {
+          "smoke": {
+            "installed": {
+              "python": "3.14.7",
+              "implementation": "CPython",
+              "platform": "Windows-2025Server-10.0.26100-SP0",
+              "package_root": "D:\\a\\_temp\\gem-ci\\wheel-environment\\Lib\\site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        },
+        "sdist": {
+          "smoke": {
+            "installed": {
+              "python": "3.14.7",
+              "implementation": "CPython",
+              "platform": "Windows-2025Server-10.0.26100-SP0",
+              "package_root": "D:\\a\\_temp\\gem-ci\\sdist-environment\\Lib\\site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        }
+      },
+      "api_declarations": 268,
+      "examples": 43,
+      "artifacts": {
+        "metadata": {
+          "Metadata-Version": "2.4",
+          "Name": "gem",
+          "Version": "1.0.0",
+          "Summary": "Pure-Python mathematics for games and graphics",
+          "Author-email": "Alex Marinescu <ale632007@gmail.com>",
+          "License-Expression": "BSD-2-Clause",
+          "Project-URL": "Issues, https://github.com/AlexMarinescu/pyGameMath/issues",
+          "Keywords": "math,game,graphics,library",
+          "Classifier": "Topic :: Software Development :: Libraries",
+          "Requires-Python": ">=3.10",
+          "Description-Content-Type": "text/markdown",
+          "License-File": "LICENSE",
+          "Requires-Dist": "six",
+          "Dynamic": "license-file"
+        },
+        "runtime_files": 18
+      },
+      "commands": [
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.14.7\\x64\\python.exe",
+            "-m",
+            "pytest",
+            "-q",
+            "-o",
+            "junit_family=legacy",
+            "--junitxml",
+            "D:\\a\\_temp\\gem-ci\\pytest.xml"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "pytest.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.14.7\\x64\\python.exe",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\source-docs.json"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "source-docs.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.14.7\\x64\\python.exe",
+            "-m",
+            "build",
+            "--outdir",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "build.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.14.7\\x64\\python.exe",
+            "-m",
+            "twine",
+            "check",
+            "--strict",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0-py3-none-any.whl",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0.tar.gz"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "twine.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.14.7\\x64\\python.exe",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\verify_distribution.py",
+            "--wheel",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0-py3-none-any.whl",
+            "--sdist",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0.tar.gz",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\artifacts.json"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "artifacts.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-dependencies.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0-py3-none-any.whl"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-install.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\verify_distribution.py",
+            "--installed-root",
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\wheel-smoke.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-smoke.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\wheel-docs.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-docs.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-dependencies.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0.tar.gz"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-install.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\verify_distribution.py",
+            "--installed-root",
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\sdist-smoke.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-smoke.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\sdist-docs.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-docs.log"
+        }
+      ]
+    },
+    {
+      "name": "gem-checks-macOS-py3.14-38014899622",
+      "artifact_id": 11655314638,
+      "artifact_digest": "sha256:6b80f50af290c324871f5355d8957961b93d4dc15c3e4d27a14985a80a17b63c",
+      "python": "3.14.7",
+      "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+      "status": "passed",
+      "tests": {
+        "tests": 4036,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4036,
+        "xfailed": 0
+      },
+      "failed_tests": [],
+      "installed": {
+        "wheel": {
+          "smoke": {
+            "installed": {
+              "python": "3.14.7",
+              "implementation": "CPython",
+              "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+              "package_root": "/Users/runner/work/_temp/gem-ci/wheel-environment/lib/python3.14/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        },
+        "sdist": {
+          "smoke": {
+            "installed": {
+              "python": "3.14.7",
+              "implementation": "CPython",
+              "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+              "package_root": "/Users/runner/work/_temp/gem-ci/sdist-environment/lib/python3.14/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        }
+      },
+      "api_declarations": 268,
+      "examples": 43,
+      "artifacts": {
+        "metadata": {
+          "Metadata-Version": "2.4",
+          "Name": "gem",
+          "Version": "1.0.0",
+          "Summary": "Pure-Python mathematics for games and graphics",
+          "Author-email": "Alex Marinescu <ale632007@gmail.com>",
+          "License-Expression": "BSD-2-Clause",
+          "Project-URL": "Issues, https://github.com/AlexMarinescu/pyGameMath/issues",
+          "Keywords": "math,game,graphics,library",
+          "Classifier": "Topic :: Software Development :: Libraries",
+          "Requires-Python": ">=3.10",
+          "Description-Content-Type": "text/markdown",
+          "License-File": "LICENSE",
+          "Requires-Dist": "six",
+          "Dynamic": "license-file"
+        },
+        "runtime_files": 18
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.14/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "-o",
+            "junit_family=legacy",
+            "--junitxml",
+            "/Users/runner/work/_temp/gem-ci/pytest.xml"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "pytest.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.14/bin/python",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/source-docs.json"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "source-docs.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.14/bin/python",
+            "-m",
+            "build",
+            "--outdir",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "build.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.14/bin/python",
+            "-m",
+            "twine",
+            "check",
+            "--strict",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "twine.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.14/bin/python",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--wheel",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "--sdist",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/artifacts.json"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "artifacts.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-dependencies.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-install.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/lib/python3.14/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/wheel-smoke.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-smoke.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/lib/python3.14/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/wheel-docs.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-docs.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-dependencies.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-install.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/lib/python3.14/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/sdist-smoke.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-smoke.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/lib/python3.14/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/sdist-docs.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-docs.log"
+        }
+      ]
+    },
+    {
+      "name": "gem-checks-Linux-py3.12-38014899622",
+      "artifact_id": 11655279763,
+      "artifact_digest": "sha256:23a89da45b199bce308dc80710633a89db36b54820d070144a6df84057047f75",
+      "python": "3.12.15",
+      "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+      "status": "passed",
+      "tests": {
+        "tests": 4036,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4036,
+        "xfailed": 0
+      },
+      "failed_tests": [],
+      "installed": {
+        "wheel": {
+          "smoke": {
+            "installed": {
+              "python": "3.12.15",
+              "implementation": "CPython",
+              "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+              "package_root": "/home/runner/work/_temp/gem-ci/wheel-environment/lib/python3.12/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        },
+        "sdist": {
+          "smoke": {
+            "installed": {
+              "python": "3.12.15",
+              "implementation": "CPython",
+              "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+              "package_root": "/home/runner/work/_temp/gem-ci/sdist-environment/lib/python3.12/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        }
+      },
+      "api_declarations": 268,
+      "examples": 43,
+      "artifacts": {
+        "metadata": {
+          "Metadata-Version": "2.4",
+          "Name": "gem",
+          "Version": "1.0.0",
+          "Summary": "Pure-Python mathematics for games and graphics",
+          "Author-email": "Alex Marinescu <ale632007@gmail.com>",
+          "License-Expression": "BSD-2-Clause",
+          "Project-URL": "Issues, https://github.com/AlexMarinescu/pyGameMath/issues",
+          "Keywords": "math,game,graphics,library",
+          "Classifier": "Topic :: Software Development :: Libraries",
+          "Requires-Python": ">=3.10",
+          "Description-Content-Type": "text/markdown",
+          "License-File": "LICENSE",
+          "Requires-Dist": "six",
+          "Dynamic": "license-file"
+        },
+        "runtime_files": 18
+      },
+      "commands": [
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "-o",
+            "junit_family=legacy",
+            "--junitxml",
+            "/home/runner/work/_temp/gem-ci/pytest.xml"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "pytest.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/source-docs.json"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "source-docs.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+            "-m",
+            "build",
+            "--outdir",
+            "/home/runner/work/pyGameMath/pyGameMath/dist"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "build.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+            "-m",
+            "twine",
+            "check",
+            "--strict",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "twine.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--wheel",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "--sdist",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/artifacts.json"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "artifacts.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-dependencies.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-install.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/home/runner/work/_temp/gem-ci/wheel-environment/lib/python3.12/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/wheel-smoke.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-smoke.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/home/runner/work/_temp/gem-ci/wheel-environment/lib/python3.12/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/wheel-docs.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-docs.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-dependencies.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-install.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/home/runner/work/_temp/gem-ci/sdist-environment/lib/python3.12/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/sdist-smoke.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-smoke.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/home/runner/work/_temp/gem-ci/sdist-environment/lib/python3.12/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/sdist-docs.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-docs.log"
+        }
+      ]
+    },
+    {
+      "name": "gem-checks-macOS-py3.12-38014899622",
+      "artifact_id": 11655134745,
+      "artifact_digest": "sha256:f169696d7b765ffcc3048f687bcc00d1ce3243c6097d38da35f9267bea7a9717",
+      "python": "3.12.10",
+      "platform": "macOS-26.6.2-arm64-arm-64bit",
+      "status": "passed",
+      "tests": {
+        "tests": 4036,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4036,
+        "xfailed": 0
+      },
+      "failed_tests": [],
+      "installed": {
+        "wheel": {
+          "smoke": {
+            "installed": {
+              "python": "3.12.10",
+              "implementation": "CPython",
+              "platform": "macOS-26.6.2-arm64-arm-64bit",
+              "package_root": "/Users/runner/work/_temp/gem-ci/wheel-environment/lib/python3.12/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        },
+        "sdist": {
+          "smoke": {
+            "installed": {
+              "python": "3.12.10",
+              "implementation": "CPython",
+              "platform": "macOS-26.6.2-arm64-arm-64bit",
+              "package_root": "/Users/runner/work/_temp/gem-ci/sdist-environment/lib/python3.12/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        }
+      },
+      "api_declarations": 268,
+      "examples": 43,
+      "artifacts": {
+        "metadata": {
+          "Metadata-Version": "2.4",
+          "Name": "gem",
+          "Version": "1.0.0",
+          "Summary": "Pure-Python mathematics for games and graphics",
+          "Author-email": "Alex Marinescu <ale632007@gmail.com>",
+          "License-Expression": "BSD-2-Clause",
+          "Project-URL": "Issues, https://github.com/AlexMarinescu/pyGameMath/issues",
+          "Keywords": "math,game,graphics,library",
+          "Classifier": "Topic :: Software Development :: Libraries",
+          "Requires-Python": ">=3.10",
+          "Description-Content-Type": "text/markdown",
+          "License-File": "LICENSE",
+          "Requires-Dist": "six",
+          "Dynamic": "license-file"
+        },
+        "runtime_files": 18
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.12/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "-o",
+            "junit_family=legacy",
+            "--junitxml",
+            "/Users/runner/work/_temp/gem-ci/pytest.xml"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "pytest.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.12/bin/python",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/source-docs.json"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "source-docs.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.12/bin/python",
+            "-m",
+            "build",
+            "--outdir",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "build.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.12/bin/python",
+            "-m",
+            "twine",
+            "check",
+            "--strict",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "twine.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.12/bin/python",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--wheel",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "--sdist",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/artifacts.json"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "artifacts.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-dependencies.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-install.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/lib/python3.12/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/wheel-smoke.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-smoke.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/lib/python3.12/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/wheel-docs.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-docs.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-dependencies.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-install.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/lib/python3.12/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/sdist-smoke.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-smoke.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/lib/python3.12/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/sdist-docs.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-docs.log"
+        }
+      ]
+    },
+    {
+      "name": "gem-checks-Windows-py3.12-38014899622",
+      "artifact_id": 11655099925,
+      "artifact_digest": "sha256:6aa7af4b9a1585943a519f50eafabd296769efad410b54d2ecbdc4ad1d910698",
+      "python": "3.12.10",
+      "platform": "Windows-2025Server-10.0.26100-SP0",
+      "status": "failed",
+      "tests": {
+        "tests": 4036,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4035,
+        "xfailed": 0
+      },
+      "failed_tests": [
+        "tests.test_showcase_examples::test_committed_artifacts_match_generation"
+      ],
+      "installed": {
+        "wheel": {
+          "smoke": {
+            "installed": {
+              "python": "3.12.10",
+              "implementation": "CPython",
+              "platform": "Windows-2025Server-10.0.26100-SP0",
+              "package_root": "D:\\a\\_temp\\gem-ci\\wheel-environment\\Lib\\site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        },
+        "sdist": {
+          "smoke": {
+            "installed": {
+              "python": "3.12.10",
+              "implementation": "CPython",
+              "platform": "Windows-2025Server-10.0.26100-SP0",
+              "package_root": "D:\\a\\_temp\\gem-ci\\sdist-environment\\Lib\\site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        }
+      },
+      "api_declarations": 268,
+      "examples": 43,
+      "artifacts": {
+        "metadata": {
+          "Metadata-Version": "2.4",
+          "Name": "gem",
+          "Version": "1.0.0",
+          "Summary": "Pure-Python mathematics for games and graphics",
+          "Author-email": "Alex Marinescu <ale632007@gmail.com>",
+          "License-Expression": "BSD-2-Clause",
+          "Project-URL": "Issues, https://github.com/AlexMarinescu/pyGameMath/issues",
+          "Keywords": "math,game,graphics,library",
+          "Classifier": "Topic :: Software Development :: Libraries",
+          "Requires-Python": ">=3.10",
+          "Description-Content-Type": "text/markdown",
+          "License-File": "LICENSE",
+          "Requires-Dist": "six",
+          "Dynamic": "license-file"
+        },
+        "runtime_files": 18
+      },
+      "commands": [
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+            "-m",
+            "pytest",
+            "-q",
+            "-o",
+            "junit_family=legacy",
+            "--junitxml",
+            "D:\\a\\_temp\\gem-ci\\pytest.xml"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "pytest.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\source-docs.json"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "source-docs.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+            "-m",
+            "build",
+            "--outdir",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "build.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+            "-m",
+            "twine",
+            "check",
+            "--strict",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0-py3-none-any.whl",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0.tar.gz"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "twine.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\verify_distribution.py",
+            "--wheel",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0-py3-none-any.whl",
+            "--sdist",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0.tar.gz",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\artifacts.json"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "artifacts.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-dependencies.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0-py3-none-any.whl"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-install.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\verify_distribution.py",
+            "--installed-root",
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\wheel-smoke.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-smoke.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\wheel-docs.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-docs.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-dependencies.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0.tar.gz"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-install.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\verify_distribution.py",
+            "--installed-root",
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\sdist-smoke.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-smoke.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\sdist-docs.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-docs.log"
+        }
+      ]
+    },
+    {
+      "name": "gem-checks-macOS-py3.10-38014899622",
+      "artifact_id": 11654724254,
+      "artifact_digest": "sha256:6d3113e152b6d436aad01c7a14e9bf84dd42ddf3e8ca5f2aab5f38a71eecc856",
+      "python": "3.10.11",
+      "platform": "macOS-26.6.2-arm64-arm-64bit",
+      "status": "passed",
+      "tests": {
+        "tests": 4036,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4036,
+        "xfailed": 0
+      },
+      "failed_tests": [],
+      "installed": {
+        "wheel": {
+          "smoke": {
+            "installed": {
+              "python": "3.10.11",
+              "implementation": "CPython",
+              "platform": "macOS-26.6.2-arm64-arm-64bit",
+              "package_root": "/Users/runner/work/_temp/gem-ci/wheel-environment/lib/python3.10/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        },
+        "sdist": {
+          "smoke": {
+            "installed": {
+              "python": "3.10.11",
+              "implementation": "CPython",
+              "platform": "macOS-26.6.2-arm64-arm-64bit",
+              "package_root": "/Users/runner/work/_temp/gem-ci/sdist-environment/lib/python3.10/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        }
+      },
+      "api_declarations": 268,
+      "examples": 43,
+      "artifacts": {
+        "metadata": {
+          "Metadata-Version": "2.4",
+          "Name": "gem",
+          "Version": "1.0.0",
+          "Summary": "Pure-Python mathematics for games and graphics",
+          "Author-email": "Alex Marinescu <ale632007@gmail.com>",
+          "License-Expression": "BSD-2-Clause",
+          "Project-URL": "Issues, https://github.com/AlexMarinescu/pyGameMath/issues",
+          "Keywords": "math,game,graphics,library",
+          "Classifier": "Topic :: Software Development :: Libraries",
+          "Requires-Python": ">=3.10",
+          "Description-Content-Type": "text/markdown",
+          "License-File": "LICENSE",
+          "Requires-Dist": "six",
+          "Dynamic": "license-file"
+        },
+        "runtime_files": 18
+      },
+      "commands": [
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.10/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "-o",
+            "junit_family=legacy",
+            "--junitxml",
+            "/Users/runner/work/_temp/gem-ci/pytest.xml"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "pytest.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.10/bin/python",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/source-docs.json"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "source-docs.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.10/bin/python",
+            "-m",
+            "build",
+            "--outdir",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "build.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.10/bin/python",
+            "-m",
+            "twine",
+            "check",
+            "--strict",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "twine.log"
+        },
+        {
+          "argv": [
+            "/Library/Frameworks/Python.framework/Versions/3.10/bin/python",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--wheel",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "--sdist",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/artifacts.json"
+          ],
+          "cwd": "/Users/runner/work/pyGameMath/pyGameMath",
+          "log": "artifacts.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-dependencies.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-install.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/lib/python3.10/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/wheel-smoke.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-smoke.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/Users/runner/work/_temp/gem-ci/wheel-environment/lib/python3.10/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/wheel-docs.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "wheel-docs.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-dependencies.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/Users/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-install.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/lib/python3.10/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/sdist-smoke.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-smoke.log"
+        },
+        {
+          "argv": [
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/Users/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/Users/runner/work/_temp/gem-ci/sdist-environment/lib/python3.10/site-packages",
+            "--output",
+            "/Users/runner/work/_temp/gem-ci/sdist-docs.json"
+          ],
+          "cwd": "/Users/runner/work/_temp/gem-ci",
+          "log": "sdist-docs.log"
+        }
+      ]
+    },
+    {
+      "name": "gem-checks-Windows-py3.10-38014899622",
+      "artifact_id": 11654489416,
+      "artifact_digest": "sha256:fbbc8c215e3c611daf1669c04fb19fed71a1e30e2cc078fe2860205c67beb023",
+      "python": "3.10.11",
+      "platform": "Windows-10-10.0.26100-SP0",
+      "status": "failed",
+      "tests": {
+        "tests": 4036,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4035,
+        "xfailed": 0
+      },
+      "failed_tests": [
+        "tests.test_showcase_examples::test_committed_artifacts_match_generation"
+      ],
+      "installed": {
+        "wheel": {
+          "smoke": {
+            "installed": {
+              "python": "3.10.11",
+              "implementation": "CPython",
+              "platform": "Windows-10-10.0.26100-SP0",
+              "package_root": "D:\\a\\_temp\\gem-ci\\wheel-environment\\Lib\\site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        },
+        "sdist": {
+          "smoke": {
+            "installed": {
+              "python": "3.10.11",
+              "implementation": "CPython",
+              "platform": "Windows-10-10.0.26100-SP0",
+              "package_root": "D:\\a\\_temp\\gem-ci\\sdist-environment\\Lib\\site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        }
+      },
+      "api_declarations": 268,
+      "examples": 43,
+      "artifacts": {
+        "metadata": {
+          "Metadata-Version": "2.4",
+          "Name": "gem",
+          "Version": "1.0.0",
+          "Summary": "Pure-Python mathematics for games and graphics",
+          "Author-email": "Alex Marinescu <ale632007@gmail.com>",
+          "License-Expression": "BSD-2-Clause",
+          "Project-URL": "Issues, https://github.com/AlexMarinescu/pyGameMath/issues",
+          "Keywords": "math,game,graphics,library",
+          "Classifier": "Topic :: Software Development :: Libraries",
+          "Requires-Python": ">=3.10",
+          "Description-Content-Type": "text/markdown",
+          "License-File": "LICENSE",
+          "Requires-Dist": "six",
+          "Dynamic": "license-file"
+        },
+        "runtime_files": 18
+      },
+      "commands": [
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.10.11\\x64\\python.exe",
+            "-m",
+            "pytest",
+            "-q",
+            "-o",
+            "junit_family=legacy",
+            "--junitxml",
+            "D:\\a\\_temp\\gem-ci\\pytest.xml"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "pytest.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.10.11\\x64\\python.exe",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\source-docs.json"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "source-docs.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.10.11\\x64\\python.exe",
+            "-m",
+            "build",
+            "--outdir",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "build.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.10.11\\x64\\python.exe",
+            "-m",
+            "twine",
+            "check",
+            "--strict",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0-py3-none-any.whl",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0.tar.gz"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "twine.log"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.10.11\\x64\\python.exe",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\verify_distribution.py",
+            "--wheel",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0-py3-none-any.whl",
+            "--sdist",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0.tar.gz",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\artifacts.json"
+          ],
+          "cwd": "D:\\a\\pyGameMath\\pyGameMath",
+          "log": "artifacts.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-dependencies.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0-py3-none-any.whl"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-install.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\verify_distribution.py",
+            "--installed-root",
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\wheel-smoke.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-smoke.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "D:\\a\\_temp\\gem-ci\\wheel-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\wheel-docs.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "wheel-docs.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-dependencies.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "D:\\a\\pyGameMath\\pyGameMath\\dist\\gem-1.0.0.tar.gz"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-install.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\verify_distribution.py",
+            "--installed-root",
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\sdist-smoke.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-smoke.log"
+        },
+        {
+          "argv": [
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "D:\\a\\pyGameMath\\pyGameMath\\tools\\check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "D:\\a\\_temp\\gem-ci\\sdist-environment\\Lib\\site-packages",
+            "--output",
+            "D:\\a\\_temp\\gem-ci\\sdist-docs.json"
+          ],
+          "cwd": "D:\\a\\_temp\\gem-ci",
+          "log": "sdist-docs.log"
+        }
+      ]
+    },
+    {
+      "name": "gem-checks-Linux-py3.13-38014899622",
+      "artifact_id": 11654489319,
+      "artifact_digest": "sha256:7b84bfb0f0de322e9b17703f0878a06af0e5836d6f3c4ab85292ef39d2686492",
+      "python": "3.13.16",
+      "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+      "status": "passed",
+      "tests": {
+        "tests": 4036,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4036,
+        "xfailed": 0
+      },
+      "failed_tests": [],
+      "installed": {
+        "wheel": {
+          "smoke": {
+            "installed": {
+              "python": "3.13.16",
+              "implementation": "CPython",
+              "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+              "package_root": "/home/runner/work/_temp/gem-ci/wheel-environment/lib/python3.13/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        },
+        "sdist": {
+          "smoke": {
+            "installed": {
+              "python": "3.13.16",
+              "implementation": "CPython",
+              "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+              "package_root": "/home/runner/work/_temp/gem-ci/sdist-environment/lib/python3.13/site-packages",
+              "version": "1.0.0",
+              "runtime_files_matched": 18,
+              "smoke": "passed"
+            }
+          },
+          "api_declarations": 268,
+          "examples": 43
+        }
+      },
+      "api_declarations": 268,
+      "examples": 43,
+      "artifacts": {
+        "metadata": {
+          "Metadata-Version": "2.4",
+          "Name": "gem",
+          "Version": "1.0.0",
+          "Summary": "Pure-Python mathematics for games and graphics",
+          "Author-email": "Alex Marinescu <ale632007@gmail.com>",
+          "License-Expression": "BSD-2-Clause",
+          "Project-URL": "Issues, https://github.com/AlexMarinescu/pyGameMath/issues",
+          "Keywords": "math,game,graphics,library",
+          "Classifier": "Topic :: Software Development :: Libraries",
+          "Requires-Python": ">=3.10",
+          "Description-Content-Type": "text/markdown",
+          "License-File": "LICENSE",
+          "Requires-Dist": "six",
+          "Dynamic": "license-file"
+        },
+        "runtime_files": 18
+      },
+      "commands": [
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.13.16/x64/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "-o",
+            "junit_family=legacy",
+            "--junitxml",
+            "/home/runner/work/_temp/gem-ci/pytest.xml"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "pytest.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.13.16/x64/bin/python",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/source-docs.json"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "source-docs.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.13.16/x64/bin/python",
+            "-m",
+            "build",
+            "--outdir",
+            "/home/runner/work/pyGameMath/pyGameMath/dist"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "build.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.13.16/x64/bin/python",
+            "-m",
+            "twine",
+            "check",
+            "--strict",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "twine.log"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.13.16/x64/bin/python",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--wheel",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl",
+            "--sdist",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/artifacts.json"
+          ],
+          "cwd": "/home/runner/work/pyGameMath/pyGameMath",
+          "log": "artifacts.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-dependencies.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0-py3-none-any.whl"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-install.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/home/runner/work/_temp/gem-ci/wheel-environment/lib/python3.13/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/wheel-smoke.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-smoke.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/wheel-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/home/runner/work/_temp/gem-ci/wheel-environment/lib/python3.13/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/wheel-docs.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "wheel-docs.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "six==1.17.0",
+            "setuptools==80.9.0",
+            "wheel==0.48.0"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-dependencies.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--no-build-isolation",
+            "/home/runner/work/pyGameMath/pyGameMath/dist/gem-1.0.0.tar.gz"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-install.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/verify_distribution.py",
+            "--installed-root",
+            "/home/runner/work/_temp/gem-ci/sdist-environment/lib/python3.13/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/sdist-smoke.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-smoke.log"
+        },
+        {
+          "argv": [
+            "/home/runner/work/_temp/gem-ci/sdist-environment/bin/python",
+            "-I",
+            "-X",
+            "utf8",
+            "/home/runner/work/pyGameMath/pyGameMath/tools/check_architecture_docs.py",
+            "--examples",
+            "--getting-started",
+            "--api-reference",
+            "--tutorials",
+            "--showcase",
+            "--website",
+            "--package-root",
+            "/home/runner/work/_temp/gem-ci/sdist-environment/lib/python3.13/site-packages",
+            "--output",
+            "/home/runner/work/_temp/gem-ci/sdist-docs.json"
+          ],
+          "cwd": "/home/runner/work/_temp/gem-ci",
+          "log": "sdist-docs.log"
+        }
+      ]
+    }
+  ],
+  "documentation": {
+    "run_id": 38014899541,
+    "url": "https://github.com/AlexMarinescu/pyGameMath/actions/runs/38014899541",
+    "status": "success",
+    "api_declarations": 268,
+    "executable_examples": 43,
+    "site": {
+      "external_asset_dependencies": 0,
+      "hosting": "relative project-prefix-safe paths",
+      "html_pages": 69,
+      "image_references": 16,
+      "local_links_checked": 7724,
+      "mathml_equations": 24,
+      "navigation_checked": 7,
+      "search_api_entries": 42,
+      "syntax_highlighting": true
+    },
+    "commands": [
+      "/tmp/phase4f-docs-env/bin/python -m mkdocs build --strict --site-dir /tmp/phase5b-site",
+      "/tmp/phase4f-docs-env/bin/python tools/check_site.py --site-dir /tmp/phase5b-site --output /tmp/phase5b-site.json"
+    ]
+  },
+  "local_candidate": {
+    "command": "/tmp/phase5a-py312/bin/python tools/ci_validate.py --output-dir /tmp/phase5b-complete --artifacts-dir /tmp/phase5b-complete-assets --offline --wheelhouse /tmp/phase5b-wheelhouse",
+    "status": "passed",
+    "manifest": {
+      "schema_version": 1,
+      "distribution": "gem",
+      "version": "1.0.0",
+      "tag": "v1.0.0",
+      "source_commit": "0e085b4bfd532935bb1267bb3eae95f04de3ed15",
+      "source_tree": "2007da95f1b7e6d58bd50f970fbbb49204faf85a",
+      "source_clean": true,
+      "files": {
+        "gem-1.0.0-py3-none-any.whl": "f4d6b096ab99c7c0c8f3b5bd71239a307ec0d467bc819d6d01e045f2c0b2d141",
+        "gem-1.0.0.tar.gz": "230fca9becbcd0afb2b5e520eeae099fe60fc00213abf292d2bbcfdc1c134de8"
+      }
+    },
+    "installed": {
+      "wheel": {
+        "smoke": {
+          "installed": {
+            "python": "3.12.14",
+            "implementation": "CPython",
+            "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+            "package_root": "/tmp/phase5b-complete/wheel-environment/lib/python3.12/site-packages",
+            "version": "1.0.0",
+            "runtime_files_matched": 18,
+            "smoke": "passed"
+          }
+        },
+        "api_declarations": 268,
+        "examples": 43
+      },
+      "sdist": {
+        "smoke": {
+          "installed": {
+            "python": "3.12.14",
+            "implementation": "CPython",
+            "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+            "package_root": "/tmp/phase5b-complete/sdist-environment/lib/python3.12/site-packages",
+            "version": "1.0.0",
+            "runtime_files_matched": 18,
+            "smoke": "passed"
+          }
+        },
+        "api_declarations": 268,
+        "examples": 43
+      }
+    },
+    "integrity_command": "/tmp/phase5a-py312/bin/python tools/release_gate.py verify-artifacts --directory /tmp/phase5b-complete-assets --commit 0e085b4bfd532935bb1267bb3eae95f04de3ed15 --tag v1.0.0 --output /tmp/phase5b-complete-integrity.json",
+    "integrity": "passed",
+    "official_release_assets": false
+  },
+  "workflow_policy": {
+    "workflows": [
+      "documentation-artifact.yml",
+      "github-release.yml",
+      "package-validation.yml",
+      "publish-docs.yml",
+      "release-validation.yml"
+    ],
+    "action_pins": [
+      "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346",
+      "actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333",
+      "actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97",
+      "actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+      "actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9"
+    ],
+    "matrix_jobs": 15,
+    "package_publication_enabled": false,
+    "wiki_mutation_enabled": false,
+    "pages_write_scope": "master-only deployment job",
+    "manual_release_modes": [
+      "validate",
+      "review"
+    ]
+  },
+  "actionlint": {
+    "version": "1.7.12",
+    "status": "passed",
+    "command": "/tmp/phase5b-tools/actionlint -color=false -shellcheck='' .github/workflows/*.yml",
+    "shellcheck_executed": false,
+    "download_sha256": "8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8"
+  },
+  "guard_tests": {
+    "command": "/tmp/phase5a-py312/bin/python -m pytest -q tests/test_release_workflows.py",
+    "passed": 70,
+    "network_mutations": "mocked; no publication performed",
+    "tampered_candidates": [
+      {
+        "case": "extra_file",
+        "status": "rejected",
+        "reason": "candidate bundle must contain two archives, manifest, checksums and installation instructions"
+      },
+      {
+        "case": "dirty_source",
+        "status": "rejected",
+        "reason": "dirty source cannot become a release candidate"
+      },
+      {
+        "case": "wrong_commit",
+        "status": "rejected",
+        "reason": "artifact source commit mismatch"
+      },
+      {
+        "case": "wrong_tree",
+        "status": "rejected",
+        "reason": "checkout/tree does not match artifact provenance"
+      },
+      {
+        "case": "wrong_version",
+        "status": "rejected",
+        "reason": "artifact version/tag mismatch"
+      },
+      {
+        "case": "digest",
+        "status": "rejected",
+        "reason": "artifact digest mismatch: gem-1.0.0-py3-none-any.whl"
+      },
+      {
+        "case": "checksums",
+        "status": "rejected",
+        "reason": "checksum file mismatch"
+      },
+      {
+        "case": "empty_instructions",
+        "status": "rejected",
+        "reason": "installation instructions missing"
+      }
+    ]
+  },
+  "runtime_sha256": {
+    "gem/__init__.py": "ed387aee9744786790d8c56cda8f17e9c311039ef37ba9af0216d782494de735",
+    "gem/_version.py": "49a1ce110282313f047abcfceec9291077a8a1d8495afae37177e05511144a4d",
+    "gem/bezier.py": "1d354070a425ea0cb99e590f984f1dd86cf5b2a03432bee848f3352f85fc75b3",
+    "gem/common.py": "2384eae0490eff93499fca6fe56cc25074119b6955b40ca3d6823f8099406ec8",
+    "gem/experimental/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "gem/experimental/_bezier_legacy.py": "39f9522eaeb171837e7797ab604bb4bacf718053375266a61c39a0de9217a034",
+    "gem/experimental/bezier.py": "4d61b9ad9b6a807101a06e4641b74dae96325a82cdc5796bd2326f7f1afdaf15",
+    "gem/experimental/legendre.py": "4f1fb87056d71982405e1cd5d83fbb07fe9f8a9c464d18ac641486cc47633db5",
+    "gem/experimental/sph.py": "192b1c96295ddf6585da4c91c1da372b5c4f53bc844ee9125ff38b913496ff0d",
+    "gem/experimental/sph_irradiance_map.py": "e7d8fa175ad566fb2d4def36978d632a537e930b5acb02396c906ae1465bab94",
+    "gem/experimental/sph_sample.py": "fbf10456e724005116524fa797474fe767cbf0224468cfc878e5fd8e6f278c15",
+    "gem/legendre.py": "bcad8a96d35f47eb4f03a1535cf5083017a351e89129534b6acb673966a254f8",
+    "gem/matrix.py": "e539db231c9b71bc0846954f2a0fad0840b0b03ffd78ae65a4189a634b56c17c",
+    "gem/plane.py": "bbffce137d4885d3587efcb0aa0f2d5084d12191f9c62efb54e2cbe4dd9033f6",
+    "gem/quaternion.py": "c17e8fd731d601e36ff21bae86613e1f4982e6275b07d1d27be6f6405dff8059",
+    "gem/ray.py": "307dfac3a68a2235c3342d4bfe0d93fd15335dba4c28eff4cf6b79ae6167c1a4",
+    "gem/spherical_harmonics.py": "25bb90b46e4ba5175e320a7f232ac6a2523b31d495e82412db5bdc9579f0d06b",
+    "gem/vector.py": "df658aa596999334153e143c0801eabc5e5fb4e5bc402770e78a0178dc83c28c"
+  },
+  "unchanged": [
+    "all 18 runtime files",
+    "public API signatures",
+    "version and distribution identity",
+    "packaging metadata",
+    "runtime dependencies",
+    "reference assets and existing assertions"
+  ],
+  "limitations": [
+    {
+      "id": "CI-WIN01",
+      "scope": "release matrix",
+      "status": "blocked",
+      "detail": "All five Windows jobs retain one strict showcase measurements.json byte-reference failure caused by ordinary platform floating-point differences; all other tests and independent installed checks pass."
+    },
+    {
+      "id": "PYPI-AUTH",
+      "scope": "PyPI only",
+      "status": "blocked",
+      "detail": "Historical gem publishing authority remains unverified; no PyPI workflow exists."
+    },
+    {
+      "id": "REVIEW-CONFIG",
+      "scope": "future GitHub publication",
+      "status": "unverified",
+      "detail": "Protected release environment settings could not be inspected through the public connector. Workflows validate them at runtime and fail closed; no server settings were changed."
+    },
+    {
+      "id": "DEPENDABOT-REVIEW",
+      "scope": "maintainer security review",
+      "status": "untriaged",
+      "detail": "Git push reports one moderate default-branch alert. Its details were unavailable through the connected public endpoint; no vulnerability-free claim is made."
+    }
+  ],
+  "publication_performed": {
+    "pypi": false,
+    "testpypi": false,
+    "github_release": false,
+    "release_tags": false,
+    "wiki": false
+  },
+  "manual_dispatch_executed": false,
+  "dependencies": {
+    "pytest": "9.1.1",
+    "coverage": "7.16.2",
+    "build": "1.6.1",
+    "setuptools": "80.9.0",
+    "wheel": "0.48.0",
+    "twine": "7.0.0",
+    "six": "1.17.0",
+    "PyYAML": "6.0.3"
+  }
+}
