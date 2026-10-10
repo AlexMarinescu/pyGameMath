@@ -48,6 +48,8 @@ def run(output_dir, artifacts_dir, offline=False, wheelhouse=None):
             subprocess.run(list(map(str,args)),cwd=cwd,env=env,stdout=log,stderr=subprocess.STDOUT,check=True)
     def read(name):return json.loads((output_dir/name).read_text(encoding='utf-8'))
     try:
+        command([sys.executable,ROOT/'tools/trace_showcase.py','--output',
+                 output_dir/'showcase-trace.json'],'showcase-trace')
         pytest_error=None
         try:
             command([sys.executable,'-m','pytest','-q','-o','junit_family=legacy',
