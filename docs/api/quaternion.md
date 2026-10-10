@@ -159,6 +159,13 @@ See the [repair evidence and measured costs](../../audit/PHASE4G1R-QUATERNION-RE
 Accurate SLERP uses the difference/sum norm angle to resolve tiny separations,
 then sine weights; identical orientations use the continuous limit. For unit inputs
 and t in [0,1], unit norm is tested within 1e-12; this is not implicit normalization.
+At t=0/1, finite inputs return independent component copies of the selected
+endpoint, retaining shortest-path signs. When the spherical angle is subnormal,
+interior t in [0,1] uses the continuous linear limit: the spherical correction
+is below binary64's representable range, while sine ratios can lose weight
+precision. The minimum-normal boundary is a representation limit, not an
+equality tolerance. Separately rounded products still have ordinary floating-point
+limitations; unrepresentable intermediate orientations are not promoted.
 Legacy no-invert SLERP retains sign-sensitive branches and linear approximation.
 
 Legacy three-control formula, with N=no-invert SLERP:

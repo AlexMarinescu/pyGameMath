@@ -281,6 +281,7 @@ def quat_slerp(quat0, quat1, t):
 
     No input normalization or parameter clamping is performed. Equal
     orientations use the continuous limit; signs follow the first input.
+    Finite endpoints retain their components in independent storage.
     """
     end = quat1.negate() if quat0.dot(quat1) < 0.0 else quat1
     # Difference/sum norms retain angles too small for acos(dot) to resolve.
@@ -289,8 +290,20 @@ def quat_slerp(quat0, quat1, t):
     difference_norm = math.hypot(math.hypot(*difference[:2]), math.hypot(*difference[2:]))
     total_norm = math.hypot(math.hypot(*total[:2]), math.hypot(*total[2:]))
     theta = 2.0 * math.atan2(difference_norm, total_norm)
+    if t == 0.0 or t == 1.0:
+        # Keep the shortest-path sign and avoid rounding an available endpoint.
+        # Nonfinite inputs retain their historical arithmetic below.
+        if math.isfinite(difference_norm) and math.isfinite(total_norm):
+            return Quaternion(data=list(quat0.data if t == 0.0 else end.data))
     if theta == 0.0:
+        if difference_norm != 0.0 and 0.0 <= t <= 1.0:
+            return _quat_blend(quat0, end, 1.0 - t, float(t))
         return Quaternion(data=list(quat0.data))
+    # Minimum normal binary64, not an angular tolerance. Subnormal sine
+    # ratios lose weight precision; their O(theta**2) spherical correction
+    # is unrepresentable for unit inputs and t in [0,1]. Keep the linear limit.
+    if theta < 2.2250738585072014e-308 and 0.0 <= t <= 1.0:
+        return _quat_blend(quat0, end, 1.0 - t, float(t))
     denominator = math.sin(theta)
     k0 = math.sin((1.0 - t) * theta) / denominator
     k1 = math.sin(t * theta) / denominator

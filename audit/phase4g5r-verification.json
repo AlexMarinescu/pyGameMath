@@ -1,0 +1,2218 @@
+{
+  "schema": 1,
+  "phase": "4G-5R",
+  "base": "4e48dc68cc23d47abd7501897c6dfbb0c05156c3",
+  "branch": "repair/phase4g5-slerp-endpoints",
+  "finding": "4G5-A01",
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz",
+    "shared_host": true,
+    "executable": "/workspace/.venvs/pyGameMath/bin/python",
+    "pytest": "9.1.1",
+    "six": "1.17.0",
+    "build_tools": {
+      "setuptools": "84.0.0",
+      "wheel": "0.48.0",
+      "packaging": "26.3"
+    },
+    "other_python_versions_verified": false
+  },
+  "tests": {
+    "baseline": {
+      "passed": 3853,
+      "failed": 0,
+      "xfail": 12,
+      "skipped": 0,
+      "errors": 0,
+      "total": 3865,
+      "identities": {
+        "failed": [],
+        "xfail": [
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-free_slerp]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-method_slerp]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-squad4]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-free_slerp]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-method_slerp]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-squad4]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-free_slerp]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-method_slerp]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-squad4]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-free_slerp]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-method_slerp]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-squad4]"
+        ],
+        "skipped": [],
+        "errors": []
+      },
+      "elapsed_seconds": 17.0,
+      "junit_sha256": "a17c7d86e1e22e7bea4ce10742cc50997066f7506db2c315e3adf582bf0b1199",
+      "passed_identities_sha256": "57a33a89b826be4ccbef4a28b14cb832294ae6a5ee13a54333b5911d3477b555",
+      "original_passing_regression_identities": []
+    },
+    "reproductions": {
+      "passed": 0,
+      "failed": 12,
+      "xfail": 0,
+      "skipped": 0,
+      "errors": 0,
+      "total": 12,
+      "identities": {
+        "failed": [
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-free_slerp]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-method_slerp]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-squad4]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-free_slerp]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-method_slerp]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-squad4]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-free_slerp]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-method_slerp]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-squad4]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-free_slerp]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-method_slerp]",
+          "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-squad4]"
+        ],
+        "xfail": [],
+        "skipped": [],
+        "errors": []
+      },
+      "elapsed_seconds": 0.447,
+      "junit_sha256": "8a5ac60a7fd9377edc865998facbe8eb82460b9d021aca1fb9b805e3f1380f54",
+      "passed_identities_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_passing_regression_identities": []
+    },
+    "original-passing": {
+      "passed": 12,
+      "failed": 0,
+      "xfail": 0,
+      "skipped": 0,
+      "errors": 0,
+      "total": 12,
+      "identities": {
+        "failed": [],
+        "xfail": [],
+        "skipped": [],
+        "errors": []
+      },
+      "elapsed_seconds": 0.088,
+      "junit_sha256": "f3de71e8c374e10b22b5eb428223632c82c2c98485880a0e1abb96438cb72504",
+      "passed_identities_sha256": "317929dd625b75f466ec96f2169fb5a21a3c891590c7ebf0429b3f7fe293d675",
+      "original_passing_regression_identities": [
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-squad4]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-squad4]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-squad4]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-squad4]"
+      ]
+    },
+    "focused": {
+      "passed": 1120,
+      "failed": 0,
+      "xfail": 0,
+      "skipped": 0,
+      "errors": 0,
+      "total": 1120,
+      "identities": {
+        "failed": [],
+        "xfail": [],
+        "skipped": [],
+        "errors": []
+      },
+      "elapsed_seconds": 1.31,
+      "junit_sha256": "9d2e331c132eb12780c47d5bf6ce73647eb6291a820717bab7709c9671ad2fef",
+      "passed_identities_sha256": "d5f3eae7b5258b61494cf5209c36e4334ff9b91b3a6a0e419815b962d02ed33a",
+      "original_passing_regression_identities": [
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-squad4]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-squad4]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-squad4]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-squad4]"
+      ]
+    },
+    "full": {
+      "passed": 3947,
+      "failed": 0,
+      "xfail": 0,
+      "skipped": 0,
+      "errors": 0,
+      "total": 3947,
+      "identities": {
+        "failed": [],
+        "xfail": [],
+        "skipped": [],
+        "errors": []
+      },
+      "elapsed_seconds": 16.315,
+      "junit_sha256": "78f3c9ed2d47952161bdf4200c2ec37b6b0d1f9ff2307bddfb2acfd5b43718bf",
+      "passed_identities_sha256": "af033ff65fee0b75b7e9577fd92dab1b30342f13716321ee61db83f73ebefbec",
+      "original_passing_regression_identities": [
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0--1.0-squad4]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[-1.0-1.0-squad4]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0--1.0-squad4]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-free_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-method_slerp]",
+        "tests.test_final_integration_audit::test_subnormal_interpolation_endpoint_retains_representable_rotation[1.0-1.0-squad4]"
+      ]
+    }
+  },
+  "new_independent_cases": [
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[-1.0-0.0-data0]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[-1.0-0.0-data1]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[-1.0-0.0-data2]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[-1.0-0.0-data3]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[-1.0-0.0-data4]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[-1.0-0.0-data5]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[-1.0-1.0-data0]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[-1.0-1.0-data1]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[-1.0-1.0-data2]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[-1.0-1.0-data3]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[-1.0-1.0-data4]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[-1.0-1.0-data5]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[1.0-0.0-data0]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[1.0-0.0-data1]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[1.0-0.0-data2]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[1.0-0.0-data3]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[1.0-0.0-data4]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[1.0-0.0-data5]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[1.0-1.0-data0]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[1.0-1.0-data1]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[1.0-1.0-data2]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[1.0-1.0-data3]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[1.0-1.0-data4]",
+    "tests.test_slerp_numerical_repair::test_exact_endpoint_components_storage_and_independent_rotations[1.0-1.0-data5]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[-1.0-5e-324]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[-1.0-1e-323]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[-1.0-1.5e-323]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[-1.0-2.5e-323]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[-1.0-3.5e-323]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[-1.0-8e-323]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[-1.0-2.225073858507201e-308]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[-1.0-2.2250738585072014e-308]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[-1.0-2.225073858507202e-308]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[-1.0-1e-300]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[-1.0-1e-200]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[1.0-5e-324]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[1.0-1e-323]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[1.0-1.5e-323]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[1.0-2.5e-323]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[1.0-3.5e-323]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[1.0-8e-323]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[1.0-2.225073858507201e-308]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[1.0-2.2250738585072014e-308]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[1.0-2.225073858507202e-308]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[1.0-1e-300]",
+    "tests.test_slerp_numerical_repair::test_near_zero_angle_weights_against_exact_linear_limit[1.0-1e-200]",
+    "tests.test_slerp_numerical_repair::test_nonidentity_controls_with_subnormal_transverse_axes[0.125-5e-324-1.5e-323]",
+    "tests.test_slerp_numerical_repair::test_nonidentity_controls_with_subnormal_transverse_axes[0.125--5e-324-1.5e-323]",
+    "tests.test_slerp_numerical_repair::test_nonidentity_controls_with_subnormal_transverse_axes[0.125-2.5e-323--1.5e-323]",
+    "tests.test_slerp_numerical_repair::test_nonidentity_controls_with_subnormal_transverse_axes[0.375-5e-324-1.5e-323]",
+    "tests.test_slerp_numerical_repair::test_nonidentity_controls_with_subnormal_transverse_axes[0.375--5e-324-1.5e-323]",
+    "tests.test_slerp_numerical_repair::test_nonidentity_controls_with_subnormal_transverse_axes[0.375-2.5e-323--1.5e-323]",
+    "tests.test_slerp_numerical_repair::test_nonidentity_controls_with_subnormal_transverse_axes[0.5-5e-324-1.5e-323]",
+    "tests.test_slerp_numerical_repair::test_nonidentity_controls_with_subnormal_transverse_axes[0.5--5e-324-1.5e-323]",
+    "tests.test_slerp_numerical_repair::test_nonidentity_controls_with_subnormal_transverse_axes[0.5-2.5e-323--1.5e-323]",
+    "tests.test_slerp_numerical_repair::test_nonidentity_controls_with_subnormal_transverse_axes[0.75-5e-324-1.5e-323]",
+    "tests.test_slerp_numerical_repair::test_nonidentity_controls_with_subnormal_transverse_axes[0.75--5e-324-1.5e-323]",
+    "tests.test_slerp_numerical_repair::test_nonidentity_controls_with_subnormal_transverse_axes[0.75-2.5e-323--1.5e-323]",
+    "tests.test_slerp_numerical_repair::test_unrepresentable_midpoint_is_not_promoted_to_a_false_nonzero_value",
+    "tests.test_slerp_numerical_repair::test_fraction_parameters_keep_the_slerp_float_weight_dispatch[t0]",
+    "tests.test_slerp_numerical_repair::test_fraction_parameters_keep_the_slerp_float_weight_dispatch[t1]",
+    "tests.test_slerp_numerical_repair::test_fraction_parameters_keep_the_slerp_float_weight_dispatch[t2]",
+    "tests.test_slerp_numerical_repair::test_subnormal_squad_controls_use_independent_dyadic_angle_polynomial[signs0]",
+    "tests.test_slerp_numerical_repair::test_subnormal_squad_controls_use_independent_dyadic_angle_polynomial[signs1]",
+    "tests.test_slerp_numerical_repair::test_subnormal_squad_controls_use_independent_dyadic_angle_polynomial[signs2]",
+    "tests.test_slerp_numerical_repair::test_subnormal_squad_controls_use_independent_dyadic_angle_polynomial[signs3]",
+    "tests.test_slerp_numerical_repair::test_squad_subnormal_products_have_a_derived_rounding_budget",
+    "tests.test_slerp_numerical_repair::test_general_spherical_paths_and_matrix_rotations_use_independent_tangent_reference[0]",
+    "tests.test_slerp_numerical_repair::test_general_spherical_paths_and_matrix_rotations_use_independent_tangent_reference[1]",
+    "tests.test_slerp_numerical_repair::test_general_spherical_paths_and_matrix_rotations_use_independent_tangent_reference[2]",
+    "tests.test_slerp_numerical_repair::test_general_spherical_paths_and_matrix_rotations_use_independent_tangent_reference[3]",
+    "tests.test_slerp_numerical_repair::test_general_spherical_paths_and_matrix_rotations_use_independent_tangent_reference[4]",
+    "tests.test_slerp_numerical_repair::test_general_spherical_paths_and_matrix_rotations_use_independent_tangent_reference[5]",
+    "tests.test_slerp_numerical_repair::test_general_spherical_paths_and_matrix_rotations_use_independent_tangent_reference[6]",
+    "tests.test_slerp_numerical_repair::test_general_spherical_paths_and_matrix_rotations_use_independent_tangent_reference[7]",
+    "tests.test_slerp_numerical_repair::test_general_spherical_paths_and_matrix_rotations_use_independent_tangent_reference[8]",
+    "tests.test_slerp_numerical_repair::test_general_spherical_paths_and_matrix_rotations_use_independent_tangent_reference[9]",
+    "tests.test_slerp_numerical_repair::test_general_spherical_paths_and_matrix_rotations_use_independent_tangent_reference[10]",
+    "tests.test_slerp_numerical_repair::test_general_spherical_paths_and_matrix_rotations_use_independent_tangent_reference[11]",
+    "tests.test_slerp_numerical_repair::test_exact_half_turn_tie_still_retains_supplied_endpoint_sign[-1.0]",
+    "tests.test_slerp_numerical_repair::test_exact_half_turn_tie_still_retains_supplied_endpoint_sign[1.0]",
+    "tests.test_slerp_numerical_repair::test_legacy_nonunit_interpolation_and_parameter_policies_are_not_redefined"
+  ],
+  "installed_and_source": {
+    "source": {
+      "package_root": "/workspace/pyGameMath",
+      "imports": {
+        "gem": "/workspace/pyGameMath/gem/__init__.py",
+        "gem.quaternion": "/workspace/pyGameMath/gem/quaternion.py",
+        "gem.vector": "/workspace/pyGameMath/gem/vector.py",
+        "gem.matrix": "/workspace/pyGameMath/gem/matrix.py",
+        "gem.bezier": "/workspace/pyGameMath/gem/bezier.py",
+        "gem.legendre": "/workspace/pyGameMath/gem/legendre.py",
+        "gem.spherical_harmonics": "/workspace/pyGameMath/gem/spherical_harmonics.py"
+      },
+      "source_mode": true,
+      "original_regressions_passed": 12,
+      "regressions": [
+        {
+          "api": "free_slerp",
+          "sign": -1.0,
+          "representation": -1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ]
+        },
+        {
+          "api": "method_slerp",
+          "sign": -1.0,
+          "representation": -1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ]
+        },
+        {
+          "api": "squad4",
+          "sign": -1.0,
+          "representation": -1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ]
+        },
+        {
+          "api": "free_slerp",
+          "sign": -1.0,
+          "representation": 1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ]
+        },
+        {
+          "api": "method_slerp",
+          "sign": -1.0,
+          "representation": 1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ]
+        },
+        {
+          "api": "squad4",
+          "sign": -1.0,
+          "representation": 1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ]
+        },
+        {
+          "api": "free_slerp",
+          "sign": 1.0,
+          "representation": -1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ]
+        },
+        {
+          "api": "method_slerp",
+          "sign": 1.0,
+          "representation": -1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ]
+        },
+        {
+          "api": "squad4",
+          "sign": 1.0,
+          "representation": -1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ]
+        },
+        {
+          "api": "free_slerp",
+          "sign": 1.0,
+          "representation": 1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ]
+        },
+        {
+          "api": "method_slerp",
+          "sign": 1.0,
+          "representation": 1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ]
+        },
+        {
+          "api": "squad4",
+          "sign": 1.0,
+          "representation": 1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ]
+        }
+      ],
+      "additional_subnormal_checks_passed": 6,
+      "rotation_matrix_checks_passed": 2,
+      "api_reference": {
+        "declarations": 268,
+        "constants": 7,
+        "runtime_signatures_checked": true,
+        "omitted_declarations": []
+      },
+      "documentation_examples": {
+        "docs/architecture/conventions.md": 4,
+        "README.md": 1,
+        "docs/getting-started/quick-start.md": 7,
+        "docs/api/bezier.md": 1,
+        "docs/api/common.md": 1,
+        "docs/api/legacy.md": 1,
+        "docs/api/legendre.md": 1,
+        "docs/api/matrix.md": 1,
+        "docs/api/plane.md": 1,
+        "docs/api/projection.md": 1,
+        "docs/api/quaternion.md": 2,
+        "docs/api/ray.md": 1,
+        "docs/api/spherical-harmonics.md": 3,
+        "docs/api/transformations.md": 1,
+        "docs/api/vector.md": 2,
+        "docs/tutorials/bezier.md": 1,
+        "docs/tutorials/camera.md": 1,
+        "docs/tutorials/geometry.md": 2,
+        "docs/tutorials/interop.md": 1,
+        "docs/tutorials/lighting.md": 2,
+        "docs/tutorials/numerical.md": 2,
+        "docs/tutorials/quaternions.md": 2,
+        "docs/tutorials/transformations.md": 1,
+        "docs/tutorials/vectors.md": 1,
+        "docs/architecture/notation.md": 1
+      },
+      "examples_executed": 42,
+      "source_tree_runtime_imported": true,
+      "checker_modified": false,
+      "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+    },
+    "wheel": {
+      "package_root": "/tmp/phase4g5r-final-wheel-env/lib/python3.12/site-packages",
+      "imports": {
+        "gem": "/tmp/phase4g5r-final-wheel-env/lib/python3.12/site-packages/gem/__init__.py",
+        "gem.quaternion": "/tmp/phase4g5r-final-wheel-env/lib/python3.12/site-packages/gem/quaternion.py",
+        "gem.vector": "/tmp/phase4g5r-final-wheel-env/lib/python3.12/site-packages/gem/vector.py",
+        "gem.matrix": "/tmp/phase4g5r-final-wheel-env/lib/python3.12/site-packages/gem/matrix.py",
+        "gem.bezier": "/tmp/phase4g5r-final-wheel-env/lib/python3.12/site-packages/gem/bezier.py",
+        "gem.legendre": "/tmp/phase4g5r-final-wheel-env/lib/python3.12/site-packages/gem/legendre.py",
+        "gem.spherical_harmonics": "/tmp/phase4g5r-final-wheel-env/lib/python3.12/site-packages/gem/spherical_harmonics.py"
+      },
+      "source_mode": false,
+      "original_regressions_passed": 12,
+      "regressions": [
+        {
+          "api": "free_slerp",
+          "sign": -1.0,
+          "representation": -1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ]
+        },
+        {
+          "api": "method_slerp",
+          "sign": -1.0,
+          "representation": -1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ]
+        },
+        {
+          "api": "squad4",
+          "sign": -1.0,
+          "representation": -1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ]
+        },
+        {
+          "api": "free_slerp",
+          "sign": -1.0,
+          "representation": 1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ]
+        },
+        {
+          "api": "method_slerp",
+          "sign": -1.0,
+          "representation": 1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ]
+        },
+        {
+          "api": "squad4",
+          "sign": -1.0,
+          "representation": 1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ]
+        },
+        {
+          "api": "free_slerp",
+          "sign": 1.0,
+          "representation": -1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ]
+        },
+        {
+          "api": "method_slerp",
+          "sign": 1.0,
+          "representation": -1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ]
+        },
+        {
+          "api": "squad4",
+          "sign": 1.0,
+          "representation": -1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ]
+        },
+        {
+          "api": "free_slerp",
+          "sign": 1.0,
+          "representation": 1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ]
+        },
+        {
+          "api": "method_slerp",
+          "sign": 1.0,
+          "representation": 1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ]
+        },
+        {
+          "api": "squad4",
+          "sign": 1.0,
+          "representation": 1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ]
+        }
+      ],
+      "additional_subnormal_checks_passed": 6,
+      "rotation_matrix_checks_passed": 2,
+      "api_reference": {
+        "declarations": 268,
+        "constants": 7,
+        "runtime_signatures_checked": true,
+        "omitted_declarations": []
+      },
+      "documentation_examples": {
+        "docs/architecture/conventions.md": 4,
+        "README.md": 1,
+        "docs/getting-started/quick-start.md": 7,
+        "docs/api/bezier.md": 1,
+        "docs/api/common.md": 1,
+        "docs/api/legacy.md": 1,
+        "docs/api/legendre.md": 1,
+        "docs/api/matrix.md": 1,
+        "docs/api/plane.md": 1,
+        "docs/api/projection.md": 1,
+        "docs/api/quaternion.md": 2,
+        "docs/api/ray.md": 1,
+        "docs/api/spherical-harmonics.md": 3,
+        "docs/api/transformations.md": 1,
+        "docs/api/vector.md": 2,
+        "docs/tutorials/bezier.md": 1,
+        "docs/tutorials/camera.md": 1,
+        "docs/tutorials/geometry.md": 2,
+        "docs/tutorials/interop.md": 1,
+        "docs/tutorials/lighting.md": 2,
+        "docs/tutorials/numerical.md": 2,
+        "docs/tutorials/quaternions.md": 2,
+        "docs/tutorials/transformations.md": 1,
+        "docs/tutorials/vectors.md": 1,
+        "docs/architecture/notation.md": 1
+      },
+      "examples_executed": 42,
+      "source_tree_runtime_imported": false,
+      "checker_modified": false,
+      "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+    },
+    "sdist": {
+      "package_root": "/tmp/phase4g5r-final-sdist-env/lib/python3.12/site-packages",
+      "imports": {
+        "gem": "/tmp/phase4g5r-final-sdist-env/lib/python3.12/site-packages/gem/__init__.py",
+        "gem.quaternion": "/tmp/phase4g5r-final-sdist-env/lib/python3.12/site-packages/gem/quaternion.py",
+        "gem.vector": "/tmp/phase4g5r-final-sdist-env/lib/python3.12/site-packages/gem/vector.py",
+        "gem.matrix": "/tmp/phase4g5r-final-sdist-env/lib/python3.12/site-packages/gem/matrix.py",
+        "gem.bezier": "/tmp/phase4g5r-final-sdist-env/lib/python3.12/site-packages/gem/bezier.py",
+        "gem.legendre": "/tmp/phase4g5r-final-sdist-env/lib/python3.12/site-packages/gem/legendre.py",
+        "gem.spherical_harmonics": "/tmp/phase4g5r-final-sdist-env/lib/python3.12/site-packages/gem/spherical_harmonics.py"
+      },
+      "source_mode": false,
+      "original_regressions_passed": 12,
+      "regressions": [
+        {
+          "api": "free_slerp",
+          "sign": -1.0,
+          "representation": -1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ]
+        },
+        {
+          "api": "method_slerp",
+          "sign": -1.0,
+          "representation": -1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ]
+        },
+        {
+          "api": "squad4",
+          "sign": -1.0,
+          "representation": -1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ]
+        },
+        {
+          "api": "free_slerp",
+          "sign": -1.0,
+          "representation": 1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ]
+        },
+        {
+          "api": "method_slerp",
+          "sign": -1.0,
+          "representation": 1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ]
+        },
+        {
+          "api": "squad4",
+          "sign": -1.0,
+          "representation": 1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            -1e-323
+          ]
+        },
+        {
+          "api": "free_slerp",
+          "sign": 1.0,
+          "representation": -1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ]
+        },
+        {
+          "api": "method_slerp",
+          "sign": 1.0,
+          "representation": -1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ]
+        },
+        {
+          "api": "squad4",
+          "sign": 1.0,
+          "representation": -1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ]
+        },
+        {
+          "api": "free_slerp",
+          "sign": 1.0,
+          "representation": 1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ]
+        },
+        {
+          "api": "method_slerp",
+          "sign": 1.0,
+          "representation": 1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ]
+        },
+        {
+          "api": "squad4",
+          "sign": 1.0,
+          "representation": 1.0,
+          "actual_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ],
+          "expected_rotated_vector": [
+            0.0,
+            1.0,
+            1e-323
+          ]
+        }
+      ],
+      "additional_subnormal_checks_passed": 6,
+      "rotation_matrix_checks_passed": 2,
+      "api_reference": {
+        "declarations": 268,
+        "constants": 7,
+        "runtime_signatures_checked": true,
+        "omitted_declarations": []
+      },
+      "documentation_examples": {
+        "docs/architecture/conventions.md": 4,
+        "README.md": 1,
+        "docs/getting-started/quick-start.md": 7,
+        "docs/api/bezier.md": 1,
+        "docs/api/common.md": 1,
+        "docs/api/legacy.md": 1,
+        "docs/api/legendre.md": 1,
+        "docs/api/matrix.md": 1,
+        "docs/api/plane.md": 1,
+        "docs/api/projection.md": 1,
+        "docs/api/quaternion.md": 2,
+        "docs/api/ray.md": 1,
+        "docs/api/spherical-harmonics.md": 3,
+        "docs/api/transformations.md": 1,
+        "docs/api/vector.md": 2,
+        "docs/tutorials/bezier.md": 1,
+        "docs/tutorials/camera.md": 1,
+        "docs/tutorials/geometry.md": 2,
+        "docs/tutorials/interop.md": 1,
+        "docs/tutorials/lighting.md": 2,
+        "docs/tutorials/numerical.md": 2,
+        "docs/tutorials/quaternions.md": 2,
+        "docs/tutorials/transformations.md": 1,
+        "docs/tutorials/vectors.md": 1,
+        "docs/architecture/notation.md": 1
+      },
+      "examples_executed": 42,
+      "source_tree_runtime_imported": false,
+      "checker_modified": false,
+      "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+    }
+  },
+  "distributions": {
+    "gem-0.1.12-py3-none-any.whl": {
+      "sha256": "58eac35a5524c8ed7092459d5e09a0d9bbf91596ca255c363e3b0d98dfceb051",
+      "bytes": 34054,
+      "runtime_files": [
+        "gem/__init__.py",
+        "gem/bezier.py",
+        "gem/common.py",
+        "gem/experimental/__init__.py",
+        "gem/experimental/_bezier_legacy.py",
+        "gem/experimental/bezier.py",
+        "gem/experimental/legendre.py",
+        "gem/experimental/sph.py",
+        "gem/experimental/sph_irradiance_map.py",
+        "gem/experimental/sph_sample.py",
+        "gem/legendre.py",
+        "gem/matrix.py",
+        "gem/plane.py",
+        "gem/quaternion.py",
+        "gem/ray.py",
+        "gem/spherical_harmonics.py",
+        "gem/vector.py"
+      ],
+      "runtime_byte_identical": true,
+      "compiled_extensions": [],
+      "requires_dist": [
+        "six"
+      ],
+      "version": "0.1.12",
+      "setup_cfg_build_normalization": false
+    },
+    "gem-0.1.12.tar.gz": {
+      "sha256": "68b8f6831a4024989210e86b33791bf9d8c6a89d8cbba87c62f7e0472841d64c",
+      "bytes": 36960,
+      "runtime_files": [
+        "gem/__init__.py",
+        "gem/bezier.py",
+        "gem/common.py",
+        "gem/experimental/__init__.py",
+        "gem/experimental/_bezier_legacy.py",
+        "gem/experimental/bezier.py",
+        "gem/experimental/legendre.py",
+        "gem/experimental/sph.py",
+        "gem/experimental/sph_irradiance_map.py",
+        "gem/experimental/sph_sample.py",
+        "gem/legendre.py",
+        "gem/matrix.py",
+        "gem/plane.py",
+        "gem/quaternion.py",
+        "gem/ray.py",
+        "gem/spherical_harmonics.py",
+        "gem/vector.py"
+      ],
+      "runtime_byte_identical": true,
+      "compiled_extensions": [],
+      "requires_dist": [
+        "six"
+      ],
+      "version": "0.1.12",
+      "setup_cfg_build_normalization": true
+    }
+  },
+  "performance_runs": [
+    {
+      "file": "audit/phase4g5r-performance.json",
+      "sha256": "84e6a29c06bb6d84308eb1622ff24cca6267be30fdc6489341da874bc8e0870e",
+      "compatibility": {
+        "interior_slerp_squad4_bit_identical_calls": 960,
+        "endpoint_calls": 320,
+        "changed_endpoint_calls": 0,
+        "maximum_endpoint_absolute_difference": 0.0,
+        "legacy_squad_bit_identical_calls": 480,
+        "nonunit_observations_not_a_supported_domain": true,
+        "invalid_nonfinite_characterizations": [
+          {
+            "input": [
+              "nan",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 0.0,
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "nan",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 1.0,
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "nan",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 0.37,
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "nan",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": "nan",
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "nan",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": "infinity",
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 0.0,
+            "outcome": [
+              "infinity",
+              0.0,
+              1.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              "infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 1.0,
+            "outcome": [
+              "nan",
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              "infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 0.37,
+            "outcome": [
+              "infinity",
+              0.0,
+              0.8358073613682702,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              "infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": "nan",
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": "infinity",
+            "outcome": {
+              "exception": "ValueError",
+              "message": "math domain error"
+            }
+          },
+          {
+            "input": [
+              "-infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 0.0,
+            "outcome": [
+              "-infinity",
+              0.0,
+              1.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              "-infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 1.0,
+            "outcome": [
+              "nan",
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              "-infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 0.37,
+            "outcome": [
+              "-infinity",
+              0.0,
+              0.8358073613682702,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              "-infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": "nan",
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "-infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": "infinity",
+            "outcome": {
+              "exception": "ValueError",
+              "message": "math domain error"
+            }
+          },
+          {
+            "input": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "t": 0.0,
+            "outcome": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "t": 1.0,
+            "outcome": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "t": 0.37,
+            "outcome": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "t": "nan",
+            "outcome": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "t": "infinity",
+            "outcome": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "t": 0.0,
+            "outcome": {
+              "exception": "IndexError",
+              "message": "list index out of range"
+            }
+          },
+          {
+            "input": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "t": 1.0,
+            "outcome": {
+              "exception": "IndexError",
+              "message": "list index out of range"
+            }
+          },
+          {
+            "input": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "t": 0.37,
+            "outcome": {
+              "exception": "IndexError",
+              "message": "list index out of range"
+            }
+          },
+          {
+            "input": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "t": "nan",
+            "outcome": {
+              "exception": "IndexError",
+              "message": "list index out of range"
+            }
+          },
+          {
+            "input": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "t": "infinity",
+            "outcome": {
+              "exception": "IndexError",
+              "message": "list index out of range"
+            }
+          }
+        ]
+      },
+      "method": {
+        "clock": "process_time_ns",
+        "trials": 9,
+        "iterations": 20000,
+        "warmup_calls_per_side": 200,
+        "setup_excluded": true,
+        "gc_disabled_only_during_timing": true,
+        "loop_and_allocation_cost_included": true,
+        "order": "alternating implementations; deterministic shuffle seed 475102+trial"
+      }
+    },
+    {
+      "file": "audit/phase4g5r-performance-repeat.json",
+      "sha256": "28ae309692e64b802c13c971e7defca4b2a93a8f12ab91617b658e950b6e7f52",
+      "compatibility": {
+        "interior_slerp_squad4_bit_identical_calls": 960,
+        "endpoint_calls": 320,
+        "changed_endpoint_calls": 0,
+        "maximum_endpoint_absolute_difference": 0.0,
+        "legacy_squad_bit_identical_calls": 480,
+        "nonunit_observations_not_a_supported_domain": true,
+        "invalid_nonfinite_characterizations": [
+          {
+            "input": [
+              "nan",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 0.0,
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "nan",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 1.0,
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "nan",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 0.37,
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "nan",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": "nan",
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "nan",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": "infinity",
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 0.0,
+            "outcome": [
+              "infinity",
+              0.0,
+              1.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              "infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 1.0,
+            "outcome": [
+              "nan",
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              "infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 0.37,
+            "outcome": [
+              "infinity",
+              0.0,
+              0.8358073613682702,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              "infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": "nan",
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": "infinity",
+            "outcome": {
+              "exception": "ValueError",
+              "message": "math domain error"
+            }
+          },
+          {
+            "input": [
+              "-infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 0.0,
+            "outcome": [
+              "-infinity",
+              0.0,
+              1.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              "-infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 1.0,
+            "outcome": [
+              "nan",
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              "-infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 0.37,
+            "outcome": [
+              "-infinity",
+              0.0,
+              0.8358073613682702,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              "-infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": "nan",
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "-infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": "infinity",
+            "outcome": {
+              "exception": "ValueError",
+              "message": "math domain error"
+            }
+          },
+          {
+            "input": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "t": 0.0,
+            "outcome": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "t": 1.0,
+            "outcome": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "t": 0.37,
+            "outcome": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "t": "nan",
+            "outcome": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "t": "infinity",
+            "outcome": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "t": 0.0,
+            "outcome": {
+              "exception": "IndexError",
+              "message": "list index out of range"
+            }
+          },
+          {
+            "input": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "t": 1.0,
+            "outcome": {
+              "exception": "IndexError",
+              "message": "list index out of range"
+            }
+          },
+          {
+            "input": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "t": 0.37,
+            "outcome": {
+              "exception": "IndexError",
+              "message": "list index out of range"
+            }
+          },
+          {
+            "input": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "t": "nan",
+            "outcome": {
+              "exception": "IndexError",
+              "message": "list index out of range"
+            }
+          },
+          {
+            "input": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "t": "infinity",
+            "outcome": {
+              "exception": "IndexError",
+              "message": "list index out of range"
+            }
+          }
+        ]
+      },
+      "method": {
+        "clock": "process_time_ns",
+        "trials": 9,
+        "iterations": 20000,
+        "warmup_calls_per_side": 200,
+        "setup_excluded": true,
+        "gc_disabled_only_during_timing": true,
+        "loop_and_allocation_cost_included": true,
+        "order": "alternating implementations; deterministic shuffle seed 475102+trial"
+      }
+    },
+    {
+      "file": "audit/phase4g5r-performance-third.json",
+      "sha256": "f68ff806e563398074d0a68079ba9d455a7aa3007fb182181a17d7ace73dac8e",
+      "compatibility": {
+        "interior_slerp_squad4_bit_identical_calls": 960,
+        "endpoint_calls": 320,
+        "changed_endpoint_calls": 0,
+        "maximum_endpoint_absolute_difference": 0.0,
+        "legacy_squad_bit_identical_calls": 480,
+        "nonunit_observations_not_a_supported_domain": true,
+        "invalid_nonfinite_characterizations": [
+          {
+            "input": [
+              "nan",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 0.0,
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "nan",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 1.0,
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "nan",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 0.37,
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "nan",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": "nan",
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "nan",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": "infinity",
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 0.0,
+            "outcome": [
+              "infinity",
+              0.0,
+              1.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              "infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 1.0,
+            "outcome": [
+              "nan",
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              "infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 0.37,
+            "outcome": [
+              "infinity",
+              0.0,
+              0.8358073613682702,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              "infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": "nan",
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": "infinity",
+            "outcome": {
+              "exception": "ValueError",
+              "message": "math domain error"
+            }
+          },
+          {
+            "input": [
+              "-infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 0.0,
+            "outcome": [
+              "-infinity",
+              0.0,
+              1.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              "-infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 1.0,
+            "outcome": [
+              "nan",
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              "-infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": 0.37,
+            "outcome": [
+              "-infinity",
+              0.0,
+              0.8358073613682702,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              "-infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": "nan",
+            "outcome": [
+              "nan",
+              "nan",
+              "nan",
+              "nan"
+            ]
+          },
+          {
+            "input": [
+              "-infinity",
+              0.0,
+              1.0,
+              0.0
+            ],
+            "t": "infinity",
+            "outcome": {
+              "exception": "ValueError",
+              "message": "math domain error"
+            }
+          },
+          {
+            "input": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "t": 0.0,
+            "outcome": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "t": 1.0,
+            "outcome": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "t": 0.37,
+            "outcome": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "t": "nan",
+            "outcome": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "t": "infinity",
+            "outcome": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "input": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "t": 0.0,
+            "outcome": {
+              "exception": "IndexError",
+              "message": "list index out of range"
+            }
+          },
+          {
+            "input": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "t": 1.0,
+            "outcome": {
+              "exception": "IndexError",
+              "message": "list index out of range"
+            }
+          },
+          {
+            "input": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "t": 0.37,
+            "outcome": {
+              "exception": "IndexError",
+              "message": "list index out of range"
+            }
+          },
+          {
+            "input": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "t": "nan",
+            "outcome": {
+              "exception": "IndexError",
+              "message": "list index out of range"
+            }
+          },
+          {
+            "input": [
+              1.0,
+              2.0,
+              3.0
+            ],
+            "t": "infinity",
+            "outcome": {
+              "exception": "IndexError",
+              "message": "list index out of range"
+            }
+          }
+        ]
+      },
+      "method": {
+        "clock": "process_time_ns",
+        "trials": 9,
+        "iterations": 20000,
+        "warmup_calls_per_side": 200,
+        "setup_excluded": true,
+        "gc_disabled_only_during_timing": true,
+        "loop_and_allocation_cost_included": true,
+        "order": "alternating implementations; deterministic shuffle seed 475102+trial"
+      }
+    }
+  ],
+  "preservation": {
+    "original_regression_bodies_inputs_assertions_tolerances_unchanged": true,
+    "removed_strict_xfail_markers": 1,
+    "removed_strict_xfail_cases": 12,
+    "original_tracked_files_unchanged": 361,
+    "unchanged_files_fingerprint_sha256": "f7ad8e46cf04431ed378f3d198c982a18624144837de4973e47514d55ab04f69",
+    "changed_original_files": [
+      "docs/api/quaternion.md",
+      "gem/quaternion.py",
+      "tests/test_final_integration_audit.py"
+    ],
+    "only_modified_runtime_function": "quat_slerp",
+    "other_runtime_files_unchanged": 16,
+    "public_signatures_unchanged": true,
+    "packaging_dependencies_versions_unchanged": true,
+    "documentation_checker_unchanged": true,
+    "bezier_implementation_unchanged": true,
+    "runtime_sha256": {
+      "gem/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gem/bezier.py": "1d354070a425ea0cb99e590f984f1dd86cf5b2a03432bee848f3352f85fc75b3",
+      "gem/common.py": "2384eae0490eff93499fca6fe56cc25074119b6955b40ca3d6823f8099406ec8",
+      "gem/experimental/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "gem/experimental/_bezier_legacy.py": "39f9522eaeb171837e7797ab604bb4bacf718053375266a61c39a0de9217a034",
+      "gem/experimental/bezier.py": "4d61b9ad9b6a807101a06e4641b74dae96325a82cdc5796bd2326f7f1afdaf15",
+      "gem/experimental/legendre.py": "4f1fb87056d71982405e1cd5d83fbb07fe9f8a9c464d18ac641486cc47633db5",
+      "gem/experimental/sph.py": "192b1c96295ddf6585da4c91c1da372b5c4f53bc844ee9125ff38b913496ff0d",
+      "gem/experimental/sph_irradiance_map.py": "e7d8fa175ad566fb2d4def36978d632a537e930b5acb02396c906ae1465bab94",
+      "gem/experimental/sph_sample.py": "fbf10456e724005116524fa797474fe767cbf0224468cfc878e5fd8e6f278c15",
+      "gem/legendre.py": "bcad8a96d35f47eb4f03a1535cf5083017a351e89129534b6acb673966a254f8",
+      "gem/matrix.py": "e539db231c9b71bc0846954f2a0fad0840b0b03ffd78ae65a4189a634b56c17c",
+      "gem/plane.py": "bbffce137d4885d3587efcb0aa0f2d5084d12191f9c62efb54e2cbe4dd9033f6",
+      "gem/quaternion.py": "c17e8fd731d601e36ff21bae86613e1f4982e6275b07d1d27be6f6405dff8059",
+      "gem/ray.py": "307dfac3a68a2235c3342d4bfe0d93fd15335dba4c28eff4cf6b79ae6167c1a4",
+      "gem/spherical_harmonics.py": "25bb90b46e4ba5175e320a7f232ac6a2523b31d495e82412db5bdc9579f0d06b",
+      "gem/vector.py": "df658aa596999334153e143c0801eabc5e5fb4e5bc402770e78a0178dc83c28c"
+    }
+  },
+  "limitations": [
+    "Binary64 product rounding remains; unrepresentable orientations are not recovered.",
+    "Unit-input subnormal-angle limit is supported for t in [0,1]; no nonunit-domain expansion.",
+    "Shared-host measurements are not universal performance guarantees.",
+    "Documentation checks reuse unchanged signature/example helpers, not its historical scope gate."
+  ],
+  "commands_report": "PHASE4G5R-SLERP-REPAIR.md"
+}
