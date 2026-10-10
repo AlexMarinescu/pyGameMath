@@ -188,6 +188,8 @@ def test_release_execution_uses_exact_assets_and_no_dry_run_mutation(tmp_path, m
         if path == 'actions/runs/123': return run
         if path.startswith('environments/'): return protected_environment()
         if path == 'branches/master': return {'protected': True}
+        if path == 'git/ref/tags/v1.0.0' and commands:
+            return {'object': {'type': 'commit', 'sha': SHA}}
         raise urllib.error.HTTPError('https://api.github.com', 404, 'absent', {}, None)
     monkeypatch.setattr(release.gate, 'github_get', get)
     preflights = []
@@ -203,12 +205,13 @@ def test_release_execution_uses_exact_assets_and_no_dry_run_mutation(tmp_path, m
     if mode == 'validate':
         assert commands == []
     else:
-        assert len(commands) == 1
-        command = commands[0]
+        assert len(commands) == 2
+        assert commands[0][-2:] == ['-f', 'sha=' + SHA]
+        command = commands[-1]
         assert command[:4] == ['gh', 'release', 'create', 'v1.0.0']
         assert command[command.index('--target') + 1] == SHA
         assert set(command[-4:]) == {str(tmp_path / n) for n in gate.FILES | {'SHA256SUMS', 'INSTALL.md'}}
-        assert '--clobber' not in command
+        assert '--clobber' not in command and '--verify-tag' in command
 
 
 def test_ci_scope_cannot_exempt_mathematics(tmp_path, monkeypatch):
@@ -221,3 +224,13 @@ def test_ci_scope_cannot_exempt_mathematics(tmp_path, monkeypatch):
     monkeypatch.setattr(checker.subprocess, 'check_output', lambda *a, **k: '')
     with pytest.raises(ValueError, match='mathematics cannot be exempted'):
         checker.check_scope()
+
+
+@pytest.mark.parametrize('kind', ['commit', 'tag'])
+def test_remote_release_tag_must_resolve_to_approved_commit(monkeypatch, kind):
+    def get(path):
+        return {'object': {'type': 'commit' if path.startswith('git/tags/') else kind,
+                           'sha': 'b' * 40}}
+    monkeypatch.setattr(release.gate, 'github_get', get)
+    with pytest.raises(ValueError, match='another commit'):
+        release.remote_tag_matches(SHA)

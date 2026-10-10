@@ -33,6 +33,22 @@ def validate_publication(context, enabled, approved, mode):
         gate.require(approved == 'publish v1.0.0', 'exact owner authorization phrase required')
 
 
+def remote_tag_matches(commit):
+    try:
+        ref = gate.github_get('git/ref/tags/' + gate.TAG)
+    except urllib.error.HTTPError as error:
+        if error.code == 404: return False
+        raise
+    obj = ref.get('object', {})
+    for _ in range(8):
+        if obj.get('type') == 'commit':
+            gate.require(obj.get('sha') == commit, 'remote release tag points to another commit')
+            return True
+        gate.require(obj.get('type') == 'tag', 'unsupported remote tag object')
+        obj = gate.github_get('git/tags/' + obj['sha']).get('object', {})
+    raise ValueError('excessive annotated-tag indirection')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--directory', type=Path, required=True)
@@ -64,10 +80,16 @@ def main():
         if error.code != 404: raise
     else:
         raise ValueError('release already exists; refuse to overwrite official artifacts')
+    tag_exists = remote_tag_matches(args.commit)
     if args.mode == 'publish':
-        # --target binds tag creation to the reviewed SHA; existing tags were checked by preflight.
+        if not tag_exists:
+            subprocess.run(['gh', 'api', 'repos/' + gate.REPOSITORY + '/git/refs',
+                            '--method', 'POST', '-f', 'ref=refs/tags/' + gate.TAG,
+                            '-f', 'sha=' + args.commit], check=True)
+        gate.require(remote_tag_matches(args.commit), 'release tag must exist at approved commit')
+        # Atomic ref creation refuses an existing ref; recheck the remote target before release.
         subprocess.run(['gh', 'release', 'create', gate.TAG, '--repo', gate.REPOSITORY,
-                        '--target', args.commit, '--title', 'gem 1.0.0',
+                        '--verify-tag', '--target', args.commit, '--title', 'gem 1.0.0',
                         '--notes-file', str(ROOT / 'docs/development/release-notes-1.0.0.md'),
                         *[str(args.directory / name) for name in sorted(gate.FILES | {'SHA256SUMS', 'INSTALL.md'})]],
                        check=True)
