@@ -276,3 +276,16 @@ def test_candidate_scope_cannot_exempt_runtime(tmp_path, monkeypatch):
         'base': checker.BASE, 'files': {'gem/quaternion.py': 'unauthorized'}}))
     with pytest.raises(ValueError, match='mathematics cannot be exempted'):
         checker.check_scope()
+
+
+@pytest.mark.parametrize('change', ['dependency', 'digest', 'workload'])
+def test_canonical_artifact_matrix_cannot_bypass_validation(change):
+    data = workflows.load_workflows()
+    job = data['package-validation.yml']['jobs']['candidate-install']
+    if change == 'dependency': job['needs'] = []
+    elif change == 'digest':
+        step = next(s for s in job['steps'] if s.get('uses', '').startswith('actions/download-artifact@'))
+        step['with']['digest-mismatch'] = 'warn'
+    else: job['strategy']['matrix']['python'] = ['3.12']
+    with pytest.raises(ValueError, match='canonical'):
+        workflows.validate(data)

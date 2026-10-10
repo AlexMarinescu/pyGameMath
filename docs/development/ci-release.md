@@ -21,6 +21,10 @@ The portable harness runs the complete suite, checks 268 API declarations and
 and installs each archive into a fresh isolated environment. It checks installed
 runtime bytes and repeats the API/examples checks. Skips and expected failures
 fail the candidate gate. Diagnostics remain available when a matrix job fails.
+After the full matrix passes, a second installation matrix verifies the same
+canonical Ubuntu/CPython 3.12 wheel and sdist on all 15 environments, without
+rebuilding them. It reuses the shared installation checks and verifies manifest
+provenance and SHA-256 digests before installation.
 
 The archive inspector rejects unexpected wheel contents, links, unsafe paths,
 caches, temporary credential files and recognizable credential-shaped content.
