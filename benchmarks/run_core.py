@@ -38,7 +38,7 @@ def environment():
             'platform': platform.platform(), 'architecture': platform.machine(),
             'cpu': cpu, 'cpu_count': os.cpu_count(),
             'host_id': hashlib.sha256(host.encode()).hexdigest() if host else None,
-            'affinity': sorted(os.sched_getaffinity(0)) if hasattr(os, 'sched_getaffinity') else None,
+            'affinity': sorted(os.sched_getaffinity(0)) if hasattr(os, 'sched_getaffinity') else 'unsupported',
             'six': importlib.metadata.version('six')}
 
 
