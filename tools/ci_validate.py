@@ -41,7 +41,7 @@ def run(output_dir, artifacts_dir, offline=False, wheelhouse=None):
     initially_clean=not subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True).strip()
     report={'python':platform.python_version(),'platform':platform.platform(),'commands':[],
             'status':'running','working_directory':str(ROOT)}
-    env=os.environ.copy();env.pop('PYTHONPATH',None);env['PIP_DISABLE_PIP_VERSION_CHECK']='1'
+    env=os.environ.copy();env.pop('PYTHONPATH',None);env['PIP_DISABLE_PIP_VERSION_CHECK']='1';env['PYTHONUTF8']='1'
     def command(args, name, cwd=ROOT):
         report['commands'].append({'argv':list(map(str,args)),'cwd':str(cwd),'log':name+'.log'})
         with (output_dir/(name+'.log')).open('w',encoding='utf-8') as log:

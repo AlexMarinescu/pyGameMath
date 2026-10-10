@@ -45,7 +45,7 @@ def check_member(name, content=b''):
 
 
 def inspect_archives(wheel, sdist):
-    runtime = {str(p.relative_to(ROOT)): p.read_bytes() for p in (ROOT/'gem').rglob('*.py')}
+    runtime = {p.relative_to(ROOT).as_posix(): p.read_bytes() for p in (ROOT/'gem').rglob('*.py')}
     with zipfile.ZipFile(wheel) as archive:
         files = {}
         for info in archive.infolist():
