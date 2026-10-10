@@ -1,7 +1,7 @@
 # Mathematical and ownership conventions
 
-Current reference: master `dc418923c692b609a9fc611c66433e5950e0a321`, after
-Phase 3E. These describe implemented contracts checked against source and
+Current reference: master `3e714fe949b7a6b7724d5c0da3395ee92483265f`, including
+the final SLERP repair (PR #59). These describe implemented contracts checked against source and
 regressions, not a claim that all numeric inputs are validated. Historical
 [audit conventions](../../audit/CONVENTIONS.md) contain baseline defects followed
 by corrections; read their later decisions when comparing old behavior. This

@@ -16,7 +16,7 @@ import sys
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = 'dc418923c692b609a9fc611c66433e5950e0a321'
+BASE = '3e714fe949b7a6b7724d5c0da3395ee92483265f'
 PAGES = ['ROADMAP.md', 'docs/README.md', 'docs/development/roadmap.md',
          'docs/development/verification.md'] + [
     'docs/architecture/' + name + '.md' for name in
@@ -46,7 +46,7 @@ def declarations():
 
 
 def anchors(text):
-    result = set()
+    result = set(re.findall(r'\bid=["\']([^"\']+)["\']', text))
     seen = {}
     for title in re.findall(r'^#{1,6}\s+(.+?)\s*#*$', text, re.MULTILINE):
         slug = re.sub(r'[^\w\- ]', '', title.replace('`', '').lower()).replace(' ', '-')
@@ -54,6 +54,70 @@ def anchors(text):
         seen[slug] = occurrence+1
         result.add(slug + ('-'+str(occurrence) if occurrence else ''))
     return result
+
+
+def check_scope():
+    """Freeze runtime, existing tests and packaging at the reviewed master.
+
+    Baseline changes require review; HEAD is deliberately not the reference.
+    Only the new documentation-tool regression module may join protected paths.
+    """
+    paths = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', BASE],
+                                    cwd=ROOT, text=True).splitlines()
+    def protected(name):
+        return name.startswith(('gem/', 'tests/', 'examples/', 'benchmarks/')) or name in (
+            'setup.py', 'setup.cfg', 'MANIFEST.in', 'LICENSE', 'README.rst',
+            'requirements-audit.txt', 'requirements-docs.txt', 'requirements-docs-browser.txt',
+            '.travis.yml')
+    originals = {name for name in paths if protected(name)}
+    current = subprocess.check_output(['git', 'ls-files', '--cached', '--others',
+        '--exclude-standard'], cwd=ROOT, text=True).splitlines()
+    additions = {name for name in current if protected(name)}-originals
+    allowed = {'tests/test_documentation_overhaul.py'}
+    if additions-allowed:
+        raise ValueError('out-of-scope addition: '+', '.join(sorted(additions-allowed)))
+    fingerprint = hashlib.sha256()
+    for name in sorted(originals):
+        content = (ROOT/name).read_bytes()
+        if content != subprocess.check_output(['git', 'show', BASE+':'+name], cwd=ROOT):
+            raise ValueError('out-of-scope modification: '+name)
+        fingerprint.update(name.encode()); fingerprint.update(content)
+    return {'protected_files_unchanged': len(originals),
+            'protected_sha256': fingerprint.hexdigest(),
+            'new_documentation_test_modules': sorted(additions)}
+
+
+def preserve_learning_material(pages):
+    """Keep every baseline executable block in order, permitting comments only."""
+    baseline = set(subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', BASE],
+                                         cwd=ROOT, text=True).splitlines())
+    blocks = tutorials = old_anchors = 0
+    for name in pages:
+        if name not in baseline:
+            continue
+        previous = subprocess.check_output(['git', 'show', BASE+':'+name], cwd=ROOT, text=True)
+        current = (ROOT/name).read_text()
+        required = anchors(re.sub(r'```.*?```', '', previous, flags=re.DOTALL))
+        present = anchors(re.sub(r'```.*?```', '', current, flags=re.DOTALL))
+        if required-present:
+            raise ValueError('removed historical anchor: '+name+': '+', '.join(sorted(required-present)))
+        old_anchors += len(required)
+        old = re.findall(r'```python\n(.*?)```', previous, re.DOTALL)
+        new = re.findall(r'```python\n(.*?)```', current, re.DOTALL)
+        expected = [ast.dump(ast.parse(code)) for code in old]
+        actual = [ast.dump(ast.parse(code)) for code in new]
+        cursor = 0
+        for block in expected:
+            while cursor < len(actual) and actual[cursor] != block:
+                cursor += 1
+            if cursor == len(actual):
+                raise ValueError('removed/changed executable example: '+name)
+            cursor += 1
+            blocks += 1
+        if name.startswith('docs/tutorials/') and old:
+            tutorials += 1
+    return {'baseline_examples_preserved': blocks, 'tutorials_preserved': tutorials,
+            'baseline_anchors_preserved': old_anchors}
 
 
 def check_api_reference(declared, runtime=False):
@@ -148,7 +212,7 @@ def check(examples=False, getting_started=False, package_root=None, api_referenc
         pages += ['examples/showcase/README.md']
     if website:
         pages += ['docs/index.md', 'docs/architecture/notation.md', 'docs/wiki-migration/README.md']
-        pages += ['docs/development/'+name+'.md' for name in ('documentation-stack', 'contributing', 'releases', 'website', 'website-verification', 'wiki')]
+        pages += ['docs/development/'+name+'.md' for name in ('documentation-stack', 'contributing', 'releases', 'website', 'website-verification', 'wiki', 'visual-overhaul')]
     report = {'base': BASE, 'pages': pages, 'links_checked': 0,
               'source_declarations_checked': 0, 'examples_executed': 0, 'examples_by_page': {}}
     inventory = (ROOT/'docs/architecture/api-inventory.md').read_text()
@@ -174,6 +238,7 @@ def check(examples=False, getting_started=False, package_root=None, api_referenc
         report['example_package'] = str(Path(gem.__file__).resolve())
     if api_reference:
         report['api_reference'] = check_api_reference(declared, runtime=examples)
+    report.update(preserve_learning_material(pages))
     for relative in pages:
         page = ROOT/relative
         text = page.read_text()
@@ -195,23 +260,7 @@ def check(examples=False, getting_started=False, package_root=None, api_referenc
                 exec(compile(code, relative+':example'+str(index+1), 'exec'), {})
                 report['examples_executed'] += 1
                 report['examples_by_page'][relative] = report['examples_by_page'].get(relative, 0) + 1
-    # Verify immutable boundaries against the exact audited master, not HEAD
-    # (which may already contain the documentation commit).
-    paths = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', BASE],
-                                    cwd=ROOT, text=True).splitlines()
-    protected = [p for p in paths if p.startswith(('gem/', 'tests/', 'examples/', 'benchmarks/'))
-                 or p in ('setup.py', 'setup.cfg', 'MANIFEST.in', 'LICENSE', 'README.rst',
-                          'requirements-audit.txt', '.travis.yml')]
-    fingerprint = hashlib.sha256()
-    for name in protected:
-        current = (ROOT/name).read_bytes()
-        previous = subprocess.check_output(['git', 'show', BASE+':'+name], cwd=ROOT)
-        if current != previous:
-            raise ValueError('out-of-scope modification: '+name)
-        fingerprint.update(name.encode())
-        fingerprint.update(current)
-    report['protected_files_unchanged'] = len(protected)
-    report['protected_sha256'] = fingerprint.hexdigest()
+    report.update(check_scope())
     return report
 
 

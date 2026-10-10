@@ -17,6 +17,7 @@ not from a desire to make a failing test pass. Vector equality stays exact;
 this local scalar helper is not an approximate-equality method added to gem.
 
 ```python
+# Check mathematical answers independently of floating-point intermediates.
 import math
 from gem.vector import Vector
 from gem.quaternion import Quaternion

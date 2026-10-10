@@ -6,11 +6,21 @@ Import `Legendre` from `gem.legendre`.
 Supported degree/order are integers 0≤m≤l. Associated values require x in [-1,1];
 ordinary m=0 polynomials also evaluate outside that interval. Functions are
 **unnormalized**, with Condon–Shortley phase:
-P_m^m(x)=(−1)^m(2m−1)!!(1−x²)^(m/2),
-P_(m+1)^m=x(2m+1)P_m^m, and
-P_l^m=((2l−1)xP_(l−1)^m−(l+m−1)P_(l−2)^m)/(l−m).
+
+$$
+P_m^m(x)=(-1)^m(2m-1)!!(1-x^2)^{m/2},\qquad
+P_{m+1}^m(x)=x(2m+1)P_m^m(x),
+$$
+
+$$
+P_l^m(x)=\frac{(2l-1)xP_{l-1}^m(x)-(l+m-1)P_{l-2}^m(x)}{l-m}.
+$$
+
 SH applies its own normalization; do not substitute a different phase convention.
 No module constants exist.
+
+See the [ordinary-function plot and notation](../architecture/notation.md#legendre-functions)
+to connect degree, parity and endpoint behavior.
 
 | Exact source declaration | Parameters, result and behavior |
 |---|---|

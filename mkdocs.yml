@@ -28,6 +28,9 @@ theme:
         icon: material/weather-sunny
         name: Switch to light mode
   features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.indexes
     - navigation.sections
     - navigation.top
     - search.suggest
@@ -65,8 +68,21 @@ nav:
       - Overview: getting-started/README.md
       - Installation: getting-started/installation.md
       - Quick start: getting-started/quick-start.md
-      - First vectors: tutorials/vectors.md
-      - Graphics gallery: examples/index.md
+  - Tutorials:
+      - Learning paths: tutorials/index.md
+      - Foundations:
+          - Vectors and movement: tutorials/vectors.md
+          - Transformations: tutorials/transformations.md
+          - Numerical accuracy: tutorials/numerical.md
+      - Graphics:
+          - Camera coordinates: tutorials/camera.md
+          - Quaternion interpolation: tutorials/quaternions.md
+          - Bezier curves: tutorials/bezier.md
+          - Planes and rays: tutorials/geometry.md
+          - Graphics interoperability: tutorials/interop.md
+      - Lighting:
+          - Spherical harmonics: tutorials/lighting.md
+      - Contract boundaries: tutorials/decisions.md
   - API reference:
       - Overview: api/index.md
       - Algebra:
@@ -85,25 +101,13 @@ nav:
       - Lighting: api/spherical-harmonics.md
       - Common utilities: api/common.md
       - Legacy interfaces: api/legacy.md
-      - Extended guides:
+      - Compatibility notes:
           - Quaternion notes: QUATERNIONS.md
           - Ray notes: RAYS.md
           - SH notes: SPHERICAL_HARMONICS.md
           - Vector and viewport contracts: VECTOR_VIEWPORT_CONTRACTS.md
       - Open contracts: api/decisions.md
       - Coverage: api/coverage.md
-  - Tutorials:
-      - Learning paths: tutorials/index.md
-      - Vectors and movement: tutorials/vectors.md
-      - Transformations: tutorials/transformations.md
-      - Camera coordinates: tutorials/camera.md
-      - Quaternion interpolation: tutorials/quaternions.md
-      - Bezier curves: tutorials/bezier.md
-      - Planes and rays: tutorials/geometry.md
-      - Graphics interoperability: tutorials/interop.md
-      - Lighting mathematics: tutorials/lighting.md
-      - Numerical accuracy: tutorials/numerical.md
-      - Contract boundaries: tutorials/decisions.md
   - Examples:
       - Gallery: examples/index.md
       - Vector diagram: examples/gallery/vectors.md
@@ -115,7 +119,7 @@ nav:
       - Regeneration: examples/regeneration.md
       - Asset manifest: examples/ASSET-MANIFEST.md
       - Verification: examples/verification.md
-  - Architecture:
+  - Conventions:
       - Philosophy: architecture/philosophy.md
       - Conventions: architecture/conventions.md
       - Mathematical notation: architecture/notation.md
@@ -134,6 +138,7 @@ nav:
       - Stack and licensing: development/documentation-stack.md
       - Wiki migration: development/wiki.md
       - Website verification: development/website-verification.md
+      - Visual overhaul verification: development/visual-overhaul.md
       - Wiki package inventory: wiki-migration/README.md
       - Earlier verification:
           - Getting started: getting-started/verification.md

@@ -32,6 +32,7 @@ exactly in real arithmetic. This special quadrature is not an arbitrary high-ban
 environment integration rule; the hand-derived coefficients validate this example.
 
 ```python
+# Project radiance first, then apply diffuse convolution exactly once.
 import math
 from gem.quaternion import quat_from_axis_angle
 from gem.spherical_harmonics import SPHSample, SPH, project_radiance, rotate_coefficients, convolve_diffuse, reconstruct

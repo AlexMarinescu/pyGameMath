@@ -1,31 +1,32 @@
-# GitHub Wiki migration package
+<div id="github-wiki-migration-package" aria-hidden="true"></div>
+
+# GitHub Wiki navigation portal
 
 The live Wiki was inspected at commit
-`715e5039c75e080814a12e957f5148c35cdf8bda`, unchanged since the Phase 1B snapshot.
-Its seven pages are Home, Matrix Class, Vector Class, Quaternion Class, Plane
-Class, Ray Class and Common Functions. Matrix/Vector contain substantive historical
-material; four class/function pages are placeholders. All original source and
-attribution remain in the [audited snapshot](../../audit/wiki-snapshot/manifest.json).
+`400e42712494836ed016a155f2ab7202ae61ba0e`. It already contains the
+lightweight navigation portal, six original class/function pages and Historical
+Home. Historical Matrix/Vector material and attribution remain intact. The
+[audited snapshot](../../audit/wiki-snapshot/manifest.json) preserves the earlier
+source at `715e5039c75e080814a12e957f5148c35cdf8bda`.
 
-## Prepared changes, not published
+<div id="prepared-changes-not-published" aria-hidden="true"></div>
 
-The [migration package](../wiki-migration/README.md) replaces Home with a concise
-navigation entry, adds seven companion pages and a sidebar, and preserves the
-original Home verbatim as Historical Home. Existing class/function pages are left
-unchanged. No historical page is deleted, truncated or silently corrected. The
-new Historical and Legacy Notes page explains that old formulas/examples are
-historical evidence rather than current contracts.
+## Focused portal update
 
-Canonical docs and root ROADMAP remain authoritative. Wiki summaries use GitHub
-source links; no unverified website URL is inserted. The connected repository tools
-do not offer a Wiki write operation, and no CLI write identity was configured in
-the observed environment. A reviewed package is provided rather than claiming a
-successful Wiki publication.
+The [reviewed package](../wiki-migration/README.md) changes only Home,
+Documentation and the sidebar to link to the repository's configured
+[documentation website](https://alexmarinescu.github.io/pyGameMath/).
+Repository source fallbacks remain available. Current API contracts and tutorials
+stay in the main documentation; the Wiki does not duplicate them.
 
-## Review and publish separately
+The website address comes from repository homepage metadata. This execution
+environment's HTTP proxy rejects the GitHub Pages domain with CONNECT 403, so
+live website availability was not independently confirmed. The local build and
+all matching project-prefix routes are verified separately.
 
-Clone the Wiki, inspect the [prepared pages](../wiki-migration/pages/Home.md),
-and run the guarded preparation tool from the main repository:
+<div id="review-and-publish-separately" aria-hidden="true"></div>
+
+## Review and apply
 
 ```sh
 git clone https://github.com/AlexMarinescu/pyGameMath.wiki.git /tmp/pyGameMath-wiki
@@ -35,11 +36,12 @@ git -C /tmp/pyGameMath-wiki diff
 ```
 
 Dry run makes no writes. Apply requires the inspected tip, a clean worktree and
-no conflicting target pages; it only copies the reviewed files. If the Wiki has
-changed, refresh the inventory and review conflicts instead of overriding the guard.
-The tool never commits, pushes, deletes pages or changes remotes.
+matching hashes for every observed Wiki page. All reviewed sources are validated
+before any write. Only the three portal files are replaced; all historical and
+other companion pages are preserved. The tool never commits, pushes or deletes.
+If the Wiki changes, refresh the inventory and review conflicts before applying.
 
-After maintainer review, commit those specific pages with an ordinary descriptive
-message and push normally using authorized Wiki credentials. Do not force push.
-Verify live pages and links afterward, then record the actual published commit.
-Website deployment is a separate [publication decision](website.md).
+This update is prepared for review alongside the documentation PR; no live Wiki
+push is claimed. After review, commit only those portal changes, push normally
+with authorized Wiki credentials, and verify the published links. No force push
+or second API specification is needed.

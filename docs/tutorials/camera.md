@@ -25,6 +25,7 @@ using NDC depth [0,1] or top-left raster origins; convert explicitly when integr
 ## Trace projection and reverse it
 
 ```python
+# Keep homogeneous W until the project/unproject API performs its division.
 from gem.matrix import Matrix, lookAt, perspective, project, unproject
 from gem.vector import Vector
 

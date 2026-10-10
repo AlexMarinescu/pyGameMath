@@ -25,6 +25,7 @@ forward axis explicitly rather than assuming those conveniences share a conventi
 ## Composition and a halfway orientation
 
 ```python
+# Axis-angle construction uses degrees; interpolation here uses unit inputs.
 import math
 from gem.quaternion import Quaternion, quat_from_axis_angle, quat_from_matrix, quat_rotate_vector
 from gem.vector import Vector
