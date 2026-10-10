@@ -48,9 +48,18 @@ def run(output_dir, artifacts_dir, offline=False, wheelhouse=None):
             subprocess.run(list(map(str,args)),cwd=cwd,env=env,stdout=log,stderr=subprocess.STDOUT,check=True)
     def read(name):return json.loads((output_dir/name).read_text(encoding='utf-8'))
     try:
-        command([sys.executable,'-m','pytest','-q','-o','junit_family=legacy',
-                 '--junitxml',str(output_dir/'pytest.xml')],'pytest')
-        report['tests']=assert_clean_junit(output_dir/'pytest.xml')
+        pytest_error=None
+        try:
+            command([sys.executable,'-m','pytest','-q','-o','junit_family=legacy',
+                     '--junitxml',str(output_dir/'pytest.xml')],'pytest')
+            report['tests']=assert_clean_junit(output_dir/'pytest.xml')
+        except (subprocess.CalledProcessError,ValueError) as error:
+            # Continue independent archive/install diagnostics, but never approve a failed suite.
+            pytest_error=error
+            suites=ET.parse(output_dir/'pytest.xml').getroot()
+            totals={name:sum(int(s.get(name,0)) for s in suites.iter('testsuite'))
+                    for name in ('tests','failures','errors','skipped')}
+            report['tests']=dict(totals,passed=totals['tests']-sum(totals[n] for n in ('failures','errors','skipped')))
         command([sys.executable,ROOT/'tools/check_architecture_docs.py',*DOC_FLAGS,
                  '--output',output_dir/'source-docs.json'],'source-docs')
         report['documentation']=read('source-docs.json')
@@ -88,6 +97,8 @@ def run(output_dir, artifacts_dir, offline=False, wheelhouse=None):
             if docs['source_declarations_checked']!=268 or docs['examples_executed']!=43:
                 raise ValueError('installed API/example coverage incomplete')
             report['installed'][kind]={'smoke':read(kind+'-smoke.json'),'documentation':docs}
+        if pytest_error is not None:
+            raise ValueError('suite failed; archive/install diagnostics do not approve the candidate') from pytest_error
         commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
         tree=subprocess.check_output(['git','rev-parse','HEAD^{tree}'],cwd=ROOT,text=True).strip()
         manifest={'schema_version':1,'distribution':'gem','version':'1.0.0','tag':'v1.0.0',
